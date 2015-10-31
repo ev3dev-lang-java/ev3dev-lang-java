@@ -14,7 +14,7 @@ Using the package manager from Debian, It is possible to install Java:
 
 ```
 sudo apt-get install default-jdk
-```
+``
 
 To develop a Java program on EV3Dev:
 
@@ -47,7 +47,7 @@ In the other side, EV3Dev has built a Linux system to run on the EV3 Brick. The 
 * EV3 Brick
 * Raspberry Pi 2 + PiStorm/BrickPi
 
-##3. Some Java pending features**
+**3. Some Java pending features**
 
 Modern Java development uses Maven/Graddle to manage dependencies in Java projects.
 
