@@ -14,7 +14,7 @@ Using the package manager from Debian, It is possible to install Java:
 
 ```
 sudo apt-get install default-jdk
-``
+```
 
 To develop a Java program on EV3Dev:
 
@@ -64,7 +64,7 @@ cd examples
 cd helloworld
 mvn package
 java -cp target/helloworld-1.0-SNAPSHOT.jar i.love.neutrinos.App
-``
+```
 
 ## References:
 
