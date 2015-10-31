@@ -14,7 +14,7 @@ Using the package manager from Debian, It is possible to install Java:
 
 ```
 sudo apt-get install default-jdk
-``
+```
 
 To develop a Java program on EV3Dev:
 
