@@ -77,16 +77,10 @@ java -cp target/helloworld-1.0-SNAPSHOT.jar i.love.neutrinos.App
 
 ## References:
 
-Maven in 5 Minutes: https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
-
-LeJOS website: http://www.lejos.org/
-
-LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/
-
-EV3Dev: http://www.ev3dev.org/
-
-EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
-
-EV3Dev autogen: https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen
-
-Issue management: https://overv.io
+* Maven in 5 Minutes: https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+* LeJOS website: http://www.lejos.org/
+* LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/
+* EV3Dev: http://www.ev3dev.org/
+* EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
+* EV3Dev autogen: https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen
+* Issue management: https://overv.io
