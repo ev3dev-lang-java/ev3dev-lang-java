@@ -9,7 +9,7 @@
 
 ## Challenges
 
-* LeJOS Motor control. The API for Wheeled robots is fantastic in LeJOS with Busybox. I think that the process to replicate the same behaviour will be interesting.
+* LeJOS Motor control. The API for Wheeled robots is fantastic in LeJOS with Busybox. I think that the process to replicate the same behaviour will be pretty interesting.
 
 ## Motivation
 
