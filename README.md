@@ -11,7 +11,7 @@
 
 **1. Enjoy with Linux & Java**
 
-EV3Dev is a successful project to offer a Linux platform for Lego Mindstorms developers based on Debian Project for EV3 Brick. Using this platform, any developer is able to run several programming languages as Python, GoLang or Node.js so the question is: *Why not Java on EV3Dev?* 
+EV3Dev is a successful project to offer a Linux platform for Lego Mindstorms developers based on Debian Project. Using this platform, any developer is able to run several programming languages as Python, GoLang or Node.js so the question is: *Why not Java on EV3Dev?* 
 
 Using the package manager, it is possible to install Java:
 
@@ -41,7 +41,7 @@ Hello World
 
 So, if the process is easy on EV3Dev, you could think: 
 
-- May I could develop Java projects on EV3Dev with *"ev3dev-lang-java"*
+> May I could develop Software for robots on EV3Dev with *"ev3dev-lang-java"*
 
 **2. Hardware scalability**
 
