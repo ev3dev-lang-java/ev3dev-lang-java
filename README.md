@@ -4,18 +4,12 @@ Ev3dev-lang-java is project designed to offer an API to use the [lego port inter
 
 ## References:
 
-### LeJOS
+LeJOS website: http://www.lejos.org/
 
-http://www.lejos.org/
+LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/
 
-http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/
+EV3Dev: http://www.ev3dev.org/
 
-### EV3Dev
-
-http://www.ev3dev.org/
-
-https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen
-
-### Tools:
+EV3Dev autogen: https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen
 
 Issue management: https://overv.io
