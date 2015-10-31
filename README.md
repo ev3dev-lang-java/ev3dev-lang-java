@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) in the [LeJOS way](http://www.lejos.org/).
+*EV3Dev-lang-Java* is a Java project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) in the [LeJOS way](http://www.lejos.org/).
 
 ## Goals
 
@@ -11,15 +11,15 @@
 
 **1. Enjoy with Linux & Java**
 
-EV3Dev is a successful project to offer a Linux platform for Lego Mindstorms developers based on Debian Project for EV3 Brick. Using this platform, any developer is able to run several programming languages as Python, GoLang or Node.js so my question is: *Why not Java?* 
+EV3Dev is a successful project to offer a Linux platform for Lego Mindstorms developers based on Debian Project for EV3 Brick. Using this platform, any developer is able to run several programming languages as Python, GoLang or Node.js so the question is: *Why not Java on EV3Dev?* 
 
-Using the package manager from Debian, It is possible to install Java:
+Using the package manager, it is possible to install Java:
 
 ```
 sudo apt-get install default-jdk
 ```
 
-To develop a Java program on EV3Dev:
+To develop a the classic *"Hello World"* program on EV3Dev:
 
 ``` java
 public class HelloWorld {
@@ -31,7 +31,7 @@ public class HelloWorld {
 }
 ```
 
-Once you compile and run the program on EV3Dev:
+To compile and run the program on EV3Dev:
 
 ``` bash
 javac HelloWorld.java
@@ -39,7 +39,9 @@ java HelloWorld
 Hello World
 ```
 
-You could think: "I need ev3dev-lang-java"
+So, if the process is easy on EV3Dev, you could think: 
+
+- May I could develop Java projects on EV3Dev with *"ev3dev-lang-java"*
 
 **2. Hardware scalability**
 
@@ -54,7 +56,7 @@ In the other side, EV3Dev has built a Linux system to run on the EV3 Brick. The 
 
 Modern Java development uses Maven/Graddle to manage dependencies in Java projects.
 
-With EV3Dev with ev3dev-lang-java, you can use projects precompiled Java artifacts or compile the sources on your brick.
+With EV3Dev with ev3dev-lang-java, you can use precompiled Java artifacts or compile the sources on your brick.
 
 Try this exercise:
 
