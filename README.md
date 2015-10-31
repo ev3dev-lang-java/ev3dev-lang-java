@@ -1,8 +1,11 @@
 # ev3dev-lang-java
 
+*EV3Dev-lang-Java* is a project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) in the [LeJOS way](http://www.lejos.org/).
+
 ## Goals
 
-*EV3Dev-lang-Java* is a project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) in the [LeJOS way](http://www.lejos.org/). 
+* Provide a modular set of Java libraries to run on EV3Dev
+* Reuse LeJOS development on EV3Dev 
 
 ## Motivation
 
@@ -45,7 +48,7 @@ In Lego Mindstorms ecosystem, Java developers use LeJOS libraries to develop sof
 In the other side, EV3Dev has built a Linux system to run on the EV3 Brick. The project offers a neutral interface for sensors an actuators based on sysfs so if this project build a low level interface for Java, it is possible to develop software for robots with Java running on Debian but the real advantage of EV3Dev is the hardware scalability, EV3Dev is able to run in the following products:
 
 * EV3 Brick
-* Raspberry Pi 2 + PiStorm/BrickPi
+* Raspberry Pi 2 + PiStorm/BrickPi hats
 
 **3. Some Java pending features**
 
