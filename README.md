@@ -5,7 +5,11 @@
 ## Goals
 
 * Provide a modular set of Java libraries to run on EV3Dev
-* Reuse LeJOS development on EV3Dev 
+* Reuse LeJOS development on EV3Dev
+
+## Challenges
+
+* LeJOS Motor control. The API for Wheeled robots is fantastic in LeJOS with Busybox. I think that the process to replicate the same behaviour will be interesting.
 
 ## Motivation
 
@@ -41,7 +45,7 @@ Hello World
 
 So, if the process is easy on EV3Dev, you could think: 
 
-> May I could develop Software for robots on EV3Dev with *"ev3dev-lang-java"*
+> Maybe, I could develop Software for robots on EV3Dev with *"ev3dev-lang-java"*
 
 **2. Hardware scalability**
 
