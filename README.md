@@ -64,13 +64,21 @@ With EV3Dev with ev3dev-lang-java, you can use precompiled Java artifacts or com
 
 Try this exercise:
 
+*1. Connect with your Brick:* 
+
+``` bash
+ssh root@192.168.2.2
+r00tme
+```
+
+*2. Execute the following statements:*
+
 ``` bash
 sudo apt-get install maven
 sudo apt-get install git
 git clone https://github.com/jabrena/ev3dev-lang-java.git
 cd ev3dev-lang-java
-cd examples
-cd helloworld
+cd examples/java/helloworld
 mvn package
 java -cp target/helloworld-1.0-SNAPSHOT.jar i.love.neutrinos.App
 ```
@@ -79,7 +87,7 @@ java -cp target/helloworld-1.0-SNAPSHOT.jar i.love.neutrinos.App
 
 * Maven in 5 Minutes: https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 * LeJOS website: http://www.lejos.org/
-* LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/
+* LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/ 
 * EV3Dev: http://www.ev3dev.org/
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
 * EV3Dev autogen: https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen
