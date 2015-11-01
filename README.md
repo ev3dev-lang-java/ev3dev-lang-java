@@ -77,8 +77,7 @@ r00tme
 sudo apt-get install maven
 sudo apt-get install git
 git clone https://github.com/jabrena/ev3dev-lang-java.git
-cd ev3dev-lang-java
-cd examples/java/helloworld
+cd ev3dev-lang-java/examples/java/helloworld
 mvn package
 java -cp target/helloworld-1.0-SNAPSHOT.jar i.love.neutrinos.App
 ```
