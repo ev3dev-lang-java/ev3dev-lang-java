@@ -8,10 +8,10 @@
 
 * Provide a modular set of Java libraries to run on EV3Dev
 * Reuse LeJOS development on EV3Dev
-
-## Challenges
-
-* LeJOS Motor control. The API for Wheeled robots is fantastic in LeJOS with Busybox. I think that the process to replicate the same behaviour will be pretty interesting.
+** lejos.hardware 
+** lejos.internal
+** lejos.remote
+** lejos.robotics
 
 ## Motivation
 
