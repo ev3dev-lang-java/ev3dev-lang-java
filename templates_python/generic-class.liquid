@@ -1,0 +1,35 @@
+{%
+assign class_name = currentClass.friendlyName | camel_case | capitalize %}{%
+if currentClass.systemDeviceNameConvention %}{%
+    assign device_name_convention = currentClass.systemDeviceNameConvention | replace: '\{\d\}', '*' %}{%
+else %}{%
+    assign device_name_convention = '*' %}{%
+endif %}{%
+if currentClass.inheritance %}{%
+    assign base_class = currentClass.inheritance | camel_case | capitalize %}{%
+else %}{%
+    assign base_class = 'Device' %}{%
+endif%}{%
+assign driver_name = "" %}{%
+if currentClass.driverName %}{%
+    for name in currentClass.driverName %}{%
+        capture driver_name %}{{ driver_name }}, '{{name}}'{% endcapture %}{%
+    endfor %}{%
+    capture driver_name %} driver_name=[{{ driver_name | remove_first:', ' }}],{% endcapture %}{%
+endif %}
+class {{ class_name }}({{ base_class }}):
+
+    """{% for line in currentClass.description %}
+    {{ line }}{% endfor %}
+    """
+{% if currentClass.inheritance %}
+    SYSTEM_CLASS_NAME = {{ base_class }}.SYSTEM_CLASS_NAME
+    SYSTEM_DEVICE_NAME_CONVENTION = {{ base_class }}.SYSTEM_DEVICE_NAME_CONVENTION
+{% else %}
+    SYSTEM_CLASS_NAME = '{{ currentClass.systemClassName }}'
+    SYSTEM_DEVICE_NAME_CONVENTION = '{{ device_name_convention }}'
+{% endif %}
+    def __init__(self, port=None, name=SYSTEM_DEVICE_NAME_CONVENTION, **kwargs):
+        if port is not None:
+            kwargs['port_name'] = port
+        Device.__init__(self, self.SYSTEM_CLASS_NAME, name,{{ driver_name }} **kwargs)
