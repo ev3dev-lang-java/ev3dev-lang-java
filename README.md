@@ -8,10 +8,6 @@
 
 * Provide a modular set of Java libraries to run on EV3Dev
 * Reuse LeJOS development on EV3Dev
-** lejos.hardware 
-** lejos.internal
-** lejos.remote
-** lejos.robotics
 
 ## Motivation
 
