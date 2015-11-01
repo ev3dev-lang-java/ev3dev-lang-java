@@ -23,7 +23,7 @@ Using the package manager, it is possible to install Java:
 sudo apt-get install default-jdk
 ```
 
-To develop a the classic *"Hello World"* program on EV3Dev:
+To develop the classic *"Hello World"* program on EV3Dev:
 
 ``` java
 public class HelloWorld {
