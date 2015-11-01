@@ -2,6 +2,8 @@
 
 *EV3Dev-lang-Java* is a Java project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) in the [LeJOS way](http://www.lejos.org/).
 
+![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/uml/ev3-lang-java.png)
+
 ## Goals
 
 * Provide a modular set of Java libraries to run on EV3Dev
