@@ -1,4 +1,4 @@
-package org.ev3dev.base;
+package ev3dev.hardware;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
