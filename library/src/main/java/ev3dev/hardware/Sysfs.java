@@ -2,47 +2,33 @@ package ev3dev.hardware;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Sysfs {
 
-	public static boolean write(SysfsObj obj) {
+	public static boolean writeString(String filePath, String value) {
 		try {
-			File mpuFile = new File(obj.getFile());
+			File mpuFile = new File(filePath);
 			if(mpuFile.canWrite()) {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(obj.getFile()));
-				bw.write(obj.getValue());
+				BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
+				bw.write(value);
 				bw.close();
-			} else {
-				Process p = Runtime.getRuntime().exec("su");
-				
-				DataOutputStream dos = new DataOutputStream(p.getOutputStream());
-				dos.writeBytes("echo " + obj.getValue() + " > " + obj.getFile() + "\n");
-				dos.writeBytes("exit");
-				dos.flush();
-				dos.close();
-				
-				if(p.waitFor() != 0)
-					System.out.println("Could not write to " + obj.getFile());
 			}
 		} catch (IOException ex) {
-			return false;
-		} catch (InterruptedException e) {
-			System.out.println("Error writing with root permission");
-			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
 	
-	public static String read(SysfsObj obj) {
+	public static String readString(String filePath) {
 		String value;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(obj.getFile()));
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			value = br.readLine();
 			br.close();
 		} catch (IOException ex) {
@@ -50,5 +36,32 @@ public class Sysfs {
 		}
 		return value;
 	}
+
+	
+	public static int readInteger(String filePath) {
+		String rawValue;
+		int value = 0;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			rawValue = br.readLine();
+			br.close();
+            if (rawValue != null && rawValue.length() > 0) {
+                value = Integer.parseInt(rawValue);
+            }
+		} catch (IOException ex) {
+			value = -1;
+		} catch (NumberFormatException e) {
+			value = -1;			
+		}
+		
+		return value;
+	}
+	
+	public static ArrayList<File> getElements(String path){
+		File f = new File(path);
+		ArrayList<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
+		return files;	
+	}
+
 	
 }
