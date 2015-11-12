@@ -8,7 +8,7 @@ public class SysfsTest2 {
 
 	public static void main(String[] args) {
 
-		/*
+		
 		String path = "/sys/class/tacho-motor/motor0/duty_cycle_sp";
 		String value = "50";
 		Sysfs.writeString(path,value);
@@ -16,7 +16,7 @@ public class SysfsTest2 {
 		value = "run-forever";
 		Sysfs.writeString(path,value);
 		
-		try {Thread.sleep(5000);} catch (InterruptedException e) {}
+		try {Thread.sleep(1000);} catch (InterruptedException e) {}
 		
 		value = "stop";
 		Sysfs.writeString(path,value);
@@ -30,11 +30,15 @@ public class SysfsTest2 {
 		}
 		
 		System.out.println(LocalDevice.getMotorPort("outA"));
-		*/
+		
+	
+		/*
+		TODO: Refactor this part
 		Motor.A.setSpeed(50);
 		Motor.A.forward();
 		try {Thread.sleep(1000);} catch (InterruptedException e) {}
 		Motor.A.stop();
+		*/
 	}
 
 }
