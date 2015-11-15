@@ -92,9 +92,10 @@ This example is included in the folder [examples](https://github.com/jabrena/ev3
 
 ## Goals
 
-* Provide a modular set of Java libraries to run on EV3Dev
+* Provide a modular set of Java libraries to develop software for robots.
 * Reuse LeJOS development on EV3Dev
     * lejos.hardware && lejos.internal == ev3dev.hardware
+    * lejos.robotics && lejos.utilities and other robotics libraries == [ev3dev-lang-java-robotics](https://github.com/jabrena/ev3dev-lang-java-robotics)
 
 ## Motivation
 
