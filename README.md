@@ -1,17 +1,40 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/).
+*EV3Dev-lang-Java* is a Java project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) included in the project [EV3Dev](http://www.ev3dev.org/docs/drivers/lego-port-class/).
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/ev3-lang-java.png)
 
-Checkout the project and test the following example:
+# Getting Started.
+
+Create a Java Maven project. Update the pom.xml to add the following repository:
+
+``` xml
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+```
+
+and add the dependency to offer Java support for EV3Dev:
+
+
+``` xml
+	<dependency>
+	    <groupId>com.github.jabrena</groupId>
+	    <artifactId>ev3dev-lang-java</artifactId>
+	    <version>v0.1.0</version>
+	</dependency>
+
+```
+
+In the project, create the Class Test:
+
 
 ``` java
 
 package ev3dev.examples;
 
 import ev3dev.hardware.motor.Motor;
-import ev3dev.hardware.sensor.ev3.GyroSensor;
 import ev3dev.hardware.sensor.ev3.IRSensor;
 
 public class Test {
@@ -23,8 +46,6 @@ public class Test {
 		Motor mB = new Motor("outB");
 		mB.setSpeed(50);
 		IRSensor ir1 = new IRSensor("in2");
-		GyroSensor gyro1 = new GyroSensor("in1");
-		System.out.println(gyro1.getAngle());
 
 		final int distance_threshold = 35;
 		final int iteration_threshold = 100;
@@ -49,18 +70,22 @@ public class Test {
 
 ```
 
-This example is included in the package: ev3dev.examples. Use the maven file pom.xml to deploy on your ev3 brick:
+To run the example, package your project with Maven:
 
 ``` bash
-mvn install
+mvn package
 ```
 
-once you have the .jar deployed in your brick, execute the example included with the library:
+and upload your jar and the library to your brick. In the path where you have uploaded the jar, execute the example:
+
 
 ``` bash
-java -cp ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.examples.Test
+java -cp MyFirstRobot-1.0-SNAPSHOT.jar:ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.java.MyFirstRobot.Test
 
 ```
+
+This example is included in the folder examples. 
+
 
 ## Goals
 
