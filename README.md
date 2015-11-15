@@ -1,12 +1,12 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) included in the project [EV3Dev](http://www.ev3dev.org/docs/drivers/lego-port-class/).
+*EV3Dev-lang-Java* is a Java project designed to offer a library to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) on a hardware running [EV3Dev](http://www.ev3dev.org/docs/drivers/lego-port-class/).
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/ev3-lang-java.png)
 
 # Getting Started.
 
-Create a Java Maven project. Update the pom.xml to add the following repository:
+Create a Java Maven project. Update the file pom.xml to add the following repository:
 
 ``` xml
 	<repository>
@@ -27,7 +27,7 @@ and add the dependency to offer Java support for EV3Dev:
 
 ```
 
-In the project, create the Class Test:
+In the project, create a Class Test:
 
 
 ``` java
@@ -70,13 +70,13 @@ public class Test {
 
 ```
 
-To run the example, package your project with Maven:
+To run the example, package your project with Maven to generate a .jar file:
 
 ``` bash
 mvn package
 ```
 
-and upload your jar and the library to your brick. In the path where you have uploaded the jar, execute the example:
+upload your .jar and the library (ev3-lang-java-0.1-SNAPSHOT.jar) on your brick. In the path where you have uploaded the jar, execute the following example to run the example:
 
 
 ``` bash
@@ -84,7 +84,7 @@ java -cp MyFirstRobot-1.0-SNAPSHOT.jar:ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.jav
 
 ```
 
-This example is included in the folder examples. 
+This example is included in the folder [examples](https://github.com/jabrena/ev3dev-lang-java/tree/master/examples/java/MyFirstRobot).
 
 
 ## Goals

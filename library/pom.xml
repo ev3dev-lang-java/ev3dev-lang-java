@@ -40,19 +40,6 @@
                                 <include name="*.jar" />
                             </fileset>
                         </scp>
-
-<!--
-                        <sshexec host="192.168.2.2"
-                          trust="true"
-                          username="root"
-                          password="r00tme"
-                          command="cd /home/; beep;"
-                          failonerror="true"
-                          passphrase=""
-                        />
-                        
-java -cp ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.hardware.SysfsTest2
-                        -->
                     </tasks>
                 </configuration>
                 <goals>
