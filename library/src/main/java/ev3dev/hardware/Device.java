@@ -10,7 +10,7 @@ public class Device {
     private boolean connected = false;
 	private File pathDevice = null;
 	
-    public Device(String type, String portName) {
+    public Device(String type, String portName) throws DeviceException {
     	
     	final String devicePath = DEVICE_ROOT_PATH + "/" + type;
     	ArrayList<File> deviceAvailables = Sysfs.getElements(devicePath);
@@ -21,11 +21,15 @@ public class Device {
     		pathDeviceName = pathDevice + "/port_name";
     		if (Sysfs.readString(pathDeviceName).equals(portName)){
     			this.connected = true;
+    			break;
     		}
     	}
-    	
+
+    	if(this.connected == false){
+    		throw new DeviceException("The device was not detected in: " + portName);
+    	}
     }
-	
+
     public boolean isConnected(){
     	return this.connected;
     }
@@ -35,7 +39,7 @@ public class Device {
     }
     
     public void setAttribute(String attribute, String value){
-    	Sysfs.writeString(this.pathDevice + "/" +  attribute,value);
+    	Sysfs.writeString(this.pathDevice + "/" +  attribute, value);
     }
     
 }

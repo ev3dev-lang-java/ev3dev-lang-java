@@ -7,23 +7,18 @@ import ev3dev.hardware.motor.Motor;
 public class SysfsTest2 {
 
 	public static void main(String[] args) {
-
-		Device dev = new Device("tacho-motor", "outA"); 
-		System.out.println("Connected" + dev.isConnected());
-		dev.setAttribute("duty_cycle_sp", "50");
-		dev.setAttribute("command", "run-forever");
-		try {Thread.sleep(1000);} catch (InterruptedException e) {}
-		dev.setAttribute("command", "stop");
 		
-		try {Thread.sleep(1000);} catch (InterruptedException e) {}
-		
-		Motor mA = new Motor("outA");
+		Motor mA = new Motor("outA");//TODO Hide the ev3dev details about outA, outB, outC & outD
 		mA.setSpeed(50);
 		mA.forward();
+		Motor mB = new Motor("outB");
+		mB.setSpeed(50);
+		mB.forward();
+		//Motor mC = new Motor("outC");
 		try {Thread.sleep(1000);} catch (InterruptedException e) {}
 		mA.stop();
-		
-		
+		mB.stop();
+
 		/*
 		TODO: Refactor this part
 		Motor.A.setSpeed(50);

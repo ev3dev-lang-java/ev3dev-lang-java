@@ -1,6 +1,7 @@
 package ev3dev.hardware.motor;
 
 import ev3dev.hardware.Device;
+import ev3dev.hardware.DeviceException;
 
 public class Motor {
 
@@ -8,7 +9,11 @@ public class Motor {
 	private Device internalDevice = null;
 	
 	public Motor(String motorPort){
-		internalDevice = new Device(SYSTEM_CLASS_NAME, motorPort); 
+		try {
+			internalDevice = new Device(SYSTEM_CLASS_NAME, motorPort);
+		} catch (DeviceException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	public void setSpeed(int speed){
