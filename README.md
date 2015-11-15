@@ -44,9 +44,7 @@ public class Test {
 
 		mA.stop();
 		mB.stop();
-
 	}
-
 }
 
 ```
@@ -62,7 +60,7 @@ once you have the .jar deployed in your brick, execute the example included with
 ``` bash
 java -cp ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.examples.Test
 
-```
+``
 
 ## Goals
 
