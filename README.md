@@ -79,7 +79,7 @@ To run the example, package your project with Maven to generate a .jar file:
 mvn package
 ```
 
-upload your .jar and the library (ev3-lang-java-0.1-SNAPSHOT.jar) on your brick. In the path where you have uploaded the jar, execute the following example to run the example:
+upload your .jar and the library (ev3-lang-java) on your brick. In the path where you have uploaded the jar, execute the following example to run the example:
 
 
 ``` bash
