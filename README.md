@@ -87,6 +87,10 @@ java -cp MyFirstRobot-1.0-SNAPSHOT.jar:ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.jav
 
 ```
 
+Results:
+
+![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/MyFirstRobot.png)
+
 This example is included in the folder [examples](https://github.com/jabrena/ev3dev-lang-java/tree/master/examples/java/MyFirstRobot).
 
 
