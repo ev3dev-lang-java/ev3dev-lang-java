@@ -27,7 +27,10 @@ and add the dependency to offer Java support for EV3Dev:
 
 ```
 
-In the project, create a Class Test:
+Further information about the repository usage [here](https://jitpack.io/#jabrena/ev3dev-lang-java).
+
+
+Create a Java Class in your Maven project:
 
 
 ``` java
