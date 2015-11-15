@@ -20,7 +20,6 @@ public class Test {
 		final int iteration_threshold = 100;
 		
 		for(int i = 0; i <= iteration_threshold; i++) {
-
 			mA.forward();
 			mB.forward();
 			
@@ -31,7 +30,6 @@ public class Test {
 			}else {
 				System.out.println(ir1.getDistance());
 			}
-			
 		}
 
 		mA.stop();

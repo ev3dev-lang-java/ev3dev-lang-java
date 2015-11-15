@@ -1,14 +1,74 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) in the [LeJOS way](http://www.lejos.org/).
+*EV3Dev-lang-Java* is a Java project designed to offer an API to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/).
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/ev3-lang-java.png)
+
+Checkout the project and test the following example:
+
+``` java
+
+package ev3dev.examples;
+
+import ev3dev.hardware.motor.Motor;
+import ev3dev.hardware.sensor.ev3.GyroSensor;
+import ev3dev.hardware.sensor.ev3.IRSensor;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		Motor mA = new Motor("outA");
+		mA.setSpeed(50);
+		Motor mB = new Motor("outB");
+		mB.setSpeed(50);
+		IRSensor ir1 = new IRSensor("in2");
+		GyroSensor gyro1 = new GyroSensor("in1");
+		System.out.println(gyro1.getAngle());
+
+		final int distance_threshold = 35;
+		final int iteration_threshold = 100;
+		
+		for(int i = 0; i <= iteration_threshold; i++) {
+			mA.forward();
+			mB.forward();
+			
+			if(ir1.getDistance() <= distance_threshold){
+				mA.stop();
+				mB.stop();
+				break;
+			}else {
+				System.out.println(ir1.getDistance());
+			}
+		}
+
+		mA.stop();
+		mB.stop();
+
+	}
+
+}
+
+```
+
+This example is included in the package: ev3dev.examples. Use the maven file pom.xml to deploy on your ev3 brick:
+
+``` bash
+mvn install
+```
+
+once you have the .jar deployed in your brick, execute the example included with the library:
+
+``` bash
+java -cp ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.examples.Test
+
+```
 
 ## Goals
 
 * Provide a modular set of Java libraries to run on EV3Dev
 * Reuse LeJOS development on EV3Dev
-    * lejos.hardware && lejos.internal === ev3dev.hardware
+    * lejos.hardware && lejos.internal == ev3dev.hardware
 
 ## Motivation
 
