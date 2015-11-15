@@ -8,30 +8,22 @@ public class SysfsTest2 {
 
 	public static void main(String[] args) {
 
-		
-		String path = "/sys/class/tacho-motor/motor0/duty_cycle_sp";
-		String value = "50";
-		Sysfs.writeString(path,value);
-		path = "/sys/class/tacho-motor/motor0/command";
-		value = "run-forever";
-		Sysfs.writeString(path,value);
+		Device dev = new Device("tacho-motor", "outA"); 
+		System.out.println("Connected" + dev.isConnected());
+		dev.setAttribute("duty_cycle_sp", "50");
+		dev.setAttribute("command", "run-forever");
+		try {Thread.sleep(1000);} catch (InterruptedException e) {}
+		dev.setAttribute("command", "stop");
 		
 		try {Thread.sleep(1000);} catch (InterruptedException e) {}
 		
-		value = "stop";
-		Sysfs.writeString(path,value);
+		Motor mA = new Motor("outA");
+		mA.setSpeed(50);
+		mA.forward();
+		try {Thread.sleep(1000);} catch (InterruptedException e) {}
+		mA.stop();
 		
-		String pathMotor = "";
-		ArrayList files = Sysfs.getElements("/sys/class/tacho-motor/");
-		for(int x=0;x<files.size();x++) {
-			pathMotor = files.get(x) + "/port_name";
-			System.out.println(pathMotor);
-			System.out.println(Sysfs.readString(pathMotor));
-		}
 		
-		System.out.println(LocalDevice.getMotorPort("outA"));
-		
-	
 		/*
 		TODO: Refactor this part
 		Motor.A.setSpeed(50);
