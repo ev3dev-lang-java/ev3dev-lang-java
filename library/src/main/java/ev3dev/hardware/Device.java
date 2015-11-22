@@ -1,9 +1,11 @@
 package ev3dev.hardware;
 
+import java.io.Closeable;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Device {
+public class Device implements Closeable {
 
     private final String DEVICE_ROOT_PATH = "/sys/class";
     
@@ -41,5 +43,10 @@ public class Device {
     public void setAttribute(String attribute, String value){
     	Sysfs.writeString(this.pathDevice + "/" +  attribute, value);
     }
+
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
