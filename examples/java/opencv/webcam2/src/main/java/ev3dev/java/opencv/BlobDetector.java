@@ -143,13 +143,7 @@ public class BlobDetector {
         	Core.line(rgbaImage,new org.opencv.core.Point((int) intpoint.x-8,(int) intpoint.y), new org.opencv.core.Point((int) intpoint.x+8,(int) intpoint.y), new Scalar(0,0,255,255),2);
         	Core.line(rgbaImage,new org.opencv.core.Point((int) intpoint.x,(int) intpoint.y-8), new org.opencv.core.Point((int) intpoint.x,(int) intpoint.y+8), new Scalar(0,0,255,255),2);
         	Core.circle(rgbaImage, intpoint, 5, new Scalar(255,0,0,255));
-        	
-        	//assemble a data frame to log
-//        	DataFrame newframe = new DataFrame(System.currentTimeMillis(), Main.backthread.frame, intpoint);
-//        	if (Main.logger.getLogging())
-//        	{
-//        		Main.logger.addFrame(newframe); //log the frame
-//        	}
+
     	}
     }
 
