@@ -5,6 +5,8 @@
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
 ``` bash
+git clone https://github.com/jabrena/ev3dev-lang-java.git
+cd library
 ant -buildfile uml.xml uml
 ```
 
