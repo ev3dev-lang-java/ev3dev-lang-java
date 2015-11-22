@@ -30,6 +30,7 @@ public class Webcam2 {
             Highgui.imwrite("camera.jpg", frame);
             
             try { Thread.sleep(1000); } catch (InterruptedException e) {}
+            System.out.println("Iteration:" + i);
         }
 
         camera.release();
