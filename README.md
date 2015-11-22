@@ -4,6 +4,20 @@
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
+``` bash
+ant -buildfile uml.xml uml
+```
+
+# Priorities
+
+* Finish support for Unregulated motors
+* Add Support for Regulated motors (NXT Motor, EV3 Large Motor, EV3 Middle Motor)
+* Simplify UML design. It is necessary to remove some classes & interfaces from LeJOS UML design due to EV3Dev does that actions in Linux side.
+* Create repository for docs: JavaDocs, Website & Developer blog.
+* Create repository for behaviours: 
+* Create repository for computer vision:
+* Create repository for navigation:
+
 # Getting Started.
 
 Create a Java Maven project. Update the file pom.xml to add the following repository:
