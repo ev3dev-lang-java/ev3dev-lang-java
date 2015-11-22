@@ -3,6 +3,9 @@ package ev3dev.hardware.motor;
 import ev3dev.hardware.Device;
 import ev3dev.hardware.DeviceException;
 
+/*
+ * 
+ */
 public class Motor {
 
     private final String SYSTEM_CLASS_NAME = "tacho-motor";
