@@ -13,7 +13,7 @@ Ant file designed to generate javadocs and uml graphs
 	<property name="base.dir" value="." />
 	<property name="src" location="src"/>
 	<property name="lib" location="${base.dir}/lib" />
-	<property name="lib-eclipse" location="../lib-eclipse" />
+	<property name="lib-eclipse" location="../ant-lib" />
 	<property name="javadoc" location="../docs/api" />
 	<property name="uml.dir" value="../docs/uml"/>
 	<property name="build" location="build"/>
