@@ -8,14 +8,14 @@
 ant -buildfile uml.xml uml
 ```
 
-# Priorities
+# Development priorities:
 
-* Finish support for Unregulated motors
+* Finish support for Unregulated motors. 
 * Add Support for Regulated motors (NXT Motor, EV3 Large Motor, EV3 Middle Motor)
 * Simplify UML design. It is necessary to remove some classes & interfaces from LeJOS UML design due to EV3Dev does that actions in Linux side.
 * Create repository for docs: JavaDocs, Website & Developer blog.
 * Create repository for behaviours: 
-* Create repository for computer vision:
+* Create repository for computer vision: 
 * Create repository for navigation:
 
 # Getting Started.
