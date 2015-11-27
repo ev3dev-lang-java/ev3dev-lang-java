@@ -1,6 +1,6 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.Device;
+import ev3dev.hardware.DeviceNew;
 import ev3dev.hardware.DeviceException;
 
 /*
@@ -9,11 +9,11 @@ import ev3dev.hardware.DeviceException;
 public class Motor {
 
     private final String SYSTEM_CLASS_NAME = "tacho-motor";
-	private Device internalDevice = null;
+	private DeviceNew internalDevice = null;
 	
 	public Motor(String motorPort){
 		try {
-			internalDevice = new Device(SYSTEM_CLASS_NAME, motorPort);
+			internalDevice = new DeviceNew(SYSTEM_CLASS_NAME, motorPort);
 		} catch (DeviceException e) {
 			e.printStackTrace();
 		} 

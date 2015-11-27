@@ -13,10 +13,6 @@ import ev3dev.hardware.port.BasicMotorPort;
  */
 public abstract class BasicMotor extends Device implements DCMotor
 {
-    public BasicMotor(String type, String portName) throws DeviceException {
-		super(type, portName);
-		// TODO Auto-generated constructor stub
-	}
 
 
 	protected static int INVALID_MODE = -1;

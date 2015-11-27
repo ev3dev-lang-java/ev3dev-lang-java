@@ -1,12 +1,22 @@
 package ev3dev.hardware;
 
-public class DeviceException extends Exception {
+/**
+ * Exception thrown when errors are detected in a sensor device state.
+ * @author andy
+ *
+ */
+public class DeviceException extends RuntimeException
+{
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5846698127613306496L;
 
     public DeviceException()
     {
     }
 
-    public DeviceException(final String message)
+    public DeviceException(String message)
     {
         super (message);
     }
@@ -16,9 +26,8 @@ public class DeviceException extends Exception {
         super (cause);
     }
 
-    public DeviceException(final String message, Throwable cause)
+    public DeviceException(String message, Throwable cause)
     {
         super (message, cause);
     }
-	
 }

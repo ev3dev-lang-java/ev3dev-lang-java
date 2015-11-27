@@ -2,6 +2,7 @@ package ev3dev.hardware.motor;
 
 import ev3dev.hardware.Device;
 import ev3dev.hardware.DeviceException;
+import ev3dev.hardware.port.TachoMotorPort;
 //import lejos.hardware.ev3.LocalEV3;
 //import lejos.hardware.port.Port;
 //import lejos.hardware.port.TachoMotorPort;
@@ -64,21 +65,23 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     protected float speed = 360;
     protected int acceleration = 6000;
 
+    /*
 	public BaseRegulatedMotor(String type, String portName) throws DeviceException {
 		super(type, portName);
 		// TODO Auto-generated constructor stub
 		reg = null;
 		MAX_SPEED_AT_9V = 9;
 	}
+	*/
     
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.
      * @param port  to which this motor is connected
-
+         */
     public BaseRegulatedMotor(TachoMotorPort port, MotorRegulator regulator, 
             int typ, float moveP, float moveI, float moveD, float holdP, float holdI, float holdD, int offset, int maxSpeed)
     {
-        tachoPort = port;
+        //tachoPort = port;
         // Use default regulator if non specified
         if (regulator == null)
             reg = port.getRegulator();
@@ -87,7 +90,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
         MAX_SPEED_AT_9V = maxSpeed;
         reg.setControlParamaters(typ, moveP, moveI, moveD, holdP, holdI, holdD, offset);   
     }
-         */
+
     
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.

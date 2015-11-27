@@ -8,10 +8,5 @@ import ev3dev.hardware.DeviceException;
  */
 public class UnregulatedMotor extends BasicMotor {
     
-	public UnregulatedMotor(String type, String portName)
-			throws DeviceException {
-		super(type, portName);
-
-	}
 
 }

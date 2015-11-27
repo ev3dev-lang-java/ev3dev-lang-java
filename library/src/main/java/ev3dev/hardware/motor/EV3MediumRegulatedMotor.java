@@ -1,6 +1,7 @@
 package ev3dev.hardware.motor;
 
 import ev3dev.hardware.DeviceException;
+import ev3dev.hardware.port.TachoMotorPort;
 
 //import lejos.hardware.port.Port;
 //import lejos.hardware.port.TachoMotorPort;
@@ -12,11 +13,6 @@ import ev3dev.hardware.DeviceException;
  */
 public class EV3MediumRegulatedMotor extends BaseRegulatedMotor
 {
-    public EV3MediumRegulatedMotor(String type, String portName)
-			throws DeviceException {
-		super(type, portName);
-		// TODO Auto-generated constructor stub
-	}
 
 	static final float MOVE_P = 8f;
     static final float MOVE_I = 0.04f;
@@ -31,13 +27,13 @@ public class EV3MediumRegulatedMotor extends BaseRegulatedMotor
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.
      * @param port  to which this motor is connected
-
+         */
     public EV3MediumRegulatedMotor(TachoMotorPort port)
     {
-        super(port, null, EV3SensorConstants.TYPE_MINITACHO, MOVE_P, MOVE_I, MOVE_D,
+        super(port, null, 9, MOVE_P, MOVE_I, MOVE_D,
                 HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
     }
-         */
+
     
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.

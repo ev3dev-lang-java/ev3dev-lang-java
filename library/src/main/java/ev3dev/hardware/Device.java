@@ -1,52 +1,44 @@
 package ev3dev.hardware;
 
 import java.io.Closeable;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Device implements Closeable {
 
-    private final String DEVICE_ROOT_PATH = "/sys/class";
-    
-    private boolean connected = false;
-	private File pathDevice = null;
-	
-    public Device(String type, String portName) throws DeviceException {
-    	
-    	final String devicePath = DEVICE_ROOT_PATH + "/" + type;
-    	ArrayList<File> deviceAvailables = Sysfs.getElements(devicePath);
+/**
+ * Base class for sensor drivers. Provides mechanism to release resources when closed
+ * @author andy
+ *
+ */
+public class Device implements Closeable
+{
+    protected ArrayList<Closeable> closeList = new ArrayList<Closeable>();
 
-    	String pathDeviceName = "";
-    	for(int x=0; x < deviceAvailables.size(); x++) {
-    		pathDevice = deviceAvailables.get(x);
-    		pathDeviceName = pathDevice + "/port_name";
-    		if (Sysfs.readString(pathDeviceName).equals(portName)){
-    			this.connected = true;
-    			break;
-    		}
-    	}
-
-    	if(this.connected == false){
-    		throw new DeviceException("The device was not detected in: " + portName);
-    	}
-    }
-
-    public boolean isConnected(){
-    	return this.connected;
+    /**
+     * Add the specified resource to the list of objects that will be closed
+     * when the sensor is closed.
+     * @param res
+     */
+    protected void releaseOnClose(Closeable res)
+    {
+        closeList.add(res);
     }
     
-    public String getAttribute(String attribute){
-        return Sysfs.readString(pathDevice + "/" +  attribute);
-    }
-    
-    public void setAttribute(String attribute, String value){
-    	Sysfs.writeString(this.pathDevice + "/" +  attribute, value);
+    /**
+     * Close the sensor. Close associated resources.
+
+     */
+    public void close()
+    {
+        for(Closeable res : closeList)
+            try {
+                res.close();
+            } catch(IOException e)
+            {
+                // this really should not happen
+                throw new DeviceException("Error during close", e);
+            }
+        
     }
 
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
-    
 }
