@@ -10,12 +10,66 @@ cd library
 ant -buildfile uml.xml uml
 ```
 
+# Test the development:
+
+If you like, test development on master branch.
+
+``` bash
+git clone https://github.com/jabrena/ev3dev-lang-java.git
+cd library
+mvn install
+```
+
+Open a terminal to connect with your brick:
+
+``` bash
+ssh root:r00tme@192.168.2.2
+cd /home
+java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.hardware.motor.MotorTest
+```
+
+Example: 
+
+``` java
+package ev3dev.hardware.motor;
+
+import ev3dev.hardware.port.TachoMotorPort;
+import ev3dev.hardware.sensor.ev3.IRSensor;
+
+public class MotorTest {
+
+	public static void main(String[] args) {
+
+		EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(TachoMotorPort.A);
+        EV3LargeRegulatedMotor mB = new EV3LargeRegulatedMotor(TachoMotorPort.B);
+        mA.setSpeed(50);
+        mB.setSpeed(50);
+        IRSensor ir1 = new IRSensor("in2");
+
+        final int distance_threshold = 35;
+        final int iteration_threshold = 100;
+
+        for(int i = 0; i <= iteration_threshold; i++) {
+            mA.forward();
+            mB.forward();
+
+            if(ir1.getDistance() <= distance_threshold){
+                mA.stop();
+                mB.stop();
+                break;
+            }else {
+                System.out.println(ir1.getDistance());
+            }
+        }
+        mA.stop();
+        mB.stop();		
+	}
+}
+```
+
 # Development priorities:
 
-* Finish support for Unregulated motors. 
-* Add Support for Regulated motors (NXT Motor, EV3 Large Motor, EV3 Middle Motor)
-* Simplify UML design. It is necessary to remove some classes & interfaces from LeJOS UML design due to EV3Dev does that actions in Linux side.
-* Create repository for docs: http://jabrena.github.io/ev3dev-lang-java-docs/docs/api/
+* Improve Sensor support with LeJOS UML Design
 * Create repository for behaviours: 
 * Create repository for computer vision: https://github.com/jabrena/ev3dev-lang-java-computer-vision
 * Create repository for navigation:

@@ -30,9 +30,7 @@ public class MotorTest {
         }
 
         mA.stop();
-        mB.stop();
-		
+        mB.stop();		
 	}
-
 
 }
