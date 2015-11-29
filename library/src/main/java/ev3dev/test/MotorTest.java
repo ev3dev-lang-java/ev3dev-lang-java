@@ -1,5 +1,6 @@
-package ev3dev.hardware.motor;
+package ev3dev.test;
 
+import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
 import ev3dev.hardware.port.TachoMotorPort;
 import ev3dev.hardware.sensor.ev3.IRSensor;
 

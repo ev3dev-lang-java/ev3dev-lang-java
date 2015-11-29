@@ -25,14 +25,15 @@ Open a terminal to connect with your brick:
 ``` bash
 ssh root:r00tme@192.168.2.2
 cd /home
-java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.hardware.motor.MotorTest
+java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.test.MotorTest
 ```
 
 Example: 
 
 ``` java
-package ev3dev.hardware.motor;
+package ev3dev.test;
 
+import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
 import ev3dev.hardware.port.TachoMotorPort;
 import ev3dev.hardware.sensor.ev3.IRSensor;
 
