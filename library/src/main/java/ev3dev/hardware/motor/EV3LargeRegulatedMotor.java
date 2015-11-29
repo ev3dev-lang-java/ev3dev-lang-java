@@ -1,11 +1,6 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.DeviceException;
-import ev3dev.hardware.port.TachoMotorPort;
-
-//import lejos.hardware.port.Port;
-//import lejos.hardware.port.TachoMotorPort;
-//import lejos.hardware.sensor.EV3SensorConstants;
+import ev3dev.hardware.port.TachoMotorPortNew;
 
 /**
  * Abstraction for a Large Lego EV3/NXT motor.
@@ -24,26 +19,13 @@ public class EV3LargeRegulatedMotor extends BaseRegulatedMotor
     
     private static final int MAX_SPEED = 175*360/60;
 
-    /**
-     * Use this constructor to assign a variable of type motor connected to a particular port.
-     * @param port  to which this motor is connected
-         */
-    public EV3LargeRegulatedMotor(TachoMotorPort port)
+    //EV3SensorConstants.TYPE_NEWTACHO
+    static final int TYPE_NEWTACHO = 9;
+
+    public EV3LargeRegulatedMotor(TachoMotorPortNew port)
     {
-        super(port, null, 9, MOVE_P, MOVE_I, MOVE_D,
+        super(port, null, TYPE_NEWTACHO, MOVE_P, MOVE_I, MOVE_D,
                 HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
     }
-
-    
-    /**
-     * Use this constructor to assign a variable of type motor connected to a particular port.
-     * @param port  to which this motor is connected
-
-    public EV3LargeRegulatedMotor(Port port)
-    {
-        super(port, null, EV3SensorConstants.TYPE_NEWTACHO, MOVE_P, MOVE_I, MOVE_D,
-                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
-    }
-     */
 
 }

@@ -150,17 +150,17 @@ public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
     * that reads of the motor state will also be consistent.
     * @param syncList an array of motors to synchronize with.
     */
-   public void synchronizeWith(RegulatedMotor[] syncList);
+   //public void synchronizeWith(RegulatedMotor[] syncList);
 
    /**
     * Begin a set of synchronized motor operations
     */
-   public void startSynchronization();
+   //public void startSynchronization();
 
    /**
     * Complete a set of synchronized motor operations.
     */
-   public void endSynchronization();
+   //public void endSynchronization();
    
    /**
     * Close the port, the port can not be used after this call.

@@ -1,7 +1,7 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.DeviceException;
-import ev3dev.hardware.port.TachoMotorPort;
+
+import ev3dev.hardware.port.TachoMotorPortNew;
 
 /*
 import lejos.hardware.port.Port;
@@ -15,7 +15,6 @@ import lejos.hardware.sensor.EV3SensorConstants;
  */
 public class NXTRegulatedMotor extends BaseRegulatedMotor
 {
-
 	static final float MOVE_P = 4f;
     static final float MOVE_I = 0.04f;
     static final float MOVE_D = 10f;
@@ -28,13 +27,13 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.
      * @param port  to which this motor is connected
-     */
+
     public NXTRegulatedMotor(TachoMotorPort port)
     {
         super(port, null, 9, MOVE_P, MOVE_I, MOVE_D,
                 HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
     }
-
+     */
 
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.
@@ -46,5 +45,13 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor
                 HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
     }
      */
+    
+	public NXTRegulatedMotor(TachoMotorPortNew port, Object regulator,
+			int typeNewtacho, float moveP, float moveI, float moveD,
+			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
+		super(port, regulator, typeNewtacho, moveP, moveI, moveD, holdP, holdI, holdD,
+				offset, maxSpeed);
+		// TODO Auto-generated constructor stub
+	}
 
 }

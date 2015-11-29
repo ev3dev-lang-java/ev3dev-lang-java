@@ -2,7 +2,10 @@ package ev3dev.hardware.motor;
 
 import ev3dev.hardware.Device;
 import ev3dev.hardware.DeviceException;
-import ev3dev.hardware.port.TachoMotorPort;
+import ev3dev.hardware.DeviceNew;
+import ev3dev.hardware.port.EV3DevTachoMotorPort;
+import ev3dev.hardware.port.Port;
+import ev3dev.hardware.port.TachoMotorPortNew;
 //import lejos.hardware.ev3.LocalEV3;
 //import lejos.hardware.port.Port;
 //import lejos.hardware.port.TachoMotorPort;
@@ -60,28 +63,20 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
 	// Following should be set to the max SPEED (in deg/sec) of the motor when free running and powered by 9V
     protected final int MAX_SPEED_AT_9V;
     protected static final int NO_LIMIT = 0x7fffffff;
-    protected final MotorRegulator reg;
+    //protected final MotorRegulator reg;
     //protected TachoMotorPort tachoPort;
     protected float speed = 360;
     protected int acceleration = 6000;
-
-    /*
-	public BaseRegulatedMotor(String type, String portName) throws DeviceException {
-		super(type, portName);
-		// TODO Auto-generated constructor stub
-		reg = null;
-		MAX_SPEED_AT_9V = 9;
-	}
-	*/
+    protected TachoMotorPortNew dev;
     
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.
      * @param port  to which this motor is connected
-         */
+
     public BaseRegulatedMotor(TachoMotorPort port, MotorRegulator regulator, 
             int typ, float moveP, float moveI, float moveD, float holdP, float holdI, float holdD, int offset, int maxSpeed)
     {
-        //tachoPort = port;
+        tachoPort = port;
         // Use default regulator if non specified
         if (regulator == null)
             reg = port.getRegulator();
@@ -90,7 +85,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
         MAX_SPEED_AT_9V = maxSpeed;
         reg.setControlParamaters(typ, moveP, moveI, moveD, holdP, holdI, holdD, offset);   
     }
-
+         */
     
     /**
      * Use this constructor to assign a variable of type motor connected to a particular port.
@@ -102,18 +97,28 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
         this(port.open(TachoMotorPort.class), regulator, typ, moveP, moveI, moveD, holdP, holdI, holdD, offset, maxSpeed);
         releaseOnClose(tachoPort);
     }
-         */
+     */
 
-    /**
+    public BaseRegulatedMotor(TachoMotorPortNew port, Object regulator,
+			int typeNewtacho, float moveP, float moveI, float moveD,
+			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
+		// TODO Auto-generated constructor stub
+    	MAX_SPEED_AT_9V = maxSpeed;
+    	//reg = null;
+    	dev = port;
+	}
+
+
+	/**
      * Close the motor regulator. Release the motor from regulation and free any
      * associated resources.
-
+     */
     public void close()
     {
         suspendRegulation();
         super.close();
     }
-     */
+
     
     /**
      * Removes this motor from the motor regulation system. After this call
@@ -126,7 +131,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     {
         // Putting the motor into float mode disables regulation. note
         // that we wait for the operation to complete.
-        reg.newMove(0, acceleration, NO_LIMIT, false, true);
+        //reg.newMove(0, acceleration, NO_LIMIT, false, true);
         return true;
     }
 
@@ -137,7 +142,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public int getTachoCount()
     {
-        return reg.getTachoCount();
+        return 0;//reg.getTachoCount();
     }
 
     /**
@@ -151,7 +156,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public float getPosition()
     {
-        return reg.getPosition();
+        return 0.0f; //reg.getPosition();
     }
 
     /**
@@ -159,7 +164,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void forward()
     {
-        reg.newMove(speed, acceleration, +NO_LIMIT, true, false);
+        //reg.newMove(speed, acceleration, +NO_LIMIT, true, false);
     }
 
     /**
@@ -167,7 +172,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void backward()
     {
-        reg.newMove(speed, acceleration, -NO_LIMIT, true, false);
+        //reg.newMove(speed, acceleration, -NO_LIMIT, true, false);
     }
 
     /**
@@ -176,7 +181,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void flt()
     {
-        reg.newMove(0, acceleration, NO_LIMIT, false, true);
+        //reg.newMove(0, acceleration, NO_LIMIT, false, true);
     }
     
     /**
@@ -186,7 +191,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void flt(boolean immediateReturn)
     {
-        reg.newMove(0, acceleration, NO_LIMIT, false, !immediateReturn);
+        //reg.newMove(0, acceleration, NO_LIMIT, false, !immediateReturn);
     }
 
     /**
@@ -198,7 +203,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void stop()
     {
-        reg.newMove(0, acceleration, NO_LIMIT, true, true);
+        //reg.newMove(0, acceleration, NO_LIMIT, true, true);
     }
 
     /**
@@ -211,7 +216,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void stop(boolean immediateReturn)
     {
-        reg.newMove(0, acceleration, NO_LIMIT, true, !immediateReturn);
+        //reg.newMove(0, acceleration, NO_LIMIT, true, !immediateReturn);
     }
 
     /**
@@ -226,7 +231,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public boolean isMoving()
     {
-        return reg.isMoving();
+        return true; //reg.isMoving();
     }
 
     /**
@@ -235,12 +240,12 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void waitComplete()
     {
-        reg.waitComplete();
+        //reg.waitComplete();
     }
 
     public void rotateTo(int limitAngle, boolean immediateReturn)
     {
-        reg.newMove(speed, acceleration, limitAngle, true, !immediateReturn);
+        //reg.newMove(speed, acceleration, limitAngle, true, !immediateReturn);
     }
 
     /**
@@ -252,7 +257,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void setSpeed(int speed)
     {
         this.speed = Math.abs(speed);
-        reg.adjustSpeed(this.speed);
+        //reg.adjustSpeed(this.speed);
     }
 
     /**
@@ -264,7 +269,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void setSpeed(float speed)
     {
         this.speed = Math.abs(speed);
-        reg.adjustSpeed(this.speed);
+        //reg.adjustSpeed(this.speed);
     }
 
     /**
@@ -276,7 +281,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void setAcceleration(int acceleration)
     {
         this.acceleration = Math.abs(acceleration);
-        reg.adjustAcceleration(this.acceleration);
+        //reg.adjustAcceleration(this.acceleration);
     }
 
     /**
@@ -294,7 +299,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public int getLimitAngle()
     {
-        return reg.getLimitAngle();
+        return 0;//reg.getLimitAngle();
     }
 
     /**
@@ -303,7 +308,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void resetTachoCount()
     {
-        reg.resetTachoCount();
+        //reg.resetTachoCount();
     }
 
     /**
@@ -312,12 +317,12 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void addListener(RegulatedMotorListener listener)
     {
-        reg.addListener(this, listener);
+        //reg.addListener(this, listener);
     }
     
     public RegulatedMotorListener removeListener() 
     {
-        return reg.removeListener();
+        return null;//reg.removeListener();
     }
 
     /**
@@ -327,7 +332,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void rotate(int angle, boolean immediateReturn)
     {
-        rotateTo(Math.round(reg.getPosition()) + angle, immediateReturn);
+        //rotateTo(Math.round(reg.getPosition()) + angle, immediateReturn);
     }
 
     /**
@@ -336,7 +341,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void rotate(int angle)
     {
-        rotate(angle, false);
+        //rotate(angle, false);
     }
 
     /**
@@ -345,7 +350,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void rotateTo(int limitAngle)
     {
-        rotateTo(limitAngle, false);
+        //rotateTo(limitAngle, false);
     }
 
     /**
@@ -357,25 +362,13 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
         return Math.round(speed);
     }
 
-
-    /**
-     * @deprecated The regulator will always try to hold position unless the
-     * motor is set into float mode using flt().
-     * @param power - a value between 1 and 100;
-     */
-    @Deprecated
-    public void lock(int power)
-    {
-        stop(false);
-    }
-
     /**
      * Return true if the motor is currently stalled.
      * @return true if the motor is stalled, else false
      */
     public boolean isStalled()
     {
-        return reg.isStalled();
+        return true;//reg.isStalled();
     }
 
     /**
@@ -387,15 +380,16 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void setStallThreshold(int error, int time)
     {
-        reg.setStallThreshold(error, time);
+        //reg.setStallThreshold(error, time);
     }
+
     /**
      * Return the current velocity.
      * @return current velocity in degrees/s
      */
     public int getRotationSpeed()
     {
-        return Math.round(reg.getCurrentVelocity());
+        return 0;//Math.round(reg.getCurrentVelocity());
     }
 
 
@@ -410,37 +404,4 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     	return 0.0f;
     }
 
-    /**
-     * Specify a set of motors that should be kept in synchronization with this one.
-     * The synchronization mechanism simply ensures that operations between a startSynchronization
-     * call and an endSynchronization call will all be executed at the same time (when the 
-     * endSynchronization method is called). This is all that is needed to ensure that motors
-     * will operate in a synchronized fashion. The start/end methods can also be used to ensure
-     * that reads of the motor state will also be consistent.
-     * @param syncList an array of motors to synchronize with.
-     */
-    public void synchronizeWith(RegulatedMotor[] syncList)
-    {
-        // Create list of regualtors and pass it on!
-        MotorRegulator[] rl = new MotorRegulator[syncList.length];
-        for(int i = 0; i < syncList.length; i++)
-            rl[i] = ((BaseRegulatedMotor)syncList[i]).reg;
-        reg.synchronizeWith(rl);
-    }
-
-    /**
-     * Begin a set of synchronized motor operations
-     */
-    public void startSynchronization()
-    {
-        reg.startSynchronization();        
-    }
-
-    /**
-     * Complete a set of synchronized motor operations.
-     */
-    public void endSynchronization()
-    {
-        reg.endSynchronization(true);        
-    }
 }

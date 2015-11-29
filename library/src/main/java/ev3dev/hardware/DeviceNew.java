@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DeviceNew implements Closeable {
+public class DeviceNew {
 
     private final String DEVICE_ROOT_PATH = "/sys/class";
     
@@ -44,9 +44,5 @@ public class DeviceNew implements Closeable {
     	Sysfs.writeString(this.pathDevice + "/" +  attribute, value);
     }
 
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
     
 }
