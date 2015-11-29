@@ -19,6 +19,6 @@ public interface Port
      * @param portclass the required port interface
      * @return a class that implements the requested interface
      */
-    //public <T extends IOPort> T open(Class<T> portclass);
+    public <T extends IOPort> T open(Class<T> portclass);
     
 }
