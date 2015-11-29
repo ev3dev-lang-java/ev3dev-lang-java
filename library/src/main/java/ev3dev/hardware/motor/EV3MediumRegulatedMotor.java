@@ -1,6 +1,7 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.port.TachoMotorPortNew;
+import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.port.TachoMotorPort;
 
 
 //import lejos.hardware.port.Port;
@@ -46,12 +47,9 @@ public class EV3MediumRegulatedMotor extends BaseRegulatedMotor
     }
          */
 
-	public EV3MediumRegulatedMotor(TachoMotorPortNew port, Object regulator,
-			int typeNewtacho, float moveP, float moveI, float moveD,
-			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
-		super(port, regulator, typeNewtacho, moveP, moveI, moveD, holdP, holdI, holdD,
-				offset, maxSpeed);
-		// TODO Auto-generated constructor stub
+	public EV3MediumRegulatedMotor(final String motorPort) {
+		super(motorPort, MOVE_P, MOVE_I, MOVE_D,
+                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
 	}
 
 }

@@ -1,18 +1,16 @@
 package ev3dev.hardware;
 
-import java.io.Closeable;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class DeviceNew {
+public class EV3DevDevice extends Device {
 
     private final String DEVICE_ROOT_PATH = "/sys/class";
     
     private boolean connected = false;
 	private File pathDevice = null;
 	
-    public DeviceNew(String type, String portName) throws DeviceException {
+    public EV3DevDevice(String type, String portName) throws DeviceException {
     	
     	final String devicePath = DEVICE_ROOT_PATH + "/" + type;
     	ArrayList<File> deviceAvailables = Sysfs.getElements(devicePath);
@@ -30,10 +28,6 @@ public class DeviceNew {
     	if(this.connected == false){
     		throw new DeviceException("The device was not detected in: " + portName);
     	}
-    }
-
-    public boolean isConnected(){
-    	return this.connected;
     }
     
     public String getAttribute(String attribute){

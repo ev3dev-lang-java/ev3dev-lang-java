@@ -1,7 +1,7 @@
 package ev3dev.hardware.sensor.ev3;
 
 import ev3dev.hardware.port.AnalogPort;
-import ev3dev.hardware.port.Port;
+//import ev3dev.hardware.port.Port;
 import ev3dev.hardware.sensor.AnalogSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
@@ -62,11 +62,13 @@ public class EV3TouchSensor extends AnalogSensor
         init();
     }
 
+    /*
     public EV3TouchSensor(Port port)
     {
         super(port);
         init();
     }
+    */
     
     protected void init() {
       setModes(new SensorMode[]{ new TouchMode() }); 

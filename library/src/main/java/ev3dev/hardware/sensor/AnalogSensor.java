@@ -1,7 +1,7 @@
 package ev3dev.hardware.sensor;
 
 import ev3dev.hardware.port.AnalogPort;
-import ev3dev.hardware.port.Port;
+//import ev3dev.hardware.port.Port;
 import ev3dev.utilities.Delay;
 
 /*
@@ -25,16 +25,17 @@ public class AnalogSensor extends BaseSensor implements SensorConstants
         //this.port = p;
     }
     
+    /*
     public AnalogSensor(Port p, int type, int mode)
     {
         //this(p.open(AnalogPort.class));
-    	/*
+
         if (!port.setTypeAndMode(type, mode))
         {
             port.close();
             throw new IllegalArgumentException("Invalid sensor mode");                
         }
-        */
+
         releaseOnClose(this.port);
     }
 
@@ -42,6 +43,7 @@ public class AnalogSensor extends BaseSensor implements SensorConstants
     {
         this(p, TYPE_CUSTOM, MODE_RAW);
     }
+    */
 
     
  

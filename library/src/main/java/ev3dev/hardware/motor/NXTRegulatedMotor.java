@@ -1,14 +1,5 @@
 package ev3dev.hardware.motor;
 
-
-import ev3dev.hardware.port.TachoMotorPortNew;
-
-/*
-import lejos.hardware.port.Port;
-import lejos.hardware.port.TachoMotorPort;
-import lejos.hardware.sensor.EV3SensorConstants;
-*/
-
 /**
  * Abstraction for a  Lego NXT motor.
  * 
@@ -23,35 +14,10 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor
     static final float HOLD_D = 8f;
     static final int OFFSET = 0;
     private static final int MAX_SPEED = 170*360/60;
-
-    /**
-     * Use this constructor to assign a variable of type motor connected to a particular port.
-     * @param port  to which this motor is connected
-
-    public NXTRegulatedMotor(TachoMotorPort port)
-    {
-        super(port, null, 9, MOVE_P, MOVE_I, MOVE_D,
-                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
-    }
-     */
-
-    /**
-     * Use this constructor to assign a variable of type motor connected to a particular port.
-     * @param port  to which this motor is connected
-
-    public NXTRegulatedMotor(Port port)
-    {
-        super(port, null, EV3SensorConstants.TYPE_NEWTACHO, MOVE_P, MOVE_I, MOVE_D,
-                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
-    }
-     */
     
-	public NXTRegulatedMotor(TachoMotorPortNew port, Object regulator,
-			int typeNewtacho, float moveP, float moveI, float moveD,
-			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
-		super(port, regulator, typeNewtacho, moveP, moveI, moveD, holdP, holdI, holdD,
-				offset, maxSpeed);
-		// TODO Auto-generated constructor stub
+	public NXTRegulatedMotor(final String motorPort) {
+        super(motorPort, MOVE_P, MOVE_I, MOVE_D,
+                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
 	}
 
 }

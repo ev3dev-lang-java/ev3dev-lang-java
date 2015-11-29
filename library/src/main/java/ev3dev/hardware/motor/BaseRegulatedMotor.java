@@ -1,15 +1,8 @@
 package ev3dev.hardware.motor;
 
 import ev3dev.hardware.Device;
-import ev3dev.hardware.DeviceException;
-import ev3dev.hardware.DeviceNew;
-import ev3dev.hardware.port.EV3DevTachoMotorPort;
-import ev3dev.hardware.port.Port;
-import ev3dev.hardware.port.TachoMotorPortNew;
+import ev3dev.hardware.EV3DevDevice;
 //import lejos.hardware.ev3.LocalEV3;
-//import lejos.hardware.port.Port;
-//import lejos.hardware.port.TachoMotorPort;
-//import lejos.internal.ev3.EV3MotorPort;
 //import lejos.robotics.RegulatedMotor;
 //import lejos.robotics.RegulatedMotorListener;
 /**
@@ -63,49 +56,17 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
 	// Following should be set to the max SPEED (in deg/sec) of the motor when free running and powered by 9V
     protected final int MAX_SPEED_AT_9V;
     protected static final int NO_LIMIT = 0x7fffffff;
-    //protected final MotorRegulator reg;
-    //protected TachoMotorPort tachoPort;
+    protected final EV3DevDevice reg;
     protected float speed = 360;
     protected int acceleration = 6000;
-    protected TachoMotorPortNew dev;
+
+    private final String SYSTEM_CLASS_NAME = "tacho-motor";
+
     
-    /**
-     * Use this constructor to assign a variable of type motor connected to a particular port.
-     * @param port  to which this motor is connected
-
-    public BaseRegulatedMotor(TachoMotorPort port, MotorRegulator regulator, 
-            int typ, float moveP, float moveI, float moveD, float holdP, float holdI, float holdD, int offset, int maxSpeed)
-    {
-        tachoPort = port;
-        // Use default regulator if non specified
-        if (regulator == null)
-            reg = port.getRegulator();
-        else
-            reg = regulator;
-        MAX_SPEED_AT_9V = maxSpeed;
-        reg.setControlParamaters(typ, moveP, moveI, moveD, holdP, holdI, holdD, offset);   
-    }
-         */
-    
-    /**
-     * Use this constructor to assign a variable of type motor connected to a particular port.
-     * @param port  to which this motor is connected
-
-    public BaseRegulatedMotor(Port port, MotorRegulator regulator, int typ, float moveP, float moveI,
-            float moveD, float holdP, float holdI, float holdD, int offset, int maxSpeed)
-    {
-        this(port.open(TachoMotorPort.class), regulator, typ, moveP, moveI, moveD, holdP, holdI, holdD, offset, maxSpeed);
-        releaseOnClose(tachoPort);
-    }
-     */
-
-    public BaseRegulatedMotor(TachoMotorPortNew port, Object regulator,
-			int typeNewtacho, float moveP, float moveI, float moveD,
+    public BaseRegulatedMotor(String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
-		// TODO Auto-generated constructor stub
     	MAX_SPEED_AT_9V = maxSpeed;
-    	//reg = null;
-    	dev = port;
+    	reg = new EV3DevDevice(SYSTEM_CLASS_NAME, motorPort);
 	}
 
 
@@ -113,9 +74,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      * Close the motor regulator. Release the motor from regulation and free any
      * associated resources.
      */
-    public void close()
-    {
-        suspendRegulation();
+    public void close() {
         super.close();
     }
 
@@ -131,7 +90,9 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     {
         // Putting the motor into float mode disables regulation. note
         // that we wait for the operation to complete.
-        //reg.newMove(0, acceleration, NO_LIMIT, false, true);
+		final String attribute = "off";
+		final String value = "speed_regulation";
+		reg.setAttribute(attribute, value);
         return true;
     }
 
@@ -162,17 +123,22 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     /**
      * @see lejos.hardware.motor.BasicMotor#forward()
      */
-    public void forward()
-    {
-        //reg.newMove(speed, acceleration, +NO_LIMIT, true, false);
+    public void forward() {
+		final String attribute = "command";
+		final String value = "run-forever";
+		reg.setAttribute(attribute, value);
     }
 
     /**
      * @see lejos.hardware.motor.BasicMotor#backward()
      */
-    public void backward()
-    {
-        //reg.newMove(speed, acceleration, -NO_LIMIT, true, false);
+    public void backward(){
+		final String attribute1 = "inversed";
+		final String value1 = "polarity";
+		reg.setAttribute(attribute1, value1);
+    	final String attribute2 = "command";
+		final String value2 = "run-forever";
+		reg.setAttribute(attribute2, value2);
     }
 
     /**
@@ -203,7 +169,9 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void stop()
     {
-        //reg.newMove(0, acceleration, NO_LIMIT, true, true);
+		final String attribute = "command";
+		final String value = "stop";
+		reg.setAttribute(attribute, value);
     }
 
     /**
@@ -257,7 +225,8 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void setSpeed(int speed)
     {
         this.speed = Math.abs(speed);
-        //reg.adjustSpeed(this.speed);
+		final String attribute = "/duty_cycle_sp";
+		reg.setAttribute(attribute, "" + speed);
     }
 
     /**
@@ -269,7 +238,8 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void setSpeed(float speed)
     {
         this.speed = Math.abs(speed);
-        //reg.adjustSpeed(this.speed);
+		final String attribute = "/duty_cycle_sp";
+		reg.setAttribute(attribute, "" + speed);
     }
 
     /**
@@ -306,9 +276,10 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      * Reset the tachometer associated with this motor. Note calling this method
      * will cause any current move operation to be halted.
      */
-    public void resetTachoCount()
-    {
-        //reg.resetTachoCount();
+    public void resetTachoCount() {
+		final String attribute = "command";
+		final String value = "reset";
+		reg.setAttribute(attribute, value);
     }
 
     /**
@@ -342,15 +313,20 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void rotate(int angle)
     {
         //rotate(angle, false);
+    	
     }
 
     /**
      * Rotate to the target angle. Do not return until the move is complete.
      * @param limitAngle Angle to rotate to.
      */
-    public void rotateTo(int limitAngle)
-    {
-        //rotateTo(limitAngle, false);
+    public void rotateTo(int limitAngle) {
+    	final String attribute1 = "position_sp";
+    	reg.setAttribute(attribute1, "" + limitAngle);
+    	final String attribute2 = "command";
+		final String value2 = "run-to-abs-pos";
+		reg.setAttribute(attribute2, value2);
+    	
     }
 
     /**

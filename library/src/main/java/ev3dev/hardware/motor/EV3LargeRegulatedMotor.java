@@ -1,13 +1,12 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.port.TachoMotorPortNew;
+import ev3dev.hardware.EV3DevDevice;
 
 /**
  * Abstraction for a Large Lego EV3/NXT motor.
  * 
  */
-public class EV3LargeRegulatedMotor extends BaseRegulatedMotor
-{
+public class EV3LargeRegulatedMotor extends BaseRegulatedMotor {
 
 	static final float MOVE_P = 4f;
     static final float MOVE_I = 0.04f;
@@ -19,13 +18,17 @@ public class EV3LargeRegulatedMotor extends BaseRegulatedMotor
     
     private static final int MAX_SPEED = 175*360/60;
 
-    //EV3SensorConstants.TYPE_NEWTACHO
-    static final int TYPE_NEWTACHO = 9;
-
-    public EV3LargeRegulatedMotor(TachoMotorPortNew port)
-    {
-        super(port, null, TYPE_NEWTACHO, MOVE_P, MOVE_I, MOVE_D,
-                HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
+    public EV3LargeRegulatedMotor(final String motorPort){
+        super(
+        	motorPort,
+        	MOVE_P, 
+        	MOVE_I, 
+        	MOVE_D,
+            HOLD_P, 
+            HOLD_I, 
+            HOLD_D, 
+            OFFSET, 
+            MAX_SPEED);
     }
 
 }
