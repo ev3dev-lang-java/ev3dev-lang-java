@@ -1,8 +1,6 @@
 package ev3dev.hardware.sensor.ev3;
 
-import ev3dev.hardware.port.AnalogPort;
-//import ev3dev.hardware.port.Port;
-import ev3dev.hardware.sensor.AnalogSensor;
+import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
 /*
@@ -53,12 +51,12 @@ import lejos.hardware.port.Port;
  * @author Your name
  * 
  */
-public class EV3TouchSensor extends AnalogSensor 
+public class EV3TouchSensor extends BaseSensor 
 {
     
-    public EV3TouchSensor(AnalogPort port)
+    public EV3TouchSensor(String port)
     {
-        super(port);
+        //super(port);
         init();
     }
 
