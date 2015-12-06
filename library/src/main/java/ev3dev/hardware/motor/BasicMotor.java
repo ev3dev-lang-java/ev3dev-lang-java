@@ -1,9 +1,6 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.Device;
-import ev3dev.hardware.DeviceException;
-import ev3dev.hardware.port.BasicMotorPort;
-
+import ev3dev.hardware.EV3DevDevice;
 
 /** 
  * Abstraction for basic motor operations.
@@ -11,8 +8,13 @@ import ev3dev.hardware.port.BasicMotorPort;
  * @author Lawrie Griffiths.
  *
  */
-public abstract class BasicMotor extends Device implements DCMotor
+public abstract class BasicMotor extends EV3DevDevice implements DCMotor
 {
+
+
+	public BasicMotor(String type, String portName) {
+		super(type, portName);
+	}
 
 
 	protected static int INVALID_MODE = -1;
@@ -47,7 +49,7 @@ public abstract class BasicMotor extends Device implements DCMotor
 	 */
 	public void forward()
 	{ 
-		updateState( BasicMotorPort.FORWARD);
+		//updateState( BasicMotorPort.FORWARD);
 	}
 	  
 
@@ -56,7 +58,7 @@ public abstract class BasicMotor extends Device implements DCMotor
 	 */
 	public void backward()
 	{
-		updateState( BasicMotorPort.BACKWARD);
+		//updateState( BasicMotorPort.BACKWARD);
 	}
 
 
@@ -67,7 +69,8 @@ public abstract class BasicMotor extends Device implements DCMotor
 	 */
 	public boolean isMoving()
 	{
-		return (mode == BasicMotorPort.FORWARD || mode == BasicMotorPort.BACKWARD);
+		//return (mode == BasicMotorPort.FORWARD || mode == BasicMotorPort.BACKWARD);
+		return true;
 	}
 
 	/**
@@ -78,7 +81,7 @@ public abstract class BasicMotor extends Device implements DCMotor
 	 */   
 	public void flt()
 	{
-		updateState( BasicMotorPort.FLOAT);
+		//updateState( BasicMotorPort.FLOAT);
 	}
 
 	  
@@ -91,7 +94,7 @@ public abstract class BasicMotor extends Device implements DCMotor
 	 */
 	public void stop()
 	{
-		updateState( BasicMotorPort.STOP);
+		//updateState( BasicMotorPort.STOP);
 	}
 }
 

@@ -10,8 +10,8 @@ import java.util.ArrayList;
  * @author andy
  *
  */
-public class Device implements Closeable
-{
+public class Device implements Closeable {
+
     protected ArrayList<Closeable> closeList = new ArrayList<Closeable>();
 
     /**

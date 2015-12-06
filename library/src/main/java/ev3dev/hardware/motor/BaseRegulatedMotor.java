@@ -1,10 +1,7 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.Device;
 import ev3dev.hardware.EV3DevDevice;
-//import lejos.hardware.ev3.LocalEV3;
-//import lejos.robotics.RegulatedMotor;
-//import lejos.robotics.RegulatedMotorListener;
+
 /**
  * Abstraction for a Regulated motor motor.
  * The basic control methods are:
@@ -47,26 +44,24 @@ import ev3dev.hardware.EV3DevDevice;
  *   LCD.drawInt(angle,0,0);
  * </pre></code>
  * TODO: Fix the name
- * @author Roger Glassey/Andy Shaw
+ * @author Roger Glassey
+ * @author Andy Shaw
+ * @author Juan Antonio Breña Moral
  */
-public abstract class BaseRegulatedMotor extends Device implements RegulatedMotor {
-
-
+public abstract class BaseRegulatedMotor extends EV3DevDevice implements RegulatedMotor {
 
 	// Following should be set to the max SPEED (in deg/sec) of the motor when free running and powered by 9V
     protected final int MAX_SPEED_AT_9V;
     protected static final int NO_LIMIT = 0x7fffffff;
-    protected final EV3DevDevice reg;
     protected float speed = 360;
     protected int acceleration = 6000;
 
-    private final String SYSTEM_CLASS_NAME = "tacho-motor";
+    private final static String SYSTEM_CLASS_NAME = "tacho-motor";
 
-    
     public BaseRegulatedMotor(String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
+    	super(SYSTEM_CLASS_NAME, motorPort);
     	MAX_SPEED_AT_9V = maxSpeed;
-    	reg = new EV3DevDevice(SYSTEM_CLASS_NAME, motorPort);
 	}
 
 
@@ -92,7 +87,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
         // that we wait for the operation to complete.
 		final String attribute = "off";
 		final String value = "speed_regulation";
-		reg.setAttribute(attribute, value);
+		this.setAttribute(attribute, value);
         return true;
     }
 
@@ -126,7 +121,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void forward() {
 		final String attribute = "command";
 		final String value = "run-forever";
-		reg.setAttribute(attribute, value);
+		this.setAttribute(attribute, value);
     }
 
     /**
@@ -135,10 +130,10 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void backward(){
 		final String attribute1 = "inversed";
 		final String value1 = "polarity";
-		reg.setAttribute(attribute1, value1);
+		this.setAttribute(attribute1, value1);
     	final String attribute2 = "command";
 		final String value2 = "run-forever";
-		reg.setAttribute(attribute2, value2);
+		this.setAttribute(attribute2, value2);
     }
 
     /**
@@ -171,7 +166,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     {
 		final String attribute = "command";
 		final String value = "stop";
-		reg.setAttribute(attribute, value);
+		this.setAttribute(attribute, value);
     }
 
     /**
@@ -226,7 +221,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     {
         this.speed = Math.abs(speed);
 		final String attribute = "/duty_cycle_sp";
-		reg.setAttribute(attribute, "" + speed);
+		this.setAttribute(attribute, "" + speed);
     }
 
     /**
@@ -239,7 +234,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     {
         this.speed = Math.abs(speed);
 		final String attribute = "/duty_cycle_sp";
-		reg.setAttribute(attribute, "" + speed);
+		this.setAttribute(attribute, "" + speed);
     }
 
     /**
@@ -279,7 +274,7 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
     public void resetTachoCount() {
 		final String attribute = "command";
 		final String value = "reset";
-		reg.setAttribute(attribute, value);
+		this.setAttribute(attribute, value);
     }
 
     /**
@@ -322,10 +317,10 @@ public abstract class BaseRegulatedMotor extends Device implements RegulatedMoto
      */
     public void rotateTo(int limitAngle) {
     	final String attribute1 = "position_sp";
-    	reg.setAttribute(attribute1, "" + limitAngle);
+    	this.setAttribute(attribute1, "" + limitAngle);
     	final String attribute2 = "command";
 		final String value2 = "run-to-abs-pos";
-		reg.setAttribute(attribute2, value2);
+		this.setAttribute(attribute2, value2);
     	
     }
 

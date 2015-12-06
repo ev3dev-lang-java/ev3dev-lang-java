@@ -6,14 +6,15 @@ import java.util.ArrayList;
 public class EV3DevDevice extends Device {
 
     private final String DEVICE_ROOT_PATH = "/sys/class";
-    
-    private boolean connected = false;
+    private boolean connected = false;    
+
 	private File pathDevice = null;
 	
     public EV3DevDevice(String type, String portName) throws DeviceException {
     	
     	final String devicePath = DEVICE_ROOT_PATH + "/" + type;
     	ArrayList<File> deviceAvailables = Sysfs.getElements(devicePath);
+
 
     	String pathDeviceName = "";
     	for(int x=0; x < deviceAvailables.size(); x++) {
