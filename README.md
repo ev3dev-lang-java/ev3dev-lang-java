@@ -2,7 +2,11 @@
 
 *EV3Dev-lang-Java* is a Java library designed to develop Software for Robots over [EV3Dev stack](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) libraries.
 
+**UML Diagram**
+
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
+
+Execute the following statements to generate the diagram in local.
 
 ``` bash
 git clone https://github.com/jabrena/ev3dev-lang-java.git
