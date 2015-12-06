@@ -33,19 +33,20 @@ Example:
 ``` java
 package ev3dev.test;
 
+import ev3dev.hardware.port.MotorPort;
+import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
-import ev3dev.hardware.port.TachoMotorPort;
 import ev3dev.hardware.sensor.ev3.IRSensor;
 
 public class MotorTest {
 
 	public static void main(String[] args) {
 
-		EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(TachoMotorPort.A);
-        EV3LargeRegulatedMotor mB = new EV3LargeRegulatedMotor(TachoMotorPort.B);
+        IRSensor ir1 = new IRSensor(SensorPort.S2);
+		EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
+        EV3LargeRegulatedMotor mB = new EV3LargeRegulatedMotor(MotorPort.B);
         mA.setSpeed(50);
         mB.setSpeed(50);
-        IRSensor ir1 = new IRSensor("in2");
 
         final int distance_threshold = 35;
         final int iteration_threshold = 100;

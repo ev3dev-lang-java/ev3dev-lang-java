@@ -1,8 +1,6 @@
 package ev3dev.hardware.motor;
 
 import ev3dev.hardware.EV3DevDevice;
-import ev3dev.hardware.port.TachoMotorPort;
-
 
 //import lejos.hardware.port.Port;
 //import lejos.hardware.port.TachoMotorPort;

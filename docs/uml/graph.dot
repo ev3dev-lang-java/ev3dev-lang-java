@@ -343,17 +343,11 @@ digraph G {
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setPinMode(mode : int) : boolean </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.hardware.port.SensorPort
-	c18 [label=<<table title="ev3dev.hardware.port.SensorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	// ev3dev.hardware.port.MotorPort
+	c18 [label=<<table title="ev3dev.hardware.port.MotorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> SensorPort </td></tr>
-		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.hardware.port.TachoMotorPort
-	c19 [label=<<table title="ev3dev.hardware.port.TachoMotorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> TachoMotorPort </td></tr>
+<tr><td align="center" balign="center"> MotorPort </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + A : String </td></tr>
@@ -362,7 +356,23 @@ digraph G {
 <tr><td align="left" balign="left"> + D : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + TachoMotorPort() </td></tr>
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.port.SensorPort
+	c19 [label=<<table title="ev3dev.hardware.port.SensorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> SensorPort </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + S1 : String </td></tr>
+<tr><td align="left" balign="left"> + S2 : String </td></tr>
+<tr><td align="left" balign="left"> + S3 : String </td></tr>
+<tr><td align="left" balign="left"> + S4 : String </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.BaseSensor

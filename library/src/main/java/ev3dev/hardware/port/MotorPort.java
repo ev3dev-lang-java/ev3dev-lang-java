@@ -3,7 +3,7 @@ package ev3dev.hardware.port;
 /*
  * 
  */
-public class TachoMotorPort {
+public interface MotorPort {
 
 	public static final String A = "outA";
 	public static final String B = "outB";
