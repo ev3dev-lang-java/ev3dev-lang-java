@@ -77,8 +77,11 @@ public class MotorTest {
 
 https://education.lego.com/cs-cz/lego-education-product-database/mindstorms-ev3/45544-lego-mindstorms-education-ev3-core-set
 
+https://jekyllrb.com/
+
 # Development priorities:
 
+* Create a website to add Javadocs & Getting Started ([Jekyll](https://jekyllrb.com/))
 * Create repository for behaviours: 
 * Create repository for navigation:
 * Create repository for computer vision: https://github.com/jabrena/ev3dev-lang-java-computer-vision
