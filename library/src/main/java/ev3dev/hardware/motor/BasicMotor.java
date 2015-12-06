@@ -6,6 +6,7 @@ import ev3dev.hardware.EV3DevDevice;
  * Abstraction for basic motor operations.
  * 
  * @author Lawrie Griffiths.
+ * @author Juan Antonio Breña Moral
  *
  */
 public abstract class BasicMotor extends EV3DevDevice implements DCMotor
