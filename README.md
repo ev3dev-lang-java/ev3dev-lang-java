@@ -77,8 +77,6 @@ public class MotorTest {
 
 https://education.lego.com/cs-cz/lego-education-product-database/mindstorms-ev3/45544-lego-mindstorms-education-ev3-core-set
 
-https://jekyllrb.com/
-
 # Development priorities:
 
 * Create a website to add Javadocs & Getting Started ([Jekyll](https://jekyllrb.com/))
