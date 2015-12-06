@@ -2,7 +2,7 @@
 
 *EV3Dev-lang-Java* is a Java library designed to develop Software for Robots over [EV3Dev stack](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) libraries.
 
-**UML Diagram**
+**UML Diagram:**
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
@@ -11,14 +11,14 @@ Execute the following statements to generate the diagram in local.
 ``` bash
 git clone https://github.com/jabrena/ev3dev-lang-java.git
 cd library
-ant -buildfile uml.xml uml
+ant -buildfile tools.xml uml
 ```
 
 # Roadmap
 
 * Create a website to add Javadocs & Getting Started ([Jekyll](https://jekyllrb.com/))
-* Create repository for behaviours: 
 * Create repository for navigation:
+* Create repository for behaviours: 
 
 # Features
 
