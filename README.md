@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to develop Software for Robots over [EV3Dev stack](http://www.ev3dev.org/).
+*EV3Dev-lang-Java* is a Java library designed to develop Software for Robots over [EV3Dev stack](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) libraries.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
@@ -10,90 +10,19 @@ cd library
 ant -buildfile uml.xml uml
 ```
 
-# Test the development:
-
-If you like, test development on master branch.
-
-``` bash
-git clone https://github.com/jabrena/ev3dev-lang-java.git
-cd library
-mvn install
-```
-
-Open a terminal to connect with your brick:
-
-``` bash
-ssh root:r00tme@192.168.2.2
-cd /home
-java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.test.MotorTest
-```
-
-Example: 
-
-``` java
-package ev3dev.test;
-
-import ev3dev.hardware.Battery;
-import ev3dev.hardware.port.MotorPort;
-import ev3dev.hardware.port.SensorPort;
-import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
-import ev3dev.hardware.sensor.ev3.EV3IRSensor;
-import lejos.robotics.SampleProvider;
-
-public class MotorTest {
-
-	public static void main(String[] args) {
-
-		EV3IRSensor ir1 = new EV3IRSensor(SensorPort.S2);
-        SampleProvider sp = ir1.getDistanceMode();
-        int distance = 255;
-
-		EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
-        EV3LargeRegulatedMotor mB = new EV3LargeRegulatedMotor(MotorPort.B);
-        mA.setSpeed(50);
-        mB.setSpeed(50);
-
-        final int distance_threshold = 35;
-        final int iteration_threshold = 100;
-
-        for(int i = 0; i <= iteration_threshold; i++) {
-        	System.out.println(Battery.getVoltage());
-            mA.forward();
-            mB.forward();
-
-            float [] sample = new float[sp.sampleSize()];
-            sp.fetchSample(sample, 0);
-            distance = (int)sample[0];
-            
-            if(distance <= distance_threshold){
-                mA.stop();
-                mB.stop();
-                break;
-            }else {
-                System.out.println(distance);
-            }
-        }
-
-        mA.stop();
-        mB.stop();		
-	}
-}
-```
-
-# Hardware supported
-
-## Lego Mindstorms EV3 Educational core set
-
-![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/45544.png)
-
-https://education.lego.com/cs-cz/lego-education-product-database/mindstorms-ev3/45544-lego-mindstorms-education-ev3-core-set
-
-# Development priorities:
+# Roadmap
 
 * Create a website to add Javadocs & Getting Started ([Jekyll](https://jekyllrb.com/))
 * Create repository for behaviours: 
 * Create repository for navigation:
-* Create repository for computer vision: https://github.com/jabrena/ev3dev-lang-java-computer-vision
+
+# Features
+
+* Regulated Motor Support
+* Sensor Support (Few sensors)
+* OpenCV (https://github.com/jabrena/ev3dev-lang-java/issues/33)
+* Support for Java profiling tools as VisualVM & JConsole (https://github.com/jabrena/ev3dev-lang-java/issues/38)
+* LeJOS filter Support
 
 # Getting Started.
 
@@ -113,7 +42,7 @@ and add the dependency to offer Java support for EV3Dev:
 	<dependency>
 	    <groupId>com.github.jabrena</groupId>
 	    <artifactId>ev3dev-lang-java</artifactId>
-	    <version>v0.1.0</version>
+	    <version>v0.2.0</version>
 	</dependency>
 
 ```
@@ -128,38 +57,50 @@ Create a Java Class in your Maven project:
 
 package ev3dev.examples;
 
-import ev3dev.hardware.motor.Motor;
-import ev3dev.hardware.sensor.ev3.IRSensor;
+import ev3dev.hardware.Battery;
+import ev3dev.hardware.port.MotorPort;
+import ev3dev.hardware.port.SensorPort;
+import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
+import ev3dev.hardware.sensor.ev3.EV3IRSensor;
+import lejos.robotics.SampleProvider;
 
 public class Test {
 
-	public static void main(String[] args) {
-		
-		Motor mA = new Motor("outA");
-		mA.setSpeed(50);
-		Motor mB = new Motor("outB");
-		mB.setSpeed(50);
-		IRSensor ir1 = new IRSensor("in2");
+    public static void main(String[] args) {
 
-		final int distance_threshold = 35;
-		final int iteration_threshold = 100;
-		
-		for(int i = 0; i <= iteration_threshold; i++) {
-			mA.forward();
-			mB.forward();
-			
-			if(ir1.getDistance() <= distance_threshold){
-				mA.stop();
-				mB.stop();
-				break;
-			}else {
-				System.out.println(ir1.getDistance());
-			}
-		}
+        EV3IRSensor ir1 = new EV3IRSensor(SensorPort.S2);
+        SampleProvider sp = ir1.getDistanceMode();
+        int distance = 255;
 
-		mA.stop();
-		mB.stop();
-	}
+        EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
+        EV3LargeRegulatedMotor mB = new EV3LargeRegulatedMotor(MotorPort.B);
+        mA.setSpeed(50);
+        mB.setSpeed(50);
+
+        final int distance_threshold = 35;
+        final int iteration_threshold = 100;
+
+        for(int i = 0; i <= iteration_threshold; i++) {
+            System.out.println(Battery.getVoltage());
+            mA.forward();
+            mB.forward();
+
+            float [] sample = new float[sp.sampleSize()];
+            sp.fetchSample(sample, 0);
+            distance = (int)sample[0];
+            
+            if(distance <= distance_threshold){
+                mA.stop();
+                mB.stop();
+                break;
+            }else {
+                System.out.println(distance);
+            }
+        }
+
+        mA.stop();
+        mB.stop();      
+    }
 }
 
 ```
@@ -174,13 +115,9 @@ upload your .jar and the library (ev3-lang-java) on your brick. In the path wher
 
 
 ``` bash
-java -cp MyFirstRobot-1.0-SNAPSHOT.jar:ev3-lang-java-0.1-SNAPSHOT.jar ev3dev.java.MyFirstRobot.Test
+java -cp MyFirstRobot-1.0-SNAPSHOT.jar:ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.MyFirstRobot.Test
 
 ```
-
-Results:
-
-![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/MyFirstRobot.png)
 
 This example is included in the folder [examples](https://github.com/jabrena/ev3dev-lang-java/tree/master/examples/java/MyFirstRobot).
 
@@ -189,8 +126,6 @@ This example is included in the folder [examples](https://github.com/jabrena/ev3
 
 * Provide a modular set of Java libraries to develop software for robots.
 * Reuse LeJOS development on EV3Dev
-    * lejos.hardware && lejos.internal == ev3dev.hardware
-    * lejos.robotics && lejos.utilities and other robotics libraries == [ev3dev-lang-java-robotics](https://github.com/jabrena/ev3dev-lang-java-robotics)
 
 ## Motivation
 
