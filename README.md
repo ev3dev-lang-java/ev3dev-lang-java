@@ -79,10 +79,9 @@ https://education.lego.com/cs-cz/lego-education-product-database/mindstorms-ev3/
 
 # Development priorities:
 
-* Improve Sensor support with LeJOS UML Design
 * Create repository for behaviours: 
-* Create repository for computer vision: https://github.com/jabrena/ev3dev-lang-java-computer-vision
 * Create repository for navigation:
+* Create repository for computer vision: https://github.com/jabrena/ev3dev-lang-java-computer-vision
 
 # Getting Started.
 
