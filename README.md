@@ -69,6 +69,10 @@ public class MotorTest {
 }
 ```
 
+# Hardware supported
+
+## Lego Mindstorms EV3 Educational core set
+
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/45544.png)
 
 https://education.lego.com/cs-cz/lego-education-product-database/mindstorms-ev3/45544-lego-mindstorms-education-ev3-core-set
