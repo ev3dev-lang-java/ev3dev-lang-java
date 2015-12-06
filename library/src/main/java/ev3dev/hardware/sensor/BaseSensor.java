@@ -2,12 +2,17 @@ package ev3dev.hardware.sensor;
 
 import java.util.ArrayList;
 
-import ev3dev.hardware.Device;
 import ev3dev.hardware.DeviceException;
+import ev3dev.hardware.EV3DevDevice;
 
 
-public class BaseSensor extends Device implements SensorModes
-{
+public class BaseSensor extends EV3DevDevice implements SensorModes {
+
+    private static final String SYSTEM_CLASS_NAME = "lego-sensor";
+	
+	public BaseSensor(String sensorPort){
+		super(SYSTEM_CLASS_NAME, sensorPort);
+	}
 
 	protected int currentMode = 0;
     protected SensorMode[] modes;

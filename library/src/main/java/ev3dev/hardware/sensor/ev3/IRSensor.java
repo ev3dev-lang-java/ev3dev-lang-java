@@ -1,8 +1,8 @@
 package ev3dev.hardware.sensor.ev3;
 
-import ev3dev.hardware.sensor.Sensor;
+import ev3dev.hardware.sensor.BaseSensor;
 
-public class IRSensor extends Sensor {
+public class IRSensor extends BaseSensor {
 
 	public IRSensor(String sensorPort) {
 		super(sensorPort);
@@ -10,7 +10,7 @@ public class IRSensor extends Sensor {
 
 	public int getDistance(){
 		String attribute = "value0";
-		String rawValue = this.internalDevice.getAttribute(attribute);
+		String rawValue = this.getAttribute(attribute);
 		
 		int value = -1;
 		try {

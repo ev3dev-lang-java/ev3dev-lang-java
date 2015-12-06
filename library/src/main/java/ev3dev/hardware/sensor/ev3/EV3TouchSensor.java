@@ -1,5 +1,6 @@
 package ev3dev.hardware.sensor.ev3;
 
+import ev3dev.hardware.DeviceException;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
@@ -51,30 +52,18 @@ import lejos.hardware.port.Port;
  * @author Your name
  * 
  */
-public class EV3TouchSensor extends BaseSensor 
-{
-    
-    public EV3TouchSensor(String port)
-    {
-        //super(port);
-        init();
-    }
+public class EV3TouchSensor extends BaseSensor {
 
-    /*
-    public EV3TouchSensor(Port port)
-    {
-        super(port);
-        init();
-    }
-    */
     
-    protected void init() {
+    public EV3TouchSensor(String portName) throws DeviceException {
+		super(portName);
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void init() {
       setModes(new SensorMode[]{ new TouchMode() }); 
     }
 
-    
-   
-    
     /**
      * <b>Lego EV3 Touch sensor, Touch mode</b><br>
      * Detects when its front button is pressed
