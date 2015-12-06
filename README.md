@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java project designed to offer a library to use the [lego port interface](http://www.ev3dev.org/docs/drivers/lego-port-class/) on a hardware running [EV3Dev project](http://www.ev3dev.org/docs/drivers/lego-port-class/).
+*EV3Dev-lang-Java* is a Java library designed to manage [EV3Dev](http://www.ev3dev.org/) Stack in order to build Software for robots.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
@@ -68,6 +68,10 @@ public class MotorTest {
 	}
 }
 ```
+
+![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/45544.png)
+
+https://education.lego.com/cs-cz/lego-education-product-database/mindstorms-ev3/45544-lego-mindstorms-education-ev3-core-set
 
 # Development priorities:
 
