@@ -1,5 +1,6 @@
 package ev3dev.test;
 
+import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
@@ -19,6 +20,7 @@ public class MotorTest {
         final int iteration_threshold = 100;
 
         for(int i = 0; i <= iteration_threshold; i++) {
+        	System.out.println(Battery.getVoltage());
             mA.forward();
             mB.forward();
 

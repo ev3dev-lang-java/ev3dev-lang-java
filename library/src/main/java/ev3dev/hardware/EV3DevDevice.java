@@ -15,7 +15,6 @@ public class EV3DevDevice extends Device {
     	final String devicePath = DEVICE_ROOT_PATH + "/" + type;
     	ArrayList<File> deviceAvailables = Sysfs.getElements(devicePath);
 
-
     	String pathDeviceName = "";
     	for(int x=0; x < deviceAvailables.size(); x++) {
     		pathDevice = deviceAvailables.get(x);
@@ -38,6 +37,9 @@ public class EV3DevDevice extends Device {
     public void setAttribute(String attribute, String value){
     	Sysfs.writeString(this.pathDevice + "/" +  attribute, value);
     }
-
     
+    public File getPathDevice(){
+    	return this.pathDevice;
+    }
+   
 }
