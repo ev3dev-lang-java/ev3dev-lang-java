@@ -50,7 +50,11 @@ If you have your OS for EV3 updated, continue with your Java project.
 Create a Java Maven project:
 
 ``` bash
-mvn archetype:generate -DgroupId=ev3dev.examples.demo -DartifactId=Test -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate 
+-DgroupId=ev3dev.examples.demo 
+-DartifactId=Test 
+-DarchetypeArtifactId=maven-archetype-quickstart 
+-DinteractiveMode=false
 ```
 
 Update the file pom.xml to add the following repository:
