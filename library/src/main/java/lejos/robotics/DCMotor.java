@@ -1,4 +1,4 @@
-package ev3dev.hardware.motor;
+package lejos.robotics;
 
 /**
  * Interface for a regular DC motor.

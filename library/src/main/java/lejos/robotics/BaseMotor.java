@@ -1,4 +1,4 @@
-package ev3dev.hardware.motor;
+package lejos.robotics;
 
 /**
  * Base motor interface. Contains basic movement commands.

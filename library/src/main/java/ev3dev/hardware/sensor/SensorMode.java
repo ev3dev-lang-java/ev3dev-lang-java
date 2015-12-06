@@ -1,5 +1,7 @@
 package ev3dev.hardware.sensor;
 
+import lejos.robotics.SampleProvider;
+
 
 public interface SensorMode extends SampleProvider
 {

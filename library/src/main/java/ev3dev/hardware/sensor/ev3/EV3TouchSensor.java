@@ -1,13 +1,12 @@
 package ev3dev.hardware.sensor.ev3;
 
+import java.io.File;
+
 import ev3dev.hardware.DeviceException;
+import ev3dev.hardware.Sysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
-/*
-import lejos.hardware.port.AnalogPort;
-import lejos.hardware.port.Port;
-*/
 /**
  * Basic sensor driver for the Lego EV3 Touch sensor
  * @author andy
@@ -49,19 +48,16 @@ import lejos.hardware.port.Port;
  *      <p>
  * 
  * 
- * @author Your name
- * 
  */
 public class EV3TouchSensor extends BaseSensor {
-
-    
-    public EV3TouchSensor(String portName) throws DeviceException {
+	
+    public EV3TouchSensor(final String portName) throws DeviceException {
 		super(portName);
-		// TODO Auto-generated constructor stub
+		init();
 	}
 
 	protected void init() {
-      setModes(new SensorMode[]{ new TouchMode() }); 
+      setModes(new SensorMode[]{ new TouchMode(this.getPathDevice()) }); 
     }
 
     /**
@@ -78,26 +74,32 @@ public class EV3TouchSensor extends BaseSensor {
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
-    public SensorMode getTouchMode()
-    {
+    public SensorMode getTouchMode() {
         return getMode(0);
     }
 
     
     private class TouchMode implements SensorMode {
     	
-        public int sampleSize()
-        {
+    	private File pathDevice = null;
+    	
+        public TouchMode(File pathDevice) {
+        	this.pathDevice = pathDevice;
+		}
+
+		@Override
+		public int sampleSize() {
             return 1;
         }
 
-        public void fetchSample(float[] sample, int offset)
-        {
-            //sample[offset] = (port.getPin6() > EV3SensorConstants.ADC_REF/2f ? 1.0f : 0.0f);
+		@Override
+        public void fetchSample(float[] sample, int offset) {
+        	String attribute = "value0";
+            sample[offset] = Float.parseFloat(Sysfs.readString(this.pathDevice + "/" +  attribute));
         }
 
-        public String getName()
-        {
+		@Override
+        public String getName() {
            return "Touch";
         }
      

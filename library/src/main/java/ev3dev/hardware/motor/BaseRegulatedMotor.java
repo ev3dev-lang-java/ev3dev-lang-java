@@ -1,5 +1,7 @@
 package ev3dev.hardware.motor;
 
+import lejos.robotics.RegulatedMotor;
+import lejos.robotics.RegulatedMotorListener;
 import ev3dev.hardware.EV3DevDevice;
 
 /**

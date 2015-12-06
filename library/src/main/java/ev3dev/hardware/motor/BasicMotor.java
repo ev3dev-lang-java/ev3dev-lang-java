@@ -1,5 +1,6 @@
 package ev3dev.hardware.motor;
 
+import lejos.robotics.DCMotor;
 import ev3dev.hardware.EV3DevDevice;
 
 /** 

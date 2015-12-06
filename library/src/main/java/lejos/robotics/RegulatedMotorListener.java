@@ -1,4 +1,4 @@
-package ev3dev.hardware.motor;
+package lejos.robotics;
 
 /**
  * This interface defines a listener that is notified of the tachometer when the motor starts and stops rotating.

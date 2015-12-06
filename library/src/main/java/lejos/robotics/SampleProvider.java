@@ -1,4 +1,4 @@
-package ev3dev.hardware.sensor;
+package lejos.robotics;
 
 /** Abstraction for classes that fetch samples from a sensor and classes that are able to process samples.<br>   
  * A sample is a measurement taken by a sensor at a single moment in time. 

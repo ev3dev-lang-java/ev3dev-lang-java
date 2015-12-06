@@ -91,7 +91,6 @@ public class BaseSensor extends EV3DevDevice implements SensorModes {
       return modes[currentMode].sampleSize();
     }
 
-
     public void fetchSample(float[] sample, int offset) {
       modes[currentMode].fetchSample(sample, offset);
     }
@@ -124,6 +123,33 @@ public class BaseSensor extends EV3DevDevice implements SensorModes {
 
     public int getModeCount() {
       return modes.length;
+    }
+    
+    /**
+     * Switch to the selected mode (if not already in that mode) and delay for the
+     * specified period to allow the sensor to settle in the new mode. <br>
+     * A mode of -1 resets the sensor.
+     * TODO: There really should be a better way to work out when the switch is
+     * complete, if you don't wait though you end up reading data from the previous
+     * mode.
+     * @param newMode The mode to switch to.
+     * @param switchDelay Time in mS to delay after the switch.
+     */
+    protected void switchMode(int newMode, long switchDelay)
+    {
+        if (currentMode != newMode)
+        {
+            /*
+        	if (newMode == -1)
+                //port.resetSensor();
+            else if (!port.setMode(newMode))
+                throw new IllegalArgumentException("Invalid sensor mode");
+            currentMode = newMode;
+            //Delay.msDelay(switchDelay);
+             * 
+             */
+        }
+        
     }
 
 }

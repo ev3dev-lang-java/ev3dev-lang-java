@@ -1,4 +1,4 @@
-package ev3dev.utilities;
+package lejos.utility;
 
 /**
  * Simple collection of time delay routines that are non interruptable.
