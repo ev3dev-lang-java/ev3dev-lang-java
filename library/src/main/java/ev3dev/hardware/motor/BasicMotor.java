@@ -10,47 +10,36 @@ import ev3dev.hardware.EV3DevDevice;
  * @author Juan Antonio Breña Moral
  *
  */
-public abstract class BasicMotor extends EV3DevDevice implements DCMotor
-{
+public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 
+    private final static String SYSTEM_CLASS_NAME = "dc-motor";
+    private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
 
+    //dc-motor > /sys/class/lego-port/port6/mode
+    
 	public BasicMotor(String type, String portName) {
 		super(type, portName);
 	}
 
-
-	protected static int INVALID_MODE = -1;
-	protected int mode = INVALID_MODE;
-    //protected BasicMotorPort port;
+	public BasicMotor(String type, String portName, boolean force) {
+		super(type, portName);
+	}
+	
     protected int power = 0;
 
-    public void setPower(int power)
-    {
+    public void setPower(int power) {
         this.power = power;
         //port.controlMotor(power, mode);
     }
 
-    public int getPower()
-    {
+    public int getPower() {
         return power;
-    }
-
-    /**
-     * Update the internal state tracking the motor direction
-     * @param newMode
-     */
-    protected void updateState( int newMode)
-    {
-        if (newMode == mode) return;
-        mode = newMode;
-        //port.controlMotor(power, newMode);
     }
 
 	/**
 	 * Causes motor to rotate forward.
 	 */
-	public void forward()
-	{ 
+	public void forward() { 
 		//updateState( BasicMotorPort.FORWARD);
 	}
 	  
@@ -69,8 +58,7 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor
 	 * 
 	 * @return true iff the motor is currently in motion.
 	 */
-	public boolean isMoving()
-	{
+	public boolean isMoving() {
 		//return (mode == BasicMotorPort.FORWARD || mode == BasicMotorPort.BACKWARD);
 		return true;
 	}
@@ -81,8 +69,7 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor
 	 * method if you don't want your robot to trip in
 	 * abrupt turns.
 	 */   
-	public void flt()
-	{
+	public void flt() {
 		//updateState( BasicMotorPort.FLOAT);
 	}
 
@@ -94,8 +81,7 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor
 	 * any further motion.
 	 * Cancels any rotate() orders in progress
 	 */
-	public void stop()
-	{
+	public void stop() {
 		//updateState( BasicMotorPort.STOP);
 	}
 }

@@ -21,6 +21,7 @@ ant -buildfile tools.xml uml
 # Features
 
 * Regulated Motor Support
+* Unregulated Motor Support
 * Sensor Support (Few sensors)
 * OpenCV (https://github.com/jabrena/ev3dev-lang-java/issues/33)
 * Support for Java profiling tools as VisualVM & JConsole (https://github.com/jabrena/ev3dev-lang-java/issues/38)
@@ -28,7 +29,31 @@ ant -buildfile tools.xml uml
 
 # Getting Started.
 
-Create a Java Maven project. Update the file pom.xml to add the following repository:
+Check if your EV3Brick with EV3Dev need some upgrade:
+
+``` bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+```
+
+Current development has been tested with this version:
+
+``` bash
+root@ev3dev:/home# uname -a
+Linux ev3dev 3.16.7-ckt19-8-ev3dev-ev3 
+#1 PREEMPT Mon Nov 9 11:03:41 CST 2015 armv5tejl GNU/Linux
+```
+
+If you have your OS for EV3 updated, continue with your Java project.
+
+Create a Java Maven project:
+
+``` bash
+mvn archetype:generate -DgroupId=ev3dev.examples.demo -DartifactId=Test -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+
+Update the file pom.xml to add the following repository:
 
 ``` xml
 	<repository>
@@ -39,25 +64,20 @@ Create a Java Maven project. Update the file pom.xml to add the following reposi
 
 and add the dependency to offer Java support for EV3Dev:
 
-
 ``` xml
 	<dependency>
 	    <groupId>com.github.jabrena</groupId>
 	    <artifactId>ev3dev-lang-java</artifactId>
 	    <version>v0.2.0</version>
 	</dependency>
-
 ```
-
-Further information about the repository usage [here](https://jitpack.io/#jabrena/ev3dev-lang-java).
-
 
 Create a Java Class in your Maven project:
 
 
 ``` java
 
-package ev3dev.examples;
+package ev3dev.examples.demo;
 
 import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.MotorPort;
