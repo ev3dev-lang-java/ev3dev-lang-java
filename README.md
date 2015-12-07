@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to develop Software for Robots over [EV3Dev stack](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) libraries.
+*EV3Dev-lang-Java* is a Java library designed to develop Software for Robots on [EV3Dev](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) and other Robotics libraries.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
