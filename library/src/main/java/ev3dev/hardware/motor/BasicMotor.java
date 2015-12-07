@@ -14,42 +14,45 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 
     private final static String SYSTEM_CLASS_NAME = "dc-motor";
     private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
-
-    //dc-motor > /sys/class/lego-port/port6/mode
-    
-	public BasicMotor(String type, String portName) {
-		super(type, portName);
-	}
-
-	public BasicMotor(String type, String portName, boolean force) {
-		super(type, portName);
+	private final String MODE = "mode";
+	private final String POWER = "power";
+	
+	public BasicMotor(String portName) {
+		super(SYSTEM_PORT_CLASS_NAME, portName);
+		this.setAttribute(MODE,SYSTEM_CLASS_NAME);
+		this.connect(SYSTEM_CLASS_NAME, portName);
 	}
 	
     protected int power = 0;
 
     public void setPower(int power) {
-        this.power = power;
-        //port.controlMotor(power, mode);
+    	this.setAttribute(POWER,"" + power);
     }
 
     public int getPower() {
-        return power;
+    	return Integer.parseInt(this.getAttribute(POWER));
     }
 
 	/**
 	 * Causes motor to rotate forward.
 	 */
 	public void forward() { 
-		//updateState( BasicMotorPort.FORWARD);
+		final String attribute = "command";
+		final String value = "run-forever";
+		this.setAttribute(attribute, value);
 	}
 	  
 
 	/**
 	 * Causes motor to rotate backwards.
 	 */
-	public void backward()
-	{
-		//updateState( BasicMotorPort.BACKWARD);
+	public void backward() {
+		final String attribute1 = "inversed";
+		final String value1 = "polarity";
+		this.setAttribute(attribute1, value1);
+    	final String attribute2 = "command";
+		final String value2 = "run-forever";
+		this.setAttribute(attribute2, value2);
 	}
 
 
@@ -59,8 +62,9 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * @return true iff the motor is currently in motion.
 	 */
 	public boolean isMoving() {
-		//return (mode == BasicMotorPort.FORWARD || mode == BasicMotorPort.BACKWARD);
-		return true;
+		final String attribute = "state";
+		final String STATE_RUNNING = "running";
+		return (this.getAttribute(attribute) == STATE_RUNNING);
 	}
 
 	/**
@@ -70,10 +74,11 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * abrupt turns.
 	 */   
 	public void flt() {
-		//updateState( BasicMotorPort.FLOAT);
+		final String attribute = "command";
+		final String value = "brake";
+		this.setAttribute(attribute, value);
 	}
 
-	  
 	/**
 	 * Causes motor to stop, pretty much
 	 * instantaneously. In other words, the
@@ -82,7 +87,9 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * Cancels any rotate() orders in progress
 	 */
 	public void stop() {
-		//updateState( BasicMotorPort.STOP);
+		final String attribute = "command";
+		final String value = "stop";
+		this.setAttribute(attribute, value);
 	}
 }
 

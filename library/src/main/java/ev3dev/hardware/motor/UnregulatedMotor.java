@@ -6,10 +6,8 @@ package ev3dev.hardware.motor;
  */
 public class UnregulatedMotor extends BasicMotor {
 
-	public UnregulatedMotor(String type, String portName) {
-		super(type, portName);
-		// TODO Auto-generated constructor stub
+	public UnregulatedMotor(String portName) {
+		super(portName);
 	}
-    
 
 }

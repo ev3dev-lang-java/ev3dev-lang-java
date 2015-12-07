@@ -45,6 +45,7 @@ import ev3dev.hardware.EV3DevDevice;
  *   int angle = Motor.A.getTachoCount(); // should be -360
  *   LCD.drawInt(angle,0,0);
  * </pre></code>
+ * 
  * TODO: Fix the name
  * @author Roger Glassey
  * @author Andy Shaw
@@ -98,9 +99,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @return the current tachometer count.
      * @see lejos.robotics.RegulatedMotor#getTachoCount()
      */
-    public int getTachoCount()
-    {
-        return 0;//reg.getTachoCount();
+    public int getTachoCount() {
+    	final String attribute = "position";
+    	return Integer.parseInt(this.getAttribute(attribute));
     }
 
     /**
@@ -142,9 +143,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * Set the motor into float mode. This will stop the motor without braking
      * and the position of the motor will not be maintained.
      */
-    public void flt()
-    {
-        //reg.newMove(0, acceleration, NO_LIMIT, false, true);
+    public void flt() {
+		final String attribute = "command";
+		final String value = "brake";
+		this.setAttribute(attribute, value);
     }
     
     /**
@@ -152,9 +154,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * and the position of the motor will not be maintained.
      * @param immediateReturn If true do not wait for the motor to actually stop
      */
-    public void flt(boolean immediateReturn)
-    {
-        //reg.newMove(0, acceleration, NO_LIMIT, false, !immediateReturn);
+    public void flt(boolean immediateReturn) {
+		final String attribute = "command";
+		final String value = "brake";
+		this.setAttribute(attribute, value);
     }
 
     /**
@@ -164,8 +167,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * any further motion.
      * Cancels any rotate() orders in progress
      */
-    public void stop()
-    {
+    public void stop() {
 		final String attribute = "command";
 		final String value = "stop";
 		this.setAttribute(attribute, value);
@@ -179,9 +181,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * Cancels any rotate() orders in progress
      * @param immediateReturn if true do not wait for the motor to actually stop
      */
-    public void stop(boolean immediateReturn)
-    {
-        //reg.newMove(0, acceleration, NO_LIMIT, true, !immediateReturn);
+    public void stop(boolean immediateReturn) {
+		final String attribute = "command";
+		final String value = "stop";
+		this.setAttribute(attribute, value);
     }
 
     /**
@@ -194,23 +197,26 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * be detected  by calling {@link #isStalled()};
      * @return true iff the motor is attempting to rotate.<br>
      */
-    public boolean isMoving()
-    {
-        return true; //reg.isMoving();
+    public boolean isMoving() {
+		final String attribute = "state";
+		final String STATE_RUNNING = "running";
+		return (this.getAttribute(attribute) == STATE_RUNNING);
     }
 
     /**
      * Wait until the current movement operation is complete (this can include
      * the motor stalling).
      */
-    public void waitComplete()
-    {
+    public void waitComplete() {
         //reg.waitComplete();
     }
 
-    public void rotateTo(int limitAngle, boolean immediateReturn)
-    {
-        //reg.newMove(speed, acceleration, limitAngle, true, !immediateReturn);
+    public void rotateTo(int limitAngle, boolean immediateReturn) {
+    	final String attribute1 = "position_sp";
+    	this.setAttribute(attribute1, "" + limitAngle);
+    	final String attribute2 = "command";
+		final String value2 = "run-to-abs-pos";
+		this.setAttribute(attribute2, value2);
     }
 
     /**
@@ -298,9 +304,12 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @param angle number of degrees to rotate relative to the current position
      * @param immediateReturn if true do not wait for the move to complete
      */
-    public void rotate(int angle, boolean immediateReturn)
-    {
-        //rotateTo(Math.round(reg.getPosition()) + angle, immediateReturn);
+    public void rotate(int angle, boolean immediateReturn) {
+		final String attribute1 = "position_sp";
+		this.setAttribute(attribute1, "" + angle);
+    	final String attribute2 = "command";
+		final String value2 = "run-to-rel-pos";
+		this.setAttribute(attribute2, value2);
     }
 
     /**
@@ -309,7 +318,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public void rotate(int angle)
     {
-        //rotate(angle, false);
+        rotate(angle, false);
     	
     }
 
@@ -318,12 +327,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @param limitAngle Angle to rotate to.
      */
     public void rotateTo(int limitAngle) {
-    	final String attribute1 = "position_sp";
-    	this.setAttribute(attribute1, "" + limitAngle);
-    	final String attribute2 = "command";
-		final String value2 = "run-to-abs-pos";
-		this.setAttribute(attribute2, value2);
-    	
+    	rotateTo(limitAngle, false);
     }
 
     /**
@@ -332,7 +336,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public int getSpeed()
     {
-        return Math.round(speed);
+		final String attribute = "duty_cycle_sp";
+        return Integer.parseInt(this.getAttribute(attribute));
     }
 
     /**
@@ -341,7 +346,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public boolean isStalled()
     {
-        return true;//reg.isStalled();
+		final String attribute = "state";
+		final String STATE_STALLED = "stalled";
+		return (this.getAttribute(attribute) == STATE_STALLED);
     }
 
     /**

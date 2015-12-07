@@ -100,33 +100,30 @@ public class EV3IRSensor extends BaseSensor {
 		}
 
 		@Override
-        public int sampleSize() 
-        {
+        public int sampleSize() {
             return 1;
         }
 
         @Override
-        public void fetchSample(float[] sample, int offset) 
-        {
+        public void fetchSample(float[] sample, int offset) {
             //switchMode(IR_PROX, SWITCH_DELAY);
     		String attribute = "value0";
     		String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
 
-    		int raw = -1;
+    		float raw = -1;
     		try {
-    			raw = Integer.parseInt(rawValue);
+    			raw = Float.parseFloat(rawValue);
     		} catch (NumberFormatException e) {
     			raw = -1;			
     		}
-            //int raw=((int)port.getByte() & 0xff);
+
             if (raw<5) sample[offset]=0;
             else if (raw>55) sample[offset]=Float.POSITIVE_INFINITY;
             else sample[offset]=raw*toSI;
         }
 
         @Override
-        public String getName() 
-        {
+        public String getName() {
             return "Distance";
         }
         
