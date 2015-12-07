@@ -23,9 +23,9 @@ ant -buildfile tools.xml uml
 * Regulated Motor Support
 * Unregulated Motor Support
 * Sensor Support (Few sensors)
+* LeJOS Sensor filter Support
 * OpenCV (https://github.com/jabrena/ev3dev-lang-java/issues/33)
 * Espeak TTS (Text to speech) Support (http://espeak.sourceforge.net/)
-* LeJOS filter Support
 * Support for Java profiling tools as VisualVM & JConsole (https://github.com/jabrena/ev3dev-lang-java/issues/38)
 
 # Getting Started.
