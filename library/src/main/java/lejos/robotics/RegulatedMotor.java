@@ -24,31 +24,6 @@ public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
 	 * @return The RegulatedMotorListener that was removed, if any. Null if none existed.
 	 */
 	public RegulatedMotorListener removeListener();
-	
-    /**
-     * Causes motor to stop, pretty much
-     * instantaneously. In other words, the
-     * motor doesn't just stop; it will resist
-     * any further motion.
-     * Cancels any rotate() orders in progress
-     * @param immediateReturn if true do not wait for the motor to actually stop
-     */
-    public void stop(boolean immediateReturn);
-
-    /**
-     * Set the motor into float mode. This will stop the motor without braking
-     * and the position of the motor will not be maintained.
-     * @param immediateReturn If true do not wait for the motor to actually stop
-     */
-    public void flt(boolean immediateReturn);
-
-    /**
-     * Wait until the current movement operation is complete (this can include
-     * the motor stalling).
-     */
-    public void waitComplete();
-
-	
   /**
    * causes motor to rotate through angle; <br>
    * iff immediateReturn is true, method returns immediately and the motor stops by itself <br>

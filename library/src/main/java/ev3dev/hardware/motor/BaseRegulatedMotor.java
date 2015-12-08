@@ -65,6 +65,11 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
     	super(SYSTEM_CLASS_NAME, motorPort);
     	MAX_SPEED_AT_9V = maxSpeed;
+
+		final String attribute = "speed_regulation";
+		final String value = "on";
+		this.setAttribute(attribute, value);
+		//System.out.println(this.getAttribute(attribute));
 	}
 
 
@@ -88,8 +93,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     {
         // Putting the motor into float mode disables regulation. note
         // that we wait for the operation to complete.
-		final String attribute = "off";
-		final String value = "speed_regulation";
+		final String attribute = "speed_regulation";
+		final String value = "on";
 		this.setAttribute(attribute, value);
         return true;
     }
@@ -100,7 +105,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @see lejos.robotics.RegulatedMotor#getTachoCount()
      */
     public int getTachoCount() {
-    	final String attribute = "position";
+    	final String attribute = "position_sp";
     	return Integer.parseInt(this.getAttribute(attribute));
     }
 
@@ -148,17 +153,6 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		final String value = "brake";
 		this.setAttribute(attribute, value);
     }
-    
-    /**
-     * Set the motor into float mode. This will stop the motor without braking
-     * and the position of the motor will not be maintained.
-     * @param immediateReturn If true do not wait for the motor to actually stop
-     */
-    public void flt(boolean immediateReturn) {
-		final String attribute = "command";
-		final String value = "brake";
-		this.setAttribute(attribute, value);
-    }
 
     /**
      * Causes motor to stop, pretty much
@@ -168,20 +162,6 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * Cancels any rotate() orders in progress
      */
     public void stop() {
-		final String attribute = "command";
-		final String value = "stop";
-		this.setAttribute(attribute, value);
-    }
-
-    /**
-     * Causes motor to stop, pretty much
-     * instantaneously. In other words, the
-     * motor doesn't just stop; it will resist
-     * any further motion.
-     * Cancels any rotate() orders in progress
-     * @param immediateReturn if true do not wait for the motor to actually stop
-     */
-    public void stop(boolean immediateReturn) {
 		final String attribute = "command";
 		final String value = "stop";
 		this.setAttribute(attribute, value);
@@ -204,32 +184,18 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     }
 
     /**
-     * Wait until the current movement operation is complete (this can include
-     * the motor stalling).
-     */
-    public void waitComplete() {
-        //reg.waitComplete();
-    }
-
-    public void rotateTo(int limitAngle, boolean immediateReturn) {
-    	final String attribute1 = "position_sp";
-    	this.setAttribute(attribute1, "" + limitAngle);
-    	final String attribute2 = "command";
-		final String value2 = "run-to-abs-pos";
-		this.setAttribute(attribute2, value2);
-    }
-
-    /**
      * Sets desired motor speed , in degrees per second;
      * The maximum reliably sustainable velocity is  100 x battery voltage under
      * moderate load, such as a direct drive robot on the level.
      * @param speed value in degrees/sec
      */
-    public void setSpeed(int speed)
-    {
-        this.speed = Math.abs(speed);
-		final String attribute = "/duty_cycle_sp";
+    public void setSpeed(int speed) {
+		final String attribute = "speed_sp";
 		this.setAttribute(attribute, "" + speed);
+		//final String attribute2 = "duty_cycle_sp";
+		//this.setAttribute(attribute2, "" + speed);
+		System.out.println(this.getAttribute(attribute));
+		//System.out.println(this.getAttribute(attribute2));
     }
 
     /**
@@ -237,13 +203,14 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * The maximum reliably sustainable velocity is  100 x battery voltage under
      * moderate load, such as a direct drive robot on the level.
      * @param speed value in degrees/sec
-     */
+
     public void setSpeed(float speed)
     {
         this.speed = Math.abs(speed);
-		final String attribute = "/duty_cycle_sp";
+		final String attribute = "speed_sp";
 		this.setAttribute(attribute, "" + speed);
     }
+     */
 
     /**
      * sets the acceleration rate of this motor in degrees/sec/sec <br>
@@ -283,6 +250,11 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		final String attribute = "command";
 		final String value = "reset";
 		this.setAttribute(attribute, value);
+		
+		//TODO: Check in the case of the user suspend regulation
+		final String attribute2 = "speed_regulation";
+		final String value2 = "on";
+		this.setAttribute(attribute2, value2);
     }
 
     /**
@@ -303,6 +275,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * Rotate by the request number of degrees.
      * @param angle number of degrees to rotate relative to the current position
      * @param immediateReturn if true do not wait for the move to complete
+     * Rotate by the requested number of degrees. Wait for the move to complete.
+     * @param angle
      */
     public void rotate(int angle, boolean immediateReturn) {
 		final String attribute1 = "position_sp";
@@ -310,18 +284,47 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     	final String attribute2 = "command";
 		final String value2 = "run-to-rel-pos";
 		this.setAttribute(attribute2, value2);
+		
+		if (!immediateReturn) {
+			//TODO Check if it possible to improve this way.
+			//Add a double check (Time control to avoid race condition problem)
+			while (true) {
+				if (this.getAttribute("state") != "running") {
+					break;
+				}
+			}
+		}
+
     }
 
     /**
      * Rotate by the requested number of degrees. Wait for the move to complete.
      * @param angle
      */
-    public void rotate(int angle)
-    {
+    public void rotate(int angle) {
         rotate(angle, false);
-    	
     }
 
+    public void rotateTo(int limitAngle, boolean immediateReturn) {
+    	final String attribute = "speed_regulation";
+    	System.out.println(this.getAttribute(attribute));
+    	final String attribute1 = "position_sp";
+    	this.setAttribute(attribute1, "" + limitAngle);
+    	final String attribute2 = "command";
+		final String value2 = "run-to-abs-pos";
+		this.setAttribute(attribute2, value2);
+		
+		if (!immediateReturn) {
+			//TODO Check if it possible to improve this way.
+			//Add a double check (Time control to avoid race condition problem)
+			while (true) {
+				if (this.getAttribute("state") != "running") {
+					break;
+				}
+			}
+		}
+    }
+    
     /**
      * Rotate to the target angle. Do not return until the move is complete.
      * @param limitAngle Angle to rotate to.

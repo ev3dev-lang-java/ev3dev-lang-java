@@ -6,3 +6,4 @@ echo run-forever > /sys/class/dc-motor/motor0/command
 sleep 5
 
 echo stop > /sys/class/dc-motor/motor0/command
+echo stop > command
