@@ -23,6 +23,7 @@ ant -buildfile tools.xml uml
 * Regulated Motor Support
 * Unregulated Motor Support
 * Sensor Support (Few sensors)
+* Sounds
 * LeJOS Sensor filter Support
 * [OpenCV](http://opencv.org/) Computer Vision Support
 * [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
