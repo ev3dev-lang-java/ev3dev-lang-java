@@ -15,7 +15,7 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
     private final static String SYSTEM_CLASS_NAME = "dc-motor";
     private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
 	private final String MODE = "mode";
-	private final String POWER = "power";
+	private final String POWER = "duty_cycle_sp";
 	
 	public BasicMotor(String portName) {
 		super(SYSTEM_PORT_CLASS_NAME, portName);
@@ -47,12 +47,17 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * Causes motor to rotate backwards.
 	 */
 	public void backward() {
-		final String attribute1 = "inversed";
-		final String value1 = "polarity";
-		this.setAttribute(attribute1, value1);
+		final String attribute1 = "duty_cycle_sp";
+		final int rawvalue = Integer.parseInt(this.getAttribute(attribute1));
+		final int value1 = Math.abs(rawvalue) * -1;
+		//TODO: Learn to use this attribute
+		//final String attribute1 = "inversed";
+		//final String value1 = "polarity";
+		this.setAttribute(attribute1, "" + value1);
     	final String attribute2 = "command";
 		final String value2 = "run-forever";
 		this.setAttribute(attribute2, value2);
+		this.setAttribute(attribute1, "" + rawvalue);
 	}
 
 
@@ -64,7 +69,14 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	public boolean isMoving() {
 		final String attribute = "state";
 		final String STATE_RUNNING = "running";
-		return (this.getAttribute(attribute) == STATE_RUNNING);
+		final String rawStates = this.getAttribute(attribute);
+		String[] states = rawStates.split(" ");
+		for(int i = 0; i < states.length; i++){
+			if(states[i].equals(STATE_RUNNING)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -74,9 +86,10 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * abrupt turns.
 	 */   
 	public void flt() {
-		final String attribute = "command";
-		final String value = "brake";
-		this.setAttribute(attribute, value);
+		//TODO: Understand float way for DC Motors
+		//final String attribute = "command";
+		//final String value = "brake";
+		//this.setAttribute(attribute, value);
 	}
 
 	/**
