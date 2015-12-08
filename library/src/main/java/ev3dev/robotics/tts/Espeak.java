@@ -66,7 +66,7 @@ public class Espeak {
 	//espeak -ves --stdout "soy un robot bueno" | aplay
 	public void say(final String message){
 		this.build();
-		Shell.executeCommand(this.command);
+		Shell.execute(this.command);
 	}
 
 }

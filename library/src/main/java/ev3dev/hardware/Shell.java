@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 public class Shell {
 
-	public static String executeCommand(final String command) {
+	public static String execute(final String command) {
 
 		StringBuffer output = new StringBuffer();
 
