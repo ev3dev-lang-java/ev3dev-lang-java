@@ -306,8 +306,6 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     }
 
     public void rotateTo(int limitAngle, boolean immediateReturn) {
-    	final String attribute = "speed_regulation";
-    	System.out.println(this.getAttribute(attribute));
     	final String attribute1 = "position_sp";
     	this.setAttribute(attribute1, "" + limitAngle);
     	final String attribute2 = "command";
