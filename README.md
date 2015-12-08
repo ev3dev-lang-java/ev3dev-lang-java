@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to develop Software for Robots on [EV3Dev](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) and other Robotics libraries.
+*EV3Dev-lang-Java* is a Java library designed to develop Software for Robots on [EV3Dev](http://www.ev3dev.org/) with [OpenCV](http://opencv.org/), [LeJOS](http://www.lejos.org/), [eSpeak](http://espeak.sourceforge.net/) and other Robotics libraries.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
@@ -24,9 +24,9 @@ ant -buildfile tools.xml uml
 * Unregulated Motor Support
 * Sensor Support (Few sensors)
 * LeJOS Sensor filter Support
-* OpenCV (https://github.com/jabrena/ev3dev-lang-java/issues/33)
-* Espeak TTS (Text to speech) Support (http://espeak.sourceforge.net/)
-* Support for Java profiling tools as VisualVM & JConsole (https://github.com/jabrena/ev3dev-lang-java/issues/38)
+* [OpenCV](http://opencv.org/) Support
+* [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
+* Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 
 # Getting Started.
 
