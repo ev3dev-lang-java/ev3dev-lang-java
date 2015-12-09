@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class Sysfs {
 
-	public static boolean writeString(String filePath, String value) {
+	public static boolean writeString(final String filePath, final String value) {
 		try {
 			File mpuFile = new File(filePath);
 			if(mpuFile.canWrite()) {
@@ -25,7 +25,7 @@ public class Sysfs {
 		return true;
 	}
 	
-	public static String readString(String filePath) {
+	public static String readString(final String filePath) {
 		String value;
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
