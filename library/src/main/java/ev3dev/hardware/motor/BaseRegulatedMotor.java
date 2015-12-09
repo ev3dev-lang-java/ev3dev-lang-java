@@ -180,7 +180,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     public boolean isMoving() {
 		final String attribute = "state";
 		final String STATE_RUNNING = "running";
-		return (this.getAttribute(attribute) == STATE_RUNNING);
+		return (this.getAttribute(attribute).equals(STATE_RUNNING));
     }
 
     /**
@@ -271,6 +271,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
         return null;//reg.removeListener();
     }
 
+    private boolean isRunning() {
+    	return this.getAttribute("state").contains("running");
+    }
+    
     /**
      * Rotate by the request number of degrees.
      * @param angle number of degrees to rotate relative to the current position
@@ -286,12 +290,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		this.setAttribute(attribute2, value2);
 		
 		if (!immediateReturn) {
-			//TODO Check if it possible to improve this way.
-			//Add a double check (Time control to avoid race condition problem)
-			while (true) {
-				if (this.getAttribute("state") != "running") {
-					break;
-				}
+			while(this.isRunning()){
+			   // do stuff or do nothing
+			   // possibly sleep for some short interval to not block
 			}
 		}
 
@@ -313,11 +314,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		this.setAttribute(attribute2, value2);
 		
 		if (!immediateReturn) {
-			//TODO Check if it possible to improve this way.
-			//Add a double check (Time control to avoid race condition problem)
-			while (true) {
-				if (this.getAttribute("state") != "running") {
-					break;
+			if (!immediateReturn) {
+				while(this.isRunning()){
+				   // do stuff or do nothing
+				   // possibly sleep for some short interval to not block
 				}
 			}
 		}
