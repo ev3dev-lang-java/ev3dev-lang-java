@@ -180,7 +180,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     public boolean isMoving() {
 		final String attribute = "state";
 		final String STATE_RUNNING = "running";
-		return (this.getAttribute(attribute).equals(STATE_RUNNING));
+		return (this.getAttribute(attribute).contains(STATE_RUNNING));
     }
 
     /**
