@@ -1,32 +1,18 @@
-{% assign class_name = currentClass.friendlyName | downcase | underscore_spaces %}{%
-for prop in currentClass.systemProperties %}{%
-  assign prop_name = prop.name | downcase | underscore_spaces %}{%
-  assign getter = prop.type %}{%
-  assign setter = prop.type %}{%
-  if prop.type == 'string array' %}{%
-    assign getter = 'set' %}{%
-  elsif prop.type == 'string selector' %}{%
-    assign getter = 'from_set' %}{%
-    assign setter = 'string' %}{%
+{% for prop in currentClass.systemProperties %}
+    // {{ prop.name }}:{%
+  if prop.readAccess %}{%
+    if prop.writeAccess %} read/write{%
+    else %} read-only{%
+    endif %}{%
+  else %} write-only{%
+  endif %}{%
+  for line in prop.description %}
+    // {{ line }}{%
+  endfor %}{%
+
+  assign javaName = prop.name | downcase | underscore_spaces %}{%
+  if prop.readAccess == true %}
+    public static String {{ javaName }} = "{{ prop.systemName }}"; {%
   endif %}
 
-    @property
-    def {{prop_name}}(self):
-        """{%
-  for line in prop.description %}
-        {{ line }}{%
-  endfor %}
-        """{%
-  if prop.readAccess %}
-        return self.get_attr_{{ getter }}( '{{ prop.systemName }}' ){%
-  else %}
-        raise Exception( "{{prop_name}} is a write-only property!" ){%
-  endif %}{%
-  if prop.writeAccess %}
-
-    @{{prop_name}}.setter
-    def {{ prop_name }}(self, value):
-        self.set_attr_{{ setter }}( '{{ prop.systemName }}', value ){%
-  endif%}{%
-endfor %}
-
+{%endfor %}
