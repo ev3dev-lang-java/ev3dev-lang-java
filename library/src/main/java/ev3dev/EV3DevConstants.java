@@ -1,5 +1,10 @@
 package ev3dev;
 
+//~autogen autogen-header
+// Sections of the following code were auto-generated based on spec v0.9.3-pre, rev 2
+
+//~autogen
+
 public class EV3DevConstants {
 
 	//~autogen generic-get-set classes.motor>currentClass
