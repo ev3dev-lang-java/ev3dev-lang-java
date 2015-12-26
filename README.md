@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to develop Software for Robots on [EV3Dev](http://www.ev3dev.org/) with [OpenCV](http://opencv.org/), [LeJOS](http://www.lejos.org/), [eSpeak](http://espeak.sourceforge.net/) and other Robotics libraries.
+*EV3Dev-lang-Java* is a Java library designed to interact with hardware managed by [EV3Dev](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) Concepts.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
@@ -14,7 +14,6 @@ ant -buildfile tools.xml uml
 
 # Roadmap
 
-* Create a website to add Javadocs & Getting Started ([Jekyll](https://jekyllrb.com/))
 * Create repository for navigation:
 * Create repository for behaviours: 
 
