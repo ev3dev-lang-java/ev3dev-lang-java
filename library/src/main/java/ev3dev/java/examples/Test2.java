@@ -1,4 +1,4 @@
-package ev3dev.examples;
+package ev3dev.java.examples;
 
 import lejos.utility.Delay;
 import ev3dev.hardware.Sound;

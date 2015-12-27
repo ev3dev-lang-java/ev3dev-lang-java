@@ -61,6 +61,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 
     private final static String SYSTEM_CLASS_NAME = "tacho-motor";
 
+    private int local_speed = 0;
+    
     public BaseRegulatedMotor(String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
     	super(SYSTEM_CLASS_NAME, motorPort);
@@ -69,7 +71,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		final String attribute = "speed_regulation";
 		final String value = "on";
 		this.setAttribute(attribute, value);
-		//System.out.println(this.getAttribute(attribute));
+		final String attributeX = "speed_regulation";
+		System.out.println(this.getAttribute(attributeX));
 	}
 
 
@@ -80,7 +83,6 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     public void close() {
         super.close();
     }
-
     
     /**
      * Removes this motor from the motor regulation system. After this call
@@ -105,6 +107,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @see lejos.robotics.RegulatedMotor#getTachoCount()
      */
     public int getTachoCount() {
+		final String attributeX = "speed_regulation";
+		System.out.println(this.getAttribute(attributeX));
     	final String attribute = "position_sp";
     	return Integer.parseInt(this.getAttribute(attribute));
     }
@@ -127,6 +131,12 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @see lejos.hardware.motor.BasicMotor#forward()
      */
     public void forward() {
+    	if(this.local_speed != 0) {
+    		if(this.local_speed > 0) {
+        		final String attribute = "speed_sp";
+        		this.setAttribute(attribute, "" + this.local_speed);    			
+    		}
+    	}
 		final String attribute = "command";
 		final String value = "run-forever";
 		this.setAttribute(attribute, value);
@@ -136,9 +146,13 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @see lejos.hardware.motor.BasicMotor#backward()
      */
     public void backward(){
-		final String attribute1 = "inversed";
-		final String value1 = "polarity";
-		this.setAttribute(attribute1, value1);
+    	if(this.local_speed != 0) {
+    		if(this.local_speed > 0) {
+        		final String attribute = "speed_sp";
+        		String value = "-" + this.local_speed;
+        		this.setAttribute(attribute, "" + "-" + this.local_speed);    			
+    		}
+    	}
     	final String attribute2 = "command";
 		final String value2 = "run-forever";
 		this.setAttribute(attribute2, value2);
@@ -190,12 +204,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @param speed value in degrees/sec
      */
     public void setSpeed(int speed) {
+    	this.local_speed = speed;
 		final String attribute = "speed_sp";
-		this.setAttribute(attribute, "" + speed);
-		//final String attribute2 = "duty_cycle_sp";
-		//this.setAttribute(attribute2, "" + speed);
-		System.out.println(this.getAttribute(attribute));
-		//System.out.println(this.getAttribute(attribute2));
+		this.setAttribute(attribute, "" + this.local_speed);
     }
 
     /**
@@ -314,11 +325,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		this.setAttribute(attribute2, value2);
 		
 		if (!immediateReturn) {
-			if (!immediateReturn) {
-				while(this.isRunning()){
-				   // do stuff or do nothing
-				   // possibly sleep for some short interval to not block
-				}
+			while(this.isRunning()){
+			   // do stuff or do nothing
+			   // possibly sleep for some short interval to not block
 			}
 		}
     }
@@ -337,7 +346,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public int getSpeed()
     {
-		final String attribute = "duty_cycle_sp";
+		final String attribute = "speed_sp";
         return Integer.parseInt(this.getAttribute(attribute));
     }
 

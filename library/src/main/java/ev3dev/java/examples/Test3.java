@@ -1,4 +1,4 @@
-package ev3dev.examples;
+package ev3dev.java.examples;
 
 import lejos.utility.Delay;
 import ev3dev.hardware.Battery;
@@ -7,41 +7,35 @@ import ev3dev.hardware.Sound;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.Test4
-public class Test4 {
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.Test3
+public class Test3 {
 	
     public static void main(String[] args) {
     	
-        EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
+    	final int degreesToTurn = 90;
+    	int currentDegrees = 0;
+    	
+        final EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
         mA.setSpeed(100);
 
-        //mA.resetTachoCount();
-        System.out.println(mA.getTachoCount());
         Sound.beep();
         System.out.println(mA.getTachoCount());
-        mA.rotateTo(0);
+        mA.rotate(degreesToTurn);
         Sound.beep();
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
-        mA.rotateTo(90);
+        mA.rotate(degreesToTurn);
         Sound.beep();  
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
-        mA.rotateTo(180);
+        mA.rotate(degreesToTurn);
         Sound.beep();
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
-        mA.rotateTo(270);
+        mA.rotate(degreesToTurn);
         Sound.beep();
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
-        mA.rotateTo(360);
-        Sound.beep();
-        System.out.println(mA.getTachoCount());
-        mA.rotateTo(90);
-        Sound.beep();
-        System.out.println(mA.getTachoCount());
-        
         System.out.println(Battery.getVoltage());
     }
 }

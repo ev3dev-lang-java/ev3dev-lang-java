@@ -1,4 +1,4 @@
-package ev3dev.examples;
+package ev3dev.java.examples;
 
 import java.io.File;
 
