@@ -37,6 +37,7 @@ Check if your EV3Brick with EV3Dev need some upgrade:
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
+sudo reboot
 ```
 
 Current development has been tested with this version:

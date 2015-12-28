@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class EV3DevDevice extends Device {
 
     private final String DEVICE_ROOT_PATH = "/sys/class";
-    private final String DEVICE_PORT_NAME = "port_name";
+    private final String DEVICE_PORT_NAME = "address";
     private boolean connected = false;    
 
 	private File pathDevice = null;
