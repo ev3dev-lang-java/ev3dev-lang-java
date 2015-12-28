@@ -71,8 +71,6 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		final String attribute = "speed_regulation";
 		final String value = "on";
 		this.setAttribute(attribute, value);
-		final String attributeX = "speed_regulation";
-		System.out.println(this.getAttribute(attributeX));
 	}
 
 

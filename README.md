@@ -104,7 +104,6 @@ public class BumperCar {
 
     //Configuration
     private final static int motorSpeed = 500;
-    private final static int incrementSpeed = 50;
     
     public static void main(String[] args) {
         
@@ -149,8 +148,6 @@ public class BumperCar {
         Delay.msDelay(1000);
         mA.stop();
         mB.stop();
-        mA.setSpeed(motorSpeed + incrementSpeed);
-        mB.setSpeed(motorSpeed + incrementSpeed);
         mA.backward();
         mB.forward();
         Delay.msDelay(1000);
