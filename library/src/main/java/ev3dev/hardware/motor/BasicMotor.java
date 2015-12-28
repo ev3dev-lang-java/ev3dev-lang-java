@@ -23,10 +23,11 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 		this.connect(SYSTEM_CLASS_NAME, portName);
 	}
 	
-    protected int power = 0;
+    protected int local_power = 0;
 
     public void setPower(int power) {
-    	this.setAttribute(POWER,"" + power);
+    	this.local_power = power;
+    	this.setAttribute(POWER,"" + local_power);
     }
 
     public int getPower() {
@@ -36,7 +37,12 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	/**
 	 * Causes motor to rotate forward.
 	 */
-	public void forward() { 
+	public void forward() {
+    	if(this.local_power != 0) {
+    		final String attribute = "duty_cycle_sp";
+    		String value = "" + Math.abs(this.local_power) * 1;
+    		this.setAttribute(attribute, "" + value);  
+    	}
 		final String attribute = "command";
 		final String value = "run-forever";
 		this.setAttribute(attribute, value);
@@ -47,17 +53,17 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * Causes motor to rotate backwards.
 	 */
 	public void backward() {
-		final String attribute1 = "duty_cycle_sp";
-		final int rawvalue = Integer.parseInt(this.getAttribute(attribute1));
-		final int value1 = Math.abs(rawvalue) * -1;
+    	if(this.local_power != 0) {
+    		final String attribute = "duty_cycle_sp";
+    		String value = "" + Math.abs(this.local_power) * -1;
+    		this.setAttribute(attribute, "" + value);  
+    	}
 		//TODO: Learn to use this attribute
 		//final String attribute1 = "inversed";
 		//final String value1 = "polarity";
-		this.setAttribute(attribute1, "" + value1);
     	final String attribute2 = "command";
 		final String value2 = "run-forever";
 		this.setAttribute(attribute2, value2);
-		this.setAttribute(attribute1, "" + rawvalue);
 	}
 
 

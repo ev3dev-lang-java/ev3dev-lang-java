@@ -12,6 +12,7 @@ import java.util.Arrays;
 public class Sysfs {
 
 	public static boolean writeString(final String filePath, final String value) {
+		//System.out.println("echo " + value + " > " + filePath);
 		try {
 			File mpuFile = new File(filePath);
 			if(mpuFile.canWrite()) {

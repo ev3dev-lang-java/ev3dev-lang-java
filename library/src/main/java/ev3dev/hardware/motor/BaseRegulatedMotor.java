@@ -132,10 +132,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public void forward() {
     	if(this.local_speed != 0) {
-    		if(this.local_speed > 0) {
-        		final String attribute = "speed_sp";
-        		this.setAttribute(attribute, "" + this.local_speed);    			
-    		}
+    		final String attribute = "speed_sp";
+    		String value = "" + Math.abs(this.local_speed) * 1;
+    		this.setAttribute(attribute, "" + value);  
     	}
 		final String attribute = "command";
 		final String value = "run-forever";
@@ -147,11 +146,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public void backward(){
     	if(this.local_speed != 0) {
-    		if(this.local_speed > 0) {
-        		final String attribute = "speed_sp";
-        		String value = "-" + this.local_speed;
-        		this.setAttribute(attribute, "" + "-" + this.local_speed);    			
-    		}
+    		final String attribute = "speed_sp";
+    		String value = "" + Math.abs(this.local_speed) * -1;
+    		this.setAttribute(attribute, value);
     	}
     	final String attribute2 = "command";
 		final String value2 = "run-forever";
