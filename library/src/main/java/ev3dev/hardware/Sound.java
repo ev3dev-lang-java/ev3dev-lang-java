@@ -52,10 +52,9 @@ public class Sound {
      */
     public static void playTone(int aFrequency, int aDuration, int aVolume) {
     	Sysfs.writeString(VOLUME_PATH,"" + aVolume);
-    	String cmd = " -f " + aFrequency + " -l " + aDuration;
     	String cmd2 = " " + aFrequency + " " + aDuration;
     	Sysfs.writeString(TONE_PATH,cmd2);
-    	//Shell.execute(CMD_BEEP + cmd);
+    	Delay.msDelay(aDuration);
     }
     
     /**
@@ -64,10 +63,9 @@ public class Sound {
      * @param duration The duration of the tone, in milliseconds.
      */
     public static void playTone(int aFrequency, int aDuration) {
-    	String cmd = " -f " + aFrequency + " -l " + aDuration;
     	String cmd2 = " " + aFrequency + " " + aDuration;
     	Sysfs.writeString(TONE_PATH,cmd2);
-    	//Shell.execute(CMD_BEEP + cmd);
+    	Delay.msDelay(aDuration);
     }
 
     /**
@@ -78,8 +76,7 @@ public class Sound {
      *         there is an error.
      * @throws FileNotFoundException 
      */
-    public static int playSample(File file, int vol)
-    {
+    public static int playSample(File file, int vol) {
     	Sysfs.writeString(VOLUME_PATH,"" + vol);
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;
@@ -93,8 +90,7 @@ public class Sound {
      *         there is an error.
      * @throws FileNotFoundException 
      */
-    public static int playSample(File file)
-    {
+    public static int playSample(File file) {
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;//audio.playSample(file);
     }
@@ -103,8 +99,7 @@ public class Sound {
      * Set the master volume level
      * @param vol 0-100
      */
-    public static void setVolume(int vol)
-    {
+    public static void setVolume(int vol) {
     	Sysfs.writeString(VOLUME_PATH,"" + vol);
     }
 
@@ -112,8 +107,7 @@ public class Sound {
      * Get the current master volume level
      * @return the current master volume 0-100
      */
-    public static int getVolume()
-    {
+    public static int getVolume() {
         return Integer.parseInt(Sysfs.readString(VOLUME_PATH));
     }
 

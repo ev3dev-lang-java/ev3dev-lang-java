@@ -1,5 +1,8 @@
 package ev3dev.robotics.tts;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import ev3dev.hardware.Shell;
 
 public class Espeak {
@@ -40,23 +43,23 @@ public class Espeak {
 		StringBuilder sb = new StringBuilder();
 		sb.append("espeak ");
 		if(this.voice != null){
-			sb.append("-v" + this.voice);
+			sb.append(" -v " + this.voice);
 		}
 		if(this.volume != -1){
-			sb.append("-a" + this.volume);
+			sb.append(" -a " + this.volume);
 		}
 		if(this.speedReading != -1){
-			sb.append("-s" + this.speedReading);
+			sb.append(" -s " + this.speedReading);
 		}
 		if(this.pitch != -1){
-			sb.append("-p" + this.pitch);
+			sb.append(" -p " + this.pitch);
 		}
 		if(message != null){
-			sb.append("--stdout ");
+			sb.append(" --stdout ");
 			sb.append("\"" + this.message + "\"");
 		}else{
 			sb.append("--stdout ");
-			sb.append("-f " + this.filePath + "\"");
+			sb.append(" -f " + this.filePath + "\"");
 		}
 		sb.append(" | aplay");
 		this.command = sb.toString();
@@ -64,9 +67,10 @@ public class Espeak {
 	
 	//espeak -ves -a 200 -s 200 -p 50  --stdout -f quijote.txt | aplay
 	//espeak -ves --stdout "soy un robot bueno" | aplay
-	public void say(final String message){
+	public void say(){
 		this.build();
-		Shell.execute(this.command);
+		String[] cmd = { "/bin/sh", "-c", this.command };
+		Shell.execute(cmd);
 	}
 
 }

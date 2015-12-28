@@ -105,8 +105,6 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @see lejos.robotics.RegulatedMotor#getTachoCount()
      */
     public int getTachoCount() {
-		final String attributeX = "speed_regulation";
-		System.out.println(this.getAttribute(attributeX));
     	final String attribute = "position_sp";
     	return Integer.parseInt(this.getAttribute(attribute));
     }
