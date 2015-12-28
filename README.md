@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to interact with hardware managed by [EV3Dev](http://www.ev3dev.org/) with [LeJOS](http://www.lejos.org/) Concepts.
+*EV3Dev-lang-Java* is a Java library designed to interact with hardware managed by [EV3Dev](http://www.ev3dev.org/) using the [LeJOS](http://www.lejos.org/) way.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
