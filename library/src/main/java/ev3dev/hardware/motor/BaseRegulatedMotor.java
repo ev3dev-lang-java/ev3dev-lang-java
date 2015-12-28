@@ -60,12 +60,16 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     protected int acceleration = 6000;
 
     private final static String SYSTEM_CLASS_NAME = "tacho-motor";
-
+    private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
+	private final String MODE = "mode";
     private int local_speed = 0;
     
     public BaseRegulatedMotor(String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
-    	super(SYSTEM_CLASS_NAME, motorPort);
+		super(SYSTEM_PORT_CLASS_NAME, motorPort);
+		this.setAttribute(MODE,SYSTEM_CLASS_NAME);
+		this.connect(SYSTEM_CLASS_NAME, motorPort);
+    	
     	MAX_SPEED_AT_9V = maxSpeed;
 
 		final String attribute = "speed_regulation";
