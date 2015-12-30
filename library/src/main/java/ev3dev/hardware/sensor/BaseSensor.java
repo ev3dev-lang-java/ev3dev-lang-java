@@ -2,6 +2,7 @@ package ev3dev.hardware.sensor;
 
 import java.util.ArrayList;
 
+import lejos.utility.Delay;
 import ev3dev.hardware.DeviceException;
 import ev3dev.hardware.EV3DevDevice;
 
@@ -125,6 +126,12 @@ public class BaseSensor extends EV3DevDevice implements SensorModes {
       return modes.length;
     }
     
+    private boolean setMode(String mode){
+    	final String attribute = "mode";
+    	this.setAttribute(attribute,mode);
+    	return true;
+    }
+    
     /**
      * Switch to the selected mode (if not already in that mode) and delay for the
      * specified period to allow the sensor to settle in the new mode. <br>
@@ -139,15 +146,12 @@ public class BaseSensor extends EV3DevDevice implements SensorModes {
     {
         if (currentMode != newMode)
         {
-            /*
         	if (newMode == -1)
                 //port.resetSensor();
-            else if (!port.setMode(newMode))
+            //else if (!port.setMode(newMode))
                 throw new IllegalArgumentException("Invalid sensor mode");
             currentMode = newMode;
-            //Delay.msDelay(switchDelay);
-             * 
-             */
+            Delay.msDelay(switchDelay);
         }
         
     }
