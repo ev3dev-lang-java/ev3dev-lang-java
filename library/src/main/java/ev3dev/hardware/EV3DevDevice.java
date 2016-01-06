@@ -41,6 +41,7 @@ public class EV3DevDevice extends Device {
     }
     
     public void setAttribute(String attribute, String value){
+    	System.out.println("echo " + value + " > " + this.pathDevice + "/" +  attribute);
     	Sysfs.writeString(this.pathDevice + "/" +  attribute, value);
     }
     

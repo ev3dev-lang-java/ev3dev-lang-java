@@ -6,7 +6,7 @@ import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.sensor.ev3.EV3TouchSensor;
 
-public class SensorsDemo {
+public class TouchSensorDemo {
 
 	//Robot Configuration
 	private static EV3TouchSensor touch1 = new EV3TouchSensor(SensorPort.S3);

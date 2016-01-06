@@ -67,7 +67,7 @@ import ev3dev.hardware.sensor.SensorMode;
  */
 public class EV3GyroSensor extends BaseSensor {
 
-	  private static final long SWITCHDELAY = 200;
+	private static final long SWITCHDELAY = 200;
 	
 	public EV3GyroSensor(String sensorPort) {
 		super(sensorPort);

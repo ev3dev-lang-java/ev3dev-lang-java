@@ -1,10 +1,14 @@
 package ev3dev.hardware.sensor.ev3;
 
+import java.io.File;
+
+import ev3dev.hardware.Sysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 import lejos.robotics.Color;
 import lejos.robotics.ColorIdentifier;
 import lejos.robotics.LampController;
+import lejos.robotics.SampleProvider;
 
 
 /**
@@ -78,13 +82,13 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     };
     protected static final int SWITCH_DELAY = 250;
 
-    protected static final int COL_RESET = -1;
-    protected static final int COL_REFLECT = 0;
-    protected static final int COL_AMBIENT = 1;
-    protected static final int COL_COLOR = 2;
-    protected static final int COL_REFRAW = 3;
-    protected static final int COL_RGBRAW = 4;
-    protected static final int COL_CAL = 5;
+    protected static final String COL_RESET = "RESET";//-1//??
+    protected static final String COL_REFLECT = "COL-REFLECT";//0
+    protected static final String COL_AMBIENT = "COL-AMBIENT";//1
+    protected static final String COL_COLOR = "COL-COLOR";//2
+    protected static final String COL_REFRAW = "REF-RAW";//3
+    protected static final String COL_RGBRAW = "RGB-RAW";
+    protected static final String COL_CAL = "COL-CAL";
     // following maps operating mode to lamp color
     // NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN
     protected static final int []lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
@@ -92,11 +96,11 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     
     private class ModeProvider implements SensorMode
     {
-        final int mode;
+        final String mode;
         final int sampleSize;
         final String name;
         
-        ModeProvider(String name, int mode, int sz)
+        ModeProvider(String name, String mode, int sz)
         {
             this.name = name;
             this.mode = mode;
@@ -108,14 +112,16 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         {
             return sampleSize;
         }
-
+        
         @Override
         public void fetchSample(float[] sample, int offset)
         {
             switchMode(mode, SWITCH_DELAY);
-            if (sampleSize == 1)
-                sample[offset] = (float) 1;//(port.getByte() & 0xff)/100.0f;
-            else
+            if (sampleSize == 1){
+        		String attribute = "value0";
+        		//String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
+                sample[offset] = (float) 1;//Float.valueOf(rawValue);//(port.getByte() & 0xff)/100.0f;
+            } else
             {
                 //port.getShorts(raw, 0, raw.length);
                 for(int i = 0; i < sampleSize; i++)
@@ -133,7 +139,13 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
     protected void initModes()
     {
-        setModes(new SensorMode[]{new ColorIDMode(), new ModeProvider("Red", COL_REFLECT, 1), new ModeProvider("RGB", COL_RGBRAW, 3), new ModeProvider("Ambient", COL_AMBIENT, 1) });        
+        setModes(
+        		new SensorMode[]{
+        				new ColorIDMode(this.getPathDevice()), 
+        				new RedMode(this.getPathDevice()) ,
+        				new ModeProvider("COL_RGBRAW", COL_RGBRAW, 3), 
+        				new AmbientMode(this.getPathDevice())
+        		});
     }
 
 
@@ -181,7 +193,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     @Override
     public boolean setFloodlight(int color)
     {
-        int mode;
+        String mode;
         switch (color)
         {
         case Color.BLUE:
@@ -224,8 +236,14 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(0);
     }
     
-    private class ColorIDMode implements SensorMode{
+    private class ColorIDMode implements SampleProvider, SensorMode{
 
+    	private File pathDevice = null;
+    	
+        public ColorIDMode(File pathDevice) {
+        	this.pathDevice = pathDevice;
+		}
+    	
         @Override
         public int sampleSize() {
             return 1;
@@ -235,6 +253,16 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         public void fetchSample(float[] sample, int offset) {
             switchMode(COL_COLOR, SWITCH_DELAY);
             sample[offset]= 0;//colorMap[port.getByte()];
+			String attribute = "value0";
+			String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
+			
+			float raw = -1;
+			try {
+				raw = Float.parseFloat(rawValue);
+			} catch (NumberFormatException e) {
+				raw = -1;			
+			}
+	      sample[offset] = raw;
         }
 
         @Override
@@ -264,6 +292,44 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(1);
     }
 
+	  private class RedMode implements SampleProvider, SensorMode {
+
+		    private static final float toSI = -1;
+
+	    	private File pathDevice = null;
+	    	
+	        public RedMode(File pathDevice) {
+	        	this.pathDevice = pathDevice;
+			}
+
+			@Override
+		    public int sampleSize() {
+		      return 1;
+		    }
+
+		    @Override
+		    public void fetchSample(float[] sample, int offset) {
+		      switchMode(COL_REFLECT, SWITCH_DELAY);
+		      //port.getShorts(raw, 0, raw.length);
+				String attribute = "value0";
+				String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
+				
+				float raw = -1;
+				try {
+					raw = Float.parseFloat(rawValue);
+				} catch (NumberFormatException e) {
+					raw = -1;			
+				}
+		      sample[offset] = raw;
+		    }
+
+		    @Override
+		    public String getName() {
+		      return "Red";
+		    }
+
+		  }
+    
 
     /**
      * <b>EV3 color sensor, Ambient mode</b><br>
@@ -283,6 +349,44 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     {
         return getMode(3);
     }
+    
+	  private class AmbientMode implements SampleProvider, SensorMode {
+
+		    private static final float toSI = -1;
+
+	    	private File pathDevice = null;
+	    	
+	        public AmbientMode(File pathDevice) {
+	        	this.pathDevice = pathDevice;
+			}
+
+			@Override
+		    public int sampleSize() {
+		      return 1;
+		    }
+
+		    @Override
+		    public void fetchSample(float[] sample, int offset) {
+		      switchMode(COL_AMBIENT, SWITCH_DELAY);
+		      //port.getShorts(raw, 0, raw.length);
+				String attribute = "value0";
+				String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
+				
+				float raw = -1;
+				try {
+					raw = Float.parseFloat(rawValue);
+				} catch (NumberFormatException e) {
+					raw = -1;			
+				}
+		      sample[offset] = raw;
+		    }
+
+		    @Override
+		    public String getName() {
+		      return "Ambient";
+		    }
+
+		  }
     
     /**
      * get a sample provider that returns the light values (RGB) when illuminated by a
@@ -305,8 +409,46 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      */
     public SensorMode getRGBMode()
     {
-        //TODO: Should this return 3 or 4 values, 4 values would require an extra mode switch to get ambient value.
-        return getMode(2);
+        //TODO: Should this return 3 or 4 values, 4 values would require an extra mode switch to get ambient value.    	
+    	return getMode(COL_COLOR);
     }
+    
+	  private class RGBMode implements SampleProvider, SensorMode {
+
+		    private static final float toSI = -1;
+
+	    	private File pathDevice = null;
+	    	
+	        public RGBMode(File pathDevice) {
+	        	this.pathDevice = pathDevice;
+			}
+
+			@Override
+		    public int sampleSize() {
+		      return 1;
+		    }
+
+		    @Override
+		    public void fetchSample(float[] sample, int offset) {
+		      switchMode(COL_COLOR, SWITCH_DELAY);
+		      //port.getShorts(raw, 0, raw.length);
+				String attribute = "value0";
+				String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
+				
+				float raw = -1;
+				try {
+					raw = Float.parseFloat(rawValue);
+				} catch (NumberFormatException e) {
+					raw = -1;			
+				}
+		      sample[offset] = raw;
+		    }
+
+		    @Override
+		    public String getName() {
+		      return "Color";
+		    }
+
+		  }
 
 }

@@ -54,7 +54,7 @@
                 <phase>install</phase>
                 <configuration>
                     <tasks>
-                        <scp todir="root@192.168.43.79:/home/"
+                        <scp todir="root@192.168.2.3:/home/"
                             sftp="true" port="22" trust="true" password="r00tme"
                             failonerror="false" verbose="true" passphrase="">
                             <fileset dir="${project.build.directory}">
