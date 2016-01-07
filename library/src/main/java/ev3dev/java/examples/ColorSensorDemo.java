@@ -20,8 +20,9 @@ public class ColorSensorDemo {
 	public static void main(String[] args) {
 
 		//final SampleProvider sp = color1.getRedMode();
-		final SampleProvider sp = color1.getColorIDMode();
+		//final SampleProvider sp = color1.getColorIDMode();
 		//final SampleProvider sp = color1.getAmbientMode();
+		final SampleProvider sp = color1.getRGBMode();
 		
 		int sampleSize = sp.sampleSize();
 		float[] sample = new float[sampleSize];
@@ -30,6 +31,8 @@ public class ColorSensorDemo {
         for (int i = 0; i < 20; i++) {
         	sp.fetchSample(sample, 0);
             System.out.println("N=" + i + " Sample=" + (int)sample[0]);
+            System.out.println("N=" + i + " Sample=" + (int)sample[1]);
+            System.out.println("N=" + i + " Sample=" + (int)sample[2]);
             
             Delay.msDelay(HALF_SECOND);
         }

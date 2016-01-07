@@ -142,8 +142,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         setModes(
         		new SensorMode[]{
         				new ColorIDMode(this.getPathDevice()), 
-        				new RedMode(this.getPathDevice()) ,
-        				new ModeProvider("COL_RGBRAW", COL_RGBRAW, 3), 
+        				new RedMode(this.getPathDevice()),
+        				new RGBMode(this.getPathDevice()),
         				new AmbientMode(this.getPathDevice())
         		});
     }
@@ -410,7 +410,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     public SensorMode getRGBMode()
     {
         //TODO: Should this return 3 or 4 values, 4 values would require an extra mode switch to get ambient value.    	
-    	return getMode(COL_COLOR);
+    	return getMode(2);
     }
     
 	  private class RGBMode implements SampleProvider, SensorMode {
@@ -425,28 +425,48 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
 			@Override
 		    public int sampleSize() {
-		      return 1;
+		      return 3;
 		    }
 
 		    @Override
 		    public void fetchSample(float[] sample, int offset) {
-		      switchMode(COL_COLOR, SWITCH_DELAY);
+		      switchMode(COL_RGBRAW, SWITCH_DELAY);
 		      //port.getShorts(raw, 0, raw.length);
-				String attribute = "value0";
-				String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
+				String attribute1 = "value0";
+				String rawValue1 = Sysfs.readString(this.pathDevice + "/" +  attribute1);
 				
-				float raw = -1;
+				float raw1 = -1;
 				try {
-					raw = Float.parseFloat(rawValue);
+					raw1 = Float.parseFloat(rawValue1);
 				} catch (NumberFormatException e) {
-					raw = -1;			
+					raw1 = -1;			
 				}
-		      sample[offset] = raw;
+				sample[0] = raw1;
+				String attribute2 = "value1";
+				String rawValue2 = Sysfs.readString(this.pathDevice + "/" +  attribute2);
+				
+				float raw2 = -1;
+				try {
+					raw2 = Float.parseFloat(rawValue2);
+				} catch (NumberFormatException e) {
+					raw1 = -1;			
+				}
+				sample[1] = raw2;
+				String attribute3 = "value2";
+				String rawValue3 = Sysfs.readString(this.pathDevice + "/" +  attribute3);
+				
+				float raw3 = -1;
+				try {
+					raw3 = Float.parseFloat(rawValue3);
+				} catch (NumberFormatException e) {
+					raw3 = -1;			
+				}
+				sample[2] = raw3;
 		    }
 
 		    @Override
 		    public String getName() {
-		      return "Color";
+		      return "RGB";
 		    }
 
 		  }
