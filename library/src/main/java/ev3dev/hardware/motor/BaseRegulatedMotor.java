@@ -63,6 +63,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
 	private final String MODE = "mode";
     private int local_speed = 0;
+    private boolean regulationFlag = false;
     
     public BaseRegulatedMotor(String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
@@ -75,6 +76,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		final String attribute = "speed_regulation";
 		final String value = "on";
 		this.setAttribute(attribute, value);
+		this.regulationFlag = true;
 	}
 
 
@@ -98,8 +100,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
         // Putting the motor into float mode disables regulation. note
         // that we wait for the operation to complete.
 		final String attribute = "speed_regulation";
-		final String value = "on";
+		final String value = "off";
 		this.setAttribute(attribute, value);
+		this.regulationFlag = false;
         return true;
     }
 
@@ -132,7 +135,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public void forward() {
     	if(this.local_speed != 0) {
-    		final String attribute = "speed_sp";
+    		String attribute = "speed_s";
+    		if(!this.regulationFlag) {
+    			attribute = "duty_cycle_sp";
+    		}
     		String value = "" + Math.abs(this.local_speed) * 1;
     		this.setAttribute(attribute, "" + value);  
     	}
@@ -146,7 +152,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public void backward(){
     	if(this.local_speed != 0) {
-    		final String attribute = "speed_sp";
+    		String attribute = "speed_s";
+    		if(!this.regulationFlag) {
+    			attribute = "duty_cycle_sp";
+    		}
     		String value = "" + Math.abs(this.local_speed) * -1;
     		this.setAttribute(attribute, value);
     	}
@@ -202,7 +211,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public void setSpeed(int speed) {
     	this.local_speed = speed;
-		final String attribute = "speed_sp";
+		String attribute = "speed_s";
+		if(!this.regulationFlag) {
+			attribute = "duty_cycle_sp";
+		}
 		this.setAttribute(attribute, "" + this.local_speed);
     }
 
@@ -263,6 +275,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		final String attribute2 = "speed_regulation";
 		final String value2 = "on";
 		this.setAttribute(attribute2, value2);
+		this.regulationFlag = true;
     }
 
     /**
@@ -343,7 +356,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      */
     public int getSpeed()
     {
-		final String attribute = "speed_sp";
+		String attribute = "speed_s";
+		if(!this.regulationFlag) {
+			attribute = "duty_cycle_sp";
+		}
         return Integer.parseInt(this.getAttribute(attribute));
     }
 
