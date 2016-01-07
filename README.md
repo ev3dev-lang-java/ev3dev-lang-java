@@ -23,7 +23,7 @@ ant -buildfile tools.xml uml
 * Unregulated Motor Support
 * Sensor Support (Few sensors)
 * Sounds
-* LeJOS Sensor filter Support
+* [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
 * [OpenCV](http://opencv.org/) Computer Vision Support
 * [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
 * Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
