@@ -2,7 +2,7 @@ package ev3dev.hardware.sensor.ev3;
 
 import java.io.File;
 
-import ev3dev.hardware.Sysfs;
+import ev3dev.utils.Sysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 

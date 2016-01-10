@@ -2,7 +2,6 @@ package ev3dev.java.examples;
 
 import lejos.utility.Delay;
 import ev3dev.hardware.Battery;
-import ev3dev.hardware.Shell;
 import ev3dev.hardware.Sound;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.motor.EV3LargeRegulatedMotor;

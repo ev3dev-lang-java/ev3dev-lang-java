@@ -1,9 +1,7 @@
 package ev3dev.robotics.tts;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import ev3dev.utils.Shell;
 
-import ev3dev.hardware.Shell;
 
 public class Espeak {
 

@@ -2,6 +2,8 @@ package ev3dev.hardware;
 
 import java.io.*;
 
+import ev3dev.utils.Shell;
+import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
 
 /**
@@ -10,7 +12,7 @@ import lejos.utility.Delay;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Sound {
+public class Sound extends EV3DevSysfs {
 
     public final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
     public final static String TONE_PATH = SOUND_PATH + "tone";
@@ -51,7 +53,7 @@ public class Sound {
      * @param aVolume The volume of the playback 100 corresponds to 100%
      */
     public static void playTone(int aFrequency, int aDuration, int aVolume) {
-    	Sysfs.writeString(VOLUME_PATH,"" + aVolume);
+    	staticWriteString(VOLUME_PATH,"" + aVolume);
     	String cmd2 = " " + aFrequency + " " + aDuration;
     	Sysfs.writeString(TONE_PATH,cmd2);
     	Delay.msDelay(aDuration);

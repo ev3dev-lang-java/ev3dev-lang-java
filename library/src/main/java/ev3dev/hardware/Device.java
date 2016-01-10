@@ -6,8 +6,10 @@ import java.util.ArrayList;
 
 
 /**
- * Base class for sensor drivers. Provides mechanism to release resources when closed
- * @author andy
+ * Base class for sensor drivers & motors. Provides mechanism to release resources when closed
+ * 
+ * @author Andy
+ * @author Juan Antonio Breña Moral
  *
  */
 public class Device implements Closeable {

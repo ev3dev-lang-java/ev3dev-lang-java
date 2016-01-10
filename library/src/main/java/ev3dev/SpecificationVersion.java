@@ -5,6 +5,15 @@ package ev3dev;
 
 //~autogen
 
+/**
+ * This class store the static variable: spec_version which is generated in a dynamic way with EV3Dev Autogen.
+ * 
+ * @see <a href="https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen/">https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen/</a>
+ * @see <a href="http://www.ev3dev.org/">http://www.ev3dev.org/</a>
+ * 
+ * @author Juan Antonio Breña Moral
+ *
+ */
 public class SpecificationVersion {
 
 	//~autogen spec_version
