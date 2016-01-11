@@ -3,6 +3,7 @@ package ev3dev.java.examples;
 import java.io.File;
 
 import lejos.utility.Delay;
+import ev3dev.hardware.Battery;
 import ev3dev.hardware.Sound;
 
 public class SoundDemo {
@@ -18,22 +19,24 @@ public class SoundDemo {
     
 	public static void main(String[] args) {
  
-		Sound.setVolume(MAX_VOLUME);
-		System.out.println("Volume: " + Sound.getVolume());
+		Sound sound = Sound.getInstance();
+		
+		sound.setVolume(MAX_VOLUME);
+		System.out.println("Volume: " + sound.getVolume());
 
 		File file = new File(filePath);
-		Sound.playSample(file);
+		sound.playSample(file);
 
-		Sound.beep();
-		Sound.twoBeeps();
+		sound.beep();
+		sound.twoBeeps();
 		
 		Delay.msDelay(ONE_SECOND);
 
 		for(int i = FREQ1; i <= FREQ2; i += variation) {
-			Sound.playTone(i, 500, 100);
+			sound.playTone(i, 500, 100);
 		}
 		
-		Sound.playTone(300, 500);
+		sound.playTone(300, 500);
 		
         System.exit(0);
 	}

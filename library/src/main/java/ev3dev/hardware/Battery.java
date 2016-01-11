@@ -14,13 +14,28 @@ public class Battery extends EV3DevSysfs{
 	private final static String DEVICE_ROOT_PATH = "/sys/class/";
 	private final static String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/legoev3-battery/";
 
+    private static Battery sInstance;
+
+    public static Battery getInstance() {
+        if (sInstance == null) {
+            sInstance = new Battery();
+        }
+
+        return sInstance;
+    }
+
+    // Prevent duplicate objects
+    private Battery() {
+
+    }
+	
 	/**
 	 * Returns voltage of the battery in microvolts.
 	 * @return
 	 */
-	public static float getVoltage() {
+	public float getVoltage() {
 		final String attribute = "voltage_now";
-		return staticReadInteger(BATTERY_PATH +  attribute);
+		return readInteger(BATTERY_PATH +  attribute);
 	}
 
 	/**
@@ -29,7 +44,7 @@ public class Battery extends EV3DevSysfs{
 	 */
 	public float getBatteryCurrent() {
 		final String attribute = "current_now";
-		return staticReadInteger(BATTERY_PATH +  attribute);
+		return readInteger(BATTERY_PATH +  attribute);
 	}
 
 }

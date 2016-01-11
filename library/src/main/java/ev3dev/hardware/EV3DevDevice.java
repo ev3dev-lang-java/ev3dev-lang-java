@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Base class to interact with EV3Dev sysfs
+ * 
  * @author Juan Antonio Breña Moral
  *
  */
@@ -12,7 +13,7 @@ public class EV3DevDevice extends EV3DevSysfs {
 
     private final String DEVICE_ROOT_PATH = "/sys/class/";
     private final String ADDRESS = "address"; 
-	private File PATH_DEVICE = null;
+	protected File PATH_DEVICE = null;
     private boolean connected = false;   
 	
 	/**
@@ -32,6 +33,11 @@ public class EV3DevDevice extends EV3DevSysfs {
     	}
     }
     
+    /**
+     * This method matches a input with the internal position in EV3Dev.
+     * @param type
+     * @param portName
+     */
     public void connect(final String type, final String portName){
 
     	final String devicePath = DEVICE_ROOT_PATH + type;
@@ -48,17 +54,25 @@ public class EV3DevDevice extends EV3DevSysfs {
     	}
     }
     
-    public String getAttribute(String attribute){
+    /**
+     * Returns the value of an attribute supported for a Device
+     * 
+     * @param attribute
+     * @return
+     */
+    public String getAttribute(final String attribute){
         return this.readString(PATH_DEVICE + "/" +  attribute);
     }
     
-    public void setAttribute(String attribute, String value){
+    /**
+     * Set a value on an attribute
+     * 
+     * @param attribute
+     * @param value
+     */
+    public void setAttribute(final String attribute, final String value){
     	System.out.println("echo " + value + " > " + this.PATH_DEVICE + "/" +  attribute);
     	this.writeString(this.PATH_DEVICE + "/" +  attribute, value);
-    }
-    
-    public File getPathDevice(){
-    	return this.PATH_DEVICE;
     }
    
 }

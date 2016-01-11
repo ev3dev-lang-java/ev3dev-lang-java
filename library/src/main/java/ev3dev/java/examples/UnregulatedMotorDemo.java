@@ -38,7 +38,6 @@ public class UnregulatedMotorDemo {
 		Delay.msDelay(ONE_SECOND);
 		umotor1.stop();
 		
-		Sound.beep();
 
 		//Testing DC-Motor 2
 		umotor2.forward();
@@ -51,7 +50,6 @@ public class UnregulatedMotorDemo {
 		Delay.msDelay(ONE_SECOND);
 		umotor2.stop();
 		
-		Sound.beep();
 
         System.exit(0);
 	}

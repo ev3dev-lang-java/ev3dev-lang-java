@@ -39,7 +39,7 @@ public class BumperCar {
             }
 
         	System.out.println("Iteration: " + i);
-            System.out.println("Battery: " + Battery.getVoltage());
+            System.out.println("Battery: " + Battery.getInstance().getVoltage());
             System.out.println("Distance: " + distance);
             System.out.println();
         }

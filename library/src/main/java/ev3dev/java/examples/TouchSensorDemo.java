@@ -28,7 +28,7 @@ public class TouchSensorDemo {
             touchValue = (int)sample[0];
         	
         	System.out.println("Iteration: " + i);
-            System.out.println("Battery: " + Battery.getVoltage());
+            System.out.println("Battery: " + Battery.getInstance().getVoltage());
             System.out.println("Touch: " + touchValue);
             System.out.println();
             

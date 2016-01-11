@@ -15,8 +15,7 @@ public class RegulatedMotorDemo {
         mA.setSpeed(500);
         
         int ONE_SECOND = 1000;
-
-        Sound.beep();
+ 
 		//Testing DC-Motor 1
         mA.forward();		
 		System.out.println(mA.isMoving());
@@ -32,6 +31,6 @@ public class RegulatedMotorDemo {
 		System.out.println(mA.isMoving());
 		Delay.msDelay(ONE_SECOND);
 		mA.stop();
-        System.out.println(Battery.getVoltage());
+        System.out.println(Battery.getInstance().getVoltage());
     }
 }

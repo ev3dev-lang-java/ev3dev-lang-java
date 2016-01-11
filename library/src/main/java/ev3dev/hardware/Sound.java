@@ -3,7 +3,6 @@ package ev3dev.hardware;
 import java.io.*;
 
 import ev3dev.utils.Shell;
-import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
 
 /**
@@ -20,13 +19,25 @@ public class Sound extends EV3DevSysfs {
     public final static String CMD_BEEP = "beep";
     public final static String CMD_APLAY ="aplay";
     
+    private static Sound sInstance;
+
+    public static Sound getInstance() {
+        if (sInstance == null) {
+            sInstance = new Sound();
+        }
+
+        return sInstance;
+    }
+
+    // Prevent duplicate objects
     private Sound() {
+
     }
     
     /**
      * Beeps once.
      */
-    public static void beep()
+    public void beep()
     {
         Shell.execute(CMD_BEEP);
     }
@@ -34,14 +45,14 @@ public class Sound extends EV3DevSysfs {
     /**
      * Beeps twice.
      */
-    public static void twoBeeps()
+    public void twoBeeps()
     {
         Shell.execute(CMD_BEEP);
         Shell.execute(CMD_BEEP);
     }
 
 
-    public static void pause(int t)
+    public void pause(int t)
     {
         Delay.msDelay(t);
     }
@@ -52,10 +63,10 @@ public class Sound extends EV3DevSysfs {
      * @param aDuration The duration of the tone, in milliseconds.
      * @param aVolume The volume of the playback 100 corresponds to 100%
      */
-    public static void playTone(int aFrequency, int aDuration, int aVolume) {
-    	staticWriteString(VOLUME_PATH,"" + aVolume);
+    public void playTone(int aFrequency, int aDuration, int aVolume) {
+    	writeString(VOLUME_PATH,"" + aVolume);
     	String cmd2 = " " + aFrequency + " " + aDuration;
-    	Sysfs.writeString(TONE_PATH,cmd2);
+    	writeString(TONE_PATH,cmd2);
     	Delay.msDelay(aDuration);
     }
     
@@ -64,9 +75,9 @@ public class Sound extends EV3DevSysfs {
      * @param freq The frequency of the tone in Hertz (Hz).
      * @param duration The duration of the tone, in milliseconds.
      */
-    public static void playTone(int aFrequency, int aDuration) {
+    public void playTone(int aFrequency, int aDuration) {
     	String cmd2 = " " + aFrequency + " " + aDuration;
-    	Sysfs.writeString(TONE_PATH,cmd2);
+    	writeString(TONE_PATH,cmd2);
     	Delay.msDelay(aDuration);
     }
 
@@ -78,8 +89,8 @@ public class Sound extends EV3DevSysfs {
      *         there is an error.
      * @throws FileNotFoundException 
      */
-    public static int playSample(File file, int vol) {
-    	Sysfs.writeString(VOLUME_PATH,"" + vol);
+    public int playSample(File file, int vol) {
+    	writeString(VOLUME_PATH,"" + vol);
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;
     }
@@ -92,7 +103,7 @@ public class Sound extends EV3DevSysfs {
      *         there is an error.
      * @throws FileNotFoundException 
      */
-    public static int playSample(File file) {
+    public int playSample(File file) {
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;//audio.playSample(file);
     }
@@ -101,16 +112,16 @@ public class Sound extends EV3DevSysfs {
      * Set the master volume level
      * @param vol 0-100
      */
-    public static void setVolume(int vol) {
-    	Sysfs.writeString(VOLUME_PATH,"" + vol);
+    public void setVolume(int vol) {
+    	writeString(VOLUME_PATH,"" + vol);
     }
 
     /**
      * Get the current master volume level
      * @return the current master volume 0-100
      */
-    public static int getVolume() {
-        return Integer.parseInt(Sysfs.readString(VOLUME_PATH));
+    public int getVolume() {
+        return readInteger(VOLUME_PATH);
     }
 
 }

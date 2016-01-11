@@ -71,7 +71,7 @@ public class EV3GyroSensor extends BaseSensor {
 	
 	public EV3GyroSensor(String sensorPort) {
 		super(sensorPort);
-		setModes(new SensorMode[] { new AngleMode(this.getPathDevice()) });
+		setModes(new SensorMode[] { new AngleMode(this.PATH_DEVICE) });
 	}
 
 	  /**

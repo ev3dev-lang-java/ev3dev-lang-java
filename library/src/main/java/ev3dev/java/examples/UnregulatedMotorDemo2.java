@@ -35,8 +35,6 @@ public class UnregulatedMotorDemo2 {
 		System.out.println(umotor1.isMoving());
 		Delay.msDelay(ONE_SECOND);
 		umotor1.stop();
-		
-		Sound.beep();
 
         System.exit(0);
 	}

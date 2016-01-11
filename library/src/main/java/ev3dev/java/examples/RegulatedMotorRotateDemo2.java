@@ -11,29 +11,31 @@ public class RegulatedMotorRotateDemo2 {
 	
     public static void main(String[] args) {
     	
+		Sound sound = Sound.getInstance();
+    	
     	final int degreesToTurn = 90;
     	
         final EV3MediumRegulatedMotor mA = new EV3MediumRegulatedMotor(MotorPort.C);
         mA.setSpeed(100);
 
-        Sound.beep();
+        sound.beep();
         System.out.println(mA.getTachoCount());
         mA.rotate(degreesToTurn);
-        Sound.beep();
+        sound.beep();
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         mA.rotate(degreesToTurn);
-        Sound.beep();  
+        sound.beep();  
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         mA.rotate(degreesToTurn);
-        Sound.beep();
+        sound.beep();
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         mA.rotate(degreesToTurn);
-        Sound.beep();
+        sound.beep();
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
-        System.out.println(Battery.getVoltage());
+        System.out.println(Battery.getInstance().getVoltage());
     }
 }

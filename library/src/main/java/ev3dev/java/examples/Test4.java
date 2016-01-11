@@ -11,6 +11,8 @@ public class Test4 {
 	
     public static void main(String[] args) {
     	
+		Sound sound = Sound.getInstance();
+    	
     	final int degreesToTurn = 90;
     	int currentDegrees = 90;
     	
@@ -21,13 +23,13 @@ public class Test4 {
         currentDegrees += degreesToTurn;
         System.out.println(currentDegrees);
         mA.rotateTo(currentDegrees);
-        Sound.beep();  
+        sound.beep();  
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         currentDegrees += degreesToTurn;
         System.out.println(currentDegrees);
         mA.rotateTo(currentDegrees);
-        Sound.beep();
+        sound.beep();
         Delay.msDelay(1000);
         
         /*
@@ -49,6 +51,6 @@ public class Test4 {
         Sound.beep();
         System.out.println(mA.getTachoCount());
         */
-        System.out.println(Battery.getVoltage());
+        System.out.println(Battery.getInstance().getVoltage());
     }
 }

@@ -141,10 +141,10 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     {
         setModes(
         		new SensorMode[]{
-        				new ColorIDMode(this.getPathDevice()), 
-        				new RedMode(this.getPathDevice()),
-        				new RGBMode(this.getPathDevice()),
-        				new AmbientMode(this.getPathDevice())
+        				new ColorIDMode(this.PATH_DEVICE), 
+        				new RedMode(this.PATH_DEVICE),
+        				new RGBMode(this.PATH_DEVICE),
+        				new AmbientMode(this.PATH_DEVICE)
         		});
     }
 

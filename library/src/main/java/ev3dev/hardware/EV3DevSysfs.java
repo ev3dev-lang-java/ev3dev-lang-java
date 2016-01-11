@@ -9,10 +9,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The class responsible to interact with Sysfs on EV3Dev
+ * 
+ * @author jabrena
+ *
+ */
 public class EV3DevSysfs extends Device {
 
+	/**
+	 * Write a value in a file.
+	 * 
+	 * @param filePath File path
+	 * @param value value to write
+	 * @return
+	 */
 	public boolean writeString(final String filePath, final String value) {
-		//System.out.println("echo " + value + " > " + filePath);
 		try {
 			File mpuFile = new File(filePath);
 			if(mpuFile.canWrite()) {
@@ -26,8 +38,13 @@ public class EV3DevSysfs extends Device {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param filePath
+	 * @param value
+	 * @return
+
 	public static boolean staticWriteString(final String filePath, final String value) {
-		//System.out.println("echo " + value + " > " + filePath);
 		try {
 			File mpuFile = new File(filePath);
 			if(mpuFile.canWrite()) {
@@ -40,6 +57,8 @@ public class EV3DevSysfs extends Device {
 		}
 		return true;
 	}
+		 */
+
 	
 	public String readString(final String filePath) {
 		String value;
@@ -53,6 +72,7 @@ public class EV3DevSysfs extends Device {
 		return value;
 	}
 
+	/*
 	public String staticReadString(final String filePath) {
 		String value;
 		try {
@@ -64,8 +84,9 @@ public class EV3DevSysfs extends Device {
 		}
 		return value;
 	}
+	*/
 	
-	public int readInteger(String filePath) {
+	public int readInteger(final String filePath) {
 		String rawValue;
 		int value = 0;
 		try {
@@ -84,7 +105,8 @@ public class EV3DevSysfs extends Device {
 		return value;
 	}
 
-	protected static int staticReadInteger(String filePath) {
+	/*
+	protected static int staticReadInteger(final String filePath) {
 		String rawValue;
 		int value = 0;
 		try {
@@ -102,8 +124,9 @@ public class EV3DevSysfs extends Device {
 		
 		return value;
 	}
+	*/
 	
-	public static ArrayList<File> getElements(String path){
+	public ArrayList<File> getElements(final String path){
 		File f = new File(path);
 		ArrayList<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
 		return files;	

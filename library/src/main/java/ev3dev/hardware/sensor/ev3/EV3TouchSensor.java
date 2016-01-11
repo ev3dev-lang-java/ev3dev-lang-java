@@ -57,7 +57,7 @@ public class EV3TouchSensor extends BaseSensor {
 	}
 
 	protected void init() {
-      setModes(new SensorMode[]{ new TouchMode(this.getPathDevice()) }); 
+      setModes(new SensorMode[]{ new TouchMode(this.PATH_DEVICE) }); 
     }
 
     /**

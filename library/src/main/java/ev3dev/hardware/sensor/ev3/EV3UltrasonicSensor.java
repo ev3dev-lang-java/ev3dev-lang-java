@@ -69,8 +69,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
   protected void init() {
     setModes(new SensorMode[] { 
-    		new DistanceMode(this.getPathDevice()), 
-    		new ListenMode(this.getPathDevice()) });
+    		new DistanceMode(this.PATH_DEVICE), 
+    		new ListenMode(this.PATH_DEVICE) });
   }
 
   /**

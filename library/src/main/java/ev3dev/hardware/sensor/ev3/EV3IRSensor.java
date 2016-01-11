@@ -66,7 +66,7 @@ public class EV3IRSensor extends BaseSensor {
 	}
 
     protected void init() {
-        setModes(new SensorMode[] {new DistanceMode(this.getPathDevice())});
+        setModes(new SensorMode[] {new DistanceMode(this.PATH_DEVICE)});
     }
 	
     /**

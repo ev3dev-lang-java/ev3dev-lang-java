@@ -29,9 +29,11 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - DEVICE_ROOT_PATH : String </td></tr>
 <tr><td align="left" balign="left"> - BATTERY_PATH : String </td></tr>
+<tr><td align="left" balign="left"> - sInstance : Battery </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + Battery() </td></tr>
+<tr><td align="left" balign="left"> - Battery() </td></tr>
+<tr><td align="left" balign="left"> + getInstance() : Battery </td></tr>
 <tr><td align="left" balign="left"> + getVoltage() : float </td></tr>
 <tr><td align="left" balign="left"> + getBatteryCurrent() : float </td></tr>
 		</table></td></tr>
@@ -73,7 +75,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - DEVICE_ROOT_PATH : String </td></tr>
 <tr><td align="left" balign="left"> - ADDRESS : String </td></tr>
-<tr><td align="left" balign="left"> - PATH_DEVICE : File </td></tr>
+<tr><td align="left" balign="left"> # PATH_DEVICE : File </td></tr>
 <tr><td align="left" balign="left"> - connected : boolean </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -81,7 +83,6 @@ digraph G {
 <tr><td align="left" balign="left"> + connect(type : String, portName : String) </td></tr>
 <tr><td align="left" balign="left"> + getAttribute(attribute : String) : String </td></tr>
 <tr><td align="left" balign="left"> + setAttribute(attribute : String, value : String) </td></tr>
-<tr><td align="left" balign="left"> + getPathDevice() : File </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevSysfs
@@ -95,11 +96,8 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevSysfs() </td></tr>
 <tr><td align="left" balign="left"> + writeString(filePath : String, value : String) : boolean </td></tr>
-<tr><td align="left" balign="left"> + staticWriteString(filePath : String, value : String) : boolean </td></tr>
 <tr><td align="left" balign="left"> + readString(filePath : String) : String </td></tr>
-<tr><td align="left" balign="left"> + staticReadString(filePath : String) : String </td></tr>
 <tr><td align="left" balign="left"> + readInteger(filePath : String) : int </td></tr>
-<tr><td align="left" balign="left"> # staticReadInteger(filePath : String) : int </td></tr>
 <tr><td align="left" balign="left"> + getElements(path : String) : ArrayList&lt;File&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
@@ -114,9 +112,11 @@ digraph G {
 <tr><td align="left" balign="left"> + VOLUME_PATH : String </td></tr>
 <tr><td align="left" balign="left"> + CMD_BEEP : String </td></tr>
 <tr><td align="left" balign="left"> + CMD_APLAY : String </td></tr>
+<tr><td align="left" balign="left"> - sInstance : Sound </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - Sound() </td></tr>
+<tr><td align="left" balign="left"> + getInstance() : Sound </td></tr>
 <tr><td align="left" balign="left"> + beep() </td></tr>
 <tr><td align="left" balign="left"> + twoBeeps() </td></tr>
 <tr><td align="left" balign="left"> + pause(t : int) </td></tr>
