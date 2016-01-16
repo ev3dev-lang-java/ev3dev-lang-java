@@ -90,7 +90,7 @@ public class EV3IRSensor extends BaseSensor {
         return getMode(0);
     }
 	
-    private class DistanceMode extends EV3DevSensorMode implements SensorMode {
+    private class DistanceMode extends EV3DevSensorMode {
         private static final float toSI = 1f;
 
     	private File pathDevice = null;

@@ -139,7 +139,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
   }
 
 
-private class DistanceMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
+private class DistanceMode extends EV3DevSensorMode {
     private static final String   MODE = "US-DIST-CM";
     private static final float toSI = 0.001f;
 
@@ -173,7 +173,7 @@ private class DistanceMode extends EV3DevSensorMode implements SampleProvider, S
   /**
    * Represents a Ultrasonic sensor in listen mode
    */
-  private class ListenMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
+  private class ListenMode extends EV3DevSensorMode {
     private static final String MODE = "US-LISTEN";
 
 	private File pathDevice = null;

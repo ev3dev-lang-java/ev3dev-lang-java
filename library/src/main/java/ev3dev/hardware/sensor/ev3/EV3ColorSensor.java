@@ -235,7 +235,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(0);
     }
     
-    private class ColorIDMode extends EV3DevSensorMode implements SampleProvider, SensorMode{
+    private class ColorIDMode extends EV3DevSensorMode {
 
     	private File pathDevice = null;
     	
@@ -283,7 +283,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(1);
     }
 
-	  private class RedMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
+	  private class RedMode extends EV3DevSensorMode {
 
 		    private static final float toSI = -1;
 
@@ -332,7 +332,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(3);
     }
     
-	  private class AmbientMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
+	  private class AmbientMode extends EV3DevSensorMode {
 
 		    private static final float toSI = -1;
 
@@ -386,7 +386,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     	return getMode(2);
     }
     
-	  private class RGBMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
+	  private class RGBMode extends EV3DevSensorMode {
 
 		    private static final float toSI = -1;
 

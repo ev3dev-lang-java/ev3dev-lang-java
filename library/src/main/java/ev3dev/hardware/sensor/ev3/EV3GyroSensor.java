@@ -110,7 +110,7 @@ public class EV3GyroSensor extends BaseSensor {
 		return readInteger(attribute);
 	}
 	
-	  private class AngleMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
+	  private class AngleMode extends EV3DevSensorMode {
 
 		    private static final int   MODE = 3;
 		    private static final float toSI = -1;

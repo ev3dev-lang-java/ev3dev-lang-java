@@ -78,7 +78,7 @@ public class EV3TouchSensor extends BaseSensor {
     }
 
     
-    private class TouchMode extends EV3DevSensorMode implements SensorMode {
+    private class TouchMode extends EV3DevSensorMode {
     	
     	private File pathDevice = null;
     	
