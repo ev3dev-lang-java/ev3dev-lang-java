@@ -2,8 +2,7 @@ package ev3dev.hardware.sensor.ev3;
 
 import java.io.File;
 
-import ev3dev.hardware.DeviceException;
-import ev3dev.utils.Sysfs;
+import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
@@ -51,7 +50,7 @@ import ev3dev.hardware.sensor.SensorMode;
  */
 public class EV3TouchSensor extends BaseSensor {
 	
-    public EV3TouchSensor(final String portName) throws DeviceException {
+    public EV3TouchSensor(final String portName) {
 		super(portName);
 		init();
 	}
@@ -79,7 +78,7 @@ public class EV3TouchSensor extends BaseSensor {
     }
 
     
-    private class TouchMode implements SensorMode {
+    private class TouchMode extends EV3DevSensorMode implements SensorMode {
     	
     	private File pathDevice = null;
     	
@@ -94,8 +93,7 @@ public class EV3TouchSensor extends BaseSensor {
 
 		@Override
         public void fetchSample(float[] sample, int offset) {
-        	String attribute = "value0";
-            sample[offset] = Float.parseFloat(Sysfs.readString(this.pathDevice + "/" +  attribute));
+            sample[offset] = readFloat(this.pathDevice + "/" +  VALUE0);
         }
 
 		@Override

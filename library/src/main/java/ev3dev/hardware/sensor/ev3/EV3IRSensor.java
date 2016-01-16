@@ -2,7 +2,7 @@ package ev3dev.hardware.sensor.ev3;
 
 import java.io.File;
 
-import ev3dev.utils.Sysfs;
+import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
@@ -50,7 +50,7 @@ import ev3dev.hardware.sensor.SensorMode;
  *      <p>
  * 
  * 
- * @author andy
+ * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  * 
  */
@@ -90,7 +90,7 @@ public class EV3IRSensor extends BaseSensor {
         return getMode(0);
     }
 	
-    private class DistanceMode implements SensorMode {
+    private class DistanceMode extends EV3DevSensorMode implements SensorMode {
         private static final float toSI = 1f;
 
     	private File pathDevice = null;
@@ -107,19 +107,11 @@ public class EV3IRSensor extends BaseSensor {
         @Override
         public void fetchSample(float[] sample, int offset) {
             //switchMode(IR_PROX, SWITCH_DELAY);
-    		String attribute = "value0";
-    		String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
-
-    		float raw = -1;
-    		try {
-    			raw = Float.parseFloat(rawValue);
-    		} catch (NumberFormatException e) {
-    			raw = -1;			
-    		}
+    		float raw = readFloat(this.pathDevice + "/" +  VALUE0);
 
             if (raw<5) sample[offset]=0;
             else if (raw>55) sample[offset]=Float.POSITIVE_INFINITY;
-            else sample[offset]=raw*toSI;
+            else sample[offset]= raw * toSI;
         }
 
         @Override

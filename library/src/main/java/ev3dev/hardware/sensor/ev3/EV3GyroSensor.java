@@ -3,7 +3,7 @@ package ev3dev.hardware.sensor.ev3;
 import java.io.File;
 
 import lejos.robotics.SampleProvider;
-import ev3dev.utils.Sysfs;
+import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
@@ -60,7 +60,7 @@ import ev3dev.hardware.sensor.SensorMode;
  *      <p>
  * 
  * 
- * @author Andy 
+ * @author Andy Shaw
  * @author Aswin Bouwmeester
  * @author Juan Antonio Breña Moral
  * 
@@ -107,19 +107,10 @@ public class EV3GyroSensor extends BaseSensor {
 	  
 	public int getAngle(){
 		String attribute = "value0";
-		String rawValue = this.getAttribute(attribute);
-		
-		int value = -1;
-		try {
-			value = Integer.parseInt(rawValue);
-		} catch (NumberFormatException e) {
-			value = -1;			
-		}
-		
-		return value;
+		return readInteger(attribute);
 	}
 	
-	  private class AngleMode implements SampleProvider, SensorMode {
+	  private class AngleMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
 
 		    private static final int   MODE = 3;
 		    private static final float toSI = -1;
@@ -140,15 +131,8 @@ public class EV3GyroSensor extends BaseSensor {
 		      switchMode(MODE, SWITCHDELAY);
 		      //port.getShorts(raw, 0, raw.length);
 				String attribute = "value0";
-				String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
-				
-				float raw = -1;
-				try {
-					raw = Float.parseFloat(rawValue);
-				} catch (NumberFormatException e) {
-					raw = -1;			
-				}
-		      sample[offset] = raw * toSI;
+				float raw = readFloat(this.pathDevice + "/" +  attribute);
+				sample[offset] = raw * toSI;
 		    }
 
 		    @Override

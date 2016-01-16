@@ -1,7 +1,10 @@
 package ev3dev.hardware.port;
 
-/*
+/**
+ * Basic interface for EV3 motor ports.
  * 
+ * @author Juan Antonio Breña Moral
+ *
  */
 public interface MotorPort {
 

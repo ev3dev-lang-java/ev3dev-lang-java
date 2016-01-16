@@ -142,10 +142,8 @@ public class BaseSensor extends EV3DevDevice implements SensorModes {
      * @param newMode The mode to switch to.
      * @param switchDelay Time in mS to delay after the switch.
      */
-    protected void switchMode(int newMode, long switchDelay)
-    {
-        if (currentMode != newMode)
-        {
+    protected void switchMode(int newMode, long switchDelay) {
+        if (currentMode != newMode) {
         	if (newMode == -1)
                 //port.resetSensor();
             //else if (!port.setMode(newMode))
@@ -156,19 +154,15 @@ public class BaseSensor extends EV3DevDevice implements SensorModes {
         
     }
 
-    protected void switchMode(String newMode, long switchDelay)
-    {
-        if (currentModeS != newMode)
-        {
+    protected void switchMode(String newMode, long switchDelay) {
+        if (currentModeS != newMode) {
         	/*
         	if (newMode == "-1")
                 //port.resetSensor();
             else if (!port.setMode(newMode))
                 throw new IllegalArgumentException("Invalid sensor mode");
             */
-        	//echo dc-motor > /sys/class/lego-port/port4/mode
-        	//System.out.println(this.getAttribute(SENSOR_MODES).contains(newMode));
-    		this.setAttribute(SENSOR_MODE, newMode);
+    		writeString(SENSOR_MODE, newMode);
             currentModeS = newMode;
             Delay.msDelay(switchDelay);
         }

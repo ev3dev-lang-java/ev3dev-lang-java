@@ -4,6 +4,7 @@ package ev3dev.hardware.sensor.ev3;
 import java.io.File;
 
 import ev3dev.utils.Sysfs;
+import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
@@ -138,7 +139,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
   }
 
 
-private class DistanceMode implements SampleProvider, SensorMode {
+private class DistanceMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
     private static final String   MODE = "US-DIST-CM";
     private static final float toSI = 0.001f;
 
@@ -156,15 +157,8 @@ private class DistanceMode implements SampleProvider, SensorMode {
     @Override
     public void fetchSample(float[] sample, int offset) {
       switchMode(MODE, SWITCHDELAY);
-		String attribute = "value0";
-		String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
+		float raw = readFloat(this.pathDevice + "/" +  VALUE0);
 		
-		int raw = -1;
-		try {
-			raw = Integer.parseInt(rawValue);
-		} catch (NumberFormatException e) {
-			raw = -1;			
-		}
       sample[offset] = (raw == 2550) ? Float.POSITIVE_INFINITY : (float) raw
           * toSI;
     }
@@ -179,7 +173,7 @@ private class DistanceMode implements SampleProvider, SensorMode {
   /**
    * Represents a Ultrasonic sensor in listen mode
    */
-  private class ListenMode implements SampleProvider, SensorMode {
+  private class ListenMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
     private static final String MODE = "US-LISTEN";
 
 	private File pathDevice = null;
@@ -197,15 +191,7 @@ private class DistanceMode implements SampleProvider, SensorMode {
     public void fetchSample(float[] sample, int offset) {
       switchMode(MODE, SWITCHDELAY);
       
-		String attribute = "value0";
-		String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
-		
-		int raw = 0;
-		try {
-			raw = Integer.parseInt(rawValue);
-		} catch (NumberFormatException e) {
-			raw = 0;			
-		}
+		float raw = readFloat(this.pathDevice + "/" +  VALUE0);
       
       sample[offset] = raw;//port.getShort() & 0xff;
     }

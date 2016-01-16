@@ -11,17 +11,19 @@ package ev3dev.hardware;
  */
 public class Battery extends EV3DevSysfs{
 
-	private final static String DEVICE_ROOT_PATH = "/sys/class/";
-	private final static String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/legoev3-battery/";
-
-    private static Battery sInstance;
+	private final String DEVICE_ROOT_PATH = "/sys/class/";
+	private final String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/legoev3-battery/";
+	private final String VOLTAGE = "voltage_now";
+	private final String CURRENT = "current_now";
+	
+    private static Battery Instance;
 
     public static Battery getInstance() {
-        if (sInstance == null) {
-            sInstance = new Battery();
+        if (Instance == null) {
+        	Instance = new Battery();
         }
 
-        return sInstance;
+        return Instance;
     }
 
     // Prevent duplicate objects
@@ -31,20 +33,18 @@ public class Battery extends EV3DevSysfs{
 	
 	/**
 	 * Returns voltage of the battery in microvolts.
-	 * @return
+	 * @return voltage
 	 */
 	public float getVoltage() {
-		final String attribute = "voltage_now";
-		return readInteger(BATTERY_PATH +  attribute);
+		return readInteger(BATTERY_PATH +  VOLTAGE);
 	}
 
 	/**
 	 * Returns the current of the battery in microamps.
-	 * @return
+	 * @return current
 	 */
 	public float getBatteryCurrent() {
-		final String attribute = "current_now";
-		return readInteger(BATTERY_PATH +  attribute);
+		return readInteger(BATTERY_PATH +  CURRENT);
 	}
 
 }

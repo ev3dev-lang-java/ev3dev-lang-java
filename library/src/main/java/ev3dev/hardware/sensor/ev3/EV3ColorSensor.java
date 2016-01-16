@@ -4,7 +4,6 @@ import java.io.File;
 
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
-import ev3dev.utils.Sysfs;
 import lejos.robotics.Color;
 import lejos.robotics.ColorIdentifier;
 import lejos.robotics.LampController;
@@ -236,7 +235,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(0);
     }
     
-    private class ColorIDMode implements SampleProvider, SensorMode{
+    private class ColorIDMode extends EV3DevSensorMode implements SampleProvider, SensorMode{
 
     	private File pathDevice = null;
     	
@@ -252,17 +251,9 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         @Override
         public void fetchSample(float[] sample, int offset) {
             switchMode(COL_COLOR, SWITCH_DELAY);
-            sample[offset]= 0;//colorMap[port.getByte()];
-			String attribute = "value0";
-			String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
-			
-			float raw = -1;
-			try {
-				raw = Float.parseFloat(rawValue);
-			} catch (NumberFormatException e) {
-				raw = -1;			
-			}
-	      sample[offset] = raw;
+            sample[offset]= 0;
+			float rawValue = readFloat(this.pathDevice + "/" +  VALUE0);
+			sample[offset] = rawValue;
         }
 
         @Override
@@ -292,7 +283,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(1);
     }
 
-	  private class RedMode implements SampleProvider, SensorMode {
+	  private class RedMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
 
 		    private static final float toSI = -1;
 
@@ -310,17 +301,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 		    @Override
 		    public void fetchSample(float[] sample, int offset) {
 		      switchMode(COL_REFLECT, SWITCH_DELAY);
-		      //port.getShorts(raw, 0, raw.length);
-				String attribute = "value0";
-				String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
-				
-				float raw = -1;
-				try {
-					raw = Float.parseFloat(rawValue);
-				} catch (NumberFormatException e) {
-					raw = -1;			
-				}
-		      sample[offset] = raw;
+				float raw = readFloat(this.pathDevice + "/" +  VALUE0);
+				sample[offset] = raw;
 		    }
 
 		    @Override
@@ -350,7 +332,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(3);
     }
     
-	  private class AmbientMode implements SampleProvider, SensorMode {
+	  private class AmbientMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
 
 		    private static final float toSI = -1;
 
@@ -367,18 +349,9 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
 		    @Override
 		    public void fetchSample(float[] sample, int offset) {
-		      switchMode(COL_AMBIENT, SWITCH_DELAY);
-		      //port.getShorts(raw, 0, raw.length);
-				String attribute = "value0";
-				String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
-				
-				float raw = -1;
-				try {
-					raw = Float.parseFloat(rawValue);
-				} catch (NumberFormatException e) {
-					raw = -1;			
-				}
-		      sample[offset] = raw;
+		    	switchMode(COL_AMBIENT, SWITCH_DELAY);
+				float raw = readFloat(this.pathDevice + "/" +  VALUE0);
+				sample[offset] = raw;
 		    }
 
 		    @Override
@@ -413,7 +386,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     	return getMode(2);
     }
     
-	  private class RGBMode implements SampleProvider, SensorMode {
+	  private class RGBMode extends EV3DevSensorMode implements SampleProvider, SensorMode {
 
 		    private static final float toSI = -1;
 
@@ -432,35 +405,11 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 		    public void fetchSample(float[] sample, int offset) {
 		      switchMode(COL_RGBRAW, SWITCH_DELAY);
 		      //port.getShorts(raw, 0, raw.length);
-				String attribute1 = "value0";
-				String rawValue1 = Sysfs.readString(this.pathDevice + "/" +  attribute1);
-				
-				float raw1 = -1;
-				try {
-					raw1 = Float.parseFloat(rawValue1);
-				} catch (NumberFormatException e) {
-					raw1 = -1;			
-				}
+				float raw1 = readFloat(this.pathDevice + "/" +  VALUE0);
 				sample[0] = raw1;
-				String attribute2 = "value1";
-				String rawValue2 = Sysfs.readString(this.pathDevice + "/" +  attribute2);
-				
-				float raw2 = -1;
-				try {
-					raw2 = Float.parseFloat(rawValue2);
-				} catch (NumberFormatException e) {
-					raw1 = -1;			
-				}
+				float raw2 = readFloat(this.pathDevice + "/" +  VALUE1);
 				sample[1] = raw2;
-				String attribute3 = "value2";
-				String rawValue3 = Sysfs.readString(this.pathDevice + "/" +  attribute3);
-				
-				float raw3 = -1;
-				try {
-					raw3 = Float.parseFloat(rawValue3);
-				} catch (NumberFormatException e) {
-					raw3 = -1;			
-				}
+				float raw3 = readFloat(this.pathDevice + "/" +  VALUE2);
 				sample[2] = raw3;
 		    }
 

@@ -12,7 +12,7 @@ import java.util.Arrays;
 /**
  * The class responsible to interact with Sysfs on EV3Dev
  * 
- * @author jabrena
+ * @author Juan Antonio Breña Moral
  *
  */
 public class EV3DevSysfs extends Device {
@@ -22,7 +22,7 @@ public class EV3DevSysfs extends Device {
 	 * 
 	 * @param filePath File path
 	 * @param value value to write
-	 * @return
+	 * @return A boolean value if the operation was written or not.
 	 */
 	public boolean writeString(final String filePath, final String value) {
 		try {
@@ -38,28 +38,15 @@ public class EV3DevSysfs extends Device {
 		return true;
 	}
 	
-	/**
-	 * 
-	 * @param filePath
-	 * @param value
-	 * @return
-
-	public static boolean staticWriteString(final String filePath, final String value) {
-		try {
-			File mpuFile = new File(filePath);
-			if(mpuFile.canWrite()) {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
-				bw.write(value);
-				bw.close();
-			}
-		} catch (IOException ex) {
-			return false;
-		}
-		return true;
+	public boolean writeInt(final String filePath, final int value) {
+		return this.writeString(filePath, "" + value);
 	}
-		 */
-
 	
+	/**
+	 * Read an Attribute in the Sysfs with containing String values
+	 * @param filePath
+	 * @return value from attribute
+	 */
 	public String readString(final String filePath) {
 		String value;
 		try {
@@ -71,66 +58,29 @@ public class EV3DevSysfs extends Device {
 		}
 		return value;
 	}
-
-	/*
-	public String staticReadString(final String filePath) {
-		String value;
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			value = br.readLine();
-			br.close();
-		} catch (IOException ex) {
-			return "-1";
-		}
-		return value;
-	}
-	*/
 	
+	/**
+	 * Read an Attribute in the Sysfs with containing Integer values
+	 * @param filePath
+	 * @return value from attribute
+	 */
 	public int readInteger(final String filePath) {
-		String rawValue;
-		int value = 0;
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			rawValue = br.readLine();
-			br.close();
-            if (rawValue != null && rawValue.length() > 0) {
-                value = Integer.parseInt(rawValue);
-            }
-		} catch (IOException ex) {
-			value = -1;
-		} catch (NumberFormatException e) {
-			value = -1;			
-		}
-		
-		return value;
+		return Integer.parseInt(this.readString(filePath));
 	}
-
-	/*
-	protected static int staticReadInteger(final String filePath) {
-		String rawValue;
-		int value = 0;
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			rawValue = br.readLine();
-			br.close();
-            if (rawValue != null && rawValue.length() > 0) {
-                value = Integer.parseInt(rawValue);
-            }
-		} catch (IOException ex) {
-			value = -1;
-		} catch (NumberFormatException e) {
-			value = -1;			
-		}
-		
-		return value;
-	}
-	*/
 	
+	public float readFloat(final String filePath) {
+		return Float.parseFloat(this.readString(filePath));
+	}
+	
+	/**
+	 * 
+	 * @param path
+	 * @return an ArrayList with options from a path
+	 */
 	public ArrayList<File> getElements(final String path){
-		File f = new File(path);
+		final File f = new File(path);
 		ArrayList<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
 		return files;	
 	}
-
 	
 }

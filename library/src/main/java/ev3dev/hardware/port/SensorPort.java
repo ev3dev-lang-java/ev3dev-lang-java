@@ -2,7 +2,8 @@ package ev3dev.hardware.port;
 
 /**
  * Basic interface for EV3 sensor ports.
- * @author Andy
+ * 
+ * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  *
  */

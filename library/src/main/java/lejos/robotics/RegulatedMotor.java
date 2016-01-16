@@ -17,13 +17,13 @@ public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
 	//TODO method name sounds like listener is added to some list.
 	// javadoc and method name should be changed such that they indicate that only one listener is supported.
 	// suggested method name: setListener(...)
-	public void addListener(RegulatedMotorListener listener);
+	//public void addListener(RegulatedMotorListener listener);
 
 	/**
 	 * Removes the RegulatedMotorListener from this class.
 	 * @return The RegulatedMotorListener that was removed, if any. Null if none existed.
 	 */
-	public RegulatedMotorListener removeListener();
+	//public RegulatedMotorListener removeListener();
   /**
    * causes motor to rotate through angle; <br>
    * iff immediateReturn is true, method returns immediately and the motor stops by itself <br>
@@ -63,13 +63,13 @@ public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
    * @param  limitAngle to which the motor will rotate, and then stop (in degrees). Includes any positive or negative int, even values &gt; 360. 
    * @param immediateReturn iff true, method returns immediately, thus allowing monitoring of sensors in the calling thread.
    */
-  public void rotateTo(int limitAngle,boolean immediateReturn);  
+  public void rotateTo(int limitAngle, boolean immediateReturn);  
 
   /**
    * Return the limit angle (if any)
    * @return the current limit angle
    */
-  public int getLimitAngle();
+  //public int getLimitAngle();
 
   /**
    * Set motor speed. As a rule of thumb 100 degrees per second are possible for each volt on an NXT motor. Therefore,
@@ -93,7 +93,7 @@ public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
    * 
    * @return the maximum speed of the Motor in degrees per second.
    */
-  float getMaxSpeed();
+  //float getMaxSpeed();
   
   /**
    * returns true if motor is stalled
@@ -109,13 +109,13 @@ public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
 	* @param error The error threshold
     * @param time The time that the error threshold needs to be exceeded for.
     */
-   void setStallThreshold(int error, int time); 
+   //void setStallThreshold(int error, int time); 
    
    /**
     * Set the required rate of acceleration degrees/s/s
     * @param acceleration
     */
-   void setAcceleration(int acceleration);
+   //void setAcceleration(int acceleration);
    /**
     * Specify a set of motors that should be kept in synchronization with this one.
     * The synchronization mechanism simply ensures that operations between a startSynchronization

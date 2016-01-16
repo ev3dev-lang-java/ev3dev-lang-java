@@ -19,14 +19,14 @@ public class Sound extends EV3DevSysfs {
     public final static String CMD_BEEP = "beep";
     public final static String CMD_APLAY ="aplay";
     
-    private static Sound sInstance;
+    private static Sound Instance;
 
     public static Sound getInstance() {
-        if (sInstance == null) {
-            sInstance = new Sound();
+        if (Instance == null) {
+        	Instance = new Sound();
         }
 
-        return sInstance;
+        return Instance;
     }
 
     // Prevent duplicate objects
@@ -37,23 +37,20 @@ public class Sound extends EV3DevSysfs {
     /**
      * Beeps once.
      */
-    public void beep()
-    {
+    public void beep() {
         Shell.execute(CMD_BEEP);
     }
 
     /**
      * Beeps twice.
      */
-    public void twoBeeps()
-    {
+    public void twoBeeps() {
         Shell.execute(CMD_BEEP);
         Shell.execute(CMD_BEEP);
     }
 
 
-    public void pause(int t)
-    {
+    public void pause(int t) {
         Delay.msDelay(t);
     }
 
@@ -63,11 +60,11 @@ public class Sound extends EV3DevSysfs {
      * @param aDuration The duration of the tone, in milliseconds.
      * @param aVolume The volume of the playback 100 corresponds to 100%
      */
-    public void playTone(int aFrequency, int aDuration, int aVolume) {
-    	writeString(VOLUME_PATH,"" + aVolume);
-    	String cmd2 = " " + aFrequency + " " + aDuration;
+    public void playTone(int frequency, int duration, int volume) {
+    	writeString(VOLUME_PATH,"" + volume);
+    	String cmd2 = " " + frequency + " " + duration;
     	writeString(TONE_PATH,cmd2);
-    	Delay.msDelay(aDuration);
+    	pause(duration);
     }
     
     /**
@@ -75,10 +72,10 @@ public class Sound extends EV3DevSysfs {
      * @param freq The frequency of the tone in Hertz (Hz).
      * @param duration The duration of the tone, in milliseconds.
      */
-    public void playTone(int aFrequency, int aDuration) {
-    	String cmd2 = " " + aFrequency + " " + aDuration;
+    public void playTone(int frequency, int duration) {
+    	String cmd2 = " " + frequency + " " + duration;
     	writeString(TONE_PATH,cmd2);
-    	Delay.msDelay(aDuration);
+    	pause(duration);
     }
 
     /**
@@ -90,7 +87,7 @@ public class Sound extends EV3DevSysfs {
      * @throws FileNotFoundException 
      */
     public int playSample(File file, int vol) {
-    	writeString(VOLUME_PATH,"" + vol);
+    	writeInt(VOLUME_PATH, vol);
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;
     }

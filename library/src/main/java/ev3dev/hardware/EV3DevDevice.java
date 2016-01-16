@@ -53,26 +53,5 @@ public class EV3DevDevice extends EV3DevSysfs {
     		}
     	}
     }
-    
-    /**
-     * Returns the value of an attribute supported for a Device
-     * 
-     * @param attribute
-     * @return
-     */
-    public String getAttribute(final String attribute){
-        return this.readString(PATH_DEVICE + "/" +  attribute);
-    }
-    
-    /**
-     * Set a value on an attribute
-     * 
-     * @param attribute
-     * @param value
-     */
-    public void setAttribute(final String attribute, final String value){
-    	System.out.println("echo " + value + " > " + this.PATH_DEVICE + "/" +  attribute);
-    	this.writeString(this.PATH_DEVICE + "/" +  attribute, value);
-    }
    
 }

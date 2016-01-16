@@ -15,11 +15,18 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
     private final static String SYSTEM_CLASS_NAME = "dc-motor";
     private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
 	private final String MODE = "mode";
-	private final String POWER = "duty_cycle_sp";
+	private final String DUTY_CYCLE = "duty_cycle_sp";
+	private final String POWER = "power";
+	private final String COMMAND = "command";
+	private final String RUN_FOREVER = "run-forever";
+	private final String BRAKE = "brake";
+	private final String STOP = "stop";
+	private final String STATE = "state";
+	private final String STATE_RUNNING = "running";
 	
 	public BasicMotor(String portName) {
 		super(SYSTEM_PORT_CLASS_NAME, portName);
-		this.setAttribute(MODE,SYSTEM_CLASS_NAME);
+		writeString(MODE,SYSTEM_CLASS_NAME);
 		this.connect(SYSTEM_CLASS_NAME, portName);
 	}
 	
@@ -27,11 +34,11 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 
     public void setPower(int power) {
     	this.local_power = power;
-    	this.setAttribute(POWER,"" + local_power);
+    	writeInt(DUTY_CYCLE, local_power);
     }
 
     public int getPower() {
-    	return Integer.parseInt(this.getAttribute(POWER));
+    	return readInteger(POWER);
     }
 
 	/**
@@ -39,13 +46,10 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 */
 	public void forward() {
     	if(this.local_power != 0) {
-    		final String attribute = "duty_cycle_sp";
-    		String value = "" + Math.abs(this.local_power) * 1;
-    		this.setAttribute(attribute, "" + value);  
+    		int value = Math.abs(this.local_power) * 1;
+    		writeInt(DUTY_CYCLE, value);  
     	}
-		final String attribute = "command";
-		final String value = "run-forever";
-		this.setAttribute(attribute, value);
+		writeString(COMMAND, RUN_FOREVER);
 	}
 	  
 
@@ -54,16 +58,13 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 */
 	public void backward() {
     	if(this.local_power != 0) {
-    		final String attribute = "duty_cycle_sp";
-    		String value = "" + Math.abs(this.local_power) * -1;
-    		this.setAttribute(attribute, "" + value);  
+    		int value = Math.abs(this.local_power) * -1;
+    		writeInt(DUTY_CYCLE, value);  
     	}
 		//TODO: Learn to use this attribute
 		//final String attribute1 = "inversed";
 		//final String value1 = "polarity";
-    	final String attribute2 = "command";
-		final String value2 = "run-forever";
-		this.setAttribute(attribute2, value2);
+		writeString(COMMAND, RUN_FOREVER);
 	}
 
 
@@ -72,18 +73,9 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * 
 	 * @return true iff the motor is currently in motion.
 	 */
-	public boolean isMoving() {
-		final String attribute = "state";
-		final String STATE_RUNNING = "running";
-		final String rawStates = this.getAttribute(attribute);
-		String[] states = rawStates.split(" ");
-		for(int i = 0; i < states.length; i++){
-			if(states[i].equals(STATE_RUNNING)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public boolean isMoving() {
+		return (this.readString(STATE).contains(STATE_RUNNING));
+    }
 
 	/**
 	 * Causes motor to float. The motor will lose all power,
@@ -92,10 +84,7 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * abrupt turns.
 	 */   
 	public void flt() {
-		//TODO: Understand float way for DC Motors
-		//final String attribute = "command";
-		//final String value = "brake";
-		//this.setAttribute(attribute, value);
+		writeString(COMMAND, BRAKE);
 	}
 
 	/**
@@ -106,9 +95,7 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	 * Cancels any rotate() orders in progress
 	 */
 	public void stop() {
-		final String attribute = "command";
-		final String value = "stop";
-		this.setAttribute(attribute, value);
+		writeString(COMMAND, STOP);
 	}
 }
 
