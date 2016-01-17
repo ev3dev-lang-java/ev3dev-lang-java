@@ -6,6 +6,7 @@ import lejos.utility.Delay;
 import ev3dev.hardware.Battery;
 import ev3dev.hardware.Sound;
 
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.SoundDemo
 public class SoundDemo {
 
 	//Configuration

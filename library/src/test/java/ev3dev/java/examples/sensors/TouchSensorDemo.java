@@ -1,4 +1,4 @@
-package ev3dev.java.examples;
+package ev3dev.java.examples.sensors;
 
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
@@ -6,6 +6,7 @@ import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.sensor.ev3.EV3TouchSensor;
 
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.sensors.TouchSensorDemo
 public class TouchSensorDemo {
 
 	//Robot Configuration
@@ -20,7 +21,7 @@ public class TouchSensorDemo {
 		int touchValue = 0;
 
         //Robot control loop
-        final int iteration_threshold = 100;
+        final int iteration_threshold = 50;
         for(int i = 0; i <= iteration_threshold; i++) {
 
         	float [] sample = new float[sp.sampleSize()];

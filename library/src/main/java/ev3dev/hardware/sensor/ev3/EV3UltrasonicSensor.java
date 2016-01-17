@@ -141,7 +141,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
 private class DistanceMode extends EV3DevSensorMode {
     private static final String   MODE = "US-DIST-CM";
-    private static final float toSI = 0.001f;
+    private static final float toSI = 1f;
 
 	private File pathDevice = null;
 	
@@ -158,9 +158,10 @@ private class DistanceMode extends EV3DevSensorMode {
     public void fetchSample(float[] sample, int offset) {
       switchMode(MODE, SWITCHDELAY);
 		float raw = readFloat(this.pathDevice + "/" +  VALUE0);
-		
-      sample[offset] = (raw == 2550) ? Float.POSITIVE_INFINITY : (float) raw
-          * toSI;
+
+        if (raw<5) sample[offset]=0;
+        else if (raw>2550) sample[offset]=Float.POSITIVE_INFINITY;
+        else sample[offset]= raw * toSI;
     }
 
     @Override

@@ -38,7 +38,7 @@ public class EV3DevSysfs extends Device {
 		return true;
 	}
 	
-	public boolean writeInt(final String filePath, final int value) {
+	public boolean writeInteger(final String filePath, final int value) {
 		return this.writeString(filePath, "" + value);
 	}
 	

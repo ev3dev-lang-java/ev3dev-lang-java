@@ -107,7 +107,7 @@ public class EV3GyroSensor extends BaseSensor {
 	  
 	public int getAngle(){
 		String attribute = "value0";
-		return readInteger(attribute);
+		return readInteger(this.PATH_DEVICE + "/" +  attribute);
 	}
 	
 	  private class AngleMode extends EV3DevSensorMode {

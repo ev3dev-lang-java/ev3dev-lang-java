@@ -1,11 +1,10 @@
-package ev3dev.java.examples;
+package ev3dev.java.examples.motors;
 
 import lejos.utility.Delay;
-import ev3dev.hardware.Sound;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.motor.UnregulatedMotor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.UnregulatedMotorDemo
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.motors.UnregulatedMotorDemo
 public class UnregulatedMotorDemo {
 
 	//Robot Definition

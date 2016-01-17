@@ -68,15 +68,13 @@ import lejos.robotics.SampleProvider;
  *      <p>
  * 
  * 
- * @author Andy
+ * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  * 
  */
-public class EV3ColorSensor extends BaseSensor implements LampController, ColorIdentifier
-{
+public class EV3ColorSensor extends BaseSensor implements LampController, ColorIdentifier {
     // TODO: decide what to do to the LampController and ColorIdentifier interfaces
-    protected static int[] colorMap =
-    {
+    protected static int[] colorMap = {
         Color.NONE, Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.WHITE, Color.BROWN
     };
     protected static final int SWITCH_DELAY = 250;
@@ -92,52 +90,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     // NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN
     protected static final int []lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
     protected short[]raw = new short[3];
-    
-    private class ModeProvider implements SensorMode
-    {
-        final String mode;
-        final int sampleSize;
-        final String name;
-        
-        ModeProvider(String name, String mode, int sz)
-        {
-            this.name = name;
-            this.mode = mode;
-            sampleSize = sz;
-        }
 
-        @Override
-        public int sampleSize()
-        {
-            return sampleSize;
-        }
-        
-        @Override
-        public void fetchSample(float[] sample, int offset)
-        {
-            switchMode(mode, SWITCH_DELAY);
-            if (sampleSize == 1){
-        		String attribute = "value0";
-        		//String rawValue = Sysfs.readString(this.pathDevice + "/" +  attribute);
-                sample[offset] = (float) 1;//Float.valueOf(rawValue);//(port.getByte() & 0xff)/100.0f;
-            } else
-            {
-                //port.getShorts(raw, 0, raw.length);
-                for(int i = 0; i < sampleSize; i++)
-                    sample[offset+i] = (float)raw[i]/1020.0f;
-            }
-        }
-
-        @Override
-        public String getName()
-        {
-            return name;
-        }
-        
-    }
-
-    protected void initModes()
-    {
+    private void initModes() {
         setModes(
         		new SensorMode[]{
         				new ColorIDMode(this.PATH_DEVICE), 

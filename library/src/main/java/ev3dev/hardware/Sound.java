@@ -39,14 +39,15 @@ public class Sound extends EV3DevSysfs {
      */
     public void beep() {
         Shell.execute(CMD_BEEP);
+        pause(100);
     }
 
     /**
      * Beeps twice.
      */
     public void twoBeeps() {
-        Shell.execute(CMD_BEEP);
-        Shell.execute(CMD_BEEP);
+        beep();
+        beep();
     }
 
 
@@ -87,7 +88,7 @@ public class Sound extends EV3DevSysfs {
      * @throws FileNotFoundException 
      */
     public int playSample(File file, int vol) {
-    	writeInt(VOLUME_PATH, vol);
+    	writeInteger(VOLUME_PATH, vol);
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;
     }

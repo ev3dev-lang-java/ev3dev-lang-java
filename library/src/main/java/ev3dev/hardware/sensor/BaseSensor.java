@@ -162,7 +162,7 @@ public class BaseSensor extends EV3DevDevice implements SensorModes {
             else if (!port.setMode(newMode))
                 throw new IllegalArgumentException("Invalid sensor mode");
             */
-    		writeString(SENSOR_MODE, newMode);
+        	this.setStringAttribute(SENSOR_MODE, newMode);
             currentModeS = newMode;
             Delay.msDelay(switchDelay);
         }

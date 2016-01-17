@@ -39,7 +39,6 @@ public class EV3DevDevice extends EV3DevSysfs {
      * @param portName
      */
     public void connect(final String type, final String portName){
-
     	final String devicePath = DEVICE_ROOT_PATH + type;
     	ArrayList<File> deviceAvailables = this.getElements(devicePath);
 
@@ -52,6 +51,46 @@ public class EV3DevDevice extends EV3DevSysfs {
     			break;
     		}
     	}
+    }
+    
+    /**
+     * Returns the value of an attribute supported for a Device
+     * 
+     * @param attribute
+     * @return
+     */
+    public String getStringAttribute(final String attribute){
+        return this.readString(PATH_DEVICE + "/" +  attribute);
+    }
+
+    /**
+     * Returns the value of an attribute supported for a Device
+     * 
+     * @param attribute
+     * @return
+     */
+    public int getIntegerAttribute(final String attribute){
+        return this.readInteger(PATH_DEVICE + "/" +  attribute);
+    }
+    
+    /**
+     * Set a value on an attribute
+     * 
+     * @param attribute
+     * @param value
+     */
+    public void setStringAttribute(final String attribute, final String value){
+    	this.writeString(this.PATH_DEVICE + "/" +  attribute, value);
+    }
+   
+    /**
+     * Set a value on an attribute
+     * 
+     * @param attribute
+     * @param value
+     */
+    public void setIntegerAttribute(final String attribute, final int value){
+    	this.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
     }
    
 }

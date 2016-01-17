@@ -2,6 +2,7 @@ package ev3dev.java.examples;
 
 import ev3dev.robotics.tts.Espeak;
 
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.TTSDemo
 public class TTSDemo {
 
 	public static void main(String[] args) {

@@ -1,14 +1,11 @@
-package ev3dev.java.examples;
+package ev3dev.java.examples.sensors;
 
-import java.util.Arrays;
-
-import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.sensor.ev3.EV3ColorSensor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.ColorSensorDemo
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.sensors.ColorSensorDemo
 public class ColorSensorDemo {
 
 	//Robot Configuration

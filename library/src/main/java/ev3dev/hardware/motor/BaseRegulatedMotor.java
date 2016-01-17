@@ -45,7 +45,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 	private final String SPEED_REGULATION_ON = "on";
 	private final String SPEED_REGULATION_OFF = "off";
 	private final String POSITION = "position_sp";
-	private final String SPEED = "speed_s";
+	private final String SPEED = "speed_sp";
 	private final String DUTY_CYCLE = "duty_cycle_sp";
 	private final String COMMAND = "command";
 	private final String RUN_FOREVER = "run-forever";
@@ -64,10 +64,10 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     public BaseRegulatedMotor(String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
 		super(SYSTEM_PORT_CLASS_NAME, motorPort);
-		this.writeString(MODE,SYSTEM_CLASS_NAME);
+		this.setStringAttribute(MODE,SYSTEM_CLASS_NAME);
 		this.connect(SYSTEM_CLASS_NAME, motorPort);
 
-		this.writeString(SPEED_REGULATION, SPEED_REGULATION_ON);
+		this.setStringAttribute(SPEED_REGULATION, SPEED_REGULATION_ON);
 		this.regulationFlag = true;
 	}
 
@@ -88,7 +88,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @return true iff regulation has been suspended.
      */
     public boolean suspendRegulation() {
-		this.writeString(SPEED_REGULATION, SPEED_REGULATION_OFF);
+		this.setStringAttribute(SPEED_REGULATION, SPEED_REGULATION_OFF);
 		this.regulationFlag = false;
         return true;
     }
@@ -99,7 +99,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @see lejos.robotics.RegulatedMotor#getTachoCount()
      */
     public int getTachoCount() {
-    	return readInteger(POSITION);
+    	return getIntegerAttribute(POSITION);
     }
 
     /**
@@ -126,9 +126,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     			attribute = DUTY_CYCLE;
     		}
     		int value = Math.abs(this.local_speed) * 1;
-    		this.writeInt(attribute, value);  
+    		this.setIntegerAttribute(attribute, value);  
     	}
-		this.writeString(COMMAND, RUN_FOREVER);
+		this.setStringAttribute(COMMAND, RUN_FOREVER);
     }
 
     /**
@@ -141,9 +141,9 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     			attribute = DUTY_CYCLE;
     		}
     		int value = Math.abs(this.local_speed) * -1;
-    		this.writeInt(attribute, value); 
+    		this.setIntegerAttribute(attribute, value); 
     	}
-		this.writeString(COMMAND, RUN_FOREVER);
+		this.setStringAttribute(COMMAND, RUN_FOREVER);
     }
 
     /**
@@ -151,7 +151,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * and the position of the motor will not be maintained.
      */
     public void flt() {
-		this.writeString(COMMAND, BRAKE);
+		this.setStringAttribute(COMMAND, BRAKE);
     }
 
     /**
@@ -162,7 +162,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * Cancels any rotate() orders in progress
      */
     public void stop() {
-		this.writeString(COMMAND, STOP);
+		this.setStringAttribute(COMMAND, STOP);
     }
 
     /**
@@ -176,7 +176,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @return true iff the motor is attempting to rotate.<br>
      */
     public boolean isMoving() {
-		return (this.readString(STATE).contains(STATE_RUNNING));
+		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
     }
 
     /**
@@ -191,7 +191,7 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
 		if(!this.regulationFlag) {
 			attribute = DUTY_CYCLE;
 		}
-		this.writeInt(attribute, this.local_speed);
+		this.setIntegerAttribute(attribute, this.local_speed);
     }
 
     /**
@@ -199,14 +199,14 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * will cause any current move operation to be halted.
      */
     public void resetTachoCount() {
-		this.writeString(COMMAND, RESET);
+		this.setStringAttribute(COMMAND, RESET);
 
-		this.writeString(SPEED_REGULATION, SPEED_REGULATION_ON);
+		this.setStringAttribute(SPEED_REGULATION, SPEED_REGULATION_ON);
 		this.regulationFlag = true;
     }
 
     private boolean isRunning() {
-		return (this.readString(STATE).contains(STATE_RUNNING));
+		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
     }
     
     /**
@@ -217,8 +217,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * @param angle
      */
     public void rotate(int angle, boolean immediateReturn) {
-		writeInt(POSITION, angle);
-		writeString(COMMAND, RUN_TO_REL_POS);
+		this.setIntegerAttribute(POSITION, angle);
+		this.setStringAttribute(COMMAND, RUN_TO_REL_POS);
 		
 		if (!immediateReturn) {
 			while(this.isRunning()){
@@ -237,8 +237,8 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
     }
 
     public void rotateTo(int limitAngle, boolean immediateReturn) {
-    	writeInt(POSITION, limitAngle);
-    	writeString(COMMAND, RUN_TO_ABS_POS);
+    	this.setIntegerAttribute(POSITION, limitAngle);
+    	this.setStringAttribute(COMMAND, RUN_TO_ABS_POS);
 		
 		if (!immediateReturn) {
 			while(this.isRunning()){
@@ -260,21 +260,20 @@ public abstract class BaseRegulatedMotor extends EV3DevDevice implements Regulat
      * Return the current target speed.
      * @return the current target speed.
      */
-    public int getSpeed()
-    {
+    public int getSpeed() {
 		String attribute = SPEED;
 		if(!this.regulationFlag) {
 			attribute = DUTY_CYCLE;
 		}
-        return readInteger(attribute);
+        return this.getIntegerAttribute(attribute);
     }
 
     /**
      * Return true if the motor is currently stalled.
      * @return true if the motor is stalled, else false
      */
-    public boolean isStalled(){
-		return (this.readString(STATE).contains(STATE_STALLED));
+    public boolean isStalled() {
+		return (this.getStringAttribute(STATE).contains(STATE_STALLED));
     }
     
     /**
