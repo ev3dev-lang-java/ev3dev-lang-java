@@ -1,7 +1,7 @@
 package ev3dev.java.examples.motors;
 
 import lejos.utility.Delay;
-import ev3dev.hardware.Battery;
+import ev3dev.hardware.SystemBattery;
 import ev3dev.hardware.Sound;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
@@ -36,6 +36,6 @@ public class RegulatedMotorRotateDemo {
         sound.beep();
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
-        System.out.println(Battery.getInstance().getVoltage());
+        System.out.println(SystemBattery.getInstance().getVoltage());
     }
 }

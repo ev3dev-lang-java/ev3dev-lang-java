@@ -1,6 +1,6 @@
 package ev3dev.java.examples;
 
-import ev3dev.hardware.Battery;
+import ev3dev.hardware.SystemBattery;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
@@ -39,7 +39,7 @@ public class BumperCar {
             }
 
         	System.out.println("Iteration: " + i);
-            System.out.println("Battery: " + Battery.getInstance().getVoltage());
+            System.out.println("Battery: " + SystemBattery.getInstance().getVoltage());
             System.out.println("Distance: " + distance);
             System.out.println();
         }

@@ -9,25 +9,25 @@ package ev3dev.hardware;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Battery extends EV3DevSysfs{
+public class SystemBattery extends EV3DevSysfs implements Power{
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
 	private final String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/legoev3-battery/";
 	private final String VOLTAGE = "voltage_now";
 	private final String CURRENT = "current_now";
 	
-    private static Battery Instance;
+    private static SystemBattery Instance;
 
-    public static Battery getInstance() {
+    public static SystemBattery getInstance() {
         if (Instance == null) {
-        	Instance = new Battery();
+        	Instance = new SystemBattery();
         }
 
         return Instance;
     }
 
     // Prevent duplicate objects
-    private Battery() {
+    private SystemBattery() {
 
     }
 	
