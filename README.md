@@ -167,6 +167,11 @@ mvn package
 
 upload your .jar and the library (ev3-lang-java) on your brick. In the path where you have uploaded the jar, execute the following example to run the example:
 
+``` bash
+ssh root@192.168.2.3
+r00tme
+```
+
 
 ``` bash
 java -cp MyFirstRobot-1.0-SNAPSHOT.jar:ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.MyFirstRobot.Test
