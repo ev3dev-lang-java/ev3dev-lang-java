@@ -1,16 +1,16 @@
-package ev3dev.java.examples.sensors;
+package ev3dev.examples.sensors;
 
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
-import ev3dev.hardware.SystemBattery;
+import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.sensor.ev3.EV3TouchSensor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.sensors.TouchSensorDemo
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.sensors.TouchSensorDemo
 public class TouchSensorDemo {
 
 	//Robot Configuration
-	private static EV3TouchSensor touch1 = new EV3TouchSensor(SensorPort.S3);
+	private static EV3TouchSensor touch1 = new EV3TouchSensor(SensorPort.S2);
 	
 	//Configuration
 	private static int HALF_SECOND = 500;
@@ -29,7 +29,7 @@ public class TouchSensorDemo {
             touchValue = (int)sample[0];
         	
         	System.out.println("Iteration: " + i);
-            System.out.println("Battery: " + SystemBattery.getInstance().getVoltage());
+            System.out.println("Battery: " + Battery.getInstance().getVoltage());
             System.out.println("Touch: " + touchValue);
             System.out.println();
             

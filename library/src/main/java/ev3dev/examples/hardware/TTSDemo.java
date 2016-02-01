@@ -1,8 +1,8 @@
-package ev3dev.java.examples;
+package ev3dev.examples.hardware;
 
 import ev3dev.robotics.tts.Espeak;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.TTSDemo
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.hardware.TTSDemo
 public class TTSDemo {
 
 	public static void main(String[] args) {
