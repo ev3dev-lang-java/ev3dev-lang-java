@@ -14,8 +14,12 @@ ant -buildfile tools.xml uml
 
 # Roadmap
 
-* Create repository for navigation:
-* Create repository for behaviours: 
+* Support for PiStorm & BrickPi+
+* Support for Java 8
+* Support for more Gyro Sensors
+* Support for RPLidar
+* Create repository for navigation
+* Create repository for behaviours
 
 # Features
 
@@ -44,9 +48,8 @@ sudo reboot
 Current development has been tested with this version:
 
 ``` bash
-root@ev3dev:/home# uname -a
-Linux ev3dev 3.16.7-ckt19-8-ev3dev-ev3 
-#1 PREEMPT Mon Nov 9 11:03:41 CST 2015 armv5tejl GNU/Linux
+root@ev3dev:/home# uname -a                            
+Linux ev3dev 3.16.7-ckt21-9-ev3dev-ev3 #1 PREEMPT Tue Dec 15 15:16:17 CST 2015 armv5tejl GNU/Linux
 ```
 
 If you have your OS for EV3 updated, continue with your Java project.
@@ -55,7 +58,7 @@ Create a Java Maven project:
 
 ``` bash
 mvn archetype:generate 
--DgroupId=ev3dev.examples.misc 
+-DgroupId=ev3dev.examples.demo 
 -DartifactId=Test 
 -DarchetypeArtifactId=maven-archetype-quickstart 
 -DinteractiveMode=false
@@ -85,7 +88,7 @@ Create a Java Class in your Maven project:
 
 ``` java
 
-package ev3dev.examples.misc;
+package ev3dev.examples.demo;
 
 import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.MotorPort;
@@ -175,8 +178,9 @@ r00tme
 
 
 ``` bash
-cd /home/
-java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.misc.Bumpe
+cd /home
+java -cp Test-1.0-SNAPSHOT.jar:ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.demo.BumperCar
+
 ```
 
 This example is included in the [test examples](https://github.com/jabrena/ev3dev-lang-java/tree/master/library/src/test/java/ev3dev/examples).
