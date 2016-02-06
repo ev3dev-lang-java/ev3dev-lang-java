@@ -202,5 +202,3 @@ ant -buildfile tools.xml javadocs
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
 * EV3Dev autogen: https://github.com/ev3dev/ev3dev-lang/tree/develop/autogen
 * Liquid Templates: https://github.com/Shopify/liquid/wiki
-* Issue management: https://overv.io
-* UML Modelling: http://astah.net/editions/community
