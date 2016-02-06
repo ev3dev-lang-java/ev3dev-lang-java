@@ -1,4 +1,4 @@
-package ev3dev.java.examples.motors;
+package ev3dev.examples.motors;
 
 import lejos.utility.Delay;
 import ev3dev.hardware.Battery;
@@ -6,8 +6,8 @@ import ev3dev.hardware.Sound;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.motor.EV3LargeRegulatedMotor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.Test4
-public class Test4 {
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.motors.RegulatedMotorRotateToDemo
+public class RegulatedMotorRotateToDemo {
 	
     public static void main(String[] args) {
     	

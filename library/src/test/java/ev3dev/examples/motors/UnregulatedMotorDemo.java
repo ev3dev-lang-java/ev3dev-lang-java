@@ -1,14 +1,15 @@
-package ev3dev.java.examples.motors;
+package ev3dev.examples.motors;
 
 import lejos.utility.Delay;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.motor.UnregulatedMotor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.motors.UnregulatedMotorDemo2
-public class UnregulatedMotorDemo2 {
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.motors.UnregulatedMotorDemo
+public class UnregulatedMotorDemo {
 
 	//Robot Definition
-	private static UnregulatedMotor umotor1 = new UnregulatedMotor(MotorPort.D);
+	private static UnregulatedMotor umotor1 = new UnregulatedMotor(MotorPort.C);
+	private static UnregulatedMotor umotor2 = new UnregulatedMotor(MotorPort.D);
 
     //Configuration
     private final static int motorPower = 50;
@@ -18,7 +19,8 @@ public class UnregulatedMotorDemo2 {
 
 		//Set power for DC Motors
 		umotor1.setPower(motorPower);
-
+		umotor2.setPower(motorPower);
+		
 		//Testing DC-Motor 1
 		umotor1.forward();		
 		System.out.println(umotor1.isMoving());
@@ -34,6 +36,19 @@ public class UnregulatedMotorDemo2 {
 		System.out.println(umotor1.isMoving());
 		Delay.msDelay(ONE_SECOND);
 		umotor1.stop();
+		
+
+		//Testing DC-Motor 2
+		umotor2.forward();
+		Delay.msDelay(ONE_SECOND);
+		umotor2.stop();
+		umotor2.backward();
+		Delay.msDelay(ONE_SECOND);
+		umotor1.stop();
+		umotor2.forward();
+		Delay.msDelay(ONE_SECOND);
+		umotor2.stop();
+		
 
         System.exit(0);
 	}
