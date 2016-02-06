@@ -28,12 +28,27 @@
  	<dependency>
 	    <groupId>com.github.jabrena</groupId>
 	    <artifactId>ev3dev-lang-java</artifactId>
-	    <version>v0.1.0</version>
+	    <version>v0.2.0</version>
 	</dependency>
   </dependencies>
 
   <build>
     <plugins>
+    
+	<!-- Includes the runtime dependencies -->
+	<plugin>
+		<groupId>org.dstovall</groupId>
+		<artifactId>onejar-maven-plugin</artifactId>
+		<version>1.4.4</version>
+		<executions>
+		  <execution>
+			<goals>
+				<goal>one-jar</goal>
+			</goals>
+		  </execution>
+		</executions>
+	</plugin>
+    
       <plugin>          
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
@@ -68,5 +83,13 @@
       </plugin>
       </plugins>
   </build>
+
+  <!-- One-Jar is in the googlecode repository -->
+  <pluginRepositories>
+	<pluginRepository>
+		<id>onejar-maven-plugin.googlecode.com</id>
+		<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+	</pluginRepository>
+  </pluginRepositories>
 
 </project>
