@@ -55,7 +55,7 @@ Create a Java Maven project:
 
 ``` bash
 mvn archetype:generate 
--DgroupId=ev3dev.examples.demo 
+-DgroupId=ev3dev.examples.misc 
 -DartifactId=Test 
 -DarchetypeArtifactId=maven-archetype-quickstart 
 -DinteractiveMode=false
@@ -175,11 +175,11 @@ r00tme
 
 
 ``` bash
-java -cp MyFirstRobot-1.0-SNAPSHOT.jar:ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.MyFirstRobot.Test
-
+cd /home/
+java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.misc.Bumpe
 ```
 
-This example is included in the folder [examples](https://github.com/jabrena/ev3dev-lang-java/tree/master/examples/java/MyFirstRobot).
+This example is included in the [test examples](https://github.com/jabrena/ev3dev-lang-java/tree/master/library/src/test/java/ev3dev/examples).
 
 ## Docs:
 
