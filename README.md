@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to interact with hardware managed by [EV3Dev](http://www.ev3dev.org/) using the [LeJOS](http://www.lejos.org/) way.
+*EV3Dev-lang-Java* is a Java 8 library designed to interact with hardware managed by [EV3Dev](http://www.ev3dev.org/) using the [LeJOS](http://www.lejos.org/) way.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
@@ -15,7 +15,6 @@ ant -buildfile tools.xml uml
 # Roadmap
 
 * Support for PiStorm & BrickPi+
-* Support for Java 8
 * Support for more Gyro Sensors
 * Support for RPLidar
 * Create repository for navigation
@@ -54,7 +53,7 @@ Linux ev3dev 3.16.7-ckt21-9-ev3dev-ev3 #1 PREEMPT Tue Dec 15 15:16:17 CST 2015 a
 
 If you have your OS for EV3 updated, continue with your Java project.
 
-Create a Java Maven project:
+Create a Gradle project for Java:
 
 ``` bash
 mvn archetype:generate 

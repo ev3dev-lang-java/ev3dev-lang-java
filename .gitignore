@@ -13,3 +13,4 @@ node_modules
 hs_err_pid*
 
 docs/api/*
+target/
