@@ -11,7 +11,7 @@ import lejos.utility.Delay;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Sound extends EV3DevSysfs {
+public class Sound extends Platform {
 
     public final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
     public final static String TONE_PATH = SOUND_PATH + "tone";
@@ -31,7 +31,9 @@ public class Sound extends EV3DevSysfs {
 
     // Prevent duplicate objects
     private Sound() {
-
+    	if(!this.getPlatform().equals(EV3BRICK)){
+    		throw new DeviceNotSupportedException("This device is not supported in this platform");
+    	}
     }
     
     /**
