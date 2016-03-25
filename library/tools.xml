@@ -104,6 +104,10 @@ Ant file designed to generate javadocs and uml graphs
 					<include name="ev3dev/hardware/port/*.java" />
 					<include name="ev3dev/hardware/sensor/*.java" />
 					<include name="ev3dev/hardware/sensor/ev3/*.java"/>
+					<include name="ev3dev/utils/*.java" />
+					<include name="lejos/robotics/*.java" />
+					<include name="lejos/utility/*.java" />
+					<exclude name="ev3dev/hardware/motor/*.java" />
 	                <exclude name="**/*Test*"/>
 				</fileset>
 	        </javadoc>
