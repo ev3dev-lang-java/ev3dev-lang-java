@@ -13,6 +13,7 @@ import ev3dev.hardware.EV3DevDevice;
  */
 public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 
+	// /sys/class attributes
     private final static String SYSTEM_CLASS_NAME = "dc-motor";
     private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
 	private final String MODE = "mode";
@@ -24,13 +25,12 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	private final String STOP = "stop";
 	private final String STATE = "state";
 	private final String STATE_RUNNING = "running";
+
+	//This feature is only allowed with EV3Brick
+	private final static String[] SUPPORTED_PLATFORMS = {EV3BRICK};
 	
 	public BasicMotor(String portName) {
-		super(SYSTEM_PORT_CLASS_NAME, portName);
-		//TODO: It is necessary to improve this part.
-    	if(!this.getPlatform().equals(EV3BRICK)){
-    		throw new DeviceNotSupportedException("This device is not supported in this platform");
-    	}
+		super(SYSTEM_PORT_CLASS_NAME, portName, SUPPORTED_PLATFORMS);
 		this.setStringAttribute(MODE,SYSTEM_CLASS_NAME);
 		this.connect(SYSTEM_CLASS_NAME, portName);
 	}

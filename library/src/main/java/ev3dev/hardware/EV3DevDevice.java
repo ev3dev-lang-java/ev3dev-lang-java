@@ -33,6 +33,43 @@ public class EV3DevDevice extends EV3DevSysfs {
     }
     
     /**
+	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
+	 * It is necessary to indicate the type and port.
+	 * 
+	 * This constructor add the way to detect if some device is not allowed for some platform.
+	 * Example: DC Motors in Pi Boards.
+	 * 
+     * @param type
+     * @param portName
+     * @param supportedPlatforms
+     * @throws DeviceException
+     * @throws DeviceNotSupportedException
+     */
+    public EV3DevDevice(final String type, final String portName, final String[] supportedPlatforms) throws DeviceException, DeviceNotSupportedException {
+
+    	boolean detectedPlatform = false;
+    	final String localPlatform = this.getPlatform();
+    	for (String supportedPlatform : supportedPlatforms) {
+    		if(supportedPlatform.equals(localPlatform)){
+    			detectedPlatform = true;
+    			break;
+    		}
+    	}
+    	
+    	if(detectedPlatform == false){
+    		throw new DeviceNotSupportedException("The platform has not available the device connected in: " + portName);
+    	}
+    	
+    	
+    	this.connect(type, portName);
+
+    	if(this.connected == false){
+    		throw new DeviceException("The device was not detected in: " + portName);
+    	}
+    }
+    
+    
+    /**
      * This method matches a input with the internal position in EV3Dev.
      * @param type
      * @param portName
