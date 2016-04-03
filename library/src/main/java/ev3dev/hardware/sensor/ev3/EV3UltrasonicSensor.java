@@ -78,7 +78,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
    * @param port
    */
   public EV3UltrasonicSensor(final String portName) {
-    super(portName);
+    super(portName, "ev3-uart", "lego-ev3-us");
     init();
   }
 

@@ -68,8 +68,8 @@ public class EV3GyroSensor extends BaseSensor {
 
 	private static final long SWITCHDELAY = 200;
 	
-	public EV3GyroSensor(String sensorPort) {
-		super(sensorPort);
+	public EV3GyroSensor(String portName) {
+		super(portName, "ev3-uart", "lego-ev3-gyro");
 		setModes(new SensorMode[] { new AngleMode(this.PATH_DEVICE) });
 	}
 

@@ -38,7 +38,7 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
                 'Implementation-Version': version,
-                'Main-Class': 'examples.hardware.PlatformTest'
+                'Main-Class': 'examples.sensors.TouchSensorDemo'
     }
     baseName = 'ev3-lang-java' + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }

@@ -1,11 +1,11 @@
-package ev3dev.examples.hardware;
+package examples.hardware;
 
 import java.io.File;
 
 import lejos.utility.Delay;
 import ev3dev.hardware.Sound;
 
-//java -cp ev3-lang-java-0.3.0-SNAPSHOT.jar ev3dev.examples.hardware.SoundDemo
+//java -cp ev3-lang-java-0.3.0-SNAPSHOT.jar SoundDemo
 public class SoundDemo {
 
 	//Configuration

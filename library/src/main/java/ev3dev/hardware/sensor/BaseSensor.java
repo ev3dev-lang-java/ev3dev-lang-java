@@ -3,18 +3,17 @@ package ev3dev.hardware.sensor;
 import java.util.ArrayList;
 
 import lejos.utility.Delay;
-import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevSensorDevice;
 
 
-public class BaseSensor extends EV3DevDevice implements SensorModes {
+public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
-    private static final String SYSTEM_CLASS_NAME = "lego-sensor";
     private static final String SENSOR_MODES = "modes";
     private static final String SENSOR_MODE = "mode";
-    
-	public BaseSensor(String sensorPort){
-		super(SYSTEM_CLASS_NAME, sensorPort);
-	}
+
+    public BaseSensor(final String sensorPort, final String mode, final String device){
+        super(sensorPort, mode, device);
+    }
 
 	protected int currentMode = 0;
 	protected String currentModeS = "";

@@ -2,82 +2,66 @@ package ev3dev.hardware;
 
 import java.io.File;
 import java.util.ArrayList;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Base class to interact with EV3Dev sysfs
+ * Base class to interact with EV3Dev Sensors
  * 
  * @author Juan Antonio Breña Moral
  *
  */
-public class EV3DevDevice extends EV3DevSysfs {
+public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
-    private final String ADDRESS = "address"; 
+	private final String LEGO_PORT = "lego-port";
+	private final String LEGO_SENSOR = "lego-sensor";
+    private final String ADDRESS = "address";
+	private final String MODE = "mode";
+	private final String DEVICE = "set_device";
+
 	protected File PATH_DEVICE = null;
-    private boolean connected = false;   
-	
+    private boolean connected = false;
+
 	/**
 	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
 	 * It is necessary to indicate the type and port.
-	 * 
-	 * @param type A valid type. Example: tacho-motor, lego-sensor, etc...
+	 *
 	 * @param portName The port where is connected the sensor or the actuator.
 	 * @throws DeviceException
 	 */
-    public EV3DevDevice(final String type, final String portName) throws DeviceException {
+    public EV3DevSensorDevice(final String portName, final String mode, final String device) throws DeviceException {
 
 
 		//This method is oriented for EV3Brick, but for Pi Boards, it is necessary to detect in a previous action
-    	this.connect(type, portName);
+		if(this.detect(LEGO_PORT, portName)){
+			log.info("detected lego port");
+			log.info("" + this.PATH_DEVICE);
 
-    	if(this.connected == false){
-    		throw new DeviceException("The device was not detected in: " + portName);
-    	}
+
+			//TODO Improve this syntax
+			if(!this.getPlatform().equals(EV3BRICK)){
+				this.writeString(this.PATH_DEVICE + "/" +  MODE, mode);
+				this.writeString(this.PATH_DEVICE + "/" +  DEVICE, device);
+			}
+
+			if(this.detect(LEGO_SENSOR, portName)) {
+
+			} else {
+				throw new DeviceException("The device was not detected in: " + portName);
+			}
+		}else {
+			throw new DeviceException("The device was not detected in: " + portName);
+		}
     }
-    
-    /**
-	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
-	 * It is necessary to indicate the type and port.
-	 * 
-	 * This constructor add the way to detect if some device is not allowed for some platform.
-	 * Example: DC Motors in Pi Boards.
-	 * 
-     * @param type
-     * @param portName
-     * @param supportedPlatforms
-     * @throws DeviceException
-     * @throws DeviceNotSupportedException
-     */
-    public EV3DevDevice(final String type, final String portName, final String[] supportedPlatforms) throws DeviceException, DeviceNotSupportedException {
 
-    	boolean detectedPlatform = false;
-    	final String localPlatform = this.getPlatform();
-    	for (String supportedPlatform : supportedPlatforms) {
-    		if(supportedPlatform.equals(localPlatform)){
-    			detectedPlatform = true;
-    			break;
-    		}
-    	}
-    	
-    	if(detectedPlatform == false){
-    		throw new DeviceNotSupportedException("The platform has not available the device connected in: " + portName);
-    	}
-    	
-    	
-    	this.connect(type, portName);
-
-    	if(this.connected == false){
-    		throw new DeviceException("The device was not detected in: " + portName);
-    	}
-    }
-    
-    //TODO Rename method to detect
     /**
      * This method matches a input with the internal position in EV3Dev.
-     * @param type
-     * @param portName
+	 *
+	 * @param type
+	 * @param portName
+     * @return
      */
-    public void connect(final String type, final String portName){
+    public boolean detect(final String type, final String portName){
     	final String devicePath = DEVICE_ROOT_PATH + type;
     	ArrayList<File> deviceAvailables = this.getElements(devicePath);
 
@@ -87,9 +71,10 @@ public class EV3DevDevice extends EV3DevSysfs {
     		pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
     		if (this.readString(pathDeviceName).equals(portName)){
     			this.connected = true;
-    			break;
+				return true;
     		}
     	}
+		return false;
     }
     
     /**

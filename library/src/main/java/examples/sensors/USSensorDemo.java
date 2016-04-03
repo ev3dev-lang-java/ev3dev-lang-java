@@ -1,4 +1,4 @@
-package ev3dev.examples.sensors;
+package examples.sensors;
 
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;

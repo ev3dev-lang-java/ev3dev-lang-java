@@ -1,24 +1,24 @@
-package ev3dev.examples.sensors;
+package examples.sensors;
 
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.SensorPort;
-import ev3dev.hardware.sensor.ev3.EV3TouchSensor;
+import ev3dev.hardware.sensor.ev3.EV3GyroSensor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.sensors.TouchSensorDemo
-public class TouchSensorDemo {
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar GyroSensorDemo
+public class GyroSensorDemo {
 
 	//Robot Configuration
-	private static EV3TouchSensor touch1 = new EV3TouchSensor(SensorPort.S2);
+	private static EV3GyroSensor touch1 = new EV3GyroSensor(SensorPort.S3);
 	
 	//Configuration
 	private static int HALF_SECOND = 500;
 	
 	public static void main(String[] args) {
 
-		final SampleProvider sp = touch1.getTouchMode();
-		int touchValue = 0;
+		final SampleProvider sp = touch1.getAngleMode();
+		int value = 0;
 
         //Robot control loop
         final int iteration_threshold = 50;
@@ -26,11 +26,11 @@ public class TouchSensorDemo {
 
         	float [] sample = new float[sp.sampleSize()];
             sp.fetchSample(sample, 0);
-            touchValue = (int)sample[0];
+            value = (int)sample[0];
         	
         	System.out.println("Iteration: " + i);
             System.out.println("Battery: " + Battery.getInstance().getVoltage());
-            System.out.println("Touch: " + touchValue);
+            System.out.println("Touch: " + value);
             System.out.println();
             
             Delay.msDelay(HALF_SECOND);

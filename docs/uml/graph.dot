@@ -15,6 +15,7 @@ digraph G {
 <tr><td align="center" balign="center"> Battery </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - DEVICE_ROOT_PATH : String </td></tr>
 <tr><td align="left" balign="left"> - BATTERY_PATH : String </td></tr>
 <tr><td align="left" balign="left"> - EV3BRICK_BATTERY_OBJECT : String </td></tr>
 <tr><td align="left" balign="left"> - PISTORMS_BATTERY_OBJECT : String </td></tr>
@@ -80,6 +81,7 @@ digraph G {
 <tr><td align="center" balign="center"> EV3DevDevice </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - DEVICE_ROOT_PATH : String </td></tr>
 <tr><td align="left" balign="left"> - ADDRESS : String </td></tr>
 <tr><td align="left" balign="left"> # PATH_DEVICE : File </td></tr>
 <tr><td align="left" balign="left"> - connected : boolean </td></tr>
@@ -94,8 +96,32 @@ digraph G {
 <tr><td align="left" balign="left"> + setIntegerAttribute(attribute : String, value : int) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.EV3DevSensorDevice
+	c5 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> EV3DevSensorDevice </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - DEVICE_ROOT_PATH : String </td></tr>
+<tr><td align="left" balign="left"> - LEGO_PORT : String </td></tr>
+<tr><td align="left" balign="left"> - LEGO_SENSOR : String </td></tr>
+<tr><td align="left" balign="left"> - ADDRESS : String </td></tr>
+<tr><td align="left" balign="left"> - MODE : String </td></tr>
+<tr><td align="left" balign="left"> - DEVICE : String </td></tr>
+<tr><td align="left" balign="left"> # PATH_DEVICE : File </td></tr>
+<tr><td align="left" balign="left"> - connected : boolean </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + EV3DevSensorDevice(portName : String, mode : String, device : String) </td></tr>
+<tr><td align="left" balign="left"> + detect(type : String, portName : String) : boolean </td></tr>
+<tr><td align="left" balign="left"> + getStringAttribute(attribute : String) : String </td></tr>
+<tr><td align="left" balign="left"> + getIntegerAttribute(attribute : String) : int </td></tr>
+<tr><td align="left" balign="left"> + setStringAttribute(attribute : String, value : String) </td></tr>
+<tr><td align="left" balign="left"> + setIntegerAttribute(attribute : String, value : int) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevSysfs
-	c5 [label=<<table title="ev3dev.hardware.EV3DevSysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c6 [label=<<table title="ev3dev.hardware.EV3DevSysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevSysfs </td></tr>
 		</table></td></tr>
@@ -113,12 +139,12 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.Platform
-	c6 [label=<<table title="ev3dev.hardware.Platform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c7 [label=<<table title="ev3dev.hardware.Platform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Platform </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + DEVICE_ROOT_PATH : String </td></tr>
+<tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + Platform() </td></tr>
@@ -127,7 +153,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.Power
-	c7 [label=<<table title="ev3dev.hardware.Power" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c8 [label=<<table title="ev3dev.hardware.Power" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Power </td></tr>
@@ -141,7 +167,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.Sound
-	c8 [label=<<table title="ev3dev.hardware.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c9 [label=<<table title="ev3dev.hardware.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sound </td></tr>
 		</table></td></tr>
@@ -168,7 +194,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.SupportedPlatform
-	c9 [label=<<table title="ev3dev.hardware.SupportedPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c10 [label=<<table title="ev3dev.hardware.SupportedPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SupportedPlatform </td></tr>
@@ -183,7 +209,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.motor.BaseRegulatedMotor
-	c10 [label=<<table title="ev3dev.hardware.motor.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c11 [label=<<table title="ev3dev.hardware.motor.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseRegulatedMotor </font></td></tr>
 		</table></td></tr>
@@ -236,7 +262,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.motor.BasicMotor
-	c11 [label=<<table title="ev3dev.hardware.motor.BasicMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c12 [label=<<table title="ev3dev.hardware.motor.BasicMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BasicMotor </font></td></tr>
 		</table></td></tr>
@@ -267,7 +293,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.motor.EV3LargeRegulatedMotor
-	c12 [label=<<table title="ev3dev.hardware.motor.EV3LargeRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c13 [label=<<table title="ev3dev.hardware.motor.EV3LargeRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3LargeRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -286,7 +312,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.motor.EV3MediumRegulatedMotor
-	c13 [label=<<table title="ev3dev.hardware.motor.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c14 [label=<<table title="ev3dev.hardware.motor.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3MediumRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -305,7 +331,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.motor.NXTRegulatedMotor
-	c14 [label=<<table title="ev3dev.hardware.motor.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c15 [label=<<table title="ev3dev.hardware.motor.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NXTRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -324,7 +350,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.motor.UnregulatedMotor
-	c15 [label=<<table title="ev3dev.hardware.motor.UnregulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c16 [label=<<table title="ev3dev.hardware.motor.UnregulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnregulatedMotor </td></tr>
 		</table></td></tr>
@@ -336,7 +362,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.port.MotorPort
-	c16 [label=<<table title="ev3dev.hardware.port.MotorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c17 [label=<<table title="ev3dev.hardware.port.MotorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> MotorPort </td></tr>
@@ -352,7 +378,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.port.MotorPortBrickPi
-	c17 [label=<<table title="ev3dev.hardware.port.MotorPortBrickPi" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c18 [label=<<table title="ev3dev.hardware.port.MotorPortBrickPi" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> MotorPortBrickPi </td></tr>
@@ -368,7 +394,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.port.MotorPortPiStorms
-	c18 [label=<<table title="ev3dev.hardware.port.MotorPortPiStorms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c19 [label=<<table title="ev3dev.hardware.port.MotorPortPiStorms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> MotorPortPiStorms </td></tr>
@@ -384,7 +410,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.port.SensorPort
-	c19 [label=<<table title="ev3dev.hardware.port.SensorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c20 [label=<<table title="ev3dev.hardware.port.SensorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorPort </td></tr>
@@ -400,7 +426,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.port.SensorPortBrickPi
-	c20 [label=<<table title="ev3dev.hardware.port.SensorPortBrickPi" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c21 [label=<<table title="ev3dev.hardware.port.SensorPortBrickPi" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorPortBrickPi </td></tr>
@@ -416,7 +442,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.port.SensorPortPiStorms
-	c21 [label=<<table title="ev3dev.hardware.port.SensorPortPiStorms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c22 [label=<<table title="ev3dev.hardware.port.SensorPortPiStorms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorPortPiStorms </td></tr>
@@ -432,12 +458,11 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.BaseSensor
-	c22 [label=<<table title="ev3dev.hardware.sensor.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c23 [label=<<table title="ev3dev.hardware.sensor.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseSensor </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME : String </td></tr>
 <tr><td align="left" balign="left"> - SENSOR_MODES : String </td></tr>
 <tr><td align="left" balign="left"> - SENSOR_MODE : String </td></tr>
 <tr><td align="left" balign="left"> # currentMode : int </td></tr>
@@ -446,7 +471,7 @@ digraph G {
 <tr><td align="left" balign="left"> ~ modeList : ArrayList&lt;String&gt; </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + BaseSensor(sensorPort : String) </td></tr>
+<tr><td align="left" balign="left"> + BaseSensor(sensorPort : String, mode : String, device : String) </td></tr>
 <tr><td align="left" balign="left"> # setModes(m : SensorMode[]) </td></tr>
 <tr><td align="left" balign="left"> + getAvailableModes() : ArrayList&lt;String&gt; </td></tr>
 <tr><td align="left" balign="left"> + getMode(mode : int) : SensorMode </td></tr>
@@ -465,7 +490,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.SensorMode
-	c23 [label=<<table title="ev3dev.hardware.sensor.SensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c24 [label=<<table title="ev3dev.hardware.sensor.SensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorMode </td></tr>
@@ -478,7 +503,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.SensorModes
-	c24 [label=<<table title="ev3dev.hardware.sensor.SensorModes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c25 [label=<<table title="ev3dev.hardware.sensor.SensorModes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorModes </td></tr>
@@ -497,7 +522,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3ColorSensor
-	c25 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c26 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3ColorSensor </td></tr>
 		</table></td></tr>
@@ -515,7 +540,7 @@ digraph G {
 <tr><td align="left" balign="left"> # raw : short[] </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3ColorSensor(sensorPort : String) </td></tr>
+<tr><td align="left" balign="left"> + EV3ColorSensor(portName : String) </td></tr>
 <tr><td align="left" balign="left"> - initModes() </td></tr>
 <tr><td align="left" balign="left"> + getColorID() : int </td></tr>
 <tr><td align="left" balign="left"> + setFloodlight(floodlight : boolean) </td></tr>
@@ -529,7 +554,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3ColorSensor.ColorIDMode
-	c26 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.ColorIDMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c27 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.ColorIDMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ColorIDMode </td></tr>
 		</table></td></tr>
@@ -544,7 +569,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3ColorSensor.RedMode
-	c27 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.RedMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c28 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.RedMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedMode </td></tr>
 		</table></td></tr>
@@ -560,7 +585,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3ColorSensor.AmbientMode
-	c28 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.AmbientMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c29 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.AmbientMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AmbientMode </td></tr>
 		</table></td></tr>
@@ -576,7 +601,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3ColorSensor.RGBMode
-	c29 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.RGBMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c30 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3ColorSensor.RGBMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RGBMode </td></tr>
 		</table></td></tr>
@@ -592,7 +617,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3DevSensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c31 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3DevSensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevSensorMode </font></td></tr>
 		</table></td></tr>
@@ -606,7 +631,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3GyroSensor
-	c31 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c32 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3GyroSensor </td></tr>
 		</table></td></tr>
@@ -614,14 +639,14 @@ digraph G {
 <tr><td align="left" balign="left"> - SWITCHDELAY : long </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3GyroSensor(sensorPort : String) </td></tr>
+<tr><td align="left" balign="left"> + EV3GyroSensor(portName : String) </td></tr>
 <tr><td align="left" balign="left"> + getAngleMode() : SampleProvider </td></tr>
 <tr><td align="left" balign="left"> + reset() </td></tr>
 <tr><td align="left" balign="left"> + getAngle() : int </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3GyroSensor.AngleMode
-	c32 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3GyroSensor.AngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c33 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3GyroSensor.AngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AngleMode </td></tr>
 		</table></td></tr>
@@ -638,7 +663,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3IRSensor
-	c33 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c34 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3IRSensor </td></tr>
 		</table></td></tr>
@@ -646,13 +671,13 @@ digraph G {
 <tr><td align="left" balign="left"> # SWITCH_DELAY : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3IRSensor(sensorPort : String) </td></tr>
+<tr><td align="left" balign="left"> + EV3IRSensor(portName : String) </td></tr>
 <tr><td align="left" balign="left"> # init() </td></tr>
 <tr><td align="left" balign="left"> + getDistanceMode() : SensorMode </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3IRSensor.DistanceMode
-	c34 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3IRSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c35 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3IRSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
@@ -668,7 +693,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3TouchSensor
-	c35 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c36 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3TouchSensor </td></tr>
 		</table></td></tr>
@@ -682,7 +707,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3TouchSensor.TouchMode
-	c36 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c37 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TouchMode </td></tr>
 		</table></td></tr>
@@ -697,7 +722,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor
-	c37 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c38 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3UltrasonicSensor </td></tr>
 		</table></td></tr>
@@ -716,7 +741,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.DistanceMode
-	c38 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c39 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
@@ -733,7 +758,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.ListenMode
-	c39 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c40 [label=<<table title="ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ListenMode </td></tr>
 		</table></td></tr>
@@ -749,7 +774,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.robotics.tts.Espeak
-	c40 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c41 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Espeak </td></tr>
 		</table></td></tr>
@@ -775,7 +800,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Shell
-	c41 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c42 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Shell </td></tr>
 		</table></td></tr>
@@ -789,7 +814,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Sysfs
-	c42 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c43 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sysfs </td></tr>
 		</table></td></tr>
@@ -804,8 +829,223 @@ digraph G {
 <tr><td align="left" balign="left"> + getElements(path : String) : ArrayList&lt;File&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.hardware.BatteryDemo
+	c44 [label=<<table title="examples.hardware.BatteryDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> BatteryDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + BatteryDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.hardware.SoundDemo
+	c45 [label=<<table title="examples.hardware.SoundDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> SoundDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - MAX_VOLUME : int </td></tr>
+<tr><td align="left" balign="left"> - filePath : String </td></tr>
+<tr><td align="left" balign="left"> - ONE_SECOND : int </td></tr>
+<tr><td align="left" balign="left"> - FREQ1 : int </td></tr>
+<tr><td align="left" balign="left"> - FREQ2 : int </td></tr>
+<tr><td align="left" balign="left"> - variation : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + SoundDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.hardware.TTSDemo
+	c46 [label=<<table title="examples.hardware.TTSDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> TTSDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + TTSDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.misc.BumperCar
+	c47 [label=<<table title="examples.misc.BumperCar" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> BumperCar </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - mA : EV3LargeRegulatedMotor </td></tr>
+<tr><td align="left" balign="left"> - mB : EV3LargeRegulatedMotor </td></tr>
+<tr><td align="left" balign="left"> - ir1 : EV3IRSensor </td></tr>
+<tr><td align="left" balign="left"> - motorSpeed : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + BumperCar() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+<tr><td align="left" balign="left"> - forward() </td></tr>
+<tr><td align="left" balign="left"> - backwardWithTurn() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.motors.RegulatedMotorDemo
+	c48 [label=<<table title="examples.motors.RegulatedMotorDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RegulatedMotorDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RegulatedMotorDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.motors.RegulatedMotorRotateDemo
+	c49 [label=<<table title="examples.motors.RegulatedMotorRotateDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RegulatedMotorRotateDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RegulatedMotorRotateDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.motors.RegulatedMotorRotateDemo2
+	c50 [label=<<table title="examples.motors.RegulatedMotorRotateDemo2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RegulatedMotorRotateDemo2 </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RegulatedMotorRotateDemo2() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.motors.RegulatedMotorRotateToDemo
+	c51 [label=<<table title="examples.motors.RegulatedMotorRotateToDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RegulatedMotorRotateToDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RegulatedMotorRotateToDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.motors.UnregulatedMotorDemo
+	c52 [label=<<table title="examples.motors.UnregulatedMotorDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> UnregulatedMotorDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - umotor1 : UnregulatedMotor </td></tr>
+<tr><td align="left" balign="left"> - umotor2 : UnregulatedMotor </td></tr>
+<tr><td align="left" balign="left"> - motorPower : int </td></tr>
+<tr><td align="left" balign="left"> - ONE_SECOND : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + UnregulatedMotorDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.motors.UnregulatedMotorDemo2
+	c53 [label=<<table title="examples.motors.UnregulatedMotorDemo2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> UnregulatedMotorDemo2 </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - umotor1 : UnregulatedMotor </td></tr>
+<tr><td align="left" balign="left"> - motorPower : int </td></tr>
+<tr><td align="left" balign="left"> - ONE_SECOND : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + UnregulatedMotorDemo2() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.sensors.ColorSensorDemo
+	c54 [label=<<table title="examples.sensors.ColorSensorDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ColorSensorDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - color1 : EV3ColorSensor </td></tr>
+<tr><td align="left" balign="left"> - HALF_SECOND : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ColorSensorDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.sensors.GyroSensorDemo
+	c55 [label=<<table title="examples.sensors.GyroSensorDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> GyroSensorDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - touch1 : EV3GyroSensor </td></tr>
+<tr><td align="left" balign="left"> - HALF_SECOND : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + GyroSensorDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.sensors.IRSensorDemo
+	c56 [label=<<table title="examples.sensors.IRSensorDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> IRSensorDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - ir1 : EV3IRSensor </td></tr>
+<tr><td align="left" balign="left"> - HALF_SECOND : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + IRSensorDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.sensors.TouchSensorDemo
+	c57 [label=<<table title="examples.sensors.TouchSensorDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> TouchSensorDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - touch1 : EV3TouchSensor </td></tr>
+<tr><td align="left" balign="left"> - HALF_SECOND : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + TouchSensorDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// examples.sensors.USSensorDemo
+	c58 [label=<<table title="examples.sensors.USSensorDemo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> USSensorDemo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - us1 : EV3UltrasonicSensor </td></tr>
+<tr><td align="left" balign="left"> - HALF_SECOND : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + USSensorDemo() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.BaseMotor
-	c43 [label=<<table title="lejos.robotics.BaseMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c59 [label=<<table title="lejos.robotics.BaseMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> BaseMotor </td></tr>
@@ -822,7 +1062,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.Calibrate
-	c44 [label=<<table title="lejos.robotics.Calibrate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c60 [label=<<table title="lejos.robotics.Calibrate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Calibrate </td></tr>
@@ -836,7 +1076,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.Color
-	c45 [label=<<table title="lejos.robotics.Color" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c61 [label=<<table title="lejos.robotics.Color" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Color </td></tr>
 		</table></td></tr>
@@ -871,7 +1111,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.ColorIdentifier
-	c46 [label=<<table title="lejos.robotics.ColorIdentifier" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c62 [label=<<table title="lejos.robotics.ColorIdentifier" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ColorIdentifier </td></tr>
@@ -884,7 +1124,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.DCMotor
-	c47 [label=<<table title="lejos.robotics.DCMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c63 [label=<<table title="lejos.robotics.DCMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DCMotor </td></tr>
@@ -898,7 +1138,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.Encoder
-	c48 [label=<<table title="lejos.robotics.Encoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c64 [label=<<table title="lejos.robotics.Encoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Encoder </td></tr>
@@ -912,7 +1152,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.LampController
-	c49 [label=<<table title="lejos.robotics.LampController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c65 [label=<<table title="lejos.robotics.LampController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> LampController </td></tr>
@@ -928,7 +1168,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.RegulatedMotor
-	c50 [label=<<table title="lejos.robotics.RegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c66 [label=<<table title="lejos.robotics.RegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> RegulatedMotor </td></tr>
@@ -948,7 +1188,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.SampleProvider
-	c51 [label=<<table title="lejos.robotics.SampleProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c67 [label=<<table title="lejos.robotics.SampleProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SampleProvider </td></tr>
@@ -962,7 +1202,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.Tachometer
-	c52 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c68 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Tachometer </td></tr>
@@ -975,7 +1215,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.AbstractCalibrationFilter
-	c53 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c69 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractCalibrationFilter </font></td></tr>
 		</table></td></tr>
@@ -1009,7 +1249,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.AbstractCalibrationFilter.CalibrationFileException
-	c54 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter.CalibrationFileException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c70 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter.CalibrationFileException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CalibrationFileException </td></tr>
 		</table></td></tr>
@@ -1021,7 +1261,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.AbstractFilter
-	c55 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c71 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractFilter </font></td></tr>
 		</table></td></tr>
@@ -1036,7 +1276,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.ConcatenationFilter
-	c56 [label=<<table title="lejos.robotics.filter.ConcatenationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c72 [label=<<table title="lejos.robotics.filter.ConcatenationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConcatenationFilter </td></tr>
 		</table></td></tr>
@@ -1051,7 +1291,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.FilterTerminal
-	c57 [label=<<table title="lejos.robotics.filter.FilterTerminal" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c73 [label=<<table title="lejos.robotics.filter.FilterTerminal" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FilterTerminal </td></tr>
 		</table></td></tr>
@@ -1069,7 +1309,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.IntegrationFilter
-	c58 [label=<<table title="lejos.robotics.filter.IntegrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c74 [label=<<table title="lejos.robotics.filter.IntegrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IntegrationFilter </td></tr>
 		</table></td></tr>
@@ -1085,7 +1325,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.LinearCalibrationFilter
-	c59 [label=<<table title="lejos.robotics.filter.LinearCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c75 [label=<<table title="lejos.robotics.filter.LinearCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LinearCalibrationFilter </td></tr>
 		</table></td></tr>
@@ -1121,7 +1361,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.LowPassFilter
-	c60 [label=<<table title="lejos.robotics.filter.LowPassFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c76 [label=<<table title="lejos.robotics.filter.LowPassFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LowPassFilter </td></tr>
 		</table></td></tr>
@@ -1137,7 +1377,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.MaximumFilter
-	c61 [label=<<table title="lejos.robotics.filter.MaximumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c77 [label=<<table title="lejos.robotics.filter.MaximumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MaximumFilter </td></tr>
 		</table></td></tr>
@@ -1152,7 +1392,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.MeanFilter
-	c62 [label=<<table title="lejos.robotics.filter.MeanFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c78 [label=<<table title="lejos.robotics.filter.MeanFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MeanFilter </td></tr>
 		</table></td></tr>
@@ -1165,7 +1405,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.MedianFilter
-	c63 [label=<<table title="lejos.robotics.filter.MedianFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c79 [label=<<table title="lejos.robotics.filter.MedianFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MedianFilter </td></tr>
 		</table></td></tr>
@@ -1178,7 +1418,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.MinimumFilter
-	c64 [label=<<table title="lejos.robotics.filter.MinimumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c80 [label=<<table title="lejos.robotics.filter.MinimumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MinimumFilter </td></tr>
 		</table></td></tr>
@@ -1193,7 +1433,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.ModulusFilter
-	c65 [label=<<table title="lejos.robotics.filter.ModulusFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c81 [label=<<table title="lejos.robotics.filter.ModulusFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ModulusFilter </td></tr>
 		</table></td></tr>
@@ -1208,7 +1448,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.OffsetCorrectionFilter
-	c66 [label=<<table title="lejos.robotics.filter.OffsetCorrectionFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c82 [label=<<table title="lejos.robotics.filter.OffsetCorrectionFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OffsetCorrectionFilter </td></tr>
 		</table></td></tr>
@@ -1238,7 +1478,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.PublishedSource
-	c67 [label=<<table title="lejos.robotics.filter.PublishedSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c83 [label=<<table title="lejos.robotics.filter.PublishedSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PublishedSource </td></tr>
 		</table></td></tr>
@@ -1279,7 +1519,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.PublishedSource.Listener
-	c68 [label=<<table title="lejos.robotics.filter.PublishedSource.Listener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c84 [label=<<table title="lejos.robotics.filter.PublishedSource.Listener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Listener </td></tr>
 		</table></td></tr>
@@ -1292,7 +1532,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SampleBuffer
-	c69 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c85 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SampleBuffer </font></td></tr>
 		</table></td></tr>
@@ -1313,7 +1553,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SampleThread
-	c70 [label=<<table title="lejos.robotics.filter.SampleThread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c86 [label=<<table title="lejos.robotics.filter.SampleThread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SampleThread </td></tr>
 		</table></td></tr>
@@ -1335,7 +1575,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SampleThread.Runner
-	c71 [label=<<table title="lejos.robotics.filter.SampleThread.Runner" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c87 [label=<<table title="lejos.robotics.filter.SampleThread.Runner" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Runner </td></tr>
 		</table></td></tr>
@@ -1348,7 +1588,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SliceFilter
-	c72 [label=<<table title="lejos.robotics.filter.SliceFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c88 [label=<<table title="lejos.robotics.filter.SliceFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SliceFilter </td></tr>
 		</table></td></tr>
@@ -1363,7 +1603,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SubscribedProvider
-	c73 [label=<<table title="lejos.robotics.filter.SubscribedProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c89 [label=<<table title="lejos.robotics.filter.SubscribedProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SubscribedProvider </td></tr>
 		</table></td></tr>
@@ -1391,7 +1631,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SumFilter
-	c74 [label=<<table title="lejos.robotics.filter.SumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c90 [label=<<table title="lejos.robotics.filter.SumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SumFilter </td></tr>
 		</table></td></tr>
@@ -1405,7 +1645,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SumFilter.PlainSum
-	c75 [label=<<table title="lejos.robotics.filter.SumFilter.PlainSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c91 [label=<<table title="lejos.robotics.filter.SumFilter.PlainSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PlainSum </td></tr>
 		</table></td></tr>
@@ -1418,7 +1658,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.SumFilter.SmartSum
-	c76 [label=<<table title="lejos.robotics.filter.SumFilter.SmartSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c92 [label=<<table title="lejos.robotics.filter.SumFilter.SmartSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SmartSum </td></tr>
 		</table></td></tr>
@@ -1436,7 +1676,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.filter.ZeroFilter
-	c77 [label=<<table title="lejos.robotics.filter.ZeroFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c93 [label=<<table title="lejos.robotics.filter.ZeroFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ZeroFilter </td></tr>
 		</table></td></tr>
@@ -1450,7 +1690,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.utility.Delay
-	c78 [label=<<table title="lejos.utility.Delay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c94 [label=<<table title="lejos.utility.Delay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Delay </td></tr>
 		</table></td></tr>
@@ -1465,145 +1705,147 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//ev3dev.hardware.Battery extends ev3dev.hardware.EV3DevSysfs
-	c5:p -> c0:p [dir=back,arrowtail=empty];
+	c6:p -> c0:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.Battery implements ev3dev.hardware.Power
-	c7:p -> c0:p [dir=back,arrowtail=empty,style=dashed];
+	c8:p -> c0:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.Device extends ev3dev.hardware.Platform
-	c6:p -> c1:p [dir=back,arrowtail=empty];
+	c7:p -> c1:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.Device implements java.io.Closeable
-	c79:p -> c1:p [dir=back,arrowtail=empty,style=dashed];
+	c95:p -> c1:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.DeviceException extends java.lang.RuntimeException
-	c80:p -> c2:p [dir=back,arrowtail=empty];
+	c96:p -> c2:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.DeviceNotSupportedException extends java.lang.RuntimeException
-	c80:p -> c3:p [dir=back,arrowtail=empty];
+	c96:p -> c3:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevDevice extends ev3dev.hardware.EV3DevSysfs
-	c5:p -> c4:p [dir=back,arrowtail=empty];
+	c6:p -> c4:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.EV3DevSensorDevice extends ev3dev.hardware.EV3DevSysfs
+	c6:p -> c5:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevSysfs extends ev3dev.hardware.Device
-	c1:p -> c5:p [dir=back,arrowtail=empty];
+	c1:p -> c6:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.Platform implements ev3dev.hardware.SupportedPlatform
-	c9:p -> c6:p [dir=back,arrowtail=empty,style=dashed];
+	c10:p -> c7:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.Sound extends ev3dev.hardware.EV3DevSysfs
-	c5:p -> c8:p [dir=back,arrowtail=empty];
+	c6:p -> c9:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.motor.BaseRegulatedMotor extends ev3dev.hardware.EV3DevDevice
-	c4:p -> c10:p [dir=back,arrowtail=empty];
-	//ev3dev.hardware.motor.BaseRegulatedMotor implements lejos.robotics.RegulatedMotor
-	c50:p -> c10:p [dir=back,arrowtail=empty,style=dashed];
-	//ev3dev.hardware.motor.BasicMotor extends ev3dev.hardware.EV3DevDevice
 	c4:p -> c11:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.motor.BaseRegulatedMotor implements lejos.robotics.RegulatedMotor
+	c66:p -> c11:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.hardware.motor.BasicMotor extends ev3dev.hardware.EV3DevDevice
+	c4:p -> c12:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.motor.BasicMotor implements lejos.robotics.DCMotor
-	c47:p -> c11:p [dir=back,arrowtail=empty,style=dashed];
+	c63:p -> c12:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.motor.EV3LargeRegulatedMotor extends ev3dev.hardware.motor.BaseRegulatedMotor
-	c10:p -> c12:p [dir=back,arrowtail=empty];
+	c11:p -> c13:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.motor.EV3MediumRegulatedMotor extends ev3dev.hardware.motor.BaseRegulatedMotor
-	c10:p -> c13:p [dir=back,arrowtail=empty];
+	c11:p -> c14:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.motor.NXTRegulatedMotor extends ev3dev.hardware.motor.BaseRegulatedMotor
-	c10:p -> c14:p [dir=back,arrowtail=empty];
-	//ev3dev.hardware.motor.UnregulatedMotor extends ev3dev.hardware.motor.BasicMotor
 	c11:p -> c15:p [dir=back,arrowtail=empty];
-	//ev3dev.hardware.sensor.BaseSensor extends ev3dev.hardware.EV3DevDevice
-	c4:p -> c22:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.motor.UnregulatedMotor extends ev3dev.hardware.motor.BasicMotor
+	c12:p -> c16:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.sensor.BaseSensor extends ev3dev.hardware.EV3DevSensorDevice
+	c5:p -> c23:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.BaseSensor implements ev3dev.hardware.sensor.SensorModes
-	c24:p -> c22:p [dir=back,arrowtail=empty,style=dashed];
+	c25:p -> c23:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensor.SensorMode implements lejos.robotics.SampleProvider
-	c51:p -> c23:p [dir=back,arrowtail=empty,style=dashed];
+	c67:p -> c24:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensor.SensorModes implements ev3dev.hardware.sensor.SensorMode
-	c23:p -> c24:p [dir=back,arrowtail=empty,style=dashed];
+	c24:p -> c25:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensor.ev3.EV3ColorSensor extends ev3dev.hardware.sensor.BaseSensor
-	c22:p -> c25:p [dir=back,arrowtail=empty];
+	c23:p -> c26:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3ColorSensor implements lejos.robotics.LampController
-	c49:p -> c25:p [dir=back,arrowtail=empty,style=dashed];
+	c65:p -> c26:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensor.ev3.EV3ColorSensor implements lejos.robotics.ColorIdentifier
-	c46:p -> c25:p [dir=back,arrowtail=empty,style=dashed];
+	c62:p -> c26:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensor.ev3.EV3ColorSensor.ColorIDMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c26:p [dir=back,arrowtail=empty];
+	c31:p -> c27:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3ColorSensor.RedMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c27:p [dir=back,arrowtail=empty];
+	c31:p -> c28:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3ColorSensor.AmbientMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c28:p [dir=back,arrowtail=empty];
+	c31:p -> c29:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3ColorSensor.RGBMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c29:p [dir=back,arrowtail=empty];
+	c31:p -> c30:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3DevSensorMode extends ev3dev.hardware.EV3DevSysfs
-	c5:p -> c30:p [dir=back,arrowtail=empty];
+	c6:p -> c31:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3DevSensorMode implements lejos.robotics.SampleProvider
-	c51:p -> c30:p [dir=back,arrowtail=empty,style=dashed];
+	c67:p -> c31:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensor.ev3.EV3DevSensorMode implements ev3dev.hardware.sensor.SensorMode
-	c23:p -> c30:p [dir=back,arrowtail=empty,style=dashed];
+	c24:p -> c31:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensor.ev3.EV3GyroSensor extends ev3dev.hardware.sensor.BaseSensor
-	c22:p -> c31:p [dir=back,arrowtail=empty];
+	c23:p -> c32:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3GyroSensor.AngleMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c32:p [dir=back,arrowtail=empty];
+	c31:p -> c33:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3IRSensor extends ev3dev.hardware.sensor.BaseSensor
-	c22:p -> c33:p [dir=back,arrowtail=empty];
+	c23:p -> c34:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3IRSensor.DistanceMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c34:p [dir=back,arrowtail=empty];
+	c31:p -> c35:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3TouchSensor extends ev3dev.hardware.sensor.BaseSensor
-	c22:p -> c35:p [dir=back,arrowtail=empty];
+	c23:p -> c36:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3TouchSensor.TouchMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c36:p [dir=back,arrowtail=empty];
+	c31:p -> c37:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor extends ev3dev.hardware.sensor.BaseSensor
-	c22:p -> c37:p [dir=back,arrowtail=empty];
+	c23:p -> c38:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.DistanceMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c38:p [dir=back,arrowtail=empty];
+	c31:p -> c39:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor.ListenMode extends ev3dev.hardware.sensor.ev3.EV3DevSensorMode
-	c30:p -> c39:p [dir=back,arrowtail=empty];
+	c31:p -> c40:p [dir=back,arrowtail=empty];
 	//lejos.robotics.DCMotor implements lejos.robotics.BaseMotor
-	c43:p -> c47:p [dir=back,arrowtail=empty,style=dashed];
+	c59:p -> c63:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.RegulatedMotor implements lejos.robotics.BaseMotor
-	c43:p -> c50:p [dir=back,arrowtail=empty,style=dashed];
+	c59:p -> c66:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.RegulatedMotor implements lejos.robotics.Tachometer
-	c52:p -> c50:p [dir=back,arrowtail=empty,style=dashed];
+	c68:p -> c66:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.Tachometer implements lejos.robotics.Encoder
-	c48:p -> c52:p [dir=back,arrowtail=empty,style=dashed];
+	c64:p -> c68:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.filter.AbstractCalibrationFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c53:p [dir=back,arrowtail=empty];
+	c71:p -> c69:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.AbstractCalibrationFilter implements lejos.robotics.Calibrate
-	c44:p -> c53:p [dir=back,arrowtail=empty,style=dashed];
+	c60:p -> c69:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.filter.AbstractCalibrationFilter.CalibrationFileException extends java.lang.RuntimeException
-	c80:p -> c54:p [dir=back,arrowtail=empty];
+	c96:p -> c70:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.AbstractFilter implements lejos.robotics.SampleProvider
-	c51:p -> c55:p [dir=back,arrowtail=empty,style=dashed];
+	c67:p -> c71:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.filter.ConcatenationFilter implements lejos.robotics.SampleProvider
-	c51:p -> c56:p [dir=back,arrowtail=empty,style=dashed];
+	c67:p -> c72:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.filter.IntegrationFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c58:p [dir=back,arrowtail=empty];
+	c71:p -> c74:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.LinearCalibrationFilter extends lejos.robotics.filter.AbstractCalibrationFilter
-	c53:p -> c59:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.LowPassFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c60:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.MaximumFilter extends lejos.robotics.filter.SampleBuffer
-	c69:p -> c61:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.MeanFilter extends lejos.robotics.filter.SumFilter
-	c74:p -> c62:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.MedianFilter extends lejos.robotics.filter.SampleBuffer
-	c69:p -> c63:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.MinimumFilter extends lejos.robotics.filter.SampleBuffer
-	c69:p -> c64:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.ModulusFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c65:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.OffsetCorrectionFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c66:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.PublishedSource.Listener extends java.lang.Thread
-	c81:p -> c68:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.SampleBuffer extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c69:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.SampleThread extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c70:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.SampleThread.Runner extends java.lang.Thread
-	c81:p -> c71:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.SliceFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c72:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.SubscribedProvider implements lejos.robotics.SampleProvider
-	c51:p -> c73:p [dir=back,arrowtail=empty,style=dashed];
-	//lejos.robotics.filter.SumFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c74:p [dir=back,arrowtail=empty];
-	//lejos.robotics.filter.SumFilter.PlainSum extends lejos.robotics.filter.SampleBuffer
 	c69:p -> c75:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.LowPassFilter extends lejos.robotics.filter.AbstractFilter
+	c71:p -> c76:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.MaximumFilter extends lejos.robotics.filter.SampleBuffer
+	c85:p -> c77:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.MeanFilter extends lejos.robotics.filter.SumFilter
+	c90:p -> c78:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.MedianFilter extends lejos.robotics.filter.SampleBuffer
+	c85:p -> c79:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.MinimumFilter extends lejos.robotics.filter.SampleBuffer
+	c85:p -> c80:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.ModulusFilter extends lejos.robotics.filter.AbstractFilter
+	c71:p -> c81:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.OffsetCorrectionFilter extends lejos.robotics.filter.AbstractFilter
+	c71:p -> c82:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.PublishedSource.Listener extends java.lang.Thread
+	c97:p -> c84:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.SampleBuffer extends lejos.robotics.filter.AbstractFilter
+	c71:p -> c85:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.SampleThread extends lejos.robotics.filter.AbstractFilter
+	c71:p -> c86:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.SampleThread.Runner extends java.lang.Thread
+	c97:p -> c87:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.SliceFilter extends lejos.robotics.filter.AbstractFilter
+	c71:p -> c88:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.SubscribedProvider implements lejos.robotics.SampleProvider
+	c67:p -> c89:p [dir=back,arrowtail=empty,style=dashed];
+	//lejos.robotics.filter.SumFilter extends lejos.robotics.filter.AbstractFilter
+	c71:p -> c90:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.SumFilter.PlainSum extends lejos.robotics.filter.SampleBuffer
+	c85:p -> c91:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SumFilter.SmartSum extends lejos.robotics.filter.SampleBuffer
-	c69:p -> c76:p [dir=back,arrowtail=empty];
+	c85:p -> c92:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.ZeroFilter extends lejos.robotics.filter.AbstractFilter
-	c55:p -> c77:p [dir=back,arrowtail=empty];
+	c71:p -> c93:p [dir=back,arrowtail=empty];
 	// java.lang.Thread
-	c81 [label=<<table title="java.lang.Thread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Thread.html">
+	c97 [label=<<table title="java.lang.Thread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Thread.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Thread </td></tr>
 		</table></td></tr>
@@ -1718,7 +1960,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Thread.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.lang.RuntimeException
-	c80 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html">
+	c96 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RuntimeException </td></tr>
 		</table></td></tr>
@@ -1734,7 +1976,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.io.Closeable
-	c79 [label=<<table title="java.io.Closeable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Closeable.html">
+	c95 [label=<<table title="java.io.Closeable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Closeable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Closeable </td></tr>

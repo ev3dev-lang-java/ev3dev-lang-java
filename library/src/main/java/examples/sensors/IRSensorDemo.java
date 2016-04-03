@@ -1,11 +1,11 @@
-package ev3dev.examples.sensors;
+package examples.sensors;
 
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.sensor.ev3.EV3IRSensor;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.examples.sensors.IRSensorDemo
+//java -cp ev3-lang-java-0.2-SNAPSHOT.jar IRSensorDemo
 public class IRSensorDemo {
 
 	//Robot Configuration

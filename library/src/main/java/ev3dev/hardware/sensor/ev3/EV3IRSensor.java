@@ -59,8 +59,8 @@ public class EV3IRSensor extends BaseSensor {
 
 
 	
-	public EV3IRSensor(String sensorPort) {
-		super(sensorPort);
+	public EV3IRSensor(String portName) {
+        super(portName, "ev3-uart", "lego-ev3-ir");
 		init();
 	}
 
