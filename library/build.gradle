@@ -1,13 +1,22 @@
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.hidetake:gradle-ssh-plugin:2.0.0"
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'org.hidetake.ssh'
 
-// In this section you declare where to find the dependencies of your project
 repositories {
-    // Use 'jcenter' for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+    mavenCentral()
 }
 
 jar {
@@ -18,7 +27,24 @@ jar {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-// In this section you declare the dependencies for your production and test code
 dependencies {
+	compile("org.projectlombok:lombok:1.16.8")
+	compile("ch.qos.logback:logback-classic:1.1.6")
+}
 
+//Deploy remotely
+remotes {
+    ev3dev {
+        host = '192.168.1.41'
+        user = 'root'
+        password = 'r00tme'
+    }
+}
+
+task deploy << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            put from: './build/libs/ev3-lang-java-0.3.0-SNAPSHOT.jar', into: '/home/robot/'
+        }
+    }
 }
