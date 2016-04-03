@@ -2,7 +2,6 @@ package lejos.robotics.filter;
 
 import java.io.DataInputStream;
 import java.io.EOFException;
-import java.io.IOException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

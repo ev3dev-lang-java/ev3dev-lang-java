@@ -1,7 +1,5 @@
 package ev3dev.hardware.motor;
 
-import ev3dev.hardware.EV3DevDevice;
-
 /**
  * Abstraction for a Large Lego EV3/NXT motor.
  * 

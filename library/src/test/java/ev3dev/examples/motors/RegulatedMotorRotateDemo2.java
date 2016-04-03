@@ -37,5 +37,8 @@ public class RegulatedMotorRotateDemo2 {
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         System.out.println(Battery.getInstance().getVoltage());
+        
+        mA.close();
+        System.exit(0);
     }
 }

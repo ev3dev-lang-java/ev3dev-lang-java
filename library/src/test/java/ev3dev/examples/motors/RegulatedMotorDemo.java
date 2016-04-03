@@ -2,7 +2,6 @@ package ev3dev.examples.motors;
 
 import lejos.utility.Delay;
 import ev3dev.hardware.Battery;
-import ev3dev.hardware.Sound;
 import ev3dev.hardware.port.MotorPort;
 import ev3dev.hardware.motor.EV3MediumRegulatedMotor;
 
@@ -32,6 +31,7 @@ public class RegulatedMotorDemo {
 		mA.stop();
         System.out.println(Battery.getInstance().getVoltage());
 
+        mA.close();
         System.exit(0);
     }
 }

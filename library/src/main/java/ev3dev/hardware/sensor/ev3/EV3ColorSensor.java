@@ -7,7 +7,6 @@ import ev3dev.hardware.sensor.SensorMode;
 import lejos.robotics.Color;
 import lejos.robotics.ColorIdentifier;
 import lejos.robotics.LampController;
-import lejos.robotics.SampleProvider;
 
 
 /**

@@ -3,7 +3,6 @@ package ev3dev.hardware.sensor;
 import java.util.ArrayList;
 
 import lejos.utility.Delay;
-import ev3dev.hardware.DeviceException;
 import ev3dev.hardware.EV3DevDevice;
 
 

@@ -2,7 +2,6 @@ package ev3dev.hardware.sensor.ev3;
 
 import java.io.File;
 
-import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
@@ -109,8 +108,8 @@ public class EV3IRSensor extends BaseSensor {
             //switchMode(IR_PROX, SWITCH_DELAY);
     		float raw = readFloat(this.pathDevice + "/" +  VALUE0);
 
-            if (raw<5) sample[offset]=0;
-            else if (raw>55) sample[offset]=Float.POSITIVE_INFINITY;
+            if (raw < 5) sample[offset]=0;
+            else if (raw > 55) sample[offset]=Float.POSITIVE_INFINITY;
             else sample[offset]= raw * toSI;
         }
 
