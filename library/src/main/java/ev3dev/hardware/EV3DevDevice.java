@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class EV3DevDevice extends EV3DevSysfs {
 
-    private final String DEVICE_ROOT_PATH = "/sys/class/";
     private final String ADDRESS = "address"; 
 	protected File PATH_DEVICE = null;
     private boolean connected = false;   

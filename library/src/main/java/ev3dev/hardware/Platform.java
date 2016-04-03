@@ -12,7 +12,7 @@ import java.io.File;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Platform extends EV3DevSysfs implements SupportedPlatform{
+public class Platform implements SupportedPlatform{
 
 	public final String DEVICE_ROOT_PATH = "/sys/class/";
 

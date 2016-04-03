@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Device implements Closeable {
+public class Device extends Platform implements Closeable {
 
     protected ArrayList<Closeable> closeList = new ArrayList<Closeable>();
 

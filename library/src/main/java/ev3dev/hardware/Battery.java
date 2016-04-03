@@ -9,7 +9,7 @@ package ev3dev.hardware;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Battery extends Platform implements Power{
+public class Battery extends EV3DevSysfs implements Power{
 
 	private String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/";
 	private final String EV3BRICK_BATTERY_OBJECT = "legoev3-battery";
@@ -30,11 +30,12 @@ public class Battery extends Platform implements Power{
 
     // Prevent duplicate objects
     private Battery() {
-    	if(this.getPlatform().equals(EV3BRICK)){
+    	final String platform = this.getPlatform();
+    	if(platform.equals(EV3BRICK)){
     		BATTERY_PATH += EV3BRICK_BATTERY_OBJECT;
-    	} else if(this.getPlatform().equals(PISTORMS)){
+    	} else if(platform.equals(PISTORMS)){
     		BATTERY_PATH += PISTORMS_BATTERY_OBJECT;
-    	} else if(this.getPlatform().equals(BRICKPI)){
+    	} else if(platform.equals(BRICKPI)){
     		BATTERY_PATH += BRICKPI_BATTERY_OBJECT;
     	}
     }

@@ -11,7 +11,7 @@ import lejos.utility.Delay;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Sound extends Platform {
+public class Sound extends EV3DevSysfs {
 
     public final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
     public final static String TONE_PATH = SOUND_PATH + "tone";

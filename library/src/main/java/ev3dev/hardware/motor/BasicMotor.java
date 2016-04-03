@@ -1,6 +1,7 @@
 package ev3dev.hardware.motor;
 
 import lejos.robotics.DCMotor;
+import ev3dev.hardware.DeviceNotSupportedException;
 import ev3dev.hardware.EV3DevDevice;
 
 /** 
@@ -26,6 +27,10 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	
 	public BasicMotor(String portName) {
 		super(SYSTEM_PORT_CLASS_NAME, portName);
+		//TODO: It is necessary to improve this part.
+    	if(!this.getPlatform().equals(EV3BRICK)){
+    		throw new DeviceNotSupportedException("This device is not supported in this platform");
+    	}
 		this.setStringAttribute(MODE,SYSTEM_CLASS_NAME);
 		this.connect(SYSTEM_CLASS_NAME, portName);
 	}
