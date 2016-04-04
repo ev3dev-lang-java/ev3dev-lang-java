@@ -1,7 +1,7 @@
 package ev3dev.hardware.motor;
 
 import lejos.robotics.RegulatedMotor;
-import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevMotorDevice;
 
 /**
  * Abstraction for a Regulated motor motor.
@@ -33,7 +33,7 @@ import ev3dev.hardware.EV3DevDevice;
  * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  */
-public abstract class BaseRegulatedMotor extends EV3DevDevice implements RegulatedMotor {
+public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
 
     protected float speed = 360;
     protected int acceleration = 6000;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Juan Antonio Breña Moral
  *
  */
-public class EV3DevDevice extends EV3DevSysfs {
+public class EV3DevMotorDevice extends EV3DevSysfs {
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
     private final String ADDRESS = "address"; 
@@ -24,7 +24,7 @@ public class EV3DevDevice extends EV3DevSysfs {
 	 * @param portName The port where is connected the sensor or the actuator.
 	 * @throws DeviceException
 	 */
-    public EV3DevDevice(final String type, final String portName) throws DeviceException {
+    public EV3DevMotorDevice(final String type, final String portName) throws DeviceException {
 
 
 		//This method is oriented for EV3Brick, but for Pi Boards, it is necessary to detect in a previous action
@@ -48,7 +48,7 @@ public class EV3DevDevice extends EV3DevSysfs {
      * @throws DeviceException
      * @throws DeviceNotSupportedException
      */
-    public EV3DevDevice(final String type, final String portName, final String[] supportedPlatforms) throws DeviceException, DeviceNotSupportedException {
+    public EV3DevMotorDevice(final String type, final String portName, final String[] supportedPlatforms) throws DeviceException, DeviceNotSupportedException {
 
     	boolean detectedPlatform = false;
     	final String localPlatform = this.getPlatform();

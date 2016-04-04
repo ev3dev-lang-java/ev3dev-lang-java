@@ -1,8 +1,7 @@
 package ev3dev.hardware.motor;
 
 import lejos.robotics.DCMotor;
-import ev3dev.hardware.DeviceNotSupportedException;
-import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevMotorDevice;
 
 /** 
  * Abstraction for basic motor operations.
@@ -11,7 +10,7 @@ import ev3dev.hardware.EV3DevDevice;
  * @author Juan Antonio Breña Moral
  *
  */
-public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
+public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 
 	// /sys/class attributes
     private final static String SYSTEM_CLASS_NAME = "dc-motor";
