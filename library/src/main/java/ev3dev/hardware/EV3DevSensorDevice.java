@@ -31,27 +31,30 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
 	 */
     public EV3DevSensorDevice(final String portName, final String mode, final String device) throws DeviceException {
 
+		//EV3 Brick detect in a automatic way the sensors
+		if(this.getPlatform().equals(EV3BRICK)){
 
-		//This method is oriented for EV3Brick, but for Pi Boards, it is necessary to detect in a previous action
-		if(this.detect(LEGO_PORT, portName)){
-			log.info("detected lego port");
-			log.info("" + this.PATH_DEVICE);
-
-
-			//TODO Improve this syntax
-			if(!this.getPlatform().equals(EV3BRICK)){
-				this.writeString(this.PATH_DEVICE + "/" +  MODE, mode);
-				this.writeString(this.PATH_DEVICE + "/" +  DEVICE, device);
-			}
-
-			if(this.detect(LEGO_SENSOR, portName)) {
-
-			} else {
+			if(!this.detect(LEGO_SENSOR, portName)) {
 				throw new DeviceException("The device was not detected in: " + portName);
 			}
 		}else {
-			throw new DeviceException("The device was not detected in: " + portName);
+
+			//With Pi Boards, it is necessary to detect in 2 paths the sensors
+			if(this.detect(LEGO_PORT, portName)){
+				log.info("detected lego port");
+				log.info("" + this.PATH_DEVICE);
+
+				this.writeString(this.PATH_DEVICE + "/" +  MODE, mode);
+				this.writeString(this.PATH_DEVICE + "/" +  DEVICE, device);
+
+				if(this.detect(LEGO_SENSOR, portName)) {
+					throw new DeviceException("The device was not detected in: " + portName);
+				}
+			}else {
+				throw new DeviceException("The device was not detected in: " + portName);
+			}
 		}
+
     }
 
     /**

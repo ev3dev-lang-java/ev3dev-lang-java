@@ -13,9 +13,9 @@ public class Battery extends EV3DevSysfs implements Power{
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
 	private String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/";
-	private final String EV3BRICK_BATTERY_OBJECT = "legoev3-battery";
-	private final String PISTORMS_BATTERY_OBJECT = "pistorm-battery";
-	private final String BRICKPI_BATTERY_OBJECT = "brickpi-battery";
+	private final String EV3BRICK_BATTERY_OBJECT = "legoev3-battery/";
+	private final String PISTORMS_BATTERY_OBJECT = "pistorm-battery/";
+	private final String BRICKPI_BATTERY_OBJECT = "brickpi-battery/";
 	private final String VOLTAGE = "voltage_now";
 	private final String CURRENT = "current_now";
 	
