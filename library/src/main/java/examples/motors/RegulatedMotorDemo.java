@@ -10,7 +10,7 @@ public class RegulatedMotorDemo {
 	
     public static void main(String[] args) {
     	
-        final EV3MediumRegulatedMotor mA = new EV3MediumRegulatedMotor(MotorPort.C);
+        final EV3MediumRegulatedMotor mA = new EV3MediumRegulatedMotor(MotorPort.A);
         mA.setSpeed(500);
       
         int ONE_SECOND = 1000;

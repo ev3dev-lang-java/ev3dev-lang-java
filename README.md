@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java 8 library designed to interact with hardware managed by [EV3Dev](http://www.ev3dev.org/) using the [LeJOS](http://www.lejos.org/) way.
+*EV3Dev-lang-Java* is a Java library designed to interact with hardware managed by [EV3Dev](http://www.ev3dev.org/) using the [LeJOS](http://www.lejos.org/) way.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
 
@@ -11,6 +11,9 @@ git clone https://github.com/jabrena/ev3dev-lang-java.git
 cd library
 ant -buildfile tools.xml uml
 ```
+
+ev3dev kernel support: 3.16.7-ckt26-10-ev3dev-ev3
+https://github.com/ev3dev/ev3dev/milestones/ev3dev-next
 
 # Roadmap
 

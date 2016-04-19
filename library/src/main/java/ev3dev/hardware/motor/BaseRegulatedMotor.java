@@ -74,7 +74,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
 	/**
      * Close the motor regulator. Release the motor from regulation and free any
-     * associated resources.
+//     * associated resources.
      */
     public void close() {
         super.close();

@@ -15,7 +15,7 @@ public class RegulatedMotorRotateDemo2 {
     	
     	final int degreesToTurn = 90;
     	
-        final EV3MediumRegulatedMotor mA = new EV3MediumRegulatedMotor(MotorPort.C);
+        final EV3MediumRegulatedMotor mA = new EV3MediumRegulatedMotor(MotorPort.A);
         mA.setSpeed(100);
 
         sound.beep();
@@ -25,7 +25,9 @@ public class RegulatedMotorRotateDemo2 {
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         mA.rotate(degreesToTurn);
-        sound.beep();  
+        sound.beep();
+
+        /*
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         mA.rotate(degreesToTurn);
@@ -37,6 +39,7 @@ public class RegulatedMotorRotateDemo2 {
         Delay.msDelay(1000);
         System.out.println(mA.getTachoCount());
         System.out.println(Battery.getInstance().getVoltage());
+        */
         
         mA.close();
         System.exit(0);

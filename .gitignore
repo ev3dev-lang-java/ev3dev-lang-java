@@ -16,3 +16,7 @@ docs/api/*
 target/
 .settings/
 bin/
+
+.idea
+.gradle
+*.iml

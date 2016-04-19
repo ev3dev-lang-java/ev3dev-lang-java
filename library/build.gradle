@@ -38,7 +38,7 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
                 'Implementation-Version': version,
-                'Main-Class': 'examples.motors.LargeMotorTest'
+                'Main-Class': 'examples.motors.RegulatedMotorDemo'
     }
     baseName = 'ev3-lang-java' + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
