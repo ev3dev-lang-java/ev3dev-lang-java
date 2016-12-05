@@ -1,4 +1,9 @@
 .idea
-node_modules
-*.class
+library
+target
+.gradle
+build
+*.iml
+.settings
+bin
 
