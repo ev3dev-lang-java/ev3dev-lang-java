@@ -1,1 +1,8 @@
-/target
+.idea
+library
+target
+.gradle
+build
+*.iml
+.settings
+bin
