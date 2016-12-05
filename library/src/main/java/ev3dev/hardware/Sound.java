@@ -31,7 +31,9 @@ public class Sound extends EV3DevSysfs {
 
     // Prevent duplicate objects
     private Sound() {
-
+    	if(!this.getPlatform().equals(EV3BRICK)){
+    		throw new DeviceNotSupportedException("This device is not supported in this platform");
+    	}
     }
     
     /**

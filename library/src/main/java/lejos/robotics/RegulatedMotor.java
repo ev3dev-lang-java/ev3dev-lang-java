@@ -8,7 +8,7 @@ import java.io.Closeable;
  * 
  * @author dsturze
  */
-public interface RegulatedMotor extends BaseMotor, Tachometer, Closeable {
+public interface RegulatedMotor extends BaseMotor, Tachometer {
 
   /**
    * Adds a listener object that will be notified when rotation has started or stopped 

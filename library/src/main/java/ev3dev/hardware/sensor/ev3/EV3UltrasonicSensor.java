@@ -3,8 +3,6 @@ package ev3dev.hardware.sensor.ev3;
 
 import java.io.File;
 
-import ev3dev.utils.Sysfs;
-import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
@@ -80,7 +78,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
    * @param port
    */
   public EV3UltrasonicSensor(final String portName) {
-    super(portName);
+    super(portName, "ev3-uart", "lego-ev3-us");
     init();
   }
 

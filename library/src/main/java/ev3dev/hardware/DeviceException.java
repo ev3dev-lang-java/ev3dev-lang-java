@@ -2,7 +2,9 @@ package ev3dev.hardware;
 
 /**
  * Exception thrown when errors are detected in a sensor device state.
- * @author andy
+ * 
+ * @author Andy Shaw
+ * @author Juan Antonio Brenha Moral
  *
  */
 public class DeviceException extends RuntimeException

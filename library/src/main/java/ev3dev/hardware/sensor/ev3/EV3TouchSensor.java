@@ -2,7 +2,6 @@ package ev3dev.hardware.sensor.ev3;
 
 import java.io.File;
 
-import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 
@@ -41,6 +40,7 @@ import ev3dev.hardware.sensor.SensorMode;
  * See <a href="http://www.ev-3.net/en/archives/846"> Sensor Product page </a>
  * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
  *      leJOS sensor framework</a>
+ * See <a href="http://www.ev3dev.org/docs/sensors/#uart-sensors"> The UART Sensors</a>
  * See {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
  * 
@@ -49,9 +49,12 @@ import ev3dev.hardware.sensor.SensorMode;
  * 
  */
 public class EV3TouchSensor extends BaseSensor {
-	
+
+    //private final String device = "lego-ev3-touch";
+    //private final String mode = "ev3-uart";
+
     public EV3TouchSensor(final String portName) {
-		super(portName);
+		super(portName, "ev3-uart", "lego-ev3-touch");
 		init();
 	}
 

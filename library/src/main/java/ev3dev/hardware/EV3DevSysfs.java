@@ -9,13 +9,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * The class responsible to interact with Sysfs on EV3Dev
  * 
  * @author Juan Antonio Breña Moral
  *
  */
-public class EV3DevSysfs extends Device {
+public @Slf4j class EV3DevSysfs extends Device {
 
 	/**
 	 * Write a value in a file.
@@ -25,6 +27,7 @@ public class EV3DevSysfs extends Device {
 	 * @return A boolean value if the operation was written or not.
 	 */
 	public boolean writeString(final String filePath, final String value) {
+		log.debug("echo " + value + " > " + filePath);
 		try {
 			File mpuFile = new File(filePath);
 			if(mpuFile.canWrite()) {
@@ -48,6 +51,7 @@ public class EV3DevSysfs extends Device {
 	 * @return value from attribute
 	 */
 	public String readString(final String filePath) {
+		log.debug("cat " + filePath);
 		String value;
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -80,6 +84,7 @@ public class EV3DevSysfs extends Device {
 	public ArrayList<File> getElements(final String path){
 		final File f = new File(path);
 		ArrayList<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
+		log.debug(path);
 		return files;	
 	}
 	

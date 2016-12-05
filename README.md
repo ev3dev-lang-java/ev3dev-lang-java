@@ -12,10 +12,12 @@ cd library
 ant -buildfile tools.xml uml
 ```
 
+ev3dev kernel support: 3.16.7-ckt26-10-ev3dev-ev3
+https://github.com/ev3dev/ev3dev/milestones/ev3dev-next
+
 # Roadmap
 
 * Support for PiStorm & BrickPi+
-* Support for Java 8
 * Support for more Gyro Sensors
 * Support for RPLidar
 * Create repository for navigation
@@ -54,7 +56,7 @@ Linux ev3dev 3.16.7-ckt21-9-ev3dev-ev3 #1 PREEMPT Tue Dec 15 15:16:17 CST 2015 a
 
 If you have your OS for EV3 updated, continue with your Java project.
 
-Create a Java Maven project:
+Create a Gradle project for Java:
 
 ``` bash
 mvn archetype:generate 

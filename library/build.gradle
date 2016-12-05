@@ -1,0 +1,63 @@
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.hidetake:gradle-ssh-plugin:2.0.0"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.hidetake.ssh'
+
+repositories {
+    mavenCentral()
+}
+
+version = '0.3.0'
+jar {
+    baseName = 'ev3-lang-java'
+    version =  version + '-SNAPSHOT'
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+	compile("org.projectlombok:lombok:1.16.8")
+	compile("ch.qos.logback:logback-classic:1.1.6")
+}
+
+//Create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'examples.motors.RegulatedMotorDemo'
+    }
+    baseName = 'ev3-lang-java' + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+//Deploy remotely
+remotes {
+    ev3dev {
+        host = '192.168.1.41'
+        user = 'root'
+        password = 'r00tme'
+    }
+}
+
+task deploy << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            put from: './build/libs/ev3-lang-java-all-0.3.0.jar', into: '/home/robot/'
+        }
+    }
+}

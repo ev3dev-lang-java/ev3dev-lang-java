@@ -12,7 +12,10 @@ package ev3dev.hardware;
 public class Battery extends EV3DevSysfs implements Power{
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
-	private final String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/legoev3-battery/";
+	private String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/";
+	private final String EV3BRICK_BATTERY_OBJECT = "legoev3-battery/";
+	private final String PISTORMS_BATTERY_OBJECT = "pistorm-battery/";
+	private final String BRICKPI_BATTERY_OBJECT = "brickpi-battery/";
 	private final String VOLTAGE = "voltage_now";
 	private final String CURRENT = "current_now";
 	
@@ -28,7 +31,14 @@ public class Battery extends EV3DevSysfs implements Power{
 
     // Prevent duplicate objects
     private Battery() {
-
+    	final String platform = this.getPlatform();
+    	if(platform.equals(EV3BRICK)){
+    		BATTERY_PATH += EV3BRICK_BATTERY_OBJECT;
+    	} else if(platform.equals(PISTORMS)){
+    		BATTERY_PATH += PISTORMS_BATTERY_OBJECT;
+    	} else if(platform.equals(BRICKPI)){
+    		BATTERY_PATH += BRICKPI_BATTERY_OBJECT;
+    	}
     }
 	
 	/**
@@ -44,7 +54,10 @@ public class Battery extends EV3DevSysfs implements Power{
 	 * @return current
 	 */
 	public float getBatteryCurrent() {
-		return readInteger(BATTERY_PATH +  CURRENT);
+    	if(this.getPlatform().equals(EV3BRICK)){
+    		return readInteger(BATTERY_PATH +  CURRENT);
+    	}
+    	return -1f;
 	}
 
 }

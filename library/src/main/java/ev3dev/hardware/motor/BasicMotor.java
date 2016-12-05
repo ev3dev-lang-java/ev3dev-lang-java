@@ -1,7 +1,7 @@
 package ev3dev.hardware.motor;
 
 import lejos.robotics.DCMotor;
-import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevMotorDevice;
 
 /** 
  * Abstraction for basic motor operations.
@@ -10,8 +10,9 @@ import ev3dev.hardware.EV3DevDevice;
  * @author Juan Antonio Breña Moral
  *
  */
-public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
+public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 
+	// /sys/class attributes
     private final static String SYSTEM_CLASS_NAME = "dc-motor";
     private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
 	private final String MODE = "mode";
@@ -23,9 +24,12 @@ public abstract class BasicMotor extends EV3DevDevice implements DCMotor {
 	private final String STOP = "stop";
 	private final String STATE = "state";
 	private final String STATE_RUNNING = "running";
+
+	//This feature is only allowed with EV3Brick
+	private final static String[] SUPPORTED_PLATFORMS = {EV3BRICK};
 	
 	public BasicMotor(String portName) {
-		super(SYSTEM_PORT_CLASS_NAME, portName);
+		super(SYSTEM_PORT_CLASS_NAME, portName, SUPPORTED_PLATFORMS);
 		this.setStringAttribute(MODE,SYSTEM_CLASS_NAME);
 		this.connect(SYSTEM_CLASS_NAME, portName);
 	}
