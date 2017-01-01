@@ -1,9 +1,9 @@
 package lejos.robotics.filter;
 
+import lejos.robotics.SampleProvider;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import lejos.robotics.SampleProvider;
 
 /**
  * This filter is used to calibrate sensors for offset and scale errors using

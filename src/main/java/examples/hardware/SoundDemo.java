@@ -1,9 +1,9 @@
 package examples.hardware;
 
-import java.io.File;
-
+import ev3dev.hardware.actuator.Sound;
 import lejos.utility.Delay;
-import ev3dev.hardware.Sound;
+
+import java.io.File;
 
 //java -cp ev3-lang-java-0.3.0-SNAPSHOT.jar SoundDemo
 public class SoundDemo {

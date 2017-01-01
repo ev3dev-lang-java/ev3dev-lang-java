@@ -1,16 +1,15 @@
 package examples.hardware;
 
 import ev3dev.hardware.Platform;
+import lombok.extern.slf4j.Slf4j;
 
-//gradle clean build
-//java -cp ./build/libs/ev3-lang-java-0.3.0-SNAPSHOT.jar PlatformTest
+@Slf4j
 public class PlatformTest {
 
 	public static void main(String[] args) {
-		Platform platform = new Platform();
-		String value = platform.getPlatform();
-		System.out.println(value);
-		System.exit(0);
+		final Platform platform = new Platform();
+		final String value = platform.getPlatform();
+		log.info("Using the platform: {}", value);
 	}
 
 }

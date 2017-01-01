@@ -1,11 +1,11 @@
 package ev3dev.hardware.sensor.ev3;
 
 
-import java.io.File;
-
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
+
+import java.io.File;
 
 /**
  * <b>Lego EV3 Ultrasonic sensor</b><br>

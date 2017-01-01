@@ -1,8 +1,8 @@
 package ev3dev.hardware;
 
-import java.io.File;
-
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.File;
 
 /**
  * This class been designed to discover if the library is used in:
@@ -39,22 +39,23 @@ public @Slf4j class Platform implements SupportedPlatform{
 	public String getPlatform(){
 		
 		final String DEVICE_ROOT_PATH = "/sys/class/";
+
 		final String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/";
-		final String EV3BRICK_BATTERY_PATH = BATTERY_PATH + "legoev3-battery";
-		final String PISTORMS_BATTERY_PATH = BATTERY_PATH + "pistorm-battery";
-		final String BRICKPI_BATTERY_PATH = BATTERY_PATH + "brickpi-battery";
-		
-		if(existPath(EV3BRICK_BATTERY_PATH)){
-			log.debug("Detected the platform: " + EV3BRICK);
+		final String EV3BRICK_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "legoev3-battery";
+		final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "pistorm-battery";
+		final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "brickpi-battery";
+
+		if(existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
+			log.trace("Detected platform: " + EV3BRICK);
 			return EV3BRICK;
-		} else if(existPath(PISTORMS_BATTERY_PATH)){
-			log.debug("Detected the platform: " + PISTORMS);
+		} else if(existPath(PISTORMS_DISCOVERY_PATTERN_PATH)){
+			log.trace("Detected platform: " + PISTORMS);
 			return PISTORMS;
-		} else if(existPath(BRICKPI_BATTERY_PATH)){
-			log.debug("Detected the platform: " + BRICKPI);
+		} else if(existPath(BRICKPI_DISCOVERY_PATTERN_PATH)){
+			log.trace("Detected platform: " + BRICKPI);
 			return BRICKPI;
 		} else {
-			throw new RuntimeException("Platform not supported");
+			throw new PlatformNotSupportedException("Platform not supported");
 		}
 	}
 	

@@ -1,9 +1,12 @@
-package ev3dev.hardware;
+package ev3dev.hardware.actuator;
 
-import java.io.*;
-
+import ev3dev.hardware.DeviceNotSupportedException;
+import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.utils.Shell;
 import lejos.utility.Delay;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Class that provides access methods for the local audio device

@@ -1,4 +1,4 @@
-package ev3dev.hardware;
+package ev3dev.hardware.sensor;
 
 public interface Power {
 	

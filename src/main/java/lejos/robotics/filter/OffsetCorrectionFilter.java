@@ -1,9 +1,9 @@
 package lejos.robotics.filter;
 
+import lejos.robotics.SampleProvider;
+
 import java.util.LinkedList;
 import java.util.Queue;
-
-import lejos.robotics.SampleProvider;
 
 /**
  * The OffsetCorrectionFilter is used to correct sensors that have an unknown

@@ -1,8 +1,8 @@
 package examples.motors;
 
-import lejos.utility.Delay;
+import ev3dev.hardware.actuator.motor.UnregulatedMotor;
 import ev3dev.hardware.port.MotorPort;
-import ev3dev.hardware.motor.UnregulatedMotor;
+import lejos.utility.Delay;
 
 //java -cp ev3-lang-java-0.2-SNAPSHOT.jar UnregulatedMotorDemo2
 public class UnregulatedMotorDemo2 {

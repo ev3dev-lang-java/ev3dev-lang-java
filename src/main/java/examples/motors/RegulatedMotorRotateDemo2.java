@@ -1,10 +1,9 @@
 package examples.motors;
 
-import lejos.utility.Delay;
-import ev3dev.hardware.Battery;
-import ev3dev.hardware.Sound;
+import ev3dev.hardware.actuator.Sound;
+import ev3dev.hardware.actuator.motor.EV3MediumRegulatedMotor;
 import ev3dev.hardware.port.MotorPort;
-import ev3dev.hardware.motor.EV3MediumRegulatedMotor;
+import lejos.utility.Delay;
 
 //java -cp ev3-lang-java-0.2-SNAPSHOT.jar RegulatedMotorRotateDemo2
 public class RegulatedMotorRotateDemo2 {

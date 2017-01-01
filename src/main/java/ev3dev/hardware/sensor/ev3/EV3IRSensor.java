@@ -1,9 +1,9 @@
 package ev3dev.hardware.sensor.ev3;
 
-import java.io.File;
-
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
+
+import java.io.File;
 
 /**
  * <b>EV3 Infra Red sensor</b><br>

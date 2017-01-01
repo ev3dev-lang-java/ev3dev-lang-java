@@ -1,5 +1,7 @@
 package lejos.robotics.filter;
 
+import lejos.utility.Delay;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,13 +11,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import lejos.utility.Delay;
+import java.util.*;
 
 public class PublishedSource {
 	protected static final int MAX_PACKET_SIZE = 64;

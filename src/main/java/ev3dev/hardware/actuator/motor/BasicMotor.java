@@ -1,7 +1,7 @@
-package ev3dev.hardware.motor;
+package ev3dev.hardware.actuator.motor;
 
-import lejos.robotics.DCMotor;
 import ev3dev.hardware.EV3DevMotorDevice;
+import lejos.robotics.DCMotor;
 
 /** 
  * Abstraction for basic motor operations.

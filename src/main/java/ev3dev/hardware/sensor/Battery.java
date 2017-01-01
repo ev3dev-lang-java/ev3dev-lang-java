@@ -1,4 +1,6 @@
-package ev3dev.hardware;
+package ev3dev.hardware.sensor;
+
+import ev3dev.hardware.EV3DevSysfs;
 
 /**
  * The class Battery interacts with EV3Dev to get information about battery used. 
@@ -9,7 +11,7 @@ package ev3dev.hardware;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Battery extends EV3DevSysfs implements Power{
+public class Battery extends EV3DevSysfs implements Power {
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
 	private String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/";
@@ -46,7 +48,7 @@ public class Battery extends EV3DevSysfs implements Power{
 	 * @return voltage
 	 */
 	public float getVoltage() {
-		return readInteger(BATTERY_PATH +  VOLTAGE);
+		return readFloat(BATTERY_PATH +  VOLTAGE);
 	}
 
 	/**
@@ -55,7 +57,7 @@ public class Battery extends EV3DevSysfs implements Power{
 	 */
 	public float getBatteryCurrent() {
     	if(this.getPlatform().equals(EV3BRICK)){
-    		return readInteger(BATTERY_PATH +  CURRENT);
+    		return readFloat(BATTERY_PATH +  CURRENT);
     	}
     	return -1f;
 	}

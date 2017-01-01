@@ -1,8 +1,8 @@
 package ev3dev.hardware.sensor.ev3;
 
-import lejos.robotics.SampleProvider;
 import ev3dev.hardware.EV3DevSysfs;
 import ev3dev.hardware.sensor.SensorMode;
+import lejos.robotics.SampleProvider;
 
 /**
  * 

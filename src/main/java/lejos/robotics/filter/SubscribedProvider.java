@@ -1,13 +1,12 @@
 package lejos.robotics.filter;
 
+import lejos.robotics.SampleProvider;
+
 import java.io.DataInputStream;
 import java.io.EOFException;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import lejos.robotics.SampleProvider;
 
 public class SubscribedProvider implements SampleProvider {
 	protected DateFormat formatter = new SimpleDateFormat("HH:mm:ss:SSS");

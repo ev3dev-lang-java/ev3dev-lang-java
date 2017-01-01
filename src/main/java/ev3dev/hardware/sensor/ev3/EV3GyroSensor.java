@@ -1,10 +1,10 @@
 package ev3dev.hardware.sensor.ev3;
 
-import java.io.File;
-
-import lejos.robotics.SampleProvider;
 import ev3dev.hardware.sensor.BaseSensor;
 import ev3dev.hardware.sensor.SensorMode;
+import lejos.robotics.SampleProvider;
+
+import java.io.File;
 
 /**
  * <b>EV3 Gyro sensor</b><br>

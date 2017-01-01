@@ -1,9 +1,9 @@
 package ev3dev.hardware.sensor;
 
-import java.util.ArrayList;
-
-import lejos.utility.Delay;
 import ev3dev.hardware.EV3DevSensorDevice;
+import lejos.utility.Delay;
+
+import java.util.ArrayList;
 
 
 public class BaseSensor extends EV3DevSensorDevice implements SensorModes {

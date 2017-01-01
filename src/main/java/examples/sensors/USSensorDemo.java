@@ -1,10 +1,9 @@
 package examples.sensors;
 
-import lejos.robotics.SampleProvider;
-import lejos.utility.Delay;
-import ev3dev.hardware.Battery;
 import ev3dev.hardware.port.SensorPort;
 import ev3dev.hardware.sensor.ev3.EV3UltrasonicSensor;
+import lejos.robotics.SampleProvider;
+import lejos.utility.Delay;
 
 //java -cp ev3-lang-java-0.2-SNAPSHOT.jar ev3dev.java.examples.sensors.USSensorDemo
 public class USSensorDemo {
@@ -29,7 +28,6 @@ public class USSensorDemo {
             distanceValue = (int)sample[0];
         	
         	System.out.println("Iteration: " + i);
-            System.out.println("Battery: " + Battery.getInstance().getVoltage());
             System.out.println("Touch: " + distanceValue);
             System.out.println();
             
