@@ -1,4 +1,44 @@
+//Gradle file library ev3dev-lang-java
+//Author: Juan Antonio Breña Moral
+//Last update: 01/01/2017
 
+version = '0.3.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.projectlombok:lombok:1.16.8")
+    compile("ch.qos.logback:logback-classic:1.1.6")
+}
+
+//Compile
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+//Jar
+jar {
+    baseName = "${rootProject.name}"
+    manifest {
+        from file("${projectDir}/META-INF/MANIFEST.MF")
+    }
+}
+
+//Fat Jar
+task fatJar(type: Jar) {
+    baseName = "${rootProject.name}" + "-all"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+//Deploy on Brick
 buildscript {
     repositories {
         maven {
@@ -10,54 +50,22 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'org.hidetake.ssh'
 
-repositories {
-    mavenCentral()
-}
-
-version = '0.3.0'
-jar {
-    baseName = 'ev3-lang-java'
-    version =  version + '-SNAPSHOT'
-}
-
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
-
-dependencies {
-	compile("org.projectlombok:lombok:1.16.8")
-	compile("ch.qos.logback:logback-classic:1.1.6")
-}
-
-//Create a single Jar with all dependencies
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Jar File Example',
-                'Implementation-Version': version,
-                'Main-Class': 'examples.motors.RegulatedMotorDemo'
-    }
-    baseName = 'ev3-lang-java' + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
-
-//Deploy remotely
 remotes {
     ev3dev {
-        host = '192.168.1.41'
-        user = 'root'
-        password = 'r00tme'
+        host = '192.168.1.206'
+        user = 'robot'
+        password = 'maker'
     }
 }
 
 task deploy << {
     ssh.run {
         session(remotes.ev3dev) {
-            put from: './build/libs/ev3-lang-java-all-0.3.0.jar', into: '/home/robot/'
+            put from: "./build/libs/" + "${rootProject.name}" + "-all-" + version + ".jar", into: "/home/robot/"
         }
     }
 }
+
+deploy.dependsOn clean, fatJar

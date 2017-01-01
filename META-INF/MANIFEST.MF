@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: EV3Dev-lang-java
+Implementation-Version: 0.3.0
+Main-Class: examples.motors.RegulatedMotorDemo
+
