@@ -1,9 +1,10 @@
 package ev3dev.hardware;
 
+import ev3dev.utils.Sysfs;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Base class to interact with EV3Dev Sensors
@@ -11,10 +12,10 @@ import java.util.ArrayList;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
+public @Slf4j class EV3DevSensorDevice extends EV3DevDevice {
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
-	private final String LEGO_PORT = "lego-port";
+	private final String LEGO_PORT = "lego-ports";
 	private final String LEGO_SENSOR = "lego-sensor";
     private final String ADDRESS = "address";
 	private final String MODE = "mode";
@@ -25,15 +26,15 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
 
 	/**
 	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
-	 * It is necessary to indicate the type and port.
+	 * It is necessary to indicate the type and ports.
 	 *
-	 * @param portName The port where is connected the sensor or the actuator.
+	 * @param portName The ports where is connected the sensors or the actuators.
 	 * @throws DeviceException
 	 */
     public EV3DevSensorDevice(final String portName, final String mode, final String device) throws DeviceException {
 
 		//EV3 Brick detect in a automatic way the sensors
-		if(this.getPlatform().equals(EV3BRICK)){
+		if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
 
 			if(!this.detect(LEGO_SENSOR, portName)) {
 				throw new DeviceException("The device was not detected in: " + portName);
@@ -42,11 +43,11 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
 
 			//With Pi Boards, it is necessary to detect in 2 paths the sensors
 			if(this.detect(LEGO_PORT, portName)){
-				log.info("detected lego port");
+				log.info("detected lego ports");
 				log.info("" + this.PATH_DEVICE);
 
-				this.writeString(this.PATH_DEVICE + "/" +  MODE, mode);
-				this.writeString(this.PATH_DEVICE + "/" +  DEVICE, device);
+				Sysfs.writeString(this.PATH_DEVICE + "/" +  MODE, mode);
+				Sysfs.writeString(this.PATH_DEVICE + "/" +  DEVICE, device);
 
 				if(this.detect(LEGO_SENSOR, portName)) {
 					throw new DeviceException("The device was not detected in: " + portName);
@@ -67,13 +68,13 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
      */
     public boolean detect(final String type, final String portName){
     	final String devicePath = DEVICE_ROOT_PATH + type;
-    	ArrayList<File> deviceAvailables = this.getElements(devicePath);
+    	List<File> deviceAvailables = Sysfs.getElements(devicePath);
 
     	String pathDeviceName = "";
     	for(int x=0; x < deviceAvailables.size(); x++) {
     		PATH_DEVICE = deviceAvailables.get(x);
     		pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
-    		if (this.readString(pathDeviceName).equals(portName)){
+    		if (Sysfs.readString(pathDeviceName).equals(portName)){
     			this.connected = true;
 				return true;
     		}
@@ -88,7 +89,7 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
      * @return
      */
     public String getStringAttribute(final String attribute){
-        return this.readString(PATH_DEVICE + "/" +  attribute);
+        return Sysfs.readString(PATH_DEVICE + "/" +  attribute);
     }
 
     /**
@@ -98,7 +99,7 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
      * @return
      */
     public int getIntegerAttribute(final String attribute){
-        return this.readInteger(PATH_DEVICE + "/" +  attribute);
+        return Sysfs.readInteger(PATH_DEVICE + "/" +  attribute);
     }
     
     /**
@@ -108,7 +109,7 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
      * @param value
      */
     public void setStringAttribute(final String attribute, final String value){
-    	this.writeString(this.PATH_DEVICE + "/" +  attribute, value);
+		Sysfs.writeString(this.PATH_DEVICE + "/" +  attribute, value);
     }
    
     /**
@@ -118,7 +119,7 @@ public @Slf4j class EV3DevSensorDevice extends EV3DevSysfs {
      * @param value
      */
     public void setIntegerAttribute(final String attribute, final int value){
-    	this.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
+		Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
     }
    
 }

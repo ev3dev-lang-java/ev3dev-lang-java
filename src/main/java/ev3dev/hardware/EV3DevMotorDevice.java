@@ -1,7 +1,10 @@
 package ev3dev.hardware;
 
+import ev3dev.utils.Sysfs;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Base class to interact with EV3Dev sysfs
@@ -9,7 +12,7 @@ import java.util.ArrayList;
  * @author Juan Antonio Breña Moral
  *
  */
-public class EV3DevMotorDevice extends EV3DevSysfs {
+public @Slf4j class EV3DevMotorDevice extends EV3DevDevice {
 
 	private final String DEVICE_ROOT_PATH = "/sys/class/";
     private final String ADDRESS = "address"; 
@@ -18,26 +21,23 @@ public class EV3DevMotorDevice extends EV3DevSysfs {
 	
 	/**
 	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
-	 * It is necessary to indicate the type and port.
+	 * It is necessary to indicate the type and ports.
 	 * 
-	 * @param type A valid type. Example: tacho-motor, lego-sensor, etc...
-	 * @param portName The port where is connected the sensor or the actuator.
+	 * @param type A valid type. Example: tacho-motors, lego-sensors, etc...
+	 * @param portName The ports where is connected the sensors or the actuators.
 	 * @throws DeviceException
 	 */
     public EV3DevMotorDevice(final String type, final String portName) throws DeviceException {
 
-
 		//This method is oriented for EV3Brick, but for Pi Boards, it is necessary to detect in a previous action
-    	this.connect(type, portName);
-
-    	if(this.connected == false){
-    		throw new DeviceException("The device was not detected in: " + portName);
-    	}
+        if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)) {
+            this.connect(type, portName);
+        }
     }
     
     /**
 	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
-	 * It is necessary to indicate the type and port.
+	 * It is necessary to indicate the type and ports.
 	 * 
 	 * This constructor add the way to detect if some device is not allowed for some platform.
 	 * Example: DC Motors in Pi Boards.
@@ -62,13 +62,8 @@ public class EV3DevMotorDevice extends EV3DevSysfs {
     	if(detectedPlatform == false){
     		throw new DeviceNotSupportedException("The platform has not available the device connected in: " + portName);
     	}
-    	
-    	
-    	this.connect(type, portName);
 
-    	if(this.connected == false){
-    		throw new DeviceException("The device was not detected in: " + portName);
-    	}
+    	this.connect(type, portName);
     }
     
     //TODO Rename method to detect
@@ -78,18 +73,25 @@ public class EV3DevMotorDevice extends EV3DevSysfs {
      * @param portName
      */
     public void connect(final String type, final String portName){
-    	final String devicePath = DEVICE_ROOT_PATH + type;
-    	ArrayList<File> deviceAvailables = this.getElements(devicePath);
+    	log.debug("Detecting motors on port/tacho-motors: {}", portName);
+        final String devicePath = DEVICE_ROOT_PATH + type;
+    	List<File> deviceAvailables = Sysfs.getElements(devicePath);
 
+        this.connected = false;
     	String pathDeviceName = "";
     	for(int x=0; x < deviceAvailables.size(); x++) {
     		PATH_DEVICE = deviceAvailables.get(x);
     		pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
-    		if (this.readString(pathDeviceName).equals(portName)){
-    			this.connected = true;
+    		if (Sysfs.readString(pathDeviceName).equals(portName)){
+    			log.debug("Detected port: {} on path: {}", portName, pathDeviceName);
+                this.connected = true;
     			break;
     		}
     	}
+
+        if(this.connected == false){
+            throw new DeviceException("The device was not detected in: " + portName);
+        }
     }
     
     /**
@@ -99,7 +101,7 @@ public class EV3DevMotorDevice extends EV3DevSysfs {
      * @return
      */
     public String getStringAttribute(final String attribute){
-        return this.readString(PATH_DEVICE + "/" +  attribute);
+        return Sysfs.readString(PATH_DEVICE + "/" +  attribute);
     }
 
     /**
@@ -109,7 +111,7 @@ public class EV3DevMotorDevice extends EV3DevSysfs {
      * @return
      */
     public int getIntegerAttribute(final String attribute){
-        return this.readInteger(PATH_DEVICE + "/" +  attribute);
+        return Sysfs.readInteger(PATH_DEVICE + "/" +  attribute);
     }
     
     /**
@@ -119,7 +121,10 @@ public class EV3DevMotorDevice extends EV3DevSysfs {
      * @param value
      */
     public void setStringAttribute(final String attribute, final String value){
-    	this.writeString(this.PATH_DEVICE + "/" +  attribute, value);
+		final boolean result = Sysfs.writeString(this.PATH_DEVICE + "/" +  attribute, value);
+		if(!result){
+			throw new RuntimeException("Operation not executed:" + attribute + value);
+		}
     }
    
     /**
@@ -129,7 +134,10 @@ public class EV3DevMotorDevice extends EV3DevSysfs {
      * @param value
      */
     public void setIntegerAttribute(final String attribute, final int value){
-    	this.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
+		final boolean result = Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
+		if(!result){
+			throw new RuntimeException("Operation not executed:" + attribute + value);
+		}
     }
    
 }

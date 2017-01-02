@@ -42,7 +42,7 @@ public class SampleThread extends AbstractFilter {
   
   
   /**
-   * Separate thread to continuously update the buffer with most recent sensor
+   * Separate thread to continuously update the buffer with most recent sensors
    * data at fixed interval.
    * 
    * @author Aswin Bouwmeester

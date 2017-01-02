@@ -1,9 +1,9 @@
 package ev3dev.robotics.tts;
 
 import ev3dev.utils.Shell;
+import lombok.extern.slf4j.Slf4j;
 
-
-public class Espeak {
+public @Slf4j class Espeak {
 
 	private String voice = null;
 	private int volume = -1;
@@ -67,7 +67,10 @@ public class Espeak {
 	//espeak -ves --stdout "soy un robot bueno" | aplay
 	public void say(){
 		this.build();
-		String[] cmd = { "/bin/sh", "-c", this.command };
+		final String program = "/bin/sh";
+		final String flag = "-c";
+		final String[] cmd = { program, flag, this.command };
+		log.debug("Command: {} {} {}", program, flag, this.command);
 		Shell.execute(cmd);
 	}
 

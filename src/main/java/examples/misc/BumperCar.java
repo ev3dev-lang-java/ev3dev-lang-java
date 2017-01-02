@@ -1,14 +1,13 @@
 package examples.misc;
 
-import ev3dev.hardware.sensor.Battery;
-import ev3dev.hardware.actuator.motor.EV3LargeRegulatedMotor;
-import ev3dev.hardware.port.MotorPort;
-import ev3dev.hardware.port.SensorPort;
-import ev3dev.hardware.sensor.ev3.EV3IRSensor;
+import ev3dev.hardware.actuators.motors.EV3LargeRegulatedMotor;
+import ev3dev.hardware.ports.MotorPort;
+import ev3dev.hardware.ports.SensorPort;
+import ev3dev.hardware.sensors.Battery;
+import ev3dev.hardware.sensors.ev3.EV3IRSensor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
-//java -cp ev3-lang-java-0.2-SNAPSHOT.jar BumperCar
 public class BumperCar {
 	
 	//Robot Definition

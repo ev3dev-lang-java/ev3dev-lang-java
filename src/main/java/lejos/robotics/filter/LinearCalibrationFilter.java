@@ -9,7 +9,7 @@ import java.io.IOException;
  * This filter is used to calibrate sensors for offset and scale errors using
  * linear interpolation. <br>
  * The filter has two modes of operation. In operational mode it corrects
- * samples coming from the sensor. In calibration mode the filter calculates
+ * samples coming from the sensors. In calibration mode the filter calculates
  * calibration parameters.
  * <p>
  * 
@@ -57,7 +57,7 @@ import java.io.IOException;
  * collects minimum and maximum sample values. From this it calculates offset
  * (as the average of the minimum and maximum value corrected for the reference
  * value) and scale (as the difference between maximum and minimum value scaled
- * for range). To minimize the effect of sensor noise or sensor movements during
+ * for range). To minimize the effect of sensors noise or sensors movements during
  * calculation sample values are low-passed before they are being used for
  * calibration.
  * <p>
@@ -75,14 +75,14 @@ import java.io.IOException;
  * modified by the user program.
  * <ul>
  * <li>
- * The reference value. This is the expected output of the sensor. For
- * calibrating a (motionless) gyro sensor this will be 0. For calibrating a
- * range sensor for example this should be the range to the object the sensor is
+ * The reference value. This is the expected output of the sensors. For
+ * calibrating a (motionless) gyro sensors this will be 0. For calibrating a
+ * range sensors for example this should be the range to the object the sensors is
  * calibrated to. The reference value is used in calculating the offset
  * parameter, it is not used in calculating scale. The reference has a default
  * value of 0.</li>
  * <li>
- * The range value. This is the expected range of the sensor output. For
+ * The range value. This is the expected range of the sensors output. For
  * calibrating an accelerometer this could be 2*9.81 when the output should be
  * in m/s^2. The range value is used in calculating the scale parameter, it is
  * not used in calculating offset. The range has a default value of 2, meaning
@@ -90,12 +90,12 @@ import java.io.IOException;
  * <li>
  * The timeConstant value. This is the timeConstant value of a low-pass filter
  * that is used in calibration mode. A low pass filter is used during
- * calibration to for two reasons. First to overcome the effects of sensor noise
+ * calibration to for two reasons. First to overcome the effects of sensors noise
  * that could otherwise seriously affect range calculation. Secondly it filters
- * out the side effect of user manipulation when turning the sensor as part of
+ * out the side effect of user manipulation when turning the sensors as part of
  * the calibration process (six way tumbling method). The parameter affects the
  * amount of smoothing of the low-pass filter. The higher the value, the
- * smoother the samples. Smoother samples are less affected by sensor noise or
+ * smoother the samples. Smoother samples are less affected by sensors noise or
  * external shocks but take longer to settle. The time constant has a default
  * value of 0, meaning no smoothing is done by default.</li>
  * </ul>
@@ -279,7 +279,7 @@ public class LinearCalibrationFilter extends AbstractCalibrationFilter {
   }
 
   /**
-   * Fetches a sample from the sensor and updates calibration parameters when
+   * Fetches a sample from the sensors and updates calibration parameters when
    * the calibration process is running.
    */
   public void fetchSample(float[] dst, int off) {

@@ -48,7 +48,7 @@ public abstract class AbstractCalibrationFilter extends AbstractFilter implement
   
   
   /**
-   * Fetches a sample from the sensor and updates array with minimum and maximum values when
+   * Fetches a sample from the sensors and updates array with minimum and maximum values when
    * the calibration process is running.
    */
   public void fetchSample(float[] dst, int off) {
@@ -129,7 +129,7 @@ public abstract class AbstractCalibrationFilter extends AbstractFilter implement
   }
 
   /** Loads calibration parameters from the file system. <br>
-   * This method raises an exception when the stored calibration parameters do not match the sensor or the calibration class.
+   * This method raises an exception when the stored calibration parameters do not match the sensors or the calibration class.
    * @param filename
    * filename of the stored calibration parameters
    * @throws FileNotFoundException 
@@ -162,7 +162,7 @@ public abstract class AbstractCalibrationFilter extends AbstractFilter implement
       props.setProperty("sampleSize", Integer.toString(sampleSize));
       props.setProperty("type", this.toString());
       
-      props.store(out, "Parameters for sensor calibration");
+      props.store(out, "Parameters for sensors calibration");
       out.close();
     }
     catch (IOException e) {

@@ -1,7 +1,7 @@
 package ev3dev.hardware;
 
 /**
- * Exception thrown when errors are detected in a sensor device state.
+ * Exception thrown when errors are detected in a sensors device state.
  * 
  * @author Andy Shaw
  * @author Juan Antonio Brenha Moral

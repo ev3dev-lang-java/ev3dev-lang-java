@@ -12,7 +12,7 @@ public interface Tachometer extends Encoder {
 	  /**
 	   * Returns the actual speed.
 	   * 
-	   * @return speed in degrees per second, negative value means motor is rotating backward
+	   * @return speed in degrees per second, negative value means motors is rotating backward
 	   */
 	  int getRotationSpeed();
 

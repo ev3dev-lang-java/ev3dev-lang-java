@@ -1,8 +1,8 @@
 package lejos.robotics;
 
-/** Abstraction for classes that fetch samples from a sensor and classes that are able to process samples.<br>   
- * A sample is a measurement taken by a sensor at a single moment in time. 
- * A sample can have one or more elements. The number of elements in a sample depends on the sensor (and sensor mode). 
+/** Abstraction for classes that fetch samples from a sensors and classes that are able to process samples.<br>
+ * A sample is a measurement taken by a sensors at a single moment in time.
+ * A sample can have one or more elements. The number of elements in a sample depends on the sensors (and sensors mode).
  * <br>
  * 
  * Sample providers comply with standards.
@@ -25,7 +25,7 @@ package lejos.robotics;
  * <li>
  * Sample providers that measure spatial data use a right handed cartesian coordinate system with the X-axis pointing forwards, 
  * the Y-axis pointing to the left and the Z-axis pointing up. 
- * (The plug of a sensor is always on its back.)
+ * (The plug of a sensors is always on its back.)
  * </li>
  * <li>
  * A positive rotation of a mobile robot is a counterclockwise rotation. 
@@ -46,7 +46,7 @@ public interface SampleProvider {
 	 */
 	public int sampleSize();
 	
-	/** Fetches a sample from a sensor or filter.
+	/** Fetches a sample from a sensors or filter.
 	 * @param sample
 	 * The array to store the sample in. 
 	 * @param offset

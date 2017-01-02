@@ -1,7 +1,7 @@
 package lejos.robotics;
 
 /**
- * Interface for a light sensor that also includes a lamp (usually LED) to provide illumination.
+ * Interface for a light sensors that also includes a lamp (usually LED) to provide illumination.
  * @author BB
  *
  */
@@ -9,7 +9,7 @@ public interface LampController{
 // TODO: Possible names: LEDLightDetector (too specific), FloodlightDetector, FloodLightDetector, FloodlightLightDetector. 
 	
 	/**
-	 * Turns the default LED light on or off. If the sensor has more than one lamp color, this will
+	 * Turns the default LED light on or off. If the sensors has more than one lamp color, this will
 	 * control the red LED.
 	 * 
 	 * @param floodlight true to turn on lamp, false for off (ambient light only).
@@ -29,11 +29,11 @@ public interface LampController{
 	public int getFloodlight();
 	
 	/**
-	 * Used to turn on or off the floodlight by color. If the sensor has multiple light colors, you can control
+	 * Used to turn on or off the floodlight by color. If the sensors has multiple light colors, you can control
 	 * which color is turned on or off. If the color does not exist, it does nothing and returns false. You can turn
 	 * the floodlight off by using Color.NONE.
 	 * @param color Use {@link lejos.robotics.Color} enumeration constant to control lamp colors.
-	 * @return True if lamp changed, false if lamp color doesn't exist for this sensor. 
+	 * @return True if lamp changed, false if lamp color doesn't exist for this sensors.
 	 */
 	 
 	public boolean setFloodlight(int color);
