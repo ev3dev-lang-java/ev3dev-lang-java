@@ -44,7 +44,7 @@ public @Slf4j class Sysfs {
 	
 	/**
 	 * Read an Attribute in the Sysfs with containing String values
-	 * @param filePath
+	 * @param filePath path
 	 * @return value from attribute
 	 */
 	public static String readString(final String filePath) {
@@ -62,7 +62,7 @@ public @Slf4j class Sysfs {
 	
 	/**
 	 * Read an Attribute in the Sysfs with containing Integer values
-	 * @param filePath
+	 * @param filePath path
 	 * @return value from attribute
 	 */
 	public static int readInteger(final String filePath) {
@@ -75,7 +75,7 @@ public @Slf4j class Sysfs {
 	
 	/**
 	 * 
-	 * @param filePath
+	 * @param filePath path
 	 * @return an List with options from a path
 	 */
 	public static List<File> getElements(final String filePath){
@@ -92,8 +92,8 @@ public @Slf4j class Sysfs {
 	/**
 	 * This method is used to detect folders in /sys/class/
 	 *
-	 * @param filePath
-	 * @return
+	 * @param filePath path
+	 * @return boolean
 	 */
 	public static boolean existPath(final String filePath){
 		final File f = new File(filePath);

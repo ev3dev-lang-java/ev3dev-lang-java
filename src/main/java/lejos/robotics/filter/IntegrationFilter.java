@@ -6,9 +6,11 @@ import lejos.robotics.SampleProvider;
 /**
  * Integrates samples over time. <br>
  * Usefull for example to:
+ * <ul>
  * <li>convert gyro output (degrees/second) to azymuth (Degrees)</li>
  * <li>Acceleration to speed</li>
  * <li>Speed to position</li>
+ * </ul>
  * @author Aswin
  *
  */

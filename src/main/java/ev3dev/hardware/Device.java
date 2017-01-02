@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 /**
- * Base class for sensors drivers & motors. Provides mechanism to release resources when closed
+ * Base class for sensors drivers &amp; motors. Provides mechanism to release resources when closed
  * 
  * @author Andy Shaw
  * @author Juan Antonio Breña Moral

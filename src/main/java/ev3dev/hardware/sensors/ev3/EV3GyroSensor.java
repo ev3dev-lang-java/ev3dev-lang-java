@@ -10,38 +10,7 @@ import java.io.File;
 /**
  * <b>EV3 Gyro sensors</b><br>
  * The digital EV3 Gyro Sensor measures the sensors rotational motion and changes in its orientation. 
- * 
- * 
- * <p>
- * <table border=1>
- * <tr>
- * <th colspan=4>Supported modes</th>
- * </tr>
- * <tr>
- * <th>Mode name</th>
- * <th>Description</th>
- * <th>unit(s)</th>
- * <th>Getter</th>
- * </tr>
- * <tr>
- * <td>Angle</td>
- * <td>Measures the orientation of the sensors</td>
- * <td>Degrees</td>
- * <td> {@link #getAngleMode() }</td>
- * </tr>
- * <tr>
- * <td>Rate</td>
- * <td>Measures the angular velocity of the sensors</td>
- * <td>Degrees / second</td>
- * <td> {@link #getRateMode() }</td>
- * </tr>
- * <tr>
- * <td>Rate and Angle</td>
- * <td>Measures both angle and angular velocity</td>
- * <td>Degrees, Degrees / second</td>
- * <td> {@link #getAngleAndRateMode() }</td>
- * </tr>
- * </table>
+ *
  * 
  * 
  * <p>

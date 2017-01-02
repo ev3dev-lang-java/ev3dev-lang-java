@@ -13,44 +13,7 @@ import java.io.File;
 /**
  * <b>EV3 color sensors</b><br>
  * The digital EV3 Color Sensor distinguishes between eight different colors. It also serves as a light sensors by detecting light intensities.
- * 
- * 
- * <p>
- * <table border=1>
- * <tr>
- * <th colspan=4>Supported modes</th>
- * </tr>
- * <tr>
- * <th>Mode name</th>
- * <th>Description</th>
- * <th>unit(s)</th>
- * <th>Getter</th>
- * </tr>
- * <tr>
- * <td>Color ID</td>
- * <td>Measures the color ID of a surface</td>
- * <td>Color ID</td>
- * <td> {@link #getColorIDMode() }</td>
- * </tr>
- * <tr>
- * <td>Red</td>
- * <td>Measures the intensity of a reflected red light </td>
- * <td>N/A, Normalized to (0-1) </td>
- * <td> {@link #getRedMode() }</td>
- * </tr>
- * <tr>
- * <td>RGB</td>
- * <td>Measures the RGB color of a surface</td>
- * <td>N/A, Normalized to (0-1)</td>
- * <td> {@link #getRGBMode() }</td>
- * </tr>
- * <tr>
- * <td>Ambient</td>
- * <td>Measures the ambient light level</td>
- * <td>N/A, Normalized to (0-1)</td>
- * <td> {@link #getAmbientMode() }</td>
- * </tr>
- * </table>
+ *
  * 
  * 
  * <p>

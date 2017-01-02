@@ -84,9 +84,8 @@ public @Slf4j class Sound extends EV3DevDevice {
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
      * @param vol the volume percentage 0 - 100
-     * @return The number of milliseconds the sample will play for or < 0 if
+     * @return The number of milliseconds the sample will play for or less 0 if
      *         there is an error.
-     * @throws FileNotFoundException 
      */
     public int playSample(File file, int vol) {
         Sysfs.writeInteger(VOLUME_PATH, vol);
@@ -98,11 +97,10 @@ public @Slf4j class Sound extends EV3DevDevice {
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
-     * @return The number of milliseconds the sample will play for or < 0 if
+     * @return The number of milliseconds the sample will play for or less 0 if
      *         there is an error.
-     * @throws FileNotFoundException 
      */
-    public int playSample(File file) {
+    public int playSample(final File file) {
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;//audio.playSample(file);
     }

@@ -41,6 +41,13 @@ task fatJar(type: Jar) {
     with jar
 }
 
+//JavaDoc
+javadoc {
+    classpath += sourceSets.test.compileClasspath
+    source += sourceSets.test.allJava
+    destinationDir = file("${projectDir}/docs/api")
+}
+
 //Deploy on Brick
 buildscript {
     repositories {

@@ -14,28 +14,7 @@ import java.io.File;
 /**
  * <b>Lego EV3 Touch sensors</b><br>
  * The analog EV3 Touch Sensor is a simple but exceptionally precise tool that detects when its front button is pressed or released.
- * 
- *  * 
- * <p>
- * <table border=1>
- * <tr>
- * <th colspan=4>Supported modes</th>
- * </tr>
- * <tr>
- * <th>Mode name</th>
- * <th>Description</th>
- * <th>unit(s)</th>
- * <th>Getter</th>
- * </tr>
- * <tr>
- * <td>Touch</td>
- * <td>Detects when its front button is pressed</td>
- * <td>Binary</td>
- * <td> {@link #getTouchMode() }</td>
- * </tr>
- * </table>
- * 
- * 
+ *
  * 
  * 
  * See <a href="http://www.ev-3.net/en/archives/846"> Sensor Product page </a>
@@ -44,8 +23,7 @@ import java.io.File;
  * See <a href="http://www.ev3dev.org/docs/sensors/#uart-sensors"> The UART Sensors</a>
  * See {@link lejos.robotics.SampleProvider leJOS conventions for
  *      SampleProviders}
- * 
- *      <p>
+ *
  * 
  * 
  */
@@ -71,7 +49,7 @@ public class EV3TouchSensor extends BaseSensor {
      * <b>Size and content of the sample</b><br>
      * The sample contains one element, a value of 0 indicates that the button is not presse, a value of 1 indicates the button is pressed.
      * 
-     * <p>
+     * </p>
      * 
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for

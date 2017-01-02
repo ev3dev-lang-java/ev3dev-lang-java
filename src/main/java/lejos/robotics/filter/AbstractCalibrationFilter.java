@@ -132,9 +132,9 @@ public abstract class AbstractCalibrationFilter extends AbstractFilter implement
    * This method raises an exception when the stored calibration parameters do not match the sensors or the calibration class.
    * @param filename
    * filename of the stored calibration parameters
-   * @throws FileNotFoundException 
+   * @throws IOException Exception
    */
-  protected void load(String filename) throws FileNotFoundException, IOException {
+  protected void load(String filename) throws IOException {
     FileInputStream in=null;
     props.clear();
       File f = getFile(filename);

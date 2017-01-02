@@ -4,7 +4,7 @@ import lejos.robotics.SampleProvider;
 
 /**
  * This filter returns the median value found in the N most recent samples. <br>
- * The number of samples used is specified in the constructor of the filter.<b>
+ * The number of samples used is specified in the constructor of the filter.<br>
  * 
  * @author Aswin
  * 

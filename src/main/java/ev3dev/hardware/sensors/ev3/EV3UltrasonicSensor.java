@@ -13,33 +13,7 @@ import java.io.File;
  * The EV3 Ultrasonic sensors measures distance to an object in front of the
  * sensors. It can also be used to detect other (active) Ultrasonic sensors in
  * the vicinity.
- * 
- * 
- * 
- * <p>
- * <table border=1>
- * <tr>
- * <th colspan=4>Supported modes</th>
- * </tr>
- * <tr>
- * <th>Mode name</th>
- * <th>Description</th>
- * <th>unit(s)</th>
- * <th>Getter</th>
- * </tr>
- * <tr>
- * <td>Distance</td>
- * <td>Measures distance to an object in front of the sensors</td>
- * <td>Meter</td>
- * <td> {@link #getDistanceMode() }</td>
- * </tr>
- * <tr>
- * <td>Listen</td>
- * <td>Listens for other ultrasonic sensors</td>
- * <td>Boolean</td>
- * <td> {@link #getListenMode() }</td>
- * </tr>
- * </table>
+ *
  * 
  * 
  * <p>
@@ -75,8 +49,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
   /**
    * Create the Ultrasonic sensors class.
-   * 
-   * @param portName
+   *
+   * @param portName port
    */
   public EV3UltrasonicSensor(final String portName) {
     super(portName, "ev3-uart", "lego-ev3-us");

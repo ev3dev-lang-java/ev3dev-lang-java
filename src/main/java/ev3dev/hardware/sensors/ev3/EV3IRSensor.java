@@ -10,35 +10,11 @@ import java.io.File;
  * <b>EV3 Infra Red sensors</b><br>
  * The digital EV3 Infrared Seeking Sensor detects proximity to the robot and reads signals emitted by the EV3 Infrared Beacon. The sensors can alse be used as a receiver for a Lego Ev3 IR remote control.
  * 
- * 
- * <p>
- * <table border=1>
- * <tr>
- * <th colspan=4>Supported modes</th>
- * </tr>
- * <tr>
- * <th>Mode name</th>
- * <th>Description</th>
- * <th>unit(s)</th>
- * <th>Getter</th>
- * </tr>
- * <tr>
- * <td>Distance</td>
- * <td>Measures the distance to an object in front of the sensors</td>
- * <td>Undefined</td>
- * <td> {@link #getDistanceMode() }</td>
- * </tr>
- * <tr>
- * <td>Seek</td>
- * <td>Locates up to four beacons</td>
- * <td>Undefined, undefined</td>
- * <td> {@link #getSeekMode() }</td>
- * </tr>
- * </table><p>
+ *
  * 
  * <b>EV3 Infra Red sensors</b><br>
  * 
- * The sensors can be used as a receiver for up to four Lego Ev3 IR remote controls using the {@link #getRemoteCommand} and {@link #getRemoteCommands} methods.
+ * The sensors can be used as a receiver for up to four Lego Ev3 IR remote controls using the methods.
 *  
  * 
  * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
