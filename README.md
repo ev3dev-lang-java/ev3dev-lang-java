@@ -8,7 +8,7 @@ ev3dev kernel support: uname -r (4.4.24-16-ev3dev-ev3)
 
 * Regulated Motor Support
 * Unregulated Motor Support
-* Sensor Support (Few sensors)
+* Sensor Support (EV3 sensors)
 * Sounds
 * [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
 * [OpenCV](http://opencv.org/) Computer Vision Support
