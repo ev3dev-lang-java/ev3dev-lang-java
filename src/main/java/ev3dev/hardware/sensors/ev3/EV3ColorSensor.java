@@ -14,8 +14,6 @@ import java.io.File;
  * <b>EV3 color sensors</b><br>
  * The digital EV3 Color Sensor distinguishes between eight different colors. It also serves as a light sensors by detecting light intensities.
  *
- * 
- * 
  * <p>
  * <b>Sensor configuration</b><br>
  * The flood light of the sensors can be put on or off using the setFloodlight methods.
@@ -64,18 +62,15 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         		});
     }
 
-
 	public EV3ColorSensor(String portName) {
         super(portName, "ev3-uart", "lego-ev3-color ");
 		initModes();
 	}
 
-
     /** {@inheritDoc}
      */    
     @Override
-    public int getColorID()
-    {
+    public int getColorID() {
         setFloodlight(Color.WHITE);
         return 0; //colorMap[ports.getByte()];
     }
@@ -146,8 +141,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
-    public SensorMode getColorIDMode()
-    {
+    public SensorMode getColorIDMode() {
         return getMode(0);
     }
     
@@ -176,7 +170,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         public String getName() {
             return "ColorID";
         }
-        
     }
     
 
@@ -199,34 +192,34 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         return getMode(1);
     }
 
-	  private class RedMode extends EV3DevSensorMode {
+    private class RedMode extends EV3DevSensorMode {
 
-		    private static final float toSI = -1;
+        private static final float toSI = -1;
 
-	    	private File pathDevice = null;
-	    	
-	        public RedMode(File pathDevice) {
-	        	this.pathDevice = pathDevice;
-			}
+        private File pathDevice = null;
 
-			@Override
-		    public int sampleSize() {
-		      return 1;
-		    }
+        public RedMode(File pathDevice) {
+            this.pathDevice = pathDevice;
+        }
 
-		    @Override
-		    public void fetchSample(float[] sample, int offset) {
-		      switchMode(COL_REFLECT, SWITCH_DELAY);
-				float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-				sample[offset] = raw;
-		    }
+        @Override
+        public int sampleSize() {
+          return 1;
+        }
 
-		    @Override
-		    public String getName() {
-		      return "Red";
-		    }
+        @Override
+        public void fetchSample(float[] sample, int offset) {
+            switchMode(COL_REFLECT, SWITCH_DELAY);
+            float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            sample[offset] = raw;
+        }
 
-		  }
+        @Override
+        public String getName() {
+            return "Red";
+        }
+
+    }
     
 
     /**
