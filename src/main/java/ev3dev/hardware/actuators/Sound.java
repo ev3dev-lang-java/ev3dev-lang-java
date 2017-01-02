@@ -67,9 +67,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      */
     public void playTone(int frequency, int duration, int volume) {
         Sysfs.writeString(VOLUME_PATH,"" + volume);
-    	String cmd2 = " " + frequency + " " + duration;
-        Sysfs.writeString(TONE_PATH,cmd2);
-        Delay.msDelay(duration);
+    	this.playTone(frequency, duration);
     }
     
     /**
@@ -78,9 +76,8 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param duration The duration of the tone, in milliseconds.
      */
     public void playTone(int frequency, int duration) {
-    	String cmd2 = " " + frequency + " " + duration;
-        Sysfs.writeString(TONE_PATH,cmd2);
-        Delay.msDelay(duration);
+        final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
+        Shell.execute(cmdTone);
     }
 
     /**

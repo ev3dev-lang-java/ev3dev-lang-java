@@ -1,12 +1,15 @@
 package ev3dev.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Shell {
+public @Slf4j class Shell {
 	
 	public static String execute(final String command) {
 
+        log.debug("Command: {}", command);
 		StringBuffer output = new StringBuffer();
 
 		Process p;
@@ -22,7 +25,7 @@ public class Shell {
 			}
 			reader.close();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.error(e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -31,7 +34,10 @@ public class Shell {
 	
 	public static String execute(final String[] command) {
 
-		StringBuffer output = new StringBuffer();
+        for (String cmd: command) {
+            log.info("Command chunk: {}", cmd);
+        }
+        StringBuffer output = new StringBuffer();
 
 		Process p;
 		try {
@@ -46,7 +52,7 @@ public class Shell {
 			}
 			reader.close();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            log.error(e.getMessage());
 			e.printStackTrace();
 		}
 
