@@ -65,6 +65,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 	
     private int local_speed = 0;
     private boolean regulationFlag = false;
+    private boolean polarityFlag = false;
     
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
@@ -84,7 +85,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 
 	/**
      * Close the motors regulator. Release the motors from regulation and free any
-//     * associated resources.
+     * associated resources.
      */
     public void close() {
         super.close();
@@ -305,5 +306,11 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
         return 0;//Math.round(reg.getCurrentVelocity());
     }
 
-
+    public void reverseDirection(){
+        if(polarityFlag){
+            this.setStringAttribute("polarity", "normal");
+        }else{
+            this.setStringAttribute("polarity", "inversed");
+        }
+    }
 }

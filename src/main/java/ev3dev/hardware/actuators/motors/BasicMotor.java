@@ -27,6 +27,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 	private final String STOP = "stop";
 	private final String STATE = "state";
 	private final String STATE_RUNNING = "running";
+	private boolean polarityFlag = false;
 
 	//This feature is only allowed with EV3Brick
 	private final static String[] SUPPORTED_PLATFORMS = {SupportedPlatform.EV3BRICK.toString()};
@@ -68,9 +69,6 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
     		int value = Math.abs(this.local_power) * -1;
     		this.setIntegerAttribute(DUTY_CYCLE, value);  
     	}
-		//TODO: Learn to use this attribute
-		//final String attribute1 = "inversed";
-		//final String value1 = "polarity";
     	this.setStringAttribute(COMMAND, RUN_FOREVER);
 	}
 
@@ -111,6 +109,14 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 	 */
 	public void stop() {
 		this.setStringAttribute(COMMAND, STOP);
+	}
+
+	public void reverseDirection(){
+		if(polarityFlag){
+			this.setStringAttribute("polarity", "normal");
+		}else{
+			this.setStringAttribute("polarity", "inversed");
+		}
 	}
 }
 
