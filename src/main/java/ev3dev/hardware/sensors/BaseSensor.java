@@ -56,8 +56,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     public SensorMode getMode(String modeName) {
         // TODO: I'm sure there is a better way to do this, but it is late!
         int i = 0;
-        for(String s : getAvailableModes())
-        {
+        for(String s : getAvailableModes()) {
         	System.out.println(modeName + " " + s);
             if (s.equals(modeName))
                 return modes[i];
@@ -123,7 +122,8 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     public int getModeCount() {
       return modes.length;
     }
-    
+
+    //TODO Remove this method
     /**
      * Switch to the selected mode (if not already in that mode) and delay for the
      * specified period to allow the sensors to settle in the new mode. <br>
@@ -143,7 +143,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
             currentMode = newMode;
             Delay.msDelay(switchDelay);
         }
-        
+
     }
 
     protected void switchMode(String newMode, long switchDelay) {
