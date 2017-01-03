@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// ev3dev.hardware.actuators.motors.BaseRegulatedMotor
-	c5430 [label=<<table title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseRegulatedMotor.html">
+	c5434 [label=<<table title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseRegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseRegulatedMotor </font></td></tr>
 		</table></td></tr>
@@ -68,9 +68,9 @@ digraph G {
 <tr><td align="left" balign="left"> + getRotationSpeed() : int </td></tr>
 <tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.actuators.motors.NXTRegulatedMotor
-	c5434 [label=<<table title="ev3dev.hardware.actuators.motors.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NXTRegulatedMotor.html">
+	c5438 [label=<<table title="ev3dev.hardware.actuators.motors.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NXTRegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NXTRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -87,8 +87,8 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + NXTRegulatedMotor(motorPort : String) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./NXTRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./NXTRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.actuators.motors.NXTRegulatedMotor extends ev3dev.hardware.actuators.motors.BaseRegulatedMotor
-	c5430:p -> c5434:p [dir=back,arrowtail=empty];
+	c5434:p -> c5438:p [dir=back,arrowtail=empty];
 }
 

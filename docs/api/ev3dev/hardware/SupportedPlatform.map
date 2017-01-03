@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="15,193,169,282"/>
-<area shape="rect" id="node1" href="./EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,187,179,287"/>
-<area shape="rect" id="node2_1" href="./SupportedPlatform.html" title="ev3dev.hardware.SupportedPlatform" alt="" coords="15,11,169,133"/>
-<area shape="rect" id="node2" href="./SupportedPlatform.html" title="&lt;TABLE&gt;" alt="" coords="5,6,179,138"/>
+<area shape="rect" id="node1_0" href="./EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="16,185,155,269"/>
+<area shape="rect" id="node1" href="./EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,179,165,274"/>
+<area shape="rect" id="node2_1" href="./SupportedPlatform.html" title="ev3dev.hardware.SupportedPlatform" alt="" coords="16,11,155,125"/>
+<area shape="rect" id="node2" href="./SupportedPlatform.html" title="&lt;TABLE&gt;" alt="" coords="5,6,165,130"/>
 </map>

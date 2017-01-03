@@ -40,7 +40,7 @@ digraph G {
 <tr><td align="left" balign="left"> # switchMode(newMode : int, switchDelay : long) </td></tr>
 <tr><td align="left" balign="left"> # switchMode(newMode : String, switchDelay : long) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./BaseSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./BaseSensor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.Battery
 	c350 [label=<<table title="ev3dev.hardware.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Battery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -62,7 +62,7 @@ digraph G {
 <tr><td align="left" balign="left"> + getVoltage() : float </td></tr>
 <tr><td align="left" balign="left"> + getBatteryCurrent() : float </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Battery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Battery.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.Power
 	c351 [label=<<table title="ev3dev.hardware.sensors.Power" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Power.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -73,10 +73,10 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getVoltage() : float </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getBatteryCurrent() : float </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getVoltage() : float </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getBatteryCurrent() : float </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Power.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Power.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.SensorMode
 	c352 [label=<<table title="ev3dev.hardware.sensors.SensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorMode.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -87,9 +87,9 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getName() : String </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getName() : String </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./SensorMode.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SensorMode.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.SensorModes
 	c353 [label=<<table title="ev3dev.hardware.sensors.SensorModes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorModes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -100,20 +100,22 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getAvailableModes() : ArrayList&lt;String&gt; </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getMode(mode : int) : SensorMode </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getMode(modeName : String) : SensorMode </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setCurrentMode(mode : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setCurrentMode(modeName : String) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getCurrentMode() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getModeCount() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getAvailableModes() : ArrayList&lt;String&gt; </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getMode(mode : int) : SensorMode </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getMode(modeName : String) : SensorMode </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setCurrentMode(mode : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setCurrentMode(modeName : String) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getCurrentMode() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getModeCount() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./SensorModes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SensorModes.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.sensors.BaseSensor implements ev3dev.hardware.sensors.SensorModes
 	c353:p -> c349:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensors.Battery implements ev3dev.hardware.sensors.Power
 	c351:p -> c350:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensors.SensorModes implements ev3dev.hardware.sensors.SensorMode
 	c352:p -> c353:p [dir=back,arrowtail=empty,style=dashed];
+	// ev3dev.hardware.sensors.BaseSensor NAVASSOC ev3dev.hardware.sensors.SensorMode
+	c349:p -> c352:p [taillabel="", label="", headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

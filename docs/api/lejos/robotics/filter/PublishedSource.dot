@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.PublishedSource
-	c5820 [label=<<table title="lejos.robotics.filter.PublishedSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PublishedSource.html">
+	c5823 [label=<<table title="lejos.robotics.filter.PublishedSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PublishedSource.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PublishedSource </td></tr>
 		</table></td></tr>
@@ -49,6 +49,36 @@ digraph G {
 <tr><td align="left" balign="left"> + close() </td></tr>
 <tr><td align="left" balign="left"> + getSources() : Collection&lt;PublishedSource&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="./PublishedSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./PublishedSource.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
+	// lejos.robotics.filter.SubscribedProvider
+	c5829 [label=<<table title="lejos.robotics.filter.SubscribedProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SubscribedProvider.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> SubscribedProvider </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> # formatter : DateFormat </td></tr>
+<tr><td align="left" balign="left"> - sampleSize : int </td></tr>
+<tr><td align="left" balign="left"> - latest : float[] </td></tr>
+<tr><td align="left" balign="left"> - source : PublishedSource </td></tr>
+<tr><td align="left" balign="left"> - dis : DataInputStream </td></tr>
+<tr><td align="left" balign="left"> - timeStamp : long </td></tr>
+<tr><td align="left" balign="left"> - host : String </td></tr>
+<tr><td align="left" balign="left"> - name : String </td></tr>
+<tr><td align="left" balign="left"> - active : boolean </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + SubscribedProvider(dis : DataInputStream, source : PublishedSource) </td></tr>
+<tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
+<tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
+<tr><td align="left" balign="left"> + getSource() : PublishedSource </td></tr>
+<tr><td align="left" balign="left"> + getHost() : String </td></tr>
+<tr><td align="left" balign="left"> + getName() : String </td></tr>
+<tr><td align="left" balign="left"> + getTimeStamp() : long </td></tr>
+<tr><td align="left" balign="left"> + isActive() : boolean </td></tr>
+<tr><td align="left" balign="left"> + getTime() : String </td></tr>
+		</table></td></tr>
+		</table>>, URL="./SubscribedProvider.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
+	// lejos.robotics.filter.SubscribedProvider NAVASSOC lejos.robotics.filter.PublishedSource
+	c5829:p -> c5823:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

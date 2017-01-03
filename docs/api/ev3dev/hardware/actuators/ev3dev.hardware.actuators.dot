@@ -16,7 +16,6 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + SOUND_PATH : String </td></tr>
-<tr><td align="left" balign="left"> + TONE_PATH : String </td></tr>
 <tr><td align="left" balign="left"> + VOLUME_PATH : String </td></tr>
 <tr><td align="left" balign="left"> + CMD_BEEP : String </td></tr>
 <tr><td align="left" balign="left"> + CMD_APLAY : String </td></tr>
@@ -34,6 +33,6 @@ digraph G {
 <tr><td align="left" balign="left"> + setVolume(vol : int) </td></tr>
 <tr><td align="left" balign="left"> + getVolume() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Sound.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Sound.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 }
 

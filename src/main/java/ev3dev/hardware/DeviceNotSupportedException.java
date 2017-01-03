@@ -6,15 +6,9 @@ package ev3dev.hardware;
  * @author Juan Antonio Brenha Moral
  *
  */
-public class DeviceNotSupportedException extends RuntimeException
-{
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 5846698127613306496L;
+public class DeviceNotSupportedException extends RuntimeException {
 
-    public DeviceNotSupportedException() {
-    }
+    public DeviceNotSupportedException() {}
 
     public DeviceNotSupportedException(String message) {
         super (message);

@@ -10,41 +10,42 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// ev3dev.hardware.actuators.motors.BaseRegulatedMotor
-	c5925 [label=<<table title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html">
+	c5926 [label=<<table title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseRegulatedMotor </font></td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.actuators.motors </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> # speed : float </td></tr>
 <tr><td align="left" balign="left"> # acceleration : int </td></tr>
-<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME : String </td></tr>
-<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME_AUTO : String </td></tr>
-<tr><td align="left" balign="left"> - SYSTEM_PORT_CLASS_NAME : String </td></tr>
-<tr><td align="left" balign="left"> - MODE : String </td></tr>
-<tr><td align="left" balign="left"> - POSITION_SP : String </td></tr>
-<tr><td align="left" balign="left"> - POSITION : String </td></tr>
-<tr><td align="left" balign="left"> - SPEED : String </td></tr>
-<tr><td align="left" balign="left"> - DUTY_CYCLE : String </td></tr>
-<tr><td align="left" balign="left"> - COMMAND : String </td></tr>
-<tr><td align="left" balign="left"> - STOP_COMMAND : String </td></tr>
-<tr><td align="left" balign="left"> - RUN_FOREVER : String </td></tr>
-<tr><td align="left" balign="left"> - RUN_DIRECT : String </td></tr>
-<tr><td align="left" balign="left"> - COAST : String </td></tr>
-<tr><td align="left" balign="left"> - BRAKE : String </td></tr>
-<tr><td align="left" balign="left"> - HOLD : String </td></tr>
-<tr><td align="left" balign="left"> - STOP : String </td></tr>
-<tr><td align="left" balign="left"> - RESET : String </td></tr>
-<tr><td align="left" balign="left"> - RUN_TO_REL_POS : String </td></tr>
-<tr><td align="left" balign="left"> - RUN_TO_ABS_POS : String </td></tr>
-<tr><td align="left" balign="left"> - STATE : String </td></tr>
-<tr><td align="left" balign="left"> - STATE_RUNNING : String </td></tr>
-<tr><td align="left" balign="left"> - STATE_STALLED : String </td></tr>
+<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME_AUTO : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - SYSTEM_PORT_CLASS_NAME : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - MODE : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - POSITION_SP : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - POSITION : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - SPEED : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - DUTY_CYCLE : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - COMMAND : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - STOP_COMMAND : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - RUN_FOREVER : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - RUN_DIRECT : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - COAST : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - BRAKE : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - HOLD : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - STOP : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - RESET : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - RUN_TO_REL_POS : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - RUN_TO_ABS_POS : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - STATE : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - STATE_RUNNING : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - STATE_STALLED : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - local_speed : int </td></tr>
 <tr><td align="left" balign="left"> - regulationFlag : boolean </td></tr>
 <tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + BaseRegulatedMotor(motorPort : String, moveP : float, moveI : float, moveD : float, holdP : float, holdI : float, holdD : float, offset : int, maxSpeed : int) </td></tr>
+<tr><td align="left" balign="left"> + BaseRegulatedMotor(motorPort : java.lang.String, moveP : float, moveI : float, moveD : float, holdP : float, holdI : float, holdD : float, offset : int, maxSpeed : int) </td></tr>
 <tr><td align="left" balign="left"> + close() </td></tr>
 <tr><td align="left" balign="left"> + suspendRegulation() : boolean </td></tr>
 <tr><td align="left" balign="left"> + getTachoCount() : int </td></tr>
@@ -68,9 +69,9 @@ digraph G {
 <tr><td align="left" balign="left"> + getRotationSpeed() : int </td></tr>
 <tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
-		</table>>, URL="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.BaseMotor
-	c5962 [label=<<table title="lejos.robotics.BaseMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseMotor.html">
+	c5963 [label=<<table title="lejos.robotics.BaseMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> BaseMotor </td></tr>
@@ -79,18 +80,18 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + forward() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + backward() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + stop() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + coast() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + brake() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + hold() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + isMoving() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + reverseDirection() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + forward() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + backward() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + stop() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + coast() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + brake() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + hold() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isMoving() : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + reverseDirection() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./BaseMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./BaseMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.RegulatedMotor
-	c5969 [label=<<table title="lejos.robotics.RegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RegulatedMotor.html">
+	c5970 [label=<<table title="lejos.robotics.RegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> RegulatedMotor </td></tr>
@@ -99,18 +100,18 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(angle : int, immediateReturn : boolean) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(angle : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotateTo(limitAngle : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotateTo(limitAngle : int, immediateReturn : boolean) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setSpeed(speed : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getSpeed() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + isStalled() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + close() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotate(angle : int, immediateReturn : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotate(angle : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotateTo(limitAngle : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotateTo(limitAngle : int, immediateReturn : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setSpeed(speed : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getSpeed() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isStalled() : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + close() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./RegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./RegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Tachometer
-	c5971 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Tachometer.html">
+	c5972 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Tachometer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Tachometer </td></tr>
@@ -119,14 +120,14 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getRotationSpeed() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getRotationSpeed() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.actuators.motors.BaseRegulatedMotor implements lejos.robotics.RegulatedMotor
-	c5969:p -> c5925:p [dir=back,arrowtail=empty,style=dashed];
+	c5970:p -> c5926:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.RegulatedMotor implements lejos.robotics.BaseMotor
-	c5962:p -> c5969:p [dir=back,arrowtail=empty,style=dashed];
+	c5963:p -> c5970:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.RegulatedMotor implements lejos.robotics.Tachometer
-	c5971:p -> c5969:p [dir=back,arrowtail=empty,style=dashed];
+	c5972:p -> c5970:p [dir=back,arrowtail=empty,style=dashed];
 }
 

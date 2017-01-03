@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.AbstractFilter
-	c5151 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
+	c5155 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractFilter </font></td></tr>
 		</table></td></tr>
@@ -23,9 +23,9 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.ModulusFilter
-	c5161 [label=<<table title="lejos.robotics.filter.ModulusFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ModulusFilter.html">
+	c5165 [label=<<table title="lejos.robotics.filter.ModulusFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ModulusFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ModulusFilter </td></tr>
 		</table></td></tr>
@@ -38,8 +38,8 @@ digraph G {
 <tr><td align="left" balign="left"> + ModulusFilter(source : SampleProvider, zeroValue : float[], modulus : float) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ModulusFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ModulusFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.ModulusFilter extends lejos.robotics.filter.AbstractFilter
-	c5151:p -> c5161:p [dir=back,arrowtail=empty];
+	c5155:p -> c5165:p [dir=back,arrowtail=empty];
 }
 

@@ -12,25 +12,32 @@ import java.io.File;
 
 /**
  * Class that provides access methods for the local audio device
- * 
+ *
+ * The class is implemented as Singleton.
+ *
+ * Note: Only tested with EV3Brick
+ *
  * @author Juan Antonio Breña Moral
  *
  */
 public @Slf4j class Sound extends EV3DevDevice {
 
     public final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
-    public final static String TONE_PATH = SOUND_PATH + "tone";
     public final static String VOLUME_PATH = SOUND_PATH + "volume";
     public final static String CMD_BEEP = "beep";
     public final static String CMD_APLAY ="aplay";
     
     private static Sound Instance;
 
+    /**
+     * Return a Instance of Sound.
+     *
+     * @return
+     */
     public static Sound getInstance() {
         if (Instance == null) {
         	Instance = new Sound();
         }
-
         return Instance;
     }
 
@@ -101,7 +108,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      */
     public int playSample(final File file) {
     	Shell.execute(CMD_APLAY + " " + file.toString());
-        return 1;//audio.playSample(file);
+        return 1;
     }
 
     /**

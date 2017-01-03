@@ -13,15 +13,16 @@ digraph G {
 	c6904 [label=<<table title="ev3dev.hardware.EV3DevDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../EV3DevDevice.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevDevice </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevDevice() </td></tr>
-<tr><td align="left" balign="left"> + getPlatform() : String </td></tr>
+<tr><td align="left" balign="left"> + getPlatform() : java.lang.String </td></tr>
 		</table></td></tr>
-		</table>>, URL="../EV3DevDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="../EV3DevDevice.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.actuators.Sound
 	c6909 [label=<<table title="ev3dev.hardware.actuators.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Sound.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -29,7 +30,6 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + SOUND_PATH : String </td></tr>
-<tr><td align="left" balign="left"> + TONE_PATH : String </td></tr>
 <tr><td align="left" balign="left"> + VOLUME_PATH : String </td></tr>
 <tr><td align="left" balign="left"> + CMD_BEEP : String </td></tr>
 <tr><td align="left" balign="left"> + CMD_APLAY : String </td></tr>
@@ -47,7 +47,7 @@ digraph G {
 <tr><td align="left" balign="left"> + setVolume(vol : int) </td></tr>
 <tr><td align="left" balign="left"> + getVolume() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Sound.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Sound.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.actuators.Sound extends ev3dev.hardware.EV3DevDevice
 	c6904:p -> c6909:p [dir=back,arrowtail=empty];
 }

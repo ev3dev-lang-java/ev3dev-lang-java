@@ -8,8 +8,6 @@ package ev3dev.hardware;
  */
 public class PlatformNotSupportedException extends RuntimeException {
 
-    private static final long serialVersionUID = 5846698127613306496L;
-
     public PlatformNotSupportedException(String message) {
         super (message);
     }

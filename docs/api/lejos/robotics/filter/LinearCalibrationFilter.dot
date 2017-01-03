@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.AbstractCalibrationFilter
-	c4657 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractCalibrationFilter.html">
+	c4661 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractCalibrationFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractCalibrationFilter </font></td></tr>
 		</table></td></tr>
@@ -42,9 +42,9 @@ digraph G {
 <tr><td align="left" balign="left"> # setProperty(key : String, value : float) </td></tr>
 <tr><td align="left" balign="left"> # getProperty(key : String) : float </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.LinearCalibrationFilter
-	c4663 [label=<<table title="lejos.robotics.filter.LinearCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LinearCalibrationFilter.html">
+	c4667 [label=<<table title="lejos.robotics.filter.LinearCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LinearCalibrationFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LinearCalibrationFilter </td></tr>
 		</table></td></tr>
@@ -78,8 +78,8 @@ digraph G {
 <tr><td align="left" balign="left"> + fetchSample(dst : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> + getCalibrationType() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./LinearCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./LinearCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.LinearCalibrationFilter extends lejos.robotics.filter.AbstractCalibrationFilter
-	c4657:p -> c4663:p [dir=back,arrowtail=empty];
+	c4661:p -> c4667:p [dir=back,arrowtail=empty];
 }
 

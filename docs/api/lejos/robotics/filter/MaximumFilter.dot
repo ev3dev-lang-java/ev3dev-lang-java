@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.MaximumFilter
-	c4829 [label=<<table title="lejos.robotics.filter.MaximumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MaximumFilter.html">
+	c4833 [label=<<table title="lejos.robotics.filter.MaximumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MaximumFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MaximumFilter </td></tr>
 		</table></td></tr>
@@ -23,9 +23,9 @@ digraph G {
 <tr><td align="left" balign="left"> + MaximumFilter(source : SampleProvider, bufferSize : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MaximumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MaximumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SampleBuffer
-	c4837 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleBuffer.html">
+	c4841 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleBuffer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SampleBuffer </font></td></tr>
 		</table></td></tr>
@@ -44,8 +44,8 @@ digraph G {
 <tr><td align="left" balign="left"> # getOldest(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.MaximumFilter extends lejos.robotics.filter.SampleBuffer
-	c4837:p -> c4829:p [dir=back,arrowtail=empty];
+	c4841:p -> c4833:p [dir=back,arrowtail=empty];
 }
 

@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.MinimumFilter
-	c5078 [label=<<table title="lejos.robotics.filter.MinimumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MinimumFilter.html">
+	c5082 [label=<<table title="lejos.robotics.filter.MinimumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MinimumFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MinimumFilter </td></tr>
 		</table></td></tr>
@@ -23,9 +23,9 @@ digraph G {
 <tr><td align="left" balign="left"> + MinimumFilter(source : SampleProvider, bufferSize : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MinimumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MinimumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SampleBuffer
-	c5083 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleBuffer.html">
+	c5087 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleBuffer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SampleBuffer </font></td></tr>
 		</table></td></tr>
@@ -44,8 +44,8 @@ digraph G {
 <tr><td align="left" balign="left"> # getOldest(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.MinimumFilter extends lejos.robotics.filter.SampleBuffer
-	c5083:p -> c5078:p [dir=back,arrowtail=empty];
+	c5087:p -> c5082:p [dir=back,arrowtail=empty];
 }
 

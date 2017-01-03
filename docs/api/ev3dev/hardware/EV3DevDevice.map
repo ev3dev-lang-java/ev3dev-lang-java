@@ -1,16 +1,16 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Device.html" title="ev3dev.hardware.Device" alt="" coords="803,19,1026,125"/>
-<area shape="rect" id="node1" href="./Device.html" title="&lt;TABLE&gt;" alt="" coords="793,14,1037,130"/>
-<area shape="rect" id="node2_1" href="./EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="954,193,1107,282"/>
-<area shape="rect" id="node2" href="./EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="943,187,1118,287"/>
-<area shape="rect" id="node3_2" href="./EV3DevMotorDevice.html" title="ev3dev.hardware.EV3DevMotorDevice" alt="" coords="16,382,539,599"/>
-<area shape="rect" id="node3" href="./EV3DevMotorDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,377,549,605"/>
-<area shape="rect" id="node4_3" href="./EV3DevSensorDevice.html" title="ev3dev.hardware.EV3DevSensorDevice" alt="" coords="585,358,1039,623"/>
-<area shape="rect" id="node4" href="./EV3DevSensorDevice.html" title="&lt;TABLE&gt;" alt="" coords="574,353,1050,629"/>
-<area shape="rect" id="node6_4" href="./actuators/Sound.html" title="ev3dev.hardware.actuators.Sound" alt="" coords="1085,342,1417,639"/>
-<area shape="rect" id="node6" href="./actuators/Sound.html" title="&lt;TABLE&gt;" alt="" coords="1074,337,1427,645"/>
-<area shape="rect" id="node7_5" href="./sensors/Battery.html" title="ev3dev.hardware.sensors.Battery" alt="" coords="1463,374,1732,607"/>
-<area shape="rect" id="node7" href="./sensors/Battery.html" title="&lt;TABLE&gt;" alt="" coords="1452,369,1743,613"/>
-<area shape="rect" id="node5_6" href="./SupportedPlatform.html" title="ev3dev.hardware.SupportedPlatform" alt="" coords="1071,11,1225,133"/>
-<area shape="rect" id="node5" href="./SupportedPlatform.html" title="&lt;TABLE&gt;" alt="" coords="1061,6,1235,138"/>
+<area shape="rect" id="node1_0" href="./Device.html" title="ev3dev.hardware.Device" alt="" coords="727,19,929,117"/>
+<area shape="rect" id="node1" href="./Device.html" title="&lt;TABLE&gt;" alt="" coords="716,13,940,123"/>
+<area shape="rect" id="node2_1" href="./EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="867,185,1005,269"/>
+<area shape="rect" id="node2" href="./EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="856,179,1016,274"/>
+<area shape="rect" id="node3_2" href="./EV3DevMotorDevice.html" title="ev3dev.hardware.EV3DevMotorDevice" alt="" coords="15,363,486,565"/>
+<area shape="rect" id="node3" href="./EV3DevMotorDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,358,497,570"/>
+<area shape="rect" id="node4_3" href="./EV3DevSensorDevice.html" title="ev3dev.hardware.EV3DevSensorDevice" alt="" coords="531,341,941,587"/>
+<area shape="rect" id="node4" href="./EV3DevSensorDevice.html" title="&lt;TABLE&gt;" alt="" coords="521,336,951,592"/>
+<area shape="rect" id="node6_4" href="./actuators/Sound.html" title="ev3dev.hardware.actuators.Sound" alt="" coords="986,328,1286,600"/>
+<area shape="rect" id="node6" href="./actuators/Sound.html" title="&lt;TABLE&gt;" alt="" coords="975,323,1297,605"/>
+<area shape="rect" id="node7_5" href="./sensors/Battery.html" title="ev3dev.hardware.sensors.Battery" alt="" coords="1331,350,1626,578"/>
+<area shape="rect" id="node7" href="./sensors/Battery.html" title="&lt;TABLE&gt;" alt="" coords="1321,345,1637,583"/>
+<area shape="rect" id="node5_6" href="./SupportedPlatform.html" title="ev3dev.hardware.SupportedPlatform" alt="" coords="975,11,1113,125"/>
+<area shape="rect" id="node5" href="./SupportedPlatform.html" title="&lt;TABLE&gt;" alt="" coords="964,6,1124,130"/>
 </map>

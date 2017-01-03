@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// ev3dev.hardware.sensors.Battery
-	c5690 [label=<<table title="ev3dev.hardware.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Battery.html">
+	c5693 [label=<<table title="ev3dev.hardware.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Battery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Battery </td></tr>
 		</table></td></tr>
@@ -30,9 +30,9 @@ digraph G {
 <tr><td align="left" balign="left"> + getVoltage() : float </td></tr>
 <tr><td align="left" balign="left"> + getBatteryCurrent() : float </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Battery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Battery.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.Power
-	c5691 [label=<<table title="ev3dev.hardware.sensors.Power" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Power.html">
+	c5694 [label=<<table title="ev3dev.hardware.sensors.Power" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Power.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Power </td></tr>
@@ -41,11 +41,11 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getVoltage() : float </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getBatteryCurrent() : float </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getVoltage() : float </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getBatteryCurrent() : float </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Power.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Power.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.sensors.Battery implements ev3dev.hardware.sensors.Power
-	c5691:p -> c5690:p [dir=back,arrowtail=empty,style=dashed];
+	c5694:p -> c5693:p [dir=back,arrowtail=empty,style=dashed];
 }
 

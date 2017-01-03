@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Battery.html" title="ev3dev.hardware.sensors.Battery" alt="" coords="16,177,285,410"/>
-<area shape="rect" id="node1" href="./Battery.html" title="&lt;TABLE&gt;" alt="" coords="5,171,296,415"/>
-<area shape="rect" id="node2_1" href="./Power.html" title="ev3dev.hardware.sensors.Power" alt="" coords="61,11,241,117"/>
-<area shape="rect" id="node2" href="./Power.html" title="&lt;TABLE&gt;" alt="" coords="50,6,251,122"/>
+<area shape="rect" id="node1_0" href="./Battery.html" title="ev3dev.hardware.sensors.Battery" alt="" coords="15,168,259,384"/>
+<area shape="rect" id="node1" href="./Battery.html" title="&lt;TABLE&gt;" alt="" coords="5,163,270,389"/>
+<area shape="rect" id="node2_1" href="./Power.html" title="ev3dev.hardware.sensors.Power" alt="" coords="55,11,219,109"/>
+<area shape="rect" id="node2" href="./Power.html" title="&lt;TABLE&gt;" alt="" coords="45,5,230,115"/>
 </map>

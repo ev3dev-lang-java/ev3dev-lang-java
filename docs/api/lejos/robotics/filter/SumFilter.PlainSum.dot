@@ -29,7 +29,7 @@ digraph G {
 <tr><td align="left" balign="left"> # getOldest(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SumFilter.PlainSum
 	c7225 [label=<<table title="lejos.robotics.filter.SumFilter.PlainSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SumFilter.PlainSum.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -42,7 +42,7 @@ digraph G {
 <tr><td align="left" balign="left"> - PlainSum(source : SampleProvider, length : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SumFilter.PlainSum.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SumFilter.PlainSum.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.SumFilter.PlainSum extends lejos.robotics.filter.SampleBuffer
 	c7219:p -> c7225:p [dir=back,arrowtail=empty];
 }

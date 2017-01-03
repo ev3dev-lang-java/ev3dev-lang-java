@@ -19,10 +19,10 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getTachoCount() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + resetTachoCount() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getTachoCount() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + resetTachoCount() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Encoder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Encoder.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.RegulatedMotor
 	c7528 [label=<<table title="lejos.robotics.RegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -33,16 +33,16 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(angle : int, immediateReturn : boolean) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(angle : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotateTo(limitAngle : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotateTo(limitAngle : int, immediateReturn : boolean) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setSpeed(speed : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getSpeed() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + isStalled() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + close() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotate(angle : int, immediateReturn : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotate(angle : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotateTo(limitAngle : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotateTo(limitAngle : int, immediateReturn : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setSpeed(speed : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getSpeed() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isStalled() : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + close() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./RegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./RegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Tachometer
 	c7530 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Tachometer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -53,9 +53,9 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getRotationSpeed() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getRotationSpeed() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.RegulatedMotor implements lejos.robotics.Tachometer
 	c7530:p -> c7528:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.Tachometer implements lejos.robotics.Encoder

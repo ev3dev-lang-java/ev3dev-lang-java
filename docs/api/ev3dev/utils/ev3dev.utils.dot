@@ -22,7 +22,7 @@ digraph G {
 <tr><td align="left" balign="left"> + execute(command : String) : String </td></tr>
 <tr><td align="left" balign="left"> + execute(command : String[]) : String </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Shell.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Shell.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.utils.Sysfs
 	c619 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Sysfs.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -41,6 +41,6 @@ digraph G {
 <tr><td align="left" balign="left"> + getElements(filePath : String) : List&lt;File&gt; </td></tr>
 <tr><td align="left" balign="left"> + existPath(filePath : String) : boolean </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Sysfs.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Sysfs.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 }
 

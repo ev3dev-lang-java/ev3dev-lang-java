@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.AbstractFilter
-	c6220 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
+	c6221 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractFilter </font></td></tr>
 		</table></td></tr>
@@ -23,9 +23,9 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SampleThread
-	c6235 [label=<<table title="lejos.robotics.filter.SampleThread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SampleThread.html">
+	c6236 [label=<<table title="lejos.robotics.filter.SampleThread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SampleThread.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SampleThread </td></tr>
 		</table></td></tr>
@@ -45,8 +45,8 @@ digraph G {
 <tr><td align="left" balign="left"> + start() </td></tr>
 <tr><td align="left" balign="left"> + stop() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleThread.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleThread.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.SampleThread extends lejos.robotics.filter.AbstractFilter
-	c6220:p -> c6235:p [dir=back,arrowtail=empty];
+	c6221:p -> c6236:p [dir=back,arrowtail=empty];
 }
 

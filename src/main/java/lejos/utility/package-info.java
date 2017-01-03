@@ -1,4 +1,4 @@
 /**
- * More utility classes
+ * Utility classes
  */
 package lejos.utility;

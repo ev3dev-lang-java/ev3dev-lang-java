@@ -1,6 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../BaseSensor.html" title="ev3dev.hardware.sensors.BaseSensor" alt="" coords="15,11,417,405"/>
-<area shape="rect" id="node1" href="../BaseSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,6,427,410"/>
-<area shape="rect" id="node2_1" href="./EV3UltrasonicSensor.html" title="ev3dev.hardware.sensors.ev3.EV3UltrasonicSensor" alt="" coords="81,465,351,650"/>
-<area shape="rect" id="node2" href="./EV3UltrasonicSensor.html" title="&lt;TABLE&gt;" alt="" coords="70,459,362,655"/>
+<area shape="rect" id="node1_0" href="../BaseSensor.html" title="ev3dev.hardware.sensors.BaseSensor" alt="" coords="15,11,531,386"/>
+<area shape="rect" id="node1" href="../BaseSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,6,542,391"/>
+<area shape="rect" id="node2_1" href="./EV3UltrasonicSensor.html" title="ev3dev.hardware.sensors.ev3.EV3UltrasonicSensor" alt="" coords="151,446,395,618"/>
+<area shape="rect" id="node2" href="./EV3UltrasonicSensor.html" title="&lt;TABLE&gt;" alt="" coords="141,441,406,623"/>
+<area shape="rect" id="node3_2" href="../../../../lejos/robotics/SampleProvider.html" title="lejos.robotics.SampleProvider" alt="" coords="153,678,393,789"/>
+<area shape="rect" id="node3" href="../../../../lejos/robotics/SampleProvider.html" title="&lt;TABLE&gt;" alt="" coords="143,673,404,794"/>
 </map>

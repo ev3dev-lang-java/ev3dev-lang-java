@@ -21,7 +21,7 @@ digraph G {
 <tr><td align="left" balign="left"> + EV3DevDevice() </td></tr>
 <tr><td align="left" balign="left"> + getPlatform() : String </td></tr>
 		</table></td></tr>
-		</table>>, URL="./EV3DevDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./EV3DevDevice.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.SupportedPlatform
 	c7318 [label=<<table title="ev3dev.hardware.SupportedPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SupportedPlatform.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -34,9 +34,9 @@ digraph G {
 <tr><td align="left" balign="left"> + BRICKPI : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getPlatform() : String </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getPlatform() : String </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./SupportedPlatform.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SupportedPlatform.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.EV3DevDevice implements ev3dev.hardware.SupportedPlatform
 	c7318:p -> c7314:p [dir=back,arrowtail=empty,style=dashed];
 }

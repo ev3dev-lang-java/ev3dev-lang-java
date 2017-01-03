@@ -10,21 +10,22 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.SampleProvider
-	c1207 [label=<<table title="lejos.robotics.SampleProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../SampleProvider.html">
+	c1215 [label=<<table title="lejos.robotics.SampleProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../SampleProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SampleProvider </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> lejos.robotics </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + sampleSize() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + fetchSample(sample : float[], offset : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + sampleSize() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + fetchSample(sample : float[], offset : int) </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="../SampleProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="../SampleProvider.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.AbstractCalibrationFilter
-	c1209 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractCalibrationFilter.html">
+	c1217 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractCalibrationFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractCalibrationFilter </font></td></tr>
 		</table></td></tr>
@@ -56,9 +57,9 @@ digraph G {
 <tr><td align="left" balign="left"> # setProperty(key : String, value : float) </td></tr>
 <tr><td align="left" balign="left"> # getProperty(key : String) : float </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.AbstractFilter
-	c1211 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractFilter.html">
+	c1219 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractFilter </font></td></tr>
 		</table></td></tr>
@@ -71,9 +72,9 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.IntegrationFilter
-	c1214 [label=<<table title="lejos.robotics.filter.IntegrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IntegrationFilter.html">
+	c1222 [label=<<table title="lejos.robotics.filter.IntegrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IntegrationFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IntegrationFilter </td></tr>
 		</table></td></tr>
@@ -87,9 +88,9 @@ digraph G {
 <tr><td align="left" balign="left"> + resetTo(value : float) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./IntegrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./IntegrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.LowPassFilter
-	c1216 [label=<<table title="lejos.robotics.filter.LowPassFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LowPassFilter.html">
+	c1224 [label=<<table title="lejos.robotics.filter.LowPassFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LowPassFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LowPassFilter </td></tr>
 		</table></td></tr>
@@ -103,9 +104,9 @@ digraph G {
 <tr><td align="left" balign="left"> + fetchSample(dst : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> + setTimeConstant(timeConstant : float) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./LowPassFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./LowPassFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.ModulusFilter
-	c1221 [label=<<table title="lejos.robotics.filter.ModulusFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ModulusFilter.html">
+	c1229 [label=<<table title="lejos.robotics.filter.ModulusFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ModulusFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ModulusFilter </td></tr>
 		</table></td></tr>
@@ -118,9 +119,9 @@ digraph G {
 <tr><td align="left" balign="left"> + ModulusFilter(source : SampleProvider, zeroValue : float[], modulus : float) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ModulusFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ModulusFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.OffsetCorrectionFilter
-	c1222 [label=<<table title="lejos.robotics.filter.OffsetCorrectionFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OffsetCorrectionFilter.html">
+	c1230 [label=<<table title="lejos.robotics.filter.OffsetCorrectionFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OffsetCorrectionFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OffsetCorrectionFilter </td></tr>
 		</table></td></tr>
@@ -148,9 +149,9 @@ digraph G {
 <tr><td align="left" balign="left"> + getMean() : float[] </td></tr>
 <tr><td align="left" balign="left"> + getStandardDeviation() : float[] </td></tr>
 		</table></td></tr>
-		</table>>, URL="./OffsetCorrectionFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./OffsetCorrectionFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SampleBuffer
-	c1225 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleBuffer.html">
+	c1233 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleBuffer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SampleBuffer </font></td></tr>
 		</table></td></tr>
@@ -169,9 +170,9 @@ digraph G {
 <tr><td align="left" balign="left"> # getOldest(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SampleThread
-	c1226 [label=<<table title="lejos.robotics.filter.SampleThread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleThread.html">
+	c1234 [label=<<table title="lejos.robotics.filter.SampleThread" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleThread.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SampleThread </td></tr>
 		</table></td></tr>
@@ -191,9 +192,9 @@ digraph G {
 <tr><td align="left" balign="left"> + start() </td></tr>
 <tr><td align="left" balign="left"> + stop() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleThread.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleThread.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SliceFilter
-	c1228 [label=<<table title="lejos.robotics.filter.SliceFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SliceFilter.html">
+	c1236 [label=<<table title="lejos.robotics.filter.SliceFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SliceFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SliceFilter </td></tr>
 		</table></td></tr>
@@ -206,9 +207,9 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SliceFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SliceFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SumFilter
-	c1230 [label=<<table title="lejos.robotics.filter.SumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.html">
+	c1238 [label=<<table title="lejos.robotics.filter.SumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SumFilter </td></tr>
 		</table></td></tr>
@@ -220,9 +221,9 @@ digraph G {
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.ZeroFilter
-	c1233 [label=<<table title="lejos.robotics.filter.ZeroFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ZeroFilter.html">
+	c1241 [label=<<table title="lejos.robotics.filter.ZeroFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ZeroFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ZeroFilter </td></tr>
 		</table></td></tr>
@@ -234,28 +235,34 @@ digraph G {
 <tr><td align="left" balign="left"> + ZeroFilter(source : SampleProvider, zeroValue : float[]) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ZeroFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ZeroFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.AbstractCalibrationFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1209:p [dir=back,arrowtail=empty];
+	c1219:p -> c1217:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.AbstractFilter implements lejos.robotics.SampleProvider
-	c1207:p -> c1211:p [dir=back,arrowtail=empty,style=dashed];
+	c1215:p -> c1219:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.filter.IntegrationFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1214:p [dir=back,arrowtail=empty];
+	c1219:p -> c1222:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.LowPassFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1216:p [dir=back,arrowtail=empty];
+	c1219:p -> c1224:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.ModulusFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1221:p [dir=back,arrowtail=empty];
+	c1219:p -> c1229:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.OffsetCorrectionFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1222:p [dir=back,arrowtail=empty];
+	c1219:p -> c1230:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SampleBuffer extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1225:p [dir=back,arrowtail=empty];
+	c1219:p -> c1233:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SampleThread extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1226:p [dir=back,arrowtail=empty];
+	c1219:p -> c1234:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SliceFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1228:p [dir=back,arrowtail=empty];
+	c1219:p -> c1236:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SumFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1230:p [dir=back,arrowtail=empty];
+	c1219:p -> c1238:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.ZeroFilter extends lejos.robotics.filter.AbstractFilter
-	c1211:p -> c1233:p [dir=back,arrowtail=empty];
+	c1219:p -> c1241:p [dir=back,arrowtail=empty];
+	// lejos.robotics.filter.AbstractCalibrationFilter NAVASSOC lejos.robotics.filter.LowPassFilter
+	c1217:p -> c1224:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	// lejos.robotics.filter.AbstractFilter NAVASSOC lejos.robotics.SampleProvider
+	c1219:p -> c1215:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	// lejos.robotics.filter.SumFilter NAVASSOC lejos.robotics.filter.SampleBuffer
+	c1238:p -> c1233:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

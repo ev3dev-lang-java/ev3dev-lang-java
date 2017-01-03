@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.Encoder
-	c4242 [label=<<table title="lejos.robotics.Encoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Encoder.html">
+	c4246 [label=<<table title="lejos.robotics.Encoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Encoder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Encoder </td></tr>
@@ -19,12 +19,12 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getTachoCount() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + resetTachoCount() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getTachoCount() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + resetTachoCount() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Encoder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Encoder.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Tachometer
-	c4246 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Tachometer.html">
+	c4250 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Tachometer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Tachometer </td></tr>
@@ -33,10 +33,10 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getRotationSpeed() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getRotationSpeed() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.Tachometer implements lejos.robotics.Encoder
-	c4242:p -> c4246:p [dir=back,arrowtail=empty,style=dashed];
+	c4246:p -> c4250:p [dir=back,arrowtail=empty,style=dashed];
 }
 

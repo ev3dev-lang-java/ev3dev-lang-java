@@ -24,7 +24,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MotorPort.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MotorPort.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.ports.MotorPortBrickPi
 	c262 [label=<<table title="ev3dev.hardware.ports.MotorPortBrickPi" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotorPortBrickPi.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -40,7 +40,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MotorPortBrickPi.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MotorPortBrickPi.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.ports.MotorPortPiStorms
 	c263 [label=<<table title="ev3dev.hardware.ports.MotorPortPiStorms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotorPortPiStorms.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -56,7 +56,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MotorPortPiStorms.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MotorPortPiStorms.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.ports.SensorPort
 	c264 [label=<<table title="ev3dev.hardware.ports.SensorPort" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorPort.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -72,7 +72,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SensorPort.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SensorPort.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.ports.SensorPortBrickPi
 	c265 [label=<<table title="ev3dev.hardware.ports.SensorPortBrickPi" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorPortBrickPi.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -88,7 +88,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SensorPortBrickPi.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SensorPortBrickPi.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.ports.SensorPortPiStorms
 	c266 [label=<<table title="ev3dev.hardware.ports.SensorPortPiStorms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorPortPiStorms.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -104,6 +104,6 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SensorPortPiStorms.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SensorPortPiStorms.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 }
 

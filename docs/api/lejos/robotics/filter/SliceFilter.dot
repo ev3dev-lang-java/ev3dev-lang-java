@@ -23,7 +23,7 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SliceFilter
 	c6894 [label=<<table title="lejos.robotics.filter.SliceFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SliceFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -38,7 +38,7 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SliceFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SliceFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.SliceFilter extends lejos.robotics.filter.AbstractFilter
 	c6877:p -> c6894:p [dir=back,arrowtail=empty];
 }

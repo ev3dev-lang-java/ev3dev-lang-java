@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./BaseMotor.html" title="lejos.robotics.BaseMotor" alt="" coords="163,11,314,213"/>
-<area shape="rect" id="node1" href="./BaseMotor.html" title="&lt;TABLE&gt;" alt="" coords="153,6,325,218"/>
-<area shape="rect" id="node2_1" href="./DCMotor.html" title="lejos.robotics.DCMotor" alt="" coords="15,321,171,426"/>
-<area shape="rect" id="node2" href="./DCMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,315,182,431"/>
-<area shape="rect" id="node3_2" href="./RegulatedMotor.html" title="lejos.robotics.RegulatedMotor" alt="" coords="217,273,554,474"/>
-<area shape="rect" id="node3" href="./RegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="206,267,565,479"/>
+<area shape="rect" id="node1_0" href="./BaseMotor.html" title="lejos.robotics.BaseMotor" alt="" coords="153,11,289,197"/>
+<area shape="rect" id="node1" href="./BaseMotor.html" title="&lt;TABLE&gt;" alt="" coords="143,5,300,203"/>
+<area shape="rect" id="node2_1" href="./DCMotor.html" title="lejos.robotics.DCMotor" alt="" coords="16,300,157,399"/>
+<area shape="rect" id="node2" href="./DCMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,295,168,404"/>
+<area shape="rect" id="node3_2" href="./RegulatedMotor.html" title="lejos.robotics.RegulatedMotor" alt="" coords="203,256,509,443"/>
+<area shape="rect" id="node3" href="./RegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="193,251,519,448"/>
 </map>

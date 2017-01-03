@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html" title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" alt="" coords="16,534,925,1375"/>
-<area shape="rect" id="node1" href="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,529,936,1381"/>
-<area shape="rect" id="node2_1" href="./BaseMotor.html" title="lejos.robotics.BaseMotor" alt="" coords="293,11,443,213"/>
-<area shape="rect" id="node2" href="./BaseMotor.html" title="&lt;TABLE&gt;" alt="" coords="282,6,454,218"/>
-<area shape="rect" id="node3_2" href="./RegulatedMotor.html" title="lejos.robotics.RegulatedMotor" alt="" coords="302,273,639,474"/>
-<area shape="rect" id="node3" href="./RegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="291,267,650,479"/>
-<area shape="rect" id="node4_3" href="./Tachometer.html" title="lejos.robotics.Tachometer" alt="" coords="489,67,660,157"/>
-<area shape="rect" id="node4" href="./Tachometer.html" title="&lt;TABLE&gt;" alt="" coords="479,62,671,162"/>
+<area shape="rect" id="node1_0" href="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html" title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" alt="" coords="16,502,888,1287"/>
+<area shape="rect" id="node1" href="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,497,899,1293"/>
+<area shape="rect" id="node2_1" href="./BaseMotor.html" title="lejos.robotics.BaseMotor" alt="" coords="289,11,425,197"/>
+<area shape="rect" id="node2" href="./BaseMotor.html" title="&lt;TABLE&gt;" alt="" coords="279,5,436,203"/>
+<area shape="rect" id="node3_2" href="./RegulatedMotor.html" title="lejos.robotics.RegulatedMotor" alt="" coords="299,256,605,443"/>
+<area shape="rect" id="node3" href="./RegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="289,251,615,448"/>
+<area shape="rect" id="node4_3" href="./Tachometer.html" title="lejos.robotics.Tachometer" alt="" coords="471,62,625,146"/>
+<area shape="rect" id="node4" href="./Tachometer.html" title="&lt;TABLE&gt;" alt="" coords="460,57,636,151"/>
 </map>

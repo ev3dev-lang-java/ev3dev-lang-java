@@ -23,6 +23,6 @@ digraph G {
 <tr><td align="left" balign="left"> + usDelay(period : long) </td></tr>
 <tr><td align="left" balign="left"> + nsDelay(period : long) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Delay.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Delay.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 }
 

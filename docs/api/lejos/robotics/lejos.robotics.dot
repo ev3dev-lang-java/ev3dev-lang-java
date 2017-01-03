@@ -19,16 +19,16 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + forward() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + backward() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + stop() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + coast() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + brake() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + hold() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + isMoving() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + reverseDirection() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + forward() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + backward() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + stop() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + coast() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + brake() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + hold() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isMoving() : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + reverseDirection() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./BaseMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./BaseMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Calibrate
 	c703 [label=<<table title="lejos.robotics.Calibrate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Calibrate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -39,10 +39,10 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + startCalibration() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + stopCalibration() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + startCalibration() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + stopCalibration() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Calibrate.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Calibrate.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Color
 	c704 [label=<<table title="lejos.robotics.Color" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Color.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -77,7 +77,7 @@ digraph G {
 <tr><td align="left" balign="left"> + getBlue() : int </td></tr>
 <tr><td align="left" balign="left"> + getColor() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Color.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Color.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.ColorIdentifier
 	c705 [label=<<table title="lejos.robotics.ColorIdentifier" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ColorIdentifier.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -88,9 +88,9 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getColorID() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getColorID() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./ColorIdentifier.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ColorIdentifier.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.DCMotor
 	c706 [label=<<table title="lejos.robotics.DCMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DCMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -101,10 +101,10 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setPower(power : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getPower() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setPower(power : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getPower() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./DCMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./DCMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Encoder
 	c707 [label=<<table title="lejos.robotics.Encoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Encoder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -115,10 +115,10 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getTachoCount() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + resetTachoCount() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getTachoCount() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + resetTachoCount() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Encoder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Encoder.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.LampController
 	c708 [label=<<table title="lejos.robotics.LampController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LampController.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -129,12 +129,12 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setFloodlight(floodlight : boolean) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + isFloodlightOn() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getFloodlight() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setFloodlight(color : int) : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setFloodlight(floodlight : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isFloodlightOn() : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getFloodlight() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setFloodlight(color : int) : boolean </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./LampController.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./LampController.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.RegulatedMotor
 	c709 [label=<<table title="lejos.robotics.RegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -145,16 +145,16 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(angle : int, immediateReturn : boolean) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(angle : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotateTo(limitAngle : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotateTo(limitAngle : int, immediateReturn : boolean) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setSpeed(speed : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getSpeed() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + isStalled() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + close() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotate(angle : int, immediateReturn : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotate(angle : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotateTo(limitAngle : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + rotateTo(limitAngle : int, immediateReturn : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setSpeed(speed : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getSpeed() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isStalled() : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + close() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./RegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./RegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.SampleProvider
 	c710 [label=<<table title="lejos.robotics.SampleProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SampleProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -165,10 +165,10 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + sampleSize() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + fetchSample(sample : float[], offset : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + sampleSize() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + fetchSample(sample : float[], offset : int) </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleProvider.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Tachometer
 	c711 [label=<<table title="lejos.robotics.Tachometer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Tachometer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -179,9 +179,9 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getRotationSpeed() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getRotationSpeed() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Tachometer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.DCMotor implements lejos.robotics.BaseMotor
 	c702:p -> c706:p [dir=back,arrowtail=empty,style=dashed];
 	//lejos.robotics.RegulatedMotor implements lejos.robotics.BaseMotor

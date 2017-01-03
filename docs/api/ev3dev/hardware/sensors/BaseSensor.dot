@@ -10,31 +10,32 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// ev3dev.hardware.EV3DevSensorDevice
-	c1404 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../EV3DevSensorDevice.html">
+	c1412 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../EV3DevSensorDevice.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevSensorDevice </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - DEVICE_ROOT_PATH : String </td></tr>
-<tr><td align="left" balign="left"> - LEGO_PORT : String </td></tr>
-<tr><td align="left" balign="left"> - LEGO_SENSOR : String </td></tr>
-<tr><td align="left" balign="left"> - ADDRESS : String </td></tr>
-<tr><td align="left" balign="left"> - MODE : String </td></tr>
-<tr><td align="left" balign="left"> - DEVICE : String </td></tr>
-<tr><td align="left" balign="left"> # PATH_DEVICE : File </td></tr>
+<tr><td align="left" balign="left"> - DEVICE_ROOT_PATH : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - LEGO_PORT : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - LEGO_SENSOR : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - ADDRESS : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - MODE : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - DEVICE : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> # PATH_DEVICE : java.io.File </td></tr>
 <tr><td align="left" balign="left"> - connected : boolean </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3DevSensorDevice(portName : String, mode : String, device : String) </td></tr>
-<tr><td align="left" balign="left"> + detect(type : String, portName : String) : boolean </td></tr>
-<tr><td align="left" balign="left"> + getStringAttribute(attribute : String) : String </td></tr>
-<tr><td align="left" balign="left"> + getIntegerAttribute(attribute : String) : int </td></tr>
-<tr><td align="left" balign="left"> + setStringAttribute(attribute : String, value : String) </td></tr>
-<tr><td align="left" balign="left"> + setIntegerAttribute(attribute : String, value : int) </td></tr>
+<tr><td align="left" balign="left"> + EV3DevSensorDevice(portName : java.lang.String, mode : java.lang.String, device : java.lang.String) </td></tr>
+<tr><td align="left" balign="left"> + detect(type : java.lang.String, portName : java.lang.String) : boolean </td></tr>
+<tr><td align="left" balign="left"> + getStringAttribute(attribute : java.lang.String) : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> + getIntegerAttribute(attribute : java.lang.String) : int </td></tr>
+<tr><td align="left" balign="left"> + setStringAttribute(attribute : java.lang.String, value : java.lang.String) </td></tr>
+<tr><td align="left" balign="left"> + setIntegerAttribute(attribute : java.lang.String, value : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="../EV3DevSensorDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="../EV3DevSensorDevice.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.BaseSensor
-	c1420 [label=<<table title="ev3dev.hardware.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseSensor.html">
+	c1428 [label=<<table title="ev3dev.hardware.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseSensor </td></tr>
 		</table></td></tr>
@@ -64,9 +65,22 @@ digraph G {
 <tr><td align="left" balign="left"> # switchMode(newMode : int, switchDelay : long) </td></tr>
 <tr><td align="left" balign="left"> # switchMode(newMode : String, switchDelay : long) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./BaseSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./BaseSensor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
+	// ev3dev.hardware.sensors.SensorMode
+	c1431 [label=<<table title="ev3dev.hardware.sensors.SensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorMode.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> SensorMode </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getName() : String </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./SensorMode.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.SensorModes
-	c1424 [label=<<table title="ev3dev.hardware.sensors.SensorModes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorModes.html">
+	c1432 [label=<<table title="ev3dev.hardware.sensors.SensorModes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SensorModes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorModes </td></tr>
@@ -75,124 +89,139 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getAvailableModes() : ArrayList&lt;String&gt; </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getMode(mode : int) : SensorMode </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getMode(modeName : String) : SensorMode </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setCurrentMode(mode : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setCurrentMode(modeName : String) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getCurrentMode() : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getModeCount() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getAvailableModes() : ArrayList&lt;String&gt; </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getMode(mode : int) : SensorMode </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getMode(modeName : String) : SensorMode </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setCurrentMode(mode : int) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + setCurrentMode(modeName : String) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getCurrentMode() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getModeCount() : int </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./SensorModes.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SensorModes.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.ev3.EV3ColorSensor
-	c1425 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3ColorSensor.html">
+	c1433 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3ColorSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3ColorSensor </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.sensors.ev3 </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> # colorMap : int[] </td></tr>
 <tr><td align="left" balign="left"> # SWITCH_DELAY : int </td></tr>
-<tr><td align="left" balign="left"> # COL_RESET : String </td></tr>
-<tr><td align="left" balign="left"> # COL_REFLECT : String </td></tr>
-<tr><td align="left" balign="left"> # COL_AMBIENT : String </td></tr>
-<tr><td align="left" balign="left"> # COL_COLOR : String </td></tr>
-<tr><td align="left" balign="left"> # COL_REFRAW : String </td></tr>
-<tr><td align="left" balign="left"> # COL_RGBRAW : String </td></tr>
-<tr><td align="left" balign="left"> # COL_CAL : String </td></tr>
+<tr><td align="left" balign="left"> # COL_RESET : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> # COL_REFLECT : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> # COL_AMBIENT : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> # COL_COLOR : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> # COL_REFRAW : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> # COL_RGBRAW : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> # COL_CAL : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> # lightColor : int[] </td></tr>
 <tr><td align="left" balign="left"> # raw : short[] </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3ColorSensor(portName : String) </td></tr>
+<tr><td align="left" balign="left"> + EV3ColorSensor(portName : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> - initModes() </td></tr>
 <tr><td align="left" balign="left"> + getColorID() : int </td></tr>
 <tr><td align="left" balign="left"> + setFloodlight(floodlight : boolean) </td></tr>
 <tr><td align="left" balign="left"> + isFloodlightOn() : boolean </td></tr>
 <tr><td align="left" balign="left"> + getFloodlight() : int </td></tr>
 <tr><td align="left" balign="left"> + setFloodlight(color : int) : boolean </td></tr>
-<tr><td align="left" balign="left"> + getColorIDMode() : SensorMode </td></tr>
-<tr><td align="left" balign="left"> + getRedMode() : SensorMode </td></tr>
-<tr><td align="left" balign="left"> + getAmbientMode() : SensorMode </td></tr>
-<tr><td align="left" balign="left"> + getRGBMode() : SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getColorIDMode() : ev3dev.hardware.sensors.SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getRedMode() : ev3dev.hardware.sensors.SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getAmbientMode() : ev3dev.hardware.sensors.SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getRGBMode() : ev3dev.hardware.sensors.SensorMode </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ev3/EV3ColorSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ev3/EV3ColorSensor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.ev3.EV3GyroSensor
-	c1431 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3GyroSensor.html">
+	c1439 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3GyroSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3GyroSensor </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.sensors.ev3 </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - SWITCHDELAY : long </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3GyroSensor(portName : String) </td></tr>
-<tr><td align="left" balign="left"> + getRateMode() : SampleProvider </td></tr>
-<tr><td align="left" balign="left"> + getAngleMode() : SampleProvider </td></tr>
-<tr><td align="left" balign="left"> + getAngleAndRateMode() : SampleProvider </td></tr>
+<tr><td align="left" balign="left"> + EV3GyroSensor(portName : java.lang.String) </td></tr>
+<tr><td align="left" balign="left"> + getRateMode() : lejos.robotics.SampleProvider </td></tr>
+<tr><td align="left" balign="left"> + getAngleMode() : lejos.robotics.SampleProvider </td></tr>
+<tr><td align="left" balign="left"> + getAngleAndRateMode() : lejos.robotics.SampleProvider </td></tr>
 <tr><td align="left" balign="left"> + reset() </td></tr>
 <tr><td align="left" balign="left"> + getAngle() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ev3/EV3GyroSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ev3/EV3GyroSensor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.ev3.EV3IRSensor
-	c1435 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3IRSensor.html">
+	c1443 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3IRSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3IRSensor </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.sensors.ev3 </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> # SWITCH_DELAY : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3IRSensor(portName : String) </td></tr>
+<tr><td align="left" balign="left"> + EV3IRSensor(portName : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> # init() </td></tr>
-<tr><td align="left" balign="left"> + getDistanceMode() : SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getDistanceMode() : ev3dev.hardware.sensors.SensorMode </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ev3/EV3IRSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ev3/EV3IRSensor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.ev3.EV3TouchSensor
-	c1437 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3TouchSensor.html">
+	c1445 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3TouchSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3TouchSensor </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.sensors.ev3 </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3TouchSensor(portName : String) </td></tr>
+<tr><td align="left" balign="left"> + EV3TouchSensor(portName : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> # init() </td></tr>
-<tr><td align="left" balign="left"> + getTouchMode() : SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getTouchMode() : ev3dev.hardware.sensors.SensorMode </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ev3/EV3TouchSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ev3/EV3TouchSensor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.sensors.ev3.EV3UltrasonicSensor
-	c1439 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3UltrasonicSensor.html">
+	c1447 [label=<<table title="ev3dev.hardware.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ev3/EV3UltrasonicSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3UltrasonicSensor </td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.sensors.ev3 </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - DISABLED : int </td></tr>
 <tr><td align="left" balign="left"> - SWITCHDELAY : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3UltrasonicSensor(portName : String) </td></tr>
+<tr><td align="left" balign="left"> + EV3UltrasonicSensor(portName : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> # init() </td></tr>
-<tr><td align="left" balign="left"> + getListenMode() : SampleProvider </td></tr>
-<tr><td align="left" balign="left"> + getDistanceMode() : SampleProvider </td></tr>
+<tr><td align="left" balign="left"> + getListenMode() : lejos.robotics.SampleProvider </td></tr>
+<tr><td align="left" balign="left"> + getDistanceMode() : lejos.robotics.SampleProvider </td></tr>
 <tr><td align="left" balign="left"> + enable() </td></tr>
 <tr><td align="left" balign="left"> + disable() </td></tr>
 <tr><td align="left" balign="left"> + isEnabled() : boolean </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ev3/EV3UltrasonicSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ev3/EV3UltrasonicSensor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.sensors.BaseSensor extends ev3dev.hardware.EV3DevSensorDevice
-	c1404:p -> c1420:p [dir=back,arrowtail=empty];
+	c1412:p -> c1428:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensors.BaseSensor implements ev3dev.hardware.sensors.SensorModes
-	c1424:p -> c1420:p [dir=back,arrowtail=empty,style=dashed];
+	c1432:p -> c1428:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.hardware.sensors.SensorModes implements ev3dev.hardware.sensors.SensorMode
+	c1431:p -> c1432:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.sensors.ev3.EV3ColorSensor extends ev3dev.hardware.sensors.BaseSensor
-	c1420:p -> c1425:p [dir=back,arrowtail=empty];
+	c1428:p -> c1433:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensors.ev3.EV3GyroSensor extends ev3dev.hardware.sensors.BaseSensor
-	c1420:p -> c1431:p [dir=back,arrowtail=empty];
+	c1428:p -> c1439:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensors.ev3.EV3IRSensor extends ev3dev.hardware.sensors.BaseSensor
-	c1420:p -> c1435:p [dir=back,arrowtail=empty];
+	c1428:p -> c1443:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensors.ev3.EV3TouchSensor extends ev3dev.hardware.sensors.BaseSensor
-	c1420:p -> c1437:p [dir=back,arrowtail=empty];
+	c1428:p -> c1445:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.sensors.ev3.EV3UltrasonicSensor extends ev3dev.hardware.sensors.BaseSensor
-	c1420:p -> c1439:p [dir=back,arrowtail=empty];
+	c1428:p -> c1447:p [dir=back,arrowtail=empty];
+	// ev3dev.hardware.sensors.BaseSensor NAVASSOC ev3dev.hardware.sensors.SensorMode
+	c1428:p -> c1431:p [taillabel="", label="", headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	// ev3dev.hardware.sensors.ev3.EV3ColorSensor DEPEND ev3dev.hardware.sensors.SensorMode
+	c1433:p -> c1431:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// ev3dev.hardware.sensors.ev3.EV3IRSensor DEPEND ev3dev.hardware.sensors.SensorMode
+	c1443:p -> c1431:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// ev3dev.hardware.sensors.ev3.EV3TouchSensor DEPEND ev3dev.hardware.sensors.SensorMode
+	c1445:p -> c1431:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 

@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.Calibrate
-	c1692 [label=<<table title="lejos.robotics.Calibrate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Calibrate.html">
+	c1700 [label=<<table title="lejos.robotics.Calibrate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Calibrate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Calibrate </td></tr>
@@ -19,45 +19,46 @@ digraph G {
 <tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + startCalibration() </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + stopCalibration() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + startCalibration() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + stopCalibration() </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Calibrate.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Calibrate.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.AbstractCalibrationFilter
-	c1701 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./filter/AbstractCalibrationFilter.html">
+	c1709 [label=<<table title="lejos.robotics.filter.AbstractCalibrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./filter/AbstractCalibrationFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractCalibrationFilter </font></td></tr>
+<tr><td align="center" balign="center"><font point-size="7.0"> lejos.robotics.filter </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> # lowPassFilter : LowPassFilter </td></tr>
+<tr><td align="left" balign="left"> # lowPassFilter : lejos.robotics.filter.LowPassFilter </td></tr>
 <tr><td align="left" balign="left"> # min : float[] </td></tr>
 <tr><td align="left" balign="left"> # max : float[] </td></tr>
 <tr><td align="left" balign="left"> # sum : float[] </td></tr>
 <tr><td align="left" balign="left"> # calibrating : boolean </td></tr>
-<tr><td align="left" balign="left"> - DIRECTORY : String </td></tr>
-<tr><td align="left" balign="left"> - EXT : String </td></tr>
-<tr><td align="left" balign="left"> - props : Properties </td></tr>
+<tr><td align="left" balign="left"> - DIRECTORY : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - EXT : java.lang.String </td></tr>
+<tr><td align="left" balign="left"> - props : java.util.Properties </td></tr>
 <tr><td align="left" balign="left"> # numberOfSamplesInCalibration : int </td></tr>
 <tr><td align="left" balign="left"> - timeConstant : float </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + AbstractCalibrationFilter(source : SampleProvider) </td></tr>
+<tr><td align="left" balign="left"> + AbstractCalibrationFilter(source : lejos.robotics.SampleProvider) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(dst : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> + setTimeConstant(timeConstant : float) </td></tr>
 <tr><td align="left" balign="left"> + startCalibration() </td></tr>
 <tr><td align="left" balign="left"> + stopCalibration() </td></tr>
 <tr><td align="left" balign="left"> + suspendCalibration() </td></tr>
 <tr><td align="left" balign="left"> + resumeCalibration() </td></tr>
-<tr><td align="left" balign="left"> - getFile(filename : String) : File </td></tr>
-<tr><td align="left" balign="left"> # load(filename : String) </td></tr>
-<tr><td align="left" balign="left"> # store(filename : String) </td></tr>
-<tr><td align="left" balign="left"> # getPropertyArray(key : String) : float[] </td></tr>
-<tr><td align="left" balign="left"> # setPropertyArray(key : String, values : float[]) </td></tr>
-<tr><td align="left" balign="left"> # setProperty(key : String, value : float) </td></tr>
-<tr><td align="left" balign="left"> # getProperty(key : String) : float </td></tr>
+<tr><td align="left" balign="left"> - getFile(filename : java.lang.String) : java.io.File </td></tr>
+<tr><td align="left" balign="left"> # load(filename : java.lang.String) </td></tr>
+<tr><td align="left" balign="left"> # store(filename : java.lang.String) </td></tr>
+<tr><td align="left" balign="left"> # getPropertyArray(key : java.lang.String) : float[] </td></tr>
+<tr><td align="left" balign="left"> # setPropertyArray(key : java.lang.String, values : float[]) </td></tr>
+<tr><td align="left" balign="left"> # setProperty(key : java.lang.String, value : float) </td></tr>
+<tr><td align="left" balign="left"> # getProperty(key : java.lang.String) : float </td></tr>
 		</table></td></tr>
-		</table>>, URL="./filter/AbstractCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./filter/AbstractCalibrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.AbstractCalibrationFilter implements lejos.robotics.Calibrate
-	c1692:p -> c1701:p [dir=back,arrowtail=empty,style=dashed];
+	c1700:p -> c1709:p [dir=back,arrowtail=empty,style=dashed];
 }
 

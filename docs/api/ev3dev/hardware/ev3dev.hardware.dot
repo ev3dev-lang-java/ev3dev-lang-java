@@ -22,14 +22,14 @@ digraph G {
 <tr><td align="left" balign="left"> # releaseOnClose(res : Closeable) </td></tr>
 <tr><td align="left" balign="left"> + close() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Device.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Device.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.DeviceException
 	c1 [label=<<table title="ev3dev.hardware.DeviceException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DeviceException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DeviceException </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - serialVersionUID : long </td></tr>
+<tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + DeviceException() </td></tr>
@@ -37,14 +37,14 @@ digraph G {
 <tr><td align="left" balign="left"> + DeviceException(cause : Throwable) </td></tr>
 <tr><td align="left" balign="left"> + DeviceException(message : String, cause : Throwable) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./DeviceException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./DeviceException.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.DeviceNotSupportedException
 	c2 [label=<<table title="ev3dev.hardware.DeviceNotSupportedException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DeviceNotSupportedException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DeviceNotSupportedException </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - serialVersionUID : long </td></tr>
+<tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + DeviceNotSupportedException() </td></tr>
@@ -52,7 +52,7 @@ digraph G {
 <tr><td align="left" balign="left"> + DeviceNotSupportedException(cause : Throwable) </td></tr>
 <tr><td align="left" balign="left"> + DeviceNotSupportedException(message : String, cause : Throwable) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./DeviceNotSupportedException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./DeviceNotSupportedException.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.EV3DevDevice
 	c3 [label=<<table title="ev3dev.hardware.EV3DevDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EV3DevDevice.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -65,7 +65,7 @@ digraph G {
 <tr><td align="left" balign="left"> + EV3DevDevice() </td></tr>
 <tr><td align="left" balign="left"> + getPlatform() : String </td></tr>
 		</table></td></tr>
-		</table>>, URL="./EV3DevDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./EV3DevDevice.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.EV3DevMotorDevice
 	c4 [label=<<table title="ev3dev.hardware.EV3DevMotorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EV3DevMotorDevice.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -86,7 +86,7 @@ digraph G {
 <tr><td align="left" balign="left"> + setStringAttribute(attribute : String, value : String) </td></tr>
 <tr><td align="left" balign="left"> + setIntegerAttribute(attribute : String, value : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./EV3DevMotorDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./EV3DevMotorDevice.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.EV3DevSensorDevice
 	c5 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EV3DevSensorDevice.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -110,19 +110,19 @@ digraph G {
 <tr><td align="left" balign="left"> + setStringAttribute(attribute : String, value : String) </td></tr>
 <tr><td align="left" balign="left"> + setIntegerAttribute(attribute : String, value : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./EV3DevSensorDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./EV3DevSensorDevice.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.PlatformNotSupportedException
 	c6 [label=<<table title="ev3dev.hardware.PlatformNotSupportedException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PlatformNotSupportedException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PlatformNotSupportedException </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - serialVersionUID : long </td></tr>
+<tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + PlatformNotSupportedException(message : String) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./PlatformNotSupportedException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./PlatformNotSupportedException.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.SupportedPlatform
 	c7 [label=<<table title="ev3dev.hardware.SupportedPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SupportedPlatform.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -135,9 +135,9 @@ digraph G {
 <tr><td align="left" balign="left"> + BRICKPI : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getPlatform() : String </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + getPlatform() : String </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./SupportedPlatform.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SupportedPlatform.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.EV3DevDevice extends ev3dev.hardware.Device
 	c0:p -> c3:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevDevice implements ev3dev.hardware.SupportedPlatform

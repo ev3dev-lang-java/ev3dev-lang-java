@@ -27,6 +27,6 @@ digraph G {
 <tr><td align="left" balign="left"> + getElements(filePath : String) : List&lt;File&gt; </td></tr>
 <tr><td align="left" balign="left"> + existPath(filePath : String) : boolean </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Sysfs.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Sysfs.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 }
 

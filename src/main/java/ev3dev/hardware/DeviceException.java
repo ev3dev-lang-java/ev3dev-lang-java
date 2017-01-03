@@ -7,15 +7,9 @@ package ev3dev.hardware;
  * @author Juan Antonio Brenha Moral
  *
  */
-public class DeviceException extends RuntimeException
-{
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 5846698127613306496L;
+public class DeviceException extends RuntimeException {
 
-    public DeviceException()
-    {
+    public DeviceException() {
     }
 
     public DeviceException(String message)

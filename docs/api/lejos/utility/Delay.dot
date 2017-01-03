@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.utility.Delay
-	c2136 [label=<<table title="lejos.utility.Delay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Delay.html">
+	c2144 [label=<<table title="lejos.utility.Delay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Delay.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Delay </td></tr>
 		</table></td></tr>
@@ -23,6 +23,6 @@ digraph G {
 <tr><td align="left" balign="left"> + usDelay(period : long) </td></tr>
 <tr><td align="left" balign="left"> + nsDelay(period : long) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Delay.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Delay.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 }
 

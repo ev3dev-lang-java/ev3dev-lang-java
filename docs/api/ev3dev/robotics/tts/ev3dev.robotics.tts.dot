@@ -34,6 +34,6 @@ digraph G {
 <tr><td align="left" balign="left"> - build() </td></tr>
 <tr><td align="left" balign="left"> + say() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Espeak.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Espeak.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 }
 

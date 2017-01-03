@@ -23,7 +23,7 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.ZeroFilter
 	c7719 [label=<<table title="lejos.robotics.filter.ZeroFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ZeroFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -37,7 +37,7 @@ digraph G {
 <tr><td align="left" balign="left"> + ZeroFilter(source : SampleProvider, zeroValue : float[]) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ZeroFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ZeroFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.ZeroFilter extends lejos.robotics.filter.AbstractFilter
 	c7697:p -> c7719:p [dir=back,arrowtail=empty];
 }

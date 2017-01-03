@@ -60,7 +60,7 @@ Ant file designed to generate javadocs and uml graphs
                 version="true">
 
             <doclet name="org.umlgraph.doclet.UmlGraphDoc" path="${lib-eclipse}/umlgraph-5.6.6.jar">
-                <!--
+
                     <param name="-inferrel"/>
                     <param name="-inferdep"/>
                     <param name="-hide" value="java.*"/>
@@ -71,7 +71,6 @@ Ant file designed to generate javadocs and uml graphs
                     <param name="-nodefontpackagesize" value="7"/>
                     <param name="-link" value="http://java.sun.com/j2se/1.5.0/docs/guide/javadoc/doclet/spec"/>
                     <param name="-link" value="http://java.sun.com/j2se/1.5/docs/api"/>
-                    -->
                 <param name="-all" />
             </doclet>
 

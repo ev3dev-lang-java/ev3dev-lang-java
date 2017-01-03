@@ -29,7 +29,7 @@ digraph G {
 <tr><td align="left" balign="left"> # getOldest(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SumFilter.SmartSum
 	c7308 [label=<<table title="lejos.robotics.filter.SumFilter.SmartSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SumFilter.SmartSum.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -47,7 +47,7 @@ digraph G {
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> - recalculateSum(index : int) : float </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SumFilter.SmartSum.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SumFilter.SmartSum.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.SumFilter.SmartSum extends lejos.robotics.filter.SampleBuffer
 	c7301:p -> c7308:p [dir=back,arrowtail=empty];
 }

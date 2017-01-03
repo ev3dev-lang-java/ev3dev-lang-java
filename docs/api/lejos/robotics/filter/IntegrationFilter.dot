@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.AbstractFilter
-	c4495 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
+	c4499 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractFilter </font></td></tr>
 		</table></td></tr>
@@ -23,9 +23,9 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.IntegrationFilter
-	c4498 [label=<<table title="lejos.robotics.filter.IntegrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IntegrationFilter.html">
+	c4502 [label=<<table title="lejos.robotics.filter.IntegrationFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IntegrationFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IntegrationFilter </td></tr>
 		</table></td></tr>
@@ -39,8 +39,8 @@ digraph G {
 <tr><td align="left" balign="left"> + resetTo(value : float) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./IntegrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./IntegrationFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.IntegrationFilter extends lejos.robotics.filter.AbstractFilter
-	c4495:p -> c4498:p [dir=back,arrowtail=empty];
+	c4499:p -> c4502:p [dir=back,arrowtail=empty];
 }
 

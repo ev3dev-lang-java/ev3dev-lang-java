@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.MeanFilter
-	c4912 [label=<<table title="lejos.robotics.filter.MeanFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MeanFilter.html">
+	c4916 [label=<<table title="lejos.robotics.filter.MeanFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MeanFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MeanFilter </td></tr>
 		</table></td></tr>
@@ -21,9 +21,9 @@ digraph G {
 <tr><td align="left" balign="left"> + MeanFilter(source : SampleProvider, length : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MeanFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MeanFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SumFilter
-	c4924 [label=<<table title="lejos.robotics.filter.SumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.html">
+	c4928 [label=<<table title="lejos.robotics.filter.SumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SumFilter </td></tr>
 		</table></td></tr>
@@ -35,8 +35,8 @@ digraph G {
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.MeanFilter extends lejos.robotics.filter.SumFilter
-	c4924:p -> c4912:p [dir=back,arrowtail=empty];
+	c4928:p -> c4916:p [dir=back,arrowtail=empty];
 }
 

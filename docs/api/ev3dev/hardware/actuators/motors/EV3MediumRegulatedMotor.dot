@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// ev3dev.hardware.actuators.motors.BaseRegulatedMotor
-	c3708 [label=<<table title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseRegulatedMotor.html">
+	c3712 [label=<<table title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseRegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseRegulatedMotor </font></td></tr>
 		</table></td></tr>
@@ -68,9 +68,9 @@ digraph G {
 <tr><td align="left" balign="left"> + getRotationSpeed() : int </td></tr>
 <tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
-		</table>>, URL="./BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.actuators.motors.EV3MediumRegulatedMotor
-	c3711 [label=<<table title="ev3dev.hardware.actuators.motors.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EV3MediumRegulatedMotor.html">
+	c3715 [label=<<table title="ev3dev.hardware.actuators.motors.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EV3MediumRegulatedMotor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3MediumRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -87,8 +87,8 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3MediumRegulatedMotor(motorPort : String) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./EV3MediumRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./EV3MediumRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.actuators.motors.EV3MediumRegulatedMotor extends ev3dev.hardware.actuators.motors.BaseRegulatedMotor
-	c3708:p -> c3711:p [dir=back,arrowtail=empty];
+	c3712:p -> c3715:p [dir=back,arrowtail=empty];
 }
 

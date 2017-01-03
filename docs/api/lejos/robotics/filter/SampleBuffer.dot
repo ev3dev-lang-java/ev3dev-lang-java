@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// lejos.robotics.filter.AbstractFilter
-	c6056 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
+	c6057 [label=<<table title="lejos.robotics.filter.AbstractFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractFilter </font></td></tr>
 		</table></td></tr>
@@ -23,9 +23,9 @@ digraph G {
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./AbstractFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.MaximumFilter
-	c6062 [label=<<table title="lejos.robotics.filter.MaximumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MaximumFilter.html">
+	c6063 [label=<<table title="lejos.robotics.filter.MaximumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MaximumFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MaximumFilter </td></tr>
 		</table></td></tr>
@@ -38,9 +38,9 @@ digraph G {
 <tr><td align="left" balign="left"> + MaximumFilter(source : SampleProvider, bufferSize : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MaximumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MaximumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.MedianFilter
-	c6064 [label=<<table title="lejos.robotics.filter.MedianFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MedianFilter.html">
+	c6065 [label=<<table title="lejos.robotics.filter.MedianFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MedianFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MedianFilter </td></tr>
 		</table></td></tr>
@@ -51,9 +51,9 @@ digraph G {
 <tr><td align="left" balign="left"> + MedianFilter(source : SampleProvider, bufferSize : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MedianFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MedianFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.MinimumFilter
-	c6065 [label=<<table title="lejos.robotics.filter.MinimumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MinimumFilter.html">
+	c6066 [label=<<table title="lejos.robotics.filter.MinimumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MinimumFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MinimumFilter </td></tr>
 		</table></td></tr>
@@ -66,9 +66,9 @@ digraph G {
 <tr><td align="left" balign="left"> + MinimumFilter(source : SampleProvider, bufferSize : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MinimumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MinimumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SampleBuffer
-	c6070 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SampleBuffer.html">
+	c6071 [label=<<table title="lejos.robotics.filter.SampleBuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SampleBuffer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SampleBuffer </font></td></tr>
 		</table></td></tr>
@@ -87,9 +87,23 @@ digraph G {
 <tr><td align="left" balign="left"> # getOldest(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SampleBuffer.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
+	// lejos.robotics.filter.SumFilter
+	c6076 [label=<<table title="lejos.robotics.filter.SumFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> SumFilter </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - worker : SampleBuffer </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + SumFilter(source : SampleProvider, length : int) </td></tr>
+<tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
+<tr><td align="left" balign="left"> # getActualSize() : int </td></tr>
+		</table></td></tr>
+		</table>>, URL="./SumFilter.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SumFilter.PlainSum
-	c6076 [label=<<table title="lejos.robotics.filter.SumFilter.PlainSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.PlainSum.html">
+	c6077 [label=<<table title="lejos.robotics.filter.SumFilter.PlainSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.PlainSum.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PlainSum </td></tr>
 		</table></td></tr>
@@ -100,9 +114,9 @@ digraph G {
 <tr><td align="left" balign="left"> - PlainSum(source : SampleProvider, length : int) </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SumFilter.PlainSum.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SumFilter.PlainSum.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.filter.SumFilter.SmartSum
-	c6077 [label=<<table title="lejos.robotics.filter.SumFilter.SmartSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.SmartSum.html">
+	c6078 [label=<<table title="lejos.robotics.filter.SumFilter.SmartSum" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SumFilter.SmartSum.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SmartSum </td></tr>
 		</table></td></tr>
@@ -118,18 +132,22 @@ digraph G {
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], off : int) </td></tr>
 <tr><td align="left" balign="left"> - recalculateSum(index : int) : float </td></tr>
 		</table></td></tr>
-		</table>>, URL="./SumFilter.SmartSum.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./SumFilter.SmartSum.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//lejos.robotics.filter.MaximumFilter extends lejos.robotics.filter.SampleBuffer
-	c6070:p -> c6062:p [dir=back,arrowtail=empty];
+	c6071:p -> c6063:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.MedianFilter extends lejos.robotics.filter.SampleBuffer
-	c6070:p -> c6064:p [dir=back,arrowtail=empty];
+	c6071:p -> c6065:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.MinimumFilter extends lejos.robotics.filter.SampleBuffer
-	c6070:p -> c6065:p [dir=back,arrowtail=empty];
+	c6071:p -> c6066:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SampleBuffer extends lejos.robotics.filter.AbstractFilter
-	c6056:p -> c6070:p [dir=back,arrowtail=empty];
+	c6057:p -> c6071:p [dir=back,arrowtail=empty];
+	//lejos.robotics.filter.SumFilter extends lejos.robotics.filter.AbstractFilter
+	c6057:p -> c6076:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SumFilter.PlainSum extends lejos.robotics.filter.SampleBuffer
-	c6070:p -> c6076:p [dir=back,arrowtail=empty];
+	c6071:p -> c6077:p [dir=back,arrowtail=empty];
 	//lejos.robotics.filter.SumFilter.SmartSum extends lejos.robotics.filter.SampleBuffer
-	c6070:p -> c6077:p [dir=back,arrowtail=empty];
+	c6071:p -> c6078:p [dir=back,arrowtail=empty];
+	// lejos.robotics.filter.SumFilter NAVASSOC lejos.robotics.filter.SampleBuffer
+	c6076:p -> c6071:p [taillabel="", label="", headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

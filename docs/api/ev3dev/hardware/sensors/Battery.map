@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="15,19,169,109"/>
-<area shape="rect" id="node1" href="../EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,14,179,114"/>
-<area shape="rect" id="node2_1" href="./Battery.html" title="ev3dev.hardware.sensors.Battery" alt="" coords="63,177,332,410"/>
-<area shape="rect" id="node2" href="./Battery.html" title="&lt;TABLE&gt;" alt="" coords="52,171,343,415"/>
-<area shape="rect" id="node3_2" href="./Power.html" title="ev3dev.hardware.sensors.Power" alt="" coords="214,11,394,117"/>
-<area shape="rect" id="node3" href="./Power.html" title="&lt;TABLE&gt;" alt="" coords="203,6,405,122"/>
+<area shape="rect" id="node1_0" href="../EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="15,12,206,108"/>
+<area shape="rect" id="node1" href="../EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,7,217,113"/>
+<area shape="rect" id="node2_1" href="./Battery.html" title="ev3dev.hardware.sensors.Battery" alt="" coords="99,168,343,384"/>
+<area shape="rect" id="node2" href="./Battery.html" title="&lt;TABLE&gt;" alt="" coords="89,163,354,389"/>
+<area shape="rect" id="node3_2" href="./Power.html" title="ev3dev.hardware.sensors.Power" alt="" coords="251,11,415,109"/>
+<area shape="rect" id="node3" href="./Power.html" title="&lt;TABLE&gt;" alt="" coords="241,5,426,115"/>
 </map>
