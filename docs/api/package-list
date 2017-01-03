@@ -6,13 +6,6 @@ ev3dev.hardware.sensors
 ev3dev.hardware.sensors.ev3
 ev3dev.robotics.tts
 ev3dev.utils
-examples.hardware
-examples.hardware.actuators
-examples.hardware.actuators.motors
-examples.hardware.sensors
-examples.hardware.sensors.ev3
-examples.misc
-examples.robotics
 lejos.robotics
 lejos.robotics.filter
 lejos.utility

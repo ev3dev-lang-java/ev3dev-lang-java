@@ -9,7 +9,6 @@ import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 /**
  * Class that provides access methods for the local audio device

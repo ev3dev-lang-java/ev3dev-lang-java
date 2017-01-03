@@ -12,10 +12,10 @@ Ant file designed to generate javadocs and uml graphs
 	
 	<property name="base.dir" value="." />
 	<property name="src" location="../src"/>
-	<property name="lib" location="${base.dir}/lib" />
-	<property name="lib-eclipse" location="./ant-lib" />
+	<property name="lib" location="${base.dir}/libs" />
+	<property name="lib-eclipse" location="./ant-libs" />
 	<property name="javadoc" location="./api" />
-	<property name="uml.dir" value="./uml"/>
+	<property name="uml.dir" value="../docs/uml"/>
 	<property name="build" location="build"/>
 	<property name="dist"  location="target"/>
 	<property name="dist.lib"  location="${dist}/lib"/>
@@ -50,5 +50,36 @@ Ant file designed to generate javadocs and uml graphs
 				<mapper type="glob" from="*.dot" to="*.png"/>
 			</apply>
 	</target>
+
+    <!-- TARGET SECTION -->
+    <target name="javadocs">
+        <javadoc
+                destdir="${javadoc}"
+                private="true"
+                author="true"
+                version="true">
+
+            <doclet name="org.umlgraph.doclet.UmlGraphDoc" path="${lib-eclipse}/umlgraph-5.6.6.jar">
+                <!--
+                    <param name="-inferrel"/>
+                    <param name="-inferdep"/>
+                    <param name="-hide" value="java.*"/>
+                    <param name="-collpackages" value="java.util.*"/>
+                    <param name="-qualify"/>
+                    <param name="-postfixpackage"/>
+                    <param name="-nodefontsize" value="9"/>
+                    <param name="-nodefontpackagesize" value="7"/>
+                    <param name="-link" value="http://java.sun.com/j2se/1.5.0/docs/guide/javadoc/doclet/spec"/>
+                    <param name="-link" value="http://java.sun.com/j2se/1.5/docs/api"/>
+                    -->
+                <param name="-all" />
+            </doclet>
+
+            <fileset dir="../src/main/java" defaultexcludes="yes">
+                <include name="**/*.java"/>
+                <exclude name="**/*Demo*"/>
+            </fileset>
+        </javadoc>
+    </target>
 
 </project>

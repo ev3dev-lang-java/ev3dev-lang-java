@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../../ev3dev/hardware/sensors/ev3/EV3ColorSensor.html" title="ev3dev.hardware.sensors.ev3.EV3ColorSensor" alt="" coords="16,161,259,554"/>
+<area shape="rect" id="node1" href="../../ev3dev/hardware/sensors/ev3/EV3ColorSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,155,269,559"/>
+<area shape="rect" id="node2_1" href="./ColorIdentifier.html" title="lejos.robotics.ColorIdentifier" alt="" coords="73,11,201,101"/>
+<area shape="rect" id="node2" href="./ColorIdentifier.html" title="&lt;TABLE&gt;" alt="" coords="63,6,212,106"/>
+</map>

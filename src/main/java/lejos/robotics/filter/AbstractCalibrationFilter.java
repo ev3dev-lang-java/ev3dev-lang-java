@@ -3,7 +3,10 @@ package lejos.robotics.filter;
 import lejos.robotics.Calibrate;
 import lejos.robotics.SampleProvider;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.StringTokenizer;
 

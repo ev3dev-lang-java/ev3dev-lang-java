@@ -1,0 +1,26 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../SampleProvider.html" title="lejos.robotics.SampleProvider" alt="" coords="2026,11,2291,117"/>
+<area shape="rect" id="node1" href="../SampleProvider.html" title="&lt;TABLE&gt;" alt="" coords="2015,6,2302,122"/>
+<area shape="rect" id="node3_1" href="./AbstractFilter.html" title="lejos.robotics.filter.AbstractFilter" alt="" coords="2026,177,2291,298"/>
+<area shape="rect" id="node3" href="./AbstractFilter.html" title="&lt;TABLE&gt;" alt="" coords="2015,171,2302,303"/>
+<area shape="rect" id="node2_2" href="./AbstractCalibrationFilter.html" title="lejos.robotics.filter.AbstractCalibrationFilter" alt="" coords="15,358,342,783"/>
+<area shape="rect" id="node2" href="./AbstractCalibrationFilter.html" title="&lt;TABLE&gt;" alt="" coords="5,353,353,789"/>
+<area shape="rect" id="node4_3" href="./IntegrationFilter.html" title="lejos.robotics.filter.IntegrationFilter" alt="" coords="388,502,665,639"/>
+<area shape="rect" id="node4" href="./IntegrationFilter.html" title="&lt;TABLE&gt;" alt="" coords="377,497,676,645"/>
+<area shape="rect" id="node5_4" href="./LowPassFilter.html" title="lejos.robotics.filter.LowPassFilter" alt="" coords="711,502,1102,639"/>
+<area shape="rect" id="node5" href="./LowPassFilter.html" title="&lt;TABLE&gt;" alt="" coords="701,497,1113,645"/>
+<area shape="rect" id="node6_5" href="./ModulusFilter.html" title="lejos.robotics.filter.ModulusFilter" alt="" coords="1148,510,1617,631"/>
+<area shape="rect" id="node6" href="./ModulusFilter.html" title="&lt;TABLE&gt;" alt="" coords="1137,505,1628,637"/>
+<area shape="rect" id="node7_6" href="./OffsetCorrectionFilter.html" title="lejos.robotics.filter.OffsetCorrectionFilter" alt="" coords="1663,390,2174,751"/>
+<area shape="rect" id="node7" href="./OffsetCorrectionFilter.html" title="&lt;TABLE&gt;" alt="" coords="1653,385,2185,757"/>
+<area shape="rect" id="node8_7" href="./SampleBuffer.html" title="lejos.robotics.filter.SampleBuffer" alt="" coords="2220,462,2577,679"/>
+<area shape="rect" id="node8" href="./SampleBuffer.html" title="&lt;TABLE&gt;" alt="" coords="2209,457,2588,685"/>
+<area shape="rect" id="node9_8" href="./SampleThread.html" title="lejos.robotics.filter.SampleThread" alt="" coords="2623,454,3009,687"/>
+<area shape="rect" id="node9" href="./SampleThread.html" title="&lt;TABLE&gt;" alt="" coords="2612,449,3020,693"/>
+<area shape="rect" id="node10_9" href="./SliceFilter.html" title="lejos.robotics.filter.SliceFilter" alt="" coords="3055,510,3471,631"/>
+<area shape="rect" id="node10" href="./SliceFilter.html" title="&lt;TABLE&gt;" alt="" coords="3044,505,3481,637"/>
+<area shape="rect" id="node11_10" href="./SumFilter.html" title="lejos.robotics.filter.SumFilter" alt="" coords="3517,518,3827,623"/>
+<area shape="rect" id="node11" href="./SumFilter.html" title="&lt;TABLE&gt;" alt="" coords="3506,513,3838,629"/>
+<area shape="rect" id="node12_11" href="./ZeroFilter.html" title="lejos.robotics.filter.ZeroFilter" alt="" coords="3873,518,4225,623"/>
+<area shape="rect" id="node12" href="./ZeroFilter.html" title="&lt;TABLE&gt;" alt="" coords="3863,513,4236,629"/>
+</map>

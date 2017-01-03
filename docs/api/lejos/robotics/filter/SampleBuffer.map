@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./AbstractFilter.html" title="lejos.robotics.filter.AbstractFilter" alt="" coords="869,11,1134,133"/>
+<area shape="rect" id="node1" href="./AbstractFilter.html" title="&lt;TABLE&gt;" alt="" coords="858,6,1145,138"/>
+<area shape="rect" id="node5_1" href="./SampleBuffer.html" title="lejos.robotics.filter.SampleBuffer" alt="" coords="823,193,1180,410"/>
+<area shape="rect" id="node5" href="./SampleBuffer.html" title="&lt;TABLE&gt;" alt="" coords="812,187,1191,415"/>
+<area shape="rect" id="node2_2" href="./MaximumFilter.html" title="lejos.robotics.filter.MaximumFilter" alt="" coords="15,494,379,615"/>
+<area shape="rect" id="node2" href="./MaximumFilter.html" title="&lt;TABLE&gt;" alt="" coords="5,489,390,621"/>
+<area shape="rect" id="node3_3" href="./MedianFilter.html" title="lejos.robotics.filter.MedianFilter" alt="" coords="425,510,775,599"/>
+<area shape="rect" id="node3" href="./MedianFilter.html" title="&lt;TABLE&gt;" alt="" coords="414,505,786,605"/>
+<area shape="rect" id="node4_4" href="./MinimumFilter.html" title="lejos.robotics.filter.MinimumFilter" alt="" coords="821,494,1181,615"/>
+<area shape="rect" id="node4" href="./MinimumFilter.html" title="&lt;TABLE&gt;" alt="" coords="811,489,1192,621"/>
+<area shape="rect" id="node6_5" href="./SumFilter.PlainSum.html" title="lejos.robotics.filter.SumFilter.PlainSum" alt="" coords="1227,510,1533,599"/>
+<area shape="rect" id="node6" href="./SumFilter.PlainSum.html" title="&lt;TABLE&gt;" alt="" coords="1216,505,1544,605"/>
+<area shape="rect" id="node7_6" href="./SumFilter.SmartSum.html" title="lejos.robotics.filter.SumFilter.SmartSum" alt="" coords="1579,470,1893,639"/>
+<area shape="rect" id="node7" href="./SumFilter.SmartSum.html" title="&lt;TABLE&gt;" alt="" coords="1569,465,1903,645"/>
+</map>

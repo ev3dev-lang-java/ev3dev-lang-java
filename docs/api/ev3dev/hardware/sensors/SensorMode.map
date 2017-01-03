@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./SensorMode.html" title="ev3dev.hardware.sensors.SensorMode" alt="" coords="228,177,367,266"/>
+<area shape="rect" id="node1" href="./SensorMode.html" title="&lt;TABLE&gt;" alt="" coords="217,171,377,271"/>
+<area shape="rect" id="node2_1" href="./SensorModes.html" title="ev3dev.hardware.sensors.SensorModes" alt="" coords="15,326,307,511"/>
+<area shape="rect" id="node2" href="./SensorModes.html" title="&lt;TABLE&gt;" alt="" coords="5,321,318,517"/>
+<area shape="rect" id="node3_2" href="./ev3/EV3DevSensorMode.html" title="ev3dev.hardware.sensors.ev3.EV3DevSensorMode" alt="" coords="353,366,517,471"/>
+<area shape="rect" id="node3" href="./ev3/EV3DevSensorMode.html" title="&lt;TABLE&gt;" alt="" coords="342,361,527,477"/>
+<area shape="rect" id="node4_3" href="../../../lejos/robotics/SampleProvider.html" title="lejos.robotics.SampleProvider" alt="" coords="165,11,430,117"/>
+<area shape="rect" id="node4" href="../../../lejos/robotics/SampleProvider.html" title="&lt;TABLE&gt;" alt="" coords="154,6,441,122"/>
+</map>

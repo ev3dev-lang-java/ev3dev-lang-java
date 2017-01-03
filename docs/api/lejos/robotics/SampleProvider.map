@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../../ev3dev/hardware/sensors/SensorMode.html" title="ev3dev.hardware.sensors.SensorMode" alt="" coords="16,297,155,386"/>
+<area shape="rect" id="node1" href="../../ev3dev/hardware/sensors/SensorMode.html" title="&lt;TABLE&gt;" alt="" coords="5,291,165,391"/>
+<area shape="rect" id="node2_1" href="./SampleProvider.html" title="lejos.robotics.SampleProvider" alt="" coords="406,11,671,117"/>
+<area shape="rect" id="node2" href="./SampleProvider.html" title="&lt;TABLE&gt;" alt="" coords="395,6,682,122"/>
+<area shape="rect" id="node3_2" href="./filter/AbstractFilter.html" title="lejos.robotics.filter.AbstractFilter" alt="" coords="201,281,466,402"/>
+<area shape="rect" id="node3" href="./filter/AbstractFilter.html" title="&lt;TABLE&gt;" alt="" coords="190,275,477,407"/>
+<area shape="rect" id="node4_3" href="./filter/ConcatenationFilter.html" title="lejos.robotics.filter.ConcatenationFilter" alt="" coords="511,281,979,402"/>
+<area shape="rect" id="node4" href="./filter/ConcatenationFilter.html" title="&lt;TABLE&gt;" alt="" coords="501,275,990,407"/>
+<area shape="rect" id="node5_4" href="./filter/SubscribedProvider.html" title="lejos.robotics.filter.SubscribedProvider" alt="" coords="1025,177,1469,506"/>
+<area shape="rect" id="node5" href="./filter/SubscribedProvider.html" title="&lt;TABLE&gt;" alt="" coords="1014,171,1479,511"/>
+</map>

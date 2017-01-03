@@ -196,6 +196,7 @@ digraph G {
 <tr><td align="left" balign="left"> - STATE_STALLED : String </td></tr>
 <tr><td align="left" balign="left"> - local_speed : int </td></tr>
 <tr><td align="left" balign="left"> - regulationFlag : boolean </td></tr>
+<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BaseRegulatedMotor(motorPort : String, moveP : float, moveI : float, moveD : float, holdP : float, holdI : float, holdD : float, offset : int, maxSpeed : int) </td></tr>
@@ -220,6 +221,7 @@ digraph G {
 <tr><td align="left" balign="left"> + getSpeed() : int </td></tr>
 <tr><td align="left" balign="left"> + isStalled() : boolean </td></tr>
 <tr><td align="left" balign="left"> + getRotationSpeed() : int </td></tr>
+<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.actuators.motors.BasicMotor
@@ -242,6 +244,7 @@ digraph G {
 <tr><td align="left" balign="left"> - STOP : String </td></tr>
 <tr><td align="left" balign="left"> - STATE : String </td></tr>
 <tr><td align="left" balign="left"> - STATE_RUNNING : String </td></tr>
+<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
 <tr><td align="left" balign="left"> - SUPPORTED_PLATFORMS : String[] </td></tr>
 <tr><td align="left" balign="left"> # local_power : int </td></tr>
 		</table></td></tr>
@@ -256,6 +259,7 @@ digraph G {
 <tr><td align="left" balign="left"> + hold() </td></tr>
 <tr><td align="left" balign="left"> + coast() </td></tr>
 <tr><td align="left" balign="left"> + stop() </td></tr>
+<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.actuators.motors.EV3LargeRegulatedMotor
@@ -473,6 +477,7 @@ digraph G {
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + brake() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + hold() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + isMoving() : boolean </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + reverseDirection() </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// lejos.robotics.Calibrate
