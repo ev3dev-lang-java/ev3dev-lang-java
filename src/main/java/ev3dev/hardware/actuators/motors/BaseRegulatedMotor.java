@@ -60,13 +60,21 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 	private final String RUN_TO_REL_POS = "run-to-rel-pos";
 	private final String RUN_TO_ABS_POS = "run-to-abs-pos";
 	private final String STATE = "state";
-	private final String STATE_RUNNING = "running";
-	private final String STATE_STALLED = "stalled";
-	
-    private int local_speed = 0;
-    private boolean regulationFlag = false;
-    private boolean polarityFlag = false;
-    
+
+    private boolean regulationFlag = true;
+
+    /**
+     * Constructor
+     * @param motorPort
+     * @param moveP
+     * @param moveI
+     * @param moveD
+     * @param holdP
+     * @param holdI
+     * @param holdD
+     * @param offset
+     * @param maxSpeed
+     */
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
 		super(SYSTEM_PORT_CLASS_NAME, motorPort);
@@ -77,15 +85,11 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
             this.setStringAttribute(MODE, SYSTEM_CLASS_NAME);
         }
         this.connect(SYSTEM_CLASS_NAME, motorPort);
-
-		//this.setStringAttribute(SPEED_REGULATION, SPEED_REGULATION_ON);
-		this.regulationFlag = true;
 	}
 
-
 	/**
-     * Close the motors regulator. Release the motors from regulation and free any
-     * associated resources.
+     * Close the motors regulator.
+     * Release the motors from regulation and free any associated resources.
      */
     public void close() {
         super.close();
@@ -99,11 +103,9 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @return true iff regulation has been suspended.
      */
     public boolean suspendRegulation() {
-		//this.setStringAttribute(SPEED_REGULATION, SPEED_REGULATION_OFF);
 		this.regulationFlag = false;
         return true;
     }
-
 
     /**
      * @return the current tachometer count.
@@ -122,40 +124,24 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * if regulation has been suspended calling this method will restart it.
      * @return the current position calculated by the regulator.
      */
-    public float getPosition()
-    {
+    public float getPosition() {
         return 0.0f; //reg.getPosition();
     }
 
     public void forward() {
-    	if(this.local_speed != 0) {
-    		String attribute = SPEED;
-    		if(!this.regulationFlag) {
-    			attribute = DUTY_CYCLE;
-    		}
-    		int value = Math.abs(this.local_speed) * 1;
-    		this.setIntegerAttribute(attribute, value);
-    	}
-        if(!this.regulationFlag){
+        this.setStringAttribute("polarity", "normal");
+        if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
-        }else {
+        } else {
             this.setStringAttribute(COMMAND, RUN_FOREVER);
         }
     }
 
     public void backward(){
-    	if(this.local_speed != 0) {
-    		String attribute = SPEED;
-    		if(!this.regulationFlag) {
-    			attribute = DUTY_CYCLE;
-    		}
-    		int value = Math.abs(this.local_speed) * -1;
-    		this.setIntegerAttribute(attribute, value); 
-    	}
-
-        if(!this.regulationFlag){
+        this.setStringAttribute("polarity", "inversed");
+        if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
-        }else {
+        } else {
             this.setStringAttribute(COMMAND, RUN_FOREVER);
         }
     }
@@ -168,10 +154,20 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 		this.setStringAttribute(STOP_COMMAND, COAST);
     }
 
+    /**
+     * Removes power from the motor and creates a passive electrical load.
+     * This is usually done by shorting the motor terminals together.
+     * This load will absorb the energy from the rotation of the motors and cause
+     * the motor to stop more quickly than coasting.
+     */
     public void brake() {
         this.setStringAttribute(STOP_COMMAND, BRAKE);
     }
 
+    /**
+     * Causes the motor to actively try to hold the current position.
+     * If an external force tries to turn the motor, the motor will “push back” to maintain its position.
+     */
     public void hold() {
         this.setStringAttribute(STOP_COMMAND, HOLD);
     }
@@ -198,6 +194,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @return true iff the motors is attempting to rotate.<br>
      */
     public boolean isMoving() {
+        final String STATE_RUNNING = "running";
 		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
     }
 
@@ -208,12 +205,11 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @param speed value in degrees/sec
      */
     public void setSpeed(int speed) {
-    	this.local_speed = speed;
-		String attribute = SPEED;
-		if(!this.regulationFlag) {
-			attribute = DUTY_CYCLE;
-		}
-		this.setIntegerAttribute(attribute, this.local_speed);
+		if (!this.regulationFlag) {
+            this.setIntegerAttribute(DUTY_CYCLE, speed);
+		} else {
+            this.setIntegerAttribute(SPEED, speed);
+        }
     }
 
     /**
@@ -222,13 +218,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public void resetTachoCount() {
 		this.setStringAttribute(COMMAND, RESET);
-
-		//this.setStringAttribute(SPEED_REGULATION, SPEED_REGULATION_ON);
-		this.regulationFlag = true;
-    }
-
-    private boolean isRunning() {
-		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
+        this.regulationFlag = true;
     }
     
     /**
@@ -243,7 +233,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 		this.setStringAttribute(COMMAND, RUN_TO_REL_POS);
 		
 		if (!immediateReturn) {
-			while(this.isRunning()){
+			while(this.isMoving()){
 			   // do stuff or do nothing
 			   // possibly sleep for some short interval to not block
 			}
@@ -263,7 +253,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     	this.setStringAttribute(COMMAND, RUN_TO_ABS_POS);
 		
 		if (!immediateReturn) {
-			while(this.isRunning()){
+			while(this.isMoving()){
 			    // do stuff or do nothing
 			    // possibly sleep for some short interval to not block
 			}
@@ -283,11 +273,12 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @return the current target speed.
      */
     public int getSpeed() {
-		String attribute = SPEED;
-//		if(!this.regulationFlag) {
-//			attribute = DUTY_CYCLE;
-//		}
-        return this.getIntegerAttribute(attribute);
+		if(!this.regulationFlag) {
+            return this.getIntegerAttribute(DUTY_CYCLE);
+		}else {
+            return this.getIntegerAttribute(SPEED);
+        }
+
     }
 
     /**
@@ -295,6 +286,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @return true if the motors is stalled, else false
      */
     public boolean isStalled() {
+        final String STATE_STALLED = "stalled";
 		return (this.getStringAttribute(STATE).contains(STATE_STALLED));
     }
     
@@ -306,11 +298,4 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
         return 0;//Math.round(reg.getCurrentVelocity());
     }
 
-    public void reverseDirection(){
-        if(polarityFlag){
-            this.setStringAttribute("polarity", "normal");
-        }else{
-            this.setStringAttribute("polarity", "inversed");
-        }
-    }
 }

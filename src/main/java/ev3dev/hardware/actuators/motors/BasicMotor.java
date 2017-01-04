@@ -1,74 +1,84 @@
 package ev3dev.hardware.actuators.motors;
 
+import ev3dev.hardware.DeviceNotSupportedException;
 import ev3dev.hardware.EV3DevMotorDevice;
 import ev3dev.hardware.SupportedPlatform;
 import lejos.robotics.DCMotor;
 
 /** 
  * Abstraction for basic motors operations.
- * 
+ *
+ * Unregulated motors only is enabled for EV3Brick.
+ *
  * @author Lawrie Griffiths.
  * @author Juan Antonio Breña Moral
  *
  */
 public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 
-    private final static String SYSTEM_CLASS_NAME = "dc-motor";
-    private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
-	private final String MODE = "mode";
 	private final String DUTY_CYCLE = "duty_cycle_sp";
 	private final String POWER = "power";
 	private final String COMMAND = "command";
 	private final String STOP_COMMAND = "stop_action";
 	private final String RUN_FOREVER = "run-forever";
-	private final String COAST = "coast";
-	private final String BRAKE = "brake";
-	private final String HOLD = "hold";
-	private final String STOP = "stop";
-	private final String STATE = "state";
-	private final String STATE_RUNNING = "running";
-	private boolean polarityFlag = false;
 
-	//This feature is only allowed with EV3Brick
-	private final static String[] SUPPORTED_PLATFORMS = {SupportedPlatform.EV3BRICK.toString()};
-	
-	public BasicMotor(String portName) {
-		super(SYSTEM_PORT_CLASS_NAME, portName, SUPPORTED_PLATFORMS);
+	//TODO Improve the way to connect with a Motor.
+	/**
+	 * Constructor
+	 *
+	 * @param portName
+     */
+	public BasicMotor(final String portName) {
+		super("lego-port", portName);
+		if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+			throw new DeviceNotSupportedException("This device is not supported in this platform");
+		}
+		final String SYSTEM_CLASS_NAME = "dc-motor";
+		final String MODE = "mode";
 		this.setStringAttribute(MODE, SYSTEM_CLASS_NAME);
 		this.connect(SYSTEM_CLASS_NAME, portName);
 	}
-	
-    protected int local_power = 0;
 
-    public void setPower(int power) {
-    	this.local_power = power;
-    	this.setIntegerAttribute(DUTY_CYCLE, local_power);
+	/**
+	 * Set power
+	 * @param power new motors power 0-100
+     */
+    public void setPower(final int power) {
+    	this.setIntegerAttribute(DUTY_CYCLE, power);
     }
 
+	/**
+	 * Get power
+	 * @return
+     */
     public int getPower() {
     	return this.getIntegerAttribute(POWER);
     }
 
 	/**
+	 * Update the internal state tracking the motor direction
+	 * @param newMode
+	 */
+	protected void updateState(final String newMode) {
+		final String POLARITY = "polarity";
+		this.setStringAttribute(POLARITY, newMode);
+	}
+
+	/**
 	 * Causes motors to rotate forward.
 	 */
 	public void forward() {
-    	if(this.local_power != 0) {
-    		int value = Math.abs(this.local_power) * 1;
-    		this.setIntegerAttribute(DUTY_CYCLE, value);  
-    	}
+		final String POLARITY_NORMAL = "normal";
+		this.updateState(POLARITY_NORMAL);
     	this.setStringAttribute(COMMAND, RUN_FOREVER);
 	}
-	  
 
 	/**
 	 * Causes motors to rotate backwards.
 	 */
 	public void backward() {
-    	if(this.local_power != 0) {
-    		int value = Math.abs(this.local_power) * -1;
-    		this.setIntegerAttribute(DUTY_CYCLE, value);  
-    	}
+		final String POLARITY_INVERSED = "inversed";
+		this.updateState(POLARITY_INVERSED);
     	this.setStringAttribute(COMMAND, RUN_FOREVER);
 	}
 
@@ -78,7 +88,9 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 	 * @return true iff the motors is currently in motion.
 	 */
     public boolean isMoving() {
-		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
+		final String STATE = "state";
+		final String STATE_RUNNING = "running";
+		return this.getStringAttribute(STATE).contains(STATE_RUNNING);
     }
 
 	/**
@@ -88,17 +100,27 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 	 * abrupt turns.
 	 */   
 	public void brake() {
+		final String BRAKE = "brake";
 		this.setStringAttribute(STOP_COMMAND, BRAKE);
 	}
 
+	/**
+	 * Causes the motor to actively try to hold the current position.
+	 * If an external force tries to turn the motor, the motor will “push back” to maintain its position.
+	 */
 	public void hold() {
+		final String HOLD = "hold";
 		this.setStringAttribute(STOP_COMMAND, HOLD);
 	}
 
+	/**
+	 * Removes power from the motor.
+	 * The motor will freely coast to a stop.
+	 */
 	public void coast() {
+		final String COAST = "coast";
 		this.setStringAttribute(STOP_COMMAND, COAST);
 	}
-
 
 	/**
 	 * Causes motors to stop, pretty much
@@ -108,15 +130,9 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 	 * Cancels any rotate() orders in progress
 	 */
 	public void stop() {
+		final String STOP = "stop";
 		this.setStringAttribute(COMMAND, STOP);
 	}
 
-	public void reverseDirection(){
-		if(polarityFlag){
-			this.setStringAttribute("polarity", "normal");
-		}else{
-			this.setStringAttribute("polarity", "inversed");
-		}
-	}
 }
 

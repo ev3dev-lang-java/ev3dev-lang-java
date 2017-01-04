@@ -16,17 +16,12 @@ public class EV3LargeRegulatedMotor extends BaseRegulatedMotor {
     
     private static final int MAX_SPEED = 175*360/60;
 
+    /**
+     * Constructor
+     * @param motorPort
+     */
     public EV3LargeRegulatedMotor(final String motorPort){
-        super(
-        	motorPort,
-        	MOVE_P, 
-        	MOVE_I, 
-        	MOVE_D,
-            HOLD_P, 
-            HOLD_I, 
-            HOLD_D, 
-            OFFSET, 
-            MAX_SPEED);
+        super(motorPort, MOVE_P, MOVE_I, MOVE_D, HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
     }
 
 }

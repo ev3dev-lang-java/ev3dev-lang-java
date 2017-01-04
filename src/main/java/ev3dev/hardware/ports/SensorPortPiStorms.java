@@ -8,8 +8,8 @@ package ev3dev.hardware.ports;
  */
 public interface SensorPortPiStorms {
 	
-    public static final String S1 = "pistorms:BBS1";
-    public static final String S2 = "pistorms:BBS2";
-    public static final String S3 = "pistorms:BAS2";
-    public static final String S4 = "pistorms:BAS1";
+    String S1 = "pistorms:BBS1";
+    String S2 = "pistorms:BBS2";
+    String S3 = "pistorms:BAS2";
+    String S4 = "pistorms:BAS1";
 }

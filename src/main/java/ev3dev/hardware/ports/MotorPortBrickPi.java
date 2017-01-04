@@ -8,8 +8,8 @@ package ev3dev.hardware.ports;
  */
 public interface MotorPortBrickPi {
 
-	public static final String A = "ttyAMA0:outA";
-	public static final String B = "ttyAMA0:outB";
-	public static final String C = "ttyAMA0:outC";
-	public static final String D = "ttyAMA0:outD";
+	String A = "ttyAMA0:outA";
+	String B = "ttyAMA0:outB";
+	String C = "ttyAMA0:outC";
+	String D = "ttyAMA0:outD";
 }

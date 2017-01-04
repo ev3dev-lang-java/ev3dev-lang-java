@@ -5,7 +5,7 @@ package lejos.robotics;
  * @author BB
  *
  */
-public interface DCMotor extends BaseMotor{
+public interface DCMotor extends BaseMotor {
 
     /**
      * Set the power level 0%-100% to be applied to the motors

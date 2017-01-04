@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-public class EV3DevDevice extends Device implements SupportedPlatform{
+public class EV3DevDevice extends Device implements SupportedPlatform {
 
 	/**
 	 * This method returns the platform

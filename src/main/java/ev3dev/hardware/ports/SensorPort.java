@@ -9,8 +9,8 @@ package ev3dev.hardware.ports;
  */
 public interface SensorPort {
 	
-    public static final String S1 = "in1";
-    public static final String S2 = "in2";
-    public static final String S3 = "in3";
-    public static final String S4 = "in4";
+    String S1 = "in1";
+    String S2 = "in2";
+    String S3 = "in3";
+    String S4 = "in4";
 }
