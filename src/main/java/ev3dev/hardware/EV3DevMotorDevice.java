@@ -35,37 +35,6 @@ public @Slf4j class EV3DevMotorDevice extends EV3DevDevice {
         }
     }
     
-    /**
-	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
-	 * It is necessary to indicate the type and ports.
-	 * 
-	 * This constructor add the way to detect if some device is not allowed for some platform.
-	 * Example: DC Motors in Pi Boards.
-	 * 
-     * @param type
-     * @param portName
-     * @param supportedPlatforms
-     * @throws DeviceException
-     * @throws DeviceNotSupportedException
-     */
-    public EV3DevMotorDevice(final String type, final String portName, final String[] supportedPlatforms) throws DeviceException, DeviceNotSupportedException {
-
-    	boolean detectedPlatform = false;
-    	final String localPlatform = this.getPlatform();
-    	for (String supportedPlatform : supportedPlatforms) {
-    		if(supportedPlatform.equals(localPlatform)){
-    			detectedPlatform = true;
-    			break;
-    		}
-    	}
-    	
-    	if(detectedPlatform == false){
-    		throw new DeviceNotSupportedException("The platform has not available the device connected in: " + portName);
-    	}
-
-    	this.connect(type, portName);
-    }
-    
     //TODO Rename method to detect
     /**
      * This method matches a input with the internal position in EV3Dev.

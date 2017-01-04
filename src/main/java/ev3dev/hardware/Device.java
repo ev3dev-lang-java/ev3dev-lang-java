@@ -27,16 +27,14 @@ public class Device implements Closeable {
     }
     
     /**
-     * Close the sensors. Close associated resources.
-
+     * Close the sensors.
+     * Close associated resources.
      */
-    public void close()
-    {
+    public void close() {
         for(Closeable res : closeList)
             try {
                 res.close();
-            } catch(IOException e)
-            {
+            } catch(IOException e) {
                 // this really should not happen
                 throw new DeviceException("Error during close", e);
             }

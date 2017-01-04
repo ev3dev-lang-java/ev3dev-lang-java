@@ -9,8 +9,7 @@ package ev3dev.hardware;
  */
 public class DeviceException extends RuntimeException {
 
-    public DeviceException() {
-    }
+    public DeviceException() {}
 
     public DeviceException(String message)
     {
