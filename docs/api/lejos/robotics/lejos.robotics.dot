@@ -26,7 +26,6 @@ digraph G {
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + brake() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + hold() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isMoving() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + reverseDirection() </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.Calibrate

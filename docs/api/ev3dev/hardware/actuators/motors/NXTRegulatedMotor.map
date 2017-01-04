@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./BaseRegulatedMotor.html" title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" alt="" coords="15,11,835,784"/>
-<area shape="rect" id="node1" href="./BaseRegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,5,846,789"/>
-<area shape="rect" id="node2_1" href="./NXTRegulatedMotor.html" title="ev3dev.hardware.actuators.motors.NXTRegulatedMotor" alt="" coords="305,843,545,1015"/>
-<area shape="rect" id="node2" href="./NXTRegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="295,838,556,1021"/>
+<area shape="rect" id="node1_0" href="./BaseRegulatedMotor.html" title="ev3dev.hardware.actuators.motors.BaseRegulatedMotor" alt="" coords="15,11,835,696"/>
+<area shape="rect" id="node1" href="./BaseRegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,5,846,701"/>
+<area shape="rect" id="node2_1" href="./NXTRegulatedMotor.html" title="ev3dev.hardware.actuators.motors.NXTRegulatedMotor" alt="" coords="305,755,545,927"/>
+<area shape="rect" id="node2" href="./NXTRegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="295,750,556,933"/>
 </map>

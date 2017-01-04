@@ -15,28 +15,17 @@ digraph G {
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BasicMotor </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME : String </td></tr>
-<tr><td align="left" balign="left"> - SYSTEM_PORT_CLASS_NAME : String </td></tr>
-<tr><td align="left" balign="left"> - MODE : String </td></tr>
 <tr><td align="left" balign="left"> - DUTY_CYCLE : String </td></tr>
 <tr><td align="left" balign="left"> - POWER : String </td></tr>
 <tr><td align="left" balign="left"> - COMMAND : String </td></tr>
 <tr><td align="left" balign="left"> - STOP_COMMAND : String </td></tr>
 <tr><td align="left" balign="left"> - RUN_FOREVER : String </td></tr>
-<tr><td align="left" balign="left"> - COAST : String </td></tr>
-<tr><td align="left" balign="left"> - BRAKE : String </td></tr>
-<tr><td align="left" balign="left"> - HOLD : String </td></tr>
-<tr><td align="left" balign="left"> - STOP : String </td></tr>
-<tr><td align="left" balign="left"> - STATE : String </td></tr>
-<tr><td align="left" balign="left"> - STATE_RUNNING : String </td></tr>
-<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
-<tr><td align="left" balign="left"> - SUPPORTED_PLATFORMS : String[] </td></tr>
-<tr><td align="left" balign="left"> # local_power : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BasicMotor(portName : String) </td></tr>
 <tr><td align="left" balign="left"> + setPower(power : int) </td></tr>
 <tr><td align="left" balign="left"> + getPower() : int </td></tr>
+<tr><td align="left" balign="left"> # updateState(newMode : String) </td></tr>
 <tr><td align="left" balign="left"> + forward() </td></tr>
 <tr><td align="left" balign="left"> + backward() </td></tr>
 <tr><td align="left" balign="left"> + isMoving() : boolean </td></tr>
@@ -44,7 +33,6 @@ digraph G {
 <tr><td align="left" balign="left"> + hold() </td></tr>
 <tr><td align="left" balign="left"> + coast() </td></tr>
 <tr><td align="left" balign="left"> + stop() </td></tr>
-<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="./BasicMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.actuators.motors.UnregulatedMotor

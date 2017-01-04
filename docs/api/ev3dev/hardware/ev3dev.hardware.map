@@ -1,18 +1,18 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Device.html" title="ev3dev.hardware.Device" alt="" coords="284,19,487,117"/>
-<area shape="rect" id="node1" href="./Device.html" title="&lt;TABLE&gt;" alt="" coords="273,13,497,123"/>
-<area shape="rect" id="node4_1" href="./EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="424,185,563,269"/>
-<area shape="rect" id="node4" href="./EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="413,179,573,274"/>
-<area shape="rect" id="node2_2" href="./DeviceException.html" title="ev3dev.hardware.DeviceException" alt="" coords="716,11,1036,125"/>
-<area shape="rect" id="node2" href="./DeviceException.html" title="&lt;TABLE&gt;" alt="" coords="705,6,1047,130"/>
-<area shape="rect" id="node3_3" href="./DeviceNotSupportedException.html" title="ev3dev.hardware.DeviceNotSupportedException" alt="" coords="1081,11,1476,125"/>
-<area shape="rect" id="node3" href="./DeviceNotSupportedException.html" title="&lt;TABLE&gt;" alt="" coords="1071,6,1487,130"/>
-<area shape="rect" id="node5_4" href="./EV3DevMotorDevice.html" title="ev3dev.hardware.EV3DevMotorDevice" alt="" coords="15,350,486,551"/>
-<area shape="rect" id="node5" href="./EV3DevMotorDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,345,497,557"/>
-<area shape="rect" id="node6_5" href="./EV3DevSensorDevice.html" title="ev3dev.hardware.EV3DevSensorDevice" alt="" coords="531,328,941,573"/>
-<area shape="rect" id="node6" href="./EV3DevSensorDevice.html" title="&lt;TABLE&gt;" alt="" coords="521,323,951,579"/>
-<area shape="rect" id="node7_6" href="./PlatformNotSupportedException.html" title="ev3dev.hardware.PlatformNotSupportedException" alt="" coords="1522,33,1819,103"/>
-<area shape="rect" id="node7" href="./PlatformNotSupportedException.html" title="&lt;TABLE&gt;" alt="" coords="1511,28,1830,108"/>
-<area shape="rect" id="node8_7" href="./SupportedPlatform.html" title="ev3dev.hardware.SupportedPlatform" alt="" coords="532,11,671,125"/>
-<area shape="rect" id="node8" href="./SupportedPlatform.html" title="&lt;TABLE&gt;" alt="" coords="521,6,681,130"/>
+<area shape="rect" id="node1_0" href="./Device.html" title="ev3dev.hardware.Device" alt="" coords="165,19,368,117"/>
+<area shape="rect" id="node1" href="./Device.html" title="&lt;TABLE&gt;" alt="" coords="155,13,379,123"/>
+<area shape="rect" id="node4_1" href="./EV3DevDevice.html" title="ev3dev.hardware.EV3DevDevice" alt="" coords="305,185,444,269"/>
+<area shape="rect" id="node4" href="./EV3DevDevice.html" title="&lt;TABLE&gt;" alt="" coords="295,179,455,274"/>
+<area shape="rect" id="node2_2" href="./DeviceException.html" title="ev3dev.hardware.DeviceException" alt="" coords="597,11,917,125"/>
+<area shape="rect" id="node2" href="./DeviceException.html" title="&lt;TABLE&gt;" alt="" coords="587,6,928,130"/>
+<area shape="rect" id="node3_3" href="./DeviceNotSupportedException.html" title="ev3dev.hardware.DeviceNotSupportedException" alt="" coords="963,11,1357,125"/>
+<area shape="rect" id="node3" href="./DeviceNotSupportedException.html" title="&lt;TABLE&gt;" alt="" coords="952,6,1368,130"/>
+<area shape="rect" id="node5_4" href="./EV3DevMotorDevice.html" title="ev3dev.hardware.EV3DevMotorDevice" alt="" coords="16,357,328,544"/>
+<area shape="rect" id="node5" href="./EV3DevMotorDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,352,339,549"/>
+<area shape="rect" id="node6_5" href="./EV3DevSensorDevice.html" title="ev3dev.hardware.EV3DevSensorDevice" alt="" coords="374,328,783,573"/>
+<area shape="rect" id="node6" href="./EV3DevSensorDevice.html" title="&lt;TABLE&gt;" alt="" coords="363,323,794,579"/>
+<area shape="rect" id="node7_6" href="./PlatformNotSupportedException.html" title="ev3dev.hardware.PlatformNotSupportedException" alt="" coords="1403,33,1701,103"/>
+<area shape="rect" id="node7" href="./PlatformNotSupportedException.html" title="&lt;TABLE&gt;" alt="" coords="1393,28,1711,108"/>
+<area shape="rect" id="node8_7" href="./SupportedPlatform.html" title="ev3dev.hardware.SupportedPlatform" alt="" coords="413,11,552,125"/>
+<area shape="rect" id="node8" href="./SupportedPlatform.html" title="&lt;TABLE&gt;" alt="" coords="403,6,563,130"/>
 </map>

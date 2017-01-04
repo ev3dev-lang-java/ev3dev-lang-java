@@ -37,11 +37,7 @@ digraph G {
 <tr><td align="left" balign="left"> - RUN_TO_REL_POS : String </td></tr>
 <tr><td align="left" balign="left"> - RUN_TO_ABS_POS : String </td></tr>
 <tr><td align="left" balign="left"> - STATE : String </td></tr>
-<tr><td align="left" balign="left"> - STATE_RUNNING : String </td></tr>
-<tr><td align="left" balign="left"> - STATE_STALLED : String </td></tr>
-<tr><td align="left" balign="left"> - local_speed : int </td></tr>
 <tr><td align="left" balign="left"> - regulationFlag : boolean </td></tr>
-<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BaseRegulatedMotor(motorPort : String, moveP : float, moveI : float, moveD : float, holdP : float, holdI : float, holdD : float, offset : int, maxSpeed : int) </td></tr>
@@ -58,7 +54,6 @@ digraph G {
 <tr><td align="left" balign="left"> + isMoving() : boolean </td></tr>
 <tr><td align="left" balign="left"> + setSpeed(speed : int) </td></tr>
 <tr><td align="left" balign="left"> + resetTachoCount() </td></tr>
-<tr><td align="left" balign="left"> - isRunning() : boolean </td></tr>
 <tr><td align="left" balign="left"> + rotate(angle : int, immediateReturn : boolean) </td></tr>
 <tr><td align="left" balign="left"> + rotate(angle : int) </td></tr>
 <tr><td align="left" balign="left"> + rotateTo(limitAngle : int, immediateReturn : boolean) </td></tr>
@@ -66,7 +61,6 @@ digraph G {
 <tr><td align="left" balign="left"> + getSpeed() : int </td></tr>
 <tr><td align="left" balign="left"> + isStalled() : boolean </td></tr>
 <tr><td align="left" balign="left"> + getRotationSpeed() : int </td></tr>
-<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.actuators.motors.NXTRegulatedMotor

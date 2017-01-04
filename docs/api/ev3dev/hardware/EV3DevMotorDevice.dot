@@ -35,7 +35,6 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevMotorDevice(type : String, portName : String) </td></tr>
-<tr><td align="left" balign="left"> + EV3DevMotorDevice(type : String, portName : String, supportedPlatforms : String[]) </td></tr>
 <tr><td align="left" balign="left"> + connect(type : String, portName : String) </td></tr>
 <tr><td align="left" balign="left"> + getStringAttribute(attribute : String) : String </td></tr>
 <tr><td align="left" balign="left"> + getIntegerAttribute(attribute : String) : int </td></tr>
@@ -72,11 +71,7 @@ digraph G {
 <tr><td align="left" balign="left"> - RUN_TO_REL_POS : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - RUN_TO_ABS_POS : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - STATE : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE_RUNNING : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE_STALLED : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - local_speed : int </td></tr>
 <tr><td align="left" balign="left"> - regulationFlag : boolean </td></tr>
-<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BaseRegulatedMotor(motorPort : java.lang.String, moveP : float, moveI : float, moveD : float, holdP : float, holdI : float, holdD : float, offset : int, maxSpeed : int) </td></tr>
@@ -93,7 +88,6 @@ digraph G {
 <tr><td align="left" balign="left"> + isMoving() : boolean </td></tr>
 <tr><td align="left" balign="left"> + setSpeed(speed : int) </td></tr>
 <tr><td align="left" balign="left"> + resetTachoCount() </td></tr>
-<tr><td align="left" balign="left"> - isRunning() : boolean </td></tr>
 <tr><td align="left" balign="left"> + rotate(angle : int, immediateReturn : boolean) </td></tr>
 <tr><td align="left" balign="left"> + rotate(angle : int) </td></tr>
 <tr><td align="left" balign="left"> + rotateTo(limitAngle : int, immediateReturn : boolean) </td></tr>
@@ -101,7 +95,6 @@ digraph G {
 <tr><td align="left" balign="left"> + getSpeed() : int </td></tr>
 <tr><td align="left" balign="left"> + isStalled() : boolean </td></tr>
 <tr><td align="left" balign="left"> + getRotationSpeed() : int </td></tr>
-<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="./actuators/motors/BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// ev3dev.hardware.actuators.motors.BasicMotor
@@ -111,28 +104,17 @@ digraph G {
 <tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.actuators.motors </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - SYSTEM_PORT_CLASS_NAME : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - MODE : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - DUTY_CYCLE : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - POWER : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - COMMAND : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - STOP_COMMAND : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - RUN_FOREVER : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - COAST : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - BRAKE : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - HOLD : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STOP : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE_RUNNING : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
-<tr><td align="left" balign="left"> - SUPPORTED_PLATFORMS : java.lang.String[] </td></tr>
-<tr><td align="left" balign="left"> # local_power : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BasicMotor(portName : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> + setPower(power : int) </td></tr>
 <tr><td align="left" balign="left"> + getPower() : int </td></tr>
+<tr><td align="left" balign="left"> # updateState(newMode : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> + forward() </td></tr>
 <tr><td align="left" balign="left"> + backward() </td></tr>
 <tr><td align="left" balign="left"> + isMoving() : boolean </td></tr>
@@ -140,7 +122,6 @@ digraph G {
 <tr><td align="left" balign="left"> + hold() </td></tr>
 <tr><td align="left" balign="left"> + coast() </td></tr>
 <tr><td align="left" balign="left"> + stop() </td></tr>
-<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="./actuators/motors/BasicMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	//ev3dev.hardware.EV3DevMotorDevice extends ev3dev.hardware.EV3DevDevice

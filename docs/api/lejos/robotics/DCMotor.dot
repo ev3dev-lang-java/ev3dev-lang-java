@@ -16,28 +16,17 @@ digraph G {
 <tr><td align="center" balign="center"><font point-size="7.0"> ev3dev.hardware.actuators.motors </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - SYSTEM_CLASS_NAME : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - SYSTEM_PORT_CLASS_NAME : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - MODE : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - DUTY_CYCLE : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - POWER : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - COMMAND : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - STOP_COMMAND : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - RUN_FOREVER : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - COAST : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - BRAKE : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - HOLD : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STOP : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE_RUNNING : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
-<tr><td align="left" balign="left"> - SUPPORTED_PLATFORMS : java.lang.String[] </td></tr>
-<tr><td align="left" balign="left"> # local_power : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BasicMotor(portName : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> + setPower(power : int) </td></tr>
 <tr><td align="left" balign="left"> + getPower() : int </td></tr>
+<tr><td align="left" balign="left"> # updateState(newMode : java.lang.String) </td></tr>
 <tr><td align="left" balign="left"> + forward() </td></tr>
 <tr><td align="left" balign="left"> + backward() </td></tr>
 <tr><td align="left" balign="left"> + isMoving() : boolean </td></tr>
@@ -45,7 +34,6 @@ digraph G {
 <tr><td align="left" balign="left"> + hold() </td></tr>
 <tr><td align="left" balign="left"> + coast() </td></tr>
 <tr><td align="left" balign="left"> + stop() </td></tr>
-<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../ev3dev/hardware/actuators/motors/BasicMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.BaseMotor
@@ -65,7 +53,6 @@ digraph G {
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + brake() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + hold() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isMoving() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + reverseDirection() </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.DCMotor

@@ -38,11 +38,7 @@ digraph G {
 <tr><td align="left" balign="left"> - RUN_TO_REL_POS : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - RUN_TO_ABS_POS : java.lang.String </td></tr>
 <tr><td align="left" balign="left"> - STATE : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE_RUNNING : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - STATE_STALLED : java.lang.String </td></tr>
-<tr><td align="left" balign="left"> - local_speed : int </td></tr>
 <tr><td align="left" balign="left"> - regulationFlag : boolean </td></tr>
-<tr><td align="left" balign="left"> - polarityFlag : boolean </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BaseRegulatedMotor(motorPort : java.lang.String, moveP : float, moveI : float, moveD : float, holdP : float, holdI : float, holdD : float, offset : int, maxSpeed : int) </td></tr>
@@ -59,7 +55,6 @@ digraph G {
 <tr><td align="left" balign="left"> + isMoving() : boolean </td></tr>
 <tr><td align="left" balign="left"> + setSpeed(speed : int) </td></tr>
 <tr><td align="left" balign="left"> + resetTachoCount() </td></tr>
-<tr><td align="left" balign="left"> - isRunning() : boolean </td></tr>
 <tr><td align="left" balign="left"> + rotate(angle : int, immediateReturn : boolean) </td></tr>
 <tr><td align="left" balign="left"> + rotate(angle : int) </td></tr>
 <tr><td align="left" balign="left"> + rotateTo(limitAngle : int, immediateReturn : boolean) </td></tr>
@@ -67,7 +62,6 @@ digraph G {
 <tr><td align="left" balign="left"> + getSpeed() : int </td></tr>
 <tr><td align="left" balign="left"> + isStalled() : boolean </td></tr>
 <tr><td align="left" balign="left"> + getRotationSpeed() : int </td></tr>
-<tr><td align="left" balign="left"> + reverseDirection() </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../ev3dev/hardware/actuators/motors/BaseRegulatedMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.BaseMotor
@@ -87,7 +81,6 @@ digraph G {
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + brake() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + hold() </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + isMoving() : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="9.0"> + reverseDirection() </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseMotor.html", fontname="Helvetica", fontcolor="black", fontsize=9.0];
 	// lejos.robotics.RegulatedMotor
