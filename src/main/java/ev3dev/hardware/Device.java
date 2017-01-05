@@ -4,7 +4,6 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 /**
  * Base class for sensors drivers &amp; motors. Provides mechanism to release resources when closed
  * 

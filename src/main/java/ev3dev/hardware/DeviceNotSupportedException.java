@@ -8,17 +8,8 @@ package ev3dev.hardware;
  */
 public class DeviceNotSupportedException extends RuntimeException {
 
-    public DeviceNotSupportedException() {}
-
     public DeviceNotSupportedException(String message) {
         super (message);
     }
 
-    public DeviceNotSupportedException(Throwable cause) {
-        super (cause);
-    }
-
-    public DeviceNotSupportedException(String message, Throwable cause) {
-        super (message, cause);
-    }
 }

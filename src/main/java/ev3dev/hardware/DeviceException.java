@@ -9,16 +9,9 @@ package ev3dev.hardware;
  */
 public class DeviceException extends RuntimeException {
 
-    public DeviceException() {}
-
     public DeviceException(String message)
     {
         super (message);
-    }
-
-    public DeviceException(Throwable cause)
-    {
-        super (cause);
     }
 
     public DeviceException(String message, Throwable cause)

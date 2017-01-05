@@ -14,13 +14,7 @@ import lejos.robotics.DCMotor;
  * @author Juan Antonio Breña Moral
  *
  */
-public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
-
-	private final String DUTY_CYCLE = "duty_cycle_sp";
-	private final String POWER = "power";
-	private final String COMMAND = "command";
-	private final String STOP_COMMAND = "stop_action";
-	private final String RUN_FOREVER = "run-forever";
+public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMotorDeviceCommands, DCMotor {
 
 	//TODO Improve the way to connect with a Motor.
 	/**

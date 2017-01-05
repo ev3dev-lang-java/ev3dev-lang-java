@@ -29,37 +29,17 @@ import lombok.extern.slf4j.Slf4j;
  * <code>isStalled()</code >  returns <b>true</b>.
  * <br>Motors will hold their position when stopped. If this is not what you require use
  * the flt() method instead of stop().
- * 
- * TODO: Fix the name
+ *
  * @author Roger Glassey
  * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  */
-public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
+public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements EV3DevMotorDeviceCommands, RegulatedMotor {
 
     protected float speed = 360;
     protected int acceleration = 6000;
 
-    private final static String SYSTEM_CLASS_NAME = "tacho-motor";
-    private final static String SYSTEM_CLASS_NAME_AUTO = "auto";
-    private final static String SYSTEM_PORT_CLASS_NAME = "lego-port";
-	private final String MODE = "mode";
-	private final String POSITION_SP = "position_sp";
-    private final String POSITION = "position";
-	private final String SPEED = "speed_sp";
-	private final String DUTY_CYCLE = "duty_cycle_sp";
-	private final String COMMAND = "command";
-    private final String STOP_COMMAND = "stop_action";
-	private final String RUN_FOREVER = "run-forever";
-    private final String RUN_DIRECT = "run-direct";
-    private final String COAST = "coast";
-    private final String BRAKE = "brake";
-    private final String HOLD = "hold";
-	private final String STOP = "stop";
-	private final String RESET = "reset";
-	private final String RUN_TO_REL_POS = "run-to-rel-pos";
-	private final String RUN_TO_ABS_POS = "run-to-abs-pos";
-	private final String STATE = "state";
+
 
     private boolean regulationFlag = true;
 

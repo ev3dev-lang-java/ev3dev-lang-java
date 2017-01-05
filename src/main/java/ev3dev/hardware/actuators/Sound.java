@@ -22,11 +22,8 @@ import java.io.File;
  */
 public @Slf4j class Sound extends EV3DevDevice {
 
-    public final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
-    public final static String VOLUME_PATH = SOUND_PATH + "volume";
-    public final static String CMD_BEEP = "beep";
-    public final static String CMD_APLAY ="aplay";
-    
+    public final static String VOLUME_PATH = SOUND_PATH + VOLUME;
+
     private static Sound Instance;
 
     /**
@@ -71,8 +68,8 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param duration The duration of the tone, in milliseconds.
      * @param volume The volume of the playback 100 corresponds to 100%
      */
-    public void playTone(int frequency, int duration, int volume) {
-        Sysfs.writeString(VOLUME_PATH,"" + volume);
+    public void playTone(final int frequency, final int duration, final int volume) {
+        this.setVolume(volume);
     	this.playTone(frequency, duration);
     }
     
@@ -81,7 +78,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param frequency The frequency of the tone in Hertz (Hz).
      * @param duration The duration of the tone, in milliseconds.
      */
-    public void playTone(int frequency, int duration) {
+    public void playTone(final int frequency, final int duration) {
         final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
         Shell.execute(cmdTone);
     }
@@ -89,12 +86,12 @@ public @Slf4j class Sound extends EV3DevDevice {
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
-     * @param vol the volume percentage 0 - 100
+     * @param volume the volume percentage 0 - 100
      * @return The number of milliseconds the sample will play for or less 0 if
      *         there is an error.
      */
-    public int playSample(File file, int vol) {
-        Sysfs.writeInteger(VOLUME_PATH, vol);
+    public int playSample(final File file, final int volume) {
+        this.setVolume(volume);
     	Shell.execute(CMD_APLAY + " " + file.toString());
         return 1;
     }
@@ -113,10 +110,10 @@ public @Slf4j class Sound extends EV3DevDevice {
 
     /**
      * Set the master volume level
-     * @param vol 0-100
+     * @param volume 0-100
      */
-    public void setVolume(int vol) {
-        Sysfs.writeString(VOLUME_PATH,"" + vol);
+    public void setVolume(final int volume) {
+        Sysfs.writeString(VOLUME_PATH,"" + volume);
     }
 
     /**
