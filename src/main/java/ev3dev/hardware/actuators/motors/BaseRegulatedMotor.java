@@ -109,7 +109,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     }
 
     public void forward() {
-        this.setStringAttribute("polarity", "normal");
+        this.setStringAttribute(POLARITY, POLARITY_NORMAL);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -118,7 +118,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     }
 
     public void backward(){
-        this.setStringAttribute("polarity", "inversed");
+        this.setStringAttribute(POLARITY, POLARITY_INVERSED);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -174,7 +174,6 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @return true iff the motors is attempting to rotate.<br>
      */
     public boolean isMoving() {
-        final String STATE_RUNNING = "running";
 		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
     }
 
@@ -266,7 +265,6 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @return true if the motors is stalled, else false
      */
     public boolean isStalled() {
-        final String STATE_STALLED = "stalled";
 		return (this.getStringAttribute(STATE).contains(STATE_STALLED));
     }
     

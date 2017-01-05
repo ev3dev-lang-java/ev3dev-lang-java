@@ -26,6 +26,7 @@ public interface EV3DevMotorDeviceCommands {
 
     String STATE = "state";
     String STATE_RUNNING = "running";
+    String STATE_STALLED = "stalled";
     String POWER = "power";
     String POLARITY = "polarity";
     String POLARITY_NORMAL = "normal";
