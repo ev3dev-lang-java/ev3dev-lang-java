@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node1_0" href="./BasicMotor.html" title="ev3dev.hardware.actuators.motors.BasicMotor" alt="" coords="32,11,227,285"/>
-<area shape="rect" id="node1" href="./BasicMotor.html" title="&lt;TABLE&gt;" alt="" coords="21,5,237,291"/>
-<area shape="rect" id="node2_1" href="./UnregulatedMotor.html" title="ev3dev.hardware.actuators.motors.UnregulatedMotor" alt="" coords="16,344,243,413"/>
-<area shape="rect" id="node2" href="./UnregulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,339,253,419"/>
-</map>
