@@ -57,14 +57,14 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
-		super(SYSTEM_PORT_CLASS_NAME, motorPort);
+		super(PORT, motorPort);
 
         //TODO: Improve the solution
         if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
-            log.debug("Setting port in mode: {}", SYSTEM_CLASS_NAME);
-            this.setStringAttribute(MODE, SYSTEM_CLASS_NAME);
+            log.debug("Setting port in mode: {}", TACHO_MOTOR);
+            this.setStringAttribute(MODE, TACHO_MOTOR);
         }
-        this.connect(SYSTEM_CLASS_NAME, motorPort);
+        this.connect(TACHO_MOTOR, motorPort);
 	}
 
 	/**
