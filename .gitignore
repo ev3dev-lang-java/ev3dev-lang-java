@@ -1,10 +1,6 @@
 .idea
-library
-target
 .gradle
 build
 *.iml
-.settings
-bin
 docs/api/*
 
