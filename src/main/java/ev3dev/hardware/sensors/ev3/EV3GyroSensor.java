@@ -36,8 +36,6 @@ import java.io.File;
  */
 public class EV3GyroSensor extends BaseSensor {
 
-	private static final long SWITCHDELAY = 200;
-	
 	public EV3GyroSensor(String portName) {
 		super(portName, "ev3-uart", "lego-ev3-gyro");
 		setModes(new SensorMode[] {
@@ -113,9 +111,9 @@ public class EV3GyroSensor extends BaseSensor {
 	*/
 	public void reset() {
 		// Reset mode (4) is not used here as it behaves erratically. Instead the reset is done implicitly by going to mode 1.
-		switchMode("GYRO-RATE", SWITCHDELAY);
+		switchMode("GYRO-RATE", SWITCH_DELAY);
 		// And back to 3 to prevent another reset when fetching the next sample
-		switchMode("GYRO-G&A", SWITCHDELAY);
+		switchMode("GYRO-G&A", SWITCH_DELAY);
 	}
 
 	public int getAngle(){
@@ -140,7 +138,7 @@ public class EV3GyroSensor extends BaseSensor {
 
 		@Override
 		public void fetchSample(float[] sample, int offset) {
-			switchMode(MODE, SWITCHDELAY);
+			switchMode(MODE, SWITCH_DELAY);
 			//port.getShorts(raw, 0, raw.length);
 			String attribute = "value0";
 			float raw = Sysfs.readFloat(this.pathDevice + "/" +  attribute);
@@ -172,7 +170,7 @@ public class EV3GyroSensor extends BaseSensor {
 
 		@Override
 		public void fetchSample(float[] sample, int offset) {
-			switchMode(MODE, SWITCHDELAY);
+			switchMode(MODE, SWITCH_DELAY);
 			//ports.getShorts(raw, 0, raw.length);
 			String attribute = "value0";
 			float raw = Sysfs.readFloat(this.pathDevice + "/" +  attribute);
@@ -202,7 +200,7 @@ public class EV3GyroSensor extends BaseSensor {
 
 		@Override
 		public void fetchSample(float[] sample, int offset) {
-			switchMode(MODE, SWITCHDELAY);
+			switchMode(MODE, SWITCH_DELAY);
 			String attribute = "value0";
 			float raw = Sysfs.readFloat(this.pathDevice + "/" +  attribute);
 			sample[0] = raw * toSI;

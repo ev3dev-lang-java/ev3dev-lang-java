@@ -38,7 +38,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     protected static int[] colorMap = {
         Color.NONE, Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.WHITE, Color.BROWN
     };
-    protected static final int SWITCH_DELAY = 250;
 
     protected static final String COL_RESET = "RESET";//-1//??
     protected static final String COL_REFLECT = "COL-REFLECT";//0
@@ -63,7 +62,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     }
 
 	public EV3ColorSensor(String portName) {
-        super(portName, "ev3-uart", "lego-ev3-color ");
+        super(portName, "ev3-uart", "lego-ev3-color");
 		initModes();
 	}
 

@@ -14,9 +14,11 @@ public interface EV3DevDeviceCommands {
     String DEVICE = "set_device";
 
     String BATTERY =  "power_supply";
+    String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
     String BATTERY_EV3 =  "legoev3-battery";
     String BATTERY_PISTORMS =  "pistorm-battery";
     String BATTERY_BRICKPI =  "brickpi-battery";
+
 
     //Actuators
     String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";

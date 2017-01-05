@@ -32,8 +32,6 @@ import java.io.File;
  */
 public class EV3IRSensor extends BaseSensor {
 
-    protected final static int SWITCH_DELAY = 250;
-
 	public EV3IRSensor(String portName) {
         super(portName, "ev3-uart", "lego-ev3-ir");
 		init();

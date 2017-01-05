@@ -57,7 +57,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
-		super(PORT, motorPort);
+		super(LEGO_PORT, motorPort);
 
         //TODO: Improve the solution
         if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){

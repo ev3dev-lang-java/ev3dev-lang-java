@@ -39,7 +39,6 @@ import java.io.File;
 public class EV3UltrasonicSensor extends BaseSensor {
 
   private static final int DISABLED    = 3;
-  private static final int SWITCHDELAY = 200;
 
   protected void init() {
     setModes(new SensorMode[] { 
@@ -91,14 +90,14 @@ public class EV3UltrasonicSensor extends BaseSensor {
    * Enable the sensors. This puts the indicater LED on.
    */
   public void enable() {
-    switchMode(0, SWITCHDELAY);
+    switchMode(0, SWITCH_DELAY);
   }
 
   /**
    * Disable the sensors. This puts the indicater LED off.
    */
   public void disable() {
-    switchMode(DISABLED, SWITCHDELAY);
+    switchMode(DISABLED, SWITCH_DELAY);
   }
 
   /**
@@ -113,7 +112,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
 
 private class DistanceMode extends EV3DevSensorMode {
-    private static final String   MODE = "US-DIST-CM";
+    private static final String MODE = "US-DIST-CM";
     private static final float toSI = 1f;
 
 	private File pathDevice = null;
@@ -129,7 +128,7 @@ private class DistanceMode extends EV3DevSensorMode {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-      switchMode(MODE, SWITCHDELAY);
+      switchMode(MODE, SWITCH_DELAY);
 		float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
         if (raw<5) sample[offset]=0;
@@ -163,7 +162,7 @@ private class DistanceMode extends EV3DevSensorMode {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-      switchMode(MODE, SWITCHDELAY);
+      switchMode(MODE, SWITCH_DELAY);
       
 		float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
       

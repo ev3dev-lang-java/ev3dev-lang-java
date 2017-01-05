@@ -6,10 +6,9 @@ import lejos.utility.Delay;
 import java.util.ArrayList;
 
 
-public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
+public class BaseSensor extends EV3DevSensorDevice implements EV3DevSensorDeviceCommands, SensorModes {
 
-    private static final String SENSOR_MODES = "modes";
-    private static final String SENSOR_MODE = "mode";
+    protected static final int SWITCH_DELAY = 250;
 
     public BaseSensor(final String sensorPort, final String mode, final String device){
         super(sensorPort, mode, device);
@@ -72,8 +71,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     
     private int getIndex(String modeName) {
       int i = 0;
-      for(String s : getAvailableModes())
-      {
+      for(String s : getAvailableModes()) {
           if (s.equals(modeName))
               return i;
           i++;

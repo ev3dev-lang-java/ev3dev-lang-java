@@ -13,23 +13,19 @@ import ev3dev.utils.Sysfs;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Battery extends EV3DevDevice implements Power {
+public class Battery extends EV3DevDevice implements EV3DevSensorDeviceCommands, Power {
 
-	private final String DEVICE_ROOT_PATH = "/sys/class/";
-	private String BATTERY_PATH = DEVICE_ROOT_PATH + "power_supply/";
-	private final String EV3BRICK_BATTERY_OBJECT = "legoev3-battery/";
-	private final String PISTORMS_BATTERY_OBJECT = "pistorm-battery/";
-	private final String BRICKPI_BATTERY_OBJECT = "brickpi-battery/";
-	private final String VOLTAGE = "voltage_now";
-	private final String CURRENT = "current_now";
-	
-    private static Battery Instance;
+    private static final String VOLTAGE = "voltage_now";
+    private static final String CURRENT = "current_now";
+
+    private String BATTERY_PATH_LOCAL = "";
+
+	private static Battery Instance;
 
     public static Battery getInstance() {
         if (Instance == null) {
         	Instance = new Battery();
         }
-
         return Instance;
     }
 
@@ -37,11 +33,11 @@ public class Battery extends EV3DevDevice implements Power {
     private Battery() {
     	final String platform = this.getPlatform();
     	if(platform.equals(SupportedPlatform.EV3BRICK)){
-    		BATTERY_PATH += EV3BRICK_BATTERY_OBJECT;
+    		BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
     	} else if(platform.equals(SupportedPlatform.PISTORMS)){
-    		BATTERY_PATH += PISTORMS_BATTERY_OBJECT;
+			BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_PISTORMS;
     	} else if(platform.equals(SupportedPlatform.BRICKPI)){
-    		BATTERY_PATH += BRICKPI_BATTERY_OBJECT;
+			BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI;
     	}
     }
 	
@@ -50,7 +46,7 @@ public class Battery extends EV3DevDevice implements Power {
 	 * @return voltage
 	 */
 	public float getVoltage() {
-		return Sysfs.readFloat(BATTERY_PATH +  VOLTAGE);
+		return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE);
 	}
 
 	/**
@@ -59,7 +55,7 @@ public class Battery extends EV3DevDevice implements Power {
 	 */
 	public float getBatteryCurrent() {
     	if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
-    		return Sysfs.readFloat(BATTERY_PATH +  CURRENT);
+    		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
     	}
     	return -1f;
 	}

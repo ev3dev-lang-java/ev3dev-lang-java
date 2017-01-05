@@ -23,7 +23,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMoto
 	 * @param portName
      */
 	public BasicMotor(final String portName) {
-		super(PORT, portName);
+		super(LEGO_PORT, portName);
 		if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
 			throw new DeviceNotSupportedException("This device is not supported in this platform");
 		}

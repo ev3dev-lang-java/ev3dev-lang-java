@@ -33,12 +33,11 @@ public class EV3DevDevice extends Device implements EV3DevDeviceCommands, Suppor
     @Override
 	public String getPlatform() throws PlatformNotSupportedException{
 
-		final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
-		final String EV3BRICK_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_EV3;
-		final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
-		final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
+        final String EV3BRICK_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_EV3;
+        final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
+        final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
 
-		if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
+        if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
 			log.trace("Detected platform: " + SupportedPlatform.EV3BRICK);
 			return EV3BRICK;
 		} else if(Sysfs.existPath(PISTORMS_DISCOVERY_PATTERN_PATH)){

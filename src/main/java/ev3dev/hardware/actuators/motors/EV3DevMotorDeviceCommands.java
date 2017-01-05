@@ -4,7 +4,6 @@ public interface EV3DevMotorDeviceCommands {
 
     String TACHO_MOTOR = "tacho-motor";
     String DC_MOTOR = "dc-motor";
-    String PORT = "lego-port";
 
     String POSITION_SP = "position_sp";
     String POSITION = "position";
