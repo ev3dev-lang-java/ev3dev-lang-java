@@ -6,4 +6,5 @@ build
 *.iml
 .settings
 bin
+docs/api/*
 
