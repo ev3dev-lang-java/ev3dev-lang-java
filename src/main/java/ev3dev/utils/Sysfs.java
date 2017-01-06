@@ -81,9 +81,8 @@ public @Slf4j class Sysfs {
 	public static List<File> getElements(final String filePath){
 		log.debug("ls " + filePath);
 		final File f = new File(filePath);
-		if(f.exists() && f.isDirectory()) {
-			List<File> files = new ArrayList<File>(Arrays.asList(f.listFiles()));
-			return files;
+		if(f.exists() && f.isDirectory() && (f.listFiles().length > 0)) {
+            return new ArrayList<>(Arrays.asList(f.listFiles()));
 		}else {
 			throw new RuntimeException("The path doesn't exist: " + filePath);
 		}
@@ -97,10 +96,7 @@ public @Slf4j class Sysfs {
 	 */
 	public static boolean existPath(final String filePath){
 		final File f = new File(filePath);
-		if (f.exists() && f.isDirectory()) {
-			return true;
-		}
-		return false;
-	}
+        return f.exists() && f.isDirectory();
+    }
 
 }

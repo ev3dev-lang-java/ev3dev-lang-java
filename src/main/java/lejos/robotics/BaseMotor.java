@@ -25,7 +25,7 @@ public interface BaseMotor {
     * Motor loses all power, causing the rotor to float freely to a stop.
     * This is not the same as stopping, which locks the rotor.
     */
-    public void coast();
+    void coast();
 
     /**
      * Removes power from the motor and creates a passive electrical load.
@@ -33,20 +33,19 @@ public interface BaseMotor {
      * This load will absorb the energy from the rotation of the motors and
      * cause the motor to stop more quickly than coasting.
      */
-    public void brake();
+    void brake();
 
     /**
      * Causes the motor to actively try to hold the current position.
      * If an external force tries to turn the motor, the motor will “push back”
      * to maintain its position.
      */
-	public void hold();
+    void hold();
 
     /**
     * Return <code>true</code> if the motors is moving.
     *
     * @return <code>true</code> if the motors is currently in motion, <code>false</code> if stopped.
     */
-    // TODO: Possibly part of Encoder interface? Depends if encoder used to determine this.
-    public boolean isMoving();
+    boolean isMoving();
 }

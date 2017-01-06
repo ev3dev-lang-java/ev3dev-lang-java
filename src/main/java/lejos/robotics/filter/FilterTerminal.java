@@ -22,8 +22,7 @@ public class FilterTerminal {
   
   public boolean isFalse() {
     source.fetchSample(sample, 0);
-    if (sample[index] == 0) return true;
-    return false;
+    return sample[index] == 0;
   }
   
   public boolean isTrue() {

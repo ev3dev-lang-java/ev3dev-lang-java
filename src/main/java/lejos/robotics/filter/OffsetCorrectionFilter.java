@@ -120,7 +120,7 @@ public class OffsetCorrectionFilter extends AbstractFilter {
    */
   private void addSample(int i) {
     float x = actual[i];
-    buffer[i].add(new Float(x));
+    buffer[i].add(x);
     float delta = x - mean[i];
     mean[i] += delta / buffer[i].size();
     m2[i] += delta * (x - mean[i]);
@@ -135,7 +135,6 @@ public class OffsetCorrectionFilter extends AbstractFilter {
     float x = (Float) buffer[i].poll();
     float delta = x - mean[i];
     mean[i] -= delta / buffer[i].size();
-    ;
     m2[i] -= delta * (x - mean[i]);
   }
   

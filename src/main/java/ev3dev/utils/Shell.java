@@ -5,12 +5,17 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * Command line wrapper
+ *
+ * @author Juan Antonio Breña Moral
+ */
 public @Slf4j class Shell {
 	
 	public static String execute(final String command) {
 
         log.debug("Command: {}", command);
-		StringBuffer output = new StringBuffer();
+		StringBuilder output = new StringBuilder();
 
 		Process p;
 		try {
@@ -19,9 +24,9 @@ public @Slf4j class Shell {
 			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			
-			String line = "";			
+			String line;
 			while ((line = reader.readLine())!= null) {
-				output.append(line + "\n");
+				output.append(line).append("\n");
 			}
 			reader.close();
 		} catch (Exception e) {
@@ -37,7 +42,7 @@ public @Slf4j class Shell {
         for (String cmd: command) {
             log.info("Command chunk: {}", cmd);
         }
-        StringBuffer output = new StringBuffer();
+        StringBuilder output = new StringBuilder();
 
 		Process p;
 		try {
@@ -46,9 +51,9 @@ public @Slf4j class Shell {
 			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			
-			String line = "";			
+			String line;
 			while ((line = reader.readLine())!= null) {
-				output.append(line + "\n");
+				output.append(line).append("\n");
 			}
 			reader.close();
 		} catch (Exception e) {

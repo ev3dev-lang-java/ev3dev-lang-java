@@ -36,8 +36,10 @@ import java.io.File;
  */
 public class EV3GyroSensor extends BaseSensor {
 
+	private static final String LEGO_EV3_GYRO = "lego-ev3-gyro";
+
 	public EV3GyroSensor(String portName) {
-		super(portName, "ev3-uart", "lego-ev3-gyro");
+		super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
 		setModes(new SensorMode[] {
 				new RateMode(this.PATH_DEVICE),
 				new AngleMode(this.PATH_DEVICE),
@@ -117,8 +119,7 @@ public class EV3GyroSensor extends BaseSensor {
 	}
 
 	public int getAngle(){
-		String attribute = "value0";
-		return Sysfs.readInteger(this.PATH_DEVICE + "/" +  attribute);
+		return Sysfs.readInteger(this.PATH_DEVICE + "/" +  "value0");
 	}
 
 	private class RateMode extends EV3DevSensorMode {
@@ -139,9 +140,7 @@ public class EV3GyroSensor extends BaseSensor {
 		@Override
 		public void fetchSample(float[] sample, int offset) {
 			switchMode(MODE, SWITCH_DELAY);
-			//port.getShorts(raw, 0, raw.length);
-			String attribute = "value0";
-			float raw = Sysfs.readFloat(this.pathDevice + "/" +  attribute);
+			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 			sample[offset] = raw * toSI;
 		}
 
@@ -171,9 +170,7 @@ public class EV3GyroSensor extends BaseSensor {
 		@Override
 		public void fetchSample(float[] sample, int offset) {
 			switchMode(MODE, SWITCH_DELAY);
-			//ports.getShorts(raw, 0, raw.length);
-			String attribute = "value0";
-			float raw = Sysfs.readFloat(this.pathDevice + "/" +  attribute);
+			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 			sample[offset] = raw * toSI;
 		}
 
@@ -184,6 +181,7 @@ public class EV3GyroSensor extends BaseSensor {
 	}
 
 	private class RateAndAngleMode extends EV3DevSensorMode {
+
 		private static final String MODE = "GYRO-G&A";
 		private static final float toSI = -1;
 
@@ -201,11 +199,9 @@ public class EV3GyroSensor extends BaseSensor {
 		@Override
 		public void fetchSample(float[] sample, int offset) {
 			switchMode(MODE, SWITCH_DELAY);
-			String attribute = "value0";
-			float raw = Sysfs.readFloat(this.pathDevice + "/" +  attribute);
+			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 			sample[0] = raw * toSI;
-			attribute = "value1";
-			raw = Sysfs.readFloat(this.pathDevice + "/" +  attribute);
+			raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
 			sample[1] = raw * toSI;
 		}
 
@@ -213,7 +209,6 @@ public class EV3GyroSensor extends BaseSensor {
 		public String getName() {
 			return "Angle and Rate";
 		}
-
 	}
 
 }

@@ -6,7 +6,7 @@ package ev3dev.hardware;
  * @author Juan Antonio Brenha Moral
  *
  */
-public class PlatformNotSupportedException extends RuntimeException {
+class PlatformNotSupportedException extends RuntimeException {
 
     public PlatformNotSupportedException(String message) {
         super (message);

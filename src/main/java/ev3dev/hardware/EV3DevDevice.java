@@ -19,20 +19,31 @@ import java.util.List;
  */
 
 @Slf4j
-public class EV3DevDevice extends Device implements EV3DevDeviceCommands, SupportedPlatform {
+public abstract class EV3DevDevice extends Device implements SupportedPlatform {
+
+    protected static final String DEVICE_ROOT_PATH = "/sys/class/";
+    protected static final String LEGO_PORT = "lego-ports";
+    protected static final String ADDRESS = "address";
+    protected static final String LEGO_SENSOR = "lego-sensor";
+    protected static final String MODE = "mode";
+    protected static final String DEVICE = "set_device";
 
     protected File PATH_DEVICE = null;
-    protected boolean connected = false;
 
     /**
 	 * This method returns the platform
-	 * 
-	 * @throws PlatformNotSupportedException
-	 * @return
-	 */
+	 *
+	 * @return Platform used
+     * @throws PlatformNotSupportedException Exception
+     */
     @Override
 	public String getPlatform() throws PlatformNotSupportedException{
 
+        final String BATTERY =  "power_supply";
+        final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
+        final String BATTERY_EV3 =  "legoev3-battery";
+        final String BATTERY_PISTORMS =  "pistorm-battery";
+        final String BATTERY_BRICKPI =  "brickpi-battery";
         final String EV3BRICK_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_EV3;
         final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
         final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
@@ -54,27 +65,27 @@ public class EV3DevDevice extends Device implements EV3DevDeviceCommands, Suppor
     //TODO Rename method to detect
     /**
      * This method matches a input with the internal position in EV3Dev.
-     * @param type
-     * @param portName
+     * @param type type
+     * @param portName port
      */
-    public void connect(final String type, final String portName){
+    protected void connect(final String type, final String portName){
         log.debug("Detecting motors on port/tacho-motors: {}", portName);
         final String devicePath = DEVICE_ROOT_PATH + type;
         List<File> deviceAvailables = Sysfs.getElements(devicePath);
 
-        this.connected = false;
-        String pathDeviceName = "";
-        for(int x=0; x < deviceAvailables.size(); x++) {
-            PATH_DEVICE = deviceAvailables.get(x);
+        boolean connected = false;
+        String pathDeviceName;
+        for (File deviceAvailable : deviceAvailables) {
+            PATH_DEVICE = deviceAvailable;
             pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
-            if (Sysfs.readString(pathDeviceName).equals(portName)){
+            if (Sysfs.readString(pathDeviceName).equals(portName)) {
                 log.debug("Detected port: {} on path: {}", portName, pathDeviceName);
-                this.connected = true;
+                connected = true;
                 break;
             }
         }
 
-        if(this.connected == false){
+        if(!connected){
             throw new DeviceException("The device was not detected in: " + portName);
         }
     }
@@ -82,30 +93,30 @@ public class EV3DevDevice extends Device implements EV3DevDeviceCommands, Suppor
     /**
      * Returns the value of an attribute supported for a Device
      *
-     * @param attribute
-     * @return
+     * @param attribute attribute
+     * @return value
      */
-    public String getStringAttribute(final String attribute){
+    protected String getStringAttribute(final String attribute){
         return Sysfs.readString(PATH_DEVICE + "/" +  attribute);
     }
 
     /**
      * Returns the value of an attribute supported for a Device
      *
-     * @param attribute
-     * @return
+     * @param attribute attribute
+     * @return value
      */
-    public int getIntegerAttribute(final String attribute){
+    protected int getIntegerAttribute(final String attribute){
         return Sysfs.readInteger(PATH_DEVICE + "/" +  attribute);
     }
 
     /**
      * Set a value on an attribute
      *
-     * @param attribute
-     * @param value
+     * @param attribute attribute
+     * @param value value
      */
-    public void setStringAttribute(final String attribute, final String value){
+    protected void setStringAttribute(final String attribute, final String value){
         final boolean result = Sysfs.writeString(this.PATH_DEVICE + "/" +  attribute, value);
         if(!result){
             throw new RuntimeException("Operation not executed:" + attribute + value);
@@ -115,10 +126,10 @@ public class EV3DevDevice extends Device implements EV3DevDeviceCommands, Suppor
     /**
      * Set a value on an attribute
      *
-     * @param attribute
-     * @param value
+     * @param attribute attribute
+     * @param value value
      */
-    public void setIntegerAttribute(final String attribute, final int value){
+    protected void setIntegerAttribute(final String attribute, final int value){
         final boolean result = Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
         if(!result){
             throw new RuntimeException("Operation not executed:" + attribute + value);

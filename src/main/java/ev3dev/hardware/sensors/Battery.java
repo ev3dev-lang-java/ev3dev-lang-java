@@ -15,6 +15,7 @@ import ev3dev.utils.Sysfs;
  */
 public class Battery extends EV3DevDevice implements EV3DevSensorDeviceCommands, Power {
 
+    String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
     private static final String VOLTAGE = "voltage_now";
     private static final String CURRENT = "current_now";
 
@@ -32,13 +33,17 @@ public class Battery extends EV3DevDevice implements EV3DevSensorDeviceCommands,
     // Prevent duplicate objects
     private Battery() {
     	final String platform = this.getPlatform();
-    	if(platform.equals(SupportedPlatform.EV3BRICK)){
-    		BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
-    	} else if(platform.equals(SupportedPlatform.PISTORMS)){
-			BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_PISTORMS;
-    	} else if(platform.equals(SupportedPlatform.BRICKPI)){
-			BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI;
-    	}
+        switch (platform) {
+            case SupportedPlatform.EV3BRICK:
+                BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
+                break;
+            case SupportedPlatform.PISTORMS:
+                BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_PISTORMS;
+                break;
+            case SupportedPlatform.BRICKPI:
+                BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI;
+                break;
+        }
     }
 	
 	/**

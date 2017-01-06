@@ -11,14 +11,14 @@ import java.util.ArrayList;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Device implements Closeable {
+public abstract class Device implements Closeable {
 
-    protected ArrayList<Closeable> closeList = new ArrayList<Closeable>();
+    protected ArrayList<Closeable> closeList = new ArrayList<>();
 
     /**
      * Add the specified resource to the list of objects that will be closed
      * when the sensors is closed.
-     * @param res
+     * @param res resource
      */
     protected void releaseOnClose(Closeable res)
     {

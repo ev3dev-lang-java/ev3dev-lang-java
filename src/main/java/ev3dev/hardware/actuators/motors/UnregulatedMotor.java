@@ -9,7 +9,7 @@ public class UnregulatedMotor extends BasicMotor {
 
     /**
      * Constructor
-     * @param portName
+     * @param portName port
      */
 	public UnregulatedMotor(final String portName) {
 		super(portName);

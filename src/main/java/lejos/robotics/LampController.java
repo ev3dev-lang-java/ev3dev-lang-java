@@ -14,19 +14,19 @@ public interface LampController{
 	 * 
 	 * @param floodlight true to turn on lamp, false for off (ambient light only).
 	 */
-	public void setFloodlight(boolean floodlight);
+	void setFloodlight(boolean floodlight);
 	
 	/**
 	 * Checks if the floodlight is currently on. 
 	 * @return true if on, false if off.
 	 */
-	public boolean isFloodlightOn();
+	boolean isFloodlightOn();
 	
 	/**
 	 * Returns the color of the floodlight, including Color.NONE.
 	 * @return An enumeration of the current color.
 	 */
-	public int getFloodlight();
+	int getFloodlight();
 	
 	/**
 	 * Used to turn on or off the floodlight by color. If the sensors has multiple light colors, you can control
@@ -35,7 +35,6 @@ public interface LampController{
 	 * @param color Use {@link lejos.robotics.Color} enumeration constant to control lamp colors.
 	 * @return True if lamp changed, false if lamp color doesn't exist for this sensors.
 	 */
-	 
-	public boolean setFloodlight(int color);
+	boolean setFloodlight(int color);
 	
 }

@@ -13,12 +13,12 @@ public interface Encoder {
 	   * 
 	   * @return tachometer count in degrees
 	   */
-	  public int getTachoCount();
+	  int getTachoCount();
 
 	  
 	  /**
 	   * Reset the tachometer count.
 	   */
-	  public void resetTachoCount();
+	  void resetTachoCount();
 
 }

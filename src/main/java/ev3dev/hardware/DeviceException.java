@@ -7,15 +7,14 @@ package ev3dev.hardware;
  * @author Juan Antonio Brenha Moral
  *
  */
-public class DeviceException extends RuntimeException {
+class DeviceException extends RuntimeException {
 
     public DeviceException(String message)
     {
         super (message);
     }
 
-    public DeviceException(String message, Throwable cause)
-    {
+    public DeviceException(String message, Throwable cause) {
         super (message, cause);
     }
 }

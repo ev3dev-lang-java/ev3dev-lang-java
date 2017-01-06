@@ -14,13 +14,13 @@ import lejos.robotics.DCMotor;
  * @author Juan Antonio Breña Moral
  *
  */
-public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMotorDeviceCommands, DCMotor {
+public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 
 	//TODO Improve the way to connect with a Motor.
 	/**
 	 * Constructor
 	 *
-	 * @param portName
+	 * @param portName port
      */
 	public BasicMotor(final String portName) {
 		super(LEGO_PORT, portName);
@@ -35,21 +35,23 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMoto
 	 * Set power
 	 * @param power new motors power 0-100
      */
+    @Override
     public void setPower(final int power) {
     	this.setIntegerAttribute(DUTY_CYCLE, power);
     }
 
 	/**
 	 * Get power
-	 * @return
+	 * @return power
      */
+    @Override
     public int getPower() {
     	return this.getIntegerAttribute(POWER);
     }
 
 	/**
 	 * Update the internal state tracking the motor direction
-	 * @param newMode
+	 * @param newMode mode
 	 */
 	protected void updateState(final String newMode) {
 		this.setStringAttribute(POLARITY, newMode);
@@ -58,6 +60,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMoto
 	/**
 	 * Causes motors to rotate forward.
 	 */
+	@Override
 	public void forward() {
 		this.updateState(POLARITY_NORMAL);
     	this.setStringAttribute(COMMAND, RUN_FOREVER);
@@ -66,6 +69,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMoto
 	/**
 	 * Causes motors to rotate backwards.
 	 */
+    @Override
 	public void backward() {
 		this.updateState(POLARITY_INVERSED);
     	this.setStringAttribute(COMMAND, RUN_FOREVER);
@@ -76,6 +80,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMoto
 	 * 
 	 * @return true iff the motors is currently in motion.
 	 */
+    @Override
     public boolean isMoving() {
 		return this.getStringAttribute(STATE).contains(STATE_RUNNING);
     }
@@ -94,6 +99,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMoto
 	 * Causes the motor to actively try to hold the current position.
 	 * If an external force tries to turn the motor, the motor will “push back” to maintain its position.
 	 */
+    @Override
 	public void hold() {
 		this.setStringAttribute(STOP_COMMAND, HOLD);
 	}
@@ -102,6 +108,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements EV3DevMoto
 	 * Removes power from the motor.
 	 * The motor will freely coast to a stop.
 	 */
+    @Override
 	public void coast() {
 		this.setStringAttribute(STOP_COMMAND, COAST);
 	}

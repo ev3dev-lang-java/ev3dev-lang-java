@@ -29,15 +29,14 @@ import java.io.File;
  */
 public class EV3TouchSensor extends BaseSensor {
 
-    //private final String device = "lego-ev3-touch";
-    //private final String mode = "ev3-uart";
+    private static final String LEGO_EV3_TOUCH = "lego-ev3-touch";
 
     public EV3TouchSensor(final String portName) {
-		super(portName, "ev3-uart", "lego-ev3-touch");
+		super(portName, LEGO_UART_SENSOR, LEGO_EV3_TOUCH);
 		init();
 	}
 
-	protected void init() {
+	private void init() {
       setModes(new SensorMode[]{ new TouchMode(this.PATH_DEVICE) }); 
     }
 

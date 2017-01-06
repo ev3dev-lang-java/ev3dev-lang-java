@@ -3,8 +3,13 @@ package ev3dev.robotics.tts;
 import ev3dev.utils.Shell;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Espeak wrapper
+ */
 public @Slf4j class Espeak {
 
+	private static final String ESPEAK = "espeak";
+	private final static String CMD_APLAY ="aplay";
 	private String voice = null;
 	private int volume = -1;
 	private int speedReading = -1;
@@ -36,30 +41,33 @@ public @Slf4j class Espeak {
 	public void setFilePath(final String filePath){
 		this.filePath = filePath;
 	}
-	
+
+	//TODO Evolve to builder
 	private void build(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("espeak ");
+		sb.append(ESPEAK);
+		sb.append(" ");
 		if(this.voice != null){
-			sb.append(" -v " + this.voice);
+			sb.append(" -v ").append(this.voice);
 		}
 		if(this.volume != -1){
-			sb.append(" -a " + this.volume);
+			sb.append(" -a ").append(this.volume);
 		}
 		if(this.speedReading != -1){
-			sb.append(" -s " + this.speedReading);
+			sb.append(" -s ").append(this.speedReading);
 		}
 		if(this.pitch != -1){
-			sb.append(" -p " + this.pitch);
+			sb.append(" -p ").append(this.pitch);
 		}
 		if(message != null){
 			sb.append(" --stdout ");
-			sb.append("\"" + this.message + "\"");
+			sb.append("\"").append(this.message).append("\"");
 		}else{
 			sb.append("--stdout ");
-			sb.append(" -f " + this.filePath + "\"");
+			sb.append(" -f ").append(this.filePath).append("\"");
 		}
-		sb.append(" | aplay");
+		sb.append(" | ");
+		sb.append(CMD_APLAY);
 		this.command = sb.toString();
 	}
 	

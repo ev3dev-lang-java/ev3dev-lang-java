@@ -4,6 +4,7 @@ import ev3dev.hardware.EV3DevSensorDevice;
 import lejos.utility.Delay;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class BaseSensor extends EV3DevSensorDevice implements EV3DevSensorDeviceCommands, SensorModes {
@@ -30,10 +31,9 @@ public class BaseSensor extends EV3DevSensorDevice implements EV3DevSensorDevice
         currentMode = 0;
     }
 
-
     public ArrayList<String> getAvailableModes() {
         if (modeList == null) {
-            modeList = new ArrayList<String>(modes.length);
+            modeList = new ArrayList<>(modes.length);
             if (modes != null)
                 for(SensorMode m : modes) {
                     modeList.add(m.getName());
@@ -145,7 +145,7 @@ public class BaseSensor extends EV3DevSensorDevice implements EV3DevSensorDevice
     }
 
     protected void switchMode(String newMode, long switchDelay) {
-        if (currentModeS != newMode) {
+        if (!Objects.equals(currentModeS, newMode)) {
         	this.setStringAttribute(SENSOR_MODE, newMode);
             currentModeS = newMode;
             Delay.msDelay(switchDelay);

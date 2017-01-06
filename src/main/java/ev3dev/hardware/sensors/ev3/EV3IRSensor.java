@@ -32,12 +32,14 @@ import java.io.File;
  */
 public class EV3IRSensor extends BaseSensor {
 
+    private static final String LEGO_EV3_IR = "lego-ev3-ir";
+
 	public EV3IRSensor(String portName) {
-        super(portName, "ev3-uart", "lego-ev3-ir");
+        super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
 		init();
 	}
 
-    protected void init() {
+    private void init() {
         setModes(new SensorMode[] {new DistanceMode(this.PATH_DEVICE)});
     }
 	

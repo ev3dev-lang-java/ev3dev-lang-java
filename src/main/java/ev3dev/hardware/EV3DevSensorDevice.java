@@ -8,15 +8,17 @@ import lombok.extern.slf4j.Slf4j;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j class EV3DevSensorDevice extends EV3DevDevice {
+public @Slf4j abstract class EV3DevSensorDevice extends EV3DevDevice {
 
 	/**
 	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
 	 * It is necessary to indicate the type and ports.
 	 *
 	 * @param portName The ports where is connected the sensors or the actuators.
-	 */
-    public EV3DevSensorDevice(final String portName, final String mode, final String device) {
+     * @param mode mode
+     * @param device device
+     */
+    protected EV3DevSensorDevice(final String portName, final String mode, final String device) {
 
 		//EV3 Brick detect in a automatic way the sensors
 		if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){

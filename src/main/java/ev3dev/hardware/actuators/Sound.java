@@ -22,14 +22,18 @@ import java.io.File;
  */
 public @Slf4j class Sound extends EV3DevDevice {
 
-    public final static String VOLUME_PATH = SOUND_PATH + VOLUME;
+    private final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
+    private final static String CMD_BEEP = "beep";
+    private final static String CMD_APLAY ="aplay";
+    private final static String VOLUME = "volume";
+    private final static String VOLUME_PATH = SOUND_PATH + VOLUME;
 
     private static Sound Instance;
 
     /**
      * Return a Instance of Sound.
      *
-     * @return
+     * @return A Sound instance
      */
     public static Sound getInstance() {
         if (Instance == null) {
@@ -87,25 +91,19 @@ public @Slf4j class Sound extends EV3DevDevice {
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
      * @param volume the volume percentage 0 - 100
-     * @return The number of milliseconds the sample will play for or less 0 if
-     *         there is an error.
      */
-    public int playSample(final File file, final int volume) {
+    public void playSample(final File file, final int volume) {
         this.setVolume(volume);
     	Shell.execute(CMD_APLAY + " " + file.toString());
-        return 1;
     }
 
 
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
-     * @return The number of milliseconds the sample will play for or less 0 if
-     *         there is an error.
      */
-    public int playSample(final File file) {
+    public void playSample(final File file) {
     	Shell.execute(CMD_APLAY + " " + file.toString());
-        return 1;
     }
 
     /**

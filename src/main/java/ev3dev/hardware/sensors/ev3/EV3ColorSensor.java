@@ -39,16 +39,19 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         Color.NONE, Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.WHITE, Color.BROWN
     };
 
-    protected static final String COL_RESET = "RESET";//-1//??
-    protected static final String COL_REFLECT = "COL-REFLECT";//0
-    protected static final String COL_AMBIENT = "COL-AMBIENT";//1
-    protected static final String COL_COLOR = "COL-COLOR";//2
+    private static final String LEGO_EV3_COLOR_SENSOR = "lego-ev3-color";
+
+    private static final String COL_RESET = "RESET";//-1//??
+    private static final String COL_REFLECT = "COL-REFLECT";//0
+    private static final String COL_AMBIENT = "COL-AMBIENT";//1
+    private static final String COL_COLOR = "COL-COLOR";//2
     protected static final String COL_REFRAW = "REF-RAW";//3
-    protected static final String COL_RGBRAW = "RGB-RAW";
+    private static final String COL_RGBRAW = "RGB-RAW";
     protected static final String COL_CAL = "COL-CAL";
+
     // following maps operating mode to lamp color
     // NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN
-    protected static final int []lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
+    private static final int []lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
     protected short[]raw = new short[3];
 
     private void initModes() {
@@ -62,7 +65,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     }
 
 	public EV3ColorSensor(String portName) {
-        super(portName, "ev3-uart", "lego-ev3-color");
+        super(portName, LEGO_UART_SENSOR, LEGO_EV3_COLOR_SENSOR);
 		initModes();
 	}
 
@@ -161,8 +164,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         public void fetchSample(float[] sample, int offset) {
             switchMode(COL_COLOR, SWITCH_DELAY);
             sample[offset]= 0;
-			float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[offset] = rawValue;
+            sample[offset]  = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
         }
 
         @Override
@@ -209,8 +211,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         @Override
         public void fetchSample(float[] sample, int offset) {
             switchMode(COL_REFLECT, SWITCH_DELAY);
-            float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[offset] = raw;
+            sample[offset]  = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
         }
 
         @Override
@@ -258,8 +259,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 		    @Override
 		    public void fetchSample(float[] sample, int offset) {
 		    	switchMode(COL_AMBIENT, SWITCH_DELAY);
-				float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-				sample[offset] = raw;
+                sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 		    }
 
 		    @Override
@@ -288,44 +288,39 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
-    public SensorMode getRGBMode()
-    {
+    public SensorMode getRGBMode() {
         //TODO: Should this return 3 or 4 values, 4 values would require an extra mode switch to get ambient value.    	
     	return getMode(2);
     }
     
-	  private class RGBMode extends EV3DevSensorMode {
+    private class RGBMode extends EV3DevSensorMode {
 
-		    private static final float toSI = -1;
+        private static final float toSI = -1;
 
-	    	private File pathDevice = null;
-	    	
-	        public RGBMode(File pathDevice) {
-	        	this.pathDevice = pathDevice;
-			}
+        private File pathDevice = null;
 
-			@Override
-		    public int sampleSize() {
-		      return 3;
-		    }
+        public RGBMode(final File pathDevice) {
+            this.pathDevice = pathDevice;
+        }
 
-		    @Override
-		    public void fetchSample(float[] sample, int offset) {
-		      switchMode(COL_RGBRAW, SWITCH_DELAY);
-		      //ports.getShorts(raw, 0, raw.length);
-				float raw1 = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-				sample[0] = raw1;
-				float raw2 = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-				sample[1] = raw2;
-				float raw3 = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-				sample[2] = raw3;
-		    }
+        @Override
+        public int sampleSize() {
+          return 3;
+        }
 
-		    @Override
-		    public String getName() {
-		      return "RGB";
-		    }
+        @Override
+        public void fetchSample(float[] sample, int offset) {
+            switchMode(COL_RGBRAW, SWITCH_DELAY);
+            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
+            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
+        }
 
-		  }
+        @Override
+        public String getName() {
+          return "RGB";
+        }
+
+    }
 
 }

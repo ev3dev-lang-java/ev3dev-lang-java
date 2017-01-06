@@ -34,26 +34,24 @@ import lombok.extern.slf4j.Slf4j;
  * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  */
-public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements EV3DevMotorDeviceCommands, RegulatedMotor {
+public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
 
     protected float speed = 360;
     protected int acceleration = 6000;
-
-
 
     private boolean regulationFlag = true;
 
     /**
      * Constructor
-     * @param motorPort
-     * @param moveP
-     * @param moveI
-     * @param moveD
-     * @param holdP
-     * @param holdI
-     * @param holdD
-     * @param offset
-     * @param maxSpeed
+     * @param motorPort motor port
+     * @param moveP moveP
+     * @param moveI moveI
+     * @param moveD moveD
+     * @param holdP holdP
+     * @param holdI holdI
+     * @param holdD holdD
+     * @param offset offset
+     * @param maxSpeed maxSpeed
      */
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
@@ -84,7 +82,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public boolean suspendRegulation() {
 		this.regulationFlag = false;
-        return true;
+        return this.regulationFlag;
     }
 
     /**
@@ -108,6 +106,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
         return 0.0f; //reg.getPosition();
     }
 
+    @Override
     public void forward() {
         this.setStringAttribute(POLARITY, POLARITY_NORMAL);
         if (!this.regulationFlag) {
@@ -117,6 +116,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
         }
     }
 
+    @Override
     public void backward(){
         this.setStringAttribute(POLARITY, POLARITY_INVERSED);
         if (!this.regulationFlag) {
@@ -130,6 +130,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * Set the motors into float mode. This will stop the motors without braking
      * and the position of the motors will not be maintained.
      */
+    @Override
     public void coast() {
 		this.setStringAttribute(STOP_COMMAND, COAST);
     }
@@ -148,6 +149,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * Causes the motor to actively try to hold the current position.
      * If an external force tries to turn the motor, the motor will “push back” to maintain its position.
      */
+    @Override
     public void hold() {
         this.setStringAttribute(STOP_COMMAND, HOLD);
     }
@@ -173,6 +175,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * be detected  by calling {@link #isStalled()};
      * @return true iff the motors is attempting to rotate.<br>
      */
+    @Override
     public boolean isMoving() {
 		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
     }
@@ -205,7 +208,6 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @param angle number of degrees to rotate relative to the current position
      * @param immediateReturn if true do not wait for the move to complete
      * Rotate by the requested number of degrees. Wait for the move to complete.
-     * @param angle
      */
     public void rotate(int angle, boolean immediateReturn) {
 		this.setIntegerAttribute(POSITION_SP, angle);
@@ -221,7 +223,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 
     /**
      * Rotate by the requested number of degrees. Wait for the move to complete.
-     * @param angle
+     * @param angle angle
      */
     public void rotate(int angle) {
         rotate(angle, false);

@@ -1,9 +1,9 @@
 package ev3dev.hardware.sensors;
 
-public interface Power {
+interface Power {
 	
-	public float getVoltage();
+	float getVoltage();
 	
-	public float getBatteryCurrent();
+	float getBatteryCurrent();
 
 }

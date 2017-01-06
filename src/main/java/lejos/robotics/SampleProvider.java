@@ -44,7 +44,7 @@ public interface SampleProvider {
 	 * @return
 	 * the number of elements in a sample
 	 */
-	public int sampleSize();
+	int sampleSize();
 	
 	/** Fetches a sample from a sensors or filter.
 	 * @param sample
@@ -52,5 +52,5 @@ public interface SampleProvider {
 	 * @param offset
 	 * The elements of the sample are stored in the array starting at the offset position.
 	 */
-	public void fetchSample(float[] sample, int offset);
+	void fetchSample(float[] sample, int offset);
 }

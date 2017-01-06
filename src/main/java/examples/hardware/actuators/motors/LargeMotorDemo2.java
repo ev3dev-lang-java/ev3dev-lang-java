@@ -20,8 +20,7 @@ public @Slf4j class LargeMotorDemo2 {
         log.info("Stopped motors");
         Delay.msDelay(2000);
         log.info("Reversing direction motors");
-        mA.reverseDirection();
-        mA.forward();
+        mA.backward();
         Delay.msDelay(2000);
         log.info("Stopped motors");
         mA.stop();
