@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../SampleProvider.html" title="lejos.robotics.SampleProvider" alt="" coords="96,11,336,122"/>
+<area shape="rect" id="node1" href="../SampleProvider.html" title="&lt;TABLE&gt;" alt="" coords="85,6,347,127"/>
+<area shape="rect" id="node3_1" href="./SubscribedProvider.html" title="lejos.robotics.filter.SubscribedProvider" alt="" coords="16,181,416,485"/>
+<area shape="rect" id="node3" href="./SubscribedProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,176,427,491"/>
+<area shape="rect" id="node2_2" href="./PublishedSource.html" title="lejos.robotics.filter.PublishedSource" alt="" coords="58,545,374,1039"/>
+<area shape="rect" id="node2" href="./PublishedSource.html" title="&lt;TABLE&gt;" alt="" coords="47,539,385,1045"/>
+</map>

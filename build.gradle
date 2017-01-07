@@ -1,0 +1,94 @@
+//Gradle file library ev3dev-lang-java
+//Author: Juan Antonio Breña Moral
+//Last update: 01/01/2017
+
+version = '0.3.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.projectlombok:lombok:1.16.8")
+    compile("ch.qos.logback:logback-classic:1.1.6")
+}
+
+//Compile
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+//Jar
+jar {
+    baseName = "${rootProject.name}"
+    manifest {
+        from file("${projectDir}/META-INF/MANIFEST.MF")
+    }
+}
+
+//Fat Jar
+task fatJar(type: Jar) {
+    baseName = "${rootProject.name}" + "-all"
+    manifest {
+        from file("${projectDir}/META-INF/MANIFEST.MF")
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+//JavaDoc
+javadoc {
+    classpath += sourceSets.test.compileClasspath
+    source += sourceSets.test.allJava
+    destinationDir = file("${projectDir}/docs/api")
+}
+
+//Deploy on Brick
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.hidetake:gradle-ssh-plugin:2.0.0"
+    }
+}
+
+apply plugin: 'org.hidetake.ssh'
+
+remotes {
+    ev3dev {
+        host = '192.168.1.2'
+        user = 'robot'
+        password = 'maker'
+    }
+}
+
+task deploy << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            put from: "./build/libs/" + "${rootProject.name}" + "-all-" + version + ".jar", into: "/home/robot/"
+        }
+    }
+}
+deploy.dependsOn clean, fatJar
+
+task remoteRun << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            println "java -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
+            execute "java -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
+        }
+    }
+}
+
+task deployAndRun << {
+
+}
+deployAndRun.dependsOn deploy, remoteRun

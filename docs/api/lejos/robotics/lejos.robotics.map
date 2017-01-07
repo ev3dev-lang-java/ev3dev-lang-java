@@ -1,0 +1,22 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./BaseMotor.html" title="lejos.robotics.BaseMotor" alt="" coords="57,478,193,650"/>
+<area shape="rect" id="node1" href="./BaseMotor.html" title="&lt;TABLE&gt;" alt="" coords="47,473,204,655"/>
+<area shape="rect" id="node5_1" href="./DCMotor.html" title="lejos.robotics.DCMotor" alt="" coords="16,753,157,852"/>
+<area shape="rect" id="node5" href="./DCMotor.html" title="&lt;TABLE&gt;" alt="" coords="5,748,168,857"/>
+<area shape="rect" id="node8_2" href="./RegulatedMotor.html" title="lejos.robotics.RegulatedMotor" alt="" coords="203,709,509,896"/>
+<area shape="rect" id="node8" href="./RegulatedMotor.html" title="&lt;TABLE&gt;" alt="" coords="193,704,519,901"/>
+<area shape="rect" id="node2_3" href="./Calibrate.html" title="lejos.robotics.Calibrate" alt="" coords="472,165,589,264"/>
+<area shape="rect" id="node2" href="./Calibrate.html" title="&lt;TABLE&gt;" alt="" coords="461,160,600,269"/>
+<area shape="rect" id="node3_4" href="./Color.html" title="lejos.robotics.Color" alt="" coords="635,11,907,418"/>
+<area shape="rect" id="node3" href="./Color.html" title="&lt;TABLE&gt;" alt="" coords="624,6,917,423"/>
+<area shape="rect" id="node4_5" href="./ColorIdentifier.html" title="lejos.robotics.ColorIdentifier" alt="" coords="953,173,1069,257"/>
+<area shape="rect" id="node4" href="./ColorIdentifier.html" title="&lt;TABLE&gt;" alt="" coords="942,167,1079,262"/>
+<area shape="rect" id="node6_6" href="./Encoder.html" title="lejos.robotics.Encoder" alt="" coords="286,165,426,264"/>
+<area shape="rect" id="node6" href="./Encoder.html" title="&lt;TABLE&gt;" alt="" coords="275,160,437,269"/>
+<area shape="rect" id="node10_7" href="./Tachometer.html" title="lejos.robotics.Tachometer" alt="" coords="279,522,433,606"/>
+<area shape="rect" id="node10" href="./Tachometer.html" title="&lt;TABLE&gt;" alt="" coords="268,517,444,611"/>
+<area shape="rect" id="node7_8" href="./LampController.html" title="lejos.robotics.LampController" alt="" coords="1115,151,1320,279"/>
+<area shape="rect" id="node7" href="./LampController.html" title="&lt;TABLE&gt;" alt="" coords="1104,145,1331,284"/>
+<area shape="rect" id="node9_9" href="./SampleProvider.html" title="lejos.robotics.SampleProvider" alt="" coords="1365,165,1605,264"/>
+<area shape="rect" id="node9" href="./SampleProvider.html" title="&lt;TABLE&gt;" alt="" coords="1355,160,1616,269"/>
+</map>

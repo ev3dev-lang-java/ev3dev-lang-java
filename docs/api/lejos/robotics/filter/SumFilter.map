@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./AbstractFilter.html" title="lejos.robotics.filter.AbstractFilter" alt="" coords="151,11,391,125"/>
+<area shape="rect" id="node1" href="./AbstractFilter.html" title="&lt;TABLE&gt;" alt="" coords="140,6,401,130"/>
+<area shape="rect" id="node3_1" href="./SampleBuffer.html" title="lejos.robotics.filter.SampleBuffer" alt="" coords="16,342,339,543"/>
+<area shape="rect" id="node3" href="./SampleBuffer.html" title="&lt;TABLE&gt;" alt="" coords="5,337,349,549"/>
+<area shape="rect" id="node4_2" href="./SumFilter.html" title="lejos.robotics.filter.SumFilter" alt="" coords="225,184,505,283"/>
+<area shape="rect" id="node4" href="./SumFilter.html" title="&lt;TABLE&gt;" alt="" coords="215,179,516,288"/>
+<area shape="rect" id="node2_3" href="./MeanFilter.html" title="lejos.robotics.filter.MeanFilter" alt="" coords="384,401,669,485"/>
+<area shape="rect" id="node2" href="./MeanFilter.html" title="&lt;TABLE&gt;" alt="" coords="373,395,680,490"/>
+</map>
