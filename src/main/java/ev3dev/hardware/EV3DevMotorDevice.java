@@ -12,6 +12,7 @@ public @Slf4j abstract class EV3DevMotorDevice extends EV3DevDevice {
 
     protected static final String TACHO_MOTOR = "tacho-motor";
     protected static final String DC_MOTOR = "dc-motor";
+    protected static final String AUTO_MODE = "auto";
 
     protected static final String POSITION_SP = "position_sp";
     protected static final String POSITION = "position";
@@ -39,20 +40,4 @@ public @Slf4j abstract class EV3DevMotorDevice extends EV3DevDevice {
     protected static final String POLARITY_NORMAL = "normal";
     protected static final String POLARITY_INVERSED = "inversed";
 
-	/**
-	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
-	 * It is necessary to indicate the type and ports.
-	 * 
-	 * @param type A valid type. Example: tacho-motors, lego-sensors, etc...
-	 * @param portName The ports where is connected the sensors or the actuators.
-	 * @throws DeviceException Exception
-	 */
-    public EV3DevMotorDevice(final String type, final String portName) throws DeviceException {
-
-		//This method is oriented for EV3Brick, but for Pi Boards, it is necessary to detect in a previous action
-        if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)) {
-            this.connect(type, portName);
-        }
-    }
-   
 }

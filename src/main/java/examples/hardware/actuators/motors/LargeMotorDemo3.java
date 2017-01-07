@@ -5,12 +5,12 @@ import ev3dev.hardware.ports.MotorPort;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
-public @Slf4j class LargeMotorDemo2 {
+public @Slf4j class LargeMotorDemo3 {
 
     public static void main(String[] args) throws InterruptedException {
 
-        log.info("Starting motors on A");
-        final EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
+        log.info("Starting motors on B");
+        final EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.B);
         mA.setSpeed(500);
         mA.brake();
         log.info("Forward");

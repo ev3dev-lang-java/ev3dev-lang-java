@@ -12,10 +12,17 @@ public @Slf4j class NXTLargeMotorDemo {
         log.info("Starting motors on A");
         final NXTRegulatedMotor mA = new NXTRegulatedMotor(MotorPort.A);
         mA.setSpeed(500);
+
         mA.forward();
-        log.info(String.format("NXT Large Motor is moving: %s at speed %d", mA.isMoving(), mA.getSpeed()));
+        log.info("NXT Large Motor is moving: {} at speed {}", mA.isMoving(), mA.getSpeed());
         Delay.msDelay(2000);
         mA.stop();
+
+        mA.backward();
+        log.info("NXT Large Motor is moving: {} at speed {}", mA.isMoving(), mA.getSpeed());
+        Delay.msDelay(2000);
+        mA.stop();
+
         log.info("Stopped motors");
     }
 

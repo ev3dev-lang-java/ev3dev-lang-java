@@ -22,7 +22,7 @@ import java.util.List;
 public abstract class EV3DevDevice extends Device implements SupportedPlatform {
 
     protected static final String DEVICE_ROOT_PATH = "/sys/class/";
-    protected static final String LEGO_PORT = "lego-ports";
+    protected static final String LEGO_PORT = "lego-port";
     protected static final String ADDRESS = "address";
     protected static final String LEGO_SENSOR = "lego-sensor";
     protected static final String MODE = "mode";
@@ -68,8 +68,8 @@ public abstract class EV3DevDevice extends Device implements SupportedPlatform {
      * @param type type
      * @param portName port
      */
-    protected void connect(final String type, final String portName){
-        log.debug("Detecting motors on port/tacho-motors: {}", portName);
+    protected void detect(final String type, final String portName) {
+        log.debug("Detecting motors with port: {}", portName);
         final String devicePath = DEVICE_ROOT_PATH + type;
         List<File> deviceAvailables = Sysfs.getElements(devicePath);
 
@@ -79,7 +79,7 @@ public abstract class EV3DevDevice extends Device implements SupportedPlatform {
             PATH_DEVICE = deviceAvailable;
             pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
             if (Sysfs.readString(pathDeviceName).equals(portName)) {
-                log.debug("Detected port: {} on path: {}", portName, pathDeviceName);
+                log.debug("Detected port on path: {}", pathDeviceName);
                 connected = true;
                 break;
             }
@@ -119,7 +119,7 @@ public abstract class EV3DevDevice extends Device implements SupportedPlatform {
     protected void setStringAttribute(final String attribute, final String value){
         final boolean result = Sysfs.writeString(this.PATH_DEVICE + "/" +  attribute, value);
         if(!result){
-            throw new RuntimeException("Operation not executed:" + attribute + value);
+            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value" + value);
         }
     }
 
@@ -132,7 +132,7 @@ public abstract class EV3DevDevice extends Device implements SupportedPlatform {
     protected void setIntegerAttribute(final String attribute, final int value){
         final boolean result = Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
         if(!result){
-            throw new RuntimeException("Operation not executed:" + attribute + value);
+            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value" + value);
         }
     }
 	

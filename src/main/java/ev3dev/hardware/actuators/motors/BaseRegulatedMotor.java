@@ -3,6 +3,7 @@ package ev3dev.hardware.actuators.motors;
 import ev3dev.hardware.EV3DevMotorDevice;
 import ev3dev.hardware.SupportedPlatform;
 import lejos.robotics.RegulatedMotor;
+import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -36,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
 
-    protected float speed = 360;
+    private int speed = 360;
     protected int acceleration = 6000;
 
     private boolean regulationFlag = true;
@@ -55,14 +56,14 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
-		super(LEGO_PORT, motorPort);
 
-        //TODO: Improve the solution
-        if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
-            log.debug("Setting port in mode: {}", TACHO_MOTOR);
-            this.setStringAttribute(MODE, TACHO_MOTOR);
-        }
-        this.connect(TACHO_MOTOR, motorPort);
+        log.debug("Detecting motor on port: {}", motorPort);
+        this.detect(LEGO_PORT, motorPort);
+        log.debug("Setting port in mode: {}", TACHO_MOTOR);
+        this.setStringAttribute(MODE, TACHO_MOTOR);
+        Delay.msDelay(500);
+        this.detect(TACHO_MOTOR, motorPort);
+        this.setStringAttribute(COMMAND, RESET);
 	}
 
 	/**
@@ -109,6 +110,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     @Override
     public void forward() {
         this.setStringAttribute(POLARITY, POLARITY_NORMAL);
+        this.setSpeed(this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -119,6 +121,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     @Override
     public void backward(){
         this.setStringAttribute(POLARITY, POLARITY_INVERSED);
+        this.setSpeed(this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -187,6 +190,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * @param speed value in degrees/sec
      */
     public void setSpeed(int speed) {
+        this.speed = speed;
 		if (!this.regulationFlag) {
             this.setIntegerAttribute(DUTY_CYCLE, speed);
 		} else {

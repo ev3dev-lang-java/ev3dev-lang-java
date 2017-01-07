@@ -14,14 +14,15 @@ public @Slf4j class MultipleMotorsDemo {
         final EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
         log.info("Starting motor on B");
         final EV3MediumRegulatedMotor mB = new EV3MediumRegulatedMotor(MotorPort.B);
+        mB.brake();
 
         mA.setSpeed(500);
         mA.forward();
-        log.info(String.format("Large Motor is moving: %s at speed %d", mA.isMoving(), mA.getSpeed()));
+        log.info("Large Motor is moving: {} at speed {}", mA.isMoving(), mA.getSpeed());
 
         mB.setSpeed(500);
         mB.forward();
-        log.info(String.format("Medium Motor is moving: %s at speed %d", mB.isMoving(), mB.getSpeed()));
+        log.info("Medium Motor is moving: {} at speed {}", mB.isMoving(), mB.getSpeed());
 
         Delay.msDelay(2000);
         mA.stop();

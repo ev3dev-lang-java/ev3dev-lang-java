@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 public @Slf4j class UnregulatedMotorDemo2 {
 
 	//Robot Definition
-	private static EV3LargeRegulatedMotor umotor1 = new EV3LargeRegulatedMotor(MotorPort.B);
+	private static EV3LargeRegulatedMotor umotor1 = new EV3LargeRegulatedMotor(MotorPort.A);
 
     //Configuration
     private final static int motorPower = 30;

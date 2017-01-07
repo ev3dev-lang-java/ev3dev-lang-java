@@ -23,11 +23,11 @@ public @Slf4j abstract class EV3DevSensorDevice extends EV3DevDevice {
 		//EV3 Brick detect in a automatic way the sensors
 		if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
 
-			this.connect(LEGO_SENSOR, portName);
+			this.detect(LEGO_SENSOR, portName);
 		}else {
 
 			//With Pi Boards, it is necessary to detect in 2 paths the sensors
-			this.connect(LEGO_PORT, portName);
+			this.detect(LEGO_PORT, portName);
 			log.info("detected lego ports");
 			log.info("" + this.PATH_DEVICE);
 			this.setStringAttribute(this.PATH_DEVICE + "/" +  MODE, mode);

@@ -4,6 +4,8 @@ import ev3dev.hardware.DeviceNotSupportedException;
 import ev3dev.hardware.EV3DevMotorDevice;
 import ev3dev.hardware.SupportedPlatform;
 import lejos.robotics.DCMotor;
+import lejos.utility.Delay;
+import lombok.extern.slf4j.Slf4j;
 
 /** 
  * Abstraction for basic motors operations.
@@ -14,21 +16,25 @@ import lejos.robotics.DCMotor;
  * @author Juan Antonio Breña Moral
  *
  */
-public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
+public @Slf4j abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 
-	//TODO Improve the way to connect with a Motor.
+    private int power = 50;
+
 	/**
 	 * Constructor
 	 *
-	 * @param portName port
+	 * @param motorPort port
      */
-	public BasicMotor(final String portName) {
-		super(LEGO_PORT, portName);
+	public BasicMotor(final String motorPort) {
 		if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
 			throw new DeviceNotSupportedException("This device is not supported in this platform");
 		}
-		this.setStringAttribute(MODE, DC_MOTOR);
-		this.connect(DC_MOTOR, portName);
+        log.debug("Detecting motor on port: {}", motorPort);
+        this.detect(LEGO_PORT, motorPort);
+        log.debug("Setting port in mode: {}", DC_MOTOR);
+        this.setStringAttribute(MODE, DC_MOTOR);
+        Delay.msDelay(500);
+		this.detect(DC_MOTOR, motorPort);
 	}
 
 	/**
@@ -37,6 +43,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
     @Override
     public void setPower(final int power) {
+        this.power = power;
     	this.setIntegerAttribute(DUTY_CYCLE, power);
     }
 
@@ -63,6 +70,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 	@Override
 	public void forward() {
 		this.updateState(POLARITY_NORMAL);
+        this.setPower(this.power);
     	this.setStringAttribute(COMMAND, RUN_FOREVER);
 	}
 
@@ -72,6 +80,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
     @Override
 	public void backward() {
 		this.updateState(POLARITY_INVERSED);
+        this.setPower(this.power);
     	this.setStringAttribute(COMMAND, RUN_FOREVER);
 	}
 

@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 public @Slf4j class UnregulatedMotorDemo {
 
 	//Robot Definition
-	private static UnregulatedMotor umotor1 = new UnregulatedMotor(MotorPort.B);
+	private static UnregulatedMotor umotor1 = new UnregulatedMotor(MotorPort.A);
 
     //Configuration
     private final static int motorPower = 50;
@@ -34,9 +34,7 @@ public @Slf4j class UnregulatedMotorDemo {
 		log.info("{}", umotor1.isMoving());
 		Delay.msDelay(ONE_SECOND);
 		umotor1.stop();
-		
 
-        System.exit(0);
 	}
 
 }
