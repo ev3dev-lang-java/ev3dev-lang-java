@@ -130,12 +130,12 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-          switchMode(MODE, SWITCH_DELAY);
+            switchMode(MODE, SWITCH_DELAY);
             float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
             if (raw<5) sample[offset]=0;
-            else if (raw>2550) sample[offset]=Float.POSITIVE_INFINITY;
-            else sample[offset]= raw * toSI;
+            else if (raw > 2550) sample[offset]=Float.POSITIVE_INFINITY;
+            else sample[offset]= (raw * toSI)/10;
         }
 
         @Override

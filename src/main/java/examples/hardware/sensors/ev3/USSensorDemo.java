@@ -19,18 +19,16 @@ public @Slf4j class USSensorDemo {
 		final SampleProvider sp = us1.getDistanceMode();
 		int distanceValue = 0;
 
-        //Robot control loop
-        final int iteration_threshold = 20;
+        final int iteration_threshold = 500;
         for(int i = 0; i <= iteration_threshold; i++) {
 
         	float [] sample = new float[sp.sampleSize()];
             sp.fetchSample(sample, 0);
             distanceValue = (int)sample[0];
         	
-        	log.info("Iteration: ", i);
-            log.info("Distance: {}", distanceValue);
+        	log.info("Iteration: {}, Distance: {}", i, distanceValue);
 
-            Delay.msDelay(HALF_SECOND);
+			Delay.msDelay(100);
         }
 		
 	}
