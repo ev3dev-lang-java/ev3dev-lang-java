@@ -1,7 +1,6 @@
 package ev3dev.hardware.actuators.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
-import ev3dev.hardware.SupportedPlatform;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
