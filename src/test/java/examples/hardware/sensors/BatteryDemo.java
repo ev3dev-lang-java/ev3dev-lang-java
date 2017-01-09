@@ -1,6 +1,6 @@
 package examples.hardware.sensors;
 
-import ev3dev.hardware.sensors.Battery;
+import ev3dev.sensors.Battery;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @Slf4j
-public abstract class EV3DevDevice extends Device implements SupportedPlatform {
+public abstract class EV3DevDevice implements SupportedPlatform {
 
     protected static final String DEVICE_ROOT_PATH = "/sys/class/";
     protected static final String LEGO_PORT = "lego-port";
@@ -34,10 +34,10 @@ public abstract class EV3DevDevice extends Device implements SupportedPlatform {
 	 * This method returns the platform
 	 *
 	 * @return Platform used
-     * @throws PlatformNotSupportedException Exception
+     * @throws RuntimeException Exception
      */
     @Override
-	public String getPlatform() throws PlatformNotSupportedException{
+	public String getPlatform() {
 
         final String BATTERY =  "power_supply";
         final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
@@ -58,7 +58,7 @@ public abstract class EV3DevDevice extends Device implements SupportedPlatform {
 			log.trace("Detected platform: " + SupportedPlatform.BRICKPI);
 			return BRICKPI;
 		} else {
-			throw new PlatformNotSupportedException("Platform not supported");
+			throw new RuntimeException("Platform not supported");
 		}
 	}
 
@@ -86,7 +86,7 @@ public abstract class EV3DevDevice extends Device implements SupportedPlatform {
         }
 
         if(!connected){
-            throw new DeviceException("The device was not detected in: " + portName);
+            throw new RuntimeException("The device was not detected in: " + portName);
         }
     }
 

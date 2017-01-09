@@ -10,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 public @Slf4j abstract class EV3DevSensorDevice extends EV3DevDevice {
 
+	protected static final String LEGO_UART_SENSOR = "ev3-uart";
+	protected static final String SENSOR_MODES = "modes";
+	protected static final String SENSOR_MODE = "mode";
+
 	/**
 	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
 	 * It is necessary to indicate the type and ports.

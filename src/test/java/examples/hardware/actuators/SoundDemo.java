@@ -1,6 +1,6 @@
 package examples.hardware.actuators;
 
-import ev3dev.hardware.actuators.Sound;
+import ev3dev.actuators.Sound;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,7 +1,7 @@
 package examples.hardware.actuators.motors;
 
-import ev3dev.hardware.actuators.motors.EV3LargeRegulatedMotor;
-import ev3dev.hardware.actuators.motors.EV3MediumRegulatedMotor;
+import ev3dev.actuators.motors.EV3LargeRegulatedMotor;
+import ev3dev.actuators.motors.EV3MediumRegulatedMotor;
 import ev3dev.hardware.ports.MotorPort;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;

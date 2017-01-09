@@ -139,6 +139,6 @@ public interface RegulatedMotor extends BaseMotor, Tachometer {
     /**
     * Close the ports, the ports can not be used after this call.
     */
-    void close();
+    //void close();
    
 }

@@ -1,7 +1,7 @@
 package examples.hardware.sensors.ev3;
 
 import ev3dev.hardware.ports.SensorPort;
-import ev3dev.hardware.sensors.ev3.EV3ColorSensor;
+import ev3dev.sensors.ev3.EV3ColorSensor;
 import lejos.robotics.SampleProvider;
 import lombok.extern.slf4j.Slf4j;
 
