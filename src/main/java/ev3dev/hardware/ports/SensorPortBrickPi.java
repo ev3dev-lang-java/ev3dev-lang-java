@@ -10,8 +10,8 @@ package ev3dev.hardware.ports;
  */
 public interface SensorPortBrickPi {
 	
-    String S1 = "in1";
-    String S2 = "in2";
-    String S3 = "in3";
-    String S4 = "in4";
+    String S1 = "ttyAMA0:S1";
+    String S2 = "ttyAMA0:S2";
+    String S3 = "ttyAMA0:S3";
+    String S4 = "ttyAMA0:S4";
 }

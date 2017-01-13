@@ -1,5 +1,6 @@
 package ev3dev.hardware;
 
+import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -32,10 +33,12 @@ public @Slf4j abstract class EV3DevSensorDevice extends EV3DevDevice {
 
 			//With Pi Boards, it is necessary to detect in 2 paths the sensors
 			this.detect(LEGO_PORT, portName);
-			log.info("detected lego ports");
-			log.info("" + this.PATH_DEVICE);
-			this.setStringAttribute(this.PATH_DEVICE + "/" +  MODE, mode);
-			this.setStringAttribute(this.PATH_DEVICE + "/" +  DEVICE, device);
+			log.info("detected lego port: {}", this.PATH_DEVICE);
+			this.setStringAttribute(MODE, mode);
+			this.setStringAttribute(DEVICE, device);
+			Delay.msDelay(1000);
+			this.detect(LEGO_SENSOR, portName);
+			log.info("detected lego sensor: {}", this.PATH_DEVICE);
 		}
 
     }

@@ -58,7 +58,7 @@ public abstract class EV3DevDevice implements SupportedPlatform {
 			log.trace("Detected platform: " + SupportedPlatform.BRICKPI);
 			return BRICKPI;
 		} else {
-			throw new RuntimeException("Platform not supported");
+            throw new RuntimeException("Platform not supported");
 		}
 	}
 
@@ -119,7 +119,7 @@ public abstract class EV3DevDevice implements SupportedPlatform {
     protected void setStringAttribute(final String attribute, final String value){
         final boolean result = Sysfs.writeString(this.PATH_DEVICE + "/" +  attribute, value);
         if(!result){
-            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value" + value);
+            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value " + value);
         }
     }
 
@@ -132,7 +132,7 @@ public abstract class EV3DevDevice implements SupportedPlatform {
     protected void setIntegerAttribute(final String attribute, final int value){
         final boolean result = Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
         if(!result){
-            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value" + value);
+            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value " + value);
         }
     }
 	
