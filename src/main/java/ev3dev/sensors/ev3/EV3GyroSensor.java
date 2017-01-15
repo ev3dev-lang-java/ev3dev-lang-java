@@ -34,7 +34,7 @@ import java.io.File;
  * @author Juan Antonio Breña Moral
  * 
  */
-public class EV3GyroSensor extends BaseSensor implements SensorMode {
+public class EV3GyroSensor extends BaseSensor {
 
 	private static final String LEGO_EV3_GYRO = "lego-ev3-gyro";
 

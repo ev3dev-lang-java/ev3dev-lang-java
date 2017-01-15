@@ -8,8 +8,9 @@ package ev3dev.hardware.ports;
  */
 public interface MotorPort {
 
-	String A = "outA";
-	String B = "outB";
-	String C = "outC";
-	String D = "outD";
+	String A = "A";
+	String B = "B";
+	String C = "C";
+	String D = "D";
+
 }

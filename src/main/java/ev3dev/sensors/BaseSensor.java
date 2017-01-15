@@ -15,6 +15,10 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         super(sensorPort, mode, device);
     }
 
+    public BaseSensor(final String sensorPort, final String mode){
+        super(sensorPort, mode);
+    }
+
 	protected int currentMode = 0;
 	protected String currentModeS = "";
     protected SensorMode[] modes;

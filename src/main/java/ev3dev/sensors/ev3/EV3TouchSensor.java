@@ -32,7 +32,7 @@ public class EV3TouchSensor extends BaseSensor {
     private static final String LEGO_EV3_TOUCH = "lego-ev3-touch";
 
     public EV3TouchSensor(final String portName) {
-		super(portName, LEGO_UART_SENSOR, LEGO_EV3_TOUCH);
+		super(portName, LEGO_ANALOG_SENSOR);
 		init();
 	}
 

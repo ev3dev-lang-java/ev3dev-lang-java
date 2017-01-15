@@ -10,7 +10,7 @@
     </appender>
 
     <logger name="ch.qos.logback.core" level="OFF" />
-    <logger name="ev3dev.hardware" level="DEBUG" />
+    <logger name="ev3dev.hardware" level="TRACE" />
 
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />

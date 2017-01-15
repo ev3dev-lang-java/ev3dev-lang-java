@@ -17,7 +17,7 @@ public class Battery extends EV3DevDevice implements Power {
 
     private static final String BATTERY =  "power_supply";
     private static final String BATTERY_EV3 =  "legoev3-battery";
-    private static final String BATTERY_PISTORMS =  "pistorm-battery";
+    private static final String BATTERY_PISTORMS =  "pistorms-battery";
     private static final String BATTERY_BRICKPI =  "brickpi-battery";
     private static final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
     private static final String VOLTAGE = "voltage_now";

@@ -36,7 +36,7 @@ import java.io.File;
  * @author Juan Antonio Breña Moral
  * 
  */
-public class EV3UltrasonicSensor extends BaseSensor implements SensorMode {
+public class EV3UltrasonicSensor extends BaseSensor {
 
     private static final int DISABLED = 3;
 

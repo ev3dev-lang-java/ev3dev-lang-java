@@ -1,6 +1,7 @@
 package ev3dev.actuators.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
+import ev3dev.hardware.EV3DevPort;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
@@ -56,12 +57,14 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
 
-        log.debug("Detecting motor on port: {}", motorPort);
-        this.detect(LEGO_PORT, motorPort);
+        final String port = EV3DevPort.getMotorPort(motorPort);
+
+        log.debug("Detecting motor on port: {}", port);
+        this.detect(LEGO_PORT, port);
         log.debug("Setting port in mode: {}", TACHO_MOTOR);
         this.setStringAttribute(MODE, TACHO_MOTOR);
         Delay.msDelay(500);
-        this.detect(TACHO_MOTOR, motorPort);
+        this.detect(TACHO_MOTOR, port);
         this.setStringAttribute(COMMAND, RESET);
 	}
     

@@ -18,10 +18,9 @@ import java.util.List;
  * At the moment, the class extends from Device, but close method doesn´ close any real resource.
  */
 
-@Slf4j
-public abstract class EV3DevDevice implements SupportedPlatform {
 
-    protected static final String DEVICE_ROOT_PATH = "/sys/class/";
+public @Slf4j abstract class EV3DevDevice extends EV3DevPlatform  {
+
     protected static final String LEGO_PORT = "lego-port";
     protected static final String ADDRESS = "address";
     protected static final String LEGO_SENSOR = "lego-sensor";
@@ -29,38 +28,6 @@ public abstract class EV3DevDevice implements SupportedPlatform {
     protected static final String DEVICE = "set_device";
 
     protected File PATH_DEVICE = null;
-
-    /**
-	 * This method returns the platform
-	 *
-	 * @return Platform used
-     * @throws RuntimeException Exception
-     */
-    @Override
-	public String getPlatform() {
-
-        final String BATTERY =  "power_supply";
-        final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
-        final String BATTERY_EV3 =  "legoev3-battery";
-        final String BATTERY_PISTORMS =  "pistorm-battery";
-        final String BATTERY_BRICKPI =  "brickpi-battery";
-        final String EV3BRICK_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_EV3;
-        final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
-        final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
-
-        if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
-			log.trace("Detected platform: " + SupportedPlatform.EV3BRICK);
-			return EV3BRICK;
-		} else if(Sysfs.existPath(PISTORMS_DISCOVERY_PATTERN_PATH)){
-			log.trace("Detected platform: " + SupportedPlatform.PISTORMS);
-			return PISTORMS;
-		} else if(Sysfs.existPath(BRICKPI_DISCOVERY_PATTERN_PATH)){
-			log.trace("Detected platform: " + SupportedPlatform.BRICKPI);
-			return BRICKPI;
-		} else {
-            throw new RuntimeException("Platform not supported");
-		}
-	}
 
     //TODO Rename method to detect
     /**
