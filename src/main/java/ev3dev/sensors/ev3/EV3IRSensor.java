@@ -42,7 +42,8 @@ public class EV3IRSensor extends BaseSensor {
     private void init() {
         setModes(new SensorMode[] {
                 new DistanceMode(this.PATH_DEVICE),
-                new SeekMode(this.PATH_DEVICE)
+                new SeekMode(this.PATH_DEVICE),
+                new RemoteMode(this.PATH_DEVICE)
         });
     }
 	
@@ -120,7 +121,8 @@ public class EV3IRSensor extends BaseSensor {
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
-     */    public SensorMode getSeekMode() {
+     */
+    public SensorMode getSeekMode() {
         return getMode(1);
     }
 
@@ -129,7 +131,6 @@ public class EV3IRSensor extends BaseSensor {
         private static final String MODE = "IR-SEEK";
 
         private static final float toSI = 1f;
-        byte []seekVals = new byte[8];
 
         private File pathDevice = null;
 
@@ -158,6 +159,43 @@ public class EV3IRSensor extends BaseSensor {
         @Override
         public String getName() {
             return "Seek";
+        }
+
+    }
+
+    public SensorMode getRemoteMode() {
+        return getMode(2);
+    }
+
+    private class RemoteMode extends EV3DevSensorMode {
+
+        private static final String MODE = "IR-REMOTE";
+
+        private static final float toSI = 1f;
+
+        private File pathDevice = null;
+
+        public RemoteMode(File pathDevice) {
+            this.pathDevice = pathDevice;
+        }
+
+        @Override
+        public int sampleSize() {
+            return 4;
+        }
+
+        @Override
+        public void fetchSample(float[] sample, int offset) {
+            switchMode(MODE, SWITCH_DELAY);
+            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
+            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
+            sample[3] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE3);
+        }
+
+        @Override
+        public String getName() {
+            return "Remote";
         }
 
     }
