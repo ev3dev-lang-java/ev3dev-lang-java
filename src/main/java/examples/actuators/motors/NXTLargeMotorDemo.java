@@ -1,7 +1,7 @@
 package examples.actuators.motors;
 
 import ev3dev.actuators.motors.NXTRegulatedMotor;
-import ev3dev.hardware.ports.MotorPort;
+import lejos.hardware.port.MotorPort;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
