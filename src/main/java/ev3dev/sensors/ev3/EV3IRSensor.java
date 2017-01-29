@@ -40,7 +40,10 @@ public class EV3IRSensor extends BaseSensor {
 	}
 
     private void init() {
-        setModes(new SensorMode[] {new DistanceMode(this.PATH_DEVICE)});
+        setModes(new SensorMode[] {
+                new DistanceMode(this.PATH_DEVICE),
+                new SeekMode(this.PATH_DEVICE)
+        });
     }
 	
     /**
@@ -63,8 +66,10 @@ public class EV3IRSensor extends BaseSensor {
 	public SensorMode getDistanceMode() {
         return getMode(0);
     }
-	
+
     private class DistanceMode extends EV3DevSensorMode {
+
+        private static final String MODE = "IR-PROX";
         private static final float toSI = 1f;
 
     	private File pathDevice = null;
@@ -80,8 +85,7 @@ public class EV3IRSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            //TODO Set mode
-            //switchMode(IR_PROX, SWITCH_DELAY);
+            switchMode(MODE, SWITCH_DELAY);
     		float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
             if (raw < 5) sample[offset]=0;
@@ -95,4 +99,67 @@ public class EV3IRSensor extends BaseSensor {
         }
         
     }
+
+    /**
+     * <b>EV3 Infra Red sensor, Seek mode</b><br>
+     * In seek mode the sensor locates up to four beacons and provides bearing and distance of each beacon.
+     *
+     * <p>
+     * <b>Size and content of the sample</b><br>
+     * The sample contains four pairs of elements in a single sample. Each pair gives bearing of  and distance to the beacon.
+     * The first pair of elements is associated with a beacon transmitting on channel 0, the second pair with a beacon transmitting on channel 1 etc.<br>
+     * The bearing values range from -25 to +25 (with values increasing clockwise
+     * when looking from behind the sensor). A bearing of 0 indicates the beacon is
+     * directly in front of the sensor. <br>
+     * Distance values are not to scale. Al increasing values indicate increasing distance. <br>
+     * If no beacon is detected both bearing is set to zero, and distance to positive infinity.
+     *
+     * <p>
+     *
+     * @return A sampleProvider
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for
+     *      SampleProviders}
+     * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
+     */    public SensorMode getSeekMode() {
+        return getMode(1);
+    }
+
+    private class SeekMode extends EV3DevSensorMode {
+
+        private static final String MODE = "IR-SEEK";
+
+        private static final float toSI = 1f;
+        byte []seekVals = new byte[8];
+
+        private File pathDevice = null;
+
+        public SeekMode(File pathDevice) {
+            this.pathDevice = pathDevice;
+        }
+
+        @Override
+        public int sampleSize() {
+            return 8;
+        }
+
+        @Override
+        public void fetchSample(float[] sample, int offset) {
+            switchMode(MODE, SWITCH_DELAY);
+            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
+            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
+            sample[3] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE3);
+            sample[4] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE4);
+            sample[5] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE5);
+            sample[6] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE6);
+            sample[7] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE7);
+        }
+
+        @Override
+        public String getName() {
+            return "Seek";
+        }
+
+    }
+
 }

@@ -20,7 +20,7 @@ public @Slf4j class IRSensorDemo {
 		int distanceValue = 0;
 
 		//Control loop
-		final int iteration_threshold = 10;
+		final int iteration_threshold = 50;
 		for(int i = 0; i <= iteration_threshold; i++) {
 		
 			float [] sample = new float[sp.sampleSize()];
