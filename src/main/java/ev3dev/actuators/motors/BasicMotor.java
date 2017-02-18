@@ -25,15 +25,19 @@ public @Slf4j abstract class BasicMotor extends EV3DevMotorDevice implements DCM
 	 * @param motorPort port
      */
 	public BasicMotor(final String motorPort) {
+
 		if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
 			throw new RuntimeException("This device is not supported in this platform");
 		}
-        log.debug("Detecting motor on port: {}", motorPort);
-        this.detect(LEGO_PORT, motorPort);
+
+		final String port = this.getMotorPort(motorPort);
+
+        log.debug("Detecting motor on port: {}", port);
+        this.detect(LEGO_PORT, port);
         log.debug("Setting port in mode: {}", DC_MOTOR);
         this.setStringAttribute(MODE, DC_MOTOR);
         Delay.msDelay(500);
-		this.detect(DC_MOTOR, motorPort);
+		this.detect(DC_MOTOR, port);
 	}
 
 	/**
