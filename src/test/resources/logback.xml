@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>
@@ -10,10 +9,10 @@
     </appender>
 
     <logger name="ch.qos.logback.core" level="OFF" />
-    <logger name="ev3dev.hardware" level="DEBUG" />
+    <logger name="ev3dev.hardware" level="TRACE" />
 
     <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
     </root>
 
 </configuration>

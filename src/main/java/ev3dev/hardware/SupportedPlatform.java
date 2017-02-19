@@ -9,5 +9,5 @@ public interface SupportedPlatform {
     String PISTORMS = "PISTORMS";
     String BRICKPI = "BRICKPI";
 
-    String getPlatform() throws PlatformNotSupportedException;
+    String getPlatform();
 }

@@ -1,0 +1,31 @@
+
+remotes {
+    ev3dev {
+        host = '192.168.1.244'
+        user = 'robot'
+        password = 'maker'
+    }
+}
+
+task deploy << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            put from: "./build/libs/" + "${rootProject.name}" + "-all-" + version + ".jar", into: "/home/robot/"
+        }
+    }
+}
+deploy.dependsOn clean, fatJar
+
+task remoteRun << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            println "java -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
+            execute "java -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
+        }
+    }
+}
+
+task deployAndRun << {
+
+}
+deployAndRun.dependsOn deploy, remoteRun
