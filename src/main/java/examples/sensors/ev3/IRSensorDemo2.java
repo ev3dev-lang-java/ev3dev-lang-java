@@ -28,7 +28,7 @@ public @Slf4j class IRSensorDemo2 {
 		int beaconInfo4D = 0;
 
 		//Control loop
-		final int iteration_threshold = 100;
+		final int iteration_threshold = 50;
 		for(int i = 0; i <= iteration_threshold; i++) {
 		
 			float [] sample = new float[sp.sampleSize()];

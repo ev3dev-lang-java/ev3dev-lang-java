@@ -18,6 +18,8 @@ public @Slf4j class USSensorDemo2 {
 
 		SampleProvider sp;
 
+		int distanceValue = 0;
+
 		for(int i = 0; i <= 10; i++) {
 
 			sp = us1.getListenMode();
@@ -31,6 +33,10 @@ public @Slf4j class USSensorDemo2 {
 			sampleSize = sp.sampleSize();
 			sample = new float[sampleSize];
 			sp.fetchSample(sample, 0);
+
+			distanceValue = (int)sample[0];
+
+			log.info("Iteration: {}, Distance: {}", i, distanceValue);
 
 		}
 		

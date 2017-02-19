@@ -6,12 +6,12 @@ import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class BatteryDemo {
+public class BatteryDemo2 {
 
 	public static void main(String[] args) {
         final Battery battery = Battery.getInstance();
 
-		for(int x = 0; x < 50; x++){
+		for(int x = 0; x < 500; x++){
 			log.info("Battery Voltage: {}", battery.getVoltage());
 			log.info("Battery Current: {}", battery.getBatteryCurrent());
 			Sound.getInstance().beep();
