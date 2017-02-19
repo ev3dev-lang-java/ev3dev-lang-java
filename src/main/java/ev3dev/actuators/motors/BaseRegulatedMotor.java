@@ -138,7 +138,11 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * the motor to stop more quickly than coasting.
      */
     public void brake() {
-        this.setStringAttribute(STOP_COMMAND, BRAKE);
+        if(this.getPlatform().equals(EV3BRICK)) {
+            this.setStringAttribute(STOP_COMMAND, BRAKE);
+        }else{
+            log.warn("This method is disabled for {} & {}", PISTORMS, BRICKPI);
+        }
     }
 
     /**
@@ -147,7 +151,11 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     @Override
     public void hold() {
-        this.setStringAttribute(STOP_COMMAND, HOLD);
+        if(this.getPlatform().equals(EV3BRICK)) {
+            this.setStringAttribute(STOP_COMMAND, HOLD);
+        }else{
+            log.warn("This method is disabled for {} & {}", PISTORMS, BRICKPI);
+        }
     }
 
     /**

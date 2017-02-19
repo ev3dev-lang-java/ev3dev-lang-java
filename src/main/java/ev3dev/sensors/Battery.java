@@ -3,6 +3,7 @@ package ev3dev.sensors;
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.SupportedPlatform;
 import ev3dev.utils.Sysfs;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The class Battery interacts with EV3Dev to get information about battery used. 
@@ -13,7 +14,7 @@ import ev3dev.utils.Sysfs;
  * @author Juan Antonio Breña Moral
  *
  */
-public class Battery extends EV3DevDevice implements Power {
+public @Slf4j class Battery extends EV3DevDevice implements Power {
 
     private static final String BATTERY =  "power_supply";
     private static final String BATTERY_EV3 =  "legoev3-battery";
@@ -65,8 +66,10 @@ public class Battery extends EV3DevDevice implements Power {
 	public float getBatteryCurrent() {
     	if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
     		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
-    	}
-    	return -1f;
+    	}else {
+            log.warn("This method is not available for {} & {}", PISTORMS, BRICKPI);
+            return -1f;
+        }
 	}
 
 }
