@@ -36,9 +36,9 @@ public @Slf4j abstract class EV3DevDevice extends EV3DevPlatform  {
      * @param portName port
      */
     protected void detect(final String type, final String portName) {
-        log.debug("Detecting motors with port: {}", portName);
+        log.debug("Detecting device on port: {}", portName);
         final String devicePath = DEVICE_ROOT_PATH + type;
-        List<File> deviceAvailables = Sysfs.getElements(devicePath);
+        final List<File> deviceAvailables = Sysfs.getElements(devicePath);
 
         boolean connected = false;
         String pathDeviceName;

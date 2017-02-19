@@ -114,13 +114,13 @@ public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
         } else {
 
             if (port.equals(SensorPort.S1)) {
-                return "pistorms:BBS1";
-            } else if (port.equals(SensorPort.S2)) {
                 return "pistorms:BBS2";
+            } else if (port.equals(SensorPort.S2)) {
+                return "pistorms:BBS1";
             } else if (port.equals(SensorPort.S3)) {
-                return "pistorms:BAS2";
-            } else if (port.equals(SensorPort.S4)) {
                 return "pistorms:BAS1";
+            } else if (port.equals(SensorPort.S4)) {
+                return "pistorms:BAS2";
             }
 
         }
