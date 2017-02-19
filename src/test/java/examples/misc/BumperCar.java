@@ -1,10 +1,10 @@
 package examples.misc;
 
 import ev3dev.actuators.motors.EV3LargeRegulatedMotor;
-import lejos.hardware.port.MotorPort;
-import lejos.hardware.port.SensorPort;
 import ev3dev.sensors.Battery;
 import ev3dev.sensors.ev3.EV3IRSensor;
+import lejos.hardware.port.MotorPort;
+import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 

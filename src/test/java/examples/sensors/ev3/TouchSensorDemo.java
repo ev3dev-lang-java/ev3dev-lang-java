@@ -1,7 +1,7 @@
 package examples.sensors.ev3;
 
-import lejos.hardware.port.SensorPort;
 import ev3dev.sensors.ev3.EV3TouchSensor;
+import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;

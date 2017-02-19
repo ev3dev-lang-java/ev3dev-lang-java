@@ -1,6 +1,5 @@
 package examples.sensors.ev3;
 
-import ev3dev.actuators.Sound;
 import ev3dev.sensors.ev3.EV3ColorSensor;
 import lejos.hardware.port.SensorPort;
 import lejos.robotics.Color;
@@ -41,7 +40,6 @@ public @Slf4j class ColorSensorDemo3 {
 
 			if(value == Color.BLUE){
 				log.info("Blue ball found");
-				Sound.getInstance().beep();
 				break;
 			}
         }

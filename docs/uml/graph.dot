@@ -496,6 +496,11 @@ digraph G {
 <tr><td align="left" balign="left"> ~ VALUE0 : String </td></tr>
 <tr><td align="left" balign="left"> ~ VALUE1 : String </td></tr>
 <tr><td align="left" balign="left"> ~ VALUE2 : String </td></tr>
+<tr><td align="left" balign="left"> ~ VALUE3 : String </td></tr>
+<tr><td align="left" balign="left"> ~ VALUE4 : String </td></tr>
+<tr><td align="left" balign="left"> ~ VALUE5 : String </td></tr>
+<tr><td align="left" balign="left"> ~ VALUE6 : String </td></tr>
+<tr><td align="left" balign="left"> ~ VALUE7 : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> ~ EV3DevSensorMode() </td></tr>
@@ -581,6 +586,8 @@ digraph G {
 <tr><td align="left" balign="left"> + EV3IRSensor(portName : String) </td></tr>
 <tr><td align="left" balign="left"> - init() </td></tr>
 <tr><td align="left" balign="left"> + getDistanceMode() : SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getSeekMode() : SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getRemoteMode() : SensorMode </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor.DistanceMode
@@ -589,6 +596,7 @@ digraph G {
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - MODE : String </td></tr>
 <tr><td align="left" balign="left"> - toSI : float </td></tr>
 <tr><td align="left" balign="left"> - pathDevice : File </td></tr>
 		</table></td></tr>
@@ -599,8 +607,42 @@ digraph G {
 <tr><td align="left" balign="left"> + getName() : String </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.sensors.ev3.EV3IRSensor.SeekMode
+	c30 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.SeekMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> SeekMode </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - MODE : String </td></tr>
+<tr><td align="left" balign="left"> - toSI : float </td></tr>
+<tr><td align="left" balign="left"> - pathDevice : File </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + SeekMode(pathDevice : File) </td></tr>
+<tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
+<tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
+<tr><td align="left" balign="left"> + getName() : String </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.sensors.ev3.EV3IRSensor.RemoteMode
+	c31 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.RemoteMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RemoteMode </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - MODE : String </td></tr>
+<tr><td align="left" balign="left"> - toSI : float </td></tr>
+<tr><td align="left" balign="left"> - pathDevice : File </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RemoteMode(pathDevice : File) </td></tr>
+<tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
+<tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
+<tr><td align="left" balign="left"> + getName() : String </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3TouchSensor
-	c30 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c32 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3TouchSensor </td></tr>
 		</table></td></tr>
@@ -614,7 +656,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3TouchSensor.TouchMode
-	c31 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c33 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TouchMode </td></tr>
 		</table></td></tr>
@@ -629,7 +671,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor
-	c32 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c34 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3UltrasonicSensor </td></tr>
 		</table></td></tr>
@@ -648,7 +690,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode
-	c33 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c35 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
@@ -665,7 +707,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode
-	c34 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c36 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ListenMode </td></tr>
 		</table></td></tr>
@@ -681,7 +723,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Shell
-	c35 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c37 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Shell </td></tr>
 		</table></td></tr>
@@ -695,7 +737,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Sysfs
-	c36 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c38 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sysfs </td></tr>
 		</table></td></tr>
@@ -769,15 +811,19 @@ digraph G {
 	c13:p -> c28:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor.DistanceMode extends ev3dev.sensors.ev3.EV3DevSensorMode
 	c23:p -> c29:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3TouchSensor extends ev3dev.sensors.BaseSensor
-	c13:p -> c30:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3TouchSensor.TouchMode extends ev3dev.sensors.ev3.EV3DevSensorMode
+	//ev3dev.sensors.ev3.EV3IRSensor.SeekMode extends ev3dev.sensors.ev3.EV3DevSensorMode
+	c23:p -> c30:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3IRSensor.RemoteMode extends ev3dev.sensors.ev3.EV3DevSensorMode
 	c23:p -> c31:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3UltrasonicSensor extends ev3dev.sensors.BaseSensor
+	//ev3dev.sensors.ev3.EV3TouchSensor extends ev3dev.sensors.BaseSensor
 	c13:p -> c32:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode extends ev3dev.sensors.ev3.EV3DevSensorMode
+	//ev3dev.sensors.ev3.EV3TouchSensor.TouchMode extends ev3dev.sensors.ev3.EV3DevSensorMode
 	c23:p -> c33:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3UltrasonicSensor extends ev3dev.sensors.BaseSensor
+	c13:p -> c34:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode extends ev3dev.sensors.ev3.EV3DevSensorMode
+	c23:p -> c35:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c23:p -> c34:p [dir=back,arrowtail=empty];
+	c23:p -> c36:p [dir=back,arrowtail=empty];
 }
 

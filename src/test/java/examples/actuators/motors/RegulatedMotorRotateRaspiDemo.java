@@ -1,6 +1,5 @@
 package examples.actuators.motors;
 
-import ev3dev.actuators.Sound;
 import ev3dev.actuators.motors.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.utility.Delay;
