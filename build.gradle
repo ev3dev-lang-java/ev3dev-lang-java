@@ -14,7 +14,9 @@ repositories {
 }
 
 dependencies {
-    compile("com.github.ev3dev-lang-java:lejos-commons:v0.2.0")
+    compile("org.projectlombok:lombok:1.16.8")
+    compile("ch.qos.logback:logback-classic:1.1.6")
+    compile("com.github.ev3dev-lang-java:lejos-commons:v0.4.0")
 }
 
 //Compile

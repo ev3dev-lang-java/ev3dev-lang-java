@@ -121,7 +121,7 @@ public @Slf4j abstract class BasicMotor extends EV3DevMotorDevice implements DCM
 	 * The motor will freely coast to a stop.
 	 */
     @Override
-	public void coast() {
+	public void flt() {
 		this.setStringAttribute(STOP_COMMAND, COAST);
 	}
 
