@@ -26,6 +26,7 @@ public @Slf4j class Sound extends EV3DevDevice {
     private final static String CMD_APLAY ="aplay";
     private final static String VOLUME = "volume";
     private final static String VOLUME_PATH = SOUND_PATH + VOLUME;
+    private final static  String DISABPLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
 
     private static Sound Instance;
 
@@ -43,26 +44,32 @@ public @Slf4j class Sound extends EV3DevDevice {
 
     // Prevent duplicate objects
     private Sound() {
-    	if(!this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
-    		throw new RuntimeException("This device is not supported in this platform");
-    	}
+
     }
     
     /**
      * Beeps once.
      */
     public void beep() {
-        log.debug(CMD_BEEP);
-        Shell.execute(CMD_BEEP);
-        Delay.msDelay(100);
+        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+            log.debug(CMD_BEEP);
+            Shell.execute(CMD_BEEP);
+            Delay.msDelay(100);
+        } else {
+            log.debug(DISABPLED_FEATURE_MESSAGE);
+        }
     }
 
     /**
      * Beeps twice.
      */
     public void twoBeeps() {
-        beep();
-        beep();
+        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+            beep();
+            beep();
+        } else {
+            log.debug(DISABPLED_FEATURE_MESSAGE);
+        }
     }
 
     /**
@@ -72,8 +79,12 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param volume The volume of the playback 100 corresponds to 100%
      */
     public void playTone(final int frequency, final int duration, final int volume) {
-        this.setVolume(volume);
-    	this.playTone(frequency, duration);
+        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+            this.setVolume(volume);
+    	    this.playTone(frequency, duration);
+        } else {
+            log.debug(DISABPLED_FEATURE_MESSAGE);
+        }
     }
     
     /**
@@ -82,8 +93,12 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param duration The duration of the tone, in milliseconds.
      */
     public void playTone(final int frequency, final int duration) {
-        final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
-        Shell.execute(cmdTone);
+        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)) {
+            final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
+            Shell.execute(cmdTone);
+        } else {
+            log.debug(DISABPLED_FEATURE_MESSAGE);
+        }
     }
 
     /**
@@ -110,6 +125,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param volume 0-100
      */
     public void setVolume(final int volume) {
+        //TODO Review to move to this.setIntegerAttribute();
         Sysfs.writeString(VOLUME_PATH,"" + volume);
     }
 
@@ -118,6 +134,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @return the current master volume 0-100
      */
     public int getVolume() {
+        //TODO Review to move to this.getIntegerAttribute()
         return Sysfs.readInteger(VOLUME_PATH);
     }
 
