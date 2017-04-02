@@ -42,7 +42,7 @@ public @Slf4j class GyroSensorDemo3 {
 
 			Delay.msDelay(HALF_SECOND);
 		}
-		
+
 	}
 
 }
