@@ -14,7 +14,7 @@ public @Slf4j class MultipleMotorsDemo {
         final EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);
         log.info("Starting motor on B");
         final EV3MediumRegulatedMotor mB = new EV3MediumRegulatedMotor(MotorPort.B);
-        mB.brake();
+        //mB.brake();
 
         mA.setSpeed(500);
         mA.forward();

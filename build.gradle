@@ -1,8 +1,7 @@
 //Gradle file library ev3dev-lang-java
 //Author: Juan Antonio Breña Moral
-//Last update: 19/02/2017
 
-version = '0.4.0'
+version = '0.5.0'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -14,7 +13,9 @@ repositories {
 }
 
 dependencies {
-    compile("com.github.ev3dev-lang-java:lejos-commons:v0.2.0")
+    compile("org.projectlombok:lombok:1.16.8")
+    compile("ch.qos.logback:logback-classic:1.1.6")
+    compile("com.github.ev3dev-lang-java:lejos-commons:v0.4.0")
 }
 
 //Compile

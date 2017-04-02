@@ -2,6 +2,7 @@ package ev3dev.actuators.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
 import lejos.robotics.RegulatedMotor;
+import lejos.robotics.RegulatedMotorListener;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
@@ -127,8 +128,13 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * and the position of the motors will not be maintained.
      */
     @Override
-    public void coast() {
-		this.setStringAttribute(STOP_COMMAND, COAST);
+    public void flt(boolean b) {
+        this.setStringAttribute(STOP_COMMAND, COAST);
+    }
+
+    @Override
+    public void flt() {
+        this.setStringAttribute(STOP_COMMAND, COAST);
     }
 
     /**
@@ -167,6 +173,11 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public void stop() {
 		this.setStringAttribute(COMMAND, STOP);
+    }
+
+    @Override
+    public void stop(boolean b) {
+        this.setStringAttribute(COMMAND, STOP);
     }
 
     /**
@@ -281,6 +292,54 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public int getRotationSpeed() {
         return 0;//Math.round(reg.getCurrentVelocity());
+    }
+
+    @Override
+    public void addListener(RegulatedMotorListener regulatedMotorListener) {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public RegulatedMotorListener removeListener() {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void waitComplete() {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public float getMaxSpeed() {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void setAcceleration(int i) {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void synchronizeWith(RegulatedMotor[] regulatedMotors) {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void startSynchronization() {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void endSynchronization() {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
     }
 
 }
