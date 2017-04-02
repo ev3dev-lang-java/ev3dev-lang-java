@@ -6,7 +6,7 @@ ev3dev kernel support: uname -r (4.4.47-19-ev3dev-ev3 & 4.4.47-19-ev3dev-rpi2)
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
-# Features
+## Features
 
 * Java 9 support (Brickpi+/PiStorms + Raspberry Pi 3)
 * Java 8 JRE support (EV3 Brick)
@@ -15,11 +15,32 @@ ev3dev kernel support: uname -r (4.4.47-19-ev3dev-ev3 & 4.4.47-19-ev3dev-rpi2)
 * Regulated Motor Support
 * Unregulated Motor Support
 * Sensor Support (EV3 sensors)
-* Sounds
+* Sounds Support
 * [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
+* RPLIDARA1 Support (2D Support)
 * [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
 * Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
+
+## Getting Started
+
+### Add the dependency on the project
+
+To use this project, import the library as a Maven dependency.
+
+``` xml
+<dependency>
+    <groupId>com.github.ev3dev-lang-java</groupId>
+    <artifactId>ev3dev-lang-java</artifactId>
+    <version>v0.5.0</version>
+</dependency>
+```
+	
+Further information: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.5.0
+
+### Example:
+
+https://www.youtube.com/watch?v=SIwG848ODI8
 
 # UML Design
 
