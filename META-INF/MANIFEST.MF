@@ -2,4 +2,5 @@ Manifest-Version: 1.0
 Implementation-Title: EV3Dev-lang-java
 Implementation-Version: 0.5.0
 Implementation-Vendor: Juan Antonio Breña Moral
+Main-Class: benchmarks.IOBenchmarkTest1
 

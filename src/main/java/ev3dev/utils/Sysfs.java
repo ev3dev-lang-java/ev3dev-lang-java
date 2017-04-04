@@ -23,9 +23,10 @@ public @Slf4j class Sysfs {
 	 * @return A boolean value if the operation was written or not.
 	 */
 	public static boolean writeString(final String filePath, final String value) {
-		log.debug("echo " + value + " > " + filePath);
+		if(log.isTraceEnabled())
+			log.trace("echo " + value + " > " + filePath);
 		try {
-			File mpuFile = new File(filePath);
+			final File mpuFile = new File(filePath);
 			if(mpuFile.canWrite()) {
 				BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
 				bw.write(value);
@@ -48,7 +49,8 @@ public @Slf4j class Sysfs {
 	 * @return value from attribute
 	 */
 	public static String readString(final String filePath) {
-		log.debug("cat " + filePath);
+		if(log.isTraceEnabled())
+			log.trace("cat " + filePath);
 		String value;
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -79,7 +81,8 @@ public @Slf4j class Sysfs {
 	 * @return an List with options from a path
 	 */
 	public static List<File> getElements(final String filePath){
-		log.debug("ls " + filePath);
+		if(log.isTraceEnabled())
+			log.trace("ls " + filePath);
 		final File f = new File(filePath);
 		if(f.exists() && f.isDirectory() && (f.listFiles().length > 0)) {
             return new ArrayList<>(Arrays.asList(f.listFiles()));
