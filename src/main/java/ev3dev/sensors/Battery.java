@@ -3,6 +3,7 @@ package ev3dev.sensors;
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.SupportedPlatform;
 import ev3dev.utils.Sysfs;
+import lejos.hardware.Power;
 import lombok.extern.slf4j.Slf4j;
 
 /**
