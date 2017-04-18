@@ -1,9 +1,7 @@
 package benchmarks;
 
-import ev3dev.actuators.motors.EV3LargeRegulatedMotor;
 import ev3dev.sensors.Battery;
 import ev3dev.utils.Sysfs;
-import lejos.hardware.port.MotorPort;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedWriter;
@@ -16,7 +14,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
