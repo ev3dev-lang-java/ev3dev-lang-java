@@ -27,16 +27,13 @@ compileJava {
 //Jar
 jar {
     baseName = "${rootProject.name}"
-    manifest {
-        from file("${projectDir}/META-INF/MANIFEST.MF")
-    }
 }
 
 //Fat Jar
 task fatJar(type: Jar) {
     baseName = "${rootProject.name}" + "-all"
     manifest {
-        from file("${projectDir}/META-INF/MANIFEST.MF")
+        from file("${projectDir}/src/main/java/META-INF/MANIFEST.MF")
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
