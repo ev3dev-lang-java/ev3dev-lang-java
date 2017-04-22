@@ -3,6 +3,12 @@ package ev3dev.utils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,11 +32,16 @@ public @Slf4j class Sysfs {
 		if(log.isTraceEnabled())
 			log.trace("echo " + value + " > " + filePath);
 		try {
-			final File mpuFile = new File(filePath);
-			if(mpuFile.canWrite()) {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
-				bw.write(value);
-				bw.close();
+			final File file = new File(filePath);
+			if(file.canWrite()) {
+				final FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+				final FileChannel fileChannel = fileOutputStream.getChannel();
+				final ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes(Charset.forName("UTF-8")));
+				fileChannel.write(byteBuffer);
+				fileChannel.close();
+			}else {
+				log.error("File: '{}' without write permissions.", filePath);
+				return false;
 			}
 		} catch (IOException ex) {
             log.error(ex.getLocalizedMessage());
@@ -40,7 +51,7 @@ public @Slf4j class Sysfs {
 	}
 	
 	public static boolean writeInteger(final String filePath, final int value) {
-		return writeString(filePath, "" + value);
+		return writeString(filePath, new StringBuilder().append(value).toString());
 	}
 	
 	/**
@@ -51,15 +62,13 @@ public @Slf4j class Sysfs {
 	public static String readString(final String filePath) {
 		if(log.isTraceEnabled())
 			log.trace("cat " + filePath);
-		String value;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			value = br.readLine();
-			br.close();
+			final Path path = Paths.get(filePath);
+			return new String(Files.readAllBytes(path));
 		} catch (IOException ex) {
+			log.warn(ex.getLocalizedMessage());
 			return "-1";
 		}
-		return value;
 	}
 	
 	/**

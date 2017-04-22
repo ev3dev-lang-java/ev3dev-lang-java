@@ -272,7 +272,7 @@ public @Slf4j class IOBenchmarkTest1 {
         final FileChannel fileChannel = fileOutputStream.getChannel();
         final ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes(Charset.forName("UTF-8")));
         fileChannel.write(byteBuffer);
-        //fileChannel.close();
+        fileChannel.close();
     }
 
 

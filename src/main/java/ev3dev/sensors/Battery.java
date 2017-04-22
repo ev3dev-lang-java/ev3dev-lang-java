@@ -51,13 +51,18 @@ public @Slf4j class Battery extends EV3DevDevice implements Power {
                 break;
         }
     }
-	
-	/**
+
+    @Override
+    public int getVoltageMilliVolt() {
+        return (int) Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000;
+    }
+
+    /**
 	 * Returns voltage of the battery in microvolts.
 	 * @return voltage
 	 */
 	public float getVoltage() {
-		return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE);
+		return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000000;
 	}
 
 	/**
@@ -72,5 +77,10 @@ public @Slf4j class Battery extends EV3DevDevice implements Power {
             return -1f;
         }
 	}
+
+    @Override
+    public float getMotorCurrent() {
+        throw new UnsupportedOperationException("This feature is not implemented");
+    }
 
 }
