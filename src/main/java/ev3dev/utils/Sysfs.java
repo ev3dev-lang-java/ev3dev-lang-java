@@ -39,6 +39,7 @@ public @Slf4j class Sysfs {
 				final ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes(Charset.forName("UTF-8")));
 				fileChannel.write(byteBuffer);
 				fileChannel.close();
+			//TODO Review
 			}else {
 				log.error("File: '{}' without write permissions.", filePath);
 				return false;
@@ -64,10 +65,13 @@ public @Slf4j class Sysfs {
 			log.trace("cat " + filePath);
 		try {
 			final Path path = Paths.get(filePath);
-			return new String(Files.readAllBytes(path));
+			if(existFile(path) && Files.isReadable(path)){
+				return Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+			}
+			throw new IOException("Problem reading path: " + filePath);
 		} catch (IOException ex) {
-			log.warn(ex.getLocalizedMessage());
-			return "-1";
+			log.error(ex.getLocalizedMessage());
+			throw new RuntimeException(ex);
 		}
 	}
 	
@@ -93,7 +97,7 @@ public @Slf4j class Sysfs {
 		if(log.isTraceEnabled())
 			log.trace("ls " + filePath);
 		final File f = new File(filePath);
-		if(f.exists() && f.isDirectory() && (f.listFiles().length > 0)) {
+		if(existPath(filePath) && (f.listFiles().length > 0)) {
             return new ArrayList<>(Arrays.asList(f.listFiles()));
 		}else {
 			throw new RuntimeException("The path doesn't exist: " + filePath);
@@ -110,5 +114,10 @@ public @Slf4j class Sysfs {
 		final File f = new File(filePath);
         return f.exists() && f.isDirectory();
     }
+
+
+	public static boolean existFile(Path pathToFind) {
+		return Files.exists(pathToFind);
+	}
 
 }

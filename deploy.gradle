@@ -19,8 +19,6 @@ deploy.dependsOn clean, fatJar
 task remoteRun << {
     ssh.run {
         session(remotes.ev3dev) {
-            println "java -client -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
-            execute "java -client -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
             println "java -server -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
             execute "java -server -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
         }
