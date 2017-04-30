@@ -1,6 +1,7 @@
 package ev3dev.actuators.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
+import ev3dev.hardware.EV3DevPlatforms;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.RegulatedMotorListener;
 import lejos.utility.Delay;
@@ -144,10 +145,10 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      * the motor to stop more quickly than coasting.
      */
     public void brake() {
-        if(this.getPlatform().equals(EV3BRICK)) {
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)) {
             this.setStringAttribute(STOP_COMMAND, BRAKE);
         }else{
-            log.warn("This method is disabled for {} & {}", PISTORMS, BRICKPI);
+            log.warn("This method is disabled for {} & {}", EV3DevPlatforms.PISTORMS, EV3DevPlatforms.BRICKPI);
         }
     }
 
@@ -157,10 +158,10 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     @Override
     public void hold() {
-        if(this.getPlatform().equals(EV3BRICK)) {
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)) {
             this.setStringAttribute(STOP_COMMAND, HOLD);
         }else{
-            log.warn("This method is disabled for {} & {}", PISTORMS, BRICKPI);
+            log.warn("This method is disabled for {} & {}", EV3DevPlatforms.PISTORMS, EV3DevPlatforms.BRICKPI);
         }
     }
 

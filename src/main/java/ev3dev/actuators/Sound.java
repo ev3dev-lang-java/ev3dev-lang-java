@@ -1,7 +1,7 @@
 package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
-import ev3dev.hardware.SupportedPlatform;
+import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
@@ -51,7 +51,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      * Beeps once.
      */
     public void beep() {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
             log.debug(CMD_BEEP);
             Shell.execute(CMD_BEEP);
             Delay.msDelay(100);
@@ -64,7 +64,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      * Beeps twice.
      */
     public void twoBeeps() {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
             beep();
             beep();
         } else {
@@ -79,7 +79,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param volume The volume of the playback 100 corresponds to 100%
      */
     public void playTone(final int frequency, final int duration, final int volume) {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
             this.setVolume(volume);
     	    this.playTone(frequency, duration);
         } else {
@@ -93,7 +93,7 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param duration The duration of the tone, in milliseconds.
      */
     public void playTone(final int frequency, final int duration) {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)) {
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)) {
             final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
             Shell.execute(cmdTone);
         } else {

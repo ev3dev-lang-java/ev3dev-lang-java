@@ -5,7 +5,7 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lombok.extern.slf4j.Slf4j;
 
-public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
+public @Slf4j abstract class EV3DevPlatform {
 
     protected static final String DEVICE_ROOT_PATH = "/sys/class/";
 
@@ -15,8 +15,7 @@ public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
      * @return Platform used
      * @throws RuntimeException Exception
      */
-    @Override
-    public String getPlatform() {
+    public EV3DevPlatforms getPlatform() {
 
         final String BATTERY =  "power_supply";
         final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
@@ -28,14 +27,14 @@ public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
         final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
 
         if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
-            log.trace("Detected platform: " + SupportedPlatform.EV3BRICK);
-            return EV3BRICK;
+            log.trace("Detected platform: " + EV3DevPlatforms.EV3BRICK);
+            return EV3DevPlatforms.EV3BRICK;
         } else if(Sysfs.existPath(PISTORMS_DISCOVERY_PATTERN_PATH)){
-            log.trace("Detected platform: " + SupportedPlatform.PISTORMS);
-            return PISTORMS;
+            log.trace("Detected platform: " + EV3DevPlatforms.PISTORMS);
+            return EV3DevPlatforms.PISTORMS;
         } else if(Sysfs.existPath(BRICKPI_DISCOVERY_PATTERN_PATH)){
-            log.trace("Detected platform: " + SupportedPlatform.BRICKPI);
-            return BRICKPI;
+            log.trace("Detected platform: " + EV3DevPlatforms.BRICKPI);
+            return EV3DevPlatforms.BRICKPI;
         } else {
             throw new RuntimeException("Platform not supported");
         }
@@ -43,7 +42,7 @@ public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
 
     public String getMotorPort(final String port) {
 
-        if(this.getPlatform().equals(EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
 
             if(port.equals(MotorPort.A)){
                 return "outA";
@@ -55,7 +54,7 @@ public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
                 return "outD";
             }
 
-        } else if(this.getPlatform().equals(BRICKPI)) {
+        } else if(this.getPlatform().equals(EV3DevPlatforms.BRICKPI)) {
 
             if (port.equals(MotorPort.A)) {
                 return "ttyAMA0:MA";
@@ -87,7 +86,7 @@ public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
 
     public String getSensorPort(final String port) {
 
-        if(this.getPlatform().equals(EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
 
             if(port.equals(SensorPort.S1)){
                 return "in1";
@@ -99,7 +98,7 @@ public @Slf4j abstract class EV3DevPlatform implements SupportedPlatform {
                 return "in4";
             }
 
-        } else if(this.getPlatform().equals(BRICKPI)) {
+        } else if(this.getPlatform().equals(EV3DevPlatforms.BRICKPI)) {
 
             if (port.equals(SensorPort.S1)) {
                 return "ttyAMA0:S1";
