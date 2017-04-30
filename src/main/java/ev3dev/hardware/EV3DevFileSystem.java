@@ -13,14 +13,14 @@ import java.util.Objects;
  */
 public @Slf4j abstract class EV3DevFileSystem {
 
-    private final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
-    private final String EV3DEV_ROOT_PATH = "/sys/class/";
+    public static final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
+    public static final String EV3DEV_ROOT_PATH = "/sys/class";
 
     @Getter
     protected final String ROOT_PATH;
 
     protected EV3DevFileSystem(){
-        if(Objects.nonNull(System.getProperty(EV3DEV_TESTING_KEY))){
+        if(Objects.nonNull(System.getProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY))){
             ROOT_PATH = System.getProperty(EV3DEV_TESTING_KEY);
         }else {
             ROOT_PATH = EV3DEV_ROOT_PATH;
