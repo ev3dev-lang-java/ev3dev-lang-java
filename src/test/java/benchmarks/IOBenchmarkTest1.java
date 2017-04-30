@@ -1,5 +1,6 @@
 package benchmarks;
 
+/*
 import ev3dev.sensors.Battery;
 import ev3dev.utils.Sysfs;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +44,7 @@ public @Slf4j class IOBenchmarkTest1 {
         log.info("NIO Interaction");
         log.info("Read operations");
 
-        /*
+        
         result = readNTimesNIO(100);
         result = readNTimesNIO(100);
         result = readNTimesNIO(100);
@@ -56,18 +57,18 @@ public @Slf4j class IOBenchmarkTest1 {
         result = readNTimesNIO(100000);
         result = readNTimesNIO(100000);
         result = readNTimesNIO(100000);
-        */
+
 
         log.info("Write operations");
 
-        /*
+
         writeNTimesNIO(100);
         writeNTimesNIO(100);
         writeNTimesNIO(100);
         writeNTimesNIO(1000);
         writeNTimesNIO(1000);
         writeNTimesNIO(1000);
-        */
+
         //writeNTimesNIO(10000);
         //writeNTimesNIO(10000);
         //writeNTimesNIO(10000);
@@ -242,20 +243,6 @@ public @Slf4j class IOBenchmarkTest1 {
 
     public static boolean writeToFile(String content) {
 
-        /*
-        if(!fileExists(writePath)) {
-            System.out.println("File not found: " + writePath.toString());
-            return false;
-        }
-
-        try {
-            Files.write(writePath, content.getBytes(), StandardOpenOption.WRITE);
-        } catch (Exception e) {
-            System.out.println("Cannot write to file: " + writePath.toString());
-            e.printStackTrace();
-            return false;
-        }
-        */
 
         try(BufferedWriter writer = Files.newBufferedWriter(writePath, Charset.forName("UTF-8"))){
             writer.write(wValue);
@@ -304,3 +291,4 @@ public @Slf4j class IOBenchmarkTest1 {
     }
 
 }
+*/
