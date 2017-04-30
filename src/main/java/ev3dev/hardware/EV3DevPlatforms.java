@@ -9,18 +9,18 @@ public enum EV3DevPlatforms {
     PISTORMS("PISTORMS"),
     BRICKPI("BRICKPI");
 
-    private String name;
+    private String platform;
 
     private EV3DevPlatforms(String stringVal) {
-        name = stringVal;
+        platform = stringVal;
     }
     public String toString(){
-        return name;
+        return platform;
     }
 
     public static String getPlatformByString(final String code){
         for(EV3DevPlatforms e : EV3DevPlatforms.values()){
-            if(code == e.name){
+            if(code == e.platform){
                 return e.name();
             }
         }

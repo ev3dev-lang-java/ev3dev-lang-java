@@ -20,7 +20,7 @@ digraph G {
 <tr><td align="left" balign="left"> - CMD_APLAY : String </td></tr>
 <tr><td align="left" balign="left"> - VOLUME : String </td></tr>
 <tr><td align="left" balign="left"> - VOLUME_PATH : String </td></tr>
-<tr><td align="left" balign="left"> - DISABPLED_FEATURE_MESSAGE : String </td></tr>
+<tr><td align="left" balign="left"> - DISABLED_FEATURE_MESSAGE : String </td></tr>
 <tr><td align="left" balign="left"> - Instance : Sound </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -192,8 +192,22 @@ digraph G {
 <tr><td align="left" balign="left"> # setIntegerAttribute(attribute : String, value : int) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.EV3DevFileSystem
+	c8 [label=<<table title="ev3dev.hardware.EV3DevFileSystem" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevFileSystem </font></td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - EV3DEV_TESTING_KEY : String </td></tr>
+<tr><td align="left" balign="left"> - EV3DEV_ROOT_PATH : String </td></tr>
+<tr><td align="left" balign="left"> # ROOT_PATH : String </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> # EV3DevFileSystem() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevMotorDevice
-	c8 [label=<<table title="ev3dev.hardware.EV3DevMotorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c9 [label=<<table title="ev3dev.hardware.EV3DevMotorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevMotorDevice </font></td></tr>
 		</table></td></tr>
@@ -229,28 +243,28 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPlatform
-	c9 [label=<<table title="ev3dev.hardware.EV3DevPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c10 [label=<<table title="ev3dev.hardware.EV3DevPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevPlatform </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> # DEVICE_ROOT_PATH : String </td></tr>
+<tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevPlatform() </td></tr>
-<tr><td align="left" balign="left"> + getPlatform() : EV3DevPlatforms </td></tr>
-<tr><td align="left" balign="left"> + getMotorPort(port : String) : String </td></tr>
-<tr><td align="left" balign="left"> + getSensorPort(port : String) : String </td></tr>
+<tr><td align="left" balign="left"> # getPlatform() : EV3DevPlatforms </td></tr>
+<tr><td align="left" balign="left"> # getMotorPort(port : String) : String </td></tr>
+<tr><td align="left" balign="left"> # getSensorPort(port : String) : String </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPlatforms
-	c10 [label=<<table title="ev3dev.hardware.EV3DevPlatforms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c11 [label=<<table title="ev3dev.hardware.EV3DevPlatforms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> EV3DevPlatforms </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - name : String </td></tr>
+<tr><td align="left" balign="left"> - platform : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> EV3BRICK </td></tr>
@@ -259,7 +273,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevSensorDevice
-	c11 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c12 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevSensorDevice </font></td></tr>
 		</table></td></tr>
@@ -275,7 +289,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.robotics.tts.Espeak
-	c12 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c13 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Espeak </td></tr>
 		</table></td></tr>
@@ -303,7 +317,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.BaseSensor
-	c13 [label=<<table title="ev3dev.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c14 [label=<<table title="ev3dev.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseSensor </td></tr>
 		</table></td></tr>
@@ -335,7 +349,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.Battery
-	c14 [label=<<table title="ev3dev.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c15 [label=<<table title="ev3dev.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Battery </td></tr>
 		</table></td></tr>
@@ -360,7 +374,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.SensorMode
-	c15 [label=<<table title="ev3dev.sensors.SensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c16 [label=<<table title="ev3dev.sensors.SensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorMode </td></tr>
@@ -373,7 +387,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.SensorModes
-	c16 [label=<<table title="ev3dev.sensors.SensorModes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c17 [label=<<table title="ev3dev.sensors.SensorModes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SensorModes </td></tr>
@@ -392,7 +406,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor
-	c17 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c18 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3ColorSensor </td></tr>
 		</table></td></tr>
@@ -424,7 +438,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode
-	c18 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c19 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ColorIDMode </td></tr>
 		</table></td></tr>
@@ -439,7 +453,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.RedMode
-	c19 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RedMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c20 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RedMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedMode </td></tr>
 		</table></td></tr>
@@ -455,7 +469,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode
-	c20 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c21 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AmbientMode </td></tr>
 		</table></td></tr>
@@ -471,7 +485,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.RGBMode
-	c21 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RGBMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c22 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RGBMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RGBMode </td></tr>
 		</table></td></tr>
@@ -487,7 +501,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3DevSensorMode
-	c22 [label=<<table title="ev3dev.sensors.ev3.EV3DevSensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c23 [label=<<table title="ev3dev.sensors.ev3.EV3DevSensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevSensorMode </font></td></tr>
 		</table></td></tr>
@@ -506,7 +520,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor
-	c23 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c24 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3GyroSensor </td></tr>
 		</table></td></tr>
@@ -523,7 +537,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor.RateMode
-	c24 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c25 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RateMode </td></tr>
 		</table></td></tr>
@@ -540,7 +554,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor.AngleMode
-	c25 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.AngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c26 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.AngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AngleMode </td></tr>
 		</table></td></tr>
@@ -557,7 +571,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode
-	c26 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c27 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RateAndAngleMode </td></tr>
 		</table></td></tr>
@@ -574,7 +588,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor
-	c27 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c28 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3IRSensor </td></tr>
 		</table></td></tr>
@@ -590,7 +604,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor.DistanceMode
-	c28 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c29 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
@@ -607,7 +621,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor.SeekMode
-	c29 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.SeekMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c30 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.SeekMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SeekMode </td></tr>
 		</table></td></tr>
@@ -624,7 +638,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor.RemoteMode
-	c30 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.RemoteMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c31 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.RemoteMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RemoteMode </td></tr>
 		</table></td></tr>
@@ -641,7 +655,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3TouchSensor
-	c31 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c32 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3TouchSensor </td></tr>
 		</table></td></tr>
@@ -655,7 +669,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3TouchSensor.TouchMode
-	c32 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c33 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TouchMode </td></tr>
 		</table></td></tr>
@@ -670,7 +684,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor
-	c33 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c34 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3UltrasonicSensor </td></tr>
 		</table></td></tr>
@@ -689,7 +703,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode
-	c34 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c35 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
@@ -706,7 +720,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode
-	c35 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c36 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ListenMode </td></tr>
 		</table></td></tr>
@@ -722,7 +736,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Shell
-	c36 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c37 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Shell </td></tr>
 		</table></td></tr>
@@ -736,7 +750,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Sysfs
-	c37 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c38 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sysfs </td></tr>
 		</table></td></tr>
@@ -758,9 +772,9 @@ digraph G {
 	//ev3dev.actuators.Sound extends ev3dev.hardware.EV3DevDevice
 	c7:p -> c0:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.motors.BaseRegulatedMotor extends ev3dev.hardware.EV3DevMotorDevice
-	c8:p -> c1:p [dir=back,arrowtail=empty];
+	c9:p -> c1:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.motors.BasicMotor extends ev3dev.hardware.EV3DevMotorDevice
-	c8:p -> c2:p [dir=back,arrowtail=empty];
+	c9:p -> c2:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.motors.EV3LargeRegulatedMotor extends ev3dev.actuators.motors.BaseRegulatedMotor
 	c1:p -> c3:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.motors.EV3MediumRegulatedMotor extends ev3dev.actuators.motors.BaseRegulatedMotor
@@ -770,56 +784,58 @@ digraph G {
 	//ev3dev.actuators.motors.UnregulatedMotor extends ev3dev.actuators.motors.BasicMotor
 	c2:p -> c6:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevDevice extends ev3dev.hardware.EV3DevPlatform
-	c9:p -> c7:p [dir=back,arrowtail=empty];
+	c10:p -> c7:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevMotorDevice extends ev3dev.hardware.EV3DevDevice
-	c7:p -> c8:p [dir=back,arrowtail=empty];
+	c7:p -> c9:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.EV3DevPlatform extends ev3dev.hardware.EV3DevFileSystem
+	c8:p -> c10:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevSensorDevice extends ev3dev.hardware.EV3DevDevice
-	c7:p -> c11:p [dir=back,arrowtail=empty];
+	c7:p -> c12:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.BaseSensor extends ev3dev.hardware.EV3DevSensorDevice
-	c11:p -> c13:p [dir=back,arrowtail=empty];
+	c12:p -> c14:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.BaseSensor implements ev3dev.sensors.SensorModes
-	c16:p -> c13:p [dir=back,arrowtail=empty,style=dashed];
+	c17:p -> c14:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.sensors.Battery extends ev3dev.hardware.EV3DevDevice
-	c7:p -> c14:p [dir=back,arrowtail=empty];
+	c7:p -> c15:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.SensorModes implements ev3dev.sensors.SensorMode
-	c15:p -> c16:p [dir=back,arrowtail=empty,style=dashed];
+	c16:p -> c17:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.sensors.ev3.EV3ColorSensor extends ev3dev.sensors.BaseSensor
-	c13:p -> c17:p [dir=back,arrowtail=empty];
+	c14:p -> c18:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c18:p [dir=back,arrowtail=empty];
+	c23:p -> c19:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3ColorSensor.RedMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c19:p [dir=back,arrowtail=empty];
+	c23:p -> c20:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c20:p [dir=back,arrowtail=empty];
+	c23:p -> c21:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3ColorSensor.RGBMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c21:p [dir=back,arrowtail=empty];
+	c23:p -> c22:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3DevSensorMode implements ev3dev.sensors.SensorMode
-	c15:p -> c22:p [dir=back,arrowtail=empty,style=dashed];
+	c16:p -> c23:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.sensors.ev3.EV3GyroSensor extends ev3dev.sensors.BaseSensor
-	c13:p -> c23:p [dir=back,arrowtail=empty];
+	c14:p -> c24:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3GyroSensor.RateMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c24:p [dir=back,arrowtail=empty];
+	c23:p -> c25:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3GyroSensor.AngleMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c25:p [dir=back,arrowtail=empty];
+	c23:p -> c26:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c26:p [dir=back,arrowtail=empty];
+	c23:p -> c27:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor extends ev3dev.sensors.BaseSensor
-	c13:p -> c27:p [dir=back,arrowtail=empty];
+	c14:p -> c28:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor.DistanceMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c28:p [dir=back,arrowtail=empty];
+	c23:p -> c29:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor.SeekMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c29:p [dir=back,arrowtail=empty];
+	c23:p -> c30:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor.RemoteMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c30:p [dir=back,arrowtail=empty];
+	c23:p -> c31:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3TouchSensor extends ev3dev.sensors.BaseSensor
-	c13:p -> c31:p [dir=back,arrowtail=empty];
+	c14:p -> c32:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3TouchSensor.TouchMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c32:p [dir=back,arrowtail=empty];
+	c23:p -> c33:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor extends ev3dev.sensors.BaseSensor
-	c13:p -> c33:p [dir=back,arrowtail=empty];
+	c14:p -> c34:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c34:p [dir=back,arrowtail=empty];
+	c23:p -> c35:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode extends ev3dev.sensors.ev3.EV3DevSensorMode
-	c22:p -> c35:p [dir=back,arrowtail=empty];
+	c23:p -> c36:p [dir=back,arrowtail=empty];
 }
 

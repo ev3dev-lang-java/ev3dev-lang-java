@@ -5,9 +5,7 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lombok.extern.slf4j.Slf4j;
 
-public @Slf4j abstract class EV3DevPlatform {
-
-    protected static final String DEVICE_ROOT_PATH = "/sys/class/";
+public @Slf4j abstract class EV3DevPlatform extends EV3DevFileSystem {
 
     /**
      * This method returns the platform
@@ -15,10 +13,10 @@ public @Slf4j abstract class EV3DevPlatform {
      * @return Platform used
      * @throws RuntimeException Exception
      */
-    public EV3DevPlatforms getPlatform() {
+    protected EV3DevPlatforms getPlatform() {
 
         final String BATTERY =  "power_supply";
-        final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
+        final String BATTERY_PATH = ROOT_PATH + BATTERY;
         final String BATTERY_EV3 =  "legoev3-battery";
         final String BATTERY_PISTORMS =  "pistorms-battery";
         final String BATTERY_BRICKPI =  "brickpi-battery";
@@ -40,7 +38,7 @@ public @Slf4j abstract class EV3DevPlatform {
         }
     }
 
-    public String getMotorPort(final String port) {
+    protected String getMotorPort(final String port) {
 
         if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
 
@@ -84,7 +82,7 @@ public @Slf4j abstract class EV3DevPlatform {
         return null;
     }
 
-    public String getSensorPort(final String port) {
+    protected String getSensorPort(final String port) {
 
         if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
 

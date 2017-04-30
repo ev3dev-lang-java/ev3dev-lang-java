@@ -21,7 +21,7 @@ public @Slf4j class Battery extends EV3DevDevice implements Power {
     private static final String BATTERY_EV3 =  "legoev3-battery";
     private static final String BATTERY_PISTORMS =  "pistorms-battery";
     private static final String BATTERY_BRICKPI =  "brickpi-battery";
-    private static final String BATTERY_PATH = DEVICE_ROOT_PATH + BATTERY;
+    private static String BATTERY_PATH;
     private static final String VOLTAGE = "voltage_now";
     private static final String CURRENT = "current_now";
 
@@ -38,7 +38,8 @@ public @Slf4j class Battery extends EV3DevDevice implements Power {
 
     // Prevent duplicate objects
     private Battery() {
-    	final EV3DevPlatforms platform = this.getPlatform();
+        BATTERY_PATH = ROOT_PATH + BATTERY;
+        final EV3DevPlatforms platform = this.getPlatform();
     	if(platform.equals(EV3DevPlatforms.EV3BRICK)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
         } else if(platform.equals(EV3DevPlatforms.PISTORMS)) {

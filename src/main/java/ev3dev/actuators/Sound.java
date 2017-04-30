@@ -26,7 +26,7 @@ public @Slf4j class Sound extends EV3DevDevice {
     private final static String CMD_APLAY ="aplay";
     private final static String VOLUME = "volume";
     private final static String VOLUME_PATH = SOUND_PATH + VOLUME;
-    private final static  String DISABPLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
+    private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
 
     private static Sound Instance;
 
@@ -56,7 +56,7 @@ public @Slf4j class Sound extends EV3DevDevice {
             Shell.execute(CMD_BEEP);
             Delay.msDelay(100);
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 
@@ -68,7 +68,7 @@ public @Slf4j class Sound extends EV3DevDevice {
             beep();
             beep();
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 
@@ -83,7 +83,7 @@ public @Slf4j class Sound extends EV3DevDevice {
             this.setVolume(volume);
     	    this.playTone(frequency, duration);
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
     
@@ -97,7 +97,7 @@ public @Slf4j class Sound extends EV3DevDevice {
             final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
             Shell.execute(cmdTone);
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 
