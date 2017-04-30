@@ -21,7 +21,7 @@ ev3dev kernel support: uname -r (4.4.47-19-ev3dev-ev3 & 4.4.47-19-ev3dev-rpi2)
 * Sensor Support (EV3 sensors)
 * Sounds Support
 * [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
-* RPLIDARA1 Support (2D Support)
+* [RPLidar A1](https://github.com/ev3dev-lang-java/RPLidar4J) Support (2D Lidar)
 * [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
 * Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
