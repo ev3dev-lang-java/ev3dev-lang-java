@@ -15,7 +15,7 @@ public @Slf4j abstract class EV3DevPlatform extends EV3DevFileSystem {
      */
     protected EV3DevPlatforms getPlatform() {
 
-        final String BATTERY =  "power_supply";
+        final String BATTERY =  "/power_supply";
         final String BATTERY_PATH = ROOT_PATH + BATTERY;
         final String BATTERY_EV3 =  "legoev3-battery";
         final String BATTERY_PISTORMS =  "pistorms-battery";
@@ -24,6 +24,7 @@ public @Slf4j abstract class EV3DevPlatform extends EV3DevFileSystem {
         final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
         final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
 
+        log.trace(EV3BRICK_DISCOVERY_PATTERN_PATH);
         if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
             log.trace("Detected platform: " + EV3DevPlatforms.EV3BRICK);
             return EV3DevPlatforms.EV3BRICK;

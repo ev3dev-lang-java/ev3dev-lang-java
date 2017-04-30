@@ -44,7 +44,7 @@ public @Slf4j class IOBenchmarkTest1 {
         log.info("NIO Interaction");
         log.info("Read operations");
 
-        
+
         result = readNTimesNIO(100);
         result = readNTimesNIO(100);
         result = readNTimesNIO(100);
