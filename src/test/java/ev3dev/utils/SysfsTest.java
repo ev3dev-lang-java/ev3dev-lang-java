@@ -1,56 +1,90 @@
 package ev3dev.utils;
 
-import ev3dev.hardware.EV3DevPlatform;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Rule;
+import mocks.MockBaseTest;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
-public @Slf4j class SysfsTest {
+public @Slf4j class SysfsTest extends MockBaseTest {
 
-    private static final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
+    //OK
 
-    @Rule
-    public TemporaryFolder testFolder = new TemporaryFolder();
+    @Test
+    public void existPathSuccessTest() throws IOException {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH;
+        assertThat(tempEV3DevFolder.getAbsolutePath(), is(pathToAssert));
+        assertThat(Sysfs.existPath(pathToAssert), is(true));
 
-    private static File tempEV3DevFolder;
-    private static File tempMocksFolder;
-    private static File powerSupplyFolder;
-    private static File legoev3BatteryFolder;
-    private static File file;
-
-    public void createEV3DevMocksPath() throws IOException {
-        tempEV3DevFolder = testFolder.newFolder("ev3dev");
-        tempMocksFolder = new File(tempEV3DevFolder, "mocks");
-    }
-
-    @Before
-    public void onceExecutedBeforeAll() throws IOException {
-        createEV3DevMocksPath();
-        log.trace(System.getProperty("java.io.tmpdir"));
-        log.info("JUnit EV3Dev path: " + tempMocksFolder.getAbsolutePath());
-
-        System.setProperty(EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath());
-    }
-
-    public void createEV3DevMocksPlatformPath() throws IOException {
-        powerSupplyFolder = new File(tempMocksFolder, "power_supply");
-        legoev3BatteryFolder = new File(powerSupplyFolder, "legoev3-battery");
-        legoev3BatteryFolder.mkdir();
+        pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/"+ MOCKS_PATH;
+        assertThat(tempMocksFolder.getAbsolutePath(), is(pathToAssert));
+        assertThat(Sysfs.existPath(pathToAssert), is(true));
     }
 
     @Test
-    public void testInTempFolder() throws IOException {
-        File tempFile = testFolder.newFile("file.txt");
-        File tempFolder = testFolder.newFolder("folder");
-        log.trace("Test folder: " + tempFolder.exists());
-        // test...
+    public void existPathSuccessTest2() throws IOException {
+        final String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH;
+        assertThat(tempEV3BatteryFolder.getAbsolutePath(), is(pathToAssert));
+        assertThat(Sysfs.existPath(pathToAssert), is(true));
+    }
+
+    @Test
+    public void readString() throws Exception {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        log.trace(pathToAssert);
+        assertThat(Sysfs.readString(pathToAssert), is(BATTERY_FIELD_VOLTAGE_VALUE));
+    }
+
+    @Test
+    public void readInteger() throws Exception {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        log.trace(pathToAssert);
+        assertThat(Sysfs.readInteger(pathToAssert), is(Integer.parseInt(BATTERY_FIELD_VOLTAGE_VALUE)));
+    }
+
+    @Test
+    public void readFloat() throws Exception {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        log.trace(pathToAssert);
+        assertThat(Sysfs.readFloat(pathToAssert), is(Float.parseFloat(BATTERY_FIELD_VOLTAGE_VALUE)));
+    }
+
+    @Test
+    public void getElements() throws Exception {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH;
+        log.trace(pathToAssert);
+        final List<File> fileList = new ArrayList<>();
+        fileList.add(batterySensor);
+        assertThat(Sysfs.getElements(pathToAssert), is(fileList));
+    }
+
+    @Test
+    public void existFile() throws Exception {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        final Path path = Paths.get(pathToAssert);
+        assertThat(Sysfs.existFile(path), is(true));
+    }
+
+    @Test
+    public void writeString() throws Exception {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        Sysfs.writeString(pathToAssert, "10");
+        assertThat(Sysfs.readString(pathToAssert), is("10"));
+    }
+
+    @Test
+    public void writeInteger() throws Exception {
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        Sysfs.writeInteger(pathToAssert, 10);
+        assertThat(Sysfs.readInteger(pathToAssert), is(10));
     }
 
 }

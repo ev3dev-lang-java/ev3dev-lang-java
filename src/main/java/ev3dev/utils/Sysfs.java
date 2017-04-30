@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
@@ -36,11 +37,17 @@ public @Slf4j class Sysfs {
 		try {
 			final File file = new File(filePath);
 			if(file.canWrite()) {
+				/*
 				final FileOutputStream fileOutputStream = new FileOutputStream(file, true);
 				final FileChannel fileChannel = fileOutputStream.getChannel();
 				final ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes(Charset.forName("UTF-8")));
 				fileChannel.write(byteBuffer);
 				fileChannel.close();
+				*/
+				PrintWriter out = new PrintWriter(file);
+				out.println(value);
+				out.flush();
+				out.close();
 			//TODO Review
 			}else {
 				log.error("File: '{}' without write permissions.", filePath);
