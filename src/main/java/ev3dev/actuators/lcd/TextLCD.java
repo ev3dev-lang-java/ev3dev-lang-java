@@ -1,5 +1,7 @@
 package ev3dev.actuators.lcd;
 
+import java.awt.*;
+
 public interface TextLCD extends CommonLCD {
 	
     /**

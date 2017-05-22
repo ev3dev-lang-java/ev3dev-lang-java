@@ -2,6 +2,8 @@ package ev3dev.actuators.lcd;
 
 import lejos.utility.Delay;
 
+import java.awt.*;
+
 /**
  * Provide access to the EV3 LCD display
  *
@@ -196,7 +198,7 @@ public class LCD
      */
     public static byte[] getSystemFont()
     {
-        return Font.getDefaultFont().glyphs;
+        return null;//Font.getDefaultFont().glyphs;
     }
 
     /**

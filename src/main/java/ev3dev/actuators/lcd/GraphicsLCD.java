@@ -1,5 +1,7 @@
 package ev3dev.actuators.lcd;
 
+import java.awt.*;
+
 public interface GraphicsLCD extends CommonLCD {
 	
     public static final int TRANS_MIRROR = 2;

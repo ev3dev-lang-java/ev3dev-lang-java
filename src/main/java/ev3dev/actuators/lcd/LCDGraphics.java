@@ -346,7 +346,7 @@ public class LCDGraphics extends Graphics2D {
     public void setFont(Font font) {
         g2d.setFont(font);
     }
-
+    
     @Override
     public FontMetrics getFontMetrics(Font f) {
         return g2d.getFontMetrics(f);
