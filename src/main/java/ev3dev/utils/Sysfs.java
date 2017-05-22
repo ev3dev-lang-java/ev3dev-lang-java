@@ -2,19 +2,19 @@ package ev3dev.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static java.lang.String.format;
 
 /**
  * The class responsible to interact with Sysfs on EV3Dev
@@ -127,6 +127,34 @@ public @Slf4j class Sysfs {
 
 	public static boolean existFile(Path pathToFind) {
 		return Files.exists(pathToFind);
+	}
+
+	public static byte[] readBytes(final String filePath) {
+		log.debug(format("cat %s", filePath));
+		try {
+			return Files.readAllBytes(FileSystems.getDefault().getPath("", filePath));
+		}
+		catch (IOException e) {
+			log.debug(format("%s %s", e.getClass().getSimpleName(), e.getMessage()));
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static boolean writeBytes(final String path, final byte[] value) {
+		try {
+			try (final OutputStream os = new FileOutputStream(path);
+				 final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+				baos.write(value);
+				baos.writeTo(os);
+				return true;
+			}
+		}
+		catch (IOException e) {
+			log.debug(format("Error when writing byte[] to %s", path));
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
