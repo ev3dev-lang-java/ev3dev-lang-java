@@ -1,5 +1,7 @@
 package ev3dev.actuators.lcd;
 
+import ev3dev.utils.Sysfs;
+
 import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Font;
@@ -19,7 +21,6 @@ import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
-import java.awt.image.ColorModel;
 import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferByte;
 import java.awt.image.ImageObserver;
@@ -33,32 +34,25 @@ import java.util.Map;
 
 public class LCDGraphics extends Graphics2D {
 
+    public static final String FB_PATH = "/dev/fb0";
+    public static final int SCREEN_WIDTH = 178;
+    public static final int SCREEN_HEIGHT = 128;
+
     public static final int LINE_LEN = 24;
-
     public static final int ROWS = 128;
-
     public static final int BUF_SIZE = LINE_LEN * ROWS;
 
-    private LCD2 lcd;
-
     private BufferedImage image;
-
     private Graphics2D g2d;
 
-    public LCDGraphics(){
-        this(new LCD2());
-    }
-
-    public LCDGraphics(LCD2 lcd) {
-        this.lcd = lcd;
+    public LCDGraphics() {
 
         byte[] data = new byte[BUF_SIZE];
-
         byte[] bwarr = {(byte) 0xff, (byte) 0x00};
         IndexColorModel bwcm = new IndexColorModel(1, bwarr.length, bwarr, bwarr, bwarr);
 
         DataBuffer db = new DataBufferByte(data, data.length);
-        WritableRaster wr = Raster.createPackedRaster(db, LCD.SCREEN_WIDTH, LCD.SCREEN_HEIGHT, 1, null);
+        WritableRaster wr = Raster.createPackedRaster(db, SCREEN_WIDTH, SCREEN_HEIGHT, 1, null);
 
         this.image = new BufferedImage(bwcm, wr, false, null);
         this.g2d = (Graphics2D) image.getGraphics();
@@ -83,11 +77,11 @@ public class LCDGraphics extends Graphics2D {
         //System.out.println("content: " + Arrays.toString(pixel));
 
         int bitPos;
-        for (int i = 0; i < LCD.SCREEN_HEIGHT; i++){
+        for (int i = 0; i < SCREEN_HEIGHT; i++){
             //System.out.println("rendering row " + i + "...");
             //long t = System.currentTimeMillis();
             bitPos = 0;
-            for (int j = 0; j < LCD.SCREEN_WIDTH; j++){
+            for (int j = 0; j < SCREEN_WIDTH; j++){
                 //int val = image.getRGB(j, i);
                 //int cmb = val & 0xff + (val & 0xff00) >> 8 + (val & 0xff0000) >> 16;
 
@@ -123,8 +117,7 @@ public class LCDGraphics extends Graphics2D {
             //System.out.println("row (" + (i) + ") getRGB used: " + (System.currentTimeMillis() - t) + " ms");
         }
 
-
-        lcd.draw(buf);
+        Sysfs.writeBytes(FB_PATH, buf);
     }
 
     @Override

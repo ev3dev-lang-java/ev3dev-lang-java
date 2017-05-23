@@ -17,6 +17,7 @@ import java.io.OutputStream;
  *
  */
 public class LCDOutputStream extends OutputStream {
+
 	private int col = 0;
 	private int line = 0;
 	

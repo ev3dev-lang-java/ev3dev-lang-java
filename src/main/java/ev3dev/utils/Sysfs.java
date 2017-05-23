@@ -149,11 +149,23 @@ public @Slf4j class Sysfs {
 				baos.writeTo(os);
 				return true;
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.debug(format("Error when writing byte[] to %s", path));
 			e.printStackTrace();
 		}
+
+		/*
+		try {
+			DataOutputStream out = new DataOutputStream(new FileOutputStream(path));
+			out.write(value);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Unable to draw the LCD", e);
+		}
+		*/
+
+
 		return false;
 	}
 
