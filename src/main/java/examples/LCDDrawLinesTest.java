@@ -1,28 +1,27 @@
 package examples;
 
-import ev3dev.actuators.lcd.LCDGraphics;
-import lejos.utility.Delay;
+import ev3dev.actuators.lcd.EV3GraphicsLCD;
 
 import java.awt.*;
 
 public class LCDDrawLinesTest {
 
-    public static LCDGraphics lcdGraphics = new LCDGraphics();
+    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
 
     public static void main(final String[] args){
 
         clear();
-        lcdGraphics.setColor(Color.BLACK);
-        lcdGraphics.drawLine(0, 0, 50, 50);
-        lcdGraphics.drawLine(0, 0, 30, 60);
-        lcdGraphics.flush();
+        EV3GraphicsLCD.setColor(Color.BLACK);
+        EV3GraphicsLCD.drawLine(0, 0, 50, 50);
+        EV3GraphicsLCD.drawLine(0, 0, 30, 60);
+        EV3GraphicsLCD.flush();
 
-        lcdGraphics.dispose();
+        EV3GraphicsLCD.dispose();
     }
 
     public static void clear(){
-        lcdGraphics.setColor(Color.WHITE);
-        lcdGraphics.fillRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
+        EV3GraphicsLCD.setColor(Color.WHITE);
+        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
     }
 
 }

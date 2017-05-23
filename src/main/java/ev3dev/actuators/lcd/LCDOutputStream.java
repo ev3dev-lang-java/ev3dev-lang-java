@@ -1,8 +1,8 @@
 package ev3dev.actuators.lcd;
 
-import java.io.OutputStream;
+import lejos.hardware.lcd.TextLCD;
 
-//import lejos.hardware.BrickFinder;
+import java.io.OutputStream;
 
 /**
  * A simple output stream that implements console output.

@@ -1,7 +1,6 @@
 package examples;
 
-import ev3dev.actuators.lcd.LCDGraphics;
-import lejos.utility.Delay;
+import ev3dev.actuators.lcd.EV3GraphicsLCD;
 
 import java.awt.*;
 
@@ -9,18 +8,18 @@ public class LCDTest {
 
     public static void main(final String[] args){
 
-        LCDGraphics lcdGraphics = new LCDGraphics();
-        //lcdGraphics.setBackground(Color.WHITE);
-        //lcdGraphics.setPaint(Color.WHITE);
+        EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
+        //EV3GraphicsLCD.setBackground(Color.WHITE);
+        //EV3GraphicsLCD.setPaint(Color.WHITE);
 
-        lcdGraphics.setColor(Color.BLACK);
-        lcdGraphics.drawRect(0,0,LCDGraphics.SCREEN_WIDTH,LCDGraphics.SCREEN_HEIGHT);
-        lcdGraphics.fillRect(0,0,LCDGraphics.SCREEN_WIDTH,LCDGraphics.SCREEN_HEIGHT);
+        EV3GraphicsLCD.setColor(Color.BLACK);
+        EV3GraphicsLCD.drawRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
+        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
 
-        lcdGraphics.setColor(Color.WHITE);
-        lcdGraphics.drawString("Hello World", (LCDGraphics.SCREEN_WIDTH/2)-30,LCDGraphics.SCREEN_HEIGHT/2);
+        EV3GraphicsLCD.setColor(Color.WHITE);
+        EV3GraphicsLCD.drawString("Hello World", (EV3GraphicsLCD.SCREEN_WIDTH/2)-30, EV3GraphicsLCD.SCREEN_HEIGHT/2);
 
-        lcdGraphics.dispose();
+        EV3GraphicsLCD.dispose();
         //Delay.msDelay(10000);
     }
 }

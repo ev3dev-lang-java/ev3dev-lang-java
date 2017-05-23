@@ -1,6 +1,7 @@
 package ev3dev.actuators.lcd;
 
 import ev3dev.utils.Sysfs;
+import lejos.hardware.lcd.GraphicsLCD;
 
 import java.awt.Color;
 import java.awt.Composite;
@@ -32,7 +33,7 @@ import java.awt.image.renderable.RenderableImage;
 import java.text.AttributedCharacterIterator;
 import java.util.Map;
 
-public class LCDGraphics extends Graphics2D {
+public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
 
     public static final String FB_PATH = "/dev/fb0";
     public static final int SCREEN_WIDTH = 178;
@@ -45,7 +46,7 @@ public class LCDGraphics extends Graphics2D {
     private BufferedImage image;
     private Graphics2D g2d;
 
-    public LCDGraphics() {
+    public EV3GraphicsLCD() {
 
         byte[] data = new byte[BUF_SIZE];
         byte[] bwarr = {(byte) 0xff, (byte) 0x00};
@@ -231,6 +232,28 @@ public class LCDGraphics extends Graphics2D {
     }
 
     @Override
+    public int getTranslateX() {
+        return 0;
+    }
+
+    @Override
+    public int getTranslateY() {
+        return 0;
+    }
+
+
+
+    @Override
+    public void setColor(int i) {
+
+    }
+
+    @Override
+    public void setColor(int i, int i1, int i2) {
+
+    }
+
+    @Override
     public void translate(double tx, double ty) {
         g2d.translate(tx, ty);
     }
@@ -375,6 +398,73 @@ public class LCDGraphics extends Graphics2D {
         g2d.copyArea(x, y, width, height, dx, dy);
     }
 
+    //Graphics LCD
+
+    @Override
+    public void setPixel(int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public int getPixel(int i, int i1) {
+        return 0;
+    }
+
+    @Override
+    public void drawString(String s, int i, int i1, int i2, boolean b) {
+
+    }
+
+    @Override
+    public void drawString(String s, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void drawSubstring(String s, int i, int i1, int i2, int i3, int i4) {
+
+    }
+
+    @Override
+    public void drawChar(char c, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void drawChars(char[] chars, int i, int i1, int i2, int i3, int i4) {
+
+    }
+
+    @Override
+    public int getStrokeStyle() {
+        return 0;
+    }
+
+    @Override
+    public void setStrokeStyle(int i) {
+
+    }
+
+    @Override
+    public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+
+    }
+
+    @Override
+    public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+
+    }
+
+    @Override
+    public void drawRegion(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+
+    }
+
+    @Override
+    public void drawImage(Image image, int i, int i1, int i2) {
+
+    }
+
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
         g2d.drawLine(x1, y1, x2, y2);
@@ -383,6 +473,11 @@ public class LCDGraphics extends Graphics2D {
     @Override
     public void fillRect(int x, int y, int width, int height) {
         g2d.fillRect(x, y, width, height);
+    }
+
+    @Override
+    public void copyArea(int i, int i1, int i2, int i3, int i4, int i5, int i6) {
+
     }
 
     @Override
@@ -473,4 +568,60 @@ public class LCDGraphics extends Graphics2D {
         flush();
     }
 
+    // CommonLCD
+
+    @Override
+    public void refresh() {
+        flush();
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public int getWidth() {
+        return 0;
+    }
+
+    @Override
+    public int getHeight() {
+        return 0;
+    }
+
+    @Override
+    public byte[] getDisplay() {
+        return new byte[0];
+    }
+
+    @Override
+    public byte[] getHWDisplay() {
+        return new byte[0];
+    }
+
+    @Override
+    public void setContrast(int i) {
+
+    }
+
+    @Override
+    public void bitBlt(byte[] bytes, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+
+    }
+
+    @Override
+    public void bitBlt(byte[] bytes, int i, int i1, int i2, int i3, byte[] bytes1, int i4, int i5, int i6, int i7, int i8, int i9, int i10) {
+
+    }
+
+    @Override
+    public void setAutoRefresh(boolean b) {
+
+    }
+
+    @Override
+    public int setAutoRefreshPeriod(int i) {
+        return 0;
+    }
 }

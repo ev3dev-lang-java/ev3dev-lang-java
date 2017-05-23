@@ -1,38 +1,38 @@
 package examples;
 
-import ev3dev.actuators.lcd.LCDGraphics;
+import ev3dev.actuators.lcd.EV3GraphicsLCD;
 import lejos.utility.Delay;
 
 import java.awt.Color;
 
 public class LCDWriteTextTest {
 
-    public static LCDGraphics lcdGraphics = new LCDGraphics();
+    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
 
     public static void main(final String[] args){
 
         clear();
         writeMessage("Juanito");
-        lcdGraphics.flush();
+        EV3GraphicsLCD.flush();
         Delay.msDelay(1000);
         clear();
         writeMessage("Jorgito");
-        lcdGraphics.flush();
+        EV3GraphicsLCD.flush();
         Delay.msDelay(1000);
         clear();
         writeMessage("Pablito");
-        lcdGraphics.flush();
+        EV3GraphicsLCD.flush();
 
-        lcdGraphics.dispose();
+        EV3GraphicsLCD.dispose();
     }
 
     public static void writeMessage(final String message){
-        lcdGraphics.setColor(Color.BLACK);
-        lcdGraphics.drawString(message, 50,50);
+        EV3GraphicsLCD.setColor(Color.BLACK);
+        EV3GraphicsLCD.drawString(message, 50,50);
     }
 
     public static void clear(){
-        lcdGraphics.setColor(Color.WHITE);
-        lcdGraphics.fillRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
+        EV3GraphicsLCD.setColor(Color.WHITE);
+        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
     }
 }

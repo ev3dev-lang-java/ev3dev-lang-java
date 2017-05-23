@@ -1,13 +1,13 @@
 package examples;
 
-import ev3dev.actuators.lcd.LCDGraphics;
+import ev3dev.actuators.lcd.EV3GraphicsLCD;
 import lejos.utility.Delay;
 
 import java.awt.*;
 
 public class LCDDrawOvalsTest {
 
-    public static LCDGraphics lcdGraphics = new LCDGraphics();
+    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
 
     public static void main(final String[] args){
 
@@ -28,23 +28,23 @@ public class LCDDrawOvalsTest {
             */
 
             if(y<0) dy=1;
-            if(y>=LCDGraphics.SCREEN_HEIGHT-45) dy=-1;
+            if(y>= EV3GraphicsLCD.SCREEN_HEIGHT-45) dy=-1;
 
             // x+=dx; //to make the ball move
             y+=dy;
 
             //clear();
-            lcdGraphics.setColor(Color.BLACK);
-            lcdGraphics.fillOval(x, y,5, 5);
-            lcdGraphics.flush();
+            EV3GraphicsLCD.setColor(Color.BLACK);
+            EV3GraphicsLCD.fillOval(x, y,5, 5);
+            EV3GraphicsLCD.flush();
             Delay.msDelay(500);
         }
 
     }
 
     public static void clear(){
-        lcdGraphics.setColor(Color.WHITE);
-        lcdGraphics.fillRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
+        EV3GraphicsLCD.setColor(Color.WHITE);
+        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
     }
 
 }
