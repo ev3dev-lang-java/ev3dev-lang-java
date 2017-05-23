@@ -11,25 +11,18 @@ public class LCDDrawRectanglesTest {
 
     public static void main(final String[] args){
 
-        init();
         clear();
         lcdGraphics.setColor(Color.BLACK);
         lcdGraphics.drawRect(0, 0, 20, 20);
         lcdGraphics.drawRect(40, 40, 80, 80);
-        lcdGraphics.dispose();
+        lcdGraphics.flush();
 
-        Delay.msDelay(10000);
     }
 
-    public static void init(){
-        lcdGraphics.setBackground(Color.WHITE);
-        //lcdGraphics.setPaint(Color.WHITE);
-    }
 
     public static void clear(){
-        //lcdGraphics.drawRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
+        lcdGraphics.setColor(Color.WHITE);
         lcdGraphics.fillRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
-        lcdGraphics.dispose();
     }
 
 }

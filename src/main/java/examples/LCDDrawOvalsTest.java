@@ -11,9 +11,7 @@ public class LCDDrawOvalsTest {
 
     public static void main(final String[] args){
 
-        init();
         clear();
-        lcdGraphics.setColor(Color.BLACK);
 
         int threshold = 20;
 
@@ -35,26 +33,18 @@ public class LCDDrawOvalsTest {
             // x+=dx; //to make the ball move
             y+=dy;
 
-            clear();
+            //clear();
+            lcdGraphics.setColor(Color.BLACK);
             lcdGraphics.fillOval(x, y,5, 5);
-            lcdGraphics.dispose();
+            lcdGraphics.flush();
+            Delay.msDelay(500);
         }
 
-
-        //lcdGraphics.fillOval(40, 40,5, 5);
-
-        Delay.msDelay(10000);
-    }
-
-    public static void init(){
-        lcdGraphics.setBackground(Color.WHITE);
-        //lcdGraphics.setPaint(Color.WHITE);
     }
 
     public static void clear(){
-        //lcdGraphics.drawRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
+        lcdGraphics.setColor(Color.WHITE);
         lcdGraphics.fillRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
-        lcdGraphics.dispose();
     }
 
 }

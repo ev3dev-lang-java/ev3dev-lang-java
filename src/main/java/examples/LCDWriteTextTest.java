@@ -11,27 +11,28 @@ public class LCDWriteTextTest {
 
     public static void main(final String[] args){
 
-        init();
         clear();
-        writeMessage("Hello World");
-        lcdGraphics.dispose();
+        writeMessage("Juanito");
+        lcdGraphics.flush();
+        Delay.msDelay(1000);
+        clear();
+        writeMessage("Jorgito");
+        lcdGraphics.flush();
+        Delay.msDelay(1000);
+        clear();
+        writeMessage("Pablito");
+        lcdGraphics.flush();
 
-        Delay.msDelay(10000);
+        lcdGraphics.dispose();
     }
 
     public static void writeMessage(final String message){
         lcdGraphics.setColor(Color.BLACK);
-        lcdGraphics.drawString(message, 0,LCDGraphics.SCREEN_HEIGHT/2);
-    }
-
-    public static void init(){
-        lcdGraphics.setBackground(Color.WHITE);
-        //lcdGraphics.setPaint(Color.WHITE);
+        lcdGraphics.drawString(message, 50,50);
     }
 
     public static void clear(){
-        //lcdGraphics.drawRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
+        lcdGraphics.setColor(Color.WHITE);
         lcdGraphics.fillRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
-        lcdGraphics.dispose();
     }
 }

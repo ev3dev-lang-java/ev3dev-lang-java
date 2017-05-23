@@ -129,44 +129,17 @@ public @Slf4j class Sysfs {
 		return Files.exists(pathToFind);
 	}
 
-	public static byte[] readBytes(final String filePath) {
-		log.debug(format("cat %s", filePath));
-		try {
-			return Files.readAllBytes(FileSystems.getDefault().getPath("", filePath));
-		}
-		catch (IOException e) {
-			log.debug(format("%s %s", e.getClass().getSimpleName(), e.getMessage()));
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 	public static boolean writeBytes(final String path, final byte[] value) {
+        final File file = new File(path);
 		try {
-			try (final OutputStream os = new FileOutputStream(path);
-				 final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-				baos.write(value);
-				baos.writeTo(os);
-				return true;
-			}
-		} catch (IOException e) {
-			log.debug(format("Error when writing byte[] to %s", path));
-			e.printStackTrace();
-		}
-
-		/*
-		try {
-			DataOutputStream out = new DataOutputStream(new FileOutputStream(path));
+			DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
 			out.write(value);
 			out.flush();
 			out.close();
 		} catch (IOException e) {
 			throw new RuntimeException("Unable to draw the LCD", e);
 		}
-		*/
-
-
-		return false;
+		return true;
 	}
 
 }

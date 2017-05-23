@@ -19,42 +19,36 @@ public class LCDDrawImagesTest {
 
     public static void main(final String[] args) throws IOException {
 
-        init();
         clear();
 
         JarResource.export("/" + "cross.gif");
         JarResource.export("/" + "nought.gif");
 
-        lcdGraphics.setColor(Color.BLACK);
-
         BufferedImage img = null;
-        Image image = ImageIO.read(new File("cross.gif"));
+        Image image = ImageIO.read(new File("nought.gif"));
         try {
             img = ImageIO.read(new File("cross.gif"));
         } catch (IOException e) {
 
         }
 
-        lcdGraphics.drawImage(img, new AffineTransform(1f, 0f, 0f, 1f, 0, 0), null);
-        lcdGraphics.drawImage(image, 0,0, null);
-        lcdGraphics.drawImage(image,0,0,Color.BLACK,null);
-        lcdGraphics.drawImage(img, 0,0, Color.BLACK, null);
+        lcdGraphics.setColor(Color.BLACK);
+        //lcdGraphics.drawImage(img, new AffineTransform(1f, 0f, 0f, 1f, 0, 0), null);
+        //lcdGraphics.drawImage(image, 40,40, null);
+        lcdGraphics.drawImage(image,40,40,Color.WHITE,null);
+        //lcdGraphics.drawImage(img, 0,0, Color.WHITE, null);
         lcdGraphics.drawImage(img, 0,0,null);
 
-        lcdGraphics.dispose();
+        lcdGraphics.flush();
 
-        Delay.msDelay(10000);
-    }
+        JarResource.delete("cross.gif");
+        JarResource.delete("nought.gif");
 
-    public static void init(){
-        lcdGraphics.setBackground(Color.WHITE);
-        //lcdGraphics.setPaint(Color.WHITE);
     }
 
     public static void clear(){
-        //lcdGraphics.drawRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
+        lcdGraphics.setColor(Color.WHITE);
         lcdGraphics.fillRect(0,0, LCDGraphics.SCREEN_WIDTH, LCDGraphics.SCREEN_HEIGHT);
-        lcdGraphics.dispose();
     }
 
 }
