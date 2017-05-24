@@ -2,12 +2,7 @@ package ev3dev.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -127,6 +122,19 @@ public @Slf4j class Sysfs {
 
 	public static boolean existFile(Path pathToFind) {
 		return Files.exists(pathToFind);
+	}
+
+	public static boolean writeBytes(final String path, final byte[] value) {
+        final File file = new File(path);
+		try {
+			DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+			out.write(value);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Unable to draw the LCD", e);
+		}
+		return true;
 	}
 
 }
