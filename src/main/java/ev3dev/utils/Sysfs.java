@@ -3,18 +3,13 @@ package ev3dev.utils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static java.lang.String.format;
 
 /**
  * The class responsible to interact with Sysfs on EV3Dev
