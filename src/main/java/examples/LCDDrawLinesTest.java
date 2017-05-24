@@ -1,27 +1,25 @@
 package examples;
 
 import ev3dev.actuators.lcd.EV3GraphicsLCD;
-
-import java.awt.*;
+import lejos.hardware.lcd.GraphicsLCD;
+import lejos.robotics.Color;
 
 public class LCDDrawLinesTest {
 
-    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
+    public static GraphicsLCD lcd = new EV3GraphicsLCD();
 
     public static void main(final String[] args){
 
         clear();
-        EV3GraphicsLCD.setColor(Color.BLACK);
-        EV3GraphicsLCD.drawLine(0, 0, 50, 50);
-        EV3GraphicsLCD.drawLine(0, 0, 30, 60);
-        EV3GraphicsLCD.flush();
-
-        EV3GraphicsLCD.dispose();
+        lcd.setColor(Color.BLACK);
+        lcd.drawLine(0, 0, 50, 50);
+        lcd.drawLine(0, 0, 30, 60);
+        lcd.refresh();
     }
 
     public static void clear(){
-        EV3GraphicsLCD.setColor(Color.WHITE);
-        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
+        lcd.setColor(lejos.robotics.Color.WHITE);
+        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
     }
 
 }

@@ -1,25 +1,28 @@
 package examples;
 
 import ev3dev.actuators.lcd.EV3GraphicsLCD;
-
-import java.awt.*;
+import lejos.hardware.lcd.GraphicsLCD;
+import lejos.robotics.Color;
 
 public class LCDTest {
 
+    public static GraphicsLCD lcd = new EV3GraphicsLCD();
+
     public static void main(final String[] args){
 
-        EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
-        //EV3GraphicsLCD.setBackground(Color.WHITE);
-        //EV3GraphicsLCD.setPaint(Color.WHITE);
+        clear();
 
-        EV3GraphicsLCD.setColor(Color.BLACK);
-        EV3GraphicsLCD.drawRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
-        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
+        lcd.setColor(Color.BLACK);
+        lcd.drawRect(0,0, lcd.getWidth(), lcd.getHeight());
+        lcd.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
 
-        EV3GraphicsLCD.setColor(Color.WHITE);
-        EV3GraphicsLCD.drawString("Hello World", (EV3GraphicsLCD.SCREEN_WIDTH/2)-30, EV3GraphicsLCD.SCREEN_HEIGHT/2);
+        lcd.setColor(Color.WHITE);
+        lcd.drawString("Hello World", (lcd.getWidth()/ 2)-30, lcd.getHeight()/2, 0);
+        lcd.refresh();
+    }
 
-        EV3GraphicsLCD.dispose();
-        //Delay.msDelay(10000);
+    public static void clear(){
+        lcd.setColor(lejos.robotics.Color.WHITE);
+        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
     }
 }

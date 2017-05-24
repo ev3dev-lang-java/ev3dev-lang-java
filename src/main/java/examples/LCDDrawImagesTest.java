@@ -2,8 +2,11 @@ package examples;
 
 import ev3dev.actuators.lcd.EV3GraphicsLCD;
 import ev3dev.utils.JarResource;
+import lejos.hardware.lcd.GraphicsLCD;
+import lejos.robotics.Color;
 
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,7 +14,7 @@ import java.io.IOException;
 
 public class LCDDrawImagesTest {
 
-    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
+    public static GraphicsLCD lcd = new EV3GraphicsLCD();
 
     public static void main(final String[] args) throws IOException {
 
@@ -28,14 +31,14 @@ public class LCDDrawImagesTest {
 
         }
 
-        EV3GraphicsLCD.setColor(Color.BLACK);
+        lcd.setColor(Color.BLACK);
         //EV3GraphicsLCD.drawImage(img, new AffineTransform(1f, 0f, 0f, 1f, 0, 0), null);
         //EV3GraphicsLCD.drawImage(image, 40,40, null);
-        EV3GraphicsLCD.drawImage(image,40,40,Color.WHITE,null);
+        lcd.drawImage(image,40,40,0);
         //EV3GraphicsLCD.drawImage(img, 0,0, Color.WHITE, null);
-        EV3GraphicsLCD.drawImage(img, 0,0,null);
+        lcd.drawImage(img, 0,0,0);
 
-        EV3GraphicsLCD.flush();
+        lcd.refresh();
 
         JarResource.delete("cross.gif");
         JarResource.delete("nought.gif");
@@ -43,8 +46,8 @@ public class LCDDrawImagesTest {
     }
 
     public static void clear(){
-        EV3GraphicsLCD.setColor(Color.WHITE);
-        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
+        lcd.setColor(lejos.robotics.Color.WHITE);
+        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
     }
 
 }

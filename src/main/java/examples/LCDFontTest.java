@@ -1,12 +1,16 @@
 package examples;
 
 import ev3dev.actuators.lcd.EV3GraphicsLCD;
+import lejos.hardware.lcd.GraphicsLCD;
+import lejos.robotics.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
+import java.awt.Color;
 
-public class LCDFontTest {
+public @Slf4j class LCDFontTest {
 
-    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
+    public static GraphicsLCD lcd = new EV3GraphicsLCD();
 
     public static void main(final String[] args){
 
@@ -17,26 +21,26 @@ public class LCDFontTest {
         // Get all font family name in a String[]
         String[] fontNames = env.getAvailableFontFamilyNames();
         for (String fontName : fontNames) {
-            System.out.println(fontName);
+            log.info("Font: {}",fontName);
         }
 
         // Construct all Font instance (with font size of 1)
         Font[] fonts = env.getAllFonts();
         for (Font font : fonts) {
-            System.out.println(font);
+            log.info("Font: {}",font);
         }
 
         writeMessage("Hello World");
-        EV3GraphicsLCD.dispose();
     }
 
     public static void writeMessage(final String message){
-        EV3GraphicsLCD.setColor(Color.BLACK);
-        EV3GraphicsLCD.drawString(message, 50,50);
+        lcd.setColor(lejos.robotics.Color.BLACK);
+        lcd.drawString(message, 50,50, 0);
+        lcd.refresh();
     }
 
     public static void clear(){
-        EV3GraphicsLCD.setColor(Color.WHITE);
-        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
+        lcd.setColor(lejos.robotics.Color.WHITE);
+        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
     }
 }

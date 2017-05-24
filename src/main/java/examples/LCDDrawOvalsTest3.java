@@ -1,20 +1,21 @@
 package examples;
 
 import ev3dev.actuators.lcd.EV3GraphicsLCD;
+import lejos.hardware.lcd.GraphicsLCD;
+import lejos.robotics.Color;
 
-import java.awt.*;
 import java.awt.geom.Arc2D;
 import java.awt.geom.GeneralPath;
 
 public class LCDDrawOvalsTest3 {
 
-    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
+    public static GraphicsLCD lcd = new EV3GraphicsLCD();
 
     public static void main(final String[] args){
 
         clear();
 
-        EV3GraphicsLCD.setColor(Color.BLACK);
+        lcd.setColor(Color.BLACK);
 
         //  Here we create a GeneralPath object that will contain the
         //  outline points of the shape of a heart. The two topmost "elements"
@@ -34,18 +35,19 @@ public class LCDDrawOvalsTest3 {
 
         double current_drawing_scale  =  1.00 ;
 
-        EV3GraphicsLCD.translate( EV3GraphicsLCD.SCREEN_WIDTH / 2, EV3GraphicsLCD.SCREEN_HEIGHT / 5 * 2 ) ;
-        EV3GraphicsLCD.scale( current_drawing_scale, current_drawing_scale ) ;
-        EV3GraphicsLCD.fill( heart_shape ) ;
+        /*
+        lcd.translate( EV3GraphicsLCD.SCREEN_WIDTH / 2, EV3GraphicsLCD.SCREEN_HEIGHT / 5 * 2 ) ;
+        lcd.scale( current_drawing_scale, current_drawing_scale ) ;
+        lcd.fill( heart_shape ) ;
+        */
 
-
-        EV3GraphicsLCD.flush();
+        lcd.refresh();
 
     }
 
     public static void clear(){
-        EV3GraphicsLCD.setColor(Color.WHITE);
-        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
+        lcd.setColor(lejos.robotics.Color.WHITE);
+        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
     }
 
 }

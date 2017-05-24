@@ -2,6 +2,7 @@ package ev3dev.actuators.lcd;
 
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.Color;
 import java.awt.Composite;
@@ -33,7 +34,7 @@ import java.awt.image.renderable.RenderableImage;
 import java.text.AttributedCharacterIterator;
 import java.util.Map;
 
-public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
+public @Slf4j class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
 
     public static final String FB_PATH = "/dev/fb0";
     public static final int SCREEN_WIDTH = 178;
@@ -71,51 +72,32 @@ public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
      * Applies the Graphics context onto the ev3dev's LCD
      */
     public void flush(){
-        byte[] buf = new byte[BUF_SIZE];
 
+        byte[] buf = new byte[BUF_SIZE];
         byte[] pixel = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
-        //System.out.println("pixel[] len: " + pixel.length);
-        //System.out.println("content: " + Arrays.toString(pixel));
 
         int bitPos;
         for (int i = 0; i < SCREEN_HEIGHT; i++){
-            //System.out.println("rendering row " + i + "...");
-            //long t = System.currentTimeMillis();
             bitPos = 0;
             for (int j = 0; j < SCREEN_WIDTH; j++){
-                //int val = image.getRGB(j, i);
-                //int cmb = val & 0xff + (val & 0xff00) >> 8 + (val & 0xff0000) >> 16;
 
                 if (bitPos > 7){
-                    //System.out.println("Overload");
                     bitPos = 0;
                 }
-
 
                 //TODO: Rewrite not to use getRGB()! It results in low performance
                 Color color = new Color(image.getRGB(j, i));
 
                 int y = (int) (0.2126 * color.getRed() + 0.7152 * color.getBlue() + 0.0722 * color.getGreen()); //Combine all colours together 255+255+255 = 765
-                //System.out.println("(" + j + ", " + i + "): " + cmb);
 
-
-                //byte pixelBit = pixel[i * LINE_LEN + j / 8];
-
-                //System.out.println(Integer.toHexString(pixelBit));
-
-                //System.out.println("Pixel: " + (i * LINE_LEN + j / 8) + " bit " + bitPos + ": " + y + " fill? " + (y < 128));
                 if (y < 128){
-                    //System.out.println("pixel black: " + (i * LINE_LEN + j / 8 + "@bit" + bitPos) + "y: " + y + " r:" + color.getRed() + "g:" + color.getGreen() + "b:" + color.getBlue());
-                    //System.out.println("Black: " + (pixelBit & 0xff));
                     buf[i * LINE_LEN + j / 8] |= (1 << bitPos);
                 } else {
-                    //System.out.println("White");
                     buf[i * LINE_LEN + j / 8] &= ~(1 << bitPos);
                 }
 
                 bitPos++;
             }
-            //System.out.println("row (" + (i) + ") getRGB used: " + (System.currentTimeMillis() - t) + " ms");
         }
 
         Sysfs.writeBytes(FB_PATH, buf);
@@ -229,28 +211,6 @@ public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
     @Override
     public void translate(int x, int y) {
         g2d.translate(x, y);
-    }
-
-    @Override
-    public int getTranslateX() {
-        return 0;
-    }
-
-    @Override
-    public int getTranslateY() {
-        return 0;
-    }
-
-
-
-    @Override
-    public void setColor(int i) {
-
-    }
-
-    @Override
-    public void setColor(int i, int i1, int i2) {
-
     }
 
     @Override
@@ -401,68 +361,104 @@ public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
     //Graphics LCD
 
     @Override
-    public void setPixel(int i, int i1, int i2) {
+    public int getTranslateX() {
+        return 0;
+    }
 
+    @Override
+    public int getTranslateY() {
+        return 0;
+    }
+
+    /**
+     * Use in combination with possible values from
+     * lejos.robotics.Color
+     *
+     * @param color
+     */
+    @Override
+    public void setColor(int color) {
+        if(color == lejos.robotics.Color.WHITE){
+            g2d.setColor(Color.WHITE);
+        }else if(color == lejos.robotics.Color.BLACK){
+            g2d.setColor(Color.BLACK);
+        }else{
+            throw new IllegalArgumentException("Bad color configured");
+        }
+    }
+
+    @Override
+    public void setColor(int i, int i1, int i2) {
+        log.debug("Feature not implemented");
+    }
+
+    @Override
+    public void setPixel(int i, int i1, int i2) {
+        log.debug("Feature not implemented");
     }
 
     @Override
     public int getPixel(int i, int i1) {
-        return 0;
+        log.debug("Feature not implemented");
+        return -1;
     }
 
     @Override
     public void drawString(String s, int i, int i1, int i2, boolean b) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void drawString(String s, int i, int i1, int i2) {
-
+        g2d.drawString(s, i, i1);
     }
 
     @Override
     public void drawSubstring(String s, int i, int i1, int i2, int i3, int i4) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void drawChar(char c, int i, int i1, int i2) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void drawChars(char[] chars, int i, int i1, int i2, int i3, int i4) {
-
+        log.debug("Feature not implemented");
     }
 
+    //TODO Review LeJOS Javadocs
     @Override
     public int getStrokeStyle() {
-        return 0;
+        log.debug("Feature not implemented");
+        return -1;
     }
 
+    //TODO Review LeJOS Javadocs
     @Override
     public void setStrokeStyle(int i) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void drawRegion(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void drawImage(Image image, int i, int i1, int i2) {
-
+        g2d.drawImage(image,i, i1, null);
     }
 
     @Override
@@ -477,7 +473,7 @@ public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
 
     @Override
     public void copyArea(int i, int i1, int i2, int i3, int i4, int i5, int i6) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
@@ -577,51 +573,56 @@ public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
 
     @Override
     public void clear() {
-
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0,0, this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
+        flush();
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        return this.SCREEN_WIDTH;
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return this.SCREEN_HEIGHT;
     }
 
     @Override
     public byte[] getDisplay() {
-        return new byte[0];
+        log.debug("Feature not implemented");
+        return null;
     }
 
     @Override
     public byte[] getHWDisplay() {
-        return new byte[0];
+        log.debug("Feature not implemented");
+        return null;
     }
 
     @Override
     public void setContrast(int i) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void bitBlt(byte[] bytes, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void bitBlt(byte[] bytes, int i, int i1, int i2, int i3, byte[] bytes1, int i4, int i5, int i6, int i7, int i8, int i9, int i10) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public void setAutoRefresh(boolean b) {
-
+        log.debug("Feature not implemented");
     }
 
     @Override
     public int setAutoRefreshPeriod(int i) {
-        return 0;
+        log.debug("Feature not implemented");
+        return -1;
     }
 }

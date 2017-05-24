@@ -1,27 +1,26 @@
 package examples;
 
 import ev3dev.actuators.lcd.EV3GraphicsLCD;
-
-import java.awt.*;
+import lejos.hardware.lcd.GraphicsLCD;
+import lejos.robotics.Color;
 
 public class LCDDrawRectanglesTest {
 
-    public static EV3GraphicsLCD EV3GraphicsLCD = new EV3GraphicsLCD();
+    public static GraphicsLCD lcd = new EV3GraphicsLCD();
 
     public static void main(final String[] args){
 
         clear();
-        EV3GraphicsLCD.setColor(Color.BLACK);
-        EV3GraphicsLCD.drawRect(0, 0, 20, 20);
-        EV3GraphicsLCD.drawRect(40, 40, 80, 80);
-        EV3GraphicsLCD.flush();
+        lcd.setColor(Color.BLACK);
+        lcd.drawRect(0, 0, 20, 20);
+        lcd.drawRect(40, 40, 80, 80);
+        lcd.refresh();
 
     }
 
-
     public static void clear(){
-        EV3GraphicsLCD.setColor(Color.WHITE);
-        EV3GraphicsLCD.fillRect(0,0, EV3GraphicsLCD.SCREEN_WIDTH, EV3GraphicsLCD.SCREEN_HEIGHT);
+        lcd.setColor(lejos.robotics.Color.WHITE);
+        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
     }
 
 }
