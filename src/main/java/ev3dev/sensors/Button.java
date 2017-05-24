@@ -40,27 +40,27 @@ public class Button {
 	/**
 	 * The Enter button.
 	 */
-	//public static final Key ENTER = BrickFinder.getDefault().getKey("Enter");
+	public static final Key ENTER = new EV3Key(EV3Key.BUTTON_ENTER);//BrickFinder.getDefault().getKey("Enter");
 	/**
 	 * The Left button.
 	 */
-	//public static final Key LEFT = BrickFinder.getDefault().getKey("Left");
+	public static final Key LEFT = new EV3Key(EV3Key.BUTTON_LEFT);// = BrickFinder.getDefault().getKey("Left");
 	/**
 	 * The Right button.
 	 */
-	//public static final Key RIGHT = BrickFinder.getDefault().getKey("Right");
+	public static final Key RIGHT = new EV3Key(EV3Key.BUTTON_RIGHT);//BrickFinder.getDefault().getKey("Right");
 	/**
 	 * The Escape button.
 	 */
-	//public static final Key ESCAPE = BrickFinder.getDefault().getKey("Escape");
+	public static final Key ESCAPE = new EV3Key(EV3Key.BUTTON_BACKSPACE);//BrickFinder.getDefault().getKey("Escape");
 	/**
 	 * The Up button.
 	 */
-	//public static final Key UP = BrickFinder.getDefault().getKey("Up");
+	public static final Key UP = new EV3Key(EV3Key.BUTTON_UP);//BrickFinder.getDefault().getKey("Up");
 	/**
 	 * The Down button.
 	 */
-	//public static final Key DOWN = BrickFinder.getDefault().getKey("Down");
+	public static final Key DOWN = new EV3Key(EV3Key.BUTTON_DOWN);//BrickFinder.getDefault().getKey("Down");
 
 	//public static final Keys keys = BrickFinder.getDefault().getKeys();
 

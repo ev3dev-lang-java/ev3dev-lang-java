@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class EV3Button {
+public class EV3Key implements Key {
 
     public static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio-keys.0-event";
 
@@ -18,7 +18,7 @@ public class EV3Button {
 
     private int button;
 
-    public EV3Button(int button) {
+    public EV3Key(int button) {
         if (button != BUTTON_UP && button != BUTTON_DOWN && button != BUTTON_LEFT &&
                 button != BUTTON_RIGHT && button != BUTTON_ENTER && button != BUTTON_ENTER &&
                 button != BUTTON_BACKSPACE){
@@ -59,5 +59,45 @@ public class EV3Button {
 
     private static int EVIOCGKEY(int length){
         return 2 << (14+8+8) | length << (8+8) | ((int) 'E') << 8 | 0x18;
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public boolean isDown() {
+        return false;
+    }
+
+    @Override
+    public boolean isUp() {
+        return false;
+    }
+
+    @Override
+    public void waitForPress() {
+
+    }
+
+    @Override
+    public void waitForPressAndRelease() {
+
+    }
+
+    @Override
+    public void addKeyListener(KeyListener listener) {
+
+    }
+
+    @Override
+    public void simulateEvent(int event) {
+
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }
