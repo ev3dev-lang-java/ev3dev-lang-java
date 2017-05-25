@@ -14,7 +14,8 @@ repositories {
 
 dependencies {
     compile("org.projectlombok:lombok:1.16.16")
-    compile("ch.qos.logback:logback-classic:1.2.3")
+    compile("org.slf4j:slf4j-api:1.7.25")
+    //compile("ch.qos.logback:logback-classic:1.2.3")
     compile("com.github.ev3dev-lang-java:lejos-commons:v0.5.3-SNAPSHOT")
 
     testCompile("junit:junit:4.12")

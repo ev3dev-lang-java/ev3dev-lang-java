@@ -1,11 +1,13 @@
 package ev3dev.sensors;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class EV3Key implements Key {
+public @Slf4j class EV3Key implements Key {
 
     public static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio-keys.0-event";
 
@@ -16,12 +18,20 @@ public class EV3Key implements Key {
     public static final int BUTTON_ENTER = 28;
     public static final int BUTTON_BACKSPACE = 14;
 
+    public static final int BUTTON_ALL = 0;
+
     private int button;
 
+    //TODO Use an ENUM
     public EV3Key(int button) {
-        if (button != BUTTON_UP && button != BUTTON_DOWN && button != BUTTON_LEFT &&
-                button != BUTTON_RIGHT && button != BUTTON_ENTER && button != BUTTON_ENTER &&
-                button != BUTTON_BACKSPACE){
+        if (button != BUTTON_UP &&
+                button != BUTTON_DOWN &&
+                button != BUTTON_LEFT &&
+                button != BUTTON_RIGHT &&
+                button != BUTTON_ENTER &&
+                button != BUTTON_ENTER &&
+                button != BUTTON_BACKSPACE &&
+                button != BUTTON_ALL){
             throw new RuntimeException("The button that you specified does not exist. Better use the integer fields like Button.BUTTON_UP");
         }
         this.button = button;
@@ -37,6 +47,9 @@ public class EV3Key implements Key {
             byte[] val = new byte[16];
             in.readFully(val);
             in.close();
+            if(button == BUTTON_ALL){
+                return true;
+            }
             return test_bit(button, val);
         } catch (FileNotFoundException e){
             System.err.println("Error: Are you running this on your EV3? You must run it on your EV3.\n If you still have problems, report a issue to \"mob41/ev3dev-lang-java\".");
@@ -57,47 +70,46 @@ public class EV3Key implements Key {
         return ((bytes[bit / 8] & (1 << (bit % 8))) != 1);
     }
 
-    private static int EVIOCGKEY(int length){
-        return 2 << (14+8+8) | length << (8+8) | ((int) 'E') << 8 | 0x18;
-    }
-
     @Override
     public int getId() {
-        return 0;
+        return button;
     }
 
     @Override
     public boolean isDown() {
+        log.debug("This feature is not implemented");
         return false;
     }
 
     @Override
     public boolean isUp() {
+        log.debug("This feature is not implemented");
         return false;
     }
 
     @Override
     public void waitForPress() {
-
+        isPressed();
     }
 
     @Override
     public void waitForPressAndRelease() {
-
+        log.debug("This feature is not implemented");
     }
 
     @Override
     public void addKeyListener(KeyListener listener) {
-
+        log.debug("This feature is not implemented");
     }
 
     @Override
     public void simulateEvent(int event) {
-
+        log.debug("This feature is not implemented");
     }
 
     @Override
     public String getName() {
+        log.debug("This feature is not implemented");
         return null;
     }
 }
