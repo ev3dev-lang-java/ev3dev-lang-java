@@ -56,7 +56,7 @@ public @Slf4j class Button {
 	private static final Key ALL = new EV3Key(EV3Key.ButtonType.ALL);
 
 	//public static final Keys keys = BrickFinder.getDefault().getKeys();
-	
+
 	/**
 	 * Waits for some button to be pressed or released. Which buttons have been
 	 * released or pressed is returned as a bitmask. The lower eight bits (bits
