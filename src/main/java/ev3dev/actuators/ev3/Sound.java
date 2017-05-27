@@ -1,4 +1,4 @@
-package ev3dev.actuators;
+package ev3dev.actuators.ev3;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatforms;

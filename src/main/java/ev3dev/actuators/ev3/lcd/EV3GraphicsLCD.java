@@ -1,10 +1,7 @@
-package ev3dev.actuators.lcd;
+package ev3dev.actuators.ev3.lcd;
 
-import ev3dev.hardware.EV3DevPlatforms;
-import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
-import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
