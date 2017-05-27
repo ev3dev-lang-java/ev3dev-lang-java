@@ -1,4 +1,4 @@
-package ev3dev.actuators.motors;
+package ev3dev.actuators.ev3.motors;
 
 /**
  * Abstraction for a Medium Lego EV3/NXT motors.

@@ -1,4 +1,4 @@
-package ev3dev.actuators.lcd;
+package ev3dev.actuators.ev3.lcd;
 
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
@@ -28,6 +28,14 @@ public @Slf4j class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
     private Graphics2D g2d;
 
     public EV3GraphicsLCD() {
+
+        /*
+        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
+
+        } else {
+            log.debug(DISABLED_FEATURE_MESSAGE);
+        }
+        */
 
         byte[] data = new byte[BUF_SIZE];
         byte[] bwarr = {(byte) 0xff, (byte) 0x00};
