@@ -7,6 +7,10 @@ import lejos.robotics.RegulatedMotorListener;
 import lejos.utility.Delay;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Abstraction for a Regulated motors motors.
  * The basic control methods are:
@@ -36,12 +40,14 @@ import lombok.extern.slf4j.Slf4j;
  * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  */
-public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
+public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor, EV3DevBaseMotor {
 
     private int speed = 360;
     protected int acceleration = 6000;
 
     private boolean regulationFlag = true;
+
+    private final List<RegulatedMotorListener> listenerList = Collections.synchronizedList(new ArrayList());
 
     /**
      * Constructor
@@ -111,6 +117,10 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
         } else {
             this.setStringAttribute(COMMAND, RUN_FOREVER);
         }
+
+        for (RegulatedMotorListener listener : listenerList) {
+            listener.rotationStarted(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
+        }
     }
 
     @Override
@@ -122,6 +132,10 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
         } else {
             this.setStringAttribute(COMMAND, RUN_FOREVER);
         }
+
+        for (RegulatedMotorListener listener : listenerList) {
+            listener.rotationStarted(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
+        }
     }
 
     /**
@@ -130,11 +144,17 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     @Override
     public void flt(boolean b) {
-        this.setStringAttribute(STOP_COMMAND, COAST);
+        this.flt();
     }
 
     @Override
     public void flt() {
+        log.debug("Not implemented");
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public void coast() {
         this.setStringAttribute(STOP_COMMAND, COAST);
     }
 
@@ -174,6 +194,10 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
      */
     public void stop() {
 		this.setStringAttribute(COMMAND, STOP);
+
+        for (RegulatedMotorListener listener : listenerList) {
+            listener.rotationStopped(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
+        }
     }
 
     @Override
@@ -236,6 +260,10 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 			   // possibly sleep for some short interval to not block
 			}
 		}
+
+        for (RegulatedMotorListener listener : listenerList) {
+            listener.rotationStarted(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
+        }
     }
 
     /**
@@ -256,6 +284,10 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 			    // possibly sleep for some short interval to not block
 			}
 		}
+
+        for (RegulatedMotorListener listener : listenerList) {
+            listener.rotationStarted(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
+        }
     }
     
     /**
@@ -297,14 +329,15 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 
     @Override
     public void addListener(RegulatedMotorListener regulatedMotorListener) {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+        listenerList.add(regulatedMotorListener);
     }
 
     @Override
     public RegulatedMotorListener removeListener() {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+        if(listenerList.size() > 0){
+            listenerList.remove(listenerList.size() - 1);
+        }
+        return null;
     }
 
     @Override

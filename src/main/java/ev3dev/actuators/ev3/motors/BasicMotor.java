@@ -108,15 +108,6 @@ public @Slf4j abstract class BasicMotor extends EV3DevMotorDevice implements DCM
 	}
 
 	/**
-	 * Causes the motor to actively try to hold the current position.
-	 * If an external force tries to turn the motor, the motor will “push back” to maintain its position.
-	 */
-    @Override
-	public void hold() {
-		this.setStringAttribute(STOP_COMMAND, HOLD);
-	}
-
-	/**
 	 * Removes power from the motor.
 	 * The motor will freely coast to a stop.
 	 */
