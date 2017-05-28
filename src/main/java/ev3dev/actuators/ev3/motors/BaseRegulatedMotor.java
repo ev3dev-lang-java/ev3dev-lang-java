@@ -364,9 +364,17 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     }
 
     @Override
-    public void setAcceleration(int i) {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+    /**
+     * sets the acceleration rate of this motor in degrees/sec/sec <br>
+     * The default value is 6000; Smaller values will make speeding up. or stopping
+     * at the end of a rotate() task, smoother;
+     * @param acceleration
+     */
+    public void setAcceleration(int acceleration) {
+        this.acceleration = Math.abs(acceleration);
+
+        log.warn("Not executed internally the method: setAcceleration");
+        //reg.adjustAcceleration(this.acceleration);
     }
 
     @Override
