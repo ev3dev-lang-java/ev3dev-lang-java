@@ -377,14 +377,16 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 
     @Override
     public void startSynchronization() {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+        log.warn("Not implemented the method: startSynchronization");
+
+        //throw new RuntimeException("Not implemented");
     }
 
     @Override
     public void endSynchronization() {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+        log.warn("Not implemented the method: endSynchronization");
+
+        //throw new RuntimeException("Not implemented");
     }
 
 }
