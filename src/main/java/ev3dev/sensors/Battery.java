@@ -38,7 +38,8 @@ public @Slf4j class Battery extends EV3DevDevice implements Power {
 
     // Prevent duplicate objects
     private Battery() {
-        BATTERY_PATH = ROOT_PATH + BATTERY;
+        //TODO Create separator variable for the whole project
+        BATTERY_PATH = ROOT_PATH + "/" + BATTERY;
         final EV3DevPlatforms platform = this.getPlatform();
     	if(platform.equals(EV3DevPlatforms.EV3BRICK)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
