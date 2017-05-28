@@ -41,7 +41,7 @@ import java.util.List;
  * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  */
-public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor, EV3DevBaseMotor {
+public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
 
     // Following should be set to the max SPEED (in deg/sec) of the motor when free running and powered by 9V
     protected final int MAX_SPEED_AT_9V;
