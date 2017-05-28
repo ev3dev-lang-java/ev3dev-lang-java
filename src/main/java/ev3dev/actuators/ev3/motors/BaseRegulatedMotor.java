@@ -347,8 +347,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 
     @Override
     public void waitComplete() {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+        log.warn("Not executed internally the method: setAcceleration");
     }
 
     @Override
