@@ -2,6 +2,7 @@ package ev3dev.actuators.ev3.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
 import ev3dev.hardware.EV3DevPlatforms;
+import ev3dev.sensors.Battery;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.RegulatedMotorListener;
 import lejos.utility.Delay;
@@ -42,6 +43,9 @@ import java.util.List;
  */
 public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor, EV3DevBaseMotor {
 
+    // Following should be set to the max SPEED (in deg/sec) of the motor when free running and powered by 9V
+    protected final int MAX_SPEED_AT_9V;
+
     private int speed = 360;
     protected int acceleration = 6000;
 
@@ -64,6 +68,7 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
     public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
 			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
 
+        MAX_SPEED_AT_9V = maxSpeed;
         final String port = this.getMotorPort(motorPort);
 
         log.debug("Detecting motor on port: {}", port);
@@ -348,8 +353,14 @@ public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implem
 
     @Override
     public float getMaxSpeed() {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+        // It is generally assumed, that the maximum accurate speed of an EV3 Motor is
+        // 100 degree/second * Voltage. We generalise this to other LEGO motors by returning a value
+        // that is based on 90% of the maximum free running speed of the motor.
+        // TODO: Should this be using the Brick interface?
+        // TODO: If we ever allow the regulator class be remote, then we will need to ensure we
+        // get the voltage of the remote brick not the local one.
+        //return LocalEV3.ev3.getPower().getVoltage() * MAX_SPEED_AT_9V/9.0f * 0.9f;
+        return Battery.getInstance().getVoltage() * MAX_SPEED_AT_9V/9.0f * 0.9f;
     }
 
     @Override
