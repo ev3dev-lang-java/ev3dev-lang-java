@@ -12,6 +12,7 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor {
     private static final float HOLD_I = 0.02f;
     private static final float HOLD_D = 8f;
     private static final int OFFSET = 0;
+
     private static final int MAX_SPEED = 170*360/60;
 
     /**
