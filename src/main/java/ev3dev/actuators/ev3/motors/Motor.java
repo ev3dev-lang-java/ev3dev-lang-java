@@ -28,22 +28,22 @@ public class Motor {
     /**
      * Motor A.
      */
-    public static RegulatedMotor A = new EV3LargeRegulatedMotor(MotorPort.A);
+    public static RegulatedMotor A = new NXTRegulatedMotor(MotorPort.A);
 
     /**
      * Motor B.
      */
-    public static RegulatedMotor B = new EV3LargeRegulatedMotor(MotorPort.B);
+    public static RegulatedMotor B = new NXTRegulatedMotor(MotorPort.B);
 
     /**
      * Motor C.
      */
-    public static RegulatedMotor C = new EV3LargeRegulatedMotor(MotorPort.C);
+    public static RegulatedMotor C = new NXTRegulatedMotor(MotorPort.C);
 
     /**
      * Motor D.
      */
-    public static RegulatedMotor D = new EV3LargeRegulatedMotor(MotorPort.D);
+    public static RegulatedMotor D = new NXTRegulatedMotor(MotorPort.D);
 
     private Motor() {
         // Motor class cannot be instantiated
