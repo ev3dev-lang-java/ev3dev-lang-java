@@ -13,7 +13,12 @@ public class Espeak {
 	private static final String ESPEAK = "espeak";
 	private final static String CMD_APLAY ="aplay";
 
-    private String voice = null;
+	public static final String VOICE_ENGLISH = "en";
+	public static final String VOICE_SPANISH = "es";
+	public static final int DEFAULT_SPEED_READING = 105;
+	public static final int DEFAULT_PITCH = 60;
+
+	private String voice = null;
 	private int volume = -1;
 	private int speedReading = -1;
 	private int pitch = -1;
@@ -52,22 +57,32 @@ public class Espeak {
 		sb.append(" ");
 		if(this.voice != null){
 			sb.append(" -v ").append(this.voice);
+		}else{
+			sb.append(" -v ").append(Espeak.VOICE_ENGLISH);
 		}
 		if(this.volume != -1){
 			sb.append(" -a ").append(this.volume);
 		}
 		if(this.speedReading != -1){
 			sb.append(" -s ").append(this.speedReading);
+		}else{
+			sb.append(" -s ").append(this.DEFAULT_SPEED_READING);
 		}
 		if(this.pitch != -1){
 			sb.append(" -p ").append(this.pitch);
+		}else{
+			sb.append(" -p ").append(this.DEFAULT_PITCH);
 		}
 		if(message != null){
 			sb.append(" --stdout ");
 			sb.append("\"").append(this.message).append("\"");
 		}else{
-			sb.append("--stdout ");
-			sb.append(" -f ").append(this.filePath).append("\"");
+			if(message != null){
+				sb.append("--stdout ");
+				sb.append(" -f ").append(this.filePath).append("\"");
+			}else{
+				throw new IllegalArgumentException("Message is null or FilePath.");
+			}
 		}
 		sb.append(" | ");
 		sb.append(CMD_APLAY);
