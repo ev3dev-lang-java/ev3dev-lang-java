@@ -59,10 +59,9 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
         return getMode(0);
     }
 
-    //TODO Review
     @Override
     public boolean isPressed() {
-        return false;
+        return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  EV3DevSensorMode.VALUE0) == 0) ? false : true;
     }
 
     private class TouchMode extends EV3DevSensorMode {
