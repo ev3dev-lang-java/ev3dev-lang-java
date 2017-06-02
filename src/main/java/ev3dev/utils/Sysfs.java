@@ -1,6 +1,6 @@
 package ev3dev.utils;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -17,9 +17,11 @@ import java.util.List;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j class Sysfs {
+public class Sysfs {
 
-	/**
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sysfs.class);
+
+    /**
 	 * Write a value in a file.
 	 * 
 	 * @param filePath File path

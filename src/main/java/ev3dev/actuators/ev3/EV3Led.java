@@ -2,16 +2,18 @@ package ev3dev.actuators.ev3;
 
 import ev3dev.utils.Sysfs;
 import lejos.hardware.LED;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-public @Slf4j class EV3Led implements LED {
+public class EV3Led implements LED {
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3Led.class);
 
 	/**
 	 * Left EV3 Button
 	 */
 	public static final int LEFT = 0;
 
-	final private int direction;
+    final private int direction;
 
 	/**
 	 * Right EV3 Button

@@ -4,7 +4,7 @@ import ev3dev.hardware.EV3DevMotorDevice;
 import ev3dev.hardware.EV3DevPlatforms;
 import lejos.robotics.DCMotor;
 import lejos.utility.Delay;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /** 
  * Abstraction for basic motors operations.
@@ -15,7 +15,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
+public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BasicMotor.class);
 
     private int power = 50;
 

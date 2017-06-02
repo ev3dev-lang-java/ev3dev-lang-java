@@ -1,15 +1,17 @@
 package ev3dev.hardware;
 
-import lombok.extern.slf4j.Slf4j;
 import mocks.MockBaseTest;
 import org.junit.Test;
+import org.slf4j.Logger;
 
 import java.io.IOException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public @Slf4j class EV3DevPlatformTest extends MockBaseTest {
+public class EV3DevPlatformTest extends MockBaseTest {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevPlatformTest.class);
 
     public class EV3DevPlatformChild extends EV3DevPlatform {
 

@@ -2,7 +2,7 @@ package ev3dev.actuators.ev3.lcd;
 
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.awt.*;
 import java.awt.RenderingHints.Key;
@@ -14,7 +14,9 @@ import java.awt.image.renderable.RenderableImage;
 import java.text.AttributedCharacterIterator;
 import java.util.Map;
 
-public @Slf4j class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
+public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3GraphicsLCD.class);
 
     public static final String FB_PATH = "/dev/fb0";
     public static final int SCREEN_WIDTH = 178;

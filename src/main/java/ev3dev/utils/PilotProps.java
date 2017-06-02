@@ -3,7 +3,10 @@ package ev3dev.utils;
 import ev3dev.actuators.ev3.motors.Motor;
 import lejos.robotics.RegulatedMotor;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -12,8 +15,8 @@ import java.util.Properties;
  * @author Lawrie Griffiths, Juan Antonio Breña Moral
  * 
  */
-public class PilotProps extends Properties
-{
+public class PilotProps extends Properties {
+
 	public static final String PERSISTENT_FILENAME = "pilot.props";
 
 	public static final String KEY_WHEELDIAMETER = "wheelDiameter";

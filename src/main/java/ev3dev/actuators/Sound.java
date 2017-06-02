@@ -5,7 +5,7 @@ import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.File;
 
@@ -19,7 +19,9 @@ import java.io.File;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j class Sound extends EV3DevDevice {
+public class Sound extends EV3DevDevice {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sound.class);
 
     private final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
     private final static String CMD_BEEP = "beep";

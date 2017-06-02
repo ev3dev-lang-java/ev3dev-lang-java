@@ -4,7 +4,7 @@ import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.Power;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * The class Battery interacts with EV3Dev to get information about battery used. 
@@ -15,12 +15,15 @@ import lombok.extern.slf4j.Slf4j;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j class Battery extends EV3DevDevice implements Power {
+public class Battery extends EV3DevDevice implements Power {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Battery.class);
 
     private static final String BATTERY =  "power_supply";
     private static final String BATTERY_EV3 =  "legoev3-battery";
     private static final String BATTERY_PISTORMS =  "pistorms-battery";
     private static final String BATTERY_BRICKPI =  "brickpi-battery";
+
     private static String BATTERY_PATH;
     private static final String VOLTAGE = "voltage_now";
     private static final String CURRENT = "current_now";

@@ -6,7 +6,7 @@ import ev3dev.sensors.Battery;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.RegulatedMotorListener;
 import lejos.utility.Delay;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +41,9 @@ import java.util.List;
  * @author Andy Shaw
  * @author Juan Antonio Breña Moral
  */
-public @Slf4j abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
+public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements RegulatedMotor {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BaseRegulatedMotor.class);
 
     // Following should be set to the max SPEED (in deg/sec) of the motor when free running and powered by 9V
     protected final int MAX_SPEED_AT_9V;

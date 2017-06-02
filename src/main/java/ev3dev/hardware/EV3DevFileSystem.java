@@ -1,7 +1,6 @@
 package ev3dev.hardware;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.util.Objects;
 
@@ -11,12 +10,13 @@ import java.util.Objects;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j abstract class EV3DevFileSystem {
+public abstract class EV3DevFileSystem {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevFileSystem.class);
 
     public static final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
     public static final String EV3DEV_ROOT_PATH = "/sys/class";
 
-    @Getter
     protected final String ROOT_PATH;
 
     protected EV3DevFileSystem(){
@@ -27,4 +27,7 @@ public @Slf4j abstract class EV3DevFileSystem {
         }
     }
 
+    public String getROOT_PATH() {
+        return this.ROOT_PATH;
+    }
 }

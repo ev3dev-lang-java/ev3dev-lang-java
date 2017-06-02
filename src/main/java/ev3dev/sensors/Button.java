@@ -1,7 +1,7 @@
 package ev3dev.sensors;
 
 import lejos.hardware.Key;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * Abstraction for an NXT/EV3 button. Example:
@@ -26,7 +26,9 @@ import lombok.extern.slf4j.Slf4j;
  * that you write your own Thread, which waits for button events and dispatches
  * the events to anyone who's interested.
  */
-public @Slf4j class Button {
+public class Button {
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(Button.class);
 
 	/**
 	 * The Enter button.
@@ -55,7 +57,7 @@ public @Slf4j class Button {
 
 	private static final Key ALL = new EV3Key(EV3Key.ButtonType.ALL);
 
-	//public static final Keys keys = BrickFinder.getDefault().getKeys();
+    //public static final Keys keys = BrickFinder.getDefault().getKeys();
 
 	/**
 	 * Waits for some button to be pressed or released. Which buttons have been

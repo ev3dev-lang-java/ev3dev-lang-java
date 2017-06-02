@@ -2,14 +2,18 @@ package ev3dev.sensors;
 
 import lejos.hardware.Key;
 import lejos.hardware.KeyListener;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 
-public @Slf4j class EV3Key implements Key {
+public class EV3Key implements Key {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3Key.class);
 
     public static final int BUTTON_UP = 103;
     public static final int BUTTON_DOWN = 108;

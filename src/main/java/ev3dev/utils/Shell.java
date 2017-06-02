@@ -1,6 +1,6 @@
 package ev3dev.utils;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,9 +10,11 @@ import java.io.InputStreamReader;
  *
  * @author Juan Antonio Breña Moral
  */
-public @Slf4j class Shell {
-	
-	public static String execute(final String command) {
+public class Shell {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Shell.class);
+
+    public static String execute(final String command) {
 
         log.debug("Command: {}", command);
 		StringBuilder output = new StringBuilder();

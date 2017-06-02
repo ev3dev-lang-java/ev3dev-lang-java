@@ -1,6 +1,6 @@
 package ev3dev.hardware;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * Base class to interact with EV3Dev sysfs
@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j abstract class EV3DevMotorDevice extends EV3DevDevice {
+public abstract class EV3DevMotorDevice extends EV3DevDevice {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevMotorDevice.class);
 
     protected static final String TACHO_MOTOR = "tacho-motor";
     protected static final String DC_MOTOR = "dc-motor";

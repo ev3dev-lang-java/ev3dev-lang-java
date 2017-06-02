@@ -5,7 +5,8 @@ package ev3dev.actuators.ev3.motors;
  * 
  */
 public class NXTRegulatedMotor extends BaseRegulatedMotor {
-	private static final float MOVE_P = 4f;
+
+    private static final float MOVE_P = 4f;
     private static final float MOVE_I = 0.04f;
     private static final float MOVE_D = 10f;
     private static final float HOLD_P = 2f;

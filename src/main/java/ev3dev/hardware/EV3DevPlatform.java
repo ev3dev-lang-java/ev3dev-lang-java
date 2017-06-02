@@ -3,9 +3,11 @@ package ev3dev.hardware;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
-public @Slf4j abstract class EV3DevPlatform extends EV3DevFileSystem {
+public abstract class EV3DevPlatform extends EV3DevFileSystem {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevPlatform.class);
 
     /**
      * This method returns the platform

@@ -1,16 +1,19 @@
 package ev3dev.robotics.tts;
 
 import ev3dev.utils.Shell;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * Espeak wrapper
  */
-public @Slf4j class Espeak {
+public class Espeak {
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(Espeak.class);
 
 	private static final String ESPEAK = "espeak";
 	private final static String CMD_APLAY ="aplay";
-	private String voice = null;
+
+    private String voice = null;
 	private int volume = -1;
 	private int speedReading = -1;
 	private int pitch = -1;
