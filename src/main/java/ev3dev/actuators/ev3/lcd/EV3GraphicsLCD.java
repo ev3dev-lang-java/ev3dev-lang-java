@@ -32,7 +32,7 @@ public class EV3GraphicsLCD extends Graphics2D implements GraphicsLCD {
     public EV3GraphicsLCD() {
 
         /*
-        if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
         } else {
             log.debug(DISABLED_FEATURE_MESSAGE);

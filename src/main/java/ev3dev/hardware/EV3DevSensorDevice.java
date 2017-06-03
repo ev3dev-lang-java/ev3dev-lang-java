@@ -31,7 +31,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 		final String port = this.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
-		if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
+		if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
 			this.detect(LEGO_SENSOR, port);
 		}else {
@@ -59,7 +59,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 		final String port = this.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
-		if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
+		if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 			this.detect(LEGO_SENSOR, port);
 		}else {
 

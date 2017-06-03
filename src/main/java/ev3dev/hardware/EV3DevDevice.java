@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 
-public abstract class EV3DevDevice extends EV3DevPlatform  {
+public abstract class EV3DevDevice extends EV3DevPlatforms {
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevDevice.class);
 

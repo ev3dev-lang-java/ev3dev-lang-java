@@ -1,7 +1,7 @@
 package ev3dev.sensors;
 
 import ev3dev.hardware.EV3DevDevice;
-import ev3dev.hardware.EV3DevPlatforms;
+import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.Power;
 import org.slf4j.Logger;
@@ -43,10 +43,10 @@ public class Battery extends EV3DevDevice implements Power {
     private Battery() {
         //TODO Create separator variable for the whole project
         BATTERY_PATH = ROOT_PATH + "/" + BATTERY;
-        final EV3DevPlatforms platform = this.getPlatform();
-    	if(platform.equals(EV3DevPlatforms.EV3BRICK)) {
+        final EV3DevPlatform platform = this.getPlatform();
+    	if(platform.equals(EV3DevPlatform.EV3BRICK)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
-        } else if(platform.equals(EV3DevPlatforms.PISTORMS)) {
+        } else if(platform.equals(EV3DevPlatform.PISTORMS)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_PISTORMS;
         } else {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI;
@@ -71,10 +71,10 @@ public class Battery extends EV3DevDevice implements Power {
 	 * @return current
 	 */
 	public float getBatteryCurrent() {
-    	if(this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
+    	if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
     		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
     	}else {
-            log.warn("This method is not available for {} & {}", EV3DevPlatforms.PISTORMS, EV3DevPlatforms.BRICKPI);
+            log.warn("This method is not available for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);
             return -1f;
         }
 	}

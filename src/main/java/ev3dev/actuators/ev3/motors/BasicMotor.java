@@ -1,7 +1,7 @@
 package ev3dev.actuators.ev3.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
-import ev3dev.hardware.EV3DevPlatforms;
+import ev3dev.hardware.EV3DevPlatform;
 import lejos.robotics.DCMotor;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
 	public BasicMotor(final String motorPort) {
 
-		if(!this.getPlatform().equals(EV3DevPlatforms.EV3BRICK)){
+		if(!this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 			throw new RuntimeException("This device is not supported in this platform");
 		}
 

@@ -21,7 +21,7 @@ public class EV3DevFileSystemTest {
     @Test
     public void getNormalRootPathTest() throws IOException {
         EV3DevFileSystemChild efc = new EV3DevFileSystemChild();
-        assertThat(efc.getROOT_PATH(), is(EV3DevPlatform.EV3DEV_ROOT_PATH));
+        assertThat(efc.getROOT_PATH(), is(EV3DevPlatforms.EV3DEV_ROOT_PATH));
     }
 
     @Test
