@@ -1,4 +1,4 @@
-package ev3dev.actuators.ev3.motors;
+package ev3dev.actuators.lego.motors;
 
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;

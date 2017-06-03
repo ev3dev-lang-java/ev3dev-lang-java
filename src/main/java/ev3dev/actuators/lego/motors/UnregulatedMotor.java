@@ -1,4 +1,4 @@
-package ev3dev.actuators.ev3.motors;
+package ev3dev.actuators.lego.motors;
 
 /**
  * Abstraction for an Lego Mindstorms motors with no speed regulation.

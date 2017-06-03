@@ -1,6 +1,6 @@
 package ev3dev.utils;
 
-import ev3dev.actuators.ev3.motors.Motor;
+import ev3dev.actuators.lego.motors.Motor;
 import lejos.robotics.RegulatedMotor;
 
 import java.io.File;
