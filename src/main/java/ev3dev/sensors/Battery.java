@@ -67,10 +67,11 @@ public class Battery extends EV3DevDevice implements Power {
 	}
 
 	/**
-	 * Returns the current of the battery in microamps.
+	 * Returns the current of the battery in amps.
 	 * @return current
 	 */
 	public float getBatteryCurrent() {
+	    //TODO Review units
     	if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
     		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
     	}else {

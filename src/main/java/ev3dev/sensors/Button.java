@@ -33,29 +33,29 @@ public class Button {
 	/**
 	 * The Enter button.
 	 */
-	public static final Key ENTER = new EV3Key(EV3Key.ButtonType.ENTER);
+	public static final Key ENTER = new EV3Key(EV3Key.EV3Buttons.ENTER);
 	/**
 	 * The Left button.
 	 */
-	public static final Key LEFT = new EV3Key(EV3Key.ButtonType.LEFT);
+	public static final Key LEFT = new EV3Key(EV3Key.EV3Buttons.LEFT);
 	/**
 	 * The Right button.
 	 */
-	public static final Key RIGHT = new EV3Key(EV3Key.ButtonType.RIGHT);
+	public static final Key RIGHT = new EV3Key(EV3Key.EV3Buttons.RIGHT);
 	/**
 	 * The Escape button.
 	 */
-	public static final Key ESCAPE = new EV3Key(EV3Key.ButtonType.BACKSPACE);
+	public static final Key ESCAPE = new EV3Key(EV3Key.EV3Buttons.BACKSPACE);
 	/**
 	 * The Up button.
 	 */
-	public static final Key UP = new EV3Key(EV3Key.ButtonType.UP);
+	public static final Key UP = new EV3Key(EV3Key.EV3Buttons.UP);
 	/**
 	 * The Down button.
 	 */
-	public static final Key DOWN = new EV3Key(EV3Key.ButtonType.DOWN);
+	public static final Key DOWN = new EV3Key(EV3Key.EV3Buttons.DOWN);
 
-	private static final Key ALL = new EV3Key(EV3Key.ButtonType.ALL);
+	private static final Key ALL = new EV3Key(EV3Key.EV3Buttons.ALL);
 
     //public static final Keys keys = BrickFinder.getDefault().getKeys();
 

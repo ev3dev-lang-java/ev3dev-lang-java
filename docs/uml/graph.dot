@@ -539,12 +539,12 @@ digraph G {
 <tr><td align="left" balign="left"> + BUTTON_ENTER : int </td></tr>
 <tr><td align="left" balign="left"> + BUTTON_BACKSPACE : int </td></tr>
 <tr><td align="left" balign="left"> + BUTTON_ALL : int </td></tr>
-<tr><td align="left" balign="left"> - button : EV3Key.ButtonType </td></tr>
+<tr><td align="left" balign="left"> - button : EV3Key.EV3Buttons </td></tr>
 <tr><td align="left" balign="left"> - file : File </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3Key(button : EV3Key.ButtonType) </td></tr>
-<tr><td align="left" balign="left"> - getButtonPress() : EV3Key.ButtonType </td></tr>
+<tr><td align="left" balign="left"> + EV3Key(button : EV3Key.EV3Buttons) </td></tr>
+<tr><td align="left" balign="left"> - getButtonPress() : EV3Key.EV3Buttons </td></tr>
 <tr><td align="left" balign="left"> + getId() : int </td></tr>
 <tr><td align="left" balign="left"> + isDown() : boolean </td></tr>
 <tr><td align="left" balign="left"> + isUp() : boolean </td></tr>
@@ -572,11 +572,11 @@ digraph G {
 <tr><td align="left" balign="left"> - getValue() : int </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.sensors.EV3Key.ButtonType
-	c23 [label=<<table title="ev3dev.sensors.EV3Key.ButtonType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	// ev3dev.sensors.EV3Key.EV3Buttons
+	c23 [label=<<table title="ev3dev.sensors.EV3Key.EV3Buttons" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> ButtonType </td></tr>
+<tr><td align="center" balign="center"> EV3Buttons </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - value : int </td></tr>

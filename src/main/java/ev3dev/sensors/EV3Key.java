@@ -24,33 +24,20 @@ public class EV3Key implements Key {
 
     public static final int BUTTON_ALL = 0;
 
-    private ButtonType button;
+    private EV3Buttons button;
 
-    //TODO Use an ENUM
-    public EV3Key(ButtonType button) {
-        /*
-        if (button != BUTTON_UP &&
-                button != BUTTON_DOWN &&
-                button != BUTTON_LEFT &&
-                button != BUTTON_RIGHT &&
-                button != BUTTON_ENTER &&
-                button != BUTTON_ENTER &&
-                button != BUTTON_BACKSPACE &&
-                button != BUTTON_ALL){
-            throw new RuntimeException("The button that you specified does not exist. Better use the integer fields like Button.BUTTON_UP");
-        }
-        */
+    public EV3Key(EV3Buttons button) {
         this.button = button;
     }
 
-    private ButtonType getButtonPress() {
+    private EV3Buttons getButtonPress() {
         try (final FileInputStream is = new FileInputStream(this.file)) {
             // Each button press requires 4 reads -- 2 up and 2 down.
             final ButtonPress press1 = new ButtonPress(is);
             final ButtonPress press2 = new ButtonPress(is);
             final ButtonPress release1 = new ButtonPress(is);
             final ButtonPress release2 = new ButtonPress(is);
-            return ButtonType.findByValue(press1.getCode());
+            return EV3Buttons.findByValue(press1.getCode());
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -79,22 +66,16 @@ public class EV3Key implements Key {
     @Override
     public void waitForPress() {
         while(true) {
-            ButtonType type = getButtonPress();
+            EV3Buttons type = getButtonPress();
             log.debug(type.name());
             log.debug(button.name());
-            if(button.name().equals(ButtonType.ALL.name())){
+            if(button.name().equals(EV3Buttons.ALL.name())){
                 break;
             }
             if(button.name().equals(type.name())){
                 break;
             }
         }
-        /*
-        while(!isPressed()){
-            log.debug("Not pressed the right button");
-        }*/
-
-
     }
 
     @Override
@@ -125,12 +106,8 @@ public class EV3Key implements Key {
         private final short code;
         private final int   value;
 
-        private ButtonPress(final FileInputStream is)
-                throws IOException {
+        private ButtonPress(final FileInputStream is) throws IOException {
             final byte[] buf = new byte[16];
-            final int retval = is.read(buf);
-            //if (retval == -1)
-                //throw new DeviceException("Invalid file read");
 
             // The first 8 bytes are the time stamp (2 unsigned 64-bit integers, seconds and microseconds),
             // the next 2 bytes are the type (unsigned 16-bit integer),
@@ -149,7 +126,7 @@ public class EV3Key implements Key {
         private int getValue() { return this.value; }
     }
 
-    public enum ButtonType {
+    public enum EV3Buttons {
 
         UP(103),
         DOWN(108),
@@ -161,19 +138,18 @@ public class EV3Key implements Key {
 
         private final int value;
 
-        ButtonType(final int value) {
+        EV3Buttons(final int value) {
             this.value = value;
         }
 
         public int getValue() { return this.value; }
 
-        public static ButtonType findByValue(final int value) {
-            for (ButtonType type : ButtonType.values())
+        public static EV3Buttons findByValue(final int value) {
+            for (EV3Buttons type : EV3Buttons.values())
                 if (type.getValue() == value)
                     return type;
 
             throw new RuntimeException();
-            //throw new IllegalArgumentException(format("Invalid %s value: %d", ButtonType.class.getSimpleName(), value));
         }
     }
 }
