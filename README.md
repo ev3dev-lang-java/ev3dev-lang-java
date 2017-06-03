@@ -48,7 +48,7 @@ https://www.youtube.com/watch?v=SIwG848ODI8
 
 # UML Design
 
-![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/uml/graph.png)
+![ScreenShot](https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/develop/docs/uml/graph.png)
 
 ## References:
 
