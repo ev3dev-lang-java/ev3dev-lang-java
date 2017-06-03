@@ -1,34 +1,37 @@
 package ev3dev.actuators.ev3;
 
+import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.LED;
 import org.slf4j.Logger;
 
-public class EV3Led implements LED {
+public class EV3Led extends EV3DevDevice implements LED {
 
 	private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3Led.class);
 
-	/**
-	 * Left EV3 Button
-	 */
 	public static final int LEFT = 0;
+    public static final int RIGHT = 1;
 
     final private int direction;
 
-	/**
-	 * Right EV3 Button
-	 */
-	public static final int RIGHT = 1;
-
 	public EV3Led(final int button) {
 
+        if(!this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+            log.error("This actuator is specific of: {}", EV3DevPlatform.EV3BRICK);
+            throw new RuntimeException("This actuator is specific of: " + EV3DevPlatform.EV3BRICK);
+        }
+
+        //TODO Use ENUM
 		if (button != 0 && button != 1){
-			throw new RuntimeException("You are not specifying a EV3_LEFT_LED or EV3_RIGHT_LED field!");
+            log.error("You are not specifying any button.");
+			throw new RuntimeException("You are not specifying any button.");
 		}
 
 		direction = button == 0 ? LEFT : RIGHT;
 	}
 
+	//TODO Refactor paths
 	/**
 	 *
 	 * 0: turn off button lights
