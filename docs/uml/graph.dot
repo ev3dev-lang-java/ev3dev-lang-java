@@ -9,8 +9,75 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+	// ev3dev.actuators.LCD
+	c0 [label=<<table title="ev3dev.actuators.LCD" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - log : Logger </td></tr>
+<tr><td align="left" balign="left"> + FB_PATH : String </td></tr>
+<tr><td align="left" balign="left"> - SCREEN_WIDTH : int </td></tr>
+<tr><td align="left" balign="left"> - SCREEN_HEIGHT : int </td></tr>
+<tr><td align="left" balign="left"> - LINE_LEN : int </td></tr>
+<tr><td align="left" balign="left"> - BUFFER_SIZE : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_SCREEN_WIDTH : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_SCREEN_HEIGHT : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_LINE_LEN : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_ROWS : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_BUFFER_SIZE : int </td></tr>
+<tr><td align="left" balign="left"> - image : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> - g2d : Graphics2D </td></tr>
+<tr><td align="left" balign="left"> - Instance : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - LCD() </td></tr>
+<tr><td align="left" balign="left"> + getInstance() : GraphicsLCD </td></tr>
+<tr><td align="left" balign="left"> - init(width : int, height : int, lineLength : int, bufferSize : int) </td></tr>
+<tr><td align="left" balign="left"> + getImage() : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + flush() </td></tr>
+<tr><td align="left" balign="left"> + translate(x : int, y : int) </td></tr>
+<tr><td align="left" balign="left"> + getFont() : Font </td></tr>
+<tr><td align="left" balign="left"> + setFont(font : Font) </td></tr>
+<tr><td align="left" balign="left"> + getTranslateX() : int </td></tr>
+<tr><td align="left" balign="left"> + getTranslateY() : int </td></tr>
+<tr><td align="left" balign="left"> + setColor(color : int) </td></tr>
+<tr><td align="left" balign="left"> + setColor(i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + setPixel(i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + getPixel(i : int, i1 : int) : int </td></tr>
+<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int, b : boolean) </td></tr>
+<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawSubstring(s : String, i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawChar(c : char, i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawChars(chars : char[], i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
+<tr><td align="left" balign="left"> + getStrokeStyle() : int </td></tr>
+<tr><td align="left" balign="left"> + setStrokeStyle(i : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegion(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawImage(image : Image, i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawLine(x1 : int, y1 : int, x2 : int, y2 : int) </td></tr>
+<tr><td align="left" balign="left"> + fillRect(x : int, y : int, width : int, height : int) </td></tr>
+<tr><td align="left" balign="left"> + copyArea(i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRoundRect(x : int, y : int, width : int, height : int, arcWidth : int, arcHeight : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRect(x : int, y : int, width : int, height : int) </td></tr>
+<tr><td align="left" balign="left"> + drawArc(x : int, y : int, width : int, height : int, startAngle : int, arcAngle : int) </td></tr>
+<tr><td align="left" balign="left"> + fillArc(x : int, y : int, width : int, height : int, startAngle : int, arcAngle : int) </td></tr>
+<tr><td align="left" balign="left"> + refresh() </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+<tr><td align="left" balign="left"> + getWidth() : int </td></tr>
+<tr><td align="left" balign="left"> + getHeight() : int </td></tr>
+<tr><td align="left" balign="left"> + getDisplay() : byte[] </td></tr>
+<tr><td align="left" balign="left"> + getHWDisplay() : byte[] </td></tr>
+<tr><td align="left" balign="left"> + setContrast(i : int) </td></tr>
+<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
+<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, bytes1 : byte[], i4 : int, i5 : int, i6 : int, i7 : int, i8 : int, i9 : int, i10 : int) </td></tr>
+<tr><td align="left" balign="left"> + setAutoRefresh(b : boolean) </td></tr>
+<tr><td align="left" balign="left"> + setAutoRefreshPeriod(i : int) : int </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.Sound
-	c0 [label=<<table title="ev3dev.actuators.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c1 [label=<<table title="ev3dev.actuators.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sound </td></tr>
 		</table></td></tr>
@@ -38,7 +105,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.ev3.EV3Led
-	c1 [label=<<table title="ev3dev.actuators.ev3.EV3Led" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c2 [label=<<table title="ev3dev.actuators.ev3.EV3Led" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3Led </td></tr>
 		</table></td></tr>
@@ -51,127 +118,6 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3Led(button : int) </td></tr>
 <tr><td align="left" balign="left"> + setPattern(pattern : int) </td></tr>
-		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.actuators.ev3.lcd.EV3GraphicsLCD
-	c2 [label=<<table title="ev3dev.actuators.ev3.lcd.EV3GraphicsLCD" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EV3GraphicsLCD </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - log : Logger </td></tr>
-<tr><td align="left" balign="left"> + FB_PATH : String </td></tr>
-<tr><td align="left" balign="left"> + SCREEN_WIDTH : int </td></tr>
-<tr><td align="left" balign="left"> + SCREEN_HEIGHT : int </td></tr>
-<tr><td align="left" balign="left"> + LINE_LEN : int </td></tr>
-<tr><td align="left" balign="left"> + ROWS : int </td></tr>
-<tr><td align="left" balign="left"> + BUF_SIZE : int </td></tr>
-<tr><td align="left" balign="left"> - image : BufferedImage </td></tr>
-<tr><td align="left" balign="left"> - g2d : Graphics2D </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3GraphicsLCD() </td></tr>
-<tr><td align="left" balign="left"> + getImage() : BufferedImage </td></tr>
-<tr><td align="left" balign="left"> + flush() </td></tr>
-<tr><td align="left" balign="left"> + draw(s : Shape) </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : Image, xform : AffineTransform, obs : ImageObserver) : boolean </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : BufferedImage, op : BufferedImageOp, x : int, y : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRenderedImage(img : RenderedImage, xform : AffineTransform) </td></tr>
-<tr><td align="left" balign="left"> + drawRenderableImage(img : RenderableImage, xform : AffineTransform) </td></tr>
-<tr><td align="left" balign="left"> + drawString(str : String, x : int, y : int) </td></tr>
-<tr><td align="left" balign="left"> + drawString(str : String, x : float, y : float) </td></tr>
-<tr><td align="left" balign="left"> + drawString(iterator : AttributedCharacterIterator, x : int, y : int) </td></tr>
-<tr><td align="left" balign="left"> + drawString(iterator : AttributedCharacterIterator, x : float, y : float) </td></tr>
-<tr><td align="left" balign="left"> + drawGlyphVector(g : GlyphVector, x : float, y : float) </td></tr>
-<tr><td align="left" balign="left"> + fill(s : Shape) </td></tr>
-<tr><td align="left" balign="left"> + hit(rect : Rectangle, s : Shape, onStroke : boolean) : boolean </td></tr>
-<tr><td align="left" balign="left"> + getDeviceConfiguration() : GraphicsConfiguration </td></tr>
-<tr><td align="left" balign="left"> + setComposite(comp : Composite) </td></tr>
-<tr><td align="left" balign="left"> + setPaint(paint : Paint) </td></tr>
-<tr><td align="left" balign="left"> + setStroke(s : Stroke) </td></tr>
-<tr><td align="left" balign="left"> + setRenderingHint(hintKey : RenderingHints.Key, hintValue : Object) </td></tr>
-<tr><td align="left" balign="left"> + getRenderingHint(hintKey : RenderingHints.Key) : Object </td></tr>
-<tr><td align="left" balign="left"> + setRenderingHints(hints : Map&lt;?, ?&gt;) </td></tr>
-<tr><td align="left" balign="left"> + addRenderingHints(hints : Map&lt;?, ?&gt;) </td></tr>
-<tr><td align="left" balign="left"> + getRenderingHints() : RenderingHints </td></tr>
-<tr><td align="left" balign="left"> + translate(x : int, y : int) </td></tr>
-<tr><td align="left" balign="left"> + translate(tx : double, ty : double) </td></tr>
-<tr><td align="left" balign="left"> + rotate(theta : double) </td></tr>
-<tr><td align="left" balign="left"> + rotate(theta : double, x : double, y : double) </td></tr>
-<tr><td align="left" balign="left"> + scale(sx : double, sy : double) </td></tr>
-<tr><td align="left" balign="left"> + shear(shx : double, shy : double) </td></tr>
-<tr><td align="left" balign="left"> + transform(Tx : AffineTransform) </td></tr>
-<tr><td align="left" balign="left"> + setTransform(Tx : AffineTransform) </td></tr>
-<tr><td align="left" balign="left"> + getTransform() : AffineTransform </td></tr>
-<tr><td align="left" balign="left"> + getPaint() : Paint </td></tr>
-<tr><td align="left" balign="left"> + getComposite() : Composite </td></tr>
-<tr><td align="left" balign="left"> + setBackground(color : Color) </td></tr>
-<tr><td align="left" balign="left"> + getBackground() : Color </td></tr>
-<tr><td align="left" balign="left"> + getStroke() : Stroke </td></tr>
-<tr><td align="left" balign="left"> + clip(s : Shape) </td></tr>
-<tr><td align="left" balign="left"> + getFontRenderContext() : FontRenderContext </td></tr>
-<tr><td align="left" balign="left"> + create() : Graphics </td></tr>
-<tr><td align="left" balign="left"> + getColor() : Color </td></tr>
-<tr><td align="left" balign="left"> + setColor(c : Color) </td></tr>
-<tr><td align="left" balign="left"> + setPaintMode() </td></tr>
-<tr><td align="left" balign="left"> + setXORMode(c1 : Color) </td></tr>
-<tr><td align="left" balign="left"> + getFont() : Font </td></tr>
-<tr><td align="left" balign="left"> + setFont(font : Font) </td></tr>
-<tr><td align="left" balign="left"> + getFontMetrics(f : Font) : FontMetrics </td></tr>
-<tr><td align="left" balign="left"> + getClipBounds() : Rectangle </td></tr>
-<tr><td align="left" balign="left"> + clipRect(x : int, y : int, width : int, height : int) </td></tr>
-<tr><td align="left" balign="left"> + setClip(x : int, y : int, width : int, height : int) </td></tr>
-<tr><td align="left" balign="left"> + getClip() : Shape </td></tr>
-<tr><td align="left" balign="left"> + setClip(clip : Shape) </td></tr>
-<tr><td align="left" balign="left"> + copyArea(x : int, y : int, width : int, height : int, dx : int, dy : int) </td></tr>
-<tr><td align="left" balign="left"> + getTranslateX() : int </td></tr>
-<tr><td align="left" balign="left"> + getTranslateY() : int </td></tr>
-<tr><td align="left" balign="left"> + setColor(color : int) </td></tr>
-<tr><td align="left" balign="left"> + setColor(i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + setPixel(i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + getPixel(i : int, i1 : int) : int </td></tr>
-<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int, b : boolean) </td></tr>
-<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawSubstring(s : String, i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawChar(c : char, i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawChars(chars : char[], i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
-<tr><td align="left" balign="left"> + getStrokeStyle() : int </td></tr>
-<tr><td align="left" balign="left"> + setStrokeStyle(i : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRegion(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawImage(image : Image, i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawLine(x1 : int, y1 : int, x2 : int, y2 : int) </td></tr>
-<tr><td align="left" balign="left"> + fillRect(x : int, y : int, width : int, height : int) </td></tr>
-<tr><td align="left" balign="left"> + copyArea(i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int) </td></tr>
-<tr><td align="left" balign="left"> + clearRect(x : int, y : int, width : int, height : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRoundRect(x : int, y : int, width : int, height : int, arcWidth : int, arcHeight : int) </td></tr>
-<tr><td align="left" balign="left"> + fillRoundRect(x : int, y : int, width : int, height : int, arcWidth : int, arcHeight : int) </td></tr>
-<tr><td align="left" balign="left"> + drawOval(x : int, y : int, width : int, height : int) </td></tr>
-<tr><td align="left" balign="left"> + fillOval(x : int, y : int, width : int, height : int) </td></tr>
-<tr><td align="left" balign="left"> + drawArc(x : int, y : int, width : int, height : int, startAngle : int, arcAngle : int) </td></tr>
-<tr><td align="left" balign="left"> + fillArc(x : int, y : int, width : int, height : int, startAngle : int, arcAngle : int) </td></tr>
-<tr><td align="left" balign="left"> + drawPolyline(xPoints : int[], yPoints : int[], nPoints : int) </td></tr>
-<tr><td align="left" balign="left"> + drawPolygon(xPoints : int[], yPoints : int[], nPoints : int) </td></tr>
-<tr><td align="left" balign="left"> + fillPolygon(xPoints : int[], yPoints : int[], nPoints : int) </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : Image, x : int, y : int, observer : ImageObserver) : boolean </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : Image, x : int, y : int, width : int, height : int, observer : ImageObserver) : boolean </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : Image, x : int, y : int, bgcolor : Color, observer : ImageObserver) : boolean </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : Image, x : int, y : int, width : int, height : int, bgcolor : Color, observer : ImageObserver) : boolean </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : Image, dx1 : int, dy1 : int, dx2 : int, dy2 : int, sx1 : int, sy1 : int, sx2 : int, sy2 : int, observer : ImageObserver) : boolean </td></tr>
-<tr><td align="left" balign="left"> + drawImage(img : Image, dx1 : int, dy1 : int, dx2 : int, dy2 : int, sx1 : int, sy1 : int, sx2 : int, sy2 : int, bgcolor : Color, observer : ImageObserver) : boolean </td></tr>
-<tr><td align="left" balign="left"> + dispose() </td></tr>
-<tr><td align="left" balign="left"> + refresh() </td></tr>
-<tr><td align="left" balign="left"> + clear() </td></tr>
-<tr><td align="left" balign="left"> + getWidth() : int </td></tr>
-<tr><td align="left" balign="left"> + getHeight() : int </td></tr>
-<tr><td align="left" balign="left"> + getDisplay() : byte[] </td></tr>
-<tr><td align="left" balign="left"> + getHWDisplay() : byte[] </td></tr>
-<tr><td align="left" balign="left"> + setContrast(i : int) </td></tr>
-<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
-<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, bytes1 : byte[], i4 : int, i5 : int, i6 : int, i7 : int, i8 : int, i9 : int, i10 : int) </td></tr>
-<tr><td align="left" balign="left"> + setAutoRefresh(b : boolean) </td></tr>
-<tr><td align="left" balign="left"> + setAutoRefreshPeriod(i : int) : int </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.ev3.motors.BaseRegulatedMotor
@@ -1008,8 +954,22 @@ digraph G {
 <tr><td align="left" balign="left"> + getName() : String </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.JarResource
+	c45 [label=<<table title="ev3dev.utils.JarResource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> JarResource </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - log : Logger </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + JarResource() </td></tr>
+<tr><td align="left" balign="left"> + export(resourceName : String) : String </td></tr>
+<tr><td align="left" balign="left"> + delete(resourceName : String) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.PilotProps
-	c45 [label=<<table title="ev3dev.utils.PilotProps" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c46 [label=<<table title="ev3dev.utils.PilotProps" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PilotProps </td></tr>
 		</table></td></tr>
@@ -1029,7 +989,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Shell
-	c46 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c47 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Shell </td></tr>
 		</table></td></tr>
@@ -1043,7 +1003,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Sysfs
-	c47 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c48 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sysfs </td></tr>
 		</table></td></tr>
@@ -1063,10 +1023,10 @@ digraph G {
 <tr><td align="left" balign="left"> + writeBytes(path : String, value : byte[]) : boolean </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//ev3dev.actuators.Sound extends ev3dev.hardware.EV3DevDevice
+	//ev3dev.actuators.LCD extends ev3dev.hardware.EV3DevDevice
 	c11:p -> c0:p [dir=back,arrowtail=empty];
-	//ev3dev.actuators.ev3.lcd.EV3GraphicsLCD extends java.awt.Graphics2D
-	c48:p -> c2:p [dir=back,arrowtail=empty];
+	//ev3dev.actuators.Sound extends ev3dev.hardware.EV3DevDevice
+	c11:p -> c1:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.ev3.motors.BaseRegulatedMotor extends ev3dev.hardware.EV3DevMotorDevice
 	c13:p -> c3:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.ev3.motors.BasicMotor extends ev3dev.hardware.EV3DevMotorDevice
@@ -1134,58 +1094,7 @@ digraph G {
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode extends ev3dev.sensors.ev3.EV3DevSensorMode
 	c31:p -> c44:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.PilotProps extends java.util.Properties
-	c49:p -> c45:p [dir=back,arrowtail=empty];
-	// java.awt.Graphics2D
-	c48 [label=<<table title="java.awt.Graphics2D" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Graphics2D.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Graphics2D </font></td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left">  </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> # Graphics2D() </td></tr>
-<tr><td align="left" balign="left"> + draw3DRect(arg0 : int, arg1 : int, arg2 : int, arg3 : int, arg4 : boolean) </td></tr>
-<tr><td align="left" balign="left"> + fill3DRect(arg0 : int, arg1 : int, arg2 : int, arg3 : int, arg4 : boolean) </td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + draw(arg0 : Shape) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawImage(arg0 : Image, arg1 : AffineTransform, arg2 : ImageObserver) : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawImage(arg0 : BufferedImage, arg1 : BufferedImageOp, arg2 : int, arg3 : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawRenderedImage(arg0 : RenderedImage, arg1 : AffineTransform) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawRenderableImage(arg0 : RenderableImage, arg1 : AffineTransform) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawString(arg0 : String, arg1 : int, arg2 : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawString(arg0 : String, arg1 : float, arg2 : float) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawString(arg0 : AttributedCharacterIterator, arg1 : int, arg2 : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawString(arg0 : AttributedCharacterIterator, arg1 : float, arg2 : float) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + drawGlyphVector(arg0 : GlyphVector, arg1 : float, arg2 : float) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + fill(arg0 : Shape) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + hit(arg0 : Rectangle, arg1 : Shape, arg2 : boolean) : boolean </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getDeviceConfiguration() : GraphicsConfiguration </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setComposite(arg0 : Composite) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setPaint(arg0 : Paint) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setStroke(arg0 : Stroke) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setRenderingHint(arg0 : RenderingHints.Key, arg1 : Object) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getRenderingHint(arg0 : RenderingHints.Key) : Object </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setRenderingHints(arg0 : Map&lt;?, ?&gt;) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + addRenderingHints(arg0 : Map&lt;?, ?&gt;) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getRenderingHints() : RenderingHints </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + translate(arg0 : int, arg1 : int) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + translate(arg0 : double, arg1 : double) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(arg0 : double) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + rotate(arg0 : double, arg1 : double, arg2 : double) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + scale(arg0 : double, arg1 : double) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + shear(arg0 : double, arg1 : double) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + transform(arg0 : AffineTransform) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setTransform(arg0 : AffineTransform) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getTransform() : AffineTransform </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getPaint() : Paint </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getComposite() : Composite </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setBackground(arg0 : Color) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getBackground() : Color </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getStroke() : Stroke </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + clip(arg0 : Shape) </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getFontRenderContext() : FontRenderContext </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Graphics2D.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c49:p -> c46:p [dir=back,arrowtail=empty];
 	// java.util.Properties
 	c49 [label=<<table title="java.util.Properties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
