@@ -1,15 +1,23 @@
 package ev3dev.robotics.tts;
 
 import ev3dev.utils.Shell;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * Espeak wrapper
  */
-public @Slf4j class Espeak {
+public class Espeak {
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(Espeak.class);
 
 	private static final String ESPEAK = "espeak";
 	private final static String CMD_APLAY ="aplay";
+
+	public static final String VOICE_ENGLISH = "en";
+	public static final String VOICE_SPANISH = "es";
+	public static final int DEFAULT_SPEED_READING = 105;
+	public static final int DEFAULT_PITCH = 60;
+
 	private String voice = null;
 	private int volume = -1;
 	private int speedReading = -1;
@@ -49,22 +57,32 @@ public @Slf4j class Espeak {
 		sb.append(" ");
 		if(this.voice != null){
 			sb.append(" -v ").append(this.voice);
+		}else{
+			sb.append(" -v ").append(Espeak.VOICE_ENGLISH);
 		}
 		if(this.volume != -1){
 			sb.append(" -a ").append(this.volume);
 		}
 		if(this.speedReading != -1){
 			sb.append(" -s ").append(this.speedReading);
+		}else{
+			sb.append(" -s ").append(this.DEFAULT_SPEED_READING);
 		}
 		if(this.pitch != -1){
 			sb.append(" -p ").append(this.pitch);
+		}else{
+			sb.append(" -p ").append(this.DEFAULT_PITCH);
 		}
 		if(message != null){
 			sb.append(" --stdout ");
 			sb.append("\"").append(this.message).append("\"");
 		}else{
-			sb.append("--stdout ");
-			sb.append(" -f ").append(this.filePath).append("\"");
+			if(message != null){
+				sb.append("--stdout ");
+				sb.append(" -f ").append(this.filePath).append("\"");
+			}else{
+				throw new IllegalArgumentException("Message is null or FilePath.");
+			}
 		}
 		sb.append(" | ");
 		sb.append(CMD_APLAY);

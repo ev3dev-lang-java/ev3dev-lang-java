@@ -1,7 +1,7 @@
 package ev3dev.hardware;
 
 import lejos.utility.Delay;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 /**
  * Base class to interact with EV3Dev Sensors
@@ -9,14 +9,16 @@ import lombok.extern.slf4j.Slf4j;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j abstract class EV3DevSensorDevice extends EV3DevDevice {
+public abstract class EV3DevSensorDevice extends EV3DevDevice {
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevSensorDevice.class);
 
 	protected static final String LEGO_UART_SENSOR = "ev3-uart";
 	protected static final String LEGO_ANALOG_SENSOR = "ev3-analog";
 	protected static final String SENSOR_MODES = "modes";
 	protected static final String SENSOR_MODE = "mode";
 
-	/**
+    /**
 	 * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
 	 * It is necessary to indicate the type and ports.
 	 *
@@ -29,7 +31,7 @@ public @Slf4j abstract class EV3DevSensorDevice extends EV3DevDevice {
 		final String port = this.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
-		if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+		if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
 			this.detect(LEGO_SENSOR, port);
 		}else {
@@ -57,7 +59,7 @@ public @Slf4j abstract class EV3DevSensorDevice extends EV3DevDevice {
 		final String port = this.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
-		if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+		if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 			this.detect(LEGO_SENSOR, port);
 		}else {
 

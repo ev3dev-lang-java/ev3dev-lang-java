@@ -1,8 +1,12 @@
 package ev3dev.utils;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,9 +17,11 @@ import java.util.List;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j class Sysfs {
+public class Sysfs {
 
-	/**
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sysfs.class);
+
+    /**
 	 * Write a value in a file.
 	 * 
 	 * @param filePath File path
@@ -23,13 +29,26 @@ public @Slf4j class Sysfs {
 	 * @return A boolean value if the operation was written or not.
 	 */
 	public static boolean writeString(final String filePath, final String value) {
-		log.debug("echo " + value + " > " + filePath);
+		if(log.isTraceEnabled())
+			log.trace("echo " + value + " > " + filePath);
 		try {
-			File mpuFile = new File(filePath);
-			if(mpuFile.canWrite()) {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
-				bw.write(value);
-				bw.close();
+			final File file = new File(filePath);
+			if(file.canWrite()) {
+				/*
+				final FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+				final FileChannel fileChannel = fileOutputStream.getChannel();
+				final ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes(Charset.forName("UTF-8")));
+				fileChannel.write(byteBuffer);
+				fileChannel.close();
+				*/
+				PrintWriter out = new PrintWriter(file);
+				out.println(value);
+				out.flush();
+				out.close();
+			//TODO Review
+			}else {
+				log.error("File: '{}' without write permissions.", filePath);
+				return false;
 			}
 		} catch (IOException ex) {
             log.error(ex.getLocalizedMessage());
@@ -39,7 +58,7 @@ public @Slf4j class Sysfs {
 	}
 	
 	public static boolean writeInteger(final String filePath, final int value) {
-		return writeString(filePath, "" + value);
+		return writeString(filePath, new StringBuilder().append(value).toString());
 	}
 	
 	/**
@@ -48,16 +67,18 @@ public @Slf4j class Sysfs {
 	 * @return value from attribute
 	 */
 	public static String readString(final String filePath) {
-		log.debug("cat " + filePath);
-		String value;
+		if(log.isTraceEnabled())
+			log.trace("cat " + filePath);
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			value = br.readLine();
-			br.close();
+			final Path path = Paths.get(filePath);
+			if(existFile(path) && Files.isReadable(path)){
+				return Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+			}
+			throw new IOException("Problem reading path: " + filePath);
 		} catch (IOException ex) {
-			return "-1";
+			log.error(ex.getLocalizedMessage());
+			throw new RuntimeException(ex);
 		}
-		return value;
 	}
 	
 	/**
@@ -79,9 +100,10 @@ public @Slf4j class Sysfs {
 	 * @return an List with options from a path
 	 */
 	public static List<File> getElements(final String filePath){
-		log.debug("ls " + filePath);
+		if(log.isTraceEnabled())
+			log.trace("ls " + filePath);
 		final File f = new File(filePath);
-		if(f.exists() && f.isDirectory() && (f.listFiles().length > 0)) {
+		if(existPath(filePath) && (f.listFiles().length > 0)) {
             return new ArrayList<>(Arrays.asList(f.listFiles()));
 		}else {
 			throw new RuntimeException("The path doesn't exist: " + filePath);
@@ -98,5 +120,23 @@ public @Slf4j class Sysfs {
 		final File f = new File(filePath);
         return f.exists() && f.isDirectory();
     }
+
+
+	public static boolean existFile(Path pathToFind) {
+		return Files.exists(pathToFind);
+	}
+
+	public static boolean writeBytes(final String path, final byte[] value) {
+        final File file = new File(path);
+		try {
+			DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+			out.write(value);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Unable to draw the LCD", e);
+		}
+		return true;
+	}
 
 }

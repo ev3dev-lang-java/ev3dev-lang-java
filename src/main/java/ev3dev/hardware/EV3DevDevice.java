@@ -1,7 +1,7 @@
 package ev3dev.hardware;
 
 import ev3dev.utils.Sysfs;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.util.List;
@@ -19,7 +19,9 @@ import java.util.List;
  */
 
 
-public @Slf4j abstract class EV3DevDevice extends EV3DevPlatform  {
+public abstract class EV3DevDevice extends EV3DevPlatforms {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevDevice.class);
 
     protected static final String LEGO_PORT = "lego-port";
     protected static final String ADDRESS = "address";
@@ -37,7 +39,7 @@ public @Slf4j abstract class EV3DevDevice extends EV3DevPlatform  {
      */
     protected void detect(final String type, final String portName) {
         log.debug("Detecting device on port: {}", portName);
-        final String devicePath = DEVICE_ROOT_PATH + type;
+        final String devicePath = ROOT_PATH + "/" + type;
         final List<File> deviceAvailables = Sysfs.getElements(devicePath);
 
         boolean connected = false;

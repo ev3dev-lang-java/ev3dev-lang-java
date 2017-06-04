@@ -1,11 +1,11 @@
 package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
-import ev3dev.hardware.SupportedPlatform;
+import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.io.File;
 
@@ -19,14 +19,16 @@ import java.io.File;
  * @author Juan Antonio Breña Moral
  *
  */
-public @Slf4j class Sound extends EV3DevDevice {
+public class Sound extends EV3DevDevice {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sound.class);
 
     private final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
     private final static String CMD_BEEP = "beep";
     private final static String CMD_APLAY ="aplay";
     private final static String VOLUME = "volume";
     private final static String VOLUME_PATH = SOUND_PATH + VOLUME;
-    private final static  String DISABPLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
+    private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
 
     private static Sound Instance;
 
@@ -51,12 +53,12 @@ public @Slf4j class Sound extends EV3DevDevice {
      * Beeps once.
      */
     public void beep() {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
             log.debug(CMD_BEEP);
             Shell.execute(CMD_BEEP);
             Delay.msDelay(100);
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 
@@ -64,11 +66,11 @@ public @Slf4j class Sound extends EV3DevDevice {
      * Beeps twice.
      */
     public void twoBeeps() {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
             beep();
             beep();
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 
@@ -79,11 +81,11 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param volume The volume of the playback 100 corresponds to 100%
      */
     public void playTone(final int frequency, final int duration, final int volume) {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)){
+        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
             this.setVolume(volume);
     	    this.playTone(frequency, duration);
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
     
@@ -93,11 +95,11 @@ public @Slf4j class Sound extends EV3DevDevice {
      * @param duration The duration of the tone, in milliseconds.
      */
     public void playTone(final int frequency, final int duration) {
-        if(this.getPlatform().equals(SupportedPlatform.EV3BRICK)) {
+        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)) {
             final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
             Shell.execute(cmdTone);
         } else {
-            log.debug(DISABPLED_FEATURE_MESSAGE);
+            log.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 

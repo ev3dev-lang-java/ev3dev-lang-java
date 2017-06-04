@@ -123,6 +123,7 @@ public class EV3GyroSensor extends BaseSensor {
 	}
 
 	private class RateMode extends EV3DevSensorMode {
+
 		private static final String MODE = "GYRO-RATE";
 		private static final float toSI = -1;
 

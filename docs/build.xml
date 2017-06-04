@@ -35,7 +35,7 @@ Ant file designed to generate javadocs and uml graphs
 				
 				<fileset dir="../src/main/java" defaultexcludes="yes">
 	                <include name="**/*.java" />
-					<exclude name="**/ev3dev.examples/**" />
+					<exclude name="**/examples/**" />
 					<exclude name="**/lejos/robotics/filter/**" />
 				</fileset>
 	        </javadoc>

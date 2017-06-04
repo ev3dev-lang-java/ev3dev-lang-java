@@ -3,6 +3,7 @@ package ev3dev.sensors.ev3;
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
+import lejos.robotics.Touch;
 
 import java.io.File;
 
@@ -27,7 +28,7 @@ import java.io.File;
  * 
  * 
  */
-public class EV3TouchSensor extends BaseSensor {
+public class EV3TouchSensor extends BaseSensor implements Touch {
 
     private static final String LEGO_EV3_TOUCH = "lego-ev3-touch";
 
@@ -58,7 +59,11 @@ public class EV3TouchSensor extends BaseSensor {
         return getMode(0);
     }
 
-    
+    @Override
+    public boolean isPressed() {
+        return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  EV3DevSensorMode.VALUE0) == 0) ? false : true;
+    }
+
     private class TouchMode extends EV3DevSensorMode {
     	
     	private File pathDevice = null;
