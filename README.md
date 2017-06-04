@@ -275,6 +275,32 @@ and [Mocks](http://site.mockito.org/). But at the moment, many features are test
 - ev3dev.hardware
 - [PlatformTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/hardware/PlatformTest.java)
 
+**lejos-commons:**
+
+- lejos.commons.subsumption
+- [BumperCar](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/commons/subsumption/BumperCar.java)
+- [DriveForward](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/commons/subsumption/DriveForward.java)
+- [HitWall](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/commons/subsumption/HitWall.java)
+
+**lejos-navigation:**
+
+- lejos.robotics.navigation
+- [PilotConfig](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/PilotConfig.java)
+- [PilotConfig2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/PilotConfig2.java) 
+- [DifferentialPilotStopTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/DifferentialPilotStopTest.java) 
+- [DifferentialPilotTest1](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/DifferentialPilotTest1.java) 
+- [DifferentialPilotTest9](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/DifferentialPilotTest9.java) 
+- [MoveControllerTest1](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/MoveControllerTest1.java) 
+- [MoveControllerTest2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/MoveControllerTest2.java) 
+- [NavigatorTest1](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest1.java) 
+- [NavigatorTest2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest2.java) 
+- [NavigatorTest3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest3.java) 
+- [NavigatorTest4](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest4.java) 
+- lejos.robotics.objectdetection
+- [FeatureAvoider](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/feature/FeatureAvoider.java) 
+- [FeatureAvoider2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/feature/FeatureAvoider2.java) 
+- [FeatureAvoider3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/feature/FeatureAvoider3.java) 
+
 ## Videos
 
 https://www.youtube.com/watch?v=SIwG848ODI8
