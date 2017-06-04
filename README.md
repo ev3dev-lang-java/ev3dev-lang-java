@@ -92,6 +92,70 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 
 ## Getting Started
 
+### 1. Install EV3Dev on your brick
+
+Follow the following link to install EV3Dev:
+
+http://www.ev3dev.org/docs/getting-started/
+
+Once you finish this step, you will have a complete Linux distro to run any Programming language
+
+**Note:** Please, update your brick with latest update before continuing with the next step.
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo reboot
+```
+
+### 2. Install Java on your brick
+
+For this step exist 2 paths. 
+
+**2.1 EV3 Brick:**
+
+The EV3 Brick was designed with a SOC based on [ARM EABI](https://wiki.debian.org/ArmEabiPort) 
+and the fastest JRE option is based on Oracle and it is not possible to download in an automatic way so you have to 
+download the JRE on your local machine from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html).
+
+If you have the file `ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz` on your laptop, copy to your robot using `SCP`
+
+```
+scp "./ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz" "robot@192.168.1.85:/home/robot"
+```
+
+Then you can the following installer:
+
+```
+cd /home/robot
+mkdir installer
+cd installer
+wget -N https://raw.githubusercontent.com/ev3dev-lang-java/installer/develop/installer.sh
+chmod +x installer.sh
+sudo ./installer.sh help
+sudo ./installer.sh
+```
+
+To continue with the installation of Java on the brick.
+
+**2.2 BrickPi+ / PiStorms:**
+
+Using the installer, it is possible to automate everything:
+
+```
+cd /home/robot
+mkdir installer
+cd installer
+wget -N https://raw.githubusercontent.com/ev3dev-lang-java/installer/develop/installer.sh
+chmod +x installer.sh
+sudo ./installer.sh help
+sudo ./installer.sh
+```
+
+Further information about the installer here:
+https://github.com/ev3dev-lang-java/installer
+
 ### Use a Gradle template project
 
 If you like, you can experiment with the project, using the following project template:
