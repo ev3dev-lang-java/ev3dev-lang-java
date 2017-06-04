@@ -324,6 +324,7 @@ distanceValue = (int)sample[0];
 ```
 
 - Usage of inner classes for the different modes of Sensors
+- Lack of Unit testing in the whole project
 
 ## UML Design
 
