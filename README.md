@@ -221,7 +221,7 @@ Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-
 ## Examples
 
 Exist many examples used to test the project. In the future we will automate a good % of the tests using [JUnit testing](http://junit.org/junit4/)
-and [Mocks](http://site.mockito.org/) but at the moment, many features are tested manually.
+and [Mocks](http://site.mockito.org/). But at the moment, many features are tested manually.
 
 
 
