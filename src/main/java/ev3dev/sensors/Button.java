@@ -7,7 +7,7 @@ import org.slf4j.Logger;
  * Abstraction for an NXT/EV3 button. Example:
  * 
  * <pre>
- * Button.ENTER.waitForPressAndRelease();
+ * EV3Key.ENTER.waitForPressAndRelease();
  * Sound.playTone(1000, 1);
  * </pre>
  * 
@@ -20,9 +20,9 @@ import org.slf4j.Logger;
  * safely from multiple threads, even while a call to one of the waitFor*
  * methods active. However, it is not safe to invoke waitFor* methods in
  * parallel from different threads. This includes the waitFor* methods of
- * different buttons. For example Button.ENTER.waitForPress() must not be
- * invoked in parallel to Button.ESCAPE.waitForPress() or the static
- * Button.waitForAnyEvent(). In case this is needed, it is strongly recommended
+ * different buttons. For example EV3Key.ENTER.waitForPress() must not be
+ * invoked in parallel to EV3Key.ESCAPE.waitForPress() or the static
+ * EV3Key.waitForAnyEvent(). In case this is needed, it is strongly recommended
  * that you write your own Thread, which waits for button events and dispatches
  * the events to anyone who's interested.
  */
@@ -33,29 +33,29 @@ public class Button {
 	/**
 	 * The Enter button.
 	 */
-	public static final Key ENTER = new EV3Key(EV3Key.EV3Buttons.ENTER);
+	public static final Key ENTER = new EV3Key(EV3Key.BUTTON_ENTER);
 	/**
 	 * The Left button.
 	 */
-	public static final Key LEFT = new EV3Key(EV3Key.EV3Buttons.LEFT);
+	public static final Key LEFT = new EV3Key(EV3Key.BUTTON_LEFT);
 	/**
 	 * The Right button.
 	 */
-	public static final Key RIGHT = new EV3Key(EV3Key.EV3Buttons.RIGHT);
+	public static final Key RIGHT = new EV3Key(EV3Key.BUTTON_RIGHT);
 	/**
 	 * The Escape button.
 	 */
-	public static final Key ESCAPE = new EV3Key(EV3Key.EV3Buttons.BACKSPACE);
+	public static final Key ESCAPE = new EV3Key(EV3Key.BUTTON_BACKSPACE);
 	/**
 	 * The Up button.
 	 */
-	public static final Key UP = new EV3Key(EV3Key.EV3Buttons.UP);
+	public static final Key UP = new EV3Key(EV3Key.BUTTON_UP);
 	/**
 	 * The Down button.
 	 */
-	public static final Key DOWN = new EV3Key(EV3Key.EV3Buttons.DOWN);
+	public static final Key DOWN = new EV3Key(EV3Key.BUTTON_DOWN);
 
-	private static final Key ALL = new EV3Key(EV3Key.EV3Buttons.ALL);
+	private static final Key ALL = new EV3Key(EV3Key.BUTTON_ALL);
 
     //public static final Keys keys = BrickFinder.getDefault().getKeys();
 
