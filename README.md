@@ -90,6 +90,11 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 * [LeJOS local navigation stack](https://github.com/ev3dev-lang-java/lejos-navigation) Support
 * [RPLidar A1](https://github.com/ev3dev-lang-java/RPLidar4J) (2D Lidar) Support
 
+## Roadmap
+
+To check the roadmap, it is better to review the `backlog`:
+https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues
+
 ## Getting Started
 
 ### 1. Install EV3Dev on your brick
