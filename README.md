@@ -315,6 +315,15 @@ This project is not perfect. Exist some aspects to improve:
 - Run Java programs from Brickman
 - I think that the class `FusorDetector.java` has some kind of Concurrency issue.
 - Improve the granularity support for EV3 Buttons
+- Usage of mutable objects with `SampleProvider`
+
+``` java
+float [] sample = new float[sp.sampleSize()];
+sp.fetchSample(sample, 0);
+distanceValue = (int)sample[0];
+```
+
+- Usage of inner classes for the different modes of Sensors
 
 ## UML Design
 
