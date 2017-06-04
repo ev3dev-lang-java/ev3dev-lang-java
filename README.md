@@ -35,7 +35,7 @@ Basically, with this library you can develop educational robots with Java for th
 
 - EV3 Brick
 - BrickPi+
-- BrickPi 3
+- BrickPi 3 (Scheduled on v0.7.0)
 - PiStorms
 
 Now, with the same syntax, it is possible to deploy the software for robots on Raspberry Pi with BrickPi & PiStorms.
@@ -65,15 +65,15 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 
 **Java features**
 
-* Automatic installation of Java JDK 8 for (Brickpi+/PiStorms + Raspberry Pi 3)
-* Partial installation of Java JRE 8 for EV3 Brick
-* Java 9 support  for (Brickpi+/PiStorms + Raspberry Pi 3)
+* Automatic installation of Oracle Java JDK 8 for Brickpi+/PiStorms + Raspberry Pi 3
+* Partial installation of Oracle Java JRE 8 for EV3 Brick
+* OpenJDK Java 9 EA support for Brickpi+/PiStorms + Raspberry Pi 3
 * Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
 
 **Platform features**
 
-* Support for EV3 Brick, PiStorms v1/v2 &amp; BrickPi+
+* Support for EV3 Brick, PiStorms v1/v2, BrickPi+ & BrickPi 3
 
 **Lego Mindstorms features**
 
