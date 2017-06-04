@@ -22,7 +22,7 @@ But now, it exists another alternative, `EV3Dev-lang-java` a Java project for [E
 The project contains the following Java libraries/scripts:
   
 - [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level interation with EV3Dev
-- [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & Utilities
+- [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
 - [lejos-navigation](https://github.com/ev3dev-lang-java/lejos-navigation): LeJOS navigation stack
 - [RPLidar4J](https://github.com/ev3dev-lang-java/RPLidar4J): RPLidar A1 support
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
