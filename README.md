@@ -223,6 +223,8 @@ Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-
 Exist many examples used to test the project. In the future we will automate a good % of the tests using [JUnit testing](http://junit.org/junit4/)
 and [Mocks](http://site.mockito.org/). But at the moment, many features are tested manually.
 
+Take a look the following examples to discover some features included with this Java project.
+
 **EV3Dev-lang-Java:**
 
 - ev3dev.misc
@@ -303,7 +305,16 @@ and [Mocks](http://site.mockito.org/). But at the moment, many features are test
 
 ## Videos
 
-https://www.youtube.com/watch?v=SIwG848ODI8
+- https://www.youtube.com/watch?v=SIwG848ODI8
+
+## Open issues:
+
+This project is not perfect. Exist some aspects to improve:
+
+- Install Oracle JRE 8, without any login on Oracle website
+- Run Java programs from Brickman
+- I think that the class `FusorDetector.java` has some kind of Concurrency issue.
+- Improve the granularity support for EV3 Buttons
 
 ## UML Design
 
