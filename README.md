@@ -6,7 +6,12 @@
 
 [![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
 
-ev3dev kernel support: uname -r (4.4.47-19-ev3dev-ev3 & 4.4.47-19-ev3dev-rpi2)
+The project support the latest `EV3Dev` stable kernels:
+
+- EV3 Brick: 4.4.47-19-ev3dev-ev3
+- RaspberryPi 3: 4.4.47-19-ev3dev-rpi2
+
+If you need further information about stable EV3Dev images, [click here](http://www.ev3dev.org/news/2017/02/11/ev3dev-jessie-2017-02-11-release/)
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
