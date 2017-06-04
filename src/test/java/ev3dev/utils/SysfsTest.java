@@ -1,5 +1,6 @@
 package ev3dev.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import mocks.MockBaseTest;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -14,9 +15,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SysfsTest extends MockBaseTest {
-
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SysfsTest.class);
+public @Slf4j class SysfsTest extends MockBaseTest {
 
     //OK
 
