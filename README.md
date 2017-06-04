@@ -12,6 +12,21 @@ The project support the latest `EV3Dev` stable kernels:
 
 If you need further information about stable EV3Dev images, [click here](http://www.ev3dev.org/news/2017/02/11/ev3dev-jessie-2017-02-11-release/)
 
+## Introduction
+
+In Lego Mindstorms ecosystem, the default solution to develop Java software for a Lego Mindstorms is [LeJOS](http://www.lejos.org/).
+But now, it exists another alternative, `EV3Dev-lang-java` a Java project for EV3Dev, a Debian distro.
+  
+**What libraries contains EV3Dev-lang-java?**
+  
+The project contains the following libraries:
+  
+    - EV3Dev-lang-java: Low level interation with EV3Dev
+    - lejos-commons: LeJOS interfaces & Utilities
+    - lejos-navigation: LeJOS navigation stack
+    - RPLidar4J: RPLidar A1 support
+    - Installer: A set of Bash scripts to automate some operations
+
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
 ## Features
