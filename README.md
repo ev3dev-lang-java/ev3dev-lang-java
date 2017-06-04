@@ -57,23 +57,36 @@ CPU: 4× ARM Cortex-A53, 1.2GHz
 RAM: 1GB LPDDR2 (900 MHz)
 ```
 
-Anyway, some features about `local navigation` is not tested yet with BrickPi/PiStorms units (Next release: v0.7.0).
+Anyway, some features about `local navigation` is not tested yet with BrickPi/PiStorms units 
+(Scheluded for next release: v0.7.0).
 
-## Features in the project
+## Features in the whole project
 
-* Java 9 support (Brickpi+/PiStorms + Raspberry Pi 3)
-* Java 8 JRE support (EV3 Brick)
-* EV3 Brick, PiStorms v1/v2 &amp; BrickPi+ support
-* [OpenCV](http://opencv.org/) Computer Vision Support
+**Java features**
+
+* Automatic installation of Java JDK 8 for (Brickpi+/PiStorms + Raspberry Pi 3)
+* Partial installation of Java JRE 8 for EV3 Brick
+* Java 9 support  for (Brickpi+/PiStorms + Raspberry Pi 3)
+* Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
+* Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
+
+**Platform features**
+
+* Support for EV3 Brick, PiStorms v1/v2 &amp; BrickPi+
+
+**Lego Mindstorms features**
+
 * Regulated Motor Support
 * Unregulated Motor Support
 * Sensor Support (EV3 sensors)
 * Sounds Support
+
+**Robotics**
+
+* Automatic installation of [OpenCV](http://opencv.org/)
 * [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
 * [RPLidar A1](https://github.com/ev3dev-lang-java/RPLidar4J) Support (2D Lidar)
 * [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
-* Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
-* Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
 
 ## Getting Started
 
@@ -85,7 +98,7 @@ To use this project, import the library as a Maven dependency.
 <dependency>
     <groupId>com.github.ev3dev-lang-java</groupId>
     <artifactId>ev3dev-lang-java</artifactId>
-    <version>v0.5.0</version>
+    <version>v0.6.0</version>
 </dependency>
 ```
 	
