@@ -27,9 +27,39 @@ The project contains the following libraries:
     - RPLidar4J: RPLidar A1 support
     - Installer: A set of Bash scripts to automate some operations
 
+**Advantages of the usage of this project?**
+
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
-## Features
+Basically, with this library you can develop educational robots with Java for the following bricks:
+
+- EV3 Brick
+- BrickPi+
+- BrickPi 3
+- PiStorms
+
+Any EV3 Brick a `SoC: Sitara Processor AM1808` from 2010 to manage Sensors & Actuators but now with the usage of a 
+BrickPi unit, it is possible to use the power of a Raspberry Pi 3.
+
+**2010 Chip:**
+
+``` 
+SoC: Sitara Processor AM1808
+CPU: ARM9 300MHz
+RAM: 16KB of Instruction Cache, 16KB of Data Cache ,8KB of RAM (Vector Table), 64KB of ROM
+```
+
+**2016 Chip:**
+
+``` 
+SoC: Broadcom BCM2837
+CPU: 4× ARM Cortex-A53, 1.2GHz
+RAM: 1GB LPDDR2 (900 MHz)
+```
+
+Anyway, some features about local navigation is not tested yet with BrickPi/PiStorms units.
+
+## Features in the project
 
 * Java 9 support (Brickpi+/PiStorms + Raspberry Pi 3)
 * Java 8 JRE support (EV3 Brick)
