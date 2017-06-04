@@ -15,28 +15,30 @@ If you need further information about stable EV3Dev images, [click here](http://
 ## Introduction
 
 In Lego Mindstorms ecosystem, the default solution to develop Java software for a Lego Mindstorms is [LeJOS](http://www.lejos.org/).
-But now, it exists another alternative, `EV3Dev-lang-java` a Java project for [EV3Dev](http://www.ev3dev.org/).
+But now, it exists another alternative, `EV3Dev-lang-java` a Java project for [EV3Dev](http://www.ev3dev.org/).  
   
 **What libraries contains EV3Dev-lang-java?**
   
-The project contains the following libraries:
+The project contains the following Java libraries/scripts:
   
     - EV3Dev-lang-java: Low level interation with EV3Dev
     - lejos-commons: LeJOS interfaces & Utilities
     - lejos-navigation: LeJOS navigation stack
     - RPLidar4J: RPLidar A1 support
-    - Installer: A set of Bash scripts to automate some operations
+    - Installer: A set of Bash scripts to automate some operations with your brick
 
 **Advantages of the usage of this project?**
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
-Basically, with this library you can develop educational robots with Java in the following bricks:
+Basically, with this library you can develop educational robots with Java for the following bricks:
 
 - EV3 Brick
 - BrickPi+
 - BrickPi 3
 - PiStorms
+
+Now, with the same syntax, it is possible to deploy the software for robots on Raspberry Pi with BrickPi & PiStorms.
 
 Any EV3 Brick uses a `SoC: Sitara Processor AM1808` from 2010 to manage Sensors & Actuators but now with the usage of a 
 BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3.
