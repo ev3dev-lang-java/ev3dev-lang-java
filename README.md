@@ -223,7 +223,57 @@ Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-
 Exist many examples used to test the project. In the future we will automate a good % of the tests using [JUnit testing](http://junit.org/junit4/)
 and [Mocks](http://site.mockito.org/). But at the moment, many features are tested manually.
 
+**EV3Dev-lang-Java:**
 
+- ev3dev.misc
+- [BumperCar](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/misc/BumperCar.java)
+- [BumperCar2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/misc/BumperCar2.java)
+- ev3dev.robotics.tts
+- [TTSDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/robotics/tts/TTSDemo.java)
+- [TTSDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/robotics/tts/TTSDemo2.java)
+- ev3dev.actuators
+- [LCDDrawIconsTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawIconsTest.java)
+- [LCDDrawImagesTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawImagesTest.java)
+- [LCDDrawLinesTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawLinesTest.java)
+- [LCDDrawRectanglesTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawRectanglesTest.java)
+- [LCDFontTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDFontTest.java)
+- [LCDTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDTest.java)
+- [LCDWriteTextTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDWriteTextTest.java)
+- [SoundDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/SoundDemo.java)
+- ev3dev.actuators.ev3
+- [LEDExample](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/ev3/LEDExample.java)
+- ev3dev.actuators.lego.motors
+- [LargeMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/LargeMotorDemo.java)
+- [LargeMotorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/LargeMotorDemo2.java)
+- [MediumMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MediumMotorDemo.java)
+- [MotorEventTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MotorEventTest.java)
+- [MultipleMotorsDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MultipleMotorsDemo.java)
+- [MultipleMotorsStopDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MultipleMotorsStopDemo.java)
+- [RegulatedMotorRotateDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/RegulatedMotorRotateDemo.java)
+- [RegulatedMotorRotateDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/RegulatedMotorRotateDemo.java)
+- [RegulatedMotorRotateToDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/RegulatedMotorRotateToDemo.java)
+- [UnregulatedMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/UnregulatedMotorDemo.java)
+- [UnregulatedMotorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/UnregulatedMotorDemo2.java)
+- [UnregulatedMutilpleMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/UnregulatedMutilpleMotorDemo.java)
+- ev3dev.sensors
+- [BatteryDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/BatteryDemo.java)
+- [ButtonExample](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ButtonExample.java)
+- ev3dev.sensors.ev3
+- [ColorSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorDemo.java)
+- [ColorSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorDemo2.java)
+- [ColorSensorDemo3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorDemo3.java)
+- [ColorSensorMultipleDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorMultipleDemo.java)
+- [GyroSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/GyroSensorDemo.java)
+- [GyroSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/GyroSensorDemo2.java)
+- [GyroSensorDemo3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/GyroSensorDemo3.java)
+- [IRSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/IRSensorDemo.java)
+- [IRSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/IRSensorDemo2.java)
+- [IRSensorDemo3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/IRSensorDemo3.java)
+- [TouchSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/TouchSensorDemo.java)
+- [USSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/USSensorDemo.java)
+- [USSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/USSensorDemo2.java)
+- ev3dev.hardware
+- [PlatformTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/hardware/PlatformTest.java)
 
 ## Videos
 
