@@ -31,7 +31,7 @@ The project contains the following libraries:
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
-Basically, with this library you can develop educational robots with Java for the following bricks:
+Basically, with this library you can develop educational robots with Java in the following bricks:
 
 - EV3 Brick
 - BrickPi+
@@ -92,7 +92,16 @@ Anyway, some features about `local navigation` is not tested yet with BrickPi/Pi
 
 ### Add the dependency on the project
 
-To use this project, import the library as a Maven dependency.
+To use this project, add the repository and add the Maven dependency.
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
 
 ``` xml
 <dependency>
