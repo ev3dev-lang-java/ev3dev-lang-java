@@ -333,6 +333,8 @@ distanceValue = (int)sample[0];
 
 - Usage of inner classes for the different modes of Sensors
 - Lack of Unit testing in the whole project
+- Some LeJOS interface methods was not implemented.
+- Motor synchronization
 
 ## UML Design
 
