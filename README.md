@@ -169,7 +169,7 @@ https://github.com/ev3dev-lang-java/installer
 
 Once you have the required infrastructure on your Brick, it is possible to experiment with the libraries in some ways:
 
-** 3.1 Using a Gradle template project**
+**3.1 Using a Gradle template project**
 
 If you like, you can experiment with the project, using the following project template:
 
@@ -193,7 +193,7 @@ To deploy the example on your brick, open a `terminal` and type:
 ./gradlew deployAndRun
 ```
 
-** 3.2 Create a project from scratch:**
+**3.2 Create a project from scratch:**
 
 Another alternative is the creation of a project from Scrach using Maven/Gradle.
 
@@ -216,13 +216,20 @@ To start a new project with this library, add the following repository and depen
 </dependency>
 ```
 	
-Further information: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.0
+Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.0
 
-### Videos:
+## Examples
+
+Exist many examples used to test the project. In the future we will automate a good % of the tests using [JUnit testing](http://junit.org/junit4/)
+and [Mocks](http://site.mockito.org/) but at the moment, many features are tested manually.
+
+
+
+## Videos
 
 https://www.youtube.com/watch?v=SIwG848ODI8
 
-# UML Design
+## UML Design
 
 ![ScreenShot](https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/develop/docs/uml/graph.png)
 
