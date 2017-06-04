@@ -310,7 +310,10 @@ Take a look the following examples to discover some features included with this 
 
 ## Videos
 
+- https://www.youtube.com/watch?v=Gxew3aNH6ks
+- https://www.youtube.com/watch?v=1d9q24aNMHQ
 - https://www.youtube.com/watch?v=SIwG848ODI8
+
 
 ## Open issues:
 
