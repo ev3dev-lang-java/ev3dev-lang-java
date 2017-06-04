@@ -5,7 +5,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc)
 [![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
 
-The project support the latest `EV3Dev` stable kernels:
+The project has support for the latest `EV3Dev` stable kernels:
 
 - [EV3 Brick](https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400): 4.4.47-19-ev3dev-ev3
 - [RaspberryPi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) with [BrickPi+](https://www.dexterindustries.com/brickpi/) & [PiStorms](http://www.mindsensors.com/content/78-pistorms-lego-interface): 4.4.47-19-ev3dev-rpi2
@@ -15,7 +15,7 @@ If you need further information about stable EV3Dev images, [click here](http://
 ## Introduction
 
 In Lego Mindstorms ecosystem, the default solution to develop Java software for a Lego Mindstorms is [LeJOS](http://www.lejos.org/).
-But now, it exists another alternative, `EV3Dev-lang-java` a Java project for EV3Dev, a Debian distro.
+But now, it exists another alternative, `EV3Dev-lang-java` a Java project for [EV3Dev](http://www.ev3dev.org/).
   
 **What libraries contains EV3Dev-lang-java?**
   
@@ -84,9 +84,10 @@ Anyway, some features about `local navigation` is not tested yet with BrickPi/Pi
 **Robotics**
 
 * Automatic installation of [OpenCV](http://opencv.org/)
-* [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
-* [RPLidar A1](https://github.com/ev3dev-lang-java/RPLidar4J) Support (2D Lidar)
 * [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
+* [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
+* [LeJOS local navigation stack](https://github.com/ev3dev-lang-java/lejos-navigation) Support
+* [RPLidar A1](https://github.com/ev3dev-lang-java/RPLidar4J) (2D Lidar) Support
 
 ## Getting Started
 
