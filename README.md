@@ -38,10 +38,10 @@ Basically, with this library you can develop educational robots with Java for th
 - BrickPi 3
 - PiStorms
 
-Any EV3 Brick a `SoC: Sitara Processor AM1808` from 2010 to manage Sensors & Actuators but now with the usage of a 
-BrickPi unit, it is possible to use the power of a Raspberry Pi 3.
+Any EV3 Brick uses a `SoC: Sitara Processor AM1808` from 2010 to manage Sensors & Actuators but now with the usage of a 
+BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3.
 
-**2010 Chip:**
+**2010 Chip included on EV3 Brick:**
 
 ``` 
 SoC: Sitara Processor AM1808
@@ -49,7 +49,7 @@ CPU: ARM9 300MHz
 RAM: 16KB of Instruction Cache, 16KB of Data Cache ,8KB of RAM (Vector Table), 64KB of ROM
 ```
 
-**2016 Chip:**
+**2016 Chip included on Raspberry Pi 3:**
 
 ``` 
 SoC: Broadcom BCM2837
@@ -57,7 +57,7 @@ CPU: 4× ARM Cortex-A53, 1.2GHz
 RAM: 1GB LPDDR2 (900 MHz)
 ```
 
-Anyway, some features about local navigation is not tested yet with BrickPi/PiStorms units.
+Anyway, some features about `local navigation` is not tested yet with BrickPi/PiStorms units (Next release: v0.7.0).
 
 ## Features in the project
 
