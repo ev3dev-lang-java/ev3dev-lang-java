@@ -108,15 +108,17 @@ remotes {
 }
 ```
 
-To deploy the example on your brick, open a Terminal and type:
+To deploy the example on your brick, open a `terminal` and type:
 
 ```
 ./gradlew deployAndRun
 ```
 
-### Add the dependency on the project
+### Create a project from scratch
 
-To use this project, add the repository and add the Maven dependency.
+Another alternative is the creation of a project from Scrach using Maven/Gradle.
+
+To start a new project with this library, add the following repository and dependency.
 
 ```xml
 <repositories>
@@ -137,7 +139,7 @@ To use this project, add the repository and add the Maven dependency.
 	
 Further information: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.0
 
-### Example:
+### Videos:
 
 https://www.youtube.com/watch?v=SIwG848ODI8
 
