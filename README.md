@@ -90,6 +90,30 @@ Anyway, some features about `local navigation` is not tested yet with BrickPi/Pi
 
 ## Getting Started
 
+### Use a Gradle template project
+
+If you like, you can experiment with the project, using the following project template:
+
+https://github.com/ev3dev-lang-java/template_project_gradle
+
+Download the project, update the file: `deploy.gradle`: with the IP of you Brick:
+
+```
+remotes {
+    ev3dev {
+        host = '10.0.1.3'
+        user = 'robot'
+        password = 'maker'
+    }
+}
+```
+
+To deploy the example on your brick, open a Terminal and type:
+
+```
+./gradlew deployAndRun
+```
+
 ### Add the dependency on the project
 
 To use this project, add the repository and add the Maven dependency.
@@ -111,7 +135,7 @@ To use this project, add the repository and add the Maven dependency.
 </dependency>
 ```
 	
-Further information: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.5.0
+Further information: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.0
 
 ### Example:
 
