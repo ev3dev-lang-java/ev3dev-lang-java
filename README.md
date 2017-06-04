@@ -117,15 +117,16 @@ For this step exist 2 paths.
 
 The EV3 Brick was designed with a SOC based on [ARM EABI](https://wiki.debian.org/ArmEabiPort) 
 and the fastest JRE option is based on Oracle and it is not possible to download in an automatic way so you have to 
-download the JRE on your local machine from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html).
-
-If you have the file `ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz` on your laptop, copy to your robot using `SCP`
+download the JRE on your local machine from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
+and later copy to your brick using `scp`:
 
 ```
 scp "./ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz" "robot@192.168.1.85:/home/robot"
 ```
 
-Then you can the following installer:
+Once, you have the file on the brick, you can continue the Java installation with the installer or do your self manually.
+
+**Using the installer:**
 
 ```
 cd /home/robot
@@ -137,7 +138,15 @@ sudo ./installer.sh help
 sudo ./installer.sh
 ```
 
-To continue with the installation of Java on the brick.
+**Manual way:**
+
+```
+tar -zxvf "/home/robot/ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz" -C /opt
+sudo update-alternatives --install /usr/bin/java java /opt/ejdk1.8.0/linux_arm_sflt/jre/bin/java 1
+java -version
+```
+
+Now, you have Java on your EV3 Brick
 
 **2.2 BrickPi+ / PiStorms:**
 
@@ -156,7 +165,11 @@ sudo ./installer.sh
 Further information about the installer here:
 https://github.com/ev3dev-lang-java/installer
 
-### Use a Gradle template project
+### 3. Create your first Project and deploy on your Brick
+
+Once you have the required infrastructure on your Brick, it is possible to experiment with the libraries in some ways:
+
+** 3.1 Using a Gradle template project**
 
 If you like, you can experiment with the project, using the following project template:
 
@@ -180,7 +193,7 @@ To deploy the example on your brick, open a `terminal` and type:
 ./gradlew deployAndRun
 ```
 
-### Create a project from scratch
+** 3.2 Create a project from scratch:**
 
 Another alternative is the creation of a project from Scrach using Maven/Gradle.
 
