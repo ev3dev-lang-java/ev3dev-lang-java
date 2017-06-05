@@ -217,16 +217,19 @@ To start a new project with this library, add the following repository and depen
 <dependency>
     <groupId>com.github.ev3dev-lang-java</groupId>
     <artifactId>ev3dev-lang-java</artifactId>
-    <version>v0.6.0</version>
+    <version>v0.6.1</version>
 </dependency>
 ```
 	
-Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.0
+Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.1
+
+## Unit testing
+
+Exist many examples used to test the project. In the future we will automate a good % of the tests using 
+[JUnit testing](http://junit.org/junit4/) and [Mocks](http://site.mockito.org/) 
+but at the moment, many features are tested manually.
 
 ## Examples
-
-Exist many examples used to test the project. In the future we will automate a good % of the tests using [JUnit testing](http://junit.org/junit4/)
-and [Mocks](http://site.mockito.org/). But at the moment, many features are tested manually.
 
 Take a look the following examples to discover some features included with this Java project.
 
@@ -317,51 +320,9 @@ Take a look the following examples to discover some features included with this 
 
 ## Open issues:
 
-This project is not perfect. Exist some aspects to improve:
-
-- Install Oracle JRE 8, without any login on Oracle website
-- Run Java programs from Brickman
-- I think that the class `FusorDetector.java` has some kind of Concurrency issue.
-- Improve the granularity support for EV3 Buttons
-- Usage of mutable objects with `SampleProvider`
-
-``` java
-float [] sample = new float[sp.sampleSize()];
-sp.fetchSample(sample, 0);
-distanceValue = (int)sample[0];
-```
-
-- Usage of inner classes for the different modes of Sensors
-- Lack of Unit testing in the whole project
-- Some LeJOS interface methods was not implemented.
-- Motor synchronization
-- Internal ready indicator. This case appear with Multi threading scenarios:
-
-```
-ev3dev#1|Example using Subsumption architecture
-        ev3dev#1|2017-06-04 18:14:14 [main] DEBUG ev3dev.hardware.EV3DevDevice - Detecting device on port: in1
-        ev3dev#1|2017-06-04 18:14:16 [main] DEBUG ev3dev.hardware.EV3DevDevice - Detected port on path: /sys/class/lego-sensor/sensor0/address
-        ev3dev#1|Arbitrator created
-        ev3dev#1|2017-06-04 18:14:18 [main] DEBUG e.a.lego.motors.BaseRegulatedMotor - Detecting motor on port: outA
-        ev3dev#1|2017-06-04 18:14:18 [main] DEBUG ev3dev.hardware.EV3DevDevice - Detecting device on port: outA
-        ev3dev#1|2017-06-04 18:14:18 [main] DEBUG ev3dev.hardware.EV3DevDevice - Detected port on path: /sys/class/lego-port/port4/address
-        ev3dev#1|2017-06-04 18:14:18 [main] DEBUG e.a.lego.motors.BaseRegulatedMotor - Setting port in mode: tacho-motor
-        ev3dev#1|2017-06-04 18:14:19 [main] DEBUG ev3dev.hardware.EV3DevDevice - Detecting device on port: outA
-        ev3dev#1|2017-06-04 18:14:19 [main] DEBUG ev3dev.hardware.EV3DevDevice - Detected port on path: /sys/class/tacho-motor/motor8/address
-        ev3dev#1|2017-06-04 18:14:19 [main] ERROR ev3dev.utils.Sysfs - File: '/sys/class/tacho-motor/motor8/command' without write permissions.
-        ev3dev#1|Exception in thread "main" java.lang.ExceptionInInitializerError
-        ev3dev#1|	at lejos_commons.subsumption.DriveForward.action(DriveForward.java:20)
-        ev3dev#1|	at lejos.robotics.subsumption.Arbitrator.go(Arbitrator.java:103)
-        ev3dev#1|	at lejos_commons.subsumption.BumperCar.main(BumperCar.java:17)
-        ev3dev#1|Caused by: java.lang.RuntimeException: Operation not executed: /sys/class/tacho-motor/motor8/command with value reset
-        ev3dev#1|	at ev3dev.hardware.EV3DevDevice.setStringAttribute(EV3DevDevice.java:91)
-        ev3dev#1|	at ev3dev.actuators.lego.motors.BaseRegulatedMotor.<init>(BaseRegulatedMotor.java:82)
-        ev3dev#1|	at ev3dev.actuators.lego.motors.NXTRegulatedMotor.<init>(NXTRegulatedMotor.java:24)
-        ev3dev#1|	at ev3dev.actuators.lego.motors.Motor.<clinit>(Motor.java:31)
-        ev3dev#1|	... 3 more
-        Failed command ev3dev#1 with status 1: java -server -jar /home/robot/ev3dev-lang-java-all-0.1.0.jar
-
-```
+This project is not perfect, but we try to be transparent.
+Read this document to see the open issues:
+https://github.com/ev3dev-lang-java/ev3dev-lang-java/blob/develop/OPEN_ISSUES.md
 
 ## UML Design
 
