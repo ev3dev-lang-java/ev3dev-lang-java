@@ -317,8 +317,9 @@ Take a look the following examples to discover some features included with this 
 
 ## Open issues:
 
-This project is not perfect, review this doc for details:
-https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/develop/OPEN_ISSUES.md
+This project is not perfect, but we try to be transparent.
+Read this document to see the open issues:
+https://github.com/ev3dev-lang-java/ev3dev-lang-java/blob/develop/OPEN_ISSUES.md
 
 ## UML Design
 

@@ -1,14 +1,8 @@
-# Open issues:
+# Open issues
 
-```
-Note: /Users/jabrena/Documents/DATA/2015/RESEARCH/robotics/ev3dev/java/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/BaseRegulatedMotor.java uses unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-```
+## Critic issues:
 
-- Install Oracle JRE 8, without any login on Oracle website
-- Run Java programs from Brickman
 - I think that the class `FusorDetector.java` has some kind of Concurrency issue.
-- Improve the granularity support for EV3 Buttons
 - Usage of mutable objects with `SampleProvider`
 
 ``` java
@@ -19,8 +13,7 @@ distanceValue = (int)sample[0];
 
 - Usage of inner classes for the different modes of Sensors
 - Lack of Unit testing in the whole project
-- Some LeJOS interface methods was not implemented.
-- Motor synchronization
+
 - Internal ready indicator. This case appear with Multi threading scenarios:
 
 ```
@@ -47,4 +40,21 @@ ev3dev#1|Example using Subsumption architecture
         ev3dev#1|	... 3 more
         Failed command ev3dev#1 with status 1: java -server -jar /home/robot/ev3dev-lang-java-all-0.1.0.jar
 
+```
+
+## Medium issues:
+
+- Install Oracle JRE 8, without any login on Oracle website
+- Run Java programs from Brickman
+- Some LeJOS interface methods was not implemented.
+- Motor synchronization
+
+## Minor issues:
+
+- Improve the granularity support for EV3 Buttons
+- Class with unsafe operations
+
+```
+Note: /Users/jabrena/Documents/DATA/2015/RESEARCH/robotics/ev3dev/java/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/BaseRegulatedMotor.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
 ```

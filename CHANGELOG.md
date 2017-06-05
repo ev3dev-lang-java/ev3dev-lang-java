@@ -2,6 +2,7 @@
 
 ## v0.6.1 2017-06-05
 
+- Adding support for Profiling Tools
 - Enabling Stop modes for BrickPi+ & PiStorms
 - Minor log improvement on EV3DevPlatforms
 
