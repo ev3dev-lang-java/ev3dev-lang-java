@@ -172,11 +172,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * the motor to stop more quickly than coasting.
      */
     public void brake() {
-        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)) {
-            this.setStringAttribute(STOP_COMMAND, BRAKE);
-        }else{
-            log.warn("This method is disabled for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);
-        }
+        this.setStringAttribute(STOP_COMMAND, BRAKE);
     }
 
     /**
@@ -185,11 +181,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      */
     @Override
     public void hold() {
-        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)) {
-            this.setStringAttribute(STOP_COMMAND, HOLD);
-        }else{
-            log.warn("This method is disabled for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);
-        }
+        this.setStringAttribute(STOP_COMMAND, HOLD);
     }
 
     /**

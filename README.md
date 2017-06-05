@@ -217,16 +217,19 @@ To start a new project with this library, add the following repository and depen
 <dependency>
     <groupId>com.github.ev3dev-lang-java</groupId>
     <artifactId>ev3dev-lang-java</artifactId>
-    <version>v0.6.0</version>
+    <version>v0.6.1</version>
 </dependency>
 ```
 	
-Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.0
+Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.1
+
+## Unit testing
+
+Exist many examples used to test the project. In the future we will automate a good % of the tests using 
+[JUnit testing](http://junit.org/junit4/) and [Mocks](http://site.mockito.org/) 
+but at the moment, many features are tested manually.
 
 ## Examples
-
-Exist many examples used to test the project. In the future we will automate a good % of the tests using [JUnit testing](http://junit.org/junit4/)
-and [Mocks](http://site.mockito.org/). But at the moment, many features are tested manually.
 
 Take a look the following examples to discover some features included with this Java project.
 
@@ -310,26 +313,16 @@ Take a look the following examples to discover some features included with this 
 
 ## Videos
 
+- https://www.youtube.com/watch?v=Gxew3aNH6ks
+- https://www.youtube.com/watch?v=1d9q24aNMHQ
 - https://www.youtube.com/watch?v=SIwG848ODI8
+
 
 ## Open issues:
 
-This project is not perfect. Exist some aspects to improve:
-
-- Install Oracle JRE 8, without any login on Oracle website
-- Run Java programs from Brickman
-- I think that the class `FusorDetector.java` has some kind of Concurrency issue.
-- Improve the granularity support for EV3 Buttons
-- Usage of mutable objects with `SampleProvider`
-
-``` java
-float [] sample = new float[sp.sampleSize()];
-sp.fetchSample(sample, 0);
-distanceValue = (int)sample[0];
-```
-
-- Usage of inner classes for the different modes of Sensors
-- Lack of Unit testing in the whole project
+This project is not perfect, but we try to be transparent.
+Read this document to see the open issues:
+https://github.com/ev3dev-lang-java/ev3dev-lang-java/blob/develop/OPEN_ISSUES.md
 
 ## UML Design
 
