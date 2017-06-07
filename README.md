@@ -1,11 +1,14 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to interact with [EV3Dev](http://www.ev3dev.org/) hardware using the [LeJOS](http://www.lejos.org/) way.
+*EV3Dev-lang-Java* is a Java project designed to build Software for Robots with [EV3Dev](http://www.ev3dev.org/) 
+hardware & the [LeJOS](http://www.lejos.org/) way.
 
 [![Dependency Status](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc)
 [![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
 
-The project has support for the latest `EV3Dev` stable kernels:
+**What is the latest EV3Dev version supported?**
+
+THe libraries was tested with the latest stable `EV3Dev` versions for Debian Jessie:
 
 - [EV3 Brick](https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400): 4.4.47-19-ev3dev-ev3
 - [RaspberryPi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) with [BrickPi+](https://www.dexterindustries.com/brickpi/) & [PiStorms](http://www.mindsensors.com/content/78-pistorms-lego-interface): 4.4.47-19-ev3dev-rpi2
@@ -14,8 +17,19 @@ If you need further information about stable EV3Dev images, [click here](http://
 
 ## Introduction
 
-In Lego Mindstorms ecosystem, the default solution to develop Java software for a Lego Mindstorms is [LeJOS](http://www.lejos.org/).
-But now, it exists another alternative, `EV3Dev-lang-java` a Java project for [EV3Dev](http://www.ev3dev.org/).  
+In Lego Mindstorms ecosystem, the default solution to develop Java software for Lego Mindstorms is [LeJOS](http://www.lejos.org/).
+But now exists an alternative, `EV3Dev-lang-java` a Java project running on the top of [EV3Dev](http://www.ev3dev.org/).  
+
+Lego Mindstorms ecosystem is `a nice educational way to learn Java programming in general and Robotics in particular`. 
+Now, it is possible to install a complete Linux distro in the third generation of the product and other companies like 
+[Mindsensors](http://www.mindsensors.com/) & [Dexter Industries](https://www.dexterindustries.com/) has released products
+ which interact with Sensors & Actuators from Lego ecosystem with the Power of the popular board 
+ [Raspberry Pi 3](https://www.raspberrypi.org/)
+ 
+With the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards. 
+So, why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
+The project the good things of both worlds: EV3Dev with the complete linux experience 
+and LeJOS with the rich local navigation stack.
   
 **What libraries contains EV3Dev-lang-java?**
   
@@ -59,8 +73,6 @@ CPU: 4× ARM Cortex-A53, 1.2GHz
 RAM: 1GB LPDDR2 (900 MHz)
 ```
 
-Anyway, although you could use hardware with more resources, it is necessary to develop stable algorithms (Your turn). 
-
 ## Features included in the whole project
 
 **Java features**
@@ -68,7 +80,8 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 * Automatic installation of Oracle Java JDK 8 for Brickpi+/PiStorms + Raspberry Pi 3
 * Partial installation of Oracle Java JRE 8 for EV3 Brick
 * OpenJDK Java 9 EA support for Brickpi+/PiStorms + Raspberry Pi 3
-* Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html), [VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
+* Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
+* Logging support based on [SLF4J](https://www.slf4j.org/)
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
 
 **Platform features**
@@ -316,13 +329,6 @@ Take a look the following examples to discover some features included with this 
 - https://www.youtube.com/watch?v=Gxew3aNH6ks
 - https://www.youtube.com/watch?v=1d9q24aNMHQ
 - https://www.youtube.com/watch?v=SIwG848ODI8
-
-
-## Open issues:
-
-This project is not perfect, but we try to be transparent.
-Read this document to see the open issues:
-https://github.com/ev3dev-lang-java/ev3dev-lang-java/blob/develop/OPEN_ISSUES.md
 
 ## UML Design
 
