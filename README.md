@@ -134,13 +134,13 @@ sudo reboot
 
 ### 2. Install Java on your brick
 
-For this step exist 2 paths. One path for EV3 Brick and another path for BrickPi users and PiStorms users. 
+For this step exist 2 paths. One path is for EV3 Brick and another path for BrickPi users and PiStorms users. 
 
 **2.1 EV3 Brick:**
 
 The EV3 Brick was designed with a SOC based on [ARM EABI](https://wiki.debian.org/ArmEabiPort) 
-and the best JVM option to install in the brick is the Oracle JRE 8 but, it is not possible to install directly in the brick
- without any human operation, so you need to download from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
+and the best JVM option for that hardware architecture is the Oracle JRE 8 to install in the brick but, it is not possible to install directly in the brick
+ without any human interaction, so you need to download from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
 and later, copy the file `ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz` to your brick using the command `scp`.
 
 Example:
@@ -250,12 +250,6 @@ To start a new project with this library, add the following repository and depen
 	
 Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.1
 
-## Unit testing
-
-Exist many examples used to test the project. In the future we will automate a good % of the tests using 
-[JUnit testing](http://junit.org/junit4/) and [Mocks](http://site.mockito.org/) 
-but at the moment, many features are tested manually.
-
 ## Examples
 
 Take a look the following examples to discover some features included with this Java project.
@@ -343,6 +337,12 @@ Take a look the following examples to discover some features included with this 
 - https://www.youtube.com/watch?v=Gxew3aNH6ks
 - https://www.youtube.com/watch?v=1d9q24aNMHQ
 - https://www.youtube.com/watch?v=SIwG848ODI8
+
+## Unit testing
+
+Exist many examples used to test the project. In the future we will automate a good % of the tests using 
+[JUnit testing](http://junit.org/junit4/) and [Mocks](http://site.mockito.org/) 
+but at the moment, many features are tested manually.
 
 ## UML Design
 
