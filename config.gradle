@@ -1,0 +1,8 @@
+
+remotes {
+    ev3dev {
+        host = '10.0.1.3'
+        user = 'robot'
+        password = 'maker'
+    }
+}
