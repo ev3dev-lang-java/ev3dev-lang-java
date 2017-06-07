@@ -26,7 +26,7 @@ Now, it is possible to install a complete Linux distro in the third generation o
  which interact with Sensors & Actuators from Lego ecosystem and that boards can use the Power of the popular board 
  [Raspberry Pi 3](https://www.raspberrypi.org/)
  
-Now, with the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards. 
+But, with the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards. 
 So... why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
 The project, takes the good things of both worlds: EV3Dev with the complete linux experience 
 and LeJOS with the rich local navigation stack.
@@ -41,21 +41,23 @@ The project contains the following Java libraries/scripts:
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
 - [lejos-navigation](https://github.com/ev3dev-lang-java/lejos-navigation): LeJOS navigation stack
 - [RPLidar4J](https://github.com/ev3dev-lang-java/RPLidar4J): RPLidar A1 support
+- [Battery Monitor](https://github.com/ev3dev-lang-java/batteryMonitor): A battery monitor to protect your hardware against low battery levels
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
 
 **Advantages of the usage of this project?**
 
-Basically, with this library you can develop educational robots with Java for the following bricks:
+Basically, with this library you can develop educational robots with Java for multiple bricks:
 
 - EV3 Brick
 - BrickPi+
 - BrickPi 3 (Scheduled on v0.7.0)
 - PiStorms
 
-Now, with the same syntax, it is possible to deploy the software for robots on Raspberry Pi with BrickPi & PiStorms.
+Using the same objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi & PiStorms.
 
-Any EV3 Brick uses a `SoC: Sitara Processor AM1808` (from year 2010) to manage Sensors & Actuators 
-but now with the usage of a BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3.
+If you analyze the hardware, any EV3 Brick uses a `SoC: Sitara Processor AM1808` (from year 2010) to manage Sensors & Actuators 
+but now with the usage of a BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3 increasing the 
+possibilities to develop complex projects which require por Computational consumption.
 
 **2010 Chip included on EV3 Brick:**
 
@@ -94,6 +96,7 @@ RAM: 1GB LPDDR2 (900 MHz)
 * Unregulated Motor Support
 * Sensor Support (EV3 sensors)
 * Sounds Support
+* EV3 LCD Support
 
 **Robotics**
 
@@ -105,20 +108,22 @@ RAM: 1GB LPDDR2 (900 MHz)
 
 ## Roadmap
 
-To check the roadmap, it is better to review the `backlog`:
+Review the `backlog` to follow the features in course:
 https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues
 
 ## Getting Started
 
 ### 1. Install EV3Dev on your brick
 
-Follow the following link to install EV3Dev:
+Follow the link to install EV3Dev on your brick:
 
 http://www.ev3dev.org/docs/getting-started/
 
-Once you finish this step, you will have a complete Linux distro to run any Programming language
+Once you finish the installation process and the remote `ssh` connection, 
+you will have a complete Linux distro to run any Programming language.
 
-**Note:** Please, update your brick with latest update before continuing with the next step.
+**Note:** Please, maintain your brick updated, execute the following commands 
+before jump to the next step in this guide.
 
 ```
 sudo apt-get update
@@ -129,20 +134,24 @@ sudo reboot
 
 ### 2. Install Java on your brick
 
-For this step exist 2 paths. 
+For this step exist 2 paths. One path for EV3 Brick and another path for BrickPi users and PiStorms users. 
 
 **2.1 EV3 Brick:**
 
 The EV3 Brick was designed with a SOC based on [ARM EABI](https://wiki.debian.org/ArmEabiPort) 
-and the fastest JRE option is based on Oracle and it is not possible to download in an automatic way so you have to 
-download the JRE on your local machine from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
-and later copy to your brick using `scp`:
+and the best JVM option to install in the brick is the Oracle JRE 8 but, it is not possible to install directly in the brick
+ without any human operation, so you need to download from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
+and later, copy the file `ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz` to your brick using the command `scp`.
+
+Example:
 
 ```
 scp "./ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz" "robot@192.168.1.85:/home/robot"
 ```
 
-Once, you have the file on the brick, you can continue the Java installation with the installer or do your self manually.
+Once, you have the file on the brick, you can continue the Java installation with the installer or do yourself manually.
+
+https://github.com/ev3dev-lang-java/installer
 
 **Using the installer:**
 
@@ -170,6 +179,8 @@ Now, you have Java on your EV3 Brick
 
 Using the installer, it is possible to automate everything:
 
+https://github.com/ev3dev-lang-java/installer
+
 ```
 cd /home/robot
 mkdir installer
@@ -179,9 +190,6 @@ chmod +x installer.sh
 sudo ./installer.sh help
 sudo ./installer.sh
 ```
-
-Further information about the installer here:
-https://github.com/ev3dev-lang-java/installer
 
 ### 3. Create your first Project and deploy on your Brick
 
@@ -193,7 +201,7 @@ If you like, you can experiment with the project, using the following project te
 
 https://github.com/ev3dev-lang-java/template_project_gradle
 
-Download the project, update the file: `deploy.gradle`: with the IP of you Brick:
+Download the project, update the file: `config.gradle`: with the IP of you Brick:
 
 ```
 remotes {
@@ -211,9 +219,15 @@ To deploy the example on your brick, open a `terminal` and type:
 ./gradlew deployAndRun
 ```
 
+Besides, exist a task to provide access to a Profiling tool if you execute:
+
+```
+./gradlew deployAndProfilingRun
+```
+
 **3.2 Create a project from scratch:**
 
-Another alternative is the creation of a project from Scrach using Maven/Gradle.
+Another alternative is the creation of a project from Scratch using Maven/Gradle.
 
 To start a new project with this library, add the following repository and dependency.
 
