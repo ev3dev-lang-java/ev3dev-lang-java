@@ -30,7 +30,9 @@ Now, with the help of `EV3Dev`, it is possible to have the same Linux experience
 So... why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
 The project, takes the good things of both worlds: EV3Dev with the complete linux experience 
 and LeJOS with the rich local navigation stack.
-  
+
+![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
+    
 **What libraries contains EV3Dev-lang-java?**
   
 The project contains the following Java libraries/scripts:
@@ -42,8 +44,6 @@ The project contains the following Java libraries/scripts:
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
 
 **Advantages of the usage of this project?**
-
-![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
 Basically, with this library you can develop educational robots with Java for the following bricks:
 
