@@ -68,7 +68,7 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 * Automatic installation of Oracle Java JDK 8 for Brickpi+/PiStorms + Raspberry Pi 3
 * Partial installation of Oracle Java JRE 8 for EV3 Brick
 * OpenJDK Java 9 EA support for Brickpi+/PiStorms + Raspberry Pi 3
-* Java profiling tools Support ([VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
+* Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html), [VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
 
 **Platform features**
