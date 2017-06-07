@@ -9,6 +9,9 @@ task copyWrapperFiles(type: Copy) {
     from "gradlew"
     from "settings.gradle"
     from "build.gradle"
+    from "deploy.gradle"
+    from "config.gradle"
+    from "docker.gradle"
     into "build/docker/app"
 }
 
