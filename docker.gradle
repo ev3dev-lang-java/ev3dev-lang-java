@@ -1,0 +1,58 @@
+task copySrc(type: Copy) {
+    group = "docker"
+    from "src"
+    into "build/docker/app/src"
+}
+
+task copyWrapperFiles(type: Copy) {
+    group = "docker"
+    from "gradlew"
+    from "settings.gradle"
+    from "build.gradle"
+    into "build/docker/app"
+}
+
+task copyWrapper(type: Copy){
+    group = "docker"
+    from "gradle/wrapper/gradle-wrapper.jar"
+    from "gradle/wrapper/gradle-wrapper.properties"
+    into "build/docker/app/gradle/wrapper"
+}
+
+copyWrapper.dependsOn copyWrapperFiles
+
+task copyDockerFile(type: Copy) {
+    group = "docker"
+    from "docker"
+    into "build/docker"
+}
+
+def dockerFile = project.projectDir.getAbsolutePath() + "/build/docker"
+def dockerName = project.name.toLowerCase() + ":" + version.toLowerCase()
+
+task dockerBuild(type: Exec) {
+    workingDir project.projectDir
+    commandLine 'docker', 'build', '-t', dockerName, dockerFile
+}
+
+dockerBuild.dependsOn copySrc
+dockerBuild.dependsOn copyWrapper
+dockerBuild.dependsOn copyDockerFile
+
+task dockerRun(type: Exec) {
+    group = "application"
+    group = "docker"
+    workingDir project.projectDir
+    commandLine 'docker', 'run', dockerName , "./gradlew", "run"
+}
+
+dockerRun.dependsOn dockerBuild
+
+task dockerTest(type: Exec) {
+    group = "verification"
+    group = "docker"
+    workingDir project.projectDir
+    commandLine 'docker', 'run', dockerName , "./gradlew", "test"
+}
+
+dockerTest.dependsOn dockerBuild
