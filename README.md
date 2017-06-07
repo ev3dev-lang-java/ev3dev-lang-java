@@ -119,10 +119,10 @@ Follow the link to install EV3Dev on your brick:
 
 http://www.ev3dev.org/docs/getting-started/
 
-Once you finish the installation process and the remote `ssh` connection, 
+Once you finish the installation process and the remote `ssh` connection test, 
 you will have a complete Linux distro to run any Programming language.
 
-**Note:** Please, maintain your brick updated, execute the following commands 
+**Note:** Please, maintain your brick updated. Execute the following commands 
 before jump to the next step in this guide.
 
 ```
