@@ -18,17 +18,17 @@ If you need further information about stable EV3Dev images, [click here](http://
 ## Introduction
 
 In Lego Mindstorms ecosystem, the default solution to develop Java software for Lego Mindstorms is [LeJOS](http://www.lejos.org/).
-But now exists an alternative, `EV3Dev-lang-java` a Java project running on the top of [EV3Dev](http://www.ev3dev.org/).  
+But now exists one alternative, `EV3Dev-lang-java` a Java project running on the top of [EV3Dev](http://www.ev3dev.org/).  
 
 Lego Mindstorms ecosystem is `a nice educational way to learn Java programming in general and Robotics in particular`. 
-Now, it is possible to install a complete Linux distro in the third generation of the product and other companies like 
+Now, it is possible to install a complete Linux distro in the third generation of the product and others companies like 
 [Mindsensors](http://www.mindsensors.com/) & [Dexter Industries](https://www.dexterindustries.com/) has released products
- which interact with Sensors & Actuators from Lego ecosystem with the Power of the popular board 
+ which interact with Sensors & Actuators from Lego ecosystem and that boards can use the Power of the popular board 
  [Raspberry Pi 3](https://www.raspberrypi.org/)
  
-With the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards. 
-So, why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
-The project the good things of both worlds: EV3Dev with the complete linux experience 
+Now, with the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards. 
+So... why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
+The project, takes the good things of both worlds: EV3Dev with the complete linux experience 
 and LeJOS with the rich local navigation stack.
   
 **What libraries contains EV3Dev-lang-java?**
