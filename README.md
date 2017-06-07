@@ -354,4 +354,5 @@ Take a look the following examples to discover some features included with this 
 * LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/ 
 * EV3Dev: http://www.ev3dev.org/
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
+* EVEDev // Linux Kernel Drivers: http://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-jessie/
 
