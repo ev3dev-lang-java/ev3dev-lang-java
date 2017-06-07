@@ -1,11 +1,14 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is a Java library designed to interact with [EV3Dev](http://www.ev3dev.org/) hardware using the [LeJOS](http://www.lejos.org/) way.
+*EV3Dev-lang-Java* is a Java project designed to build Software for Robots with [EV3Dev](http://www.ev3dev.org/) 
+hardware & the [LeJOS](http://www.lejos.org/) way.
 
 [![Dependency Status](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc)
 [![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
 
-The project has support for the latest `EV3Dev` stable kernels:
+**What is the latest EV3Dev version supported?**
+
+THe libraries was tested with the latest stable `EV3Dev` versions for Debian Jessie:
 
 - [EV3 Brick](https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400): 4.4.47-19-ev3dev-ev3
 - [RaspberryPi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) with [BrickPi+](https://www.dexterindustries.com/brickpi/) & [PiStorms](http://www.mindsensors.com/content/78-pistorms-lego-interface): 4.4.47-19-ev3dev-rpi2
@@ -14,9 +17,22 @@ If you need further information about stable EV3Dev images, [click here](http://
 
 ## Introduction
 
-In Lego Mindstorms ecosystem, the default solution to develop Java software for a Lego Mindstorms is [LeJOS](http://www.lejos.org/).
-But now, it exists another alternative, `EV3Dev-lang-java` a Java project for [EV3Dev](http://www.ev3dev.org/).  
-  
+In Lego Mindstorms ecosystem, the default solution to develop Java software for Lego Mindstorms is [LeJOS](http://www.lejos.org/).
+But now exists one alternative, `EV3Dev-lang-java` a Java project running on the top of [EV3Dev](http://www.ev3dev.org/).  
+
+Lego Mindstorms ecosystem is `a nice educational way to learn Java programming in general and Robotics in particular`. 
+Now, it is possible to install a complete Linux distro in the third generation of the product and others companies like 
+[Mindsensors](http://www.mindsensors.com/) & [Dexter Industries](https://www.dexterindustries.com/) has released products
+ which interact with Sensors & Actuators from Lego ecosystem and that boards can use the Power of the popular board 
+ [Raspberry Pi 3](https://www.raspberrypi.org/)
+ 
+But, with the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards. 
+So... why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
+The project, takes the good things of both worlds: EV3Dev with the complete linux experience 
+and LeJOS with the rich local navigation stack.
+
+![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
+    
 **What libraries contains EV3Dev-lang-java?**
   
 The project contains the following Java libraries/scripts:
@@ -25,23 +41,23 @@ The project contains the following Java libraries/scripts:
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
 - [lejos-navigation](https://github.com/ev3dev-lang-java/lejos-navigation): LeJOS navigation stack
 - [RPLidar4J](https://github.com/ev3dev-lang-java/RPLidar4J): RPLidar A1 support
+- [Battery Monitor](https://github.com/ev3dev-lang-java/batteryMonitor): A battery monitor to protect your hardware against low battery levels
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
 
 **Advantages of the usage of this project?**
 
-![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
-
-Basically, with this library you can develop educational robots with Java for the following bricks:
+Basically, with this library you can develop educational robots with Java for multiple bricks:
 
 - EV3 Brick
 - BrickPi+
 - BrickPi 3 (Scheduled on v0.7.0)
 - PiStorms
 
-Now, with the same syntax, it is possible to deploy the software for robots on Raspberry Pi with BrickPi & PiStorms.
+Using the same objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi & PiStorms.
 
-Any EV3 Brick uses a `SoC: Sitara Processor AM1808` (from year 2010) to manage Sensors & Actuators 
-but now with the usage of a BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3.
+If you analyze the hardware, any EV3 Brick uses a `SoC: Sitara Processor AM1808` (from year 2010) to manage Sensors & Actuators 
+but now with the usage of a BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3 increasing the 
+possibilities to develop complex projects which require por Computational consumption.
 
 **2010 Chip included on EV3 Brick:**
 
@@ -59,8 +75,6 @@ CPU: 4× ARM Cortex-A53, 1.2GHz
 RAM: 1GB LPDDR2 (900 MHz)
 ```
 
-Anyway, although you could use hardware with more resources, it is necessary to develop stable algorithms (Your turn). 
-
 ## Features included in the whole project
 
 **Java features**
@@ -68,7 +82,8 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 * Automatic installation of Oracle Java JDK 8 for Brickpi+/PiStorms + Raspberry Pi 3
 * Partial installation of Oracle Java JRE 8 for EV3 Brick
 * OpenJDK Java 9 EA support for Brickpi+/PiStorms + Raspberry Pi 3
-* Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html), [VisualVM](https://visualvm.java.net/) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
+* Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
+* Logging support based on [SLF4J](https://www.slf4j.org/)
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
 
 **Platform features**
@@ -81,6 +96,7 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 * Unregulated Motor Support
 * Sensor Support (EV3 sensors)
 * Sounds Support
+* EV3 LCD Support
 
 **Robotics**
 
@@ -92,20 +108,22 @@ Anyway, although you could use hardware with more resources, it is necessary to 
 
 ## Roadmap
 
-To check the roadmap, it is better to review the `backlog`:
+Review the `backlog` to follow the features in course:
 https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues
 
 ## Getting Started
 
 ### 1. Install EV3Dev on your brick
 
-Follow the following link to install EV3Dev:
+Follow the link to install EV3Dev on your brick:
 
 http://www.ev3dev.org/docs/getting-started/
 
-Once you finish this step, you will have a complete Linux distro to run any Programming language
+Once you finish the installation process and the remote `ssh` connection test, 
+you will have a complete Linux distro to run any Programming language.
 
-**Note:** Please, update your brick with latest update before continuing with the next step.
+**Note:** Please, maintain your brick updated. Execute the following commands 
+before jump to the next step in this guide.
 
 ```
 sudo apt-get update
@@ -116,20 +134,24 @@ sudo reboot
 
 ### 2. Install Java on your brick
 
-For this step exist 2 paths. 
+For this step exist 2 paths. One path is for EV3 Brick and another path for BrickPi users and PiStorms users. 
 
 **2.1 EV3 Brick:**
 
 The EV3 Brick was designed with a SOC based on [ARM EABI](https://wiki.debian.org/ArmEabiPort) 
-and the fastest JRE option is based on Oracle and it is not possible to download in an automatic way so you have to 
-download the JRE on your local machine from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
-and later copy to your brick using `scp`:
+and the best JVM option for that hardware architecture is the Oracle JRE 8 to install in the brick but, it is not possible to install directly in the brick
+ without any human interaction, so you need to download from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
+and later, copy the file `ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz` to your brick using the command `scp`.
+
+Example:
 
 ```
 scp "./ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz" "robot@192.168.1.85:/home/robot"
 ```
 
-Once, you have the file on the brick, you can continue the Java installation with the installer or do your self manually.
+Once, you have the file on the brick, you can continue the Java installation with the installer or do yourself manually.
+
+https://github.com/ev3dev-lang-java/installer
 
 **Using the installer:**
 
@@ -157,6 +179,8 @@ Now, you have Java on your EV3 Brick
 
 Using the installer, it is possible to automate everything:
 
+https://github.com/ev3dev-lang-java/installer
+
 ```
 cd /home/robot
 mkdir installer
@@ -166,9 +190,6 @@ chmod +x installer.sh
 sudo ./installer.sh help
 sudo ./installer.sh
 ```
-
-Further information about the installer here:
-https://github.com/ev3dev-lang-java/installer
 
 ### 3. Create your first Project and deploy on your Brick
 
@@ -180,7 +201,7 @@ If you like, you can experiment with the project, using the following project te
 
 https://github.com/ev3dev-lang-java/template_project_gradle
 
-Download the project, update the file: `deploy.gradle`: with the IP of you Brick:
+Download the project, update the file: `config.gradle`: with the IP of you Brick:
 
 ```
 remotes {
@@ -198,9 +219,15 @@ To deploy the example on your brick, open a `terminal` and type:
 ./gradlew deployAndRun
 ```
 
+Besides, exist a task to provide access to a Profiling tool if you execute:
+
+```
+./gradlew deployAndProfilingRun
+```
+
 **3.2 Create a project from scratch:**
 
-Another alternative is the creation of a project from Scrach using Maven/Gradle.
+Another alternative is the creation of a project from Scratch using Maven/Gradle.
 
 To start a new project with this library, add the following repository and dependency.
 
@@ -222,12 +249,6 @@ To start a new project with this library, add the following repository and depen
 ```
 	
 Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.1
-
-## Unit testing
-
-Exist many examples used to test the project. In the future we will automate a good % of the tests using 
-[JUnit testing](http://junit.org/junit4/) and [Mocks](http://site.mockito.org/) 
-but at the moment, many features are tested manually.
 
 ## Examples
 
@@ -317,12 +338,11 @@ Take a look the following examples to discover some features included with this 
 - https://www.youtube.com/watch?v=1d9q24aNMHQ
 - https://www.youtube.com/watch?v=SIwG848ODI8
 
+## Unit testing
 
-## Open issues:
-
-This project is not perfect, but we try to be transparent.
-Read this document to see the open issues:
-https://github.com/ev3dev-lang-java/ev3dev-lang-java/blob/develop/OPEN_ISSUES.md
+Exist many examples used to test the project. In the future we will automate a good % of the tests using 
+[JUnit testing](http://junit.org/junit4/) and [Mocks](http://site.mockito.org/) 
+but at the moment, many features are tested manually.
 
 ## UML Design
 
@@ -334,4 +354,5 @@ https://github.com/ev3dev-lang-java/ev3dev-lang-java/blob/develop/OPEN_ISSUES.md
 * LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/ 
 * EV3Dev: http://www.ev3dev.org/
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
+* EVEDev // Linux Kernel Drivers: http://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-jessie/
 
