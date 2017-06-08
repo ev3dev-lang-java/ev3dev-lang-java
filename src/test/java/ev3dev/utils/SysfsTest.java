@@ -1,6 +1,7 @@
 package ev3dev.utils;
 
 import mocks.MockBaseTest;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 
@@ -17,6 +18,15 @@ import static org.junit.Assert.assertThat;
 public class SysfsTest extends MockBaseTest {
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(SysfsTest.class);
+
+    //TODO: I think that it is better if MockBase is considered as a set of classes.
+    @Override
+    @Before
+    public void onceExecutedBeforeAll() throws IOException {
+        getGlobalPaths();
+        createEV3DevMocksPath();
+        createEV3DevMocksEV3BrickPlatformPath();
+    }
 
     //OK
 

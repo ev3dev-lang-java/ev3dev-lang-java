@@ -18,8 +18,32 @@ public class EV3DevPlatformTest extends MockBaseTest {
     }
 
     @Test
-    public void testMockInjectionPathTest2() throws IOException {
+    public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
+
+        //Inject a MockBattery object
+        this.createEV3DevMocksEV3BrickPlatformPath();
+
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
         assertThat(epc.getPlatform(), is(EV3DevPlatform.EV3BRICK));
+    }
+
+    @Test
+    public void testEV3DevPlatformOnPiStormsTest() throws IOException {
+
+        //Inject a MockBattery object
+        this.createEV3DevMocksPiStormsPlatformPath();
+
+        EV3DevPlatformChild epc = new EV3DevPlatformChild();
+        assertThat(epc.getPlatform(), is(EV3DevPlatform.PISTORMS));
+    }
+
+    @Test
+    public void testEV3DevPlatformOnBrickPiTest() throws IOException {
+
+        //Inject a MockBattery object
+        this.createEV3DevMocksBrickPiPlatformPath();
+
+        EV3DevPlatformChild epc = new EV3DevPlatformChild();
+        assertThat(epc.getPlatform(), is(EV3DevPlatform.BRICKPI));
     }
 }

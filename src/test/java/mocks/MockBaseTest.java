@@ -30,6 +30,8 @@ public abstract class MockBaseTest {
     protected static File tempEV3BatteryFolder;
     protected static final String BATTERY_PATH = "power_supply";
     protected static final String BATTERY_EV3_SUBPATH = "legoev3-battery";
+    protected static final String BATTERY_BRICKPI_SUBPATH = "brickpi-battery";
+    protected static final String BATTERY_PISTORMS_SUBPATH = "pistorms-battery";
     protected static final String BATTERY_FIELD_VOLTAGE = "voltage_now";
     protected static final String BATTERY_FIELD_VOLTAGE_VALUE = "8042133";
     protected static String BATTERY_FIELD_VOLTAGE_SUFFIX;
@@ -45,9 +47,37 @@ public abstract class MockBaseTest {
         tempMocksFolder  = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH);
     }
 
-    public void createEV3DevMocksPlatformPath() throws IOException {
+    public void createEV3DevMocksEV3BrickPlatformPath() throws IOException {
         tempBatteryFolder    = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH);
         tempEV3BatteryFolder = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH, BATTERY_EV3_SUBPATH);
+
+        batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "", tempEV3BatteryFolder);
+        //TODO How to create a file under tempEV3BatteryFolder
+        //batterySensor = tempFolder.newFile(BATTERY_FIELD_VOLTAGE);
+        PrintWriter out = new PrintWriter(batterySensor);
+        out.println(BATTERY_FIELD_VOLTAGE_VALUE);
+        out.flush();
+        out.close();
+        BATTERY_FIELD_VOLTAGE_SUFFIX = batterySensor.getAbsolutePath().replace(JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE,"");
+    }
+
+    public void createEV3DevMocksBrickPiPlatformPath() throws IOException {
+        tempBatteryFolder    = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH);
+        tempEV3BatteryFolder = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH, BATTERY_BRICKPI_SUBPATH);
+
+        batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "", tempEV3BatteryFolder);
+        //TODO How to create a file under tempEV3BatteryFolder
+        //batterySensor = tempFolder.newFile(BATTERY_FIELD_VOLTAGE);
+        PrintWriter out = new PrintWriter(batterySensor);
+        out.println(BATTERY_FIELD_VOLTAGE_VALUE);
+        out.flush();
+        out.close();
+        BATTERY_FIELD_VOLTAGE_SUFFIX = batterySensor.getAbsolutePath().replace(JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE,"");
+    }
+
+    public void createEV3DevMocksPiStormsPlatformPath() throws IOException {
+        tempBatteryFolder    = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH);
+        tempEV3BatteryFolder = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH, BATTERY_PISTORMS_SUBPATH);
 
         batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "", tempEV3BatteryFolder);
         //TODO How to create a file under tempEV3BatteryFolder
@@ -63,7 +93,7 @@ public abstract class MockBaseTest {
     public void onceExecutedBeforeAll() throws IOException {
         getGlobalPaths();
         createEV3DevMocksPath();
-        createEV3DevMocksPlatformPath();
+        //createEV3DevMocksEV3BrickPlatformPath();
         System.setProperty(EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath());
     }
 
