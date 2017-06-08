@@ -33,15 +33,22 @@ jar {
     baseName = "${rootProject.name}"
 }
 
-//Fat Jar
-task fatJar(type: Jar) {
-    baseName = "${rootProject.name}" + "-all"
-    manifest {
-        from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
+buildscript {
+    repositories {
+        jcenter()
     }
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+    }
 }
+
+//Fat Jar
+apply plugin: 'com.github.johnrengelman.shadow'
+
+task fatJar << {
+
+}
+fatJar.dependsOn shadowJar
 
 //Deploy on Brick
 buildscript {
