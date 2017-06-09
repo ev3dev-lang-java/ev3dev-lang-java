@@ -1,5 +1,7 @@
 package ev3dev.hardware;
 
+import lejos.hardware.port.MotorPort;
+import lejos.hardware.port.SensorPort;
 import mocks.MockBaseTest;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -25,8 +27,8 @@ public class EV3DevSensorDeviceTest extends MockBaseTest {
 
         EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
         LOGGER.debug(device.getROOT_PATH());
-        LOGGER.debug(device.getMotorPort("adsf"));
-        LOGGER.debug(device.getSensorPort("asdf"));
+        LOGGER.debug(device.getMotorPort(MotorPort.A));
+        LOGGER.debug(device.getSensorPort(SensorPort.S1));
         device.detect("demo","ui");
         device.getIntegerAttribute("demo");
         device.getPlatform();

@@ -2,6 +2,7 @@ package ev3dev.hardware;
 
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.MotorPort;
+import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import org.slf4j.Logger;
 
@@ -48,7 +49,7 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
         }
     }
 
-    protected String getMotorPort(final String port) {
+    protected String getMotorPort(final Port port) {
 
         if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
@@ -92,7 +93,7 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
         return null;
     }
 
-    protected String getSensorPort(final String port) {
+    protected String getSensorPort(final Port port) {
 
         if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 

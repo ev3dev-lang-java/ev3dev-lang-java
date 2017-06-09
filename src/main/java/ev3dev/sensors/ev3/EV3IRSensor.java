@@ -3,6 +3,7 @@ package ev3dev.sensors.ev3;
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
+import lejos.hardware.port.Port;
 
 import java.io.File;
 
@@ -34,7 +35,7 @@ public class EV3IRSensor extends BaseSensor {
 
     private static final String LEGO_EV3_IR = "lego-ev3-ir";
 
-	public EV3IRSensor(String portName) {
+	public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
 		init();
 	}

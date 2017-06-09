@@ -3,6 +3,7 @@ package ev3dev.sensors.ev3;
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
+import lejos.hardware.port.Port;
 import lejos.robotics.SampleProvider;
 
 import java.io.File;
@@ -38,7 +39,7 @@ public class EV3GyroSensor extends BaseSensor {
 
 	private static final String LEGO_EV3_GYRO = "lego-ev3-gyro";
 
-	public EV3GyroSensor(String portName) {
+	public EV3GyroSensor(final Port portName) {
 		super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
 		setModes(new SensorMode[] {
 				new RateMode(this.PATH_DEVICE),

@@ -1,5 +1,6 @@
 package ev3dev.hardware;
 
+import lejos.hardware.port.MotorPort;
 import mocks.MockBaseTest;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ public class EV3DevDeviceTest extends MockBaseTest {
 
     }
 
-    //@Test
+    @Test
     public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
 
         //Inject a MockBattery object
@@ -25,7 +26,9 @@ public class EV3DevDeviceTest extends MockBaseTest {
 
         EV3DevDeviceChild device = new EV3DevDeviceChild();
         LOGGER.debug(device.getROOT_PATH());
-        LOGGER.debug(device.getMotorPort("adsf"));
+        LOGGER.debug(device.getMotorPort(MotorPort.A));
+
+        /*
         LOGGER.debug(device.getSensorPort("asdf"));
         device.detect("demo","ui");
         device.getIntegerAttribute("demo");
@@ -33,7 +36,7 @@ public class EV3DevDeviceTest extends MockBaseTest {
         device.getStringAttribute("demo");
         device.setIntegerAttribute("", 0);
         device.setStringAttribute("","");
-
+        */
         //EV3DevPlatformChild epc = new EV3DevPlatformChild();
         //assertThat(epc.getPlatform(), is(EV3DevPlatform.EV3BRICK));
     }

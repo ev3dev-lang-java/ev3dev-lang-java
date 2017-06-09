@@ -3,6 +3,7 @@ package ev3dev.sensors.ev3;
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
+import lejos.hardware.port.Port;
 import lejos.robotics.Color;
 import lejos.robotics.ColorIdentifier;
 import lejos.robotics.LampController;
@@ -64,7 +65,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         		});
     }
 
-	public EV3ColorSensor(String portName) {
+	public EV3ColorSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_COLOR_SENSOR);
 		initModes();
 	}
