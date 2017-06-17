@@ -37,6 +37,9 @@ compileJava {
 //Jar
 jar {
     baseName = "${rootProject.name}"
+    manifest {
+        from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
+    }
 }
 
 buildscript {
@@ -64,7 +67,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "org.hidetake:gradle-ssh-plugin:2.0.0"
+        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
     }
 }
 apply plugin: 'org.hidetake.ssh'
