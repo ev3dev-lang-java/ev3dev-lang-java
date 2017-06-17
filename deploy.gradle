@@ -20,8 +20,8 @@ task remoteRun << {
 task remoteSudoRun << {
     ssh.run {
         session(remotes.ev3dev) {
-            println "echo -e \"maker\" | sudo -S java -server -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
-            execute "echo -e \"maker\" | sudo -S java -server -jar /home/robot/" + "${rootProject.name}" + "-all-" + version + ".jar"
+            println "echo -e \"maker\" | sudo -S java -server -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+            execute "echo -e \"maker\" | sudo -S java -server -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
         }
     }
 }
@@ -53,7 +53,7 @@ deployAndRun.dependsOn deploy, remoteRun
 task deployAndSudoRun << {
 
 }
-deployAndRun.dependsOn deploy, remoteSudoRun
+deployAndSudoRun.dependsOn deploy, remoteSudoRun
 
 task deployAndProfilingRun << {
 
@@ -63,7 +63,7 @@ deployAndProfilingRun.dependsOn deploy, remoteProfilingRun
 task deployAndProfilingSudoRun << {
 
 }
-deployAndProfilingRun.dependsOn deploy, remoteProfilingSudoRun
+deployAndProfilingSudoRun.dependsOn deploy, remoteProfilingSudoRun
 
 apply from: 'config.gradle'
 

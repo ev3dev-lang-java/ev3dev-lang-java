@@ -37,6 +37,9 @@ compileJava {
 //Jar
 jar {
     baseName = "${rootProject.name}"
+    manifest {
+        from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
+    }
 }
 
 buildscript {
