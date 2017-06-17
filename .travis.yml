@@ -1,5 +1,14 @@
+sudo: required
 language: java
 jdk:
   - oraclejdk8
-
-script: ./gradlew clean build
+before_install:
+ - chmod +x gradlew
+services:
+  - docker
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
+  - docker
+script: ./gradlew dockerTest

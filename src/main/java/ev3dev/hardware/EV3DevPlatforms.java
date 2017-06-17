@@ -26,14 +26,17 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
         final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
         final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
 
-        log.trace(EV3BRICK_DISCOVERY_PATTERN_PATH);
+
         if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
+            log.trace(EV3BRICK_DISCOVERY_PATTERN_PATH);
             log.trace("Detected platform: " + EV3DevPlatform.EV3BRICK);
             return EV3DevPlatform.EV3BRICK;
         } else if(Sysfs.existPath(PISTORMS_DISCOVERY_PATTERN_PATH)){
+            log.trace(PISTORMS_DISCOVERY_PATTERN_PATH);
             log.trace("Detected platform: " + EV3DevPlatform.PISTORMS);
             return EV3DevPlatform.PISTORMS;
         } else if(Sysfs.existPath(BRICKPI_DISCOVERY_PATTERN_PATH)){
+            log.trace(BRICKPI_DISCOVERY_PATTERN_PATH);
             log.trace("Detected platform: " + EV3DevPlatform.BRICKPI);
             return EV3DevPlatform.BRICKPI;
         } else {
