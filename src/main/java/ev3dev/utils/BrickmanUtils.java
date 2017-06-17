@@ -50,6 +50,7 @@ public class BrickmanUtils extends EV3DevPlatforms {
         if(platforms.contains(obj.getPlatform())) {
             if(log.isDebugEnabled())
                 log.debug("Showing Java logo on EV3 Brick");
+
             final GraphicsLCD lcd = LCD.getInstance();
             try {
                 JarResource.export(JAVA_LOGO);

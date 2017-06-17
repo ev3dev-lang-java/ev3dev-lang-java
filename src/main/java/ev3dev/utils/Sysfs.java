@@ -125,6 +125,8 @@ public class Sysfs {
 
 
 	public static boolean existFile(Path pathToFind) {
+		if(log.isTraceEnabled())
+			log.trace("path: " + pathToFind.toString());
 		return Files.exists(pathToFind);
 	}
 

@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 
 public class SysfsTest extends MockBaseTest {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SysfsTest.class);
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(SysfsTest.class);
 
     final String BATTERY_PATH = "power_supply";
     final String BATTERY_EV3_SUBPATH = "legoev3-battery";
@@ -66,7 +66,7 @@ public class SysfsTest extends MockBaseTest {
         BatteryMock batteryMock = new BatteryMock(this.tempFolder);
         BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
         String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
-        log.trace(pathToAssert);
+        LOGGER.trace(pathToAssert);
         assertThat(Sysfs.readInteger(pathToAssert), is(Integer.parseInt(BATTERY_FIELD_VOLTAGE_VALUE)));
     }
 
@@ -75,7 +75,7 @@ public class SysfsTest extends MockBaseTest {
         BatteryMock batteryMock = new BatteryMock(this.tempFolder);
         BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
         String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
-        log.trace(pathToAssert);
+        LOGGER.trace(pathToAssert);
         assertThat(Sysfs.readFloat(pathToAssert), is(Float.parseFloat(BATTERY_FIELD_VOLTAGE_VALUE)));
     }
 
@@ -95,10 +95,10 @@ public class SysfsTest extends MockBaseTest {
         BatteryMock batteryMock = new BatteryMock(this.tempFolder);
         BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
 
-        log.debug(BATTERY_FIELD_VOLTAGE_SUFFIX);
+        LOGGER.debug(BATTERY_FIELD_VOLTAGE_SUFFIX);
         String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
         final Path path = Paths.get(pathToAssert);
-        log.debug(path.toString());
+        LOGGER.debug(path.toString());
         assertThat(Sysfs.existFile(path), is(true));
     }
 
