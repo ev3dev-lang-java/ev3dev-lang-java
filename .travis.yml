@@ -3,7 +3,9 @@ language: java
 jdk:
   - oraclejdk8
 before_install:
- - chmod +x gradlew
+  - chmod +x gradlew
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 services:
   - docker
 cache:
