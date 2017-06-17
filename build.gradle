@@ -22,6 +22,12 @@ dependencies {
     testCompile("org.hamcrest:hamcrest-all:1.3")
 }
 
+//Wrapper
+task wrapper(type: Wrapper) {
+    description = 'Generates gradlew[.bat] scripts'
+    gradleVersion = '3.5'
+}
+
 //Compile
 compileJava {
     sourceCompatibility = 1.8
@@ -31,17 +37,27 @@ compileJava {
 //Jar
 jar {
     baseName = "${rootProject.name}"
-}
-
-//Fat Jar
-task fatJar(type: Jar) {
-    baseName = "${rootProject.name}" + "-all"
     manifest {
         from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
     }
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+    }
+}
+
+//Fat Jar
+apply plugin: 'com.github.johnrengelman.shadow'
+
+task fatJar << {
+
+}
+fatJar.dependsOn shadowJar
 
 //Deploy on Brick
 buildscript {
@@ -51,7 +67,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "org.hidetake:gradle-ssh-plugin:2.0.0"
+        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
     }
 }
 apply plugin: 'org.hidetake.ssh'
