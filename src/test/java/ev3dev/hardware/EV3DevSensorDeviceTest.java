@@ -3,7 +3,7 @@ package ev3dev.hardware;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import mocks.MockBaseTest;
-import org.junit.Test;
+import mocks.ev3dev.sensors.BatteryMock;
 import org.slf4j.Logger;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class EV3DevSensorDeviceTest extends MockBaseTest {
     public class EV3DevSensorDeviceChild extends EV3DevSensorDevice {
 
         public EV3DevSensorDeviceChild(){
-            super("","");
+            super(MotorPort.A,"demo");
         }
     }
 
@@ -23,7 +23,8 @@ public class EV3DevSensorDeviceTest extends MockBaseTest {
     public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
 
         //Inject a MockBattery object
-        this.createEV3DevMocksEV3BrickPlatformPath();
+        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
+        batteryMock.createEV3DevMocksEV3BrickPlatformPath();
 
         EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
         LOGGER.debug(device.getROOT_PATH());

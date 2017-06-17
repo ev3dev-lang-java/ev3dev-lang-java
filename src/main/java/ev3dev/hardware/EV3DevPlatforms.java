@@ -27,7 +27,6 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
         final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
         final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
 
-
         if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
             log.trace(EV3BRICK_DISCOVERY_PATTERN_PATH);
             log.trace("Detected platform: " + EV3DevPlatform.EV3BRICK);

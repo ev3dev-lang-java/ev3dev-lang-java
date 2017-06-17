@@ -117,6 +117,8 @@ public class Sysfs {
 	 * @return boolean
 	 */
 	public static boolean existPath(final String filePath){
+		if(log.isTraceEnabled())
+			log.trace("ls " + filePath);
 		final File f = new File(filePath);
         return f.exists() && f.isDirectory();
     }

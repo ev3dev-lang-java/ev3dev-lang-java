@@ -352,7 +352,9 @@ but at the moment, many features are tested manually.
 
 * LeJOS: http://www.lejos.org/
 * LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/ 
+* LeJOS Forum: https://lejos.sourceforge.io/forum/search.php?keywords=ev3dev&sid=8642d9d1b361bcfdcdeabb26db89e632
 * EV3Dev: http://www.ev3dev.org/
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
 * EVEDev // Linux Kernel Drivers: http://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-jessie/
+* Dexter Forum: http://forum.dexterindustries.com/search?q=java
 
