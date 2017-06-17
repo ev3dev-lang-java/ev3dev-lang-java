@@ -38,7 +38,6 @@ public class EV3DevMotorDeviceTest extends MockBaseTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath().toString());
 
-
         EV3DevMotorDeviceChild device = new EV3DevMotorDeviceChild();
         LOGGER.debug(device.getROOT_PATH());
         LOGGER.debug(device.getMotorPort(MotorPort.A));
@@ -55,9 +54,7 @@ public class EV3DevMotorDeviceTest extends MockBaseTest {
         device.setIntegerAttribute("", 0);
         device.setStringAttribute("","");
         */
-
-        //EV3DevPlatformChild epc = new EV3DevPlatformChild();
-
+        
     }
 
 

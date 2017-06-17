@@ -58,7 +58,6 @@ public class SysfsTest extends MockBaseTest {
         BatteryMock batteryMock = new BatteryMock(this.tempFolder);
         BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
         String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
-        log.trace("DD" + pathToAssert);
         assertThat(Sysfs.readString(pathToAssert), is(BATTERY_FIELD_VOLTAGE_VALUE));
     }
 
