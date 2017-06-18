@@ -38,8 +38,11 @@ public abstract class EV3DevDevice extends EV3DevPlatforms {
      * @param portName port
      */
     protected void detect(final String type, final String portName) {
-        log.debug("Detecting device on port: {}", portName);
+        if(log.isDebugEnabled())
+            log.debug("Detecting device on port: {}", portName);
         final String devicePath = ROOT_PATH + "/" + type;
+        if(log.isTraceEnabled())
+            log.trace(devicePath);
         final List<File> deviceAvailables = Sysfs.getElements(devicePath);
 
         boolean connected = false;
@@ -47,8 +50,12 @@ public abstract class EV3DevDevice extends EV3DevPlatforms {
         for (File deviceAvailable : deviceAvailables) {
             PATH_DEVICE = deviceAvailable;
             pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
-            if (Sysfs.readString(pathDeviceName).equals(portName)) {
-                log.debug("Detected port on path: {}", pathDeviceName);
+            String result = Sysfs.readString(pathDeviceName);
+            if(log.isTraceEnabled())
+                log.trace("Port: {}, {}.", portName, result);
+            if (result.equals(portName)) {
+                if(log.isDebugEnabled())
+                    log.debug("Detected port on path: {}", pathDeviceName);
                 connected = true;
                 break;
             }

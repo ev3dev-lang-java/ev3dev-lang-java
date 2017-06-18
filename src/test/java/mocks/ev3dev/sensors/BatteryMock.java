@@ -1,7 +1,5 @@
 package mocks.ev3dev.sensors;
 
-import ev3dev.utils.Shell;
-import ev3dev.utils.Sysfs;
 import ev3dev.utils.SysfsTest;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
@@ -9,7 +7,6 @@ import org.slf4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 public class BatteryMock {
 
