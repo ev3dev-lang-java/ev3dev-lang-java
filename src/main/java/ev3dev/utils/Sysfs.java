@@ -72,7 +72,10 @@ public class Sysfs {
 		try {
 			final Path path = Paths.get(filePath);
 			if(existFile(path) && Files.isReadable(path)){
-				return Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+				final String result = Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+				if(log.isTraceEnabled())
+					log.trace("value: {}", result);
+				return result;
 			}
 			throw new IOException("Problem reading path: " + filePath);
 		} catch (IOException ex) {
