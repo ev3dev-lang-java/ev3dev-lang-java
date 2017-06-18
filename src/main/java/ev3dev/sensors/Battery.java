@@ -23,6 +23,7 @@ public class Battery extends EV3DevDevice implements Power {
     private static final String BATTERY_EV3 =  "legoev3-battery";
     private static final String BATTERY_PISTORMS =  "pistorms-battery";
     private static final String BATTERY_BRICKPI =  "brickpi-battery";
+    private static final String BATTERY_BRICKPI3 =  "brickpi3-battery";
 
     private static String BATTERY_PATH;
     private static final String VOLTAGE = "voltage_now";
@@ -41,6 +42,7 @@ public class Battery extends EV3DevDevice implements Power {
 
     // Prevent duplicate objects
     private Battery() {
+
         //TODO Create separator variable for the whole project
         BATTERY_PATH = ROOT_PATH + "/" + BATTERY;
         final EV3DevPlatform platform = this.getPlatform();
@@ -48,8 +50,12 @@ public class Battery extends EV3DevDevice implements Power {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
         } else if(platform.equals(EV3DevPlatform.PISTORMS)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_PISTORMS;
-        } else {
+        } else if(platform.equals(EV3DevPlatform.BRICKPI)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI;
+        } else if(platform.equals(EV3DevPlatform.BRICKPI3)) {
+            BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI3;
+        } else if(platform.equals(EV3DevPlatform.UNKNOWN)) {
+            throw new RuntimeException("Platform Unknown");
         }
     }
 

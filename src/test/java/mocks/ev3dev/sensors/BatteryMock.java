@@ -1,7 +1,5 @@
 package mocks.ev3dev.sensors;
 
-import ev3dev.utils.Shell;
-import ev3dev.utils.Sysfs;
 import ev3dev.utils.SysfsTest;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
@@ -9,7 +7,6 @@ import org.slf4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 public class BatteryMock {
 
@@ -33,6 +30,7 @@ public class BatteryMock {
     protected static final String BATTERY_PATH = "power_supply";
     protected static final String BATTERY_EV3_SUBPATH = "legoev3-battery";
     protected static final String BATTERY_BRICKPI_SUBPATH = "brickpi-battery";
+    protected static final String BATTERY_BRICKPI3_SUBPATH = "brickpi3-battery";
     protected static final String BATTERY_PISTORMS_SUBPATH = "pistorms-battery";
     protected static final String BATTERY_FIELD_VOLTAGE = "voltage_now";
     protected static final String BATTERY_FIELD_VOLTAGE_VALUE = "8042133";
@@ -74,6 +72,20 @@ public class BatteryMock {
     public void createEV3DevMocksBrickPiPlatformPath() throws IOException {
         tempBatteryFolder    = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH);
         tempEV3BatteryFolder = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH, BATTERY_BRICKPI_SUBPATH);
+
+        batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "", tempEV3BatteryFolder);
+        //TODO How to create a file under tempEV3BatteryFolder
+        //batterySensor = tempFolder.newFile(BATTERY_FIELD_VOLTAGE);
+        PrintWriter out = new PrintWriter(batterySensor);
+        out.println(BATTERY_FIELD_VOLTAGE_VALUE);
+        out.flush();
+        out.close();
+        BATTERY_FIELD_VOLTAGE_SUFFIX = batterySensor.getAbsolutePath().replace(JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE,"");
+    }
+
+    public void createEV3DevMocksBrickPi3PlatformPath() throws IOException {
+        tempBatteryFolder    = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH);
+        tempEV3BatteryFolder = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH, BATTERY_BRICKPI3_SUBPATH);
 
         batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "", tempEV3BatteryFolder);
         //TODO How to create a file under tempEV3BatteryFolder

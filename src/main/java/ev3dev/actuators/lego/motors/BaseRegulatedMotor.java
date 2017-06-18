@@ -1,7 +1,6 @@
 package ev3dev.actuators.lego.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
-import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.sensors.Battery;
 import lejos.hardware.port.Port;
 import lejos.robotics.RegulatedMotor;

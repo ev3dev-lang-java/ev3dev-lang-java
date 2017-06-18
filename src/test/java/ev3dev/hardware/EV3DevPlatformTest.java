@@ -55,4 +55,15 @@ public class EV3DevPlatformTest extends MockBaseTest {
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
         assertThat(epc.getPlatform(), is(EV3DevPlatform.BRICKPI));
     }
+
+    @Test
+    public void testEV3DevPlatformOnBrickPi3Test() throws IOException {
+
+        //Inject a MockBattery object
+        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
+        batteryMock.createEV3DevMocksBrickPi3PlatformPath();
+
+        EV3DevPlatformChild epc = new EV3DevPlatformChild();
+        assertThat(epc.getPlatform(), is(EV3DevPlatform.BRICKPI3));
+    }
 }
