@@ -45,10 +45,12 @@ public class BatteryMock {
 
     public String createEV3DevMocksEV3BrickPlatformPath() throws IOException {
 
+        LOGGER.debug("Create BatteryMock");
+
         tempBatteryFolder    = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH);
         tempEV3BatteryFolder = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH, BATTERY_EV3_SUBPATH);
 
-        batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "", tempEV3BatteryFolder);
+        batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "_MOCK", tempEV3BatteryFolder);
         //TODO How to create a file under tempEV3BatteryFolder
         //batterySensor = tempFolder.newFile(BATTERY_FIELD_VOLTAGE);
         PrintWriter out = new PrintWriter(batterySensor);
@@ -57,16 +59,8 @@ public class BatteryMock {
         out.close();
 
         BATTERY_FIELD_VOLTAGE_SUFFIX = batterySensor.getAbsolutePath().replace(JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE,"");
-        /*
-        System.out.println(tempFolder.getRoot().getAbsolutePath().toString());
-        List<File> list = Sysfs.getElements(tempEV3BatteryFolder.getAbsolutePath().toString());
-        for(File item: list){
-            System.out.println(item.getAbsolutePath());
-        }
-        System.out.println(BATTERY_FIELD_VOLTAGE_SUFFIX);
-        */
+        LOGGER.debug(BATTERY_FIELD_VOLTAGE_SUFFIX);
         return BATTERY_FIELD_VOLTAGE_SUFFIX;
-
     }
 
     public void createEV3DevMocksBrickPiPlatformPath() throws IOException {
@@ -81,6 +75,7 @@ public class BatteryMock {
         out.flush();
         out.close();
         BATTERY_FIELD_VOLTAGE_SUFFIX = batterySensor.getAbsolutePath().replace(JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE,"");
+        LOGGER.debug(BATTERY_FIELD_VOLTAGE_SUFFIX);
     }
 
     public void createEV3DevMocksBrickPi3PlatformPath() throws IOException {

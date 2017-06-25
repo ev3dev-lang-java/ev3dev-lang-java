@@ -17,7 +17,7 @@ import org.slf4j.Logger;
  */
 public class Battery extends EV3DevDevice implements Power {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Battery.class);
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Battery.class);
 
     private static final String BATTERY =  "power_supply";
     private static final String BATTERY_EV3 =  "legoev3-battery";
@@ -42,11 +42,16 @@ public class Battery extends EV3DevDevice implements Power {
 
     // Prevent duplicate objects
     private Battery() {
+        init();
+    }
+
+    private void init(){
+        LOGGER.debug("Init sensor");
 
         //TODO Create separator variable for the whole project
         BATTERY_PATH = ROOT_PATH + "/" + BATTERY;
         final EV3DevPlatform platform = this.getPlatform();
-    	if(platform.equals(EV3DevPlatform.EV3BRICK)) {
+        if(platform.equals(EV3DevPlatform.EV3BRICK)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
         } else if(platform.equals(EV3DevPlatform.PISTORMS)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_PISTORMS;
@@ -69,6 +74,7 @@ public class Battery extends EV3DevDevice implements Power {
 	 * @return voltage
 	 */
 	public float getVoltage() {
+	    LOGGER.debug(Sysfs.getElements(BATTERY_PATH_LOCAL).toString());
 		return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000000;
 	}
 
@@ -81,7 +87,7 @@ public class Battery extends EV3DevDevice implements Power {
     	if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
     		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
     	}else {
-            log.warn("This method is not available for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);
+            LOGGER.warn("This method is not available for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);
             return -1f;
         }
 	}
