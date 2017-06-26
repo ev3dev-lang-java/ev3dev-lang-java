@@ -6,7 +6,6 @@ import ev3dev.utils.Sysfs;
 import mocks.MockBaseTest;
 import mocks.ev3dev.sensors.BatteryMock;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 
@@ -28,7 +27,7 @@ public class BatteryTest extends MockBaseTest{
         createEV3DevMocksPath();
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void getEV3BatteryVoltageTest() throws Exception{
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath().toString());

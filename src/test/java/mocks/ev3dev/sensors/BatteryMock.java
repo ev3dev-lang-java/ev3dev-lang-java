@@ -51,6 +51,7 @@ public class BatteryMock {
         tempEV3BatteryFolder = tempFolder.newFolder(EV3DEV_PATH, MOCKS_PATH, BATTERY_PATH, BATTERY_EV3_SUBPATH);
 
         batterySensor = File.createTempFile(BATTERY_FIELD_VOLTAGE, "_MOCK", tempEV3BatteryFolder);
+        LOGGER.info("Sensor path:" + batterySensor.getAbsolutePath());
         //TODO How to create a file under tempEV3BatteryFolder
         //batterySensor = tempFolder.newFile(BATTERY_FIELD_VOLTAGE);
         PrintWriter out = new PrintWriter(batterySensor);
