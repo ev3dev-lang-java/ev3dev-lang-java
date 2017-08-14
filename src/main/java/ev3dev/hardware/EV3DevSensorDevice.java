@@ -16,6 +16,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 
 	protected static final String LEGO_UART_SENSOR = "ev3-uart";
 	protected static final String LEGO_ANALOG_SENSOR = "ev3-analog";
+	protected static final String LEGO_I2C = "nxt-i2c";
 	protected static final String SENSOR_MODES = "modes";
 	protected static final String SENSOR_MODE = "mode";
 

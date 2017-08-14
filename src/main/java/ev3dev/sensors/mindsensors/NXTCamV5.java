@@ -10,7 +10,7 @@ import lejos.robotics.geometry.RectangleInt32;
  */
 public class NXTCamV5 extends BaseSensor {
 
-    private static final String MINDSENSORS_NXTCAMV5 = "ms-nxtcam5";
+    private static final String MINDSENSORS_NXTCAMV5 = "ms-nxtcam5 0x01";
 
     //MODES
 
@@ -46,8 +46,13 @@ public class NXTCamV5 extends BaseSensor {
      */
     public static final String TAKE_PHOTO = "PICTURE";
 
-    public NXTCamV5(Port sensorPort, String mode) {
-        super(sensorPort, mode, MINDSENSORS_NXTCAMV5);
+    private void initModes() {
+        this.setStringAttribute("mode", "TRACK");
+    }
+
+    public NXTCamV5(final Port portName) {
+        super(portName, LEGO_I2C, MINDSENSORS_NXTCAMV5);
+        this.initModes();
     }
 
     /**
@@ -105,16 +110,10 @@ public class NXTCamV5 extends BaseSensor {
      * @param id the object number (starting at zero)
      * @return the rectangle
      */
-    public Rectangle2D getRectangle(int id) {
+    public Rectangle2D getRectangle(final int id) {
 
-        /*
-        		getData(0x44 + (id * 5), buf, 4);
-		return new RectangleInt32(
-		buf[0] & 0xFF, buf[1] & 0xFF,
-				(buf[2] & 0xFF) - (buf[0] & 0xFF),
-				(buf[3] & 0xFF) - (buf[1] & 0xFF));
-         */
-
+        //TODO, At the moment, the EV3Dev API only returns the first object.
+        //It is necessary to research the I2C register to get more rectangles
         return new RectangleInt32(
                 this.getIntegerAttribute("value2"),
                 this.getIntegerAttribute("value3"),
