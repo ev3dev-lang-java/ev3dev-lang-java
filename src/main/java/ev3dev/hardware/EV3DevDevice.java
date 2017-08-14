@@ -52,8 +52,8 @@ public abstract class EV3DevDevice extends EV3DevPlatforms {
             pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
             String result = Sysfs.readString(pathDeviceName);
             if(log.isTraceEnabled())
-                log.trace("Port: {}, {}.", portName, result);
-            if (result.equals(portName)) {
+                log.trace("Port expected: {}, actual: {}.", portName, result);
+            if (result.contains(portName)) {
                 if(log.isDebugEnabled())
                     log.debug("Detected port on path: {}", pathDeviceName);
                 connected = true;
