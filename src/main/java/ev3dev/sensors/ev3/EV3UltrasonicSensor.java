@@ -2,6 +2,7 @@ package ev3dev.sensors.ev3;
 
 
 import ev3dev.sensors.BaseSensor;
+import ev3dev.sensors.EV3DevSensorMode;
 import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
