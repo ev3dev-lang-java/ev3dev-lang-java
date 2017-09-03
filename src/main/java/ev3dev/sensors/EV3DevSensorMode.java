@@ -1,6 +1,4 @@
-package ev3dev.sensors.ev3;
-
-import ev3dev.sensors.SensorMode;
+package ev3dev.sensors;
 
 /**
  * Sensor Mode abstract class
@@ -8,7 +6,7 @@ import ev3dev.sensors.SensorMode;
  * @author Juan Antonio Breña Moral
  *
  */
-abstract class EV3DevSensorMode implements SensorMode {
+public abstract class EV3DevSensorMode implements SensorMode {
 
 	public static final String VALUE0 = "value0";
 	public static final String VALUE1 = "value1";

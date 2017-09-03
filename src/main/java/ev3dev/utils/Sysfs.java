@@ -34,13 +34,7 @@ public class Sysfs {
 		try {
 			final File file = new File(filePath);
 			if(file.canWrite()) {
-				/*
-				final FileOutputStream fileOutputStream = new FileOutputStream(file, true);
-				final FileChannel fileChannel = fileOutputStream.getChannel();
-				final ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes(Charset.forName("UTF-8")));
-				fileChannel.write(byteBuffer);
-				fileChannel.close();
-				*/
+				//TODO Review if it possible to improve
 				PrintWriter out = new PrintWriter(file);
 				out.println(value);
 				out.flush();
@@ -126,10 +120,7 @@ public class Sysfs {
         return f.exists() && f.isDirectory();
     }
 
-
 	public static boolean existFile(Path pathToFind) {
-		if(log.isTraceEnabled())
-			log.trace("path: " + pathToFind.toString());
 		return Files.exists(pathToFind);
 	}
 
