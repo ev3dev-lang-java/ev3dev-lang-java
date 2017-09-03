@@ -3,6 +3,7 @@ package ev3dev.sensors.mindsensors;
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.EV3DevSensorMode;
 import ev3dev.sensors.SensorMode;
+import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
 
@@ -120,6 +121,9 @@ public class AbsoluteIMU extends BaseSensor {
     public static final String SET_ACCELERATION_4G = "ACCEL-4G";
     public static final String SET_ACCELERATION_8G = "ACCEL-8G";
     public static final String SET_ACCELERATION_16G = "ACCEL-16G";
+
+    //I2C Register
+    public static final int GYRO_FILTER = 0x5a;
 
     private void initModes() {
         setModes(
@@ -357,6 +361,30 @@ public class AbsoluteIMU extends BaseSensor {
 
     }
 
+    /**
+     * Set the smoothing filter for the gyro. <br>
+     * The Gyro readings are filtered with nth order finite impulse response
+     * filter, (where n ranges from 0 to 7) value 0 will apply no filter,
+     * resulting in faster reading, but noisier values.value 7 will apply stronger
+     * filter resulting in slower read (about 10 milli-seconds slower) but less
+     * noise.<br>
+     * The default value for the filter is 4.
+     *
+     * @param value
+     *          (range 0-7)
+     */
+    public void setGyroFilter(int value) {
+        if((value < 0) || (value > 7)) {
+            throw new IllegalArgumentException("Bad argument");
+        }
+        final String i2c_command2 = "echo \"" + value + "\" | dd bs=1 of=" + this.PATH_DEVICE + "/direct seek=$(( 0x5a ))";
+        final String[] cmd = {
+                "/bin/sh",
+                "-c",
+                i2c_command2
+        };
+        Shell.execute(cmd);
+    }
 
     /**
      * To calibrate Compass, mount it on your robot where it will be used and
