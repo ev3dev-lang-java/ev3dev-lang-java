@@ -1,5 +1,6 @@
 package ev3dev.hardware;
 
+import lejos.hardware.port.Port;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
 
@@ -15,6 +16,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 
 	protected static final String LEGO_UART_SENSOR = "ev3-uart";
 	protected static final String LEGO_ANALOG_SENSOR = "ev3-analog";
+	protected static final String LEGO_I2C = "nxt-i2c";
 	protected static final String SENSOR_MODES = "modes";
 	protected static final String SENSOR_MODE = "mode";
 
@@ -26,7 +28,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      * @param mode mode
      * @param device device
      */
-    protected EV3DevSensorDevice(final String portName, final String mode, final String device) {
+    protected EV3DevSensorDevice(final Port portName, final String mode, final String device) {
 
 		final String port = this.getSensorPort(portName);
 
@@ -54,7 +56,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 	 * @param portName
 	 * @param mode
      */
-	protected EV3DevSensorDevice(final String portName, final String mode) {
+	protected EV3DevSensorDevice(final Port portName, final String mode) {
 
 		final String port = this.getSensorPort(portName);
 

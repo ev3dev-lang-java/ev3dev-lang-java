@@ -1,0 +1,5 @@
+wheelDiameter=8.2
+trackWidth=12.6
+leftMotor=A
+rightMotor=B
+reverse=false

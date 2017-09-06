@@ -1,5 +1,7 @@
 package ev3dev.actuators.lego.motors;
 
+import lejos.hardware.port.Port;
+
 /**
  * Abstraction for a  Lego NXT motors.
  * 
@@ -20,7 +22,7 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor {
      * Constructor
      * @param motorPort motor port
      */
-	public NXTRegulatedMotor(final String motorPort) {
+	public NXTRegulatedMotor(final Port motorPort) {
         super(motorPort, MOVE_P, MOVE_I, MOVE_D, HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
 	}
 

@@ -3,6 +3,7 @@ package ev3dev.utils;
 import org.slf4j.Logger;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
@@ -13,6 +14,8 @@ import java.io.InputStreamReader;
 public class Shell {
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(Shell.class);
+
+    public static String COMMAND_ERROR_MESSAGE = "COMMAND_ERROR";
 
     public static String execute(final String command) {
 
@@ -31,9 +34,10 @@ public class Shell {
 				output.append(line).append("\n");
 			}
 			reader.close();
-		} catch (Exception e) {
+		} catch (IOException | InterruptedException e) {
 			log.error(e.getMessage());
 			e.printStackTrace();
+			return COMMAND_ERROR_MESSAGE;
 		}
 
 		return output.toString();

@@ -1,6 +1,7 @@
 package ev3dev.sensors;
 
 import ev3dev.hardware.EV3DevSensorDevice;
+import lejos.hardware.port.Port;
 import lejos.utility.Delay;
 
 import java.util.ArrayList;
@@ -11,11 +12,11 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
     protected static final int SWITCH_DELAY = 250;
 
-    public BaseSensor(final String sensorPort, final String mode, final String device){
+    public BaseSensor(final Port sensorPort, final String mode, final String device){
         super(sensorPort, mode, device);
     }
 
-    public BaseSensor(final String sensorPort, final String mode){
+    public BaseSensor(final Port sensorPort, final String mode){
         super(sensorPort, mode);
     }
 

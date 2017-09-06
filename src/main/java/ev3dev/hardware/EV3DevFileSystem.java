@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public abstract class EV3DevFileSystem {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevFileSystem.class);
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(EV3DevFileSystem.class);
 
     public static final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
     public static final String EV3DEV_ROOT_PATH = "/sys/class";
@@ -25,9 +25,10 @@ public abstract class EV3DevFileSystem {
         }else {
             ROOT_PATH = EV3DEV_ROOT_PATH;
         }
+        LOGGER.debug("Root Path: {}", ROOT_PATH);
     }
 
-    public String getROOT_PATH() {
-        return this.ROOT_PATH;
+    protected String getROOT_PATH() {
+        return ROOT_PATH;
     }
 }

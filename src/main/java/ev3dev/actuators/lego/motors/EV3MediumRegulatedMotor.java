@@ -1,5 +1,7 @@
 package ev3dev.actuators.lego.motors;
 
+import lejos.hardware.port.Port;
+
 /**
  * Abstraction for a Medium Lego EV3/NXT motors.
  * 
@@ -20,7 +22,7 @@ public class EV3MediumRegulatedMotor extends BaseRegulatedMotor {
      * Constructor
      * @param motorPort motor port
      */
-	public EV3MediumRegulatedMotor(final String motorPort) {
+	public EV3MediumRegulatedMotor(final Port motorPort) {
 		super(motorPort, MOVE_P, MOVE_I, MOVE_D, HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
 	}
 

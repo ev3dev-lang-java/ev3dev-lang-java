@@ -1,8 +1,8 @@
 package ev3dev.actuators.lego.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
-import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.sensors.Battery;
+import lejos.hardware.port.Port;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.RegulatedMotorListener;
 import lejos.utility.Delay;
@@ -67,8 +67,8 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * @param offset offset
      * @param maxSpeed maxSpeed
      */
-    public BaseRegulatedMotor(final String motorPort, float moveP, float moveI, float moveD,
-			float holdP, float holdI, float holdD, int offset, int maxSpeed) {
+    public BaseRegulatedMotor(final Port motorPort, float moveP, float moveI, float moveD,
+                              float holdP, float holdI, float holdD, int offset, int maxSpeed) {
 
         MAX_SPEED_AT_9V = maxSpeed;
         final String port = this.getMotorPort(motorPort);

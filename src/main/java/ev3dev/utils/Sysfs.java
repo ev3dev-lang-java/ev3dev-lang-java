@@ -34,13 +34,7 @@ public class Sysfs {
 		try {
 			final File file = new File(filePath);
 			if(file.canWrite()) {
-				/*
-				final FileOutputStream fileOutputStream = new FileOutputStream(file, true);
-				final FileChannel fileChannel = fileOutputStream.getChannel();
-				final ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes(Charset.forName("UTF-8")));
-				fileChannel.write(byteBuffer);
-				fileChannel.close();
-				*/
+				//TODO Review if it possible to improve
 				PrintWriter out = new PrintWriter(file);
 				out.println(value);
 				out.flush();
@@ -72,7 +66,10 @@ public class Sysfs {
 		try {
 			final Path path = Paths.get(filePath);
 			if(existFile(path) && Files.isReadable(path)){
-				return Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+				final String result = Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+				if(log.isTraceEnabled())
+					log.trace("value: {}", result);
+				return result;
 			}
 			throw new IOException("Problem reading path: " + filePath);
 		} catch (IOException ex) {
@@ -117,10 +114,11 @@ public class Sysfs {
 	 * @return boolean
 	 */
 	public static boolean existPath(final String filePath){
+		if(log.isTraceEnabled())
+			log.trace("ls " + filePath);
 		final File f = new File(filePath);
         return f.exists() && f.isDirectory();
     }
-
 
 	public static boolean existFile(Path pathToFind) {
 		return Files.exists(pathToFind);

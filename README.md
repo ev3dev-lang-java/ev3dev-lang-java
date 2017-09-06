@@ -11,7 +11,7 @@ hardware & the [LeJOS](http://www.lejos.org/) way.
 THe libraries was tested with the latest stable `EV3Dev` versions for Debian Jessie:
 
 - [EV3 Brick](https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400): 4.4.47-19-ev3dev-ev3
-- [RaspberryPi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) with [BrickPi+](https://www.dexterindustries.com/brickpi/) & [PiStorms](http://www.mindsensors.com/content/78-pistorms-lego-interface): 4.4.47-19-ev3dev-rpi2
+- [RaspberryPi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) with [BrickPi3](https://www.dexterindustries.com/brickpi/) & [PiStorms](http://www.mindsensors.com/content/78-pistorms-lego-interface): 4.4.47-19-ev3dev-rpi2
 
 If you need further information about stable EV3Dev images, [click here](http://www.ev3dev.org/news/2017/02/11/ev3dev-jessie-2017-02-11-release/)
 
@@ -352,7 +352,9 @@ but at the moment, many features are tested manually.
 
 * LeJOS: http://www.lejos.org/
 * LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/ 
+* LeJOS Forum: https://lejos.sourceforge.io/forum/search.php?keywords=ev3dev&sid=8642d9d1b361bcfdcdeabb26db89e632
 * EV3Dev: http://www.ev3dev.org/
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
 * EVEDev // Linux Kernel Drivers: http://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-jessie/
+* Dexter Forum: http://forum.dexterindustries.com/search?q=java
 
