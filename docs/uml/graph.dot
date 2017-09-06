@@ -966,6 +966,7 @@ digraph G {
 <tr><td align="left" balign="left"> + SET_ACCELERATION_4G : String </td></tr>
 <tr><td align="left" balign="left"> + SET_ACCELERATION_8G : String </td></tr>
 <tr><td align="left" balign="left"> + SET_ACCELERATION_16G : String </td></tr>
+<tr><td align="left" balign="left"> + GYRO_FILTER : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + AbsoluteIMU(portName : Port) </td></tr>
@@ -977,6 +978,7 @@ digraph G {
 <tr><td align="left" balign="left"> + getGyroMode() : SensorMode </td></tr>
 <tr><td align="left" balign="left"> + getTiltMode() : SensorMode </td></tr>
 <tr><td align="left" balign="left"> + setRange(range : int) </td></tr>
+<tr><td align="left" balign="left"> + setGyroFilter(value : int) </td></tr>
 <tr><td align="left" balign="left"> + startCalibration() </td></tr>
 <tr><td align="left" balign="left"> + stopCalibration() </td></tr>
 		</table></td></tr>
