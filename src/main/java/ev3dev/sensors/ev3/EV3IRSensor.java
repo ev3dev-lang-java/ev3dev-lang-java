@@ -36,8 +36,8 @@ public class EV3IRSensor extends BaseSensor {
 
     private static final String LEGO_EV3_IR = "lego-ev3-ir";
 
-    public static int MIN_RANGE = 5;//cm
-    public static int MAX_RANGE = 55;//cm
+    public static float MIN_RANGE = 5f;//cm
+    public static float MAX_RANGE = 55f;//cm
 
 	public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);

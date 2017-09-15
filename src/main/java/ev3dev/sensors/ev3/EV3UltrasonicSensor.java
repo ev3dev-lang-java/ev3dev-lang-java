@@ -44,8 +44,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
     private static final String LEGO_EV3_US = "lego-ev3-us";
 
-    public static int MIN_RANGE = 5;//cm
-    public static int MAX_RANGE = 55;//cm
+    public static float MIN_RANGE = 5f;//cm
+    public static float MAX_RANGE = 255f;//cm
 
     /**
     * Create the Ultrasonic sensors class.
