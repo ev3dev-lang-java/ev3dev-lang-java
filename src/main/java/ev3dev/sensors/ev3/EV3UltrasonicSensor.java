@@ -44,6 +44,9 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
     private static final String LEGO_EV3_US = "lego-ev3-us";
 
+    public static int MIN_RANGE = 5;//cm
+    public static int MAX_RANGE = 55;//cm
+
     /**
     * Create the Ultrasonic sensors class.
     *
@@ -114,9 +117,10 @@ public class EV3UltrasonicSensor extends BaseSensor {
         return currentMode != DISABLED;
     }
 
-
     private class DistanceMode extends EV3DevSensorMode {
+
         private static final String MODE = "US-DIST-CM";
+
         private static final float toSI = 1f;
 
         private File pathDevice = null;
@@ -133,11 +137,15 @@ public class EV3UltrasonicSensor extends BaseSensor {
         @Override
         public void fetchSample(float[] sample, int offset) {
             switchMode(MODE, SWITCH_DELAY);
-            float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
-            if (raw<5) sample[offset]=0;
-            else if (raw > 2550) sample[offset]=Float.POSITIVE_INFINITY;
-            else sample[offset]= (raw * toSI)/10;
+            if (rawValue < MIN_RANGE) {
+                sample[offset] = 0;
+            } else if (rawValue > MAX_RANGE) {
+                sample[offset] = Float.POSITIVE_INFINITY;
+            } else {
+                sample[offset] = (rawValue * toSI)/10;
+            }
         }
 
         @Override
@@ -151,6 +159,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * Represents a Ultrasonic sensors in listen mode
     */
     private class ListenMode extends EV3DevSensorMode {
+
         private static final String MODE = "US-LISTEN";
 
         private File pathDevice = null;
