@@ -1,6 +1,7 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
+import ev3dev.sensors.EV3DevSensorMode;
 import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
@@ -34,6 +35,9 @@ import java.io.File;
 public class EV3IRSensor extends BaseSensor {
 
     private static final String LEGO_EV3_IR = "lego-ev3-ir";
+
+    public static float MIN_RANGE = 5f;//cm
+    public static float MAX_RANGE = 55f;//cm
 
 	public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
@@ -88,11 +92,15 @@ public class EV3IRSensor extends BaseSensor {
         @Override
         public void fetchSample(float[] sample, int offset) {
             switchMode(MODE, SWITCH_DELAY);
-    		float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+    		float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
-            if (raw < 5) sample[offset]=0;
-            else if (raw > 55) sample[offset]=Float.POSITIVE_INFINITY;
-            else sample[offset]= raw * toSI;
+            if (rawValue < MIN_RANGE) {
+                sample[offset] = 0;
+            } else if (rawValue > MAX_RANGE) {
+                sample[offset] = Float.POSITIVE_INFINITY;
+            } else {
+                sample[offset] = rawValue * toSI;
+            }
         }
 
         @Override

@@ -2,6 +2,7 @@ package ev3dev.sensors.ev3;
 
 
 import ev3dev.sensors.BaseSensor;
+import ev3dev.sensors.EV3DevSensorMode;
 import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
@@ -42,6 +43,9 @@ public class EV3UltrasonicSensor extends BaseSensor {
     private static final int DISABLED = 3;
 
     private static final String LEGO_EV3_US = "lego-ev3-us";
+
+    public static float MIN_RANGE = 5f;//cm
+    public static float MAX_RANGE = 255f;//cm
 
     /**
     * Create the Ultrasonic sensors class.
@@ -113,9 +117,10 @@ public class EV3UltrasonicSensor extends BaseSensor {
         return currentMode != DISABLED;
     }
 
-
     private class DistanceMode extends EV3DevSensorMode {
+
         private static final String MODE = "US-DIST-CM";
+
         private static final float toSI = 1f;
 
         private File pathDevice = null;
@@ -132,11 +137,15 @@ public class EV3UltrasonicSensor extends BaseSensor {
         @Override
         public void fetchSample(float[] sample, int offset) {
             switchMode(MODE, SWITCH_DELAY);
-            float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
-            if (raw<5) sample[offset]=0;
-            else if (raw > 2550) sample[offset]=Float.POSITIVE_INFINITY;
-            else sample[offset]= (raw * toSI)/10;
+            if (rawValue < MIN_RANGE) {
+                sample[offset] = 0;
+            } else if (rawValue > MAX_RANGE) {
+                sample[offset] = Float.POSITIVE_INFINITY;
+            } else {
+                sample[offset] = (rawValue * toSI)/10;
+            }
         }
 
         @Override
@@ -150,6 +159,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * Represents a Ultrasonic sensors in listen mode
     */
     private class ListenMode extends EV3DevSensorMode {
+
         private static final String MODE = "US-LISTEN";
 
         private File pathDevice = null;

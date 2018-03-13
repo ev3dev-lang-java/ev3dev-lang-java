@@ -1,5 +1,21 @@
 # ev3dev-lang-java changelog
 
+## 0.8.0
+
+- Upgrade lejos-commons to 0.7.0
+
+## 0.7.0 2017-09-06
+
+- Upgrade lejos-commons to 0.6.0
+- Docker Support
+- Upgrade Wrapper
+- Upgrade Fat Jar generation
+- Adding Port support
+- Support for BrickPi3
+- Add Support Absolute IMU
+- Add Support for NXTCam V5
+- Initial Test support
+
 ## v0.6.1 2017-06-05
 
 - Adding support for Profiling Tools

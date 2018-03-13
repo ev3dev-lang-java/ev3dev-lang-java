@@ -23,6 +23,10 @@ EV3Dev-lang-java contributors (sorted alphabetically)
 
   * Main developer of EV3Dev
 
+* **[Jaroslav Tupý](https://github.com/jartu)**
+
+  * EV3Button for EV3Dev-lang-java
+
 * **[Juan Antonio Breña Moral](https://github.com/jabrena)**
 
   * Main developer of EV3Dev-lang-java
