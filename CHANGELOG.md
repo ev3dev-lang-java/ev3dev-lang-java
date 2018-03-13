@@ -1,5 +1,9 @@
 # ev3dev-lang-java changelog
 
+## 0.8.0
+
+- Upgrade lejos-commons to 0.7.0
+
 ## 0.7.0 2017-09-06
 
 - Upgrade lejos-commons to 0.6.0
