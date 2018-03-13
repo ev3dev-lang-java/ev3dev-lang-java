@@ -79,6 +79,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         this.setStringAttribute(MODE, TACHO_MOTOR);
         Delay.msDelay(500);
         this.detect(TACHO_MOTOR, port);
+        Delay.msDelay(500);
         this.setStringAttribute(COMMAND, RESET);
 	}
     
