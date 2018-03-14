@@ -141,7 +141,7 @@ public class SysfsTest extends MockBaseTest {
         int BUFFER_SIZE = 0;
         byte[] buf = new byte[BUFFER_SIZE];
 
-        final String FB_PATH = "/dev/fb0";
+        final String FB_PATH = "/dev/MY_PERSONAL_PATH";
 
         Sysfs.writeBytes(FB_PATH, buf);
     }
