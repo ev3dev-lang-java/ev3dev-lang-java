@@ -3,7 +3,6 @@
 *EV3Dev-lang-Java* is a Java project designed to build Software for Robots with [EV3Dev](http://www.ev3dev.org/) 
 hardware & the [LeJOS](http://www.lejos.org/) way.
 
-[![Dependency Status](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc)
 [![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
 
 **What is the latest EV3Dev version supported?**
