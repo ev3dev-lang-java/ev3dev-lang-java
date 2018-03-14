@@ -126,8 +126,7 @@ public class Sysfs {
 
 	public static boolean writeBytes(final String path, final byte[] value) {
         final File file = new File(path);
-		try {
-			DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+		try (DataOutputStream out = new DataOutputStream(new FileOutputStream(file))) {
 			out.write(value);
 			out.flush();
 			out.close();
