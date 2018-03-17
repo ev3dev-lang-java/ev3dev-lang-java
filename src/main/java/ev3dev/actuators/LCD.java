@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class LCD extends EV3DevDevice implements GraphicsLCD {
 
@@ -63,6 +66,10 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         this.SCREEN_HEIGHT = height;
         this.LINE_LEN = lineLength;
         this.BUFFER_SIZE = bufferSize;
+
+        if (Files.notExists(Paths.get(FB_PATH))) {
+            throw new RuntimeException("Device path not found: " + FB_PATH);
+        }
 
         byte[] data = new byte[bufferSize];
         byte[] bwarr = {(byte) 0xff, (byte) 0x00};
