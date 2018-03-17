@@ -4,8 +4,6 @@ jdk:
   - oraclejdk8
 before_install:
   - chmod +x gradlew
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
 services:
   - docker
 cache:
@@ -13,4 +11,15 @@ cache:
   - .autoconf
   - $HOME/.m2
   - docker
-script: ./gradlew dockerTest
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+    recipients:
+      - bren@juanantonio.info
+script:
+  - ./gradlew check
+  - ./gradlew codeCoverageReport
+  - ./gradlew dockerTest
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
