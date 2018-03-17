@@ -18,7 +18,7 @@ dependencies {
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.0")
 
     annotationProcessor("org.projectlombok:lombok:1.16.20")
-    testCompileOnly("org.projectlombok:lombok:1.16.20")
+    testCompile("org.projectlombok:lombok:1.16.20")
 
     testCompile("ch.qos.logback:logback-classic:1.2.3")
 
