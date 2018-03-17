@@ -4,12 +4,16 @@ import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,8 +28,14 @@ public class BatteryTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
-    public void resetTest() throws IOException {
-        FakeBattery.deleteEV3DevFakeSystemPath();
+    public void resetTest() throws IOException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+
+        //https://stackoverflow.com/questions/8256989/singleton-and-unit-testing
+        Field instance = Battery.class.getDeclaredField("instance");
+        instance.setAccessible(true);
+        instance.set(null, null);
+
+        FakeBattery.createEV3DevFakeSystemPath();
     }
 
     @Test
@@ -94,6 +104,11 @@ public class BatteryTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.UNKNOWN);
 
         Battery battery = Battery.getInstance();
+    }
+
+    @After
+    public void afterTest() throws Exception {
+        FakeBattery.deleteEV3DevFakeSystemPath();
     }
 
 }

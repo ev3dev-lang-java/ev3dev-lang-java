@@ -20,13 +20,12 @@ public class Brickman extends EV3DevPlatforms {
     private static final String DISABLE_BRICKMAN_COMMAND = "sudo systemctl stop brickman";
     private static final String ENABLE_BRICKMAN_COMMAND = "sudo systemctl start brickman";
 
-    private static final String JAVA_LOGO = "java_logo.png";
+    public static final String JAVA_DUKE_IMAGE_NAME = "java_logo.png";
 
     public static void disable() {
 
         final Set<EV3DevPlatform> platforms = new HashSet<>();
         platforms.add(EV3DevPlatform.EV3BRICK);
-        platforms.add(EV3DevPlatform.PISTORMS);
 
         final Brickman obj = new Brickman();
         if(platforms.contains(obj.getPlatform())) {
@@ -42,13 +41,15 @@ public class Brickman extends EV3DevPlatforms {
                     if(LOGGER.isTraceEnabled())
                         LOGGER.trace("Enabling Brickman again");
                     Shell.execute(ENABLE_BRICKMAN_COMMAND);
-                    JarResource.delete(JAVA_LOGO);
+                    JarResource.delete(JAVA_DUKE_IMAGE_NAME);
                 }
             }));
 
         } else{
-            LOGGER.warn("This feature was designed for the following platforms: {} & {}",
-                    EV3DevPlatform.EV3BRICK, EV3DevPlatform.PISTORMS);
+            LOGGER.error("This feature was designed for the following platforms: {}",
+                    EV3DevPlatform.EV3BRICK);
+            throw new RuntimeException("This feature was designed for the following platforms: " +
+                    EV3DevPlatform.EV3BRICK);
         }
     }
 
@@ -59,8 +60,8 @@ public class Brickman extends EV3DevPlatforms {
 
         final GraphicsLCD lcd = LCD.getInstance();
         try {
-            JarResource.export(JAVA_LOGO);
-            final Image image = ImageIO.read(new File(JAVA_LOGO));
+            JarResource.export(JAVA_DUKE_IMAGE_NAME);
+            final Image image = ImageIO.read(new File(JAVA_DUKE_IMAGE_NAME));
             lcd.drawImage(image, 40, 10, 0);
             lcd.refresh();
         }catch (IOException e){

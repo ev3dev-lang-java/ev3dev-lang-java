@@ -31,13 +31,13 @@ public class Battery extends EV3DevDevice implements Power {
 
     private String BATTERY_PATH_LOCAL = "";
 
-	private static Battery Instance;
+	private static Battery instance;
 
     public static Battery getInstance() {
-        if (Instance == null) {
-        	Instance = new Battery();
+        if (instance == null) {
+            instance = new Battery();
         }
-        return Instance;
+        return instance;
     }
 
     // Prevent duplicate objects
