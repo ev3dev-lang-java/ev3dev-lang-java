@@ -7,6 +7,7 @@ task copySrc(type: Copy) {
 task copyWrapperFiles(type: Copy) {
     group = "docker"
     from "gradlew"
+    from "lombok.config"
     from "settings.gradle"
     from "build.gradle"
     from "deploy.gradle"
