@@ -1,22 +1,12 @@
 package ev3dev.utils;
 
-import mocks.MockBaseTest;
-import org.junit.Before;
 import org.junit.Test;
-
-import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-public class PilotProsTest extends MockBaseTest{
-
-    @Before
-    public void onceExecutedBeforeAll() throws IOException {
-        getGlobalPaths();
-        createEV3DevMocksPath();
-    }
+public class PilotProsTest {
 
     @Test
     public void existKeyTest() throws Exception {

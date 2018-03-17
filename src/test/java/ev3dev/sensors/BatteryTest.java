@@ -35,6 +35,7 @@ public class BatteryTest {
         instance.setAccessible(true);
         instance.set(null, null);
 
+        FakeBattery.deleteEV3DevFakeSystemPath();
         FakeBattery.createEV3DevFakeSystemPath();
     }
 
@@ -104,11 +105,6 @@ public class BatteryTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.UNKNOWN);
 
         Battery battery = Battery.getInstance();
-    }
-
-    @After
-    public void afterTest() throws Exception {
-        FakeBattery.deleteEV3DevFakeSystemPath();
     }
 
 }
