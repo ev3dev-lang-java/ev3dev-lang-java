@@ -22,6 +22,8 @@ dependencies {
 
     testCompile("ch.qos.logback:logback-classic:1.2.3")
 
+    testCompile("commons-io:commons-io:2.5")
+    
     testCompile("junit:junit:4.12")
     testCompile("org.hamcrest:hamcrest-all:1.3")
 }

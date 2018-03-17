@@ -12,7 +12,7 @@
     <logger name="ev3dev.hardware" level="TRACE" />
     <logger name="ev3dev.utils" level="TRACE" />
 
-    <root level="INFO">
+    <root level="TRACE">
         <appender-ref ref="STDOUT"/>
     </root>
 

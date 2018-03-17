@@ -1,16 +1,14 @@
 package mocks;
 
-import ev3dev.utils.SysfsTest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
-import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
 
+@Slf4j
 public abstract class MockBaseTest {
-
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(SysfsTest.class);
 
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
