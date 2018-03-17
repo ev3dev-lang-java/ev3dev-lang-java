@@ -3,8 +3,10 @@ package ev3dev.utils;
 import mocks.MockBaseTest;
 import mocks.ev3dev.sensors.BatteryMock;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,7 +17,7 @@ import static org.junit.Assert.assertThat;
 
 public class SysfsTest extends MockBaseTest {
 
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(SysfsTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SysfsTest.class);
 
     final String BATTERY_PATH = "power_supply";
     final String BATTERY_EV3_SUBPATH = "legoev3-battery";
@@ -103,6 +105,18 @@ public class SysfsTest extends MockBaseTest {
     }
 
     @Test
+    public void notExistFile() throws Exception {
+        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
+        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
+
+        LOGGER.debug(BATTERY_FIELD_VOLTAGE_SUFFIX);
+        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + "BAD_PATH";
+        final Path path = Paths.get(pathToAssert);
+        LOGGER.debug(path.toString());
+        assertThat(Sysfs.existFile(path), is(false));
+    }
+
+    @Test
     public void writeString() throws Exception {
         BatteryMock batteryMock = new BatteryMock(this.tempFolder);
         BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
@@ -122,5 +136,16 @@ public class SysfsTest extends MockBaseTest {
         assertThat(Sysfs.readInteger(pathToAssert), is(10));
     }
 
+    @Ignore("Review error in detail for Travis CI")
+    @Test(expected = RuntimeException.class)
+    public void writeBytesTest() {
+
+        int BUFFER_SIZE = 0;
+        byte[] buf = new byte[BUFFER_SIZE];
+
+        final String FB_PATH = "/dev/MY_PERSONAL_PATH";
+
+        Sysfs.writeBytes(FB_PATH, buf);
+    }
 
 }

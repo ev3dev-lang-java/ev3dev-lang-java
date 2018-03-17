@@ -4,7 +4,6 @@
 hardware & the [LeJOS](http://www.lejos.org/) way.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
-[![Dependency Status](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5904679be57fd500418cacdc)
 [![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
 
 **What is the latest EV3Dev version supported?**
@@ -51,7 +50,7 @@ Basically, with this library you can develop educational robots with Java for mu
 
 - EV3 Brick
 - BrickPi+
-- BrickPi 3 (Scheduled on v0.7.0)
+- BrickPi 3
 - PiStorms
 
 Using the same objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi & PiStorms.
@@ -245,7 +244,7 @@ To start a new project with this library, add the following repository and depen
 <dependency>
     <groupId>com.github.ev3dev-lang-java</groupId>
     <artifactId>ev3dev-lang-java</artifactId>
-    <version>v0.6.1</version>
+    <version>0.7.0</version>
 </dependency>
 ```
 	
