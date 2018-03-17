@@ -33,23 +33,24 @@ public class FakeBattery extends BaseElement{
             batterySubpath = BATTERY_BRICKPI3_SUBPATH;
         }else if(ev3DevPlatform.equals(EV3DevPlatform.PISTORMS)) {
             batterySubpath = BATTERY_PISTORMS_SUBPATH;
-        }else{
-            throw new RuntimeException("Platform not recognized");
         }
 
-        Path batteryPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                BATTERY_PATH + "/" +
-                batterySubpath);
-        Files.createDirectories(batteryPath);
+        if(ev3DevPlatform != EV3DevPlatform.UNKNOWN) {
+            Path batteryPath = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            BATTERY_PATH + "/" +
+                            batterySubpath);
+            Files.createDirectories(batteryPath);
 
-        Path batteryVoltagePath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                BATTERY_PATH + "/" +
-                batterySubpath + "/" +
-                BATTERY_FIELD_VOLTAGE);
-        Files.createFile(batteryVoltagePath);
-        Files.write(batteryVoltagePath, BATTERY_FIELD_VOLTAGE_VALUE.getBytes());
-
+            Path batteryVoltagePath = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            BATTERY_PATH + "/" +
+                            batterySubpath + "/" +
+                            BATTERY_FIELD_VOLTAGE);
+            Files.createFile(batteryVoltagePath);
+            Files.write(batteryVoltagePath, BATTERY_FIELD_VOLTAGE_VALUE.getBytes());
+        } else {
+            createEV3DevFakeSystemPath();
+        }
     }
 }

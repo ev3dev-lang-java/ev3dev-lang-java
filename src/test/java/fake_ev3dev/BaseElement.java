@@ -12,14 +12,10 @@ import java.nio.file.Paths;
 @Slf4j
 public abstract class BaseElement {
 
-    protected static final String JAVA_IO_TEMPDIR = System.getProperty("java.io.tmpdir");
+    private static final String JAVA_IO_TEMPDIR = System.getProperty("java.io.tmpdir");
     public static final String EV3DEV_FAKE_SYSTEM_PATH = JAVA_IO_TEMPDIR + "ev3dev_fake_system";
 
-    public BaseElement(){
-
-    }
-
-    public static  void createEV3DevFakeSystemPath() throws IOException {
+    protected static  void createEV3DevFakeSystemPath() throws IOException {
 
         final Path ev3devFakeSystemPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
         if (!Files.exists(ev3devFakeSystemPath)) {
