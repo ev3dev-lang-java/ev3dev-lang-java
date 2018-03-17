@@ -1,3 +1,15 @@
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+
+task testConnection << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            println "ls "
+            execute "ls "
+        }
+    }
+}
 
 task deploy << {
     ssh.run {
@@ -66,4 +78,14 @@ task deployAndProfilingSudoRun << {
 deployAndProfilingSudoRun.dependsOn deploy, remoteProfilingSudoRun
 
 apply from: 'config.gradle'
+
+//Organize tasks in a Group
+def groupName = "ev3dev-lang-java"
+testConnection.group = groupName
+deploy.group = groupName
+remoteRun.group = groupName
+remoteSudoRun.group = groupName
+remoteProfilingRun.group = groupName
+deployAndRun.group = groupName
+deployAndProfilingRun.group = groupName
 
