@@ -1,137 +1,133 @@
 package ev3dev.utils;
 
-import mocks.MockBaseTest;
-import mocks.ev3dev.sensors.BatteryMock;
+import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.sensors.Battery;
+import fake_ev3dev.ev3dev.sensors.FakeBattery;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SysfsTest extends MockBaseTest {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SysfsTest.class);
-
-    final String BATTERY_PATH = "power_supply";
-    final String BATTERY_EV3_SUBPATH = "legoev3-battery";
-    final String BATTERY_FIELD_VOLTAGE = "voltage_now";
-    final String BATTERY_FIELD_VOLTAGE_VALUE = "8042133";
-    String BATTERY_FIELD_VOLTAGE_SUFFIX;
+@Slf4j
+public class SysfsTest {
 
     @Before
-    public void onceExecutedBeforeAll() throws IOException {
-        getGlobalPaths();
-        createEV3DevMocksPath();
+    public void resetTest() throws IOException {
+        FakeBattery.deleteEV3DevFakeSystemPath();
+        FakeBattery.createEV3DevFakeSystemPath();
     }
 
     //OK
 
     @Test
     public void existPathSuccessTest() throws IOException {
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH;
-        assertThat(tempEV3DevFolder.getAbsolutePath(), is(pathToAssert));
-        assertThat(Sysfs.existPath(pathToAssert), is(true));
 
-        pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/"+ MOCKS_PATH;
-        assertThat(tempMocksFolder.getAbsolutePath(), is(pathToAssert));
-        assertThat(Sysfs.existPath(pathToAssert), is(true));
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        final boolean result = Sysfs.existPath(fakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+
+        assertThat(result, is(true));
     }
-
-
-    @Test
-    public void existPathSuccessTest2() throws IOException {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
-        final String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH;
-        //assertThat(tempEV3BatteryFolder.getAbsolutePath(), is(pathToAssert));
-        assertThat(Sysfs.existPath(pathToAssert), is(true));
-    }
-
 
     @Test
     public void readString() throws Exception {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
-        assertThat(Sysfs.readString(pathToAssert), is(BATTERY_FIELD_VOLTAGE_VALUE));
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/" + Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
+        String result = Sysfs.readString(pathToAssert);
+
+        assertThat(result, is(fakeBattery.BATTERY_FIELD_VOLTAGE_VALUE));
     }
 
     @Test
     public void readInteger() throws Exception {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
-        LOGGER.trace(pathToAssert);
-        assertThat(Sysfs.readInteger(pathToAssert), is(Integer.parseInt(BATTERY_FIELD_VOLTAGE_VALUE)));
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/" + Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
+        int result = Sysfs.readInteger(pathToAssert);
+
+        assertThat(result, is(Integer.parseInt(FakeBattery.BATTERY_FIELD_VOLTAGE_VALUE)));
     }
 
     @Test
     public void readFloat() throws Exception {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
-        LOGGER.trace(pathToAssert);
-        assertThat(Sysfs.readFloat(pathToAssert), is(Float.parseFloat(BATTERY_FIELD_VOLTAGE_VALUE)));
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/" + Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
+        float result = Sysfs.readFloat(pathToAssert);
+
+        assertThat(result, is(Float.parseFloat(FakeBattery.BATTERY_FIELD_VOLTAGE_VALUE)));
     }
 
-    /*
     @Test
     public void getElements() throws Exception {
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH;
-        log.trace(pathToAssert);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY;
         final List<File> fileList = new ArrayList<>();
-        fileList.add(batterySensor);
+        fileList.add(new File(pathToAssert + "/" + Battery.BATTERY_EV3));
+
         assertThat(Sysfs.getElements(pathToAssert), is(fileList));
     }
-    */
 
     @Test
     public void existFile() throws Exception {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
 
-        LOGGER.debug(BATTERY_FIELD_VOLTAGE_SUFFIX);
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
         final Path path = Paths.get(pathToAssert);
-        LOGGER.debug(path.toString());
-        assertThat(Sysfs.existFile(path), is(true));
+
+        boolean result = Sysfs.existFile(path);
+
+        assertThat(result, is(true));
     }
 
     @Test
     public void notExistFile() throws Exception {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
 
-        LOGGER.debug(BATTERY_FIELD_VOLTAGE_SUFFIX);
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + "BAD_PATH";
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.CURRENT;
         final Path path = Paths.get(pathToAssert);
-        LOGGER.debug(path.toString());
+
         assertThat(Sysfs.existFile(path), is(false));
     }
 
     @Test
     public void writeString() throws Exception {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
 
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
+        final Path path = Paths.get(pathToAssert);
+
         Sysfs.writeString(pathToAssert, "10");
         assertThat(Sysfs.readString(pathToAssert), is("10"));
     }
 
     @Test
     public void writeInteger() throws Exception {
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        BATTERY_FIELD_VOLTAGE_SUFFIX = batteryMock.createEV3DevMocksEV3BrickPlatformPath();
 
-        String pathToAssert = JAVA_IO_TEMPDIR + JUNIT_PATH + "/"+ EV3DEV_PATH + "/" + MOCKS_PATH + "/" + BATTERY_PATH + "/" + BATTERY_EV3_SUBPATH + "/" + BATTERY_FIELD_VOLTAGE + BATTERY_FIELD_VOLTAGE_SUFFIX;
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
+        final Path path = Paths.get(pathToAssert);
+
         Sysfs.writeInteger(pathToAssert, 10);
         assertThat(Sysfs.readInteger(pathToAssert), is(10));
     }

@@ -35,8 +35,7 @@ public class Shell {
 			}
 			reader.close();
 		} catch (IOException | InterruptedException e) {
-			log.error(e.getMessage());
-			e.printStackTrace();
+			log.warn(e.getLocalizedMessage(), e);
 			return COMMAND_ERROR_MESSAGE;
 		}
 

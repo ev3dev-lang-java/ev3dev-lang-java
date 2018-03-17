@@ -1,6 +1,10 @@
 package ev3dev.utils;
 
 import ev3dev.hardware.EV3DevFileSystem;
+import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.sensors.Battery;
+import fake_ev3dev.ev3dev.sensors.FakeBattery;
+import lombok.extern.slf4j.Slf4j;
 import mocks.MockBaseTest;
 import mocks.ev3dev.sensors.BatteryMock;
 import org.junit.Before;
@@ -8,52 +12,34 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class ShellTest extends MockBaseTest{
-
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ShellTest.class);
+@Slf4j
+public class ShellTest {
 
     @Before
-    public void onceExecutedBeforeAll() throws Exception {
-        getGlobalPaths();
-        createEV3DevMocksPath();
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath().toString());
+    public void resetTest() throws IOException {
+        FakeBattery.deleteEV3DevFakeSystemPath();
+        FakeBattery.createEV3DevFakeSystemPath();
     }
-
-    //OK Simple Command
-    //OK Complex command
-    //KO Simple Command
 
     @Test
     public void executeSimpleCommandTest() throws Exception {
 
-        //Inject a MockBattery object
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        batteryMock.createEV3DevMocksEV3BrickPlatformPath();
+        FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        final String result = Shell.execute("ls " + batteryMock.getTempBatteryFolder());
+        final String result = Shell.execute("ls " + FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/" + Battery.BATTERY);
         assertThat(result, is("legoev3-battery\n"));
-    }
-
-    @Ignore
-    @Test
-    public void executeComplexCommandTest() {
-
     }
 
     @Test
     public void executeSimpleCommandKOTest() throws Exception {
         final String result = Shell.execute("lsrare ");
         assertThat(result, is(Shell.COMMAND_ERROR_MESSAGE));
-    }
-
-    @Ignore
-    @Test
-    public void executeComplexCommandKOTest() {
-
     }
 
 }
