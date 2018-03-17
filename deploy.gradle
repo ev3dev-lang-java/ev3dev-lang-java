@@ -86,6 +86,9 @@ deploy.group = groupName
 remoteRun.group = groupName
 remoteSudoRun.group = groupName
 remoteProfilingRun.group = groupName
+remoteProfilingSudoRun.group = groupName
 deployAndRun.group = groupName
+deployAndSudoRun.group = groupName
 deployAndProfilingRun.group = groupName
+deployAndProfilingSudoRun.group = groupName
 

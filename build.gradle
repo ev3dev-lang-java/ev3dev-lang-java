@@ -8,6 +8,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 repositories {
+    jcenter()
     mavenCentral()
     maven { url "https://jitpack.io" }
 }
@@ -15,7 +16,6 @@ repositories {
 dependencies {
     compile("org.slf4j:slf4j-api:1.7.25")
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.0")
-
 
     annotationProcessor("org.projectlombok:lombok:1.16.20")
     testCompileOnly("org.projectlombok:lombok:1.16.20")
@@ -49,14 +49,17 @@ jar {
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+        classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
     }
 }
 
 //Fat Jar
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: "net.ossindex.audit"
 
 task fatJar << {
 
