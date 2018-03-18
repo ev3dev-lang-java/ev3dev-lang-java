@@ -1,22 +1,24 @@
 package ev3dev.hardware;
 
+import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lejos.hardware.port.SensorPort;
-import mocks.MockBaseTest;
-import mocks.ev3dev.sensors.BatteryMock;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
-import org.slf4j.Logger;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.io.IOException;
 
-public class EV3DevSensorDeviceTest extends MockBaseTest {
-
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(EV3DevSensorDeviceTest.class);
+@Slf4j
+public class EV3DevSensorDeviceTest {
 
     @Before
-    public void onceExecutedBeforeAll() throws IOException {
-        getGlobalPaths();
-        createEV3DevMocksPath();
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath().toString());
+    public void resetTest() throws IOException {
+        FakeBattery.deleteEV3DevFakeSystemPath();
+        FakeBattery.createEV3DevFakeSystemPath();
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+
     }
 
     public class EV3DevSensorDeviceChild extends EV3DevSensorDevice {
@@ -26,12 +28,11 @@ public class EV3DevSensorDeviceTest extends MockBaseTest {
         }
     }
 
-    //@Test
+    @Ignore
+    @Test
     public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
 
-        //Inject a MockBattery object
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        batteryMock.createEV3DevMocksEV3BrickPlatformPath();
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
         LOGGER.debug(device.getROOT_PATH());
@@ -42,10 +43,5 @@ public class EV3DevSensorDeviceTest extends MockBaseTest {
         device.getStringAttribute("demo");
         device.setIntegerAttribute("", 0);
         device.setStringAttribute("","");
-
     }
-
-
-
-
 }

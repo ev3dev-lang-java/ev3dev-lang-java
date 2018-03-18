@@ -1,19 +1,13 @@
 package ev3dev.utils;
 
-import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.sensors.Battery;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lombok.extern.slf4j.Slf4j;
-import mocks.MockBaseTest;
-import mocks.ev3dev.sensors.BatteryMock;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.slf4j.Logger;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

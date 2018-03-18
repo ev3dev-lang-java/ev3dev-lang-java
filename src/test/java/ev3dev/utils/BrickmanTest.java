@@ -3,18 +3,13 @@ package ev3dev.utils;
 import ev3dev.actuators.LCD;
 import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
-import fake_ev3dev.BaseElement;
 import fake_ev3dev.ev3dev.actuators.FakeLCD;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lombok.extern.slf4j.Slf4j;
-import mocks.MockBaseTest;
-import mocks.ev3dev.sensors.BatteryMock;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.slf4j.Logger;
 
 import java.io.IOException;
 

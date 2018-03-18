@@ -3,9 +3,7 @@ package fake_ev3dev.ev3dev.sensors;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.BaseElement;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;

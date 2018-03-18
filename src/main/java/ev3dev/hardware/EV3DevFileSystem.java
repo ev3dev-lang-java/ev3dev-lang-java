@@ -22,6 +22,7 @@ public abstract class EV3DevFileSystem {
     protected EV3DevFileSystem(){
         if(Objects.nonNull(System.getProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY))){
             ROOT_PATH = System.getProperty(EV3DEV_TESTING_KEY);
+            LOGGER.debug("ROOT_PATH modified: {}", ROOT_PATH);
         }else {
             ROOT_PATH = EV3DEV_ROOT_PATH;
         }
