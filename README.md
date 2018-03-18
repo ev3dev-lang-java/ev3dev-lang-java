@@ -8,12 +8,19 @@ hardware & the [LeJOS](http://www.lejos.org/) way.
 
 **What is the latest EV3Dev version supported?**
 
-THe libraries was tested with the latest stable `EV3Dev` versions for Debian Jessie:
+The libraries was tested with the latest stable `EV3Dev` release: `Debian Jessie`:
+
+- [Debian Jessie](http://www.ev3dev.org/downloads/) 
+
+This Debian distro run nice with the following platforms:
 
 - [EV3 Brick](https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400): 4.4.47-19-ev3dev-ev3
 - [RaspberryPi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) with [BrickPi3](https://www.dexterindustries.com/brickpi/) & [PiStorms](http://www.mindsensors.com/content/78-pistorms-lego-interface): 4.4.47-19-ev3dev-rpi2
 
 If you need further information about stable EV3Dev images, [click here](http://www.ev3dev.org/news/2017/02/11/ev3dev-jessie-2017-02-11-release/)
+
+- **Note:** In the next release, we will include support for [Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/)
+- **Note2:** In the next release, we will include support for `Debian Stretch` 
 
 ## Introduction
 
