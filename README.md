@@ -12,6 +12,8 @@ The libraries was tested with the latest stable `EV3Dev` release: `Debian Jessie
 
 - [Debian Jessie](http://www.ev3dev.org/downloads/) 
 
+**What is the hardware platforms supported in this project?**
+
 This Debian distro run nice with the following platforms:
 
 - [EV3 Brick](https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400): 4.4.47-19-ev3dev-ev3
