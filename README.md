@@ -57,20 +57,20 @@ The following list contains the stables projects that it is possible to use with
 
 Incubator projects:
 
-- [OpenJDK for EV3]()https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRE build for EV3
+- [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRE build for EV3
 - [Usb Devices](https://github.com/ev3dev-lang-java/usb-devices): A library to use Arduino, Grove Sensors, GPS, IMU, LIDAR, and more devices...
 - [ROS](https://github.com/ev3dev-lang-java/ros): A library to publish Sensor data to ROS for SLAM purposes
 
 **Advantages of the usage of this project?**
 
-Basically, with this library you can develop educational robots with Java for multiple bricks:
+Using this library you can develop educational robots with Java for multiple Bricks:
 
 - EV3 Brick
 - BrickPi+
 - BrickPi 3
 - PiStorms
 
-Using the same objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi & PiStorms.
+Using the same objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi 3 & PiStorms.
 
 If you analyze the hardware, any EV3 Brick uses a `SoC: Sitara Processor AM1808` (from year 2010) to manage Sensors & Actuators 
 but now with the usage of a BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3 increasing the 
@@ -130,224 +130,19 @@ https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues
 
 ## Getting Started
 
-### 1. Install EV3Dev on your brick
+Take a look the documentation to use the project:
 
-Follow the link to install EV3Dev on your brick:
-
-http://www.ev3dev.org/docs/getting-started/
-
-Once you finish the installation process and the remote `ssh` connection test, 
-you will have a complete Linux distro to run any Programming language.
-
-**Note:** Please, maintain your brick updated. Execute the following commands 
-before jump to the next step in this guide.
-
-```
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
-sudo reboot
-```
-
-### 2. Install Java on your brick
-
-For this step exist 2 paths. One path is for EV3 Brick and another path for BrickPi users and PiStorms users. 
-
-**2.1 EV3 Brick:**
-
-The EV3 Brick was designed with a SOC based on [ARM EABI](https://wiki.debian.org/ArmEabiPort) 
-and the best JVM option for that hardware architecture is the Oracle JRE 8 to install in the brick but, it is not possible to install directly in the brick
- without any human interaction, so you need to download from [here](http://www.oracle.com/technetwork/java/embedded/downloads/javase/javaseemeddedev3-1982511.html)
-and later, copy the file `ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz` to your brick using the command `scp`.
-
-Example:
-
-```
-scp "./ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz" "robot@192.168.1.85:/home/robot"
-```
-
-Once, you have the file on the brick, you can continue the Java installation with the installer or do yourself manually.
-
-https://github.com/ev3dev-lang-java/installer
-
-**Using the installer:**
-
-```
-cd /home/robot
-mkdir installer
-cd installer
-wget -N https://raw.githubusercontent.com/ev3dev-lang-java/installer/develop/installer.sh
-chmod +x installer.sh
-sudo ./installer.sh help
-sudo ./installer.sh
-```
-
-**Manual way:**
-
-```
-tar -zxvf "/home/robot/ejdk-8-fcs-b132-linux-arm-sflt-03_mar_2014.tar.gz" -C /opt
-sudo update-alternatives --install /usr/bin/java java /opt/ejdk1.8.0/linux_arm_sflt/jre/bin/java 1
-java -version
-```
-
-Now, you have Java on your EV3 Brick
-
-**2.2 BrickPi+ / PiStorms:**
-
-Using the installer, it is possible to automate everything:
-
-https://github.com/ev3dev-lang-java/installer
-
-```
-cd /home/robot
-mkdir installer
-cd installer
-wget -N https://raw.githubusercontent.com/ev3dev-lang-java/installer/develop/installer.sh
-chmod +x installer.sh
-sudo ./installer.sh help
-sudo ./installer.sh
-```
-
-### 3. Create your first Project and deploy on your Brick
-
-Once you have the required infrastructure on your Brick, it is possible to experiment with the libraries in some ways:
-
-**3.1 Using a Gradle template project**
-
-If you like, you can experiment with the project, using the following project template:
-
-https://github.com/ev3dev-lang-java/template_project_gradle
-
-Download the project, update the file: `config.gradle`: with the IP of you Brick:
-
-```
-remotes {
-    ev3dev {
-        host = '10.0.1.3'
-        user = 'robot'
-        password = 'maker'
-    }
-}
-```
-
-To deploy the example on your brick, open a `terminal` and type:
-
-```
-./gradlew deployAndRun
-```
-
-Besides, exist a task to provide access to a Profiling tool if you execute:
-
-```
-./gradlew deployAndProfilingRun
-```
-
-**3.2 Create a project from scratch:**
-
-Another alternative is the creation of a project from Scratch using Maven/Gradle.
-
-To start a new project with this library, add the following repository and dependency.
-
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-```
-
-``` xml
-<dependency>
-    <groupId>com.github.ev3dev-lang-java</groupId>
-    <artifactId>ev3dev-lang-java</artifactId>
-    <version>0.7.0</version>
-</dependency>
-```
-	
-Further information about the Maven dependency: https://jitpack.io/#ev3dev-lang-java/ev3dev-lang-java/v0.6.1
+http://ev3dev-lang-java.github.io/docs/support/index.html
 
 ## Examples
 
-Take a look the following examples to discover some features included with this Java project.
+Take a look the following repository to learn how to use this project:
 
-**EV3Dev-lang-Java:**
+https://github.com/ev3dev-lang-java/examples
 
-- ev3dev.misc
-- [BumperCar](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/misc/BumperCar.java)
-- [BumperCar2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/misc/BumperCar2.java)
-- ev3dev.robotics.tts
-- [TTSDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/robotics/tts/TTSDemo.java)
-- [TTSDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/robotics/tts/TTSDemo2.java)
-- ev3dev.actuators
-- [LCDDrawIconsTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawIconsTest.java)
-- [LCDDrawImagesTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawImagesTest.java)
-- [LCDDrawLinesTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawLinesTest.java)
-- [LCDDrawRectanglesTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDDrawRectanglesTest.java)
-- [LCDFontTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDFontTest.java)
-- [LCDTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDTest.java)
-- [LCDWriteTextTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/LCDWriteTextTest.java)
-- [SoundDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/SoundDemo.java)
-- ev3dev.actuators.ev3
-- [LEDExample](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/ev3/LEDExample.java)
-- ev3dev.actuators.lego.motors
-- [LargeMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/LargeMotorDemo.java)
-- [LargeMotorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/LargeMotorDemo2.java)
-- [MediumMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MediumMotorDemo.java)
-- [MotorEventTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MotorEventTest.java)
-- [MultipleMotorsDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MultipleMotorsDemo.java)
-- [MultipleMotorsStopDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/MultipleMotorsStopDemo.java)
-- [RegulatedMotorRotateDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/RegulatedMotorRotateDemo.java)
-- [RegulatedMotorRotateDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/RegulatedMotorRotateDemo.java)
-- [RegulatedMotorRotateToDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/RegulatedMotorRotateToDemo.java)
-- [UnregulatedMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/UnregulatedMotorDemo.java)
-- [UnregulatedMotorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/UnregulatedMotorDemo2.java)
-- [UnregulatedMutilpleMotorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/actuators/lego/motors/UnregulatedMutilpleMotorDemo.java)
-- ev3dev.sensors
-- [BatteryDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/BatteryDemo.java)
-- [ButtonExample](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ButtonExample.java)
-- ev3dev.sensors.ev3
-- [ColorSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorDemo.java)
-- [ColorSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorDemo2.java)
-- [ColorSensorDemo3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorDemo3.java)
-- [ColorSensorMultipleDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/ColorSensorMultipleDemo.java)
-- [GyroSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/GyroSensorDemo.java)
-- [GyroSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/GyroSensorDemo2.java)
-- [GyroSensorDemo3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/GyroSensorDemo3.java)
-- [IRSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/IRSensorDemo.java)
-- [IRSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/IRSensorDemo2.java)
-- [IRSensorDemo3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/IRSensorDemo3.java)
-- [TouchSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/TouchSensorDemo.java)
-- [USSensorDemo](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/USSensorDemo.java)
-- [USSensorDemo2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/sensors/ev3/USSensorDemo2.java)
-- ev3dev.hardware
-- [PlatformTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/ev3dev/hardware/PlatformTest.java)
+It is very easy to copy one example and use inside of the project template:
 
-**lejos-commons:**
-
-- lejos.commons.subsumption
-- [BumperCar](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/commons/subsumption/BumperCar.java)
-- [DriveForward](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/commons/subsumption/DriveForward.java)
-- [HitWall](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/commons/subsumption/HitWall.java)
-
-**lejos-navigation:**
-
-- lejos.robotics.navigation
-- [PilotConfig](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/PilotConfig.java)
-- [PilotConfig2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/PilotConfig2.java) 
-- [DifferentialPilotStopTest](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/DifferentialPilotStopTest.java) 
-- [DifferentialPilotTest1](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/DifferentialPilotTest1.java) 
-- [DifferentialPilotTest9](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/pilot/DifferentialPilotTest9.java) 
-- [MoveControllerTest1](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/MoveControllerTest1.java) 
-- [MoveControllerTest2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/MoveControllerTest2.java) 
-- [NavigatorTest1](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest1.java) 
-- [NavigatorTest2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest2.java) 
-- [NavigatorTest3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest3.java) 
-- [NavigatorTest4](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/navigator/NavigatorTest4.java) 
-- lejos.robotics.objectdetection
-- [FeatureAvoider](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/feature/FeatureAvoider.java) 
-- [FeatureAvoider2](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/feature/FeatureAvoider2.java) 
-- [FeatureAvoider3](https://github.com/ev3dev-lang-java/examples/blob/develop/ev3dev-lang-java/src/main/java/lejos/navigation/feature/FeatureAvoider3.java) 
+https://github.com/ev3dev-lang-java/template_project_gradle
 
 ## Videos
 
