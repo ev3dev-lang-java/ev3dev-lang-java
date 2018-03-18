@@ -10,9 +10,9 @@ hardware & the [LeJOS](http://www.lejos.org/) way.
 
 **What is the latest EV3Dev version supported?**
 
-The libraries was tested with the latest stable `EV3Dev` release: `Debian Jessie`:
+The libraries was tested with the latest stable `EV3Dev` release: [Debian Jessie](http://www.ev3dev.org/downloads/) 
 
-- [Debian Jessie](http://www.ev3dev.org/downloads/) 
+- **Note2:** In the next release, we will include support for `Debian Stretch`
 
 **What is the hardware platforms supported in this project?**
 
@@ -24,7 +24,6 @@ This Debian distro run nice with the following platforms:
 If you need further information about stable EV3Dev images, [click here](http://www.ev3dev.org/news/2017/02/11/ev3dev-jessie-2017-02-11-release/)
 
 - **Note:** In the next release, we will include support for [Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/)
-- **Note2:** In the next release, we will include support for `Debian Stretch` 
 
 ## Introduction
 
