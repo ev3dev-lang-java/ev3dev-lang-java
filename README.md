@@ -42,9 +42,9 @@ So... why not develop a Java library for that Linux Distro? The answer is `EV3De
 The project, takes the good things of both worlds: EV3Dev with the complete linux experience 
 and LeJOS with the rich local navigation stack.
     
-**What libraries contains EV3Dev-lang-java?**
+**What projects are developed in EV3Dev-lang-java?**
   
-The project contains the following Java libraries/scripts:
+The following list contains the stables projects that it is possible to use without any restriction:
   
 - [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level interation with EV3Dev
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
@@ -52,6 +52,14 @@ The project contains the following Java libraries/scripts:
 - [RPLidar4J](https://github.com/ev3dev-lang-java/RPLidar4J): RPLidar A1 support
 - [Battery Monitor](https://github.com/ev3dev-lang-java/batteryMonitor): A battery monitor to protect your hardware against low battery levels
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
+- [Template project](https://github.com/ev3dev-lang-java/template_project_gradle): A Gradle project ready to test the project
+- [Examples](https://github.com/ev3dev-lang-java/examples): A repository with several examples about the usage of this project
+
+Incubator projects:
+
+- [OpenJDK for EV3]()https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRE build for EV3
+- [Usb Devices](https://github.com/ev3dev-lang-java/usb-devices): A library to use Arduino, Grove Sensors, GPS, IMU, LIDAR, and more devices...
+- [ROS](https://github.com/ev3dev-lang-java/ros): A library to publish Sensor data to ROS for SLAM purposes
 
 **Advantages of the usage of this project?**
 
