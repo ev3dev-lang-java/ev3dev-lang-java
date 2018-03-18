@@ -6,6 +6,8 @@ hardware & the [LeJOS](http://www.lejos.org/) way.
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
 [![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
 
+![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
+
 **What is the latest EV3Dev version supported?**
 
 The libraries was tested with the latest stable `EV3Dev` release: `Debian Jessie`:
@@ -39,8 +41,6 @@ But, with the help of `EV3Dev`, it is possible to have the same Linux experience
 So... why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
 The project, takes the good things of both worlds: EV3Dev with the complete linux experience 
 and LeJOS with the rich local navigation stack.
-
-![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
     
 **What libraries contains EV3Dev-lang-java?**
   
