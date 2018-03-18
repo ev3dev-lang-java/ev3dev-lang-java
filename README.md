@@ -83,11 +83,11 @@ CPU: ARM9 300MHz
 RAM: 16KB of Instruction Cache, 16KB of Data Cache ,8KB of RAM (Vector Table), 64KB of ROM
 ```
 
-**2016 Chip included on Raspberry Pi 3:**
+**2018 Chip included on Raspberry Pi 3 Model B+:**
 
 ``` 
-SoC: Broadcom BCM2837
-CPU: 4× ARM Cortex-A53, 1.2GHz
+SoC: Broadcom BCM2837 RISC de 64 bits
+CPU: 4× ARM Cortex-A53, 1.4GHz
 RAM: 1GB LPDDR2 (900 MHz)
 ```
 
