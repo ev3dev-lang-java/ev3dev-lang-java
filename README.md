@@ -12,7 +12,7 @@ hardware & the [LeJOS](http://www.lejos.org/) way.
 
 The libraries was tested with the latest stable `EV3Dev` release: [Debian Jessie](http://www.ev3dev.org/downloads/) 
 
-- **Note2:** In the next release, we will include support for `Debian Stretch`
+- **Note:** In the next release, we will include support for `Debian Stretch`
 
 **What is the hardware platforms supported in this project?**
 
