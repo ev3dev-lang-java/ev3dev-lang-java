@@ -4,12 +4,16 @@ import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3TouchSensor;
+import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3UltrasonicSensor;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.SensorMode;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,6 +27,31 @@ public class EV3TouchSensorTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
+    }
+
+    @Test
+    public void getSensorNameTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeEV3TouchSensor fakeEV3TouchSensor = new FakeEV3TouchSensor(EV3DevPlatform.EV3BRICK);
+
+        EV3TouchSensor touchSensor = new EV3TouchSensor(SensorPort.S1);
+
+        assertThat(touchSensor.getName(), Matchers.is("Touch"));
+    }
+
+    @Test
+    public void getAvailableModes() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeEV3TouchSensor fakeEV3TouchSensor = new FakeEV3TouchSensor(EV3DevPlatform.EV3BRICK);
+
+        EV3TouchSensor touchSensor = new EV3TouchSensor(SensorPort.S1);
+
+        final List<String> expectedModes = Arrays.asList("Touch");
+        final List<String> modes  = touchSensor.getAvailableModes();
+
+        assertThat(modes, Matchers.is(expectedModes));
     }
 
     @Test
