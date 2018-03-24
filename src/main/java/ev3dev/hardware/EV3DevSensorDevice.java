@@ -67,11 +67,11 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 
 			//With Pi Boards, it is necessary to detect in 2 paths the sensors
 			this.detect(LEGO_PORT, port);
-			log.info("detected lego port: {}", this.PATH_DEVICE);
+			log.debug("detected lego port: {}", this.PATH_DEVICE);
 			this.setStringAttribute(MODE, mode);
 			Delay.msDelay(1000);
 			this.detect(LEGO_SENSOR, port);
-			log.info("detected lego sensor: {}", this.PATH_DEVICE);
+			log.debug("detected lego sensor: {}", this.PATH_DEVICE);
 		}
 
 	}
