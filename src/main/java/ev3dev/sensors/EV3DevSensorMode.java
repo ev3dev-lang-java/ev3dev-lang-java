@@ -1,5 +1,7 @@
 package ev3dev.sensors;
 
+import lejos.hardware.sensor.SensorMode;
+
 /**
  * Sensor Mode abstract class
  *

@@ -2,10 +2,10 @@ package ev3dev.sensors.ev3;
 
 import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.sensors.SensorMode;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3TouchSensor;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.SensorMode;
 import org.junit.Before;
 import org.junit.Test;
 
