@@ -5,7 +5,6 @@ import fake_ev3dev.ev3dev.sensors.FakeLegoSensor;
 import lejos.hardware.port.SensorPort;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;

@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import java.awt.*;
 import java.awt.image.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
