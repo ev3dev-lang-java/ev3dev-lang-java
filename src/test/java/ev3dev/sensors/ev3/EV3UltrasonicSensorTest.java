@@ -5,7 +5,9 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3UltrasonicSensor;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -65,6 +67,8 @@ public class EV3UltrasonicSensorTest {
         EV3UltrasonicSensor us1 = new EV3UltrasonicSensor(SensorPort.S1);
 
         final SampleProvider sp = us1.getDistanceMode();
+        assertThat(sp.sampleSize(), is(1));
+
         int distanceValue = 0;
         float [] sample = new float[sp.sampleSize()];
         sp.fetchSample(sample, 0);
