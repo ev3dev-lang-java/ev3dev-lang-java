@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 public class FakeLegoSensor extends BaseElement {
 
-    private static final String LEGO_SENSOR_PATH = "lego-sensor";
+    protected static final String LEGO_SENSOR_PATH = "lego-sensor";
 
 
     public FakeLegoSensor(final EV3DevPlatform ev3DevPlatform) throws IOException {
@@ -25,7 +25,7 @@ public class FakeLegoSensor extends BaseElement {
             Path port1 = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
                             LEGO_SENSOR_PATH + "/" +
-                            "in1"
+                            "sensor1"
             );
 
             Files.createDirectories(port1);
@@ -34,7 +34,7 @@ public class FakeLegoSensor extends BaseElement {
             Path addressPath = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
                             LEGO_SENSOR_PATH + "/" +
-                            "in1" + "/" +
+                            "sensor1" + "/" +
                             "address");
             Files.createFile(addressPath);
 
