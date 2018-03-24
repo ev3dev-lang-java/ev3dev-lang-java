@@ -4,7 +4,6 @@ import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3IRSensor;
-import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3TouchSensor;
 import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.hamcrest.Matchers;
