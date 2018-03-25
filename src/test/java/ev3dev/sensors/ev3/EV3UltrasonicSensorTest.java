@@ -17,8 +17,8 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.number.OrderingComparison.greaterThan;
-import static org.hamcrest.number.OrderingComparison.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
 
 public class EV3UltrasonicSensorTest {
 
@@ -73,8 +73,8 @@ public class EV3UltrasonicSensorTest {
         distanceValue = (int)sample[0];
 
         assertThat(distanceValue, allOf(
-                greaterThan(0),
-                lessThan(255)));
+                greaterThanOrEqualTo(0),
+                lessThanOrEqualTo(255)));
     }
 
     @Ignore("It is necessary to test with 2 real EV3 Ultrasonic sensors to verify the efect")

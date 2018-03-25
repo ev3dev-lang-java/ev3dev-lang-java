@@ -17,8 +17,8 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.number.OrderingComparison.greaterThan;
-import static org.hamcrest.number.OrderingComparison.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
 
 public class EV3IRSensorTest {
 
@@ -73,8 +73,8 @@ public class EV3IRSensorTest {
         distanceValue = (int)sample[0];
 
         assertThat(distanceValue, allOf(
-                greaterThan(0),
-                lessThan(100)));
+                greaterThanOrEqualTo(0),
+                lessThanOrEqualTo(100)));
     }
 
     @Test
@@ -101,10 +101,10 @@ public class EV3IRSensorTest {
         beaconInfo3 = (int)sample[2];
         beaconInfo4 = (int)sample[3];
 
-        assertThat(beaconInfo1, allOf(greaterThan(0), lessThan(11)));
-        assertThat(beaconInfo2, allOf(greaterThan(0), lessThan(11)));
-        assertThat(beaconInfo3, allOf(greaterThan(0), lessThan(11)));
-        assertThat(beaconInfo4, allOf(greaterThan(0), lessThan(11)));
+        assertThat(beaconInfo1, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+        assertThat(beaconInfo2, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+        assertThat(beaconInfo3, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+        assertThat(beaconInfo4, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
 
     }
 
@@ -143,14 +143,14 @@ public class EV3IRSensorTest {
         beaconInfo4H = (int)sample[6];
         beaconInfo4D = (int)sample[7];
 
-        assertThat(beaconInfo1H, allOf(greaterThan(-25), lessThan(25)));
-        assertThat(beaconInfo1D, allOf(greaterThan(0), lessThan(100)));
-        assertThat(beaconInfo2H, allOf(greaterThan(-25), lessThan(25)));
-        assertThat(beaconInfo2D, allOf(greaterThan(0), lessThan(100)));
-        assertThat(beaconInfo3H, allOf(greaterThan(-25), lessThan(25)));
-        assertThat(beaconInfo3D, allOf(greaterThan(0), lessThan(100)));
-        assertThat(beaconInfo4H, allOf(greaterThan(-25), lessThan(25)));
-        assertThat(beaconInfo4D, allOf(greaterThan(0), lessThan(100)));
+        assertThat(beaconInfo1H, allOf(greaterThanOrEqualTo(-25), lessThanOrEqualTo(25)));
+        assertThat(beaconInfo1D, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(100)));
+        assertThat(beaconInfo2H, allOf(greaterThanOrEqualTo(-25), lessThanOrEqualTo(25)));
+        assertThat(beaconInfo2D, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(100)));
+        assertThat(beaconInfo3H, allOf(greaterThanOrEqualTo(-25), lessThanOrEqualTo(25)));
+        assertThat(beaconInfo3D, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(100)));
+        assertThat(beaconInfo4H, allOf(greaterThanOrEqualTo(-25), lessThanOrEqualTo(25)));
+        assertThat(beaconInfo4D, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(100)));
 
     }
 

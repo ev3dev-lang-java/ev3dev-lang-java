@@ -3,7 +3,6 @@ package ev3dev.sensors.mindsensors;
 import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
-import fake_ev3dev.ev3dev.sensors.mindsensors.FakeAbsolutIMUSensor;
 import fake_ev3dev.ev3dev.sensors.mindsensors.FakeNXTCamV5Sensor;
 import lejos.hardware.port.SensorPort;
 import org.hamcrest.Matchers;
@@ -28,7 +27,7 @@ public class NXTCamV5Test {
     }
 
     @Test
-    public void getAvailableModes() throws Exception {
+    public void getNoAvailableModesTest() throws Exception {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeNXTCamV5Sensor fakeNXTCamV5Sensor = new FakeNXTCamV5Sensor(EV3DevPlatform.EV3BRICK);

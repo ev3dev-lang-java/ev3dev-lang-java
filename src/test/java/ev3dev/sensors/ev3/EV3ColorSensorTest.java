@@ -19,7 +19,9 @@ import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
+import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
 
 public class EV3ColorSensorTest {
 
@@ -112,8 +114,8 @@ public class EV3ColorSensorTest {
         color = (int)sample[0];
 
         assertThat(color, allOf(
-                greaterThan(0),
-                lessThan(100)));
+                greaterThanOrEqualTo(0),
+                lessThanOrEqualTo(100)));
     }
 
     @Test
@@ -137,14 +139,14 @@ public class EV3ColorSensorTest {
 
 
         assertThat(red, allOf(
-                greaterThan(0),
-                lessThan(255)));
+                greaterThanOrEqualTo(0),
+                lessThanOrEqualTo(255)));
         assertThat(green, allOf(
-                greaterThan(0),
-                lessThan(255)));
+                greaterThanOrEqualTo(0),
+                lessThanOrEqualTo(255)));
         assertThat(blue, allOf(
-                greaterThan(0),
-                lessThan(255)));
+                greaterThanOrEqualTo(0),
+                lessThanOrEqualTo(255)));
     }
 
     @Test
@@ -166,7 +168,7 @@ public class EV3ColorSensorTest {
 
         assertThat(value, allOf(
                 greaterThan(0),
-                lessThan(100)));
+                lessThanOrEqualTo(100)));
     }
 
 }

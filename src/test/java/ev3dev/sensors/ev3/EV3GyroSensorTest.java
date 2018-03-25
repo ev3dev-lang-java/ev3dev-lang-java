@@ -17,8 +17,8 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
 
 public class EV3GyroSensorTest {
 
@@ -75,8 +75,8 @@ public class EV3GyroSensorTest {
         rate = (int)sample[0];
 
         assertThat(rate, allOf(
-                greaterThan(-440),
-                lessThan(440)));
+                greaterThanOrEqualTo(-440),
+                lessThanOrEqualTo(440)));
     }
 
     @Test
@@ -98,8 +98,8 @@ public class EV3GyroSensorTest {
         angle = (int)sample[0];
 
         assertThat(angle, allOf(
-                greaterThan(-32768),
-                lessThan(32767)));
+                greaterThanOrEqualTo(-32768),
+                lessThanOrEqualTo(32767)));
     }
 
 
@@ -124,11 +124,11 @@ public class EV3GyroSensorTest {
         rate = (int)sample[1];
 
         assertThat(angle, allOf(
-                greaterThan(-32768),
-                lessThan(32767)));
+                greaterThanOrEqualTo(-32768),
+                lessThanOrEqualTo(32767)));
         assertThat(rate, allOf(
-                greaterThan(-440),
-                lessThan(440)));
+                greaterThanOrEqualTo(-440),
+                lessThanOrEqualTo(440)));
     }
 
     @Test
