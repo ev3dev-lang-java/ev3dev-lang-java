@@ -2,6 +2,7 @@ package ev3dev.sensors.mindsensors;
 
 import ev3dev.sensors.BaseSensor;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.geometry.Rectangle2D;
 import lejos.robotics.geometry.RectangleInt32;
 
@@ -48,6 +49,7 @@ public class NXTCamV5 extends BaseSensor {
 
     private void initModes() {
         this.setStringAttribute("mode", "TRACK");
+        setModes(new SensorMode[]{});
     }
 
     public NXTCamV5(final Port portName) {
