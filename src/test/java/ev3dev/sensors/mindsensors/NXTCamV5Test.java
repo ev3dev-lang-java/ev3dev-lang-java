@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NXTCamV5Test {
@@ -39,5 +40,45 @@ public class NXTCamV5Test {
 
         assertThat(modes, Matchers.is(expectedModes));
     }
+
+    @Test
+    public void getTrackedObjectTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeNXTCamV5Sensor fakeNXTCamV5Sensor = new FakeNXTCamV5Sensor(EV3DevPlatform.EV3BRICK);
+
+        NXTCamV5 nxtCamV5 = new NXTCamV5(SensorPort.S1);
+
+        final int trackedObject = nxtCamV5.getNumberOfObjects();
+
+        assertThat(trackedObject, is(2));
+    }
+
+    @Test
+    public void createPhotoTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeNXTCamV5Sensor fakeNXTCamV5Sensor = new FakeNXTCamV5Sensor(EV3DevPlatform.EV3BRICK);
+
+        NXTCamV5 nxtCamV5 = new NXTCamV5(SensorPort.S1);
+
+        nxtCamV5.createPhoto();
+
+        assertThat(fakeNXTCamV5Sensor.getCurrentCommand(), is("PICTURE"));
+    }
+
+    @Test
+    public void createVideoTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeNXTCamV5Sensor fakeNXTCamV5Sensor = new FakeNXTCamV5Sensor(EV3DevPlatform.EV3BRICK);
+
+        NXTCamV5 nxtCamV5 = new NXTCamV5(SensorPort.S1);
+
+        nxtCamV5.createVideo();
+
+        assertThat(fakeNXTCamV5Sensor.getCurrentCommand(), is("MOVIE"));
+    }
+
 
 }

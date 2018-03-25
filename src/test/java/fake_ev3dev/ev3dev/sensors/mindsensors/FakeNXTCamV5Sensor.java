@@ -1,6 +1,7 @@
 package fake_ev3dev.ev3dev.sensors.mindsensors;
 
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.utils.Sysfs;
 import fake_ev3dev.ev3dev.sensors.FakeLegoSensor;
 
 import java.io.IOException;
@@ -71,5 +72,13 @@ public class FakeNXTCamV5Sensor extends FakeLegoSensor {
             Files.createFile(addressPathCommand);
         }
 
+    }
+
+
+    public String getCurrentCommand() {
+        return Sysfs.readString(EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                LEGO_SENSOR_PATH + "/" +
+                "sensor1" + "/" +
+                "command");
     }
 }
