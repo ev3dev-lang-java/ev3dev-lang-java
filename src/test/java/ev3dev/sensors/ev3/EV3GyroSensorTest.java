@@ -6,9 +6,6 @@ import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3GyroSensor;
 import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
-
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.CoreMatchers.is;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +14,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;

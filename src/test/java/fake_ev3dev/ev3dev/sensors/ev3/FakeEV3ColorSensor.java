@@ -23,7 +23,31 @@ public class FakeEV3ColorSensor extends FakeLegoSensor {
         }
 
         //Review real content to simulate better
-        Files.write(addressPath1, "10".getBytes());
+        Files.write(addressPath1, "2".getBytes());
+
+        Path addressPath2 = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_SENSOR_PATH + "/" +
+                        "sensor1" + "/" +
+                        "value1");
+        if(!Files.exists(addressPath2)) {
+            Files.createFile(addressPath2);
+        }
+
+        //Review real content to simulate better
+        Files.write(addressPath2, "100".getBytes());
+
+        Path addressPath3 = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_SENSOR_PATH + "/" +
+                        "sensor1" + "/" +
+                        "value2");
+        if(!Files.exists(addressPath3)) {
+            Files.createFile(addressPath3);
+        }
+
+        //Review real content to simulate better
+        Files.write(addressPath3, "200".getBytes());
 
         Path addressPathMode = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
