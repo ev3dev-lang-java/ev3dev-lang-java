@@ -12,7 +12,6 @@ public class FakeLegoSensor extends BaseElement {
 
     protected static final String LEGO_SENSOR_PATH = "lego-sensor";
 
-
     public FakeLegoSensor(final EV3DevPlatform ev3DevPlatform) throws IOException {
 
         Path batteryPath = Paths.get(

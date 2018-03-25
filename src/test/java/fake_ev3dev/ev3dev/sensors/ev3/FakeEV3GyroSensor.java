@@ -1,6 +1,7 @@
 package fake_ev3dev.ev3dev.sensors.ev3;
 
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.utils.Sysfs;
 import fake_ev3dev.ev3dev.sensors.FakeLegoSensor;
 
 import java.io.IOException;
@@ -25,6 +26,18 @@ public class FakeEV3GyroSensor extends FakeLegoSensor {
         //Review real content to simulate better
         Files.write(addressPath1, "10".getBytes());
 
+        Path addressPath2 = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_SENSOR_PATH + "/" +
+                        "sensor1" + "/" +
+                        "value1");
+        if(!Files.exists(addressPath2)) {
+            Files.createFile(addressPath2);
+        }
+
+        //Review real content to simulate better
+        Files.write(addressPath2, "10".getBytes());
+
         Path addressPathMode = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_SENSOR_PATH + "/" +
@@ -35,5 +48,12 @@ public class FakeEV3GyroSensor extends FakeLegoSensor {
             Files.createFile(addressPathMode);
         }
 
+    }
+
+    public String getCurrentMode() {
+        return Sysfs.readString(EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                LEGO_SENSOR_PATH + "/" +
+                "sensor1" + "/" +
+                "mode");
     }
 }
