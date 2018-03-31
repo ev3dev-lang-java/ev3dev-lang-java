@@ -38,27 +38,34 @@ public abstract class EV3DevDevice extends EV3DevPlatforms {
      * @param portName port
      */
     protected void detect(final String type, final String portName) {
-        if(log.isDebugEnabled())
-            log.debug("Detecting device on port: {}", portName);
         final String devicePath = ROOT_PATH + "/" + type;
         if(log.isTraceEnabled())
-            log.trace(devicePath);
+            log.trace("Retrieving devices in path: ", devicePath);
         final List<File> deviceAvailables = Sysfs.getElements(devicePath);
-
         boolean connected = false;
+        if(log.isTraceEnabled())
+            log.trace("Checking devices on: {}", devicePath);
         String pathDeviceName;
+        int deviceCounter = 1;
         for (File deviceAvailable : deviceAvailables) {
             PATH_DEVICE = deviceAvailable;
             pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
+            if(log.isTraceEnabled())
+                log.trace("Device {}:", deviceCounter);
             String result = Sysfs.readString(pathDeviceName);
             if(log.isTraceEnabled())
                 log.trace("Port expected: {}, actual: {}.", portName, result);
+            //TODO Review to use equals. It is more strict
             if (result.contains(portName)) {
                 if(log.isDebugEnabled())
-                    log.debug("Detected port on path: {}", pathDeviceName);
+                    log.debug("Detected device on path: {}, {}", pathDeviceName, result);
                 connected = true;
                 break;
+            } else {
+                if(log.isTraceEnabled())
+                    log.trace("Skipped device");
             }
+            deviceCounter++;
         }
 
         if(!connected){

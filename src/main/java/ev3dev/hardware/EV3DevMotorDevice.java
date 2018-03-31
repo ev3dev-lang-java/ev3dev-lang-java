@@ -10,8 +10,6 @@ import org.slf4j.Logger;
  */
 public abstract class EV3DevMotorDevice extends EV3DevDevice {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevMotorDevice.class);
-
     protected static final String TACHO_MOTOR = "tacho-motor";
     protected static final String DC_MOTOR = "dc-motor";
     protected static final String AUTO_MODE = "auto";
