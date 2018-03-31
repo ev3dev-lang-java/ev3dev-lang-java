@@ -11,6 +11,15 @@ task testConnection << {
     }
 }
 
+task removePreviousJar << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            println "rm /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            execute "rm /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+        }
+    }
+}
+
 task deploy << {
     ssh.run {
         session(remotes.ev3dev) {
@@ -82,6 +91,7 @@ apply from: 'config.gradle'
 //Organize tasks in a Group
 def groupName = "ev3dev-lang-java"
 testConnection.group = groupName
+removePreviousJar.group = groupName
 deploy.group = groupName
 remoteRun.group = groupName
 remoteSudoRun.group = groupName

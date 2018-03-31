@@ -72,9 +72,10 @@ public class Sysfs {
 				return result;
 			}
 			throw new IOException("Problem reading path: " + filePath);
-		} catch (IOException ex) {
-			log.error(ex.getLocalizedMessage());
-			throw new RuntimeException(ex);
+		} catch (IOException e) {
+			log.error(e.getLocalizedMessage());
+
+			throw new RuntimeException("Problem reading path: " + filePath, e);
 		}
 	}
 	
