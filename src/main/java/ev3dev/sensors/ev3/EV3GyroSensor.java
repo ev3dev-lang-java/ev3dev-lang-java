@@ -2,9 +2,9 @@ package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
 import java.io.File;
@@ -120,18 +120,13 @@ public class EV3GyroSensor extends BaseSensor {
 		switchMode("GYRO-G&A", SWITCH_DELAY);
 	}
 
-	public int getAngle(){
-		return Sysfs.readInteger(this.PATH_DEVICE + "/" +  "value0");
-	}
-
 	private class RateMode extends EV3DevSensorMode {
 
 		private static final String MODE = "GYRO-RATE";
-		private static final float toSI = -1;
 
-		private File pathDevice = null;
+		private final File pathDevice;
 
-		public RateMode(File pathDevice) {
+		public RateMode(final File pathDevice) {
 			this.pathDevice = pathDevice;
 		}
 
@@ -144,7 +139,7 @@ public class EV3GyroSensor extends BaseSensor {
 		public void fetchSample(float[] sample, int offset) {
 			switchMode(MODE, SWITCH_DELAY);
 			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[offset] = raw * toSI;
+			sample[offset] = raw;
 		}
 
 		@Override
@@ -157,11 +152,10 @@ public class EV3GyroSensor extends BaseSensor {
 	private class AngleMode extends EV3DevSensorMode {
 
 		private static final String MODE = "GYRO-ANG";
-		private static final float toSI = -1;
 
-		private File pathDevice = null;
+		private final File pathDevice;
 
-		public AngleMode(File pathDevice) {
+		public AngleMode(final File pathDevice) {
 			this.pathDevice = pathDevice;
 		}
 
@@ -174,7 +168,7 @@ public class EV3GyroSensor extends BaseSensor {
 		public void fetchSample(float[] sample, int offset) {
 			switchMode(MODE, SWITCH_DELAY);
 			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[offset] = raw * toSI;
+			sample[offset] = raw;
 		}
 
 		@Override
@@ -186,11 +180,10 @@ public class EV3GyroSensor extends BaseSensor {
 	private class RateAndAngleMode extends EV3DevSensorMode {
 
 		private static final String MODE = "GYRO-G&A";
-		private static final float toSI = -1;
 
-		private File pathDevice = null;
+		private final File pathDevice;
 
-		public RateAndAngleMode(File pathDevice) {
+		public RateAndAngleMode(final File pathDevice) {
 			this.pathDevice = pathDevice;
 		}
 
@@ -203,9 +196,9 @@ public class EV3GyroSensor extends BaseSensor {
 		public void fetchSample(float[] sample, int offset) {
 			switchMode(MODE, SWITCH_DELAY);
 			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[0] = raw * toSI;
+			sample[0] = raw;
 			raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-			sample[1] = raw * toSI;
+			sample[1] = raw;
 		}
 
 		@Override

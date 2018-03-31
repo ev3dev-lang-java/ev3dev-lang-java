@@ -1,13 +1,16 @@
 package ev3dev.hardware;
 
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
+import fake_ev3dev.ev3dev.sensors.FakeLegoSensor;
 import lejos.hardware.port.SensorPort;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 @Slf4j
 public class EV3DevSensorDeviceTest {
@@ -28,20 +31,17 @@ public class EV3DevSensorDeviceTest {
         }
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoSensor legoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
 
         EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
-        LOGGER.debug(device.getROOT_PATH());
-        LOGGER.debug(device.getSensorPort(SensorPort.S1));
-        device.detect("demo","ui");
-        device.getIntegerAttribute("demo");
-        device.getPlatform();
-        device.getStringAttribute("demo");
-        device.setIntegerAttribute("", 0);
-        device.setStringAttribute("","");
+        assertThat(device.getPlatform(), is(EV3DevPlatform.EV3BRICK));
+        assertThat(device.getSensorPort(SensorPort.S1), is("in1"));
+        assertThat(device.getStringAttribute("address"), is("in1"));
+        device.setStringAttribute("address", "in1");
     }
 }

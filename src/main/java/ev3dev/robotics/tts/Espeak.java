@@ -77,7 +77,7 @@ public class Espeak {
 			sb.append(" --stdout ");
 			sb.append("\"").append(this.message).append("\"");
 		}else{
-			if(message != null){
+			if(filePath != null){
 				sb.append("--stdout ");
 				sb.append(" -f ").append(this.filePath).append("\"");
 			}else{

@@ -2,6 +2,8 @@ package ev3dev.sensors;
 
 import ev3dev.hardware.EV3DevSensorDevice;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
+import lejos.hardware.sensor.SensorModes;
 import lejos.utility.Delay;
 
 import java.util.ArrayList;

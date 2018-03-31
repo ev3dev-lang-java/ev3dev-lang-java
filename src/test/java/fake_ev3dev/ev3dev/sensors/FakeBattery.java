@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FakeBattery extends BaseElement{
+public class FakeBattery extends BaseElement {
 
     private static final String BATTERY_PATH = "power_supply";
     private static final String BATTERY_EV3_SUBPATH = "legoev3-battery";

@@ -30,7 +30,7 @@ public class Sound extends EV3DevDevice {
     private final static String VOLUME_PATH = SOUND_PATH + VOLUME;
     private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
 
-    private static Sound Instance;
+    private static Sound instance;
 
     /**
      * Return a Instance of Sound.
@@ -38,10 +38,10 @@ public class Sound extends EV3DevDevice {
      * @return A Sound instance
      */
     public static Sound getInstance() {
-        if (Instance == null) {
-        	Instance = new Sound();
+        if (instance == null) {
+            instance = new Sound();
         }
-        return Instance;
+        return instance;
     }
 
     // Prevent duplicate objects
