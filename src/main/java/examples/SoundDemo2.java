@@ -7,7 +7,7 @@ import lejos.utility.Delay;
 import java.io.File;
 import java.io.IOException;
 
-public class SoundDemo {
+public class SoundDemo2 {
 
 	//Configuration
 	private static int MAX_VOLUME = 100;
@@ -24,23 +24,26 @@ public class SoundDemo {
 
 		Sound sound = Sound.getInstance();
 		
-		sound.setVolume(MAX_VOLUME);
+		sound.setVolume(20);
 		System.out.println("Volume: " + sound.getVolume());
 
 		JarResource.export(filePath);
 		File file = new File(filePath);
 		sound.playSample(file);
 
-		sound.beep();
-		sound.twoBeeps();
-		
-		Delay.msDelay(ONE_SECOND);
+		sound.setVolume(40);
+		sound.playSample(file);
 
-		for(int i = FREQ1; i <= FREQ2; i += variation) {
-			sound.playTone(i, 500, 100);
-		}
-		
-		sound.playTone(300, 500);
+		sound.setVolume(60);
+		sound.playSample(file);
+
+		sound.setVolume(80);
+		sound.playSample(file);
+
+		sound.setVolume(100);
+		sound.playSample(file);
+
+		sound.beep();
 	}
 
 }

@@ -30,6 +30,8 @@ public class Sound extends EV3DevDevice {
     private final static String VOLUME_PATH = SOUND_PATH + VOLUME;
     private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
 
+    private int volume = 0;
+
     private static Sound instance;
 
     /**
@@ -110,7 +112,7 @@ public class Sound extends EV3DevDevice {
      */
     public void playSample(final File file, final int volume) {
         this.setVolume(volume);
-    	Shell.execute(CMD_APLAY + " " + file.toString());
+        Shell.execute(CMD_APLAY + " " + file.toString());
     }
 
 
@@ -127,8 +129,9 @@ public class Sound extends EV3DevDevice {
      * @param volume 0-100
      */
     public void setVolume(final int volume) {
-        //TODO Review to move to this.setIntegerAttribute();
-        Sysfs.writeString(VOLUME_PATH,"" + volume);
+        this.volume = volume;
+        final String cmdVolume = "amixer set PCM,0 " + volume + "%";
+        Shell.execute(cmdVolume);
     }
 
     /**
@@ -136,8 +139,7 @@ public class Sound extends EV3DevDevice {
      * @return the current master volume 0-100
      */
     public int getVolume() {
-        //TODO Review to move to this.getIntegerAttribute()
-        return Sysfs.readInteger(VOLUME_PATH);
+        return this.volume;
     }
 
 }
