@@ -21,7 +21,7 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
         //TODO Duplicated code
         final String BATTERY =  "/power_supply";
         final String BATTERY_PATH = ROOT_PATH + BATTERY;
-        final String BATTERY_EV3 =  "legoev3-battery";
+        final String BATTERY_EV3 =  "lego-ev3-battery";
         final String BATTERY_PISTORMS =  "pistorms-battery";
         final String BATTERY_BRICKPI =  "brickpi-battery";
         final String BATTERY_BRICKPI3 =  "brickpi3-battery";

@@ -20,7 +20,7 @@ public class Battery extends EV3DevDevice implements Power {
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Battery.class);
 
     public static final String BATTERY =  "power_supply";
-    public static final String BATTERY_EV3 =  "legoev3-battery";
+    public static final String BATTERY_EV3 =  "lego-ev3-battery";
     public static final String BATTERY_PISTORMS =  "pistorms-battery";
     public static final String BATTERY_BRICKPI =  "brickpi-battery";
     public static final String BATTERY_BRICKPI3 =  "brickpi3-battery";
