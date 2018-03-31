@@ -43,41 +43,41 @@ public class EV3Led extends EV3DevDevice implements LED {
 	 * @param pattern
 	 */
 	@Override
-	public void setPattern(int pattern) {
+	public void setPattern(final int pattern) {
 		//Off
-		if(pattern == 0) {
-			if(direction == LEFT){
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 0);
-			}else{
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 0);
-			}
-		}else if(pattern == 1) {
-			if(direction == LEFT){
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 0);
-			}else{
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 0);
-			}
-		}else if(pattern == 2) {
-			if(direction == LEFT){
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 255);
-			}else{
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 255);
-			}
-		}else if(pattern == 3) {
-			if (direction == LEFT) {
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 255);
+		if (pattern == 0) {
+			if (direction == LEFT){
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 0);
 			} else {
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 0);
 			}
-		}else if(pattern > 3) {
+		} else if (pattern == 1) {
+			if (direction == LEFT) {
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255);
+			} else {
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 255);
+			}
+		} else if (pattern == 2) {
+			if (direction == LEFT){
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 0);
+			} else {
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 0);
+			}
+		} else if (pattern == 3) {
+			if (direction == LEFT) {
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255);
+			} else {
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 255);
+			}
+		} else if (pattern > 3) {
 			log.debug("This feature is not implemented");
 		}
 	}
