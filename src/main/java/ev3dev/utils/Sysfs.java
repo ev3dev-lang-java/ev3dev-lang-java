@@ -72,9 +72,10 @@ public class Sysfs {
 				return result;
 			}
 			throw new IOException("Problem reading path: " + filePath);
-		} catch (IOException ex) {
-			log.error(ex.getLocalizedMessage());
-			throw new RuntimeException(ex);
+		} catch (IOException e) {
+			log.error(e.getLocalizedMessage());
+
+			throw new RuntimeException("Problem reading path: " + filePath, e);
 		}
 	}
 	
@@ -96,9 +97,7 @@ public class Sysfs {
 	 * @param filePath path
 	 * @return an List with options from a path
 	 */
-	public static List<File> getElements(final String filePath){
-		if(log.isTraceEnabled())
-			log.trace("ls " + filePath);
+	public static List<File> getElements(final String filePath) {
 		final File f = new File(filePath);
 		if(existPath(filePath) && (f.listFiles().length > 0)) {
             return new ArrayList<>(Arrays.asList(f.listFiles()));

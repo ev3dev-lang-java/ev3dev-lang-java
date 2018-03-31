@@ -58,19 +58,7 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 0.2
-            }
-        }
-
-        rule {
-            enabled = false
-            element = 'CLASS'
-            includes = ['org.gradle.*']
-
-            limit {
-                counter = 'LINE'
-                value = 'TOTALCOUNT'
-                maximum = 0.3
+                minimum = 0.4
             }
         }
     }
@@ -83,6 +71,9 @@ test {
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
     }
 }
+
+test.finalizedBy jacocoTestReport
+test.finalizedBy jacocoTestCoverageVerification
 
 //Jar
 jar {
