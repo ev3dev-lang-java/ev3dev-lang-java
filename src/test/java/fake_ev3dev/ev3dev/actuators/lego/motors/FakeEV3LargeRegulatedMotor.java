@@ -1,15 +1,10 @@
 package fake_ev3dev.ev3dev.actuators.lego.motors;
 
 import ev3dev.hardware.EV3DevPlatform;
-import fake_ev3dev.ev3dev.actuators.FakeLegoActuator;
-import fake_ev3dev.ev3dev.sensors.FakeLegoSensor;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-public class FakeEV3LargeRegulatedMotor extends FakeLegoActuator {
+public class FakeEV3LargeRegulatedMotor extends FakeLegoRegulatedMotor {
 
     public FakeEV3LargeRegulatedMotor(EV3DevPlatform ev3DevPlatform) throws IOException {
         super(ev3DevPlatform);
