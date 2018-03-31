@@ -2,5 +2,5 @@ Manifest-Version: 1.0
 Implementation-Title: EV3Dev-lang-java
 Implementation-Version: 0.8.0-SNAPSHOT
 Implementation-Vendor: Juan Antonio Breña Moral
-Main-Class: examples.USSensorDemo2
+Main-Class: examples.IRSensorDemo3
 
