@@ -37,7 +37,7 @@ public class EV3IRSensor extends BaseSensor {
     private static final String LEGO_EV3_IR = "lego-ev3-ir";
 
     public static float MIN_RANGE = 5f;//cm
-    public static float MAX_RANGE = 55f;//cm
+    public static float MAX_RANGE = 100f;//cm
 
 	public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
@@ -76,9 +76,8 @@ public class EV3IRSensor extends BaseSensor {
     private class DistanceMode extends EV3DevSensorMode {
 
         private static final String MODE = "IR-PROX";
-        private static final float toSI = 1f;
 
-    	private File pathDevice = null;
+    	final private File pathDevice;
     	
         public DistanceMode(File pathDevice) {
         	this.pathDevice = pathDevice;
@@ -99,7 +98,7 @@ public class EV3IRSensor extends BaseSensor {
             } else if (rawValue > MAX_RANGE) {
                 sample[offset] = Float.POSITIVE_INFINITY;
             } else {
-                sample[offset] = rawValue * toSI;
+                sample[offset] = rawValue;
             }
         }
 
@@ -139,9 +138,7 @@ public class EV3IRSensor extends BaseSensor {
 
         private static final String MODE = "IR-SEEK";
 
-        private static final float toSI = 1f;
-
-        private File pathDevice = null;
+        final private File pathDevice;
 
         public SeekMode(File pathDevice) {
             this.pathDevice = pathDevice;
@@ -180,9 +177,7 @@ public class EV3IRSensor extends BaseSensor {
 
         private static final String MODE = "IR-REMOTE";
 
-        private static final float toSI = 1f;
-
-        private File pathDevice = null;
+        final private File pathDevice;
 
         public RemoteMode(File pathDevice) {
             this.pathDevice = pathDevice;
