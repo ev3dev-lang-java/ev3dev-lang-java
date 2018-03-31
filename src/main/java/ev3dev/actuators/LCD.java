@@ -16,7 +16,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(LCD.class);
 
-    public static final String EV3DEV_EV3_DEVICES_PATH = "dev";
+    public static final String EV3DEV_EV3_DEVICES_PATH = "/dev";
     public static final String EV3DEV_EV3_LCD_NAME = "fb0";
     public static final String EV3DEV_EV3_LCD_PATH = EV3DEV_EV3_DEVICES_PATH + "/" + EV3DEV_EV3_LCD_NAME;
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
