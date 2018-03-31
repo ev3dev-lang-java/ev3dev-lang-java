@@ -27,7 +27,7 @@ public class ShellTest {
         FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         final String result = Shell.execute("ls " + FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/" + Battery.BATTERY);
-        assertThat(result, is("legoev3-battery\n"));
+        assertThat(result, is("lego-ev3-battery\n"));
     }
 
     @Test

@@ -120,13 +120,13 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
         if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
             if(port.equals(SensorPort.S1)){
-                return "in1";
+                return "ev3-ports:in1";
             }else if(port.equals(SensorPort.S2)){
-                return "in2";
+                return "ev3-ports:in2";
             }else if(port.equals(SensorPort.S3)){
-                return "in3";
+                return "ev3-ports:in3";
             }else if(port.equals(SensorPort.S4)){
-                return "in4";
+                return "ev3-ports:in4";
             }
 
         } else if(this.getPlatform().equals(EV3DevPlatform.BRICKPI)) {

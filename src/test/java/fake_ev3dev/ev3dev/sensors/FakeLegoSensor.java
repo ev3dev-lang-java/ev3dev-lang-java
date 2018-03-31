@@ -38,7 +38,7 @@ public class FakeLegoSensor extends BaseElement {
             Files.createFile(addressPath);
 
             //Review real content to simulate better
-            Files.write(addressPath, "in1".getBytes());
+            Files.write(addressPath, "ev3-ports:in1".getBytes());
         }
     }
 
