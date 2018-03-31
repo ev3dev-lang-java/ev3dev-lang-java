@@ -70,18 +70,25 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     public BaseRegulatedMotor(final Port motorPort, float moveP, float moveI, float moveD,
                               float holdP, float holdI, float holdD, int offset, int maxSpeed) {
 
+        if(log.isInfoEnabled())
+            log.info("Configuring motor connected on Port: {}", motorPort.getName());
+
         MAX_SPEED_AT_9V = maxSpeed;
         final String port = this.getMotorPort(motorPort);
 
-        log.debug("Detecting motor on port: {}", port);
+        if(log.isDebugEnabled())
+            log.debug("Detecting motor on port: {}", port);
         this.detect(LEGO_PORT, port);
-        log.debug("Setting port in mode: {}", TACHO_MOTOR);
+        if(log.isDebugEnabled())
+            log.debug("Setting port in mode: {}", TACHO_MOTOR);
         this.setStringAttribute(MODE, TACHO_MOTOR);
         Delay.msDelay(500);
         this.detect(TACHO_MOTOR, port);
         Delay.msDelay(500);
         this.setStringAttribute(COMMAND, RESET);
-	}
+        if(log.isDebugEnabled())
+            log.debug("Motor ready to use on Port: {}",motorPort.getName());
+    }
     
     /**
      * Removes this motors from the motors regulation system. After this call

@@ -97,9 +97,7 @@ public class Sysfs {
 	 * @param filePath path
 	 * @return an List with options from a path
 	 */
-	public static List<File> getElements(final String filePath){
-		if(log.isTraceEnabled())
-			log.trace("ls " + filePath);
+	public static List<File> getElements(final String filePath) {
 		final File f = new File(filePath);
 		if(existPath(filePath) && (f.listFiles().length > 0)) {
             return new ArrayList<>(Arrays.asList(f.listFiles()));
