@@ -42,7 +42,7 @@ public class FakeLegoActuator extends BaseElement {
             Files.createFile(addressPath);
 
             //Review real content to simulate better
-            Files.write(addressPath, "outA".getBytes());
+            Files.write(addressPath, "ev3-ports:outA".getBytes());
 
             Path modePath = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
@@ -76,7 +76,7 @@ public class FakeLegoActuator extends BaseElement {
             Files.createFile(motorAddress1Path);
 
             //Review real content to simulate better
-            Files.write(motorAddress1Path, "outA".getBytes());
+            Files.write(motorAddress1Path, "ev3-ports:outA".getBytes());
 
             Path motor1CommandPath = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
