@@ -20,10 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @Slf4j
 public class BatteryTest {
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
+    
     @Before
     public void resetTest() throws IOException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 

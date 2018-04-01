@@ -47,35 +47,35 @@ public class EV3Led extends EV3DevDevice implements LED {
 		//Off
 		if(pattern == 0) {
 			if(direction == LEFT){
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 0);
 			}else{
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 0);
 			}
 		}else if(pattern == 1) {
 			if(direction == LEFT){
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 0);
 			}else{
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 0);
 			}
 		}else if(pattern == 2) {
 			if(direction == LEFT){
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 255);
 			}else{
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 0);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 0);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 255);
 			}
 		}else if(pattern == 3) {
 			if (direction == LEFT) {
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:left:red:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 255);
 			} else {
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger("/sys/class/leds/ev3:right:red:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 255);
+				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 255);
 			}
 		}else if(pattern > 3) {
 			log.debug("This feature is not implemented");
