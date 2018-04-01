@@ -31,7 +31,6 @@ public class EV3DevSensorDeviceTest {
         }
     }
 
-    //@Ignore
     @Test
     public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
 
@@ -43,5 +42,17 @@ public class EV3DevSensorDeviceTest {
         assertThat(device.getSensorPort(SensorPort.S1), is("in1"));
         assertThat(device.getStringAttribute("address"), is("in1"));
         device.setStringAttribute("address", "in1");
+    }
+
+    @Test
+    public void testEV3DevPlatformOnBrickPi3Test() throws IOException {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI3);
+        final FakeLegoSensor legoSensor = new FakeLegoSensor(EV3DevPlatform.BRICKPI3);
+
+        EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
+        assertThat(device.getPlatform(), is(EV3DevPlatform.BRICKPI3));
+        assertThat(device.getSensorPort(SensorPort.S1), is("spi0.1:S1"));
+        assertThat(device.getStringAttribute("address"), is("spi0.1:S1"));
     }
 }
