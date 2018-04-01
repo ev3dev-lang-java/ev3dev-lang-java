@@ -36,7 +36,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     private BufferedImage image;
     private Graphics2D g2d;
 
-    private static GraphicsLCD Instance;
+    private static GraphicsLCD instance;
 
     /**
      * Return a Instance of Sound.
@@ -44,10 +44,10 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
      * @return A Sound instance
      */
     public static GraphicsLCD getInstance() {
-        if (Instance == null) {
-            Instance = new LCD();
+        if (instance == null) {
+            instance = new LCD();
         }
-        return Instance;
+        return instance;
     }
 
     // Prevent duplicate objects
