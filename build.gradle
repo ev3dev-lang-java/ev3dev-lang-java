@@ -23,6 +23,8 @@ dependencies {
 
     compile("ch.qos.logback:logback-classic:1.2.3")
 
+    compile group: 'javazoom', name: 'jlayer', version: '1.0.1'
+
     testCompile("commons-io:commons-io:2.5")
     
     testCompile("junit:junit:4.12")
