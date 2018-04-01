@@ -59,8 +59,6 @@ public class Battery extends EV3DevDevice implements Power {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI;
         } else if(platform.equals(EV3DevPlatform.BRICKPI3)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI3;
-        } else if(platform.equals(EV3DevPlatform.UNKNOWN)) {
-            throw new RuntimeException("Platform Unknown");
         }
     }
 
