@@ -164,8 +164,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public void flt() {
-        log.debug("Not implemented");
-        throw new RuntimeException("Not implemented");
+        this.setStringAttribute(STOP_COMMAND, COAST);
     }
 
     @Override
