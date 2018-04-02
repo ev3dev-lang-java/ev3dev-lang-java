@@ -89,6 +89,37 @@ public class FakeLegoUnregulatedMotor extends BaseElement {
                         "motor1" + "/" +
                         "command");
         Files.createFile(motor1CommandPath);
+
+        Path polarity = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_TACHO_PATH + "/" +
+                        "motor1" + "/" +
+                        "polarity");
+        if(!Files.exists(polarity)) {
+            Files.createFile(polarity);
+        }
+
+        Path duty_cycle_sp = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_TACHO_PATH + "/" +
+                        "motor1" + "/" +
+                        "duty_cycle_sp");
+        if(!Files.exists(duty_cycle_sp)) {
+            Files.createFile(duty_cycle_sp);
+        }
+
+        Path state = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_TACHO_PATH + "/" +
+                        "motor1" + "/" +
+                        "state");
+        if(!Files.exists(state)) {
+            Files.createFile(state);
+        }
+
+        //Review real content to simulate better
+        Files.write(state, "running".getBytes());
+
     }
 
 }

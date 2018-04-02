@@ -24,12 +24,48 @@ public class UnregulatedMotorTest {
     }
 
     @Test
-    public void configureMotorTest() throws Exception {
+    public void constructorTest() throws Exception {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
 
         UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+    }
+
+    @Test
+    public void forwardTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
+
+        UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+        motor.forward();
+        motor.stop();
+    }
+
+    @Test
+    public void backwardTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
+
+        UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+        motor.backward();
+        motor.stop();
+    }
+
+    @Test
+    public void setPowerTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
+
+        UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+        motor.setPower(100);
+        motor.getPower();
+        motor.forward();
+        motor.isMoving();
+        motor.stop();
     }
 
 }
