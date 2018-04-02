@@ -120,7 +120,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * @return the current position calculated by the regulator.
      */
     public float getPosition() {
-        return 0.0f; //reg.getPosition();
+        return this.getTachoCount();
     }
 
     @Override
