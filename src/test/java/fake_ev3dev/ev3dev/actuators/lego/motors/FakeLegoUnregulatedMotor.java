@@ -120,6 +120,15 @@ public class FakeLegoUnregulatedMotor extends BaseElement {
         //Review real content to simulate better
         Files.write(state, "running".getBytes());
 
+        Path stop_action = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_TACHO_PATH + "/" +
+                        "motor1" + "/" +
+                        "stop_action");
+        if(!Files.exists(stop_action)) {
+            Files.createFile(stop_action);
+        }
+
     }
 
 }

@@ -44,21 +44,13 @@ public class EV3LargeRegulatedMotorTest {
         final FakeEV3LargeRegulatedMotor fakeMotor = new FakeEV3LargeRegulatedMotor(EV3DevPlatform.EV3BRICK);
 
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
+
+        motor.flt();
+
+        //EV3Dev stop available modes
         motor.coast();
         motor.brake();
         motor.hold();
-    }
-
-    @Test
-    public void motorFltTest() throws Exception {
-
-        thrown.expect(RuntimeException.class);
-
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-        final FakeEV3LargeRegulatedMotor fakeMotor = new FakeEV3LargeRegulatedMotor(EV3DevPlatform.EV3BRICK);
-
-        EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
-        motor.flt();
     }
 
     @Test
