@@ -20,10 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @Slf4j
 public class BatteryTest {
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
+    
     @Before
     public void resetTest() throws IOException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 
@@ -93,15 +90,16 @@ public class BatteryTest {
     }
 
     @Test
-    public void getUnknownPlatformBatteryVoltageTest() throws Exception {
-
-        thrown.expect(RuntimeException.class);
+    public void getEV3BatteryVoltageMilliVoltTest() throws Exception {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.UNKNOWN);
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         Battery battery = Battery.getInstance();
+
+        assertThat(battery.getVoltageMilliVolt(),
+                is((Integer.parseInt(FakeBattery.BATTERY_FIELD_VOLTAGE_VALUE)/1000)));
     }
 
 }

@@ -62,7 +62,7 @@ public class Shell {
 			}
 			reader.close();
 		} catch (Exception e) {
-            log.error(e.getMessage());
+            log.error(e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 

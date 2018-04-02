@@ -44,8 +44,8 @@ public class Sysfs {
 				log.error("File: '{}' without write permissions.", filePath);
 				return false;
 			}
-		} catch (IOException ex) {
-            log.error(ex.getLocalizedMessage());
+		} catch (IOException e) {
+            log.error(e.getLocalizedMessage(), e);
 			return false;
 		}
 		return true;
@@ -73,8 +73,7 @@ public class Sysfs {
 			}
 			throw new IOException("Problem reading path: " + filePath);
 		} catch (IOException e) {
-			log.error(e.getLocalizedMessage());
-
+			log.error(e.getLocalizedMessage(), e);
 			throw new RuntimeException("Problem reading path: " + filePath, e);
 		}
 	}

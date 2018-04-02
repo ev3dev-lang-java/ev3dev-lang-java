@@ -7,11 +7,16 @@ import fake_ev3dev.ev3dev.actuators.lego.motors.FakeLegoUnregulatedMotor;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lejos.hardware.port.MotorPort;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 
 public class UnregulatedMotorTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void resetTest() throws IOException, NoSuchFieldException, IllegalAccessException {
@@ -24,12 +29,60 @@ public class UnregulatedMotorTest {
     }
 
     @Test
-    public void configureMotorTest() throws Exception {
+    public void constructorTest() throws Exception {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
 
         UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+    }
+
+    @Test
+    public void constructorNotEV3BrickTest() throws Exception {
+
+        thrown.expect(RuntimeException.class);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI);
+        final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
+
+        UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+    }
+
+    @Test
+    public void forwardTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
+
+        UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+        motor.forward();
+        motor.stop();
+    }
+
+    @Test
+    public void backwardTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
+
+        UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+        motor.backward();
+        motor.stop();
+    }
+
+    @Test
+    public void setPowerTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoUnregulatedMotor fakeMotor = new FakeLegoUnregulatedMotor(EV3DevPlatform.EV3BRICK);
+
+        UnregulatedMotor motor = new UnregulatedMotor(MotorPort.A);
+        motor.setPower(100);
+        motor.getPower();
+        motor.forward();
+        motor.isMoving();
+        motor.flt();
+        motor.stop();
     }
 
 }
