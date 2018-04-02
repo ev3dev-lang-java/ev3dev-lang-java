@@ -75,6 +75,15 @@ public class FakeEV3LargeRegulatedMotor extends FakeLegoRegulatedMotor {
         //Review real content to simulate better
         Files.write(position_sp, "90".getBytes());
 
+        Path duty_cycle_sp = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        "tacho-motor" + "/" +
+                        "motor1" + "/" +
+                        "duty_cycle_sp");
+        if(!Files.exists(duty_cycle_sp)) {
+            Files.createFile(duty_cycle_sp);
+        }
+
     }
 
     public static void updateState(String newState) throws IOException {
