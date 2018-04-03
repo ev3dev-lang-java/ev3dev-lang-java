@@ -6,6 +6,7 @@ import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Objects;
@@ -22,7 +23,7 @@ import java.util.Objects;
  */
 public class Sound extends EV3DevDevice {
 
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Sound.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Sound.class);
 
     private static final String EV3_PHYSICAL_SOUND_PATH = "/sys/devices/platform/snd-legoev3";
     public  static final String EV3DEV_SOUND_KEY = "EV3DEV_SOUND_KEY";

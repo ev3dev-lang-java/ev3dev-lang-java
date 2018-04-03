@@ -3,6 +3,7 @@ package ev3dev.hardware;
 import lejos.hardware.port.Port;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class to interact with EV3Dev Sensors
@@ -12,7 +13,7 @@ import org.slf4j.Logger;
  */
 public abstract class EV3DevSensorDevice extends EV3DevDevice {
 
-	private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevSensorDevice.class);
+	private static final Logger log = LoggerFactory.getLogger(EV3DevSensorDevice.class);
 
 	protected static final String LEGO_UART_SENSOR = "ev3-uart";
 	protected static final String LEGO_ANALOG_SENSOR = "ev3-analog";

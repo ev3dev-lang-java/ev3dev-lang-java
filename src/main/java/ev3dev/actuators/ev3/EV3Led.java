@@ -6,10 +6,11 @@ import ev3dev.utils.Sysfs;
 import lejos.hardware.LED;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EV3Led extends EV3DevDevice implements LED {
 
-	private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3Led.class);
+	private static final Logger log = LoggerFactory.getLogger(EV3Led.class);
 
 	public static final int LEFT = 0;
     public static final int RIGHT = 1;
