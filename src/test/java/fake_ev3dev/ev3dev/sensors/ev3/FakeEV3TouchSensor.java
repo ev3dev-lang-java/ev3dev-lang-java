@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class FakeEV3TouchSensor extends FakeLegoSensor {
 
@@ -15,31 +16,10 @@ public class FakeEV3TouchSensor extends FakeLegoSensor {
     }
 
     public void pressed() throws IOException {
-        Path addressPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_SENSOR_PATH + "/" +
-                        "sensor1" + "/" +
-                        "value0");
-
-        if(!Files.exists(addressPath)) {
-            Files.createFile(addressPath);
-        }
-
-        //Review real content to simulate better
-        Files.write(addressPath, "1".getBytes());
+        populateValues(Arrays.asList(1));
     }
 
     public void unpressed() throws IOException {
-        Path addressPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_SENSOR_PATH + "/" +
-                        "sensor1" + "/" +
-                        "value0");
-        if(!Files.exists(addressPath)) {
-            Files.createFile(addressPath);
-        }
-
-        //Review real content to simulate better
-        Files.write(addressPath, "0".getBytes());
+        populateValues(Arrays.asList(0));
     }
 }

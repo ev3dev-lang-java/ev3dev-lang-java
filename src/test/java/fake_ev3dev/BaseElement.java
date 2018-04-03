@@ -74,11 +74,13 @@ public abstract class BaseElement {
     }
 
     protected void createFile(final Path path) throws IOException {
-        Files.createFile(path);
+        if(!Files.exists(path)) {
+            Files.createFile(path);
+        }
     }
 
     protected void createFile(final Path path, final String value) throws IOException {
-        Files.createFile(path);
+        this.createFile(path);
         Files.write(path, value.getBytes());
     }
 
