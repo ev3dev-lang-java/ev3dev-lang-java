@@ -22,14 +22,14 @@ public class EV3DevPlatformsTest {
 
     @Before
     public void resetTest() throws IOException {
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+
+        FakeBattery.resetEV3DevInfrastructure();
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
     @Test
     public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
@@ -41,8 +41,6 @@ public class EV3DevPlatformsTest {
     @Test
     public void testEV3DevPlatformOnPiStormsTest() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.PISTORMS);
 
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
@@ -52,8 +50,6 @@ public class EV3DevPlatformsTest {
 
     @Test
     public void testEV3DevPlatformOnBrickPiTest() throws IOException {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI);
 
@@ -65,8 +61,6 @@ public class EV3DevPlatformsTest {
     @Test
     public void testEV3DevPlatformOnBrickPi3Test() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI3);
 
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
@@ -76,8 +70,6 @@ public class EV3DevPlatformsTest {
 
     @Test
     public void testEV3BrickSensorPortsTest() throws IOException {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
@@ -93,8 +85,6 @@ public class EV3DevPlatformsTest {
     @Test
     public void testBrickPiSensorPortsTest() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI);
 
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
@@ -108,8 +98,6 @@ public class EV3DevPlatformsTest {
     @Test
     public void testBrickPi3SensorPortsTest() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI3);
 
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
@@ -122,8 +110,6 @@ public class EV3DevPlatformsTest {
 
     @Test
     public void testPiStormsSensorPortsTest() throws IOException {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.PISTORMS);
 
@@ -140,8 +126,6 @@ public class EV3DevPlatformsTest {
     @Test
     public void testEV3BrickMotorPortsTest() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
@@ -156,8 +140,6 @@ public class EV3DevPlatformsTest {
     @Test
     public void testBrickPiMotorPortsTest() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI);
 
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
@@ -171,8 +153,6 @@ public class EV3DevPlatformsTest {
     @Test
     public void testBrickPi3MotorPortsTest() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI3);
 
         EV3DevPlatformChild epc = new EV3DevPlatformChild();
@@ -185,8 +165,6 @@ public class EV3DevPlatformsTest {
 
     @Test
     public void testPiStormsMotorPortsTest() throws IOException {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.PISTORMS);
 
