@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Slf4j
 public abstract class BaseElement {
@@ -79,6 +80,37 @@ public abstract class BaseElement {
     protected void createFile(final Path path, final String value) throws IOException {
         Files.createFile(path);
         Files.write(path, value.getBytes());
+    }
+
+    protected void populateValues(final List<Integer> values) throws IOException {
+
+        if(values.size() >= 1) {
+            Path value0 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE0);
+            createFile(value0, String.valueOf(values.get(0)));
+        }
+
+        if(values.size() >= 2) {
+            Path value1 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE1);
+            createFile(value1, String.valueOf(values.get(1)));
+        }
+
+        if(values.size() >= 2) {
+            Path value2 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE2);
+            createFile(value2, String.valueOf(values.get(2)));
+        }
+
     }
 
 }

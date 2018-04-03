@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
 public class FakeAbsolutIMUSensor extends FakeLegoSensor {
 
@@ -14,27 +16,7 @@ public class FakeAbsolutIMUSensor extends FakeLegoSensor {
 
         super(ev3DevPlatform);
 
-        //TODO Think in some Fake method to populate values on Sensors
-        Path value0 = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_SENSOR_PATH + "/" +
-                        SENSOR1 + "/" +
-                        VALUE0);
-        createFile(value0, "2");
-
-        Path value1 = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_SENSOR_PATH + "/" +
-                        SENSOR1 + "/" +
-                        VALUE1);
-        createFile(value1, "100");
-
-        Path value2 = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_SENSOR_PATH + "/" +
-                        SENSOR1 + "/" +
-                        VALUE2);
-        createFile(value2, "200");
+        populateValues(Arrays.asList(2, 100, 200));
 
         //TODO It is possible to generalize a bit more
         Path mode = Paths.get(
@@ -52,4 +34,5 @@ public class FakeAbsolutIMUSensor extends FakeLegoSensor {
         createFile(command);
 
     }
+
 }
