@@ -15,6 +15,23 @@ public abstract class BaseElement {
     private static final String JAVA_IO_TEMPDIR = System.getProperty("java.io.tmpdir");
     public static final String EV3DEV_FAKE_SYSTEM_PATH = JAVA_IO_TEMPDIR + "ev3dev_fake_system";
 
+    /**
+     *
+     * @throws IOException
+     */
+    public static  void resetEV3DevInfrastructure() throws IOException {
+
+        LOGGER.info("Reset EV3Dev testing infrastructure");
+
+        //Delete
+        FileUtils.deleteDirectory(new File(EV3DEV_FAKE_SYSTEM_PATH));
+
+        //Create
+        final Path ev3devFakeSystemPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
+        Files.createDirectories(ev3devFakeSystemPath);
+        LOGGER.debug("Path created: {}", ev3devFakeSystemPath);
+    }
+
     public static  void createEV3DevFakeSystemPath() throws IOException {
 
         final Path ev3devFakeSystemPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
