@@ -17,8 +17,7 @@ public class ShellTest {
 
     @Before
     public void resetTest() throws IOException {
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+        FakeBattery.resetEV3DevInfrastructure();
     }
 
     @Test
@@ -27,12 +26,14 @@ public class ShellTest {
         FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         final String result = Shell.execute("ls " + FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/" + Battery.BATTERY);
+
         assertThat(result, is("lego-ev3-battery\n"));
     }
 
     @Test
     public void executeSimpleCommandKOTest() throws Exception {
         final String result = Shell.execute("lsrare ");
+
         assertThat(result, is(Shell.COMMAND_ERROR_MESSAGE));
     }
 

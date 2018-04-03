@@ -59,7 +59,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
     @Override
     public int getPower() {
-    	return this.getIntegerAttribute(POWER);
+    	return this.getIntegerAttribute(DUTY_CYCLE);
     }
 
 	/**
@@ -106,14 +106,6 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 	 * method if you don't want your robot to trip in
 	 * abrupt turns.
 	 */   
-	public void brake() {
-		this.setStringAttribute(STOP_COMMAND, BRAKE);
-	}
-
-	/**
-	 * Removes power from the motor.
-	 * The motor will freely coast to a stop.
-	 */
     @Override
 	public void flt() {
 		this.setStringAttribute(STOP_COMMAND, COAST);

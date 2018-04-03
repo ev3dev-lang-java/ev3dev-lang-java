@@ -2,6 +2,7 @@ package ev3dev.hardware;
 
 import ev3dev.utils.Sysfs;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public abstract class EV3DevDevice extends EV3DevPlatforms {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevDevice.class);
+    private static final Logger log = LoggerFactory.getLogger(EV3DevDevice.class);
 
     protected static final String LEGO_PORT = "lego-port";
     protected static final String ADDRESS = "address";

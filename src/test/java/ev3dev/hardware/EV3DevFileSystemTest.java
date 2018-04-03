@@ -18,12 +18,8 @@ public class EV3DevFileSystemTest {
     @Before
     public void resetTest() throws IOException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+        FakeBattery.resetEV3DevInfrastructure();
     }
-
-    //OK
-    //KO
 
     @Test
     public void getNormalRootPathTest() throws IOException {

@@ -15,15 +15,6 @@ import static org.hamcrest.Matchers.is;
 @Slf4j
 public class EV3DevSensorDeviceTest {
 
-    @Before
-    public void resetTest() throws IOException {
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
-    }
-
     public class EV3DevSensorDeviceChild extends EV3DevSensorDevice {
 
         public EV3DevSensorDeviceChild(){
@@ -31,7 +22,14 @@ public class EV3DevSensorDeviceTest {
         }
     }
 
-    //@Ignore
+    @Before
+    public void resetTest() throws IOException {
+        FakeBattery.resetEV3DevInfrastructure();
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+
+    }
+
     @Test
     public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
 
@@ -43,5 +41,17 @@ public class EV3DevSensorDeviceTest {
         assertThat(device.getSensorPort(SensorPort.S1), is("ev3-ports:in1"));
         assertThat(device.getStringAttribute("address"), is("ev3-ports:in1"));
         device.setStringAttribute("address", "ev3-ports:in1");
+    }
+
+    @Test
+    public void testEV3DevPlatformOnBrickPi3Test() throws IOException {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI3);
+        final FakeLegoSensor legoSensor = new FakeLegoSensor(EV3DevPlatform.BRICKPI3);
+
+        EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
+        assertThat(device.getPlatform(), is(EV3DevPlatform.BRICKPI3));
+        assertThat(device.getSensorPort(SensorPort.S1), is("spi0.1:S1"));
+        assertThat(device.getStringAttribute("address"), is("spi0.1:S1"));
     }
 }

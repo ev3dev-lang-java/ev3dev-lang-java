@@ -9,9 +9,6 @@ import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
 @Slf4j
 public class EV3DevDeviceTest {
 
@@ -22,6 +19,8 @@ public class EV3DevDeviceTest {
     public void resetTest() throws IOException {
         FakeBattery.deleteEV3DevFakeSystemPath();
         FakeBattery.createEV3DevFakeSystemPath();
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
     public static class EV3DevDeviceChild extends EV3DevDevice {
@@ -29,26 +28,27 @@ public class EV3DevDeviceTest {
     }
 
     @Test
-    public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
+    public void badIntegerAttributeTest() throws IOException {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        thrown.expect(RuntimeException.class);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         EV3DevDeviceChild device = new EV3DevDeviceChild();
 
-        /*
-        LOGGER.debug(device.getSensorPort("asdf"));
-        device.detect("demo","ui");
-        device.getIntegerAttribute("demo");
-        device.getPlatform();
-        device.getStringAttribute("demo");
-        device.setIntegerAttribute("", 0);
-        device.setStringAttribute("","");
-        */
+        device.setIntegerAttribute("BAD_ATTRIBUTE", 10);
+    }
 
+    @Test
+    public void badStringAttributeTest() throws IOException {
 
-        assertThat(device.getPlatform(), is(EV3DevPlatform.EV3BRICK));
+        thrown.expect(RuntimeException.class);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        EV3DevDeviceChild device = new EV3DevDeviceChild();
+
+        device.setStringAttribute("BAD_ATTRIBUTE", "value");
     }
 
 }

@@ -5,7 +5,6 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.BaseElement;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -17,16 +16,16 @@ public class FakeLCD extends BaseElement{
             Path devicesPath = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
                             LCD.EV3DEV_EV3_DEVICES_PATH);
-            Files.createDirectories(devicesPath);
+            createDirectories(devicesPath);
 
 
             Path lcdPath = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
                             LCD.EV3DEV_EV3_DEVICES_PATH + "/" +
                             LCD.EV3DEV_EV3_LCD_NAME);
-            Files.createFile(lcdPath);
+            createFile(lcdPath);
         }else {
-            createEV3DevFakeSystemPath();
+            resetEV3DevInfrastructure();
         }
     }
 

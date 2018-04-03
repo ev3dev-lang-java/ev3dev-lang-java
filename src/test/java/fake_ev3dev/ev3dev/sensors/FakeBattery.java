@@ -2,12 +2,13 @@ package fake_ev3dev.ev3dev.sensors;
 
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.BaseElement;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@Slf4j
 public class FakeBattery extends BaseElement {
 
     private static final String BATTERY_PATH = "power_supply";
@@ -22,6 +23,8 @@ public class FakeBattery extends BaseElement {
     public static final String BATTERY_FIELD_VOLTAGE_VALUE = "8042133";
 
     public FakeBattery(final EV3DevPlatform ev3DevPlatform) throws IOException {
+
+        LOGGER.info("Adding a Battery device in the FileSystem for: {}", ev3DevPlatform);
 
         if(ev3DevPlatform.equals(EV3DevPlatform.EV3BRICK)) {
             batterySubpath = BATTERY_EV3_SUBPATH;
@@ -38,17 +41,17 @@ public class FakeBattery extends BaseElement {
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
                             BATTERY_PATH + "/" +
                             batterySubpath);
-            Files.createDirectories(batteryPath);
+            this.createDirectories(batteryPath);
 
             Path batteryVoltagePath = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
                             BATTERY_PATH + "/" +
                             batterySubpath + "/" +
                             BATTERY_FIELD_VOLTAGE);
-            Files.createFile(batteryVoltagePath);
-            Files.write(batteryVoltagePath, BATTERY_FIELD_VOLTAGE_VALUE.getBytes());
+            this.createFile(batteryVoltagePath, BATTERY_FIELD_VOLTAGE_VALUE);
+
         } else {
-            createEV3DevFakeSystemPath();
+            resetEV3DevInfrastructure();
         }
     }
 }

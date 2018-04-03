@@ -155,6 +155,7 @@ public class FakeLegoRegulatedMotor extends BaseElement {
         //Review real content to simulate better
         Files.write(motorAddress1Path, "ev3-ports:outB".getBytes());
 
+
         Path motor1CommandPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +

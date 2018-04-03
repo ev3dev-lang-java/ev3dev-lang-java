@@ -5,6 +5,7 @@ import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.image.*;
@@ -14,7 +15,7 @@ import java.util.Objects;
 
 public class LCD extends EV3DevDevice implements GraphicsLCD {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(LCD.class);
+    private static final Logger log = LoggerFactory.getLogger(LCD.class);
 
     public static final String EV3DEV_EV3_DEVICES_PATH = "/dev";
     public static final String EV3DEV_EV3_LCD_NAME = "fb0";
@@ -36,7 +37,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     private BufferedImage image;
     private Graphics2D g2d;
 
-    private static GraphicsLCD Instance;
+    private static GraphicsLCD instance;
 
     /**
      * Return a Instance of Sound.
@@ -44,10 +45,10 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
      * @return A Sound instance
      */
     public static GraphicsLCD getInstance() {
-        if (Instance == null) {
-            Instance = new LCD();
+        if (instance == null) {
+            instance = new LCD();
         }
-        return Instance;
+        return instance;
     }
 
     // Prevent duplicate objects
