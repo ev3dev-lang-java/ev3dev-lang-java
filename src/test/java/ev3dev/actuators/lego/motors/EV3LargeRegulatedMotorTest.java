@@ -1,6 +1,5 @@
 package ev3dev.actuators.lego.motors;
 
-import ev3dev.actuators.Sound;
 import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.actuators.lego.motors.FakeEV3LargeRegulatedMotor;

@@ -5,15 +5,22 @@ import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.LED;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EV3Led extends EV3DevDevice implements LED {
 
-	private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3Led.class);
+	private static final Logger log = LoggerFactory.getLogger(EV3Led.class);
 
 	public static final int LEFT = 0;
     public static final int RIGHT = 1;
 
     final private int direction;
+
+    public static final String LEFT_LED = "leds/ev3:left";
+    public static final String RIGHT_LED = "leds/ev3:right";
+    public static final String RED_LED = ":red:ev3dev";
+    public static final String GREEN_LED = ":green:ev3dev";
+    public static final String BRIGHTNESS = "brightness";
 
 	public EV3Led(final int button) {
 
@@ -31,7 +38,7 @@ public class EV3Led extends EV3DevDevice implements LED {
 		direction = button == 0 ? LEFT : RIGHT;
 	}
 
-	//TODO Refactor paths
+	//TODO Add Enums for patterns
 	/**
 	 *
 	 * 0: turn off button lights
@@ -47,39 +54,43 @@ public class EV3Led extends EV3DevDevice implements LED {
 		//Off
 		if(pattern == 0) {
 			if(direction == LEFT){
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 0);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 0);
+				setBrighness(LEFT_LED, RED_LED, 0);
+				setBrighness(LEFT_LED, GREEN_LED, 0);
 			}else{
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 0);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 0);
+				setBrighness(RIGHT_LED, RED_LED, 0);
+				setBrighness(RIGHT_LED, GREEN_LED, 0);
 			}
 		}else if(pattern == 1) {
 			if(direction == LEFT){
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 0);
+				setBrighness(LEFT_LED, RED_LED, 0);
+				setBrighness(LEFT_LED, GREEN_LED, 255);
 			}else{
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 0);
+				setBrighness(RIGHT_LED, RED_LED, 0);
+				setBrighness(RIGHT_LED, GREEN_LED, 255);
 			}
 		}else if(pattern == 2) {
 			if(direction == LEFT){
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 0);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 255);
-			}else{
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 0);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 255);
+				setBrighness(LEFT_LED, RED_LED, 255);
+				setBrighness(LEFT_LED, GREEN_LED, 0);
+			}else {
+				setBrighness(RIGHT_LED, RED_LED, 255);
+				setBrighness(RIGHT_LED, GREEN_LED, 0);
 			}
 		}else if(pattern == 3) {
 			if (direction == LEFT) {
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:left:red:ev3dev/brightness", 255);
+				setBrighness(LEFT_LED, RED_LED, 255);
+				setBrighness(LEFT_LED, GREEN_LED, 255);
 			} else {
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:green:ev3dev/brightness", 255);
-				Sysfs.writeInteger(ROOT_PATH + "/leds/ev3:right:red:ev3dev/brightness", 255);
+				setBrighness(RIGHT_LED, RED_LED, 255);
+				setBrighness(RIGHT_LED, GREEN_LED, 255);
 			}
 		}else if(pattern > 3) {
-			log.debug("This feature is not implemented");
+			log.warn("This feature is not implemented");
 		}
+	}
+
+	private void setBrighness(final String LED, final String color, final int brighnessLevel) {
+		Sysfs.writeInteger(ROOT_PATH + "/" + LED + color + "/" + BRIGHTNESS, brighnessLevel);
 	}
 
 }

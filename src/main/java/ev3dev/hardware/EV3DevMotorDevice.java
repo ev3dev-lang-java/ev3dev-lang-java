@@ -1,7 +1,5 @@
 package ev3dev.hardware;
 
-import org.slf4j.Logger;
-
 /**
  * Base class to interact with EV3Dev sysfs
  * 

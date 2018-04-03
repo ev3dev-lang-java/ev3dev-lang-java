@@ -22,30 +22,36 @@ public class EV3LedTest {
     @Before
     public void resetTest() throws IOException, NoSuchFieldException, IllegalAccessException {
 
+        //Reset the singleton
         //https://stackoverflow.com/questions/8256989/singleton-and-unit-testing
         Field instance = Sound.class.getDeclaredField("instance");
         instance.setAccessible(true);
         instance.set(null, null);
 
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+        FakeBattery.resetEV3DevInfrastructure();
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
     }
 
     @Test
-    public void ledTest() throws Exception {
+    public void constructorLeftTest() throws Exception {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         LED led = new EV3Led(EV3Led.LEFT);
-        led.setPattern(0);
-
     }
 
     @Test
-    public void tryLedObjectOnBrickPiTest() throws Exception {
+    public void constructorRightTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        LED led = new EV3Led(EV3Led.RIGHT);
+    }
+
+    @Test
+    public void usingLedOnEV3BrickPlatformTest() throws Exception {
 
         thrown.expect(RuntimeException.class);
 

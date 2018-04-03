@@ -5,9 +5,7 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -29,14 +27,13 @@ public class BatteryTest {
         instance.setAccessible(true);
         instance.set(null, null);
 
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+        FakeBattery.resetEV3DevInfrastructure();
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
     @Test
     public void getEV3BatteryVoltageTest() throws Exception {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
@@ -50,8 +47,6 @@ public class BatteryTest {
     @Test
     public void getBrickPiBatteryVoltageTest() throws Exception {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI);
 
         Battery battery = Battery.getInstance();
@@ -63,8 +58,6 @@ public class BatteryTest {
 
     @Test
     public void getBrickPi3BatteryVoltageTest() throws Exception {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI3);
 
@@ -78,8 +71,6 @@ public class BatteryTest {
     @Test
     public void getPiStormsBatteryVoltageTest() throws Exception {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.PISTORMS);
 
         Battery battery = Battery.getInstance();
@@ -91,8 +82,6 @@ public class BatteryTest {
 
     @Test
     public void getEV3BatteryVoltageMilliVoltTest() throws Exception {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
