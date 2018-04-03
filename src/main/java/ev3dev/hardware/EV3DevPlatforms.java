@@ -5,10 +5,11 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class EV3DevPlatforms extends EV3DevFileSystem {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevPlatforms.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevPlatforms.class);
 
     /**
      * This method returns the platform
@@ -31,30 +32,30 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
         final String BRICKPI3_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI3;
 
         if(Sysfs.existPath(EV3BRICK_DISCOVERY_PATTERN_PATH)){
-            if(log.isTraceEnabled())
-                log.trace(EV3BRICK_DISCOVERY_PATTERN_PATH);
-                log.trace("Detected platform: " + EV3DevPlatform.EV3BRICK);
+            if(LOGGER.isTraceEnabled())
+                LOGGER.trace(EV3BRICK_DISCOVERY_PATTERN_PATH);
+                LOGGER.trace("Detected platform: " + EV3DevPlatform.EV3BRICK);
             return EV3DevPlatform.EV3BRICK;
         } else if(Sysfs.existPath(PISTORMS_DISCOVERY_PATTERN_PATH)){
-            if(log.isTraceEnabled())
-                log.trace(PISTORMS_DISCOVERY_PATTERN_PATH);
-                log.trace("Detected platform: " + EV3DevPlatform.PISTORMS);
+            if(LOGGER.isTraceEnabled())
+                LOGGER.trace(PISTORMS_DISCOVERY_PATTERN_PATH);
+                LOGGER.trace("Detected platform: " + EV3DevPlatform.PISTORMS);
             return EV3DevPlatform.PISTORMS;
         } else if(Sysfs.existPath(BRICKPI_DISCOVERY_PATTERN_PATH)){
-            if(log.isTraceEnabled())
-                log.trace(BRICKPI_DISCOVERY_PATTERN_PATH);
-                log.trace("Detected platform: " + EV3DevPlatform.BRICKPI);
+            if(LOGGER.isTraceEnabled())
+                LOGGER.trace(BRICKPI_DISCOVERY_PATTERN_PATH);
+                LOGGER.trace("Detected platform: " + EV3DevPlatform.BRICKPI);
             return EV3DevPlatform.BRICKPI;
         } else if(Sysfs.existPath(BRICKPI3_DISCOVERY_PATTERN_PATH)){
-            if(log.isTraceEnabled())
-                log.trace(BRICKPI3_DISCOVERY_PATTERN_PATH);
-                log.trace("Detected platform: " + EV3DevPlatform.BRICKPI3);
+            if(LOGGER.isTraceEnabled())
+                LOGGER.trace(BRICKPI3_DISCOVERY_PATTERN_PATH);
+                LOGGER.trace("Detected platform: " + EV3DevPlatform.BRICKPI3);
             return EV3DevPlatform.BRICKPI3;
         } else {
             final String OS_NAME = System.getProperty("os.name");
             final String OS_VERSION = System.getProperty("os.version");
             final String message = "Platform not supported: " + OS_NAME + " " + OS_VERSION;
-            log.error(message);
+            LOGGER.error(message);
             throw new RuntimeException(message);
         }
     }
@@ -111,8 +112,7 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
 
         }
 
-        //TODO Improve
-        return null;
+        throw new RuntimeException("Bad port used");
     }
 
     protected String getSensorPort(final Port port) {
@@ -167,8 +167,7 @@ public abstract class EV3DevPlatforms extends EV3DevFileSystem {
 
         }
 
-        //TODO Improve
-        return null;
+        throw new RuntimeException("Bad port used");
     }
 
 }
