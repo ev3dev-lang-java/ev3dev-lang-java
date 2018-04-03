@@ -8,6 +8,7 @@ import lejos.utility.Delay;
 import org.slf4j.Logger;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * Class that provides access methods for the local audio device
@@ -21,14 +22,18 @@ import java.io.File;
  */
 public class Sound extends EV3DevDevice {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sound.class);
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Sound.class);
 
-    private final static String SOUND_PATH = "/sys/devices/platform/snd-legoev3/";
+    private static final String EV3_PHYSICAL_SOUND_PATH = "/sys/devices/platform/snd-legoev3";
+    public  static final String EV3DEV_SOUND_KEY = "EV3DEV_SOUND_KEY";
+    private static String EV3_SOUND_PATH;
+
     private final static String CMD_BEEP = "beep";
     private final static String CMD_APLAY ="aplay";
     private final static String VOLUME = "volume";
-    private final static String VOLUME_PATH = SOUND_PATH + VOLUME;
-    private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabpled for this platform.";
+
+    private static String VOLUME_PATH;
+    private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabled for this platform.";
 
     private static Sound instance;
 
@@ -38,7 +43,10 @@ public class Sound extends EV3DevDevice {
      * @return A Sound instance
      */
     public static Sound getInstance() {
-        if (instance == null) {
+
+        LOGGER.info("Providing a Sound instance");
+
+        if (Objects.isNull(instance)) {
             instance = new Sound();
         }
         return instance;
@@ -47,6 +55,10 @@ public class Sound extends EV3DevDevice {
     // Prevent duplicate objects
     private Sound() {
 
+        LOGGER.info("Creating a instance of Sound");
+
+        EV3_SOUND_PATH  = Objects.nonNull(System.getProperty(EV3DEV_SOUND_KEY)) ? System.getProperty(EV3DEV_SOUND_KEY) : EV3_PHYSICAL_SOUND_PATH;
+        VOLUME_PATH = EV3_SOUND_PATH + "/" + VOLUME;
     }
     
     /**
@@ -54,11 +66,11 @@ public class Sound extends EV3DevDevice {
      */
     public void beep() {
         if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
-            log.debug(CMD_BEEP);
+            LOGGER.debug(CMD_BEEP);
             Shell.execute(CMD_BEEP);
             Delay.msDelay(100);
         } else {
-            log.debug(DISABLED_FEATURE_MESSAGE);
+            LOGGER.warn(DISABLED_FEATURE_MESSAGE);
         }
     }
 
@@ -70,7 +82,7 @@ public class Sound extends EV3DevDevice {
             beep();
             beep();
         } else {
-            log.debug(DISABLED_FEATURE_MESSAGE);
+            LOGGER.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 
@@ -85,7 +97,7 @@ public class Sound extends EV3DevDevice {
             this.setVolume(volume);
     	    this.playTone(frequency, duration);
         } else {
-            log.debug(DISABLED_FEATURE_MESSAGE);
+            LOGGER.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
     
@@ -99,7 +111,7 @@ public class Sound extends EV3DevDevice {
             final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
             Shell.execute(cmdTone);
         } else {
-            log.debug(DISABLED_FEATURE_MESSAGE);
+            LOGGER.debug(DISABLED_FEATURE_MESSAGE);
         }
     }
 
