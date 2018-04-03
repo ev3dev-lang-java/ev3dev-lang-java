@@ -10,15 +10,19 @@ public class PilotProsTest {
 
     @Test
     public void existKeyTest() throws Exception {
+
         PilotProps pilotProps = new PilotProps();
         pilotProps.loadPersistentValues();
+
         assertThat(pilotProps.getProperty("wheelDiameter"), is("8.2"));
     }
 
     @Test
     public void notExistKeyTest() throws Exception {
+
         PilotProps pilotProps = new PilotProps();
         pilotProps.loadPersistentValues();
+
         assertThat(pilotProps.getProperty("wheelDiameter2"), is(nullValue()));
     }
 

@@ -21,7 +21,7 @@ public class BrickmanTest {
 
     @Before
     public void resetTest() throws IOException {
-        FakeLCD.deleteEV3DevFakeSystemPath();
+        FakeLCD.resetEV3DevInfrastructure();
     }
 
     //OK EV3Brick

@@ -28,7 +28,6 @@ public class SoundTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
         System.setProperty(Sound.EV3DEV_SOUND_KEY, FakeSound.EV3DEV_FAKE_SYSTEM_PATH);
-
     }
 
     @Test

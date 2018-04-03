@@ -23,8 +23,7 @@ public class SysfsTest {
 
     @Before
     public void resetTest() throws IOException {
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+        FakeBattery.resetEV3DevInfrastructure();
     }
 
     //OK
@@ -91,7 +90,6 @@ public class SysfsTest {
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
         final Path path = Paths.get(pathToAssert);
-
         boolean result = Sysfs.existFile(path);
 
         assertThat(result, is(true));
@@ -115,8 +113,8 @@ public class SysfsTest {
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
         final Path path = Paths.get(pathToAssert);
-
         Sysfs.writeString(pathToAssert, "10");
+
         assertThat(Sysfs.readString(pathToAssert), is("10"));
     }
 
@@ -127,8 +125,8 @@ public class SysfsTest {
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE;
         final Path path = Paths.get(pathToAssert);
-
         Sysfs.writeInteger(pathToAssert, 10);
+
         assertThat(Sysfs.readInteger(pathToAssert), is(10));
     }
 
