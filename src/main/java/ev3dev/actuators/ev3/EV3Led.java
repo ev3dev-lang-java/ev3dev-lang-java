@@ -16,11 +16,11 @@ public class EV3Led extends EV3DevDevice implements LED {
 
     final private int direction;
 
-    private final String LEFT_LED = "/leds/ev3:left";
-    private final String RIGHT_LED = "/leds/ev3:right";
-    private final String RED_LED = ":red";
-    private final String GREEN_LED = ":green";
-    private final String BRIGHTNESS = ":ev3dev/brightness";
+    public static final String LEFT_LED = "leds/ev3:left";
+    public static final String RIGHT_LED = "leds/ev3:right";
+    public static final String RED_LED = ":red:ev3dev";
+    public static final String GREEN_LED = ":green:ev3dev";
+    public static final String BRIGHTNESS = "brightness";
 
 	public EV3Led(final int button) {
 
@@ -90,7 +90,7 @@ public class EV3Led extends EV3DevDevice implements LED {
 	}
 
 	private void setBrighness(final String LED, final String color, final int brighnessLevel) {
-		Sysfs.writeInteger(ROOT_PATH + LED + color + BRIGHTNESS, brighnessLevel);
+		Sysfs.writeInteger(ROOT_PATH + "/" + LED + color + "/" + BRIGHTNESS, brighnessLevel);
 	}
 
 }
