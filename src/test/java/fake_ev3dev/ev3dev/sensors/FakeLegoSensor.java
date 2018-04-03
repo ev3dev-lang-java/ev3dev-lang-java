@@ -28,7 +28,6 @@ public class FakeLegoSensor extends BaseElement {
             createStructurePort1("spi0.1:S1");
 
             createStructureSensor1("spi0.1:S1");
-
         }
     }
 
@@ -76,6 +75,20 @@ public class FakeLegoSensor extends BaseElement {
                         PORT1 + "/" +
                         PORT1_MODE);
         this.createFile(modePath);
+
+        Path mode = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_SENSOR_PATH + "/" +
+                        SENSOR1 + "/" +
+                        SENSOR_MODE);
+        createDirectories(mode);
+
+        Path command = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_SENSOR_PATH + "/" +
+                        SENSOR1 + "/" +
+                        SENSOR_COMMAND);
+        createFile(command);
     }
 
 }

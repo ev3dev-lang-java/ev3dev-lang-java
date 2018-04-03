@@ -14,63 +14,42 @@ public class FakeNXTCamV5Sensor extends FakeLegoSensor {
     public FakeNXTCamV5Sensor(EV3DevPlatform ev3DevPlatform) throws IOException {
         super(ev3DevPlatform);
 
-        Path addressPath1 = Paths.get(
+        //TODO Think in some Fake method to populate values on Sensors
+        Path value0 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_SENSOR_PATH + "/" +
-                        "sensor1" + "/" +
-                        "value0");
-        if(!Files.exists(addressPath1)) {
-            Files.createFile(addressPath1);
-        }
+                        SENSOR1 + "/" +
+                        VALUE0);
+        createFile(value0, "2");
 
-        //Review real content to simulate better
-        Files.write(addressPath1, "2".getBytes());
-
-        Path addressPath2 = Paths.get(
+        Path value1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_SENSOR_PATH + "/" +
-                        "sensor1" + "/" +
-                        "value1");
-        if(!Files.exists(addressPath2)) {
-            Files.createFile(addressPath2);
-        }
+                        SENSOR1 + "/" +
+                        VALUE1);
+        createFile(value1, "100");
 
-        //Review real content to simulate better
-        Files.write(addressPath2, "100".getBytes());
-
-        Path addressPath3 = Paths.get(
+        Path value2 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_SENSOR_PATH + "/" +
-                        "sensor1" + "/" +
-                        "value2");
-        if(!Files.exists(addressPath3)) {
-            Files.createFile(addressPath3);
-        }
+                        SENSOR1 + "/" +
+                        VALUE2);
+        createFile(value2, "200");
 
-        //Review real content to simulate better
-        Files.write(addressPath3, "200".getBytes());
-
-        Path addressPathMode = Paths.get(
+        //TODO It is possible to generalize a bit more
+        Path mode = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_SENSOR_PATH + "/" +
-                        "sensor1" + "/" +
-                        "mode");
+                        SENSOR1 + "/" +
+                        SENSOR_MODE);
+        createFile(mode);
 
-        if(!Files.exists(addressPathMode)) {
-            Files.createFile(addressPathMode);
-        }
-
-        Files.write(addressPathMode, "TRACK".getBytes());
-
-        Path addressPathCommand = Paths.get(
+        Path command = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_SENSOR_PATH + "/" +
-                        "sensor1" + "/" +
-                        "command");
-
-        if(!Files.exists(addressPathCommand)) {
-            Files.createFile(addressPathCommand);
-        }
+                        SENSOR1 + "/" +
+                        SENSOR_COMMAND);
+        createFile(command);
 
     }
 
@@ -78,7 +57,7 @@ public class FakeNXTCamV5Sensor extends FakeLegoSensor {
     public String getCurrentCommand() {
         return Sysfs.readString(EV3DEV_FAKE_SYSTEM_PATH + "/" +
                 LEGO_SENSOR_PATH + "/" +
-                "sensor1" + "/" +
-                "command");
+                SENSOR1 + "/" +
+                SENSOR_COMMAND);
     }
 }

@@ -20,11 +20,10 @@ public class NXTCamV5Test {
 
     @Before
     public void resetTest() throws IOException {
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+
+        FakeBattery.resetEV3DevInfrastructure();
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
     }
 
     @Test
@@ -48,7 +47,6 @@ public class NXTCamV5Test {
         final FakeNXTCamV5Sensor fakeNXTCamV5Sensor = new FakeNXTCamV5Sensor(EV3DevPlatform.EV3BRICK);
 
         NXTCamV5 nxtCamV5 = new NXTCamV5(SensorPort.S1);
-
         final int trackedObject = nxtCamV5.getNumberOfObjects();
 
         assertThat(trackedObject, is(2));
@@ -61,7 +59,6 @@ public class NXTCamV5Test {
         final FakeNXTCamV5Sensor fakeNXTCamV5Sensor = new FakeNXTCamV5Sensor(EV3DevPlatform.EV3BRICK);
 
         NXTCamV5 nxtCamV5 = new NXTCamV5(SensorPort.S1);
-
         nxtCamV5.createPhoto();
 
         assertThat(fakeNXTCamV5Sensor.getCurrentCommand(), is("PICTURE"));
@@ -74,7 +71,6 @@ public class NXTCamV5Test {
         final FakeNXTCamV5Sensor fakeNXTCamV5Sensor = new FakeNXTCamV5Sensor(EV3DevPlatform.EV3BRICK);
 
         NXTCamV5 nxtCamV5 = new NXTCamV5(SensorPort.S1);
-
         nxtCamV5.createVideo();
 
         assertThat(fakeNXTCamV5Sensor.getCurrentCommand(), is("MOVIE"));

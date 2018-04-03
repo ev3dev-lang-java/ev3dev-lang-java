@@ -15,14 +15,24 @@ public abstract class BaseElement {
     private static final String JAVA_IO_TEMPDIR = System.getProperty("java.io.tmpdir");
     public static final String EV3DEV_FAKE_SYSTEM_PATH = JAVA_IO_TEMPDIR + "ev3dev_fake_system";
 
-    protected static final String LEGO_SENSOR_PATH = "lego-sensor";
     protected static final String LEGO_PORT_PATH = "lego-port";
-    protected static final String SENSOR1 = "sensor1";
-    protected static final String SENSOR_ADDRESS = "address";
-
     protected static final String PORT1 = "port1";
     protected static final String PORT1_MODE = "mode";
     protected static final String PORT_ADDRESS = "address";
+
+    protected static final String LEGO_SENSOR_PATH = "lego-sensor";
+    protected static final String SENSOR1 = "sensor1";
+    protected static final String SENSOR_ADDRESS = "address";
+    protected static final String SENSOR_MODE = "mode";
+    protected static final String SENSOR_COMMAND = "command";
+    protected static final String VALUE0 = "value0";
+    protected static final String VALUE1 = "value1";
+    protected static final String VALUE2 = "value2";
+    protected static final String VALUE3 = "value3";
+    protected static final String VALUE4 = "value4";
+    protected static final String VALUE5 = "value5";
+    protected static final String VALUE6 = "value6";
+    protected static final String VALUE7 = "value7";
 
     /**
      *
