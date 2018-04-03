@@ -102,13 +102,58 @@ public abstract class BaseElement {
             createFile(value1, String.valueOf(values.get(1)));
         }
 
-        if(values.size() >= 2) {
+        if(values.size() >= 3) {
             Path value2 = Paths.get(
                     EV3DEV_FAKE_SYSTEM_PATH + "/" +
                             LEGO_SENSOR_PATH + "/" +
                             SENSOR1 + "/" +
                             VALUE2);
             createFile(value2, String.valueOf(values.get(2)));
+        }
+
+        if(values.size() >= 4) {
+            Path value3 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE3);
+            createFile(value3, String.valueOf(values.get(3)));
+        }
+
+        if(values.size() >= 5) {
+            Path value4 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE4);
+            createFile(value4, String.valueOf(values.get(4)));
+        }
+
+        if(values.size() >= 6) {
+            Path value5 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE5);
+            createFile(value5, String.valueOf(values.get(5)));
+        }
+
+        if(values.size() >= 7) {
+            Path value6 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE6);
+            createFile(value6, String.valueOf(values.get(6)));
+        }
+
+        if(values.size() >= 8) {
+            Path value7 = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            LEGO_SENSOR_PATH + "/" +
+                            SENSOR1 + "/" +
+                            VALUE7);
+            createFile(value7, String.valueOf(values.get(7)));
         }
 
     }
