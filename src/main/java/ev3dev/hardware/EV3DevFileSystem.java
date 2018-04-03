@@ -1,6 +1,7 @@
 package ev3dev.hardware;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
  */
 public abstract class EV3DevFileSystem {
 
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(EV3DevFileSystem.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevFileSystem.class);
 
     public static final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
     public static final String EV3DEV_ROOT_PATH = "/sys/class";
