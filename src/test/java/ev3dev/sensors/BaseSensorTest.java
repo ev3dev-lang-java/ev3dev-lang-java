@@ -24,14 +24,13 @@ public class BaseSensorTest {
     @Before
     public void resetTest() throws Exception {
 
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+        FakeBattery.resetEV3DevInfrastructure();
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
     @Test
     public void getModeOkWithStringTest() throws Exception {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
@@ -44,8 +43,6 @@ public class BaseSensorTest {
 
     @Test
     public void getModeOkWithIntegerTest() throws Exception {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
@@ -61,8 +58,6 @@ public class BaseSensorTest {
 
         thrown.expect(IllegalArgumentException.class);
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
 
@@ -77,8 +72,6 @@ public class BaseSensorTest {
 
         thrown.expect(IllegalArgumentException.class);
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
 
@@ -92,8 +85,6 @@ public class BaseSensorTest {
     public void getModeKoWithIntegerTest2() throws Exception {
 
         thrown.expect(IllegalArgumentException.class);
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
@@ -125,8 +116,6 @@ public class BaseSensorTest {
 
         thrown.expect(IllegalArgumentException.class);
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
 
@@ -138,8 +127,6 @@ public class BaseSensorTest {
 
     @Test
     public void setNameTest() throws Exception {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
@@ -155,8 +142,6 @@ public class BaseSensorTest {
     @Test
     public void getSampleSizeTest() throws Exception {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
 
@@ -170,8 +155,6 @@ public class BaseSensorTest {
 
     @Test
     public void geFetchSampleTest() throws Exception {
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
