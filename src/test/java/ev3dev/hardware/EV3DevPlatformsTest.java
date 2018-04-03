@@ -2,7 +2,6 @@ package ev3dev.hardware;
 
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lejos.hardware.port.MotorPort;
-import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;

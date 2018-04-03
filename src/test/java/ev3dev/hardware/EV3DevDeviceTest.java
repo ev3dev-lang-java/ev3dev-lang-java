@@ -9,9 +9,6 @@ import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
 @Slf4j
 public class EV3DevDeviceTest {
 

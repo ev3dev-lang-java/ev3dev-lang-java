@@ -4,7 +4,6 @@ import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.LED;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

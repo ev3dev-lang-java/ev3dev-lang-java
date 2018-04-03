@@ -4,7 +4,6 @@ import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.actuators.lego.motors.FakeEV3LargeRegulatedMotor;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
-import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
 import org.junit.Before;
 import org.junit.Test;
