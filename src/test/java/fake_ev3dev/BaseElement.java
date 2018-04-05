@@ -60,22 +60,6 @@ public abstract class BaseElement {
         LOGGER.debug("Path created: {}", ev3devFakeSystemPath);
     }
 
-    @Deprecated
-    public static  void createEV3DevFakeSystemPath() throws IOException {
-
-        final Path ev3devFakeSystemPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
-        if (!Files.exists(ev3devFakeSystemPath)) {
-            Files.createDirectories(ev3devFakeSystemPath);
-            LOGGER.trace("Path created: {}", ev3devFakeSystemPath);
-        }
-    }
-
-    @Deprecated
-    public static void deleteEV3DevFakeSystemPath() throws IOException{
-
-        FileUtils.deleteDirectory(new File(EV3DEV_FAKE_SYSTEM_PATH));
-    }
-
     protected void createDirectories(final Path path) throws IOException {
         Files.createDirectories(path);
         System.out.println(Files.exists(path));

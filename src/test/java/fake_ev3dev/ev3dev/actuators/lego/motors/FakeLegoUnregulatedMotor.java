@@ -17,7 +17,7 @@ public class FakeLegoUnregulatedMotor extends BaseElement {
     protected static final String MOTOR_STOP_ACTION ="stop_action";
     protected static final String MOTOR_STATE ="state";
     protected static final String MOTOR_DUTY_CYCLE_SP ="duty_cycle_sp";
-    
+
     public FakeLegoUnregulatedMotor(final EV3DevPlatform ev3DevPlatform) throws IOException {
 
 
