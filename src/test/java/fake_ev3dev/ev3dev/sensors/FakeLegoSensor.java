@@ -74,7 +74,7 @@ public class FakeLegoSensor extends BaseElement {
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
                         PORT1 + "/" +
-                        PORT1_MODE);
+                        PORT_MODE);
         this.createFile(modePath);
 
         Path mode = Paths.get(

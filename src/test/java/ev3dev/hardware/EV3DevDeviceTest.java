@@ -17,8 +17,8 @@ public class EV3DevDeviceTest {
 
     @Before
     public void resetTest() throws IOException {
-        FakeBattery.deleteEV3DevFakeSystemPath();
-        FakeBattery.createEV3DevFakeSystemPath();
+
+        FakeBattery.resetEV3DevInfrastructure();
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
