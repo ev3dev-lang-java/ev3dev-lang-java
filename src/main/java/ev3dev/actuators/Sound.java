@@ -29,9 +29,9 @@ public class Sound extends EV3DevDevice {
     public  static final String EV3DEV_SOUND_KEY = "EV3DEV_SOUND_KEY";
     private static String EV3_SOUND_PATH;
 
-    private final static String CMD_BEEP = "beep";
-    private final static String CMD_APLAY ="aplay";
-    private final static String VOLUME = "volume";
+    private static final String CMD_BEEP = "beep";
+    private static final String CMD_APLAY ="aplay";
+    public  static final String VOLUME = "volume";
 
     private static String VOLUME_PATH;
     private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabled for this platform.";

@@ -17,12 +17,20 @@ public abstract class BaseElement {
     public static final String EV3DEV_FAKE_SYSTEM_PATH = JAVA_IO_TEMPDIR + "ev3dev_fake_system";
 
     protected static final String LEGO_PORT_PATH = "lego-port";
+    protected static final String PORT = "port";
     protected static final String PORT1 = "port1";
-    protected static final String PORT1_MODE = "mode";
+    protected static final String PORT2 = "port2";
+    protected static final String PORT3 = "port3";
+    protected static final String PORT4 = "port4";
+
+    protected static final String PORT_MODE = "mode";
     protected static final String PORT_ADDRESS = "address";
 
     protected static final String LEGO_SENSOR_PATH = "lego-sensor";
     protected static final String SENSOR1 = "sensor1";
+    protected static final String SENSOR2 = "sensor2";
+    protected static final String SENSOR3 = "sensor3";
+    protected static final String SENSOR4 = "sensor4";
     protected static final String SENSOR_ADDRESS = "address";
     protected static final String SENSOR_MODE = "mode";
     protected static final String SENSOR_COMMAND = "command";
@@ -50,22 +58,6 @@ public abstract class BaseElement {
         final Path ev3devFakeSystemPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
         Files.createDirectories(ev3devFakeSystemPath);
         LOGGER.debug("Path created: {}", ev3devFakeSystemPath);
-    }
-
-    @Deprecated
-    public static  void createEV3DevFakeSystemPath() throws IOException {
-
-        final Path ev3devFakeSystemPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
-        if (!Files.exists(ev3devFakeSystemPath)) {
-            Files.createDirectories(ev3devFakeSystemPath);
-            LOGGER.trace("Path created: {}", ev3devFakeSystemPath);
-        }
-    }
-
-    @Deprecated
-    public static void deleteEV3DevFakeSystemPath() throws IOException{
-
-        FileUtils.deleteDirectory(new File(EV3DEV_FAKE_SYSTEM_PATH));
     }
 
     protected void createDirectories(final Path path) throws IOException {
