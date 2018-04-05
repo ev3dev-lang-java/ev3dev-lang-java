@@ -5,7 +5,6 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.BaseElement;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -17,27 +16,27 @@ public class FakeLed extends BaseElement{
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.RIGHT_LED +
                         EV3Led.GREEN_LED);
-        Files.createDirectories(ledRightGreen);
+        createDirectories(ledRightGreen);
 
         Path ledRightGreenBrightness = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.RIGHT_LED +
                         EV3Led.GREEN_LED + "/" +
                         EV3Led.BRIGHTNESS);
-        Files.createFile(ledRightGreenBrightness);
+        createFile(ledRightGreenBrightness);
 
         Path ledRightRed = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.RIGHT_LED +
                         EV3Led.RED_LED);
-        Files.createDirectories(ledRightRed);
+        createDirectories(ledRightRed);
 
         Path ledRightRedBrightness = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.RIGHT_LED +
                         EV3Led.RED_LED + "/" +
                         EV3Led.BRIGHTNESS);
-        Files.createFile(ledRightRedBrightness);
+        createFile(ledRightRedBrightness);
 
         //Left
 
@@ -45,27 +44,27 @@ public class FakeLed extends BaseElement{
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.LEFT_LED +
                         EV3Led.GREEN_LED);
-        Files.createDirectories(ledLeftGreen);
+        createDirectories(ledLeftGreen);
 
         Path ledLeftGreenBrightness = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.LEFT_LED +
                         EV3Led.GREEN_LED + "/" +
                         EV3Led.BRIGHTNESS);
-        Files.createFile(ledLeftGreenBrightness);
+        createFile(ledLeftGreenBrightness);
 
         Path ledLeftRed = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.LEFT_LED +
                         EV3Led.RED_LED);
-        Files.createDirectories(ledLeftRed);
+        createDirectories(ledLeftRed);
 
         Path ledLeftRedBrightness = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         EV3Led.LEFT_LED +
                         EV3Led.RED_LED + "/" +
                         EV3Led.BRIGHTNESS);
-        Files.createFile(ledLeftRedBrightness);
+        createFile(ledLeftRedBrightness);
 
     }
 

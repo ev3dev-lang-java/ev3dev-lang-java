@@ -1,11 +1,11 @@
 package fake_ev3dev.ev3dev.actuators;
 
+import ev3dev.actuators.Sound;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.BaseElement;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -18,10 +18,8 @@ public class FakeSound extends BaseElement{
 
         Path volumePath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "volume");
-        Files.createFile(volumePath);
-
-        Files.write(volumePath, "0".getBytes());
+                        Sound.VOLUME);
+        createFile(volumePath, "0");
     }
 
 }

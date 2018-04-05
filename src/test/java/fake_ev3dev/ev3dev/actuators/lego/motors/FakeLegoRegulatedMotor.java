@@ -12,6 +12,19 @@ public class FakeLegoRegulatedMotor extends BaseElement {
 
     protected static final String LEGO_PORT_PATH = "lego-port";
     protected static final String LEGO_TACHO_PATH = "tacho-motor";
+    protected static final String MOTOR = "motor";
+    protected static final String MOTOR1 = "motor1";
+    protected static final String MOTOR2 = "motor2";
+    protected static final String MOTOR3 = "motor3";
+    protected static final String MOTOR4 = "motor4";
+    protected static final String MOTOR_COMMAND = "command";
+    protected static final String MOTOR_STOP_ACTION ="stop_action";
+    protected static final String MOTOR_POLARITY ="polarity";
+    protected static final String MOTOR_SPEED_SP ="speed_sp";
+    protected static final String MOTOR_POSITION ="position";
+    protected static final String MOTOR_STATE ="state";
+    protected static final String MOTOR_POSITION_SP ="position_sp";
+    protected static final String MOTOR_DUTY_CYCLE_SP ="duty_cycle_sp";
 
     public FakeLegoRegulatedMotor(final EV3DevPlatform ev3DevPlatform) throws IOException {
 
@@ -26,51 +39,44 @@ public class FakeLegoRegulatedMotor extends BaseElement {
     }
 
     private void populatePortA() throws IOException {
+
         //Lego Port Steps
-        Path batteryPath = Paths.get(
+        Path port = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH);
-        Files.createDirectories(batteryPath);
-        System.out.println(Files.exists(batteryPath));
+        createDirectories(port);
 
         Path port1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port1"
+                        PORT1
         );
-
-        Files.createDirectories(port1);
-        System.out.println(Files.exists(batteryPath));
+        createDirectories(port1);
 
         Path addressPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port1" + "/" +
-                        "address");
-        Files.createFile(addressPath);
-
-        //Review real content to simulate better
-        Files.write(addressPath, "outA".getBytes());
+                        PORT1 + "/" +
+                        PORT_ADDRESS);
+        createFile(addressPath, "outA");
 
         Path modePath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port1" + "/" +
-                        "mode");
-        Files.createFile(modePath);
-
+                        PORT1 + "/" +
+                        PORT_MODE);
+        createFile(modePath);
 
         //Tacho Motor Steps
         Path tachoPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH);
-        Files.createDirectories(tachoPath);
-        System.out.println(Files.exists(tachoPath));
+        createDirectories(tachoPath);
 
         Path motor1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor1"
+                        MOTOR1
         );
 
         Files.createDirectories(motor1);
@@ -79,8 +85,8 @@ public class FakeLegoRegulatedMotor extends BaseElement {
         Path motorAddress1Path = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor1" + "/" +
-                        "address");
+                        MOTOR1 + "/" +
+                        PORT_ADDRESS);
         Files.createFile(motorAddress1Path);
 
         //Review real content to simulate better
@@ -89,216 +95,145 @@ public class FakeLegoRegulatedMotor extends BaseElement {
         Path motor1CommandPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor1" + "/" +
-                        "command");
+                        MOTOR1 + "/" +
+                        MOTOR_COMMAND);
         Files.createFile(motor1CommandPath);
     }
 
     private void populatePortB() throws IOException {
-        //Lego Port Steps
-        Path batteryPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_PORT_PATH);
-        Files.createDirectories(batteryPath);
-        System.out.println(Files.exists(batteryPath));
 
-        Path port1 = Paths.get(
+        //Lego Port Steps
+        Path port = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port2"
-        );
-
-        Files.createDirectories(port1);
-        System.out.println(Files.exists(batteryPath));
+                        PORT2);
+        createDirectories(port);
 
         Path addressPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port2" + "/" +
-                        "address");
-        Files.createFile(addressPath);
-
-        //Review real content to simulate better
-        Files.write(addressPath, "outB".getBytes());
+                        PORT2 + "/" +
+                        PORT_ADDRESS);
+        createFile(addressPath,"outB");
 
         Path modePath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port2" + "/" +
-                        "mode");
-        Files.createFile(modePath);
-
+                        PORT2 + "/" +
+                        PORT_MODE);
+        createFile(modePath);
 
         //Tacho Motor Steps
-        Path tachoPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_TACHO_PATH);
-        Files.createDirectories(tachoPath);
-        System.out.println(Files.exists(tachoPath));
-
-        Path motor1 = Paths.get(
+        Path motor2 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor2"
+                        MOTOR2
         );
-
-        Files.createDirectories(motor1);
-        System.out.println(Files.exists(motor1));
+        createDirectories(motor2);
 
         Path motorAddress1Path = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor2" + "/" +
-                        "address");
-        Files.createFile(motorAddress1Path);
-
-        //Review real content to simulate better
-        Files.write(motorAddress1Path, "outB".getBytes());
+                        MOTOR2 + "/" +
+                        PORT_ADDRESS);
+        createFile(motorAddress1Path, "outB");
 
         Path motor1CommandPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor2" + "/" +
-                        "command");
-        Files.createFile(motor1CommandPath);
+                        MOTOR2 + "/" +
+                        MOTOR_COMMAND);
+        createFile(motor1CommandPath);
     }
 
     private void populatePortC() throws IOException {
-        //Lego Port Steps
-        Path batteryPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_PORT_PATH);
-        Files.createDirectories(batteryPath);
-        System.out.println(Files.exists(batteryPath));
 
+        //Lego Port Steps
         Path port1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port3"
-        );
-
-        Files.createDirectories(port1);
-        System.out.println(Files.exists(batteryPath));
+                        PORT3);
+        createDirectories(port1);
 
         Path addressPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port3" + "/" +
-                        "address");
-        Files.createFile(addressPath);
-
-        //Review real content to simulate better
-        Files.write(addressPath, "outC".getBytes());
+                        PORT3 + "/" +
+                        PORT_ADDRESS);
+        createFile(addressPath, "outC");
 
         Path modePath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port3" + "/" +
-                        "mode");
-        Files.createFile(modePath);
-
+                        PORT3 + "/" +
+                        PORT_MODE);
+        createFile(modePath);
 
         //Tacho Motor Steps
-        Path tachoPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_TACHO_PATH);
-        Files.createDirectories(tachoPath);
-        System.out.println(Files.exists(tachoPath));
-
         Path motor1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor3"
-        );
-
-        Files.createDirectories(motor1);
-        System.out.println(Files.exists(motor1));
+                        MOTOR3);
+        createDirectories(motor1);
 
         Path motorAddress1Path = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor3" + "/" +
-                        "address");
-        Files.createFile(motorAddress1Path);
-
-        //Review real content to simulate better
-        Files.write(motorAddress1Path, "outC".getBytes());
+                        MOTOR3 + "/" +
+                        PORT_ADDRESS);
+        createFile(motorAddress1Path, "outC");
 
         Path motor1CommandPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor3" + "/" +
-                        "command");
-        Files.createFile(motor1CommandPath);
+                        MOTOR3 + "/" +
+                        MOTOR_COMMAND);
+        createFile(motor1CommandPath);
     }
 
     private void populatePortD() throws IOException {
-        //Lego Port Steps
-        Path batteryPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_PORT_PATH);
-        Files.createDirectories(batteryPath);
-        System.out.println(Files.exists(batteryPath));
 
+        //Lego Port Steps
         Path port1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port4"
-        );
-
-        Files.createDirectories(port1);
-        System.out.println(Files.exists(batteryPath));
+                        PORT4);
+        createDirectories(port1);
 
         Path addressPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port4" + "/" +
-                        "address");
-        Files.createFile(addressPath);
-
-        //Review real content to simulate better
-        Files.write(addressPath, "outD".getBytes());
+                        PORT4 + "/" +
+                        PORT_ADDRESS);
+        createFile(addressPath, "outD");
 
         Path modePath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_PORT_PATH + "/" +
-                        "port4" + "/" +
-                        "mode");
-        Files.createFile(modePath);
-
+                        PORT4 + "/" +
+                        PORT_MODE);
+        createFile(modePath);
 
         //Tacho Motor Steps
-        Path tachoPath = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_TACHO_PATH);
-        Files.createDirectories(tachoPath);
-        System.out.println(Files.exists(tachoPath));
-
         Path motor1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor4"
-        );
-
-        Files.createDirectories(motor1);
-        System.out.println(Files.exists(motor1));
+                        MOTOR4);
+        createDirectories(motor1);
 
         Path motorAddress1Path = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor4" + "/" +
-                        "address");
-        Files.createFile(motorAddress1Path);
-
-        //Review real content to simulate better
-        Files.write(motorAddress1Path, "outD".getBytes());
+                        MOTOR4 + "/" +
+                        PORT_ADDRESS);
+        createFile(motorAddress1Path, "outD");
 
         Path motor1CommandPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +
-                        "motor4" + "/" +
-                        "command");
-        Files.createFile(motor1CommandPath);
+                        MOTOR4 + "/" +
+                        MOTOR_COMMAND);
+        createFile(motor1CommandPath);
     }
 
 

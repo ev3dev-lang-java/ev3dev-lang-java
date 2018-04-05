@@ -14,91 +14,66 @@ public class FakeEV3LargeRegulatedMotor extends FakeLegoRegulatedMotor {
 
         Path addressPath1 = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "stop_action");
-        if(!Files.exists(addressPath1)) {
-            Files.createFile(addressPath1);
-        }
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_STOP_ACTION);
+        createFile(addressPath1);
 
         Path polarity = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "polarity");
-        if(!Files.exists(polarity)) {
-            Files.createFile(polarity);
-        }
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_POLARITY);
+        createFile(polarity);
 
         Path speed_sp = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "speed_sp");
-        if(!Files.exists(speed_sp)) {
-            Files.createFile(speed_sp);
-        }
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_SPEED_SP);
+        createFile(speed_sp);
 
         Path position = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "position");
-        if(!Files.exists(position)) {
-            Files.createFile(position);
-        }
-
-        //Review real content to simulate better
-        Files.write(position, "0".getBytes());
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_POSITION);
+        createFile(position, "0");
 
         Path state = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "state");
-        if(!Files.exists(state)) {
-            Files.createFile(state);
-        }
-
-        //Review real content to simulate better
-        Files.write(state, "running".getBytes());
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_STATE);
+        createFile(state, "running");
 
         Path position_sp = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "position_sp");
-        if(!Files.exists(position_sp)) {
-            Files.createFile(position_sp);
-        }
-
-        //Review real content to simulate better
-        Files.write(position_sp, "90".getBytes());
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_POSITION_SP);
+        createFile(position_sp, "90");
 
         Path duty_cycle_sp = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "duty_cycle_sp");
-        if(!Files.exists(duty_cycle_sp)) {
-            Files.createFile(duty_cycle_sp);
-        }
-
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_DUTY_CYCLE_SP);
+        createFile(duty_cycle_sp);
     }
 
     public static void updateState(String newState) throws IOException {
 
         Path state = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        "tacho-motor" + "/" +
-                        "motor1" + "/" +
-                        "state");
+                        LEGO_TACHO_PATH + "/" +
+                        MOTOR1 + "/" +
+                        MOTOR_STATE);
         if(!Files.exists(state)) {
             Files.createFile(state);
         }
 
         //Review real content to simulate better
         Files.write(state, newState.getBytes());
-
     }
 }
