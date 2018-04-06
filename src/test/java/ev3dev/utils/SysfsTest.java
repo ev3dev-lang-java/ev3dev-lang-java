@@ -6,7 +6,9 @@ import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +23,12 @@ import static org.junit.Assert.assertThat;
 @Slf4j
 public class SysfsTest {
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Before
     public void resetTest() throws IOException {
+
         FakeBattery.resetEV3DevInfrastructure();
     }
 
@@ -100,7 +106,7 @@ public class SysfsTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.CURRENT;
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.CURRENT + "-ERROR";
         final Path path = Paths.get(pathToAssert);
 
         assertThat(Sysfs.existFile(path), is(false));
@@ -116,6 +122,18 @@ public class SysfsTest {
         Sysfs.writeString(pathToAssert, "10");
 
         assertThat(Sysfs.readString(pathToAssert), is("10"));
+    }
+
+    @Test
+    public void readStringWithException() throws Exception {
+
+        thrown.expect(RuntimeException.class);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ Battery.BATTERY + "/"+ Battery.BATTERY_EV3 + "/" + Battery.VOLTAGE + "-ERROR";
+        final Path path = Paths.get(pathToAssert);
+        Sysfs.readString(pathToAssert);
     }
 
     @Test

@@ -26,32 +26,25 @@ public class PilotProps extends Properties {
 	public static final String KEY_REVERSE = "reverse";
 
 	public void loadPersistentValues() throws IOException {
+
 		final ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		try(InputStream resourceStream = loader.getResourceAsStream(PERSISTENT_FILENAME)) {
+		try (InputStream resourceStream = loader.getResourceAsStream(PERSISTENT_FILENAME)) {
 			this.load(resourceStream);
 		}
 	}
 
-	//TODO: Not tested
 	public void storePersistentValues() throws IOException {
 
-		File f = new File(PERSISTENT_FILENAME);
-		FileOutputStream fos = new FileOutputStream(f);
-		try
-		{
+		try (FileOutputStream fos = new FileOutputStream(new File(PERSISTENT_FILENAME))) {
 			this.store(fos, null);
-		}
-		finally
-		{
-			fos.close();
 		}
 	}
 
 	/**
 	 * Utility method to get Motor instance from string (A, B or C)
 	 */
-	public static RegulatedMotor getMotor(String motor)
-	{
+	public static RegulatedMotor getMotor(String motor) {
+
 		if (motor.equals("A"))
 			return Motor.A;
 		else if (motor.equals("B"))
