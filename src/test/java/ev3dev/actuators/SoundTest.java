@@ -72,8 +72,9 @@ public class SoundTest {
         final FakeSound fakeSound = new FakeSound(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
+        sound.setVolume(40);
 
-        assertThat(sound.getVolume(), is(0));
+        assertThat(sound.getVolume(), is(40));
     }
 
     @Test
@@ -98,6 +99,25 @@ public class SoundTest {
 
         Sound sound = Sound.getInstance();
         sound.playSample(new File(result));
+
+        JarResource.delete(result);
+    }
+
+    @Test
+    public void playMultipleSamples() throws Exception {
+
+        String filePath = "nod_low_power.wav";
+        String result = JarResource.export(filePath);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        Sound sound = Sound.getInstance();
+        sound.setVolume(100);
+        sound.playSample(new File(result));
+        sound.setVolume(50);
+        sound.playSample(new File(result));
+
+        assertThat(sound.getVolume(), is(50));
 
         JarResource.delete(result);
     }
