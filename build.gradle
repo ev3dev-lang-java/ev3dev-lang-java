@@ -118,5 +118,5 @@ buildscript {
 }
 apply plugin: 'org.hidetake.ssh'
 
-apply from: 'deploy.gradle'
-apply from: 'docker.gradle'
+apply from: './gradle/deploy.gradle'
+apply from: './gradle/docker.gradle'

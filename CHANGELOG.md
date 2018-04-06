@@ -3,6 +3,8 @@
 ## 0.8.0
 
 - Upgrade lejos-commons to 0.7.0
+- Adding Unit Testing with 85% Coverage
+- Move gradle files to gradle folder
 
 ## 0.7.0 2017-09-06
 
