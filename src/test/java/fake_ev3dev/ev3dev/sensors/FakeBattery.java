@@ -20,7 +20,9 @@ public class FakeBattery extends BaseElement {
     private String batterySubpath;
 
     private static final String BATTERY_FIELD_VOLTAGE = "voltage_now";
+    private static final String BATTERY_FIELD_CURRENT = "current_now";
     public static final String BATTERY_FIELD_VOLTAGE_VALUE = "8042133";
+    public static final String BATTERY_FIELD_CURRENT_VALUE = "162666";
 
     public FakeBattery(final EV3DevPlatform ev3DevPlatform) throws IOException {
 
@@ -49,6 +51,14 @@ public class FakeBattery extends BaseElement {
                             batterySubpath + "/" +
                             BATTERY_FIELD_VOLTAGE);
             this.createFile(batteryVoltagePath, BATTERY_FIELD_VOLTAGE_VALUE);
+
+            Path current = Paths.get(
+                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                            BATTERY_PATH + "/" +
+                            batterySubpath + "/" +
+                            BATTERY_FIELD_CURRENT);
+            this.createFile(current, BATTERY_FIELD_CURRENT_VALUE);
+
 
         } else {
             resetEV3DevInfrastructure();

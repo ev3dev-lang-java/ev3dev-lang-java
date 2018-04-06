@@ -1,7 +1,9 @@
 package ev3dev.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.nio.file.Paths;
 
@@ -10,6 +12,9 @@ import static org.hamcrest.Matchers.is;
 
 @Slf4j
 public class JarResourceTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     //OK
 
@@ -23,6 +28,14 @@ public class JarResourceTest {
 
         final boolean result = Sysfs.existFile(Paths.get(JAVA_LOGO_EXPORTED_PATH));
         assertThat(result, is(true));
+    }
+
+    @Test
+    public void exportKoTest() throws Exception {
+
+        thrown.expect(RuntimeException.class);
+
+        JarResource.export("BadPath.png");
     }
 
     @Test
@@ -40,6 +53,13 @@ public class JarResourceTest {
 
         final boolean result2 = Sysfs.existFile(Paths.get(JAVA_LOGO_EXPORTED_PATH));
         assertThat(result2, is(false));
+    }
+
+    //TODO Review this method
+    @Test
+    public void deleteSuccessTest2() throws Exception {
+
+        JarResource.delete("BadPath.png");
     }
 
 }
