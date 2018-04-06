@@ -37,8 +37,6 @@ public class Sound extends EV3DevDevice {
     private static String VOLUME_PATH;
     private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabled for this platform.";
 
-    private Clip clip;
-
     private static Sound instance;
 
     /**
@@ -63,13 +61,6 @@ public class Sound extends EV3DevDevice {
 
         EV3_SOUND_PATH  = Objects.nonNull(System.getProperty(EV3DEV_SOUND_KEY)) ? System.getProperty(EV3DEV_SOUND_KEY) : EV3_PHYSICAL_SOUND_PATH;
         VOLUME_PATH = EV3_SOUND_PATH + "/" + VOLUME;
-
-        try {
-            clip = AudioSystem.getClip();
-        } catch (LineUnavailableException e) {
-            LOGGER.error(e.getLocalizedMessage(), e);
-            throw new RuntimeException(e);
-        }
     }
     
     /**
@@ -144,6 +135,7 @@ public class Sound extends EV3DevDevice {
     public void playSample(final File file) {
         try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file.toURI().toURL())) {
 
+            Clip clip = AudioSystem.getClip();
             clip.open(audioIn);
             clip.start();
             Delay.usDelay(clip.getMicrosecondLength());
