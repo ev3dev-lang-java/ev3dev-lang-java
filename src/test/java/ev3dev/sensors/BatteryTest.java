@@ -5,7 +5,9 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -18,7 +20,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @Slf4j
 public class BatteryTest {
-    
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Before
     public void resetTest() throws IOException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 
@@ -89,6 +94,27 @@ public class BatteryTest {
 
         assertThat(battery.getVoltageMilliVolt(),
                 is((Integer.parseInt(FakeBattery.BATTERY_FIELD_VOLTAGE_VALUE)/1000)));
+    }
+
+    @Test
+    public void getEV3BatteryCurrentTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        Battery battery = Battery.getInstance();
+
+        assertThat(battery.getBatteryCurrent(),
+                is((Float.parseFloat(FakeBattery.BATTERY_FIELD_CURRENT_VALUE))));
+    }
+
+    @Test
+    public void getBrickPiBatteryCurrentTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI);
+
+        Battery battery = Battery.getInstance();
+
+        assertThat(battery.getBatteryCurrent(), is(-1f));
     }
 
 }

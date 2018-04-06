@@ -96,6 +96,38 @@ public class EV3ColorSensorTest {
     }
 
     @Test
+    public void getColorIDTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeEV3ColorSensor fakeEV3ColorSensor = new FakeEV3ColorSensor(EV3DevPlatform.EV3BRICK);
+
+        EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S1);
+
+        int result = colorSensor.getColorID();
+        assertThat(result, is(0));
+    }
+
+    @Test
+    public void setFloodlightTrueTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeEV3ColorSensor fakeEV3ColorSensor = new FakeEV3ColorSensor(EV3DevPlatform.EV3BRICK);
+
+        EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S1);
+        colorSensor.setFloodlight(true);
+    }
+
+    @Test
+    public void setFloodlightFalseTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeEV3ColorSensor fakeEV3ColorSensor = new FakeEV3ColorSensor(EV3DevPlatform.EV3BRICK);
+
+        EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S1);
+        colorSensor.setFloodlight(false);
+    }
+
+    @Test
     public void getRedModeTest() throws Exception {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);

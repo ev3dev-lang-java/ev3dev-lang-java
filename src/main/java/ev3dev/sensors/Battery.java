@@ -76,12 +76,13 @@ public class Battery extends EV3DevDevice implements Power {
 		return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000000;
 	}
 
+	//TODO Review output
+    //TODO Review units
 	/**
 	 * Returns the current of the battery in amps.
 	 * @return current
 	 */
 	public float getBatteryCurrent() {
-	    //TODO Review units
     	if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
     		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
     	}else {
@@ -90,6 +91,7 @@ public class Battery extends EV3DevDevice implements Power {
         }
 	}
 
+	//TODO Review this method in the future.
     @Override
     public float getMotorCurrent() {
         throw new UnsupportedOperationException("This feature is not implemented");
