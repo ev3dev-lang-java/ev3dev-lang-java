@@ -5,12 +5,11 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.actuators.lego.motors.FakeEV3LargeRegulatedMotor;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lejos.hardware.port.MotorPort;
-
-import org.junit.*;
-
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.RegulatedMotorListener;
 import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 

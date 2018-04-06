@@ -2,7 +2,6 @@ package examples;
 
 import ev3dev.actuators.Sound;
 import ev3dev.utils.JarResource;
-import lejos.utility.Delay;
 
 import java.io.File;
 import java.io.IOException;

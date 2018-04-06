@@ -3,7 +3,6 @@ package fake_ev3dev.ev3dev.actuators.lego.motors;
 import ev3dev.hardware.EV3DevPlatform;
 
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
