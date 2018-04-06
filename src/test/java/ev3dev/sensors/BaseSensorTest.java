@@ -112,6 +112,53 @@ public class BaseSensorTest {
     }
 
     @Test
+    public void setModeIntegerTest() throws Exception {
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
+
+        BaseSensor baseSensor = new BaseSensor(SensorPort.S1, "");
+        baseSensor.setModes(new SensorMode[] {new ModeTestMode(new File(""))});
+
+        baseSensor.setCurrentMode(0);
+
+        assertThat(baseSensor.getCurrentMode(), is(0));
+    }
+
+    @Test
+    public void setModeIntegerKoTest() throws Exception {
+
+        thrown.expect(IllegalArgumentException.class);
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
+
+        BaseSensor baseSensor = new BaseSensor(SensorPort.S1, "");
+        baseSensor.setModes(new SensorMode[] {new ModeTestMode(new File(""))});
+
+        baseSensor.setCurrentMode(99);
+
+    }
+
+    @Test
+    public void setModeCountTest() throws Exception {
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLegoSensor fakeLegoSensor = new FakeLegoSensor(EV3DevPlatform.EV3BRICK);
+
+        BaseSensor baseSensor = new BaseSensor(SensorPort.S1, "");
+        baseSensor.setModes(new SensorMode[] {new ModeTestMode(new File(""))});
+
+        assertThat(baseSensor.getModeCount(), is(1));
+    }
+
+    @Test
     public void setModeKoTest() throws Exception {
 
         thrown.expect(IllegalArgumentException.class);

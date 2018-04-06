@@ -8,7 +8,9 @@ import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -22,6 +24,9 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
 
 public class AbsoluteIMUTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void resetTest() throws IOException {
@@ -161,6 +166,31 @@ public class AbsoluteIMUTest {
         assertThat(x, is(notNullValue()));
         assertThat(y, is(notNullValue()));
         assertThat(z, is(notNullValue()));
+    }
+
+    @Test
+    public void setRangeTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeAbsolutIMUSensor fakeAbsolutIMUSensor = new FakeAbsolutIMUSensor(EV3DevPlatform.EV3BRICK);
+
+        AbsoluteIMU absoluteIMU = new AbsoluteIMU(SensorPort.S1);
+        absoluteIMU.setRange(1);
+        absoluteIMU.setRange(2);
+        absoluteIMU.setRange(3);
+        absoluteIMU.setRange(4);
+    }
+
+    @Test
+    public void setBadRangeTest() throws Exception {
+
+        thrown.expect(RuntimeException.class);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeAbsolutIMUSensor fakeAbsolutIMUSensor = new FakeAbsolutIMUSensor(EV3DevPlatform.EV3BRICK);
+
+        AbsoluteIMU absoluteIMU = new AbsoluteIMU(SensorPort.S1);
+        absoluteIMU.setRange(0);
     }
 
 }

@@ -17,6 +17,7 @@ public class ShellTest {
 
     @Before
     public void resetTest() throws IOException {
+
         FakeBattery.resetEV3DevInfrastructure();
     }
 

@@ -14,7 +14,7 @@ public class FakeNXTCamV5Sensor extends FakeLegoSensor {
     public FakeNXTCamV5Sensor(EV3DevPlatform ev3DevPlatform) throws IOException {
         super(ev3DevPlatform);
 
-        populateValues(Arrays.asList(2, 100, 200));
+        populateValues(Arrays.asList(1, 1, 100, 100, 200, 200));
 
         //TODO It is possible to generalize a bit more
         Path mode = Paths.get(
