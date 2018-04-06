@@ -3,12 +3,13 @@ package ev3dev.actuators;
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Shell;
-import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sound.sampled.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 /**
@@ -30,7 +31,6 @@ public class Sound extends EV3DevDevice {
     private static String EV3_SOUND_PATH;
 
     private static final String CMD_BEEP = "beep";
-    private static final String CMD_APLAY ="aplay";
     public  static final String VOLUME = "volume";
 
     private static String VOLUME_PATH;
@@ -125,7 +125,7 @@ public class Sound extends EV3DevDevice {
      */
     public void playSample(final File file, final int volume) {
         this.setVolume(volume);
-        Shell.execute(CMD_APLAY + " " + file.toString());
+        this.playSample(file);
     }
 
 
@@ -134,7 +134,17 @@ public class Sound extends EV3DevDevice {
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
      */
     public void playSample(final File file) {
-    	Shell.execute(CMD_APLAY + " " + file.toString());
+        try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file.toURI().toURL())) {
+
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+            Delay.usDelay(clip.getMicrosecondLength());;
+
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 
     /**

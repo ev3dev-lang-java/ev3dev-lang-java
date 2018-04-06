@@ -2,10 +2,13 @@ package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.utils.JarResource;
 import fake_ev3dev.ev3dev.actuators.FakeSound;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +18,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class SoundTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void resetTest() throws IOException, NoSuchFieldException, IllegalAccessException {
@@ -85,23 +91,44 @@ public class SoundTest {
     @Test
     public void playSample() throws Exception {
 
+        String filePath = "nod_low_power.wav";
+        String result = JarResource.export(filePath);
+
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-        final FakeSound fakeSound = new FakeSound(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
-        sound.playSample(new File("myFavouriteSong.wav"));
+        sound.playSample(new File(result));
+
+        JarResource.delete(result);
+    }
+
+    @Test
+    public void playSampleKO() throws Exception {
+
+        thrown.expect(RuntimeException.class);
+
+        String filePath = "myUnknownSong.wav";
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        Sound sound = Sound.getInstance();
+        sound.playSample(new File(filePath));
     }
 
     @Test
     public void playSampleWitVolume() throws Exception {
 
+        String filePath = "nod_low_power.wav";
+        String result = JarResource.export(filePath);
+
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-        final FakeSound fakeSound = new FakeSound(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
-        sound.playSample(new File("myFavouriteSong.wav"), 40);
+        sound.playSample(new File(result), 40);
 
         assertThat(sound.getVolume(), is(40));
+
+        JarResource.delete(result);
     }
 
     @Test
