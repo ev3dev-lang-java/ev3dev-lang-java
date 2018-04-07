@@ -34,7 +34,7 @@ dependencies {
 //Wrapper
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '3.5'
+    gradleVersion = '4.6'
 }
 
 //Compile
@@ -120,3 +120,15 @@ apply plugin: 'org.hidetake.ssh'
 
 apply from: './gradle/deploy.gradle'
 apply from: './gradle/docker.gradle'
+
+/* global settings */
+configure(allprojects) { project ->
+
+    compileJava.options*.compilerArgs = [
+            "-Xlint:unchecked", "-Xlint:rawtypes",
+    ]
+
+    compileTestJava.options*.compilerArgs = [
+            "-Xlint:deprecation", "-Xlint:unchecked", "-Xlint:rawtypes",
+    ]
+}
