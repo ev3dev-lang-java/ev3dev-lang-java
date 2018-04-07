@@ -21,9 +21,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.16.20")
     testCompile("org.projectlombok:lombok:1.16.20")
 
-    compile("ch.qos.logback:logback-classic:1.2.3")
-
-    compile group: 'javazoom', name: 'jlayer', version: '1.0.1'
+    testCompile("ch.qos.logback:logback-classic:1.2.3")
 
     testCompile("commons-io:commons-io:2.5")
     
@@ -44,7 +42,7 @@ compileJava {
 }
 
 jacoco {
-    toolVersion = "0.8.0"
+    toolVersion = "0.8.1"
     reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
@@ -60,7 +58,7 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 0.55
+                minimum = 0.8
             }
         }
     }
