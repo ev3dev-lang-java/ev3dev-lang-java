@@ -6,7 +6,7 @@ import lejos.utility.Delay;
 
 public class LargeMotorDemo {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         System.out.println("Starting motors on A");
         final EV3LargeRegulatedMotor mA = new EV3LargeRegulatedMotor(MotorPort.A);

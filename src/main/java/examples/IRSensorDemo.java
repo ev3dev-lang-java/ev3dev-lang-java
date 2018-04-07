@@ -27,9 +27,8 @@ public class IRSensorDemo {
 		    sp.fetchSample(sample, 0);
 		    distanceValue = (int)sample[0];
 
-			System.out.println("Iteration: {}" + i);
-			System.out.println("Distance: {}" + distanceValue);
-		      
+			System.out.println("Iteration: " + i + ", Distance: " + distanceValue);
+
 		    Delay.msDelay(HALF_SECOND);
 		}
 

@@ -36,7 +36,7 @@ public class USSensorDemo2 {
 
 			distanceValue = (int)sample[0];
 
-			System.out.println("Iteration: {}, Distance: {}" + i + " "+ distanceValue);
+			System.out.println("Iteration: " + i + ", Distance: " + distanceValue);
 
 		}
 
