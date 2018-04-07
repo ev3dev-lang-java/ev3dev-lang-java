@@ -2,7 +2,6 @@ package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.utils.Interpolation;
 import ev3dev.utils.Shell;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
@@ -38,6 +37,8 @@ public class Sound extends EV3DevDevice {
     private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabled for this platform.";
 
     private static Sound instance;
+
+    private int volume = 0;
 
     /**
      * Return a Instance of Sound.
@@ -153,47 +154,9 @@ public class Sound extends EV3DevDevice {
      */
     public void setVolume(final int volume) {
 
-        final Mixer.Info [] mixers = AudioSystem.getMixerInfo();
-        for (Mixer.Info mixerInfo : mixers) {
-            Mixer mixer = AudioSystem.getMixer(mixerInfo);
-            Line.Info [] lineInfos = mixer.getTargetLineInfo(); // target, not source
-            for (Line.Info lineInfo : lineInfos) {
-                Line line = null;
-                boolean opened = true;
-                try {
-                    line = mixer.getLine(lineInfo);
-                    opened = line.isOpen() || line instanceof Clip;
-                    if (!opened) {
-                        line.open();
-                    }
-                    FloatControl volumeControl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
-                    volumeControl.setValue(convertToDbs(volume));
-                } catch (LineUnavailableException | IllegalArgumentException e) {
-                    LOGGER.error(e.getLocalizedMessage(), e);
-                } finally {
-                    if (line != null && !opened) {
-                        line.close();
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * 100 - 1.0
-     * 30 - x
-     * 0 - 0.0
-     */
-    private float convertToDbs(int volume) {
-
-        final float x = 40;
-        final float x0 = 100.0f;
-        final float x1 = 0.0f;
-
-        final float y0 = 1.0f;
-        final float y1 = 0.0f;
-
-        return Interpolation.interpolate(volume, x0, x1, y0, y1);
+        this.volume = volume;
+        final String cmdVolume = "amixer set PCM,0 " + volume + "%";
+        Shell.execute(cmdVolume);
     }
 
     /**
@@ -201,49 +164,7 @@ public class Sound extends EV3DevDevice {
      * @return the current master volume 0-100
      */
     public int getVolume() {
-        final Mixer.Info [] mixers = AudioSystem.getMixerInfo();
-        for (Mixer.Info mixerInfo : mixers) {
-            Mixer mixer = AudioSystem.getMixer(mixerInfo);
-            Line.Info [] lineInfos = mixer.getTargetLineInfo(); // target, not source
-            for (Line.Info lineInfo : lineInfos) {
-                Line line = null;
-                boolean opened = true;
-                try {
-                    line = mixer.getLine(lineInfo);
-                    opened = line.isOpen() || line instanceof Clip;
-                    if (!opened) {
-                        line.open();
-                    }
-                    FloatControl volumeControl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
-                    return convertToVolume(volumeControl.getValue());
-                } catch (LineUnavailableException | IllegalArgumentException e) {
-                    LOGGER.error(e.getLocalizedMessage(), e);
-                } finally {
-                    if (line != null && !opened) {
-                        line.close();
-                    }
-                }
-            }
-        }
-
-        throw new RuntimeException("Something goes wrong");
-    }
-
-    /**
-     * 1.0 - 100
-     * 0.4 - x
-     * 0.0 - 0
-     */
-    private int convertToVolume(float db) {
-
-        final float x = db;
-        final float x0 = 1.0f;
-        final float x1 = 0.0f;
-
-        final float y0 = 100.0f;
-        final float y1 = 0.0f;
-
-        return Math.round(Interpolation.interpolate(x, x0, x1, y0, y1));
+        return this.volume;
     }
 
 }

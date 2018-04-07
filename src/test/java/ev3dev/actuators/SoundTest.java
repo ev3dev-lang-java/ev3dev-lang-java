@@ -6,7 +6,6 @@ import ev3dev.utils.JarResource;
 import fake_ev3dev.ev3dev.actuators.FakeSound;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -66,7 +65,6 @@ public class SoundTest {
         sound.beep();
     }
 
-    @Ignore("It is not running on Travis CI")
     @Test
     public void getVolumeTest() throws Exception {
 
@@ -79,7 +77,6 @@ public class SoundTest {
         assertThat(sound.getVolume(), is(40));
     }
 
-    @Ignore("It is not running on Travis CI")
     @Test
     public void setVolumeTest() throws Exception {
 
@@ -92,7 +89,6 @@ public class SoundTest {
         assertThat(sound.getVolume(), is(20));
     }
 
-    @Ignore("It is not running on Travis CI")
     @Test
     public void playSample() throws Exception {
 
@@ -107,7 +103,6 @@ public class SoundTest {
         JarResource.delete(result);
     }
 
-    @Ignore("It is not running on Travis CI")
     @Test
     public void playMultipleSamples() throws Exception {
 
@@ -139,8 +134,7 @@ public class SoundTest {
         Sound sound = Sound.getInstance();
         sound.playSample(new File(filePath));
     }
-    
-    @Ignore("It is not running on Travis CI")
+
     @Test
     public void playSampleWitVolume() throws Exception {
 
@@ -167,7 +161,6 @@ public class SoundTest {
         sound.playTone(100, 100);
     }
 
-    @Ignore("It is not running on Travis CI")
     @Test
     public void playToneWithVolume() throws Exception {
 
