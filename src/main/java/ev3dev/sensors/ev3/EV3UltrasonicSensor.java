@@ -44,8 +44,12 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
     private static final String LEGO_EV3_US = "lego-ev3-us";
 
-    public static float MIN_RANGE = 5f;//cm
-    public static float MAX_RANGE = 255f;//cm
+    public static float MIN_RANGE = 5f; //cm
+    public static float MAX_RANGE = 255f; //cm
+
+    private static final String MODE_DISTANCE = "US-DIST-CM";
+    private static final String MODE_LISTEN = "US-LISTEN";
+
 
     /**
     * Create the Ultrasonic sensors class.
@@ -75,7 +79,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @return A sampleProvider
     */
     public SampleProvider getListenMode() {
-    return getMode(1);
+        switchMode(MODE_LISTEN, SWITCH_DELAY);
+        return getMode(1);
     }
 
     /**
@@ -90,7 +95,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @return A sampleProvider
     */
     public SampleProvider getDistanceMode() {
-    return getMode(0);
+        switchMode(MODE_DISTANCE, SWITCH_DELAY);
+        return getMode(0);
     }
 
     /**
@@ -119,9 +125,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
     private class DistanceMode extends EV3DevSensorMode {
 
-        private static final String MODE = "US-DIST-CM";
-
-        final private File pathDevice;
+        private final File pathDevice;
 
         public DistanceMode(File pathDevice) {
             this.pathDevice = pathDevice;
@@ -134,7 +138,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE, SWITCH_DELAY);
+
             float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0) / 10f;
 
             if (rawValue < MIN_RANGE) {
@@ -158,9 +162,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     */
     private class ListenMode extends EV3DevSensorMode {
 
-        private static final String MODE = "US-LISTEN";
-
-        private File pathDevice = null;
+        private File pathDevice;
 
         public ListenMode(File pathDevice) {
             this.pathDevice = pathDevice;
@@ -173,9 +175,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE, SWITCH_DELAY);
-            float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[offset] = raw;
+            sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
         }
 
         @Override

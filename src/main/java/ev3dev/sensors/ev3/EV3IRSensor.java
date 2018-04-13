@@ -36,10 +36,14 @@ public class EV3IRSensor extends BaseSensor {
 
     private static final String LEGO_EV3_IR = "lego-ev3-ir";
 
-    public static float MIN_RANGE = 5f;//cm
-    public static float MAX_RANGE = 100f;//cm
+    public static float MIN_RANGE = 5f; //cm
+    public static float MAX_RANGE = 100f; //cm
 
-	public EV3IRSensor(final Port portName) {
+    private static final String MODE_DISTANCE = "IR-PROX";
+    private static final String MODE_SEEK = "IR-SEEK";
+    private static final String MODE_REMOTE = "IR-REMOTE";
+
+    public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
 		init();
 	}
@@ -70,18 +74,17 @@ public class EV3IRSensor extends BaseSensor {
      * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */    
 	public SensorMode getDistanceMode() {
-        return getMode(0);
+        switchMode(MODE_DISTANCE, SWITCH_DELAY);
+	    return getMode(0);
     }
 
     private class DistanceMode extends EV3DevSensorMode {
 
-        private static final String MODE = "IR-PROX";
-
-    	final private File pathDevice;
+        private final File pathDevice;
     	
-        public DistanceMode(File pathDevice) {
+        public DistanceMode(final File pathDevice) {
         	this.pathDevice = pathDevice;
-		}
+        }
 
 		@Override
         public int sampleSize() {
@@ -90,8 +93,8 @@ public class EV3IRSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE, SWITCH_DELAY);
-    		float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+
+            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
             if (rawValue < MIN_RANGE) {
                 sample[offset] = 0;
@@ -131,16 +134,15 @@ public class EV3IRSensor extends BaseSensor {
      * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */
     public SensorMode getSeekMode() {
+        switchMode(MODE_SEEK, SWITCH_DELAY);
         return getMode(1);
     }
 
     private class SeekMode extends EV3DevSensorMode {
 
-        private static final String MODE = "IR-SEEK";
+        private final File pathDevice;
 
-        final private File pathDevice;
-
-        public SeekMode(File pathDevice) {
+        public SeekMode(final File pathDevice) {
             this.pathDevice = pathDevice;
         }
 
@@ -151,7 +153,6 @@ public class EV3IRSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE, SWITCH_DELAY);
             sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
             sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
             sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
@@ -170,16 +171,15 @@ public class EV3IRSensor extends BaseSensor {
     }
 
     public SensorMode getRemoteMode() {
+        switchMode(MODE_REMOTE, SWITCH_DELAY);
         return getMode(2);
     }
 
     private class RemoteMode extends EV3DevSensorMode {
 
-        private static final String MODE = "IR-REMOTE";
+        private final File pathDevice;
 
-        final private File pathDevice;
-
-        public RemoteMode(File pathDevice) {
+        public RemoteMode(final File pathDevice) {
             this.pathDevice = pathDevice;
         }
 
@@ -190,7 +190,6 @@ public class EV3IRSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE, SWITCH_DELAY);
             sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
             sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
             sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
