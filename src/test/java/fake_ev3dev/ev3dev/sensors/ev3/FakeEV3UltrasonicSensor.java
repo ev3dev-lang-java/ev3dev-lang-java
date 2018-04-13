@@ -23,4 +23,15 @@ public class FakeEV3UltrasonicSensor extends FakeLegoSensor {
 
         createFile(mode);
     }
+
+    public void setListenMode() throws IOException {
+
+        Path value0 = Paths.get(
+                EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                        LEGO_SENSOR_PATH + "/" +
+                        SENSOR1 + "/" +
+                        VALUE0);
+        createFile(value0, String.valueOf(0));
+
+    }
 }
