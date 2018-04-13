@@ -53,7 +53,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     private boolean regulationFlag = true;
 
-    private final List<RegulatedMotorListener> listenerList = Collections.synchronizedList(new ArrayList());
+    private final List<RegulatedMotorListener> listenerList;
 
     /**
      * Constructor
@@ -69,6 +69,9 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      */
     public BaseRegulatedMotor(final Port motorPort, float moveP, float moveI, float moveD,
                               float holdP, float holdI, float holdD, int offset, int maxSpeed) {
+
+        List<RegulatedMotorListener> list = new ArrayList<>();
+        listenerList = Collections.synchronizedList(list);
 
         if(log.isInfoEnabled())
             log.info("Configuring motor connected on Port: {}", motorPort.getName());
