@@ -7,7 +7,6 @@ import fake_ev3dev.ev3dev.sensors.ev3.FakeEV3UltrasonicSensor;
 import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -77,16 +76,23 @@ public class EV3UltrasonicSensorTest {
                 lessThanOrEqualTo(255)));
     }
 
-    @Ignore("It is necessary to test with 2 real EV3 Ultrasonic sensors to verify the efect")
     @Test
     public void getListenModeTest() throws Exception {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeEV3UltrasonicSensor fakeEV3UltrasonicSensor = new FakeEV3UltrasonicSensor(EV3DevPlatform.EV3BRICK);
+        fakeEV3UltrasonicSensor.setListenMode();
 
         EV3UltrasonicSensor us1 = new EV3UltrasonicSensor(SensorPort.S1);
-
         final SampleProvider sp = us1.getListenMode();
+
+        float [] sample = new float[sp.sampleSize()];
+        sp.fetchSample(sample, 0);
+        int value = (int) sample[0];
+
+        assertThat(value, allOf(
+                greaterThanOrEqualTo(0),
+                lessThanOrEqualTo(1)));
     }
 
 }
