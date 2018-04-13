@@ -106,8 +106,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     /** {@inheritDoc}
      */    
     @Override
-    public boolean setFloodlight(int color)
-    {
+    public boolean setFloodlight(int color) {
         String mode;
         switch (color) {
             case Color.BLUE:
@@ -146,12 +145,13 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getColorIDMode() {
+        switchMode(COL_COLOR, SWITCH_DELAY);
         return getMode(0);
     }
     
     private class ColorIDMode extends EV3DevSensorMode {
 
-    	private File pathDevice = null;
+    	private final File pathDevice;
     	
         public ColorIDMode(File pathDevice) {
         	this.pathDevice = pathDevice;
@@ -164,9 +164,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(COL_COLOR, SWITCH_DELAY);
-            sample[offset]= 0;
-            sample[offset]  = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
         }
 
         @Override
@@ -192,14 +190,13 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getRedMode() {
+        switchMode(COL_REFLECT, SWITCH_DELAY);
         return getMode(1);
     }
 
     private class RedMode extends EV3DevSensorMode {
 
-        private static final float toSI = -1;
-
-        private File pathDevice = null;
+        private final File pathDevice;
 
         public RedMode(File pathDevice) {
             this.pathDevice = pathDevice;
@@ -212,7 +209,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(COL_REFLECT, SWITCH_DELAY);
             sample[offset]  = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
         }
 
@@ -238,16 +234,14 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
      */
-    public SensorMode getAmbientMode()
-    {
+    public SensorMode getAmbientMode() {
+        switchMode(COL_AMBIENT, SWITCH_DELAY);
         return getMode(3);
     }
     
 	  private class AmbientMode extends EV3DevSensorMode {
 
-		    private static final float toSI = -1;
-
-	    	private File pathDevice = null;
+	    	private final File pathDevice;
 	    	
 	        public AmbientMode(File pathDevice) {
 	        	this.pathDevice = pathDevice;
@@ -260,7 +254,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
 		    @Override
 		    public void fetchSample(float[] sample, int offset) {
-		    	switchMode(COL_AMBIENT, SWITCH_DELAY);
                 sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 		    }
 
@@ -291,15 +284,13 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getRGBMode() {
-        //TODO: Should this return 3 or 4 values, 4 values would require an extra mode switch to get ambient value.    	
-    	return getMode(2);
+        switchMode(COL_RGBRAW, SWITCH_DELAY);
+        return getMode(2);
     }
     
     private class RGBMode extends EV3DevSensorMode {
 
-        private static final float toSI = -1;
-
-        private File pathDevice = null;
+        private final File pathDevice;
 
         public RGBMode(final File pathDevice) {
             this.pathDevice = pathDevice;
@@ -312,7 +303,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            switchMode(COL_RGBRAW, SWITCH_DELAY);
             sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
             sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
             sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
