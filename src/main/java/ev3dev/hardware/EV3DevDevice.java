@@ -39,7 +39,7 @@ public abstract class EV3DevDevice extends EV3DevPlatforms {
      * @param portName port
      */
     protected void detect(final String type, final String portName) {
-        final String devicePath = ROOT_PATH + "/" + type;
+        final String devicePath = EV3DevFileSystem2.getRootPath() + "/" + type;
         if(log.isTraceEnabled())
             log.trace("Retrieving devices in path: ", devicePath);
         final List<File> deviceAvailables = Sysfs.getElements(devicePath);
