@@ -7,10 +7,13 @@ import lejos.hardware.port.SensorPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Properties;
+
 public class EV3DevPlatforms {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevPlatforms.class);
 
+    private static final Properties ev3DevProperties = EV3DevPropertyLoader.getEV3DevProperties();
     private static final EV3DevPlatform CURRENT_PLATFORM = retrievePlatform();
 
     /**
@@ -22,9 +25,9 @@ public class EV3DevPlatforms {
     private static EV3DevPlatform retrievePlatform() {
 
         //TODO Duplicated code
-        final String BATTERY =  "/power_supply";
-        final String BATTERY_PATH = EV3DevFileSystem.getRootPath() + BATTERY;
-        final String BATTERY_EV3 =  "lego-ev3-battery";
+        final String BATTERY = "power_supply";
+        final String BATTERY_PATH = EV3DevFileSystem.getRootPath() + "/" + BATTERY;
+        final String BATTERY_EV3 =  ev3DevProperties.getProperty("BATTERY_EV3");
         final String BATTERY_PISTORMS =  "pistorms-battery";
         final String BATTERY_BRICKPI =  "brickpi-battery";
         final String BATTERY_BRICKPI3 =  "brickpi3-battery";
@@ -71,13 +74,13 @@ public class EV3DevPlatforms {
         if(getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
             if(port.equals(MotorPort.A)){
-                return "ev3-ports:outA";
+                return ev3DevProperties.getProperty("ev3.motor.port.a");
             }else if(port.equals(MotorPort.B)){
-                return "ev3-ports:outB";
+                return ev3DevProperties.getProperty("ev3.motor.port.b");
             }else if(port.equals(MotorPort.C)){
-                return "ev3-ports:outC";
+                return ev3DevProperties.getProperty("ev3.motor.port.c");
             }else if(port.equals(MotorPort.D)){
-                return "ev3-ports:outD";
+                return ev3DevProperties.getProperty("ev3.motor.port.d");
             }
 
         } else if(getPlatform().equals(EV3DevPlatform.BRICKPI)) {
@@ -126,13 +129,13 @@ public class EV3DevPlatforms {
         if(getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
             if(port.equals(SensorPort.S1)){
-                return "ev3-ports:in1";
+                return ev3DevProperties.getProperty("ev3.sensor.port.1");
             }else if(port.equals(SensorPort.S2)){
-                return "ev3-ports:in2";
+                return ev3DevProperties.getProperty("ev3.sensor.port.2");
             }else if(port.equals(SensorPort.S3)){
-                return "ev3-ports:in3";
+                return ev3DevProperties.getProperty("ev3.sensor.port.3");
             }else if(port.equals(SensorPort.S4)){
-                return "ev3-ports:in4";
+                return ev3DevProperties.getProperty("ev3.sensor.port.4");
             }
 
         } else if(getPlatform().equals(EV3DevPlatform.BRICKPI)) {

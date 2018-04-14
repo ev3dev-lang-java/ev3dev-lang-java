@@ -1,13 +1,11 @@
 package ev3dev.hardware;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class EV3DevPropertyLoader {
 
-    private static Properties EV3DevProperties = retrieveEV3DevProperties();
+    private static final Properties ev3DevProperties = retrieveEV3DevProperties();
 
     private static Properties retrieveEV3DevProperties() {
 
@@ -20,29 +18,18 @@ public class EV3DevPropertyLoader {
             propertyName = "jessie.properties";
         }
 
-        Properties prop = new Properties();
-        InputStream input = null;
-
         try {
-            input = new FileInputStream(propertyName);
-            prop.load(input);
+            Properties prop = new Properties();
+            prop.load(EV3DevPropertyLoader.class.getClassLoader().getResourceAsStream(propertyName));
             return prop;
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
 
         throw new RuntimeException("");
     }
 
     public static Properties getEV3DevProperties(){
-        return EV3DevProperties;
+        return ev3DevProperties;
     }
 }
