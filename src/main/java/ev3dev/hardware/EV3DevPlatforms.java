@@ -1,5 +1,6 @@
 package ev3dev.hardware;
 
+import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
@@ -10,6 +11,30 @@ import org.slf4j.LoggerFactory;
 public abstract class EV3DevPlatforms extends EV3DevFileSystem {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevPlatforms.class);
+
+    private static final String DEBIAN_DISTRO_DETECTION_QUERY = "cat /etc/os-release";
+    private static final String STRETCH_DISTRO_DETECTION_QUERY = DEBIAN_DISTRO_DETECTION_QUERY + " | grep stretch | wc -l";
+    private static final String JESSIE_DISTRO_DETECTION_QUERY = DEBIAN_DISTRO_DETECTION_QUERY + " | grep jessie | wc -l";
+
+    private EV3DevDistro getDistro() {
+
+        //Testing purposes
+        if(!getROOT_PATH().equals(EV3DEV_ROOT_PATH)) {
+            return EV3DevDistro.STRETCH;
+        }
+
+        final String stretchResult = Shell.execute(STRETCH_DISTRO_DETECTION_QUERY);
+        if (stretchResult.length() > 0 ) {
+            return EV3DevDistro.STRETCH;
+        } else {
+            final String jessieResult = Shell.execute(JESSIE_DISTRO_DETECTION_QUERY);
+            if (jessieResult.length() > 0 ) {
+                return EV3DevDistro.JESSIE;
+            }
+        }
+        LOGGER.error(Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY));
+        throw new RuntimeException("Not supported Distro");
+    }
 
     /**
      * This method returns the platform
