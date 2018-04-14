@@ -1,8 +1,9 @@
 package ev3dev.sensors;
 
 import ev3dev.hardware.EV3DevDevice;
-import ev3dev.hardware.EV3DevFileSystem2;
+import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.Power;
 import org.slf4j.Logger;
@@ -50,8 +51,8 @@ public class Battery extends EV3DevDevice implements Power {
         LOGGER.debug("Init sensor");
 
         //TODO Create separator variable for the whole project
-        BATTERY_PATH = EV3DevFileSystem2.getRootPath() + "/" + BATTERY;
-        final EV3DevPlatform platform = this.getPlatform();
+        BATTERY_PATH = EV3DevFileSystem.getRootPath() + "/" + BATTERY;
+        final EV3DevPlatform platform = EV3DevPlatforms.getPlatform();
         if(platform.equals(EV3DevPlatform.EV3BRICK)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
         } else if(platform.equals(EV3DevPlatform.PISTORMS)) {
@@ -84,7 +85,7 @@ public class Battery extends EV3DevDevice implements Power {
 	 * @return current
 	 */
 	public float getBatteryCurrent() {
-    	if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+    	if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
     		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
     	}else {
             LOGGER.warn("This method is not available for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);

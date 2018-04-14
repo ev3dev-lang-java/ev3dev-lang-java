@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 
-public abstract class EV3DevDevice extends EV3DevPlatforms {
+public abstract class EV3DevDevice {
 
     private static final Logger log = LoggerFactory.getLogger(EV3DevDevice.class);
 
@@ -39,7 +39,7 @@ public abstract class EV3DevDevice extends EV3DevPlatforms {
      * @param portName port
      */
     protected void detect(final String type, final String portName) {
-        final String devicePath = EV3DevFileSystem2.getRootPath() + "/" + type;
+        final String devicePath = EV3DevFileSystem.getRootPath() + "/" + type;
         if(log.isTraceEnabled())
             log.trace("Retrieving devices in path: ", devicePath);
         final List<File> deviceAvailables = Sysfs.getElements(devicePath);

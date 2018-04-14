@@ -17,7 +17,7 @@ public class EV3DevDistros {
     private static EV3DevDistro retrieveDistro() {
 
         //Testing purposes
-        if (!EV3DevFileSystem2.getRootPath().equals(EV3DevFileSystem2.EV3DEV_ROOT_PATH)) {
+        if (!EV3DevFileSystem.getRootPath().equals(EV3DevFileSystem.EV3DEV_ROOT_PATH)) {
             return EV3DevDistro.STRETCH;
         }
 
@@ -34,7 +34,7 @@ public class EV3DevDistros {
         throw new RuntimeException("Not supported Distro");
     }
 
-    private static EV3DevDistro getDistro() {
+    public static EV3DevDistro getDistro() {
         return CURRENT_DISTRO;
     }
 

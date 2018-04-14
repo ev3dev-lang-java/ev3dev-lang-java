@@ -7,9 +7,11 @@ import lejos.hardware.port.SensorPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class EV3DevPlatforms {
+public class EV3DevPlatforms {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevPlatforms.class);
+
+    private static final EV3DevPlatform CURRENT_PLATFORM = retrievePlatform();
 
     /**
      * This method returns the platform
@@ -17,11 +19,11 @@ public abstract class EV3DevPlatforms {
      * @return Platform used
      * @throws RuntimeException Exception
      */
-    protected EV3DevPlatform getPlatform() {
+    private static EV3DevPlatform retrievePlatform() {
 
         //TODO Duplicated code
         final String BATTERY =  "/power_supply";
-        final String BATTERY_PATH = EV3DevFileSystem2.getRootPath() + BATTERY;
+        final String BATTERY_PATH = EV3DevFileSystem.getRootPath() + BATTERY;
         final String BATTERY_EV3 =  "lego-ev3-battery";
         final String BATTERY_PISTORMS =  "pistorms-battery";
         final String BATTERY_BRICKPI =  "brickpi-battery";
@@ -60,9 +62,13 @@ public abstract class EV3DevPlatforms {
         }
     }
 
-    protected String getMotorPort(final Port port) {
+    public static EV3DevPlatform getPlatform() {
+        return CURRENT_PLATFORM;
+    }
 
-        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+    public static String getMotorPort(final Port port) {
+
+        if(getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
             if(port.equals(MotorPort.A)){
                 return "ev3-ports:outA";
@@ -74,7 +80,7 @@ public abstract class EV3DevPlatforms {
                 return "ev3-ports:outD";
             }
 
-        } else if(this.getPlatform().equals(EV3DevPlatform.BRICKPI)) {
+        } else if(getPlatform().equals(EV3DevPlatform.BRICKPI)) {
 
             if (port.equals(MotorPort.A)) {
                 return "ttyAMA0:MA";
@@ -86,7 +92,7 @@ public abstract class EV3DevPlatforms {
                 return "ttyAMA0:MD";
             }
 
-        } else if(this.getPlatform().equals(EV3DevPlatform.BRICKPI3)) {
+        } else if(getPlatform().equals(EV3DevPlatform.BRICKPI3)) {
 
             if (port.equals(MotorPort.A)) {
                 return "spi0.1:MA";
@@ -115,9 +121,9 @@ public abstract class EV3DevPlatforms {
         throw new RuntimeException("Bad port used");
     }
 
-    protected String getSensorPort(final Port port) {
+    public static String getSensorPort(final Port port) {
 
-        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+        if(getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
             if(port.equals(SensorPort.S1)){
                 return "ev3-ports:in1";
@@ -129,7 +135,7 @@ public abstract class EV3DevPlatforms {
                 return "ev3-ports:in4";
             }
 
-        } else if(this.getPlatform().equals(EV3DevPlatform.BRICKPI)) {
+        } else if(getPlatform().equals(EV3DevPlatform.BRICKPI)) {
 
             if (port.equals(SensorPort.S1)) {
                 return "ttyAMA0:S1";
@@ -141,7 +147,7 @@ public abstract class EV3DevPlatforms {
                 return "ttyAMA0:S4";
             }
 
-        } else if(this.getPlatform().equals(EV3DevPlatform.BRICKPI3)) {
+        } else if(getPlatform().equals(EV3DevPlatform.BRICKPI3)) {
 
             if (port.equals(SensorPort.S1)) {
                 return "spi0.1:S1";
