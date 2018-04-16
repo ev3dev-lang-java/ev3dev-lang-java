@@ -16,22 +16,15 @@ public class EV3DevDistros {
 
     private static EV3DevDistro retrieveDistro() {
 
-        //Testing purposes
-        if (!EV3DevFileSystem.getRootPath().equals(EV3DevFileSystem.EV3DEV_ROOT_PATH)) {
+        final String stretchResult = Shell.execute(JESSIE_DISTRO_DETECTION_QUERY);
+        if (stretchResult.length() > 0) {
+            LOGGER.debug("Debian Jessie detected");
+            return EV3DevDistro.JESSIE;
+        } else {
+            LOGGER.debug("Debian Stretch detected");
             return EV3DevDistro.STRETCH;
         }
 
-        final String stretchResult = Shell.execute(STRETCH_DISTRO_DETECTION_QUERY);
-        if (stretchResult.length() > 0) {
-            return EV3DevDistro.STRETCH;
-        } else {
-            final String jessieResult = Shell.execute(JESSIE_DISTRO_DETECTION_QUERY);
-            if (jessieResult.length() > 0) {
-                return EV3DevDistro.JESSIE;
-            }
-        }
-        LOGGER.error(Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY));
-        throw new RuntimeException("Not supported Distro");
     }
 
     public static EV3DevDistro getDistro() {
