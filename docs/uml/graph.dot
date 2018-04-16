@@ -289,7 +289,9 @@ digraph G {
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevDevice </font></td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - log : Logger </td></tr>
+<tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
+<tr><td align="left" balign="left"> # ev3DevProperties : Properties </td></tr>
+<tr><td align="left" balign="left"> # CURRENT_PLATFORM : EV3DevPlatform </td></tr>
 <tr><td align="left" balign="left"> # LEGO_PORT : String </td></tr>
 <tr><td align="left" balign="left"> # ADDRESS : String </td></tr>
 <tr><td align="left" balign="left"> # LEGO_SENSOR : String </td></tr>
@@ -415,6 +417,7 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
+<tr><td align="left" balign="left"> - ev3DevProperties : Properties </td></tr>
 <tr><td align="left" balign="left"> - CURRENT_PLATFORM : EV3DevPlatform </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -431,7 +434,10 @@ digraph G {
 <tr><td align="center" balign="center"> EV3DevPropertyLoader </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - EV3DevProperties : Properties </td></tr>
+<tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
+<tr><td align="left" balign="left"> - ev3DevProperties : Properties </td></tr>
+<tr><td align="left" balign="left"> - STRETCH_PROPERTY_FILENAME : String </td></tr>
+<tr><td align="left" balign="left"> - JESSIE_PROPERTY_FILENAME : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevPropertyLoader() </td></tr>
