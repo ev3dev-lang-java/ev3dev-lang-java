@@ -1,7 +1,7 @@
 //Gradle file library ev3dev-lang-java
 //Author: Juan Antonio Breña Moral
 
-version = '2.2.0-SNAPSHOT'
+version = '2.2.1-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     compile("org.slf4j:slf4j-api:1.7.25")
-    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1-SNAPSHOT")
+    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
 
     annotationProcessor("org.projectlombok:lombok:1.16.20")
     testCompile("org.projectlombok:lombok:1.16.20")
