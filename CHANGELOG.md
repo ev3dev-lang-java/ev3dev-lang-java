@@ -1,10 +1,18 @@
 # ev3dev-lang-java changelog
 
-## 0.8.0
+## 2.2.3 2018-21-04 
 
-- Upgrade lejos-commons to 0.7.0
+- Support for Debian Stretch
+- Switch mode refactored to increase performance
+- Large Object hierarchy removed
+- Initial development to externalize EV3Dev paths to properties
+
+## 0.8.1
+
+- Upgrade lejos-commons to 0.7.1
 - Adding Unit Testing with 85% Coverage
 - Move gradle files to gradle folder
+- Internal refactoring
 
 ## 0.7.0 2017-09-06
 
