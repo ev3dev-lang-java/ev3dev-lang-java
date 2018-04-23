@@ -8,7 +8,6 @@ import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,10 +29,11 @@ public class BatteryTest {
     @Before
     public void resetTest() throws IOException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
 
+        //Review for Java 9
         //https://stackoverflow.com/questions/8256989/singleton-and-unit-testing
-        Field instance = Battery.class.getDeclaredField("instance");
-        instance.setAccessible(true);
-        instance.set(null, null);
+        //Field instance = Battery.class.getDeclaredField("instance");
+        //instance.setAccessible(true);
+        //instance.set(null, null);
 
         FakeBattery.resetEV3DevInfrastructure();
     }

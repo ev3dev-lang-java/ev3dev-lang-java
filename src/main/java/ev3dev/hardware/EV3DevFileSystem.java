@@ -19,7 +19,7 @@ public class EV3DevFileSystem {
     public static final String EV3DEV_ROOT_PATH = "/sys/class";
     private static final String CURRENT_ROOT_PATH = retrieveRootPath();
 
-    public static String retrieveRootPath() {
+    private static String retrieveRootPath() {
 
         if(Objects.nonNull(System.getProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY))) {
             final String NEW_ROOT_PATH = System.getProperty(EV3DEV_TESTING_KEY);
