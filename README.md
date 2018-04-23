@@ -92,8 +92,8 @@ Using the same `Java` objects, it is possible to deploy the software for Robots 
 
 ## Subprojects
   
-The following list contains the stables projects that it is possible to use without any restriction:
-  
+Stable projects:
+ 
 - [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level interation with EV3Dev
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
@@ -107,7 +107,6 @@ Incubator projects:
 - [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRE build for EV3
 - [Usb Devices](https://github.com/ev3dev-lang-java/usb-devices): A library to use Arduino, Grove Sensors, GPS, IMU, LIDAR, and more devices...
 - [ROS](https://github.com/ev3dev-lang-java/ros): A library to publish Sensor data to ROS for SLAM purposes
-
 
 ## Roadmap
 
@@ -136,16 +135,14 @@ https://github.com/ev3dev-lang-java/template_project_gradle
 - https://www.youtube.com/watch?v=1d9q24aNMHQ
 - https://www.youtube.com/watch?v=SIwG848ODI8
 
-## Unit testing
-
-Exist many examples used to test the project. In the future we will automate a good % of the tests using 
-[JUnit testing](http://junit.org/junit4/) and [Mocks](http://site.mockito.org/) 
-but at the moment, many features are tested manually.
-
-
 ## UML Design
 
 ![ScreenShot](https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/develop/docs/uml/graph.png)
+
+Known issues:
+
+- https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues/437
+- https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues/121
 
 ## References:
 
