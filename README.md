@@ -8,11 +8,25 @@ hardware & the [LeJOS](http://www.lejos.org/) way.
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
-**What is the latest EV3Dev version supported?**
+## Project architecture
 
-The libraries was tested with the latest stable `EV3Dev` release: [Debian Jessie](http://www.ev3dev.org/downloads/) 
+| # | Layer            | Option 1                                   | Option 2                |
+|---|------------------|--------------------------------------------|-------------------------|
+| 1 | Platforms        | EV3 BrickPi BrickPi3 PiStorms              | EV3                     |
+| 2 | OS               | Debian Jessie                              | Debian Stretch          |
+| 3 | JVM              | Oracle JRE 8                               | OpenJDK JRI 10          |
+| 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-ev3 4.4.47-19-ev3dev-rpi2 | 4.9.58-ev3dev-1.6.0-ev3 |
+| 5 | ev3dev-lang-java | 0.7.0                                      | 2.3.0                   |
 
-- **Note:** In the next release, we will include support for `Debian Stretch`
+**What Debian versions are supported by the library?**
+
+The library has support for `Debian Jessie` & `Debian Stretch`. 
+In this release, we have added initial support for `Debian Stretch`, so the Brick support is limited,
+only `EV3 Brick` is supported for this Debian distro but soon you will have all Bricks supported but 
+in the other hand, you have the possibility to use OpenJDK 10. 
+
+If you need to any Raspberry Pi Boards, I recommend to use the latest stable `EV3Dev` release: [Debian Jessie](http://www.ev3dev.org/downloads/) 
+with
 
 **What is the hardware platforms supported in this project?**
 
@@ -47,15 +61,14 @@ The following list contains the stables projects that it is possible to use with
   
 - [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level interation with EV3Dev
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
-- [lejos-navigation](https://github.com/ev3dev-lang-java/lejos-navigation): LeJOS navigation stack
-- [RPLidar4J](https://github.com/ev3dev-lang-java/RPLidar4J): RPLidar A1 support
-- [Battery Monitor](https://github.com/ev3dev-lang-java/batteryMonitor): A battery monitor to protect your hardware against low battery levels
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
 - [Template project](https://github.com/ev3dev-lang-java/template_project_gradle): A Gradle project ready to test the project
 - [Examples](https://github.com/ev3dev-lang-java/examples): A repository with several examples about the usage of this project
 
 Incubator projects:
 
+- [lejos-navigation](https://github.com/ev3dev-lang-java/lejos-navigation): LeJOS navigation stack
+- [Battery Monitor](https://github.com/ev3dev-lang-java/batteryMonitor): A battery monitor to protect your hardware against low battery levels
 - [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRE build for EV3
 - [Usb Devices](https://github.com/ev3dev-lang-java/usb-devices): A library to use Arduino, Grove Sensors, GPS, IMU, LIDAR, and more devices...
 - [ROS](https://github.com/ev3dev-lang-java/ros): A library to publish Sensor data to ROS for SLAM purposes
