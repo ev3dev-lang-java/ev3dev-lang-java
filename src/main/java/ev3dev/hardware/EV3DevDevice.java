@@ -2,9 +2,11 @@ package ev3dev.hardware;
 
 import ev3dev.utils.Sysfs;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * This class been designed to discover if the library is used in:
@@ -19,9 +21,12 @@ import java.util.List;
  */
 
 
-public abstract class EV3DevDevice extends EV3DevPlatforms {
+public abstract class EV3DevDevice {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevDevice.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevDevice.class);
+
+    protected static final Properties ev3DevProperties = EV3DevPropertyLoader.getEV3DevProperties();
+    protected static final EV3DevPlatform CURRENT_PLATFORM = EV3DevPlatforms.getPlatform();
 
     protected static final String LEGO_PORT = "lego-port";
     protected static final String ADDRESS = "address";
@@ -38,27 +43,34 @@ public abstract class EV3DevDevice extends EV3DevPlatforms {
      * @param portName port
      */
     protected void detect(final String type, final String portName) {
-        if(log.isDebugEnabled())
-            log.debug("Detecting device on port: {}", portName);
-        final String devicePath = ROOT_PATH + "/" + type;
-        if(log.isTraceEnabled())
-            log.trace(devicePath);
+        final String devicePath = EV3DevFileSystem.getRootPath() + "/" + type;
+        if(LOGGER.isTraceEnabled())
+            LOGGER.trace("Retrieving devices in path: ", devicePath);
         final List<File> deviceAvailables = Sysfs.getElements(devicePath);
-
         boolean connected = false;
+        if(LOGGER.isTraceEnabled())
+            LOGGER.trace("Checking devices on: {}", devicePath);
         String pathDeviceName;
+        int deviceCounter = 1;
         for (File deviceAvailable : deviceAvailables) {
             PATH_DEVICE = deviceAvailable;
             pathDeviceName = PATH_DEVICE + "/" + ADDRESS;
+            if(LOGGER.isTraceEnabled())
+                LOGGER.trace("Device {}:", deviceCounter);
             String result = Sysfs.readString(pathDeviceName);
-            if(log.isTraceEnabled())
-                log.trace("Port expected: {}, actual: {}.", portName, result);
+            if(LOGGER.isTraceEnabled())
+                LOGGER.trace("Port expected: {}, actual: {}.", portName, result);
+            //TODO Review to use equals. It is more strict
             if (result.contains(portName)) {
-                if(log.isDebugEnabled())
-                    log.debug("Detected port on path: {}", pathDeviceName);
+                if(LOGGER.isDebugEnabled())
+                    LOGGER.debug("Detected device on path: {}, {}", pathDeviceName, result);
                 connected = true;
                 break;
+            } else {
+                if(LOGGER.isTraceEnabled())
+                    LOGGER.trace("Skipped device");
             }
+            deviceCounter++;
         }
 
         if(!connected){

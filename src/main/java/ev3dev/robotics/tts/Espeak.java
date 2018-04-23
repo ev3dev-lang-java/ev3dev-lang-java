@@ -2,13 +2,14 @@ package ev3dev.robotics.tts;
 
 import ev3dev.utils.Shell;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Espeak wrapper
  */
 public class Espeak {
 
-	private static final Logger log = org.slf4j.LoggerFactory.getLogger(Espeak.class);
+	private static final Logger log = LoggerFactory.getLogger(Espeak.class);
 
 	private static final String ESPEAK = "espeak";
 	private final static String CMD_APLAY ="aplay";
@@ -77,7 +78,7 @@ public class Espeak {
 			sb.append(" --stdout ");
 			sb.append("\"").append(this.message).append("\"");
 		}else{
-			if(message != null){
+			if(filePath != null){
 				sb.append("--stdout ");
 				sb.append(" -f ").append(this.filePath).append("\"");
 			}else{

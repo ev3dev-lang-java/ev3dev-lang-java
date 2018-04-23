@@ -2,10 +2,10 @@ package ev3dev.sensors.mindsensors;
 
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 
 import java.io.File;
 

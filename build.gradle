@@ -1,25 +1,30 @@
-//Gradle file library ev3dev-java // ev3dev-commons
+//Gradle file library ev3dev-lang-java
 //Author: Juan Antonio Breña Moral
 
-version = '0.7.0'
+version = '2.3.0'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: "jacoco"
 
 repositories {
+    jcenter()
     mavenCentral()
     maven { url "https://jitpack.io" }
 }
 
 dependencies {
     compile("org.slf4j:slf4j-api:1.7.25")
-    compile("com.github.ev3dev-lang-java:lejos-commons:0.6.0")
+    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
 
-    testCompile("org.projectlombok:lombok:1.16.16")
+    annotationProcessor("org.projectlombok:lombok:1.16.20")
+    testCompile("org.projectlombok:lombok:1.16.20")
 
     testCompile("ch.qos.logback:logback-classic:1.2.3")
 
+    testCompile("commons-io:commons-io:2.5")
+    
     testCompile("junit:junit:4.12")
     testCompile("org.hamcrest:hamcrest-all:1.3")
 }
@@ -27,7 +32,7 @@ dependencies {
 //Wrapper
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '3.5'
+    gradleVersion = '4.7'
 }
 
 //Compile
@@ -35,6 +40,40 @@ compileJava {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 }
+
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.75
+            }
+        }
+    }
+}
+
+test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+}
+
+test.finalizedBy jacocoTestReport
+test.finalizedBy jacocoTestCoverageVerification
 
 //Jar
 jar {
@@ -47,14 +86,17 @@ jar {
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+        classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
     }
 }
 
 //Fat Jar
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: "net.ossindex.audit"
 
 task fatJar << {
 
@@ -74,5 +116,17 @@ buildscript {
 }
 apply plugin: 'org.hidetake.ssh'
 
-apply from: 'deploy.gradle'
-apply from: 'docker.gradle'
+apply from: './gradle/deploy.gradle'
+apply from: './gradle/docker.gradle'
+
+/* global settings */
+configure(allprojects) { project ->
+
+    compileJava.options*.compilerArgs = [
+            "-Xlint:unchecked", "-Xlint:rawtypes",
+    ]
+
+    compileTestJava.options*.compilerArgs = [
+            "-Xlint:deprecation", "-Xlint:unchecked", "-Xlint:rawtypes",
+    ]
+}

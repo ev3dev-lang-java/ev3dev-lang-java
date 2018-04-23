@@ -1,69 +1,31 @@
 package ev3dev.hardware;
 
-import mocks.MockBaseTest;
-import mocks.ev3dev.sensors.BatteryMock;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
-public class EV3DevPlatformTest extends MockBaseTest {
-
-    @Before
-    public void onceExecutedBeforeAll() throws IOException {
-        getGlobalPaths();
-        createEV3DevMocksPath();
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath().toString());
-    }
-
-    public class EV3DevPlatformChild extends EV3DevPlatforms {
-
-    }
+public class EV3DevPlatformTest {
 
     @Test
-    public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
+    public void getPlatformByString() {
 
-        //Inject a MockBattery object
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        batteryMock.createEV3DevMocksEV3BrickPlatformPath();
+        String result;
 
-        EV3DevPlatformChild epc = new EV3DevPlatformChild();
-        assertThat(epc.getPlatform(), is(EV3DevPlatform.EV3BRICK));
-    }
+        result = EV3DevPlatform.getPlatformByString("EV3BRICK");
+        assertThat(result, is("EV3BRICK"));
 
-    @Test
-    public void testEV3DevPlatformOnPiStormsTest() throws IOException {
+        result = EV3DevPlatform.getPlatformByString("BRICKPI");
+        assertThat(result, is("BRICKPI"));
 
-        //Inject a MockBattery object
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        batteryMock.createEV3DevMocksPiStormsPlatformPath();
+        result = EV3DevPlatform.getPlatformByString("BRICKPI3");
+        assertThat(result, is("BRICKPI3"));
 
-        EV3DevPlatformChild epc = new EV3DevPlatformChild();
-        assertThat(epc.getPlatform(), is(EV3DevPlatform.PISTORMS));
-    }
+        result = EV3DevPlatform.getPlatformByString("PISTORMS");
+        assertThat(result, is("PISTORMS"));
 
-    @Test
-    public void testEV3DevPlatformOnBrickPiTest() throws IOException {
+        result = EV3DevPlatform.getPlatformByString("MYPLATFORM");
+        assertThat(result, is("UNKNOWN"));
 
-        //Inject a MockBattery object
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        batteryMock.createEV3DevMocksBrickPiPlatformPath();
-
-        EV3DevPlatformChild epc = new EV3DevPlatformChild();
-        assertThat(epc.getPlatform(), is(EV3DevPlatform.BRICKPI));
-    }
-
-    @Test
-    public void testEV3DevPlatformOnBrickPi3Test() throws IOException {
-
-        //Inject a MockBattery object
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        batteryMock.createEV3DevMocksBrickPi3PlatformPath();
-
-        EV3DevPlatformChild epc = new EV3DevPlatformChild();
-        assertThat(epc.getPlatform(), is(EV3DevPlatform.BRICKPI3));
     }
 }

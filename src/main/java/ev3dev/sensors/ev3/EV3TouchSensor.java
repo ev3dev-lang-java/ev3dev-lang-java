@@ -2,9 +2,9 @@ package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.Touch;
 
 import java.io.File;
@@ -68,9 +68,9 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
 
     private class TouchMode extends EV3DevSensorMode {
     	
-    	private File pathDevice = null;
+    	private final File pathDevice;
     	
-        public TouchMode(File pathDevice) {
+        public TouchMode(final File pathDevice) {
         	this.pathDevice = pathDevice;
 		}
 

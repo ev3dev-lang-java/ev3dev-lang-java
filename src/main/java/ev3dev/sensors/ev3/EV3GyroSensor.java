@@ -2,9 +2,9 @@ package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.sensors.SensorMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
 import java.io.File;
@@ -40,6 +40,10 @@ public class EV3GyroSensor extends BaseSensor {
 
 	private static final String LEGO_EV3_GYRO = "lego-ev3-gyro";
 
+	private static final String MODE_RATE = "GYRO-RATE";
+	private static final String MODE_ANGLE = "GYRO-ANG";
+	private static final String MODE_RATE_ANGLE = "GYRO-G&A";
+
 	public EV3GyroSensor(final Port portName) {
 		super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
 		setModes(new SensorMode[] {
@@ -66,6 +70,7 @@ public class EV3GyroSensor extends BaseSensor {
 	 *      SampleProviders}
 	 */
 	public SampleProvider getRateMode() {
+		switchMode(MODE_RATE, SWITCH_DELAY);
 		return getMode(0);
 	}
 
@@ -86,6 +91,7 @@ public class EV3GyroSensor extends BaseSensor {
 	*      SampleProviders}
 	*/
 	public SampleProvider getAngleMode() {
+		switchMode(MODE_ANGLE, SWITCH_DELAY);
 		return getMode(1);
 	}
 
@@ -106,6 +112,7 @@ public class EV3GyroSensor extends BaseSensor {
 	 *      SampleProviders}
 	 */
 	public SampleProvider getAngleAndRateMode() {
+		switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
 		return getMode(2);
 	}
 
@@ -115,23 +122,16 @@ public class EV3GyroSensor extends BaseSensor {
 	*/
 	public void reset() {
 		// Reset mode (4) is not used here as it behaves erratically. Instead the reset is done implicitly by going to mode 1.
-		switchMode("GYRO-RATE", SWITCH_DELAY);
+		switchMode(MODE_RATE, SWITCH_DELAY);
 		// And back to 3 to prevent another reset when fetching the next sample
-		switchMode("GYRO-G&A", SWITCH_DELAY);
-	}
-
-	public int getAngle(){
-		return Sysfs.readInteger(this.PATH_DEVICE + "/" +  "value0");
+		switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
 	}
 
 	private class RateMode extends EV3DevSensorMode {
 
-		private static final String MODE = "GYRO-RATE";
-		private static final float toSI = -1;
+		private final File pathDevice;
 
-		private File pathDevice = null;
-
-		public RateMode(File pathDevice) {
+		public RateMode(final File pathDevice) {
 			this.pathDevice = pathDevice;
 		}
 
@@ -142,9 +142,7 @@ public class EV3GyroSensor extends BaseSensor {
 
 		@Override
 		public void fetchSample(float[] sample, int offset) {
-			switchMode(MODE, SWITCH_DELAY);
-			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[offset] = raw * toSI;
+			sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 		}
 
 		@Override
@@ -156,12 +154,9 @@ public class EV3GyroSensor extends BaseSensor {
 
 	private class AngleMode extends EV3DevSensorMode {
 
-		private static final String MODE = "GYRO-ANG";
-		private static final float toSI = -1;
+		private final File pathDevice;
 
-		private File pathDevice = null;
-
-		public AngleMode(File pathDevice) {
+		public AngleMode(final File pathDevice) {
 			this.pathDevice = pathDevice;
 		}
 
@@ -172,9 +167,7 @@ public class EV3GyroSensor extends BaseSensor {
 
 		@Override
 		public void fetchSample(float[] sample, int offset) {
-			switchMode(MODE, SWITCH_DELAY);
-			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[offset] = raw * toSI;
+			sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 		}
 
 		@Override
@@ -185,12 +178,9 @@ public class EV3GyroSensor extends BaseSensor {
 
 	private class RateAndAngleMode extends EV3DevSensorMode {
 
-		private static final String MODE = "GYRO-G&A";
-		private static final float toSI = -1;
+		private final File pathDevice;
 
-		private File pathDevice = null;
-
-		public RateAndAngleMode(File pathDevice) {
+		public RateAndAngleMode(final File pathDevice) {
 			this.pathDevice = pathDevice;
 		}
 
@@ -201,11 +191,8 @@ public class EV3GyroSensor extends BaseSensor {
 
 		@Override
 		public void fetchSample(float[] sample, int offset) {
-			switchMode(MODE, SWITCH_DELAY);
-			float raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[0] = raw * toSI;
-			raw = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-			sample[1] = raw * toSI;
+			sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+			sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
 		}
 
 		@Override

@@ -7,12 +7,18 @@ task copySrc(type: Copy) {
 task copyWrapperFiles(type: Copy) {
     group = "docker"
     from "gradlew"
+    from "lombok.config"
     from "settings.gradle"
     from "build.gradle"
-    from "deploy.gradle"
-    from "config.gradle"
-    from "docker.gradle"
     into "build/docker/app"
+}
+
+task copyGradleFiles(type: Copy) {
+    group = "docker"
+    from "gradle/deploy.gradle"
+    from "gradle/config.gradle"
+    from "gradle/docker.gradle"
+    into "build/docker/app/gradle"
 }
 
 task copyWrapper(type: Copy){
@@ -22,7 +28,8 @@ task copyWrapper(type: Copy){
     into "build/docker/app/gradle/wrapper"
 }
 
-copyWrapper.dependsOn copyWrapperFiles
+copyGradleFiles.dependsOn copyWrapperFiles
+copyWrapper.dependsOn copyGradleFiles
 
 task copyDockerFile(type: Copy) {
     group = "docker"

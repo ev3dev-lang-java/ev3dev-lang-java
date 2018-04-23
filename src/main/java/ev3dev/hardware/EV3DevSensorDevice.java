@@ -3,6 +3,7 @@ package ev3dev.hardware;
 import lejos.hardware.port.Port;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class to interact with EV3Dev Sensors
@@ -12,7 +13,7 @@ import org.slf4j.Logger;
  */
 public abstract class EV3DevSensorDevice extends EV3DevDevice {
 
-	private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevSensorDevice.class);
+	private static final Logger log = LoggerFactory.getLogger(EV3DevSensorDevice.class);
 
 	protected static final String LEGO_UART_SENSOR = "ev3-uart";
 	protected static final String LEGO_ANALOG_SENSOR = "ev3-analog";
@@ -30,10 +31,10 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      */
     protected EV3DevSensorDevice(final Port portName, final String mode, final String device) {
 
-		final String port = this.getSensorPort(portName);
+		final String port = EV3DevPlatforms.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
-		if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+		if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
 			this.detect(LEGO_SENSOR, port);
 		}else {
@@ -58,20 +59,20 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      */
 	protected EV3DevSensorDevice(final Port portName, final String mode) {
 
-		final String port = this.getSensorPort(portName);
+		final String port = EV3DevPlatforms.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
-		if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+		if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 			this.detect(LEGO_SENSOR, port);
 		}else {
 
 			//With Pi Boards, it is necessary to detect in 2 paths the sensors
 			this.detect(LEGO_PORT, port);
-			log.info("detected lego port: {}", this.PATH_DEVICE);
+			log.debug("detected lego port: {}", this.PATH_DEVICE);
 			this.setStringAttribute(MODE, mode);
 			Delay.msDelay(1000);
 			this.detect(LEGO_SENSOR, port);
-			log.info("detected lego sensor: {}", this.PATH_DEVICE);
+			log.debug("detected lego sensor: {}", this.PATH_DEVICE);
 		}
 
 	}

@@ -1,7 +1,5 @@
 package ev3dev.hardware;
 
-import org.slf4j.Logger;
-
 /**
  * Base class to interact with EV3Dev sysfs
  * 
@@ -9,8 +7,6 @@ import org.slf4j.Logger;
  *
  */
 public abstract class EV3DevMotorDevice extends EV3DevDevice {
-
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3DevMotorDevice.class);
 
     protected static final String TACHO_MOTOR = "tacho-motor";
     protected static final String DC_MOTOR = "dc-motor";

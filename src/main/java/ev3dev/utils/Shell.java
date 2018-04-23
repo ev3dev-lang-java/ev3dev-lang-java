@@ -35,8 +35,7 @@ public class Shell {
 			}
 			reader.close();
 		} catch (IOException | InterruptedException e) {
-			log.error(e.getMessage());
-			e.printStackTrace();
+			log.warn(e.getLocalizedMessage(), e);
 			return COMMAND_ERROR_MESSAGE;
 		}
 
@@ -54,7 +53,7 @@ public class Shell {
 		try {
 			p = Runtime.getRuntime().exec(command);
 			p.waitFor();
-			
+
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			
 			String line;
@@ -63,7 +62,7 @@ public class Shell {
 			}
 			reader.close();
 		} catch (Exception e) {
-            log.error(e.getMessage());
+            log.error(e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 

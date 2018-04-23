@@ -2,18 +2,27 @@ package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 public class LCD extends EV3DevDevice implements GraphicsLCD {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(LCD.class);
+    private static final Logger log = LoggerFactory.getLogger(LCD.class);
 
-    public static final String FB_PATH = "/dev/fb0";
+    public static final String EV3DEV_EV3_DEVICES_PATH = "/dev";
+    public static final String EV3DEV_EV3_LCD_NAME = "fb0";
+    public static final String EV3DEV_EV3_LCD_PATH = EV3DEV_EV3_DEVICES_PATH + "/" + EV3DEV_EV3_LCD_NAME;
+    public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
+    public static final String FB_PATH = Objects.nonNull(System.getProperty(EV3DEV_LCD_KEY)) ? System.getProperty(EV3DEV_LCD_KEY) : EV3DEV_EV3_LCD_PATH;
 
     private int SCREEN_WIDTH = 0;
     private int SCREEN_HEIGHT = 0;
@@ -29,7 +38,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     private BufferedImage image;
     private Graphics2D g2d;
 
-    private static GraphicsLCD Instance;
+    private static GraphicsLCD instance;
 
     /**
      * Return a Instance of Sound.
@@ -37,15 +46,15 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
      * @return A Sound instance
      */
     public static GraphicsLCD getInstance() {
-        if (Instance == null) {
-            Instance = new LCD();
+        if (instance == null) {
+            instance = new LCD();
         }
-        return Instance;
+        return instance;
     }
 
     // Prevent duplicate objects
     private LCD() {
-        if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+        if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
             init(EV3_SCREEN_WIDTH, EV3_SCREEN_HEIGHT, EV3_LINE_LEN, EV3_BUFFER_SIZE);
         } else {
             log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
@@ -63,6 +72,10 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         this.SCREEN_HEIGHT = height;
         this.LINE_LEN = lineLength;
         this.BUFFER_SIZE = bufferSize;
+
+        if (Files.notExists(Paths.get(FB_PATH))) {
+            throw new RuntimeException("Device path not found: " + FB_PATH);
+        }
 
         byte[] data = new byte[bufferSize];
         byte[] bwarr = {(byte) 0xff, (byte) 0x00};

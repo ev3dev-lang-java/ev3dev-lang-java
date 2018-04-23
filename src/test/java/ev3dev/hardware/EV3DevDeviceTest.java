@@ -1,25 +1,26 @@
 package ev3dev.hardware;
 
-import lejos.hardware.port.MotorPort;
-import mocks.MockBaseTest;
-import mocks.ev3dev.sensors.BatteryMock;
+import fake_ev3dev.ev3dev.sensors.FakeBattery;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.slf4j.Logger;
+import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+@Slf4j
+public class EV3DevDeviceTest {
 
-public class EV3DevDeviceTest extends MockBaseTest {
-
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(EV3DevDeviceTest.class);
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Before
-    public void onceExecutedBeforeAll() throws IOException {
-        getGlobalPaths();
-        createEV3DevMocksPath();
+    public void resetTest() throws IOException {
+
+        FakeBattery.resetEV3DevInfrastructure();
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
     public static class EV3DevDeviceChild extends EV3DevDevice {
@@ -27,32 +28,27 @@ public class EV3DevDeviceTest extends MockBaseTest {
     }
 
     @Test
-    public void testEV3DevPlatformOnEV3BrickTest() throws IOException {
+    public void badIntegerAttributeTest() throws IOException {
 
-        BatteryMock batteryMock = new BatteryMock(this.tempFolder);
-        batteryMock.createEV3DevMocksEV3BrickPlatformPath();
+        thrown.expect(RuntimeException.class);
 
-        System.out.println(batteryMock.getTempBatteryFolder());
-
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, tempMocksFolder.getAbsolutePath().toString());
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         EV3DevDeviceChild device = new EV3DevDeviceChild();
-        LOGGER.debug(device.getROOT_PATH());
-        LOGGER.debug(device.getMotorPort(MotorPort.A));
-        assertThat(device.getPlatform(), is(EV3DevPlatform.EV3BRICK));
 
-        /*
-        LOGGER.debug(device.getSensorPort("asdf"));
-        device.detect("demo","ui");
-        device.getIntegerAttribute("demo");
-        device.getPlatform();
-        device.getStringAttribute("demo");
-        device.setIntegerAttribute("", 0);
-        device.setStringAttribute("","");
-        */
+        device.setIntegerAttribute("BAD_ATTRIBUTE", 10);
     }
 
+    @Test
+    public void badStringAttributeTest() throws IOException {
 
+        thrown.expect(RuntimeException.class);
 
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        EV3DevDeviceChild device = new EV3DevDeviceChild();
+
+        device.setStringAttribute("BAD_ATTRIBUTE", "value");
+    }
 
 }

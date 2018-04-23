@@ -2,8 +2,13 @@ package ev3dev.sensors.mindsensors;
 
 import ev3dev.sensors.BaseSensor;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.geometry.Rectangle2D;
 import lejos.robotics.geometry.RectangleInt32;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by jabrena on 12/8/17.
@@ -34,6 +39,9 @@ public class NXTCamV5 extends BaseSensor {
      */
     public static final String LINE_TRACKING = "TRACK-LINE";
 
+    private final Set<String> trackingAllowedModeList = new HashSet<>(
+            Arrays.asList(OBJECT_TRACKING, FACE_TRACKING, EYE_TRACKING, LINE_TRACKING));
+
     //CAPABILITIES
 
     /**
@@ -48,6 +56,7 @@ public class NXTCamV5 extends BaseSensor {
 
     private void initModes() {
         this.setStringAttribute("mode", "TRACK");
+        setModes(new SensorMode[]{});
     }
 
     public NXTCamV5(final Port portName) {
@@ -60,7 +69,11 @@ public class NXTCamV5 extends BaseSensor {
      * @param mode Use either OBJECT_TRACKING or LINE_TRACKING
      */
     public void setTrackingMode(final String mode) {
-        sendCommand(mode);
+        if(trackingAllowedModeList.contains(mode)) {
+            sendCommand(mode);
+        } else {
+            throw new RuntimeException("Tracking mode not allowed: " + mode);
+        }
     }
 
     /**

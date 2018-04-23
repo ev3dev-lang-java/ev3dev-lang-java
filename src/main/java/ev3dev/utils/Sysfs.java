@@ -44,8 +44,8 @@ public class Sysfs {
 				log.error("File: '{}' without write permissions.", filePath);
 				return false;
 			}
-		} catch (IOException ex) {
-            log.error(ex.getLocalizedMessage());
+		} catch (IOException e) {
+            log.error(e.getLocalizedMessage(), e);
 			return false;
 		}
 		return true;
@@ -72,9 +72,9 @@ public class Sysfs {
 				return result;
 			}
 			throw new IOException("Problem reading path: " + filePath);
-		} catch (IOException ex) {
-			log.error(ex.getLocalizedMessage());
-			throw new RuntimeException(ex);
+		} catch (IOException e) {
+			log.error(e.getLocalizedMessage(), e);
+			throw new RuntimeException("Problem reading path: " + filePath, e);
 		}
 	}
 	
@@ -96,9 +96,7 @@ public class Sysfs {
 	 * @param filePath path
 	 * @return an List with options from a path
 	 */
-	public static List<File> getElements(final String filePath){
-		if(log.isTraceEnabled())
-			log.trace("ls " + filePath);
+	public static List<File> getElements(final String filePath) {
 		final File f = new File(filePath);
 		if(existPath(filePath) && (f.listFiles().length > 0)) {
             return new ArrayList<>(Arrays.asList(f.listFiles()));
@@ -126,8 +124,7 @@ public class Sysfs {
 
 	public static boolean writeBytes(final String path, final byte[] value) {
         final File file = new File(path);
-		try {
-			DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+		try (DataOutputStream out = new DataOutputStream(new FileOutputStream(file))) {
 			out.write(value);
 			out.flush();
 			out.close();

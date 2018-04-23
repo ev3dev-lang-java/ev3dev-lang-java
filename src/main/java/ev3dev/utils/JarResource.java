@@ -3,6 +3,8 @@ package ev3dev.utils;
 import org.slf4j.Logger;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class JarResource {
 
@@ -43,12 +45,12 @@ public class JarResource {
         return jarFolder + "/" + resourceName;
     }
 
-    public static void delete(final String resourceName){
-        final File file = new File(resourceName);
-        if(file.delete()){
-            log.info("{} is deleted!", file.getName());
-        }else{
-            log.warn("Delete operation is failed.");
+    public static void delete(final String resourceName) {
+        try {
+            Files.delete(Paths.get(resourceName));
+            log.info("File deleted!");
+        } catch (IOException e) {
+            log.warn("Delete operation is failed. {}", e.getLocalizedMessage());
         }
     }
 
