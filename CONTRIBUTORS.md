@@ -27,6 +27,10 @@ EV3Dev-lang-java contributors (sorted alphabetically)
 
   * EV3Button for EV3Dev-lang-java
 
+* **[Jakub Vaněk](https://github.com/JakubVanek)**
+
+  * OpenJDK 9/10 for EV3Dev
+
 * **[Juan Antonio Breña Moral](https://github.com/jabrena)**
 
   * Main developer of EV3Dev-lang-java
