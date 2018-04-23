@@ -50,12 +50,7 @@ If you need to use any Raspberry Pi Boards, I recommend to use the latest stable
 
 **What is the hardware platforms supported in this project?**
 
-- EV3 Brick
-- BrickPi+
-- BrickPi 3
-- PiStorms
-
-Using the same `Java` objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi 3 & PiStorms.
+Using the same `Java` objects, it is possible to deploy the software for Robots on EV3 Brick, Raspberry Pi 3 with BrickPi 3 & PiStorms.
 
 | # | Element  | LEGO                                                                                     | Raspberry Pi 3 Model B+          |
 |---|----------|------------------------------------------------------------------------------------------|----------------------------------|
