@@ -119,15 +119,15 @@ Take a look the documentation to use the project:
 
 http://ev3dev-lang-java.github.io/docs/support/index.html
 
+and use this easy template project with examples to use the project in a quick way:
+
+https://github.com/ev3dev-lang-java/template_project_gradle
+
 ## Examples
 
 Take a look the following repository to learn how to use this project:
 
 https://github.com/ev3dev-lang-java/examples
-
-It is very easy to copy one example and use inside of the project template:
-
-https://github.com/ev3dev-lang-java/template_project_gradle
 
 ## Videos
 
@@ -139,9 +139,8 @@ https://github.com/ev3dev-lang-java/template_project_gradle
 
 ![ScreenShot](https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/develop/docs/uml/graph.png)
 
-Known issues:
+**Known issues:**
 
-- https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues/437
 - https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues/121
 
 ## References:
