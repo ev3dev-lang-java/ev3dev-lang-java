@@ -61,21 +61,14 @@ If you analyze the hardware, any EV3 Brick uses a `SoC: Sitara Processor AM1808`
 but now with the usage of a BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3 increasing the 
 possibilities to develop complex projects which require por Computational consumption.
 
-**2010 Chip included on EV3 Brick:**
-
-``` 
-SoC: Sitara Processor AM1808
-CPU: ARM9 300MHz
-RAM: 16KB of Instruction Cache, 16KB of Data Cache ,8KB of RAM (Vector Table), 64KB of ROM
-```
-
-**2018 Chip included on Raspberry Pi 3 Model B+:**
-
-``` 
-SoC: Broadcom BCM2837 RISC de 64 bits
-CPU: 4× ARM Cortex-A53, 1.4GHz
-RAM: 1GB LPDDR2 (900 MHz)
-```
+| # | Element  | LEGO                                                                                     | Raspberry Pi 3 Model B+          |
+|---|----------|------------------------------------------------------------------------------------------|----------------------------------|
+| 1 | Hardware | EV3 Brick                                                                                | BrickPi+  BrickPi3 PiStorms      |
+| 2 | SoC      | Sitara Processor AM1808                                                                  | Broadcom BCM2837 RISC de 64 bits |
+| 3 | CPU      | ARM9 300MHz                                                                              | 4× ARM Cortex-A53, 1.4GHz        |
+| 4 | RAM      | 16KB of Instruction Cache,  16KB of Data Cache,  8KB of RAM (Vector Table),  64KB of ROM | 1GB LPDDR2 (900 MHz)             |
+| 5 | USB      | 1x                                                                                       | 4x                               |
+| 6 | Year     | 2010                                                                                     | 2018                             |
 
 ## Features included in the whole project
 
