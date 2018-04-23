@@ -55,11 +55,7 @@ If you need to use any Raspberry Pi Boards, I recommend to use the latest stable
 - BrickPi 3
 - PiStorms
 
-Using the same objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi 3 & PiStorms.
-
-If you analyze the hardware, any EV3 Brick uses a `SoC: Sitara Processor AM1808` (from year 2010) to manage Sensors & Actuators 
-but now with the usage of a BrickPi/PiStorms unit, it is possible to use the power of a Raspberry Pi 3 increasing the 
-possibilities to develop complex projects which require por Computational consumption.
+Using the same `Java` objects, it is possible to deploy the software for robots on EV3 Brick, Raspberry Pi 3 with BrickPi 3 & PiStorms.
 
 | # | Element  | LEGO                                                                                     | Raspberry Pi 3 Model B+          |
 |---|----------|------------------------------------------------------------------------------------------|----------------------------------|
