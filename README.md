@@ -65,9 +65,7 @@ Using the same `Java` objects, it is possible to deploy the software for Robots 
 
 **Java features**
 
-* Automatic installation of Oracle Java JDK 8 for Brickpi+/PiStorms + Raspberry Pi 3
-* Partial installation of Oracle Java JRE 8 for EV3 Brick
-* OpenJDK Java 9 EA support for Brickpi+/PiStorms + Raspberry Pi 3
+* OpenJDK Java 10 support for EV3 Brick, Brickpi+/PiStorms + Raspberry Pi 3
 * Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Logging support based on [SLF4J](https://www.slf4j.org/)
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
@@ -90,7 +88,7 @@ Using the same `Java` objects, it is possible to deploy the software for Robots 
 * [eSpeak](http://espeak.sourceforge.net/) TTS (Text to speech) Support
 * [LeJOS Sensor filter](http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/) Support
 * [LeJOS local navigation stack](https://github.com/ev3dev-lang-java/lejos-navigation) Support
-* [RPLidar A1](https://github.com/ev3dev-lang-java/RPLidar4J) (2D Lidar) Support
+* [RPLidar A1/A2](https://github.com/ev3dev-lang-java/usb-devices) (2D Lidar) Support
 
 ## Subprojects
   
