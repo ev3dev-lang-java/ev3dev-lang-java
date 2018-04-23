@@ -46,23 +46,9 @@ In this release, we have added initial support for `Debian Stretch`, so the Bric
 only `EV3 Brick` is supported for this Debian distro but soon you will have all Bricks supported but 
 in the other hand, you have the possibility to use OpenJDK 10 and it is amazing! 
 
-If you need to use any Raspberry Pi Boards, I recommend to use the latest stable `EV3Dev` release: [Debian Jessie](http://www.ev3dev.org/downloads/) 
-with
+If you need to use any Raspberry Pi Boards, I recommend to use the latest stable `EV3Dev` release: [Debian Jessie](http://www.ev3dev.org/downloads/)
 
 **What is the hardware platforms supported in this project?**
-
-This Debian distro run nice with the following platforms:
-
-- [EV3 Brick](https://education.lego.com/en-us/products/lego-mindstorms-education-ev3-core-set-/5003400): 4.4.47-19-ev3dev-ev3
-- [RaspberryPi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) with [BrickPi3](https://www.dexterindustries.com/brickpi/) & [PiStorms](http://www.mindsensors.com/content/78-pistorms-lego-interface): 4.4.47-19-ev3dev-rpi2
-
-If you need further information about stable EV3Dev images, [click here](http://www.ev3dev.org/news/2017/02/11/ev3dev-jessie-2017-02-11-release/)
-
-- **Note:** In the next release, we will include support for [Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/)
-
-**Advantages of the usage of this project?**
-
-Using this library you can develop educational robots with Java for multiple Bricks:
 
 - EV3 Brick
 - BrickPi+
