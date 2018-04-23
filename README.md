@@ -26,8 +26,8 @@ for next January of 2020.
 ## Introduction
 
 In Lego Mindstorms ecosystem, the default solution to develop Java software for Lego Mindstorms 
-was [LeJOS](http://www.lejos.org/) but the last version was released on November of 2015.
-Now exists one alternative, `EV3Dev-lang-java` a Java project running on the top of [EV3Dev](http://www.ev3dev.org/).  
+was [LeJOS](http://www.lejos.org/) but now exists one alternative, `EV3Dev-lang-java` a Java project 
+running on the top of [EV3Dev](http://www.ev3dev.org/).  
 
 Lego Mindstorms ecosystem is `a nice educational way to learn Java programming in general and Robotics in particular`. 
 Now, it is possible to install a complete Linux distro in the third generation of the product and others companies like 
