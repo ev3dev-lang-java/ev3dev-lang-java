@@ -38,13 +38,13 @@ public class FakeLegoRegulatedMotor extends BaseElement {
 
         String addressValue = "";
         if(portNumber == 1) {
-            addressValue = "outA";
+            addressValue = "ev3-ports:outA";
         } else if(portNumber == 2) {
-            addressValue = "outB";
+            addressValue = "ev3-ports:outB";
         } else if(portNumber == 3) {
-            addressValue = "outC";
+            addressValue = "ev3-ports:outC";
         } else if(portNumber == 4) {
-            addressValue = "outD";
+            addressValue = "ev3-ports:outD";
         }
 
         //Lego Port Steps

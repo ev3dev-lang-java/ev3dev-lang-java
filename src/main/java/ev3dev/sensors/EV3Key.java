@@ -38,7 +38,7 @@ public class EV3Key implements Key {
     static final byte STATE_KEY_UP   = 0;
 
     // to look at the raw values, use: $ hexdump -e '16/1 "%02x " "\n"' < /dev/input/by-path/platform-gpio-keys.0-event
-    private static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio-keys.0-event";
+    private static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio_keys-event";
 
     private static final int EVENT_BUFFER_LEN = 16;
     private static final int KEY_ID_INDEX     = 10;   // one of the BUTTON_* values

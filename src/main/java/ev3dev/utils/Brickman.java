@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Brickman extends EV3DevPlatforms {
+public class Brickman {
 
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Shell.class);
 
@@ -28,7 +28,7 @@ public class Brickman extends EV3DevPlatforms {
         platforms.add(EV3DevPlatform.EV3BRICK);
 
         final Brickman obj = new Brickman();
-        if(platforms.contains(obj.getPlatform())) {
+        if(platforms.contains(EV3DevPlatforms.getPlatform())) {
 
             if(LOGGER.isTraceEnabled())
                 LOGGER.trace("Disabling Brickman to run a Java process");

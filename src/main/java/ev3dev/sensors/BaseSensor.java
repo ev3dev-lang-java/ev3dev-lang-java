@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
-    protected static final int SWITCH_DELAY = 250;
+    protected static final int SWITCH_DELAY = 400;
 
     public BaseSensor(final Port sensorPort, final String mode, final String device){
         super(sensorPort, mode, device);

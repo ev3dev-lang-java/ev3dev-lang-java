@@ -8,6 +8,7 @@ import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.RegulatedMotorListener;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -15,6 +16,7 @@ import org.junit.rules.ExpectedException;
 import java.io.IOException;
 
 public class EV3LargeRegulatedMotorTest {
+
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -37,6 +39,7 @@ public class EV3LargeRegulatedMotorTest {
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
     }
 
+    @Ignore
     @Test
     public void motorBreakModeTest() throws Exception {
 

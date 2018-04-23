@@ -1,6 +1,7 @@
 package ev3dev.sensors;
 
 import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.Power;
@@ -20,7 +21,7 @@ public class Battery extends EV3DevDevice implements Power {
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Battery.class);
 
     public static final String BATTERY =  "power_supply";
-    public static final String BATTERY_EV3 =  "legoev3-battery";
+    public static final String BATTERY_EV3 =  ev3DevProperties.getProperty("BATTERY_EV3");;
     public static final String BATTERY_PISTORMS =  "pistorms-battery";
     public static final String BATTERY_BRICKPI =  "brickpi-battery";
     public static final String BATTERY_BRICKPI3 =  "brickpi3-battery";
@@ -49,15 +50,14 @@ public class Battery extends EV3DevDevice implements Power {
         LOGGER.debug("Init sensor");
 
         //TODO Create separator variable for the whole project
-        BATTERY_PATH = ROOT_PATH + "/" + BATTERY;
-        final EV3DevPlatform platform = this.getPlatform();
-        if(platform.equals(EV3DevPlatform.EV3BRICK)) {
+        BATTERY_PATH = EV3DevFileSystem.getRootPath() + "/" + BATTERY;
+        if(CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_EV3;
-        } else if(platform.equals(EV3DevPlatform.PISTORMS)) {
+        } else if(CURRENT_PLATFORM.equals(EV3DevPlatform.PISTORMS)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_PISTORMS;
-        } else if(platform.equals(EV3DevPlatform.BRICKPI)) {
+        } else if(CURRENT_PLATFORM.equals(EV3DevPlatform.BRICKPI)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI;
-        } else if(platform.equals(EV3DevPlatform.BRICKPI3)) {
+        } else if(CURRENT_PLATFORM.equals(EV3DevPlatform.BRICKPI3)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI3;
         }
     }
@@ -83,9 +83,9 @@ public class Battery extends EV3DevDevice implements Power {
 	 * @return current
 	 */
 	public float getBatteryCurrent() {
-    	if(this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+    	if (CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
     		return Sysfs.readFloat(BATTERY_PATH + "/" + BATTERY_EV3 + "/" +  CURRENT);
-    	}else {
+    	} else {
             LOGGER.warn("This method is not available for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);
             return -1f;
         }

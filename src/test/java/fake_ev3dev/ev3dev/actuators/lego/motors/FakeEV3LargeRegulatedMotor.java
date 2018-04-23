@@ -7,18 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+
 public class FakeEV3LargeRegulatedMotor extends FakeLegoRegulatedMotor {
 
     public FakeEV3LargeRegulatedMotor(EV3DevPlatform ev3DevPlatform) throws IOException {
         super(ev3DevPlatform);
-
-        Path addressPath1 = Paths.get(
-                EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                        LEGO_TACHO_PATH + "/" +
-                        MOTOR1 + "/" +
-                        MOTOR_STOP_ACTION);
-        createFile(addressPath1);
-
+        
         Path polarity = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
                         LEGO_TACHO_PATH + "/" +

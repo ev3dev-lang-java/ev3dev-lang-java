@@ -42,7 +42,7 @@ public class FakeLegoUnregulatedMotor extends BaseElement {
                         LEGO_PORT_PATH + "/" +
                         PORT1 + "/" +
                         PORT_ADDRESS);
-        createFile(addressPath, "outA");
+        createFile(addressPath, "ev3-ports:outA");
 
         Path modePath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +
@@ -63,7 +63,7 @@ public class FakeLegoUnregulatedMotor extends BaseElement {
                         LEGO_TACHO_PATH + "/" +
                         MOTOR1 + "/" +
                         PORT_ADDRESS);
-        createFile(motorAddress1Path, "outA");
+        createFile(motorAddress1Path, "ev3-ports:outA");
 
         Path motor1CommandPath = Paths.get(
                 EV3DEV_FAKE_SYSTEM_PATH + "/" +

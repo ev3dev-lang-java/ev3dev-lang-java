@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class FakeBattery extends BaseElement {
 
     private static final String BATTERY_PATH = "power_supply";
-    private static final String BATTERY_EV3_SUBPATH = "legoev3-battery";
+    private static final String BATTERY_EV3_SUBPATH = "lego-ev3-battery";
     private static final String BATTERY_BRICKPI_SUBPATH = "brickpi-battery";
     private static final String BATTERY_BRICKPI3_SUBPATH = "brickpi3-battery";
     private static final String BATTERY_PISTORMS_SUBPATH = "pistorms-battery";

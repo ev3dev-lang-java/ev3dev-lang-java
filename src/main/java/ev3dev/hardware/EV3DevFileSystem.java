@@ -11,27 +11,27 @@ import java.util.Objects;
  * @author Juan Antonio Breña Moral
  *
  */
-public abstract class EV3DevFileSystem {
+public class EV3DevFileSystem {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevFileSystem.class);
 
     public static final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
     public static final String EV3DEV_ROOT_PATH = "/sys/class";
+    private static final String CURRENT_ROOT_PATH = retrieveRootPath();
 
-    protected final String ROOT_PATH;
+    private static String retrieveRootPath() {
 
-    protected EV3DevFileSystem() {
-
-        if(Objects.nonNull(System.getProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY))){
-            ROOT_PATH = System.getProperty(EV3DEV_TESTING_KEY);
-            LOGGER.debug("ROOT_PATH modified: {}", ROOT_PATH);
+        if(Objects.nonNull(System.getProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY))) {
+            final String NEW_ROOT_PATH = System.getProperty(EV3DEV_TESTING_KEY);
+            LOGGER.debug("ROOT_PATH modified: {}", NEW_ROOT_PATH);
+            return NEW_ROOT_PATH;
         }else {
-            ROOT_PATH = EV3DEV_ROOT_PATH;
+            LOGGER.debug("Root Path: {}", EV3DEV_ROOT_PATH);
+            return EV3DEV_ROOT_PATH;
         }
-        LOGGER.debug("Root Path: {}", ROOT_PATH);
     }
 
-    protected String getROOT_PATH() {
-        return ROOT_PATH;
+    public static String getRootPath() {
+        return CURRENT_ROOT_PATH;
     }
 }

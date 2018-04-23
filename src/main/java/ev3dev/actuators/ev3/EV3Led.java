@@ -2,6 +2,7 @@ package ev3dev.actuators.ev3;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.LED;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public class EV3Led extends EV3DevDevice implements LED {
 
 	public EV3Led(final int button) {
 
-        if(!this.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+        if(!EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
             log.error("This actuator is specific of: {}", EV3DevPlatform.EV3BRICK);
             throw new RuntimeException("This actuator is specific of: " + EV3DevPlatform.EV3BRICK);
         }
@@ -50,47 +51,43 @@ public class EV3Led extends EV3DevDevice implements LED {
 	 * @param pattern
 	 */
 	@Override
-	public void setPattern(int pattern) {
+	public void setPattern(final int pattern) {
 		//Off
-		if(pattern == 0) {
-			if(direction == LEFT){
-				setBrighness(LEFT_LED, RED_LED, 0);
-				setBrighness(LEFT_LED, GREEN_LED, 0);
-			}else{
-				setBrighness(RIGHT_LED, RED_LED, 0);
-				setBrighness(RIGHT_LED, GREEN_LED, 0);
-			}
-		}else if(pattern == 1) {
-			if(direction == LEFT){
-				setBrighness(LEFT_LED, RED_LED, 0);
-				setBrighness(LEFT_LED, GREEN_LED, 255);
-			}else{
-				setBrighness(RIGHT_LED, RED_LED, 0);
-				setBrighness(RIGHT_LED, GREEN_LED, 255);
-			}
-		}else if(pattern == 2) {
-			if(direction == LEFT){
-				setBrighness(LEFT_LED, RED_LED, 255);
-				setBrighness(LEFT_LED, GREEN_LED, 0);
-			}else {
-				setBrighness(RIGHT_LED, RED_LED, 255);
-				setBrighness(RIGHT_LED, GREEN_LED, 0);
-			}
-		}else if(pattern == 3) {
-			if (direction == LEFT) {
-				setBrighness(LEFT_LED, RED_LED, 255);
-				setBrighness(LEFT_LED, GREEN_LED, 255);
+		if (pattern == 0) {
+			if (direction == LEFT){
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 0);
 			} else {
-				setBrighness(RIGHT_LED, RED_LED, 255);
-				setBrighness(RIGHT_LED, GREEN_LED, 255);
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 0);
 			}
-		}else if(pattern > 3) {
-			log.warn("This feature is not implemented");
+		} else if (pattern == 1) {
+			if (direction == LEFT) {
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255);
+			} else {
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 0);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 255);
+			}
+		} else if (pattern == 2) {
+			if (direction == LEFT){
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 0);
+			} else {
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 0);
+			}
+		} else if (pattern == 3) {
+			if (direction == LEFT) {
+				Sysfs.writeInteger("/sys/class/leds/led0:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255);
+			} else {
+				Sysfs.writeInteger("/sys/class/leds/led1:red:brick-status/brightness", 255);
+				Sysfs.writeInteger("/sys/class/leds/led1:green:brick-status/brightness", 255);
+			}
+		} else if (pattern > 3) {
+			log.debug("This feature is not implemented");
 		}
-	}
-
-	private void setBrighness(final String LED, final String color, final int brighnessLevel) {
-		Sysfs.writeInteger(ROOT_PATH + "/" + LED + color + "/" + BRIGHTNESS, brighnessLevel);
 	}
 
 }

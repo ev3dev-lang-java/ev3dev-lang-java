@@ -20,7 +20,7 @@ public class FakeLegoSensor extends BaseElement {
 
         if(ev3DevPlatform.equals(EV3DevPlatform.EV3BRICK)) {
 
-            createStructureSensor1("in1");
+            createStructureSensor1("ev3-ports:in1");
 
         } else {
 
@@ -28,6 +28,7 @@ public class FakeLegoSensor extends BaseElement {
             createStructurePort1("spi0.1:S1");
 
             createStructureSensor1("spi0.1:S1");
+
         }
     }
 
