@@ -1,7 +1,7 @@
 //Gradle file library ev3dev-lang-java
 //Author: Juan Antonio Breña Moral
 
-version = '2.2.4'
+version = '2.3.0'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -32,7 +32,7 @@ dependencies {
 //Wrapper
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.6'
+    gradleVersion = '4.7'
 }
 
 //Compile
