@@ -303,10 +303,9 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
         }
 
         @Override

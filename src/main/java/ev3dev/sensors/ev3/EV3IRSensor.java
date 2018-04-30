@@ -153,14 +153,14 @@ public class EV3IRSensor extends BaseSensor {
 
         @Override
         public void fetchSample(float[] sample, int offset) {
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-            sample[3] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE3);
-            sample[4] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE4);
-            sample[5] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE5);
-            sample[6] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE6);
-            sample[7] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE7);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE3);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE4);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE5);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE6);
+            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE7);
         }
 
         @Override
