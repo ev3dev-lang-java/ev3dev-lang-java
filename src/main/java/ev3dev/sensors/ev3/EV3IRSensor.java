@@ -98,7 +98,7 @@ public class EV3IRSensor extends BaseSensor {
 
             if (rawValue < MIN_RANGE) {
                 sample[offset] = 0;
-            } else if (rawValue > MAX_RANGE) {
+            } else if (rawValue >= MAX_RANGE) {
                 sample[offset] = Float.POSITIVE_INFINITY;
             } else {
                 sample[offset] = rawValue;

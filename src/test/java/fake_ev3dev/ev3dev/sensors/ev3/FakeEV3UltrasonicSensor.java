@@ -1,6 +1,7 @@
 package fake_ev3dev.ev3dev.sensors.ev3;
 
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.utils.Sysfs;
 import fake_ev3dev.ev3dev.sensors.FakeLegoSensor;
 
 import java.io.IOException;
@@ -33,5 +34,12 @@ public class FakeEV3UltrasonicSensor extends FakeLegoSensor {
                         VALUE0);
         createFile(value0, String.valueOf(0));
 
+    }
+
+    public String getCurrentMode() {
+        return Sysfs.readString(EV3DEV_FAKE_SYSTEM_PATH + "/" +
+                LEGO_SENSOR_PATH + "/" +
+                SENSOR1 + "/" +
+                SENSOR_MODE);
     }
 }

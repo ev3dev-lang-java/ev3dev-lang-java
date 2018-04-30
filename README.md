@@ -8,21 +8,6 @@
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
-## Project architecture
-
-The project has been designed with the following solution in mind:
-
-| # | Layer            | Option 1                                   | Option 2                |
-|---|------------------|--------------------------------------------|-------------------------|
-| 1 | Platforms        | EV3 BrickPi BrickPi3 PiStorms              | EV3                     |
-| 2 | OS               | Debian Jessie                              | Debian Stretch          |
-| 3 | JVM              | Oracle JRE 8                               | OpenJDK JRI 10          |
-| 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-ev3 4.4.47-19-ev3dev-rpi2 | 4.9.58-ev3dev-1.6.0-ev3 |
-| 5 | ev3dev-lang-java | 0.7.0                                      | 2.3.0                   |
-
-**Note:** At the moment, the whole solution is scalable until the next `LEGO Mindstorms` product estimated 
-for next January of 2020. 
-
 ## Introduction
 
 In Lego Mindstorms ecosystem, the default solution to develop Java software for Lego Mindstorms 
@@ -61,6 +46,21 @@ Using the same `Java` objects, it is possible to deploy the software for Robots 
 | 4 | RAM      | 16KB of Instruction Cache,  16KB of Data Cache,  8KB of RAM (Vector Table),  64KB of ROM | 1GB LPDDR2 (900 MHz)             |
 | 5 | USB      | 1x                                                                                       | 4x                               |
 | 6 | Year     | 2010                                                                                     | 2018                             |
+
+## Project architecture
+
+The project has been designed with the following solution in mind:
+
+| # | Layer            | Option 1                                   | Option 2                |
+|---|------------------|--------------------------------------------|-------------------------|
+| 1 | Platforms        | EV3 BrickPi BrickPi3 PiStorms              | EV3                     |
+| 2 | OS               | Debian Jessie                              | Debian Stretch          |
+| 3 | JVM              | Oracle JRE 8                               | OpenJDK JRI 10          |
+| 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-ev3 4.4.47-19-ev3dev-rpi2 | 4.9.58-ev3dev-1.6.0-ev3 |
+| 5 | ev3dev-lang-java | 0.7.0                                      | 2.3.0                   |
+
+**Note:** At the moment, the whole solution is scalable until the next `LEGO Mindstorms` product estimated 
+for next January of 2020. 
 
 ## Features included in the whole project
 

@@ -9,6 +9,7 @@ import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * <b>Lego EV3 Ultrasonic sensors</b><br>
@@ -49,6 +50,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
     private static final String MODE_DISTANCE = "US-DIST-CM";
     private static final String MODE_LISTEN = "US-LISTEN";
+    private static final String MODE_SINGLE_MEASURE = "US-SI-CM";
 
 
     /**
@@ -103,14 +105,14 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * Enable the sensors. This puts the indicater LED on.
     */
     public void enable() {
-    switchMode(0, SWITCH_DELAY);
+        switchMode(MODE_DISTANCE, SWITCH_DELAY);
     }
 
     /**
     * Disable the sensors. This puts the indicater LED off.
     */
     public void disable() {
-    switchMode(DISABLED, SWITCH_DELAY);
+        switchMode(MODE_SINGLE_MEASURE, SWITCH_DELAY);
     }
 
     /**
@@ -120,7 +122,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     *         False, when the sensors is disabled.
     */
     public boolean isEnabled() {
-        return currentMode != DISABLED;
+        return !Objects.equals(currentModeS, MODE_SINGLE_MEASURE);
     }
 
     private class DistanceMode extends EV3DevSensorMode {
@@ -143,7 +145,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
             if (rawValue < MIN_RANGE) {
                 sample[offset] = 0;
-            } else if (rawValue > MAX_RANGE) {
+            } else if (rawValue >= MAX_RANGE) {
                 sample[offset] = Float.POSITIVE_INFINITY;
             } else {
                 sample[offset] = rawValue;
