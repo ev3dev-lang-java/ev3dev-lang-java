@@ -11,6 +11,15 @@ task testConnection << {
     }
 }
 
+task pkillJava << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            println "pkill java"
+            execute "pkill java"
+        }
+    }
+}
+
 task removePreviousJar << {
     ssh.run {
         session(remotes.ev3dev) {
@@ -101,4 +110,4 @@ deployAndRun.group = groupName
 deployAndSudoRun.group = groupName
 deployAndProfilingRun.group = groupName
 deployAndProfilingSudoRun.group = groupName
-
+pkillJava.group = groupName
