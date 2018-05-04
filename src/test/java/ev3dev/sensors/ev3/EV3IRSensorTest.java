@@ -49,7 +49,7 @@ public class EV3IRSensorTest {
 
         EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
 
-        final List<String> expectedModes = Arrays.asList("Distance", "Seek", "Remote");
+        final List<String> expectedModes = Arrays.asList("Distance", "Seek");
         final List<String> modes  = irSensor.getAvailableModes();
 
         assertThat(modes, Matchers.is(expectedModes));
@@ -77,34 +77,42 @@ public class EV3IRSensorTest {
     }
 
     @Test
-    public void getRemoteModeTest() throws IOException {
+    public void getRemoteCommandTest() throws IOException {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeEV3IRSensor fakeEV3IRSensor = new FakeEV3IRSensor(EV3DevPlatform.EV3BRICK);
 
         EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
 
-        final SampleProvider sp = irSensor.getRemoteMode();
-        assertThat(sp.sampleSize(), is(4));
+        int value1 = irSensor.getRemoteCommand(0);
+        assertThat(value1, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
 
-        int beaconInfo1 = 0;
-        int beaconInfo2 = 0;
-        int beaconInfo3 = 0;
-        int beaconInfo4 = 0;
+        int value2 = irSensor.getRemoteCommand(1);
+        assertThat(value2, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
 
-        float [] sample = new float[sp.sampleSize()];
-        sp.fetchSample(sample, 0);
+        int value3 = irSensor.getRemoteCommand(2);
+        assertThat(value3, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
 
-        beaconInfo1 = (int)sample[0];
-        beaconInfo2 = (int)sample[1];
-        beaconInfo3 = (int)sample[2];
-        beaconInfo4 = (int)sample[3];
+        int value4 = irSensor.getRemoteCommand(3);
+        assertThat(value4, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+    }
 
-        assertThat(beaconInfo1, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
-        assertThat(beaconInfo2, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
-        assertThat(beaconInfo3, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
-        assertThat(beaconInfo4, allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+    @Test
+    public void getRemoteCommandsTest() throws IOException {
 
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeEV3IRSensor fakeEV3IRSensor = new FakeEV3IRSensor(EV3DevPlatform.EV3BRICK);
+
+        EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
+
+        byte[] commands = new byte[EV3IRSensor.IR_CHANNELS];
+
+        irSensor.getRemoteCommands(commands, 0, commands.length);
+
+        assertThat((int) commands[0], allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+        assertThat((int) commands[0], allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+        assertThat((int) commands[0], allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
+        assertThat((int) commands[0], allOf(greaterThanOrEqualTo(0), lessThanOrEqualTo(11)));
     }
 
     @Test

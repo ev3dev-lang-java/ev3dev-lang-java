@@ -194,7 +194,7 @@ public class EV3IRSensor extends BaseSensor {
      */
     public int getRemoteCommand(int chan) {
         switchMode(MODE_REMOTE, SWITCH_DELAY);
-        
+
         if(chan == 0) {
             return Sysfs.readInteger(this.PATH_DEVICE + "/" + VALUE0);
         } else if(chan == 1) {
