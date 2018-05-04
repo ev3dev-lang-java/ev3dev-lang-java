@@ -8,6 +8,8 @@ import lejos.hardware.sensor.SensorMode;
 
 import java.io.File;
 
+import static ev3dev.sensors.EV3DevSensorMode.*;
+
 /**
  * <b>EV3 Infra Red sensors</b><br>
  * The digital EV3 Infrared Seeking Sensor detects proximity to the robot and reads signals emitted by the EV3 Infrared Beacon. The sensors can alse be used as a receiver for a Lego Ev3 IR remote control.
@@ -43,6 +45,8 @@ public class EV3IRSensor extends BaseSensor {
     private static final String MODE_SEEK = "IR-SEEK";
     private static final String MODE_REMOTE = "IR-REMOTE";
 
+    public final static int IR_CHANNELS = 4;
+
     public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
 		init();
@@ -51,8 +55,7 @@ public class EV3IRSensor extends BaseSensor {
     private void init() {
         setModes(new SensorMode[] {
                 new DistanceMode(this.PATH_DEVICE),
-                new SeekMode(this.PATH_DEVICE),
-                new RemoteMode(this.PATH_DEVICE)
+                new SeekMode(this.PATH_DEVICE)
         });
     }
 	
@@ -170,37 +173,55 @@ public class EV3IRSensor extends BaseSensor {
 
     }
 
-    public SensorMode getRemoteMode() {
+    /**
+     * Return the current remote command from the specified channel. Remote commands
+     * are a single numeric value  which represents which button on the Lego IR
+     * remote is currently pressed (0 means no buttons pressed). Four channels are
+     * supported (0-3) which correspond to 1-4 on the remote. The button values are:<br>
+     * 1 TOP-LEFT<br>
+     * 2 BOTTOM-LEFT<br>
+     * 3 TOP-RIGHT<br>
+     * 4 BOTTOM-RIGHT<br>
+     * 5 TOP-LEFT + TOP-RIGHT<br>
+     * 6 TOP-LEFT + BOTTOM-RIGHT<br>
+     * 7 BOTTOM-LEFT + TOP-RIGHT<br>
+     * 8 BOTTOM-LEFT + BOTTOM-RIGHT<br>
+     * 9 CENTRE/BEACON<br>
+     * 10 BOTTOM-LEFT + TOP-LEFT<br>
+     * 11 TOP-RIGHT + BOTTOM-RIGHT<br>
+     * @param chan channel to obtain the command for
+     * @return the current command
+     */
+    public int getRemoteCommand(int chan) {
         switchMode(MODE_REMOTE, SWITCH_DELAY);
-        return getMode(2);
+
+        if(chan == 0) {
+            return Sysfs.readInteger(this.PATH_DEVICE + "/" + VALUE0);
+        } else if(chan == 1) {
+            return  Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE1);
+        } else if(chan == 2) {
+            return  Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE2);
+        } else if(chan == 3) {
+            return Sysfs.readInteger(this.PATH_DEVICE + "/" + VALUE3);
+        } else {
+            throw new IllegalArgumentException("Bad channel");
+        }
     }
 
-    private class RemoteMode extends EV3DevSensorMode {
+    /**
+     * Obtain the commands associated with one or more channels. Each element of
+     * the array contains the command for the associated channel (0-3).
+     * @param cmds the array to store the commands
+     * @param offset the offset to start storing
+     * @param len the number of commands to store.
+     */
+    public void getRemoteCommands(byte[] cmds, int offset, int len) {
+        switchMode(MODE_REMOTE, SWITCH_DELAY);
 
-        private final File pathDevice;
-
-        public RemoteMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 4;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-            sample[3] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE3);
-        }
-
-        @Override
-        public String getName() {
-            return "Remote";
-        }
-
+        cmds[0] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE0);
+        cmds[1] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE1);
+        cmds[2] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE2);
+        cmds[3] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE3);
     }
 
 }
