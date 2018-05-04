@@ -35,6 +35,8 @@ task wrapper(type: Wrapper) {
     gradleVersion = '4.7'
 }
 
+compileJava.options.encoding = 'UTF-8'
+
 //Compile
 compileJava {
     sourceCompatibility = 1.8
