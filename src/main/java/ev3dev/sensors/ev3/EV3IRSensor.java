@@ -45,6 +45,8 @@ public class EV3IRSensor extends BaseSensor {
     private static final String MODE_SEEK = "IR-SEEK";
     private static final String MODE_REMOTE = "IR-REMOTE";
 
+    public final static int IR_CHANNELS = 4;
+
     public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
 		init();
@@ -53,8 +55,7 @@ public class EV3IRSensor extends BaseSensor {
     private void init() {
         setModes(new SensorMode[] {
                 new DistanceMode(this.PATH_DEVICE),
-                new SeekMode(this.PATH_DEVICE),
-                new RemoteMode(this.PATH_DEVICE)
+                new SeekMode(this.PATH_DEVICE)
         });
     }
 	
@@ -193,6 +194,7 @@ public class EV3IRSensor extends BaseSensor {
      */
     public int getRemoteCommand(int chan) {
         switchMode(MODE_REMOTE, SWITCH_DELAY);
+        
         if(chan == 0) {
             return Sysfs.readInteger(this.PATH_DEVICE + "/" + VALUE0);
         } else if(chan == 1) {
@@ -220,40 +222,6 @@ public class EV3IRSensor extends BaseSensor {
         cmds[1] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE1);
         cmds[2] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE2);
         cmds[3] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE3);
-    }
-
-    //TODO Remove RemoteMode once tests for new methods are stable.
-    public SensorMode getRemoteMode() {
-        switchMode(MODE_REMOTE, SWITCH_DELAY);
-        return getMode(2);
-    }
-
-    private class RemoteMode extends EV3DevSensorMode {
-
-        private final File pathDevice;
-
-        public RemoteMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 4;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-            sample[3] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE3);
-        }
-
-        @Override
-        public String getName() {
-            return "Remote";
-        }
-
     }
 
 }
