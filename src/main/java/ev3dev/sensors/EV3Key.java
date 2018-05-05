@@ -1,5 +1,6 @@
 package ev3dev.sensors;
 
+import ev3dev.hardware.EV3DevPropertyLoader;
 import lejos.hardware.Key;
 import lejos.hardware.KeyListener;
 import lejos.hardware.Keys;
@@ -37,8 +38,10 @@ public class EV3Key implements Key {
     static final byte STATE_KEY_DOWN = 1;
     static final byte STATE_KEY_UP   = 0;
 
+    protected static final Properties ev3DevProperties = EV3DevPropertyLoader.getEV3DevProperties();
+
     // to look at the raw values, use: $ hexdump -e '16/1 "%02x " "\n"' < /dev/input/by-path/platform-gpio-keys.0-event
-    private static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio_keys-event";
+    private static final String SYSTEM_EVENT_PATH = ev3DevProperties.getProperty("ev3.key");;
 
     private static final int EVENT_BUFFER_LEN = 16;
     private static final int KEY_ID_INDEX     = 10;   // one of the BUTTON_* values

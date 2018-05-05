@@ -20,11 +20,12 @@ public class Battery extends EV3DevDevice implements Power {
 
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Battery.class);
 
-    public static final String BATTERY =  "power_supply";
-    public static final String BATTERY_EV3 =  ev3DevProperties.getProperty("BATTERY_EV3");;
-    public static final String BATTERY_PISTORMS =  "pistorms-battery";
-    public static final String BATTERY_BRICKPI =  "brickpi-battery";
-    public static final String BATTERY_BRICKPI3 =  "brickpi3-battery";
+    //TODO Review test to decouple paths from Class. Use Properties
+    public static final String BATTERY = ev3DevProperties.getProperty("battery");
+    public static final String BATTERY_EV3 =  ev3DevProperties.getProperty("ev3.battery");;
+    public static final String BATTERY_PISTORMS =  ev3DevProperties.getProperty("pistorms.battery");
+    public static final String BATTERY_BRICKPI = ev3DevProperties.getProperty("brickpi.battery");;
+    public static final String BATTERY_BRICKPI3 =  ev3DevProperties.getProperty("brickpi3.battery");
 
     private static String BATTERY_PATH;
     public static final String VOLTAGE = "voltage_now";
