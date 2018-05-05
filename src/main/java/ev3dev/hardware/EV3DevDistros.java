@@ -16,8 +16,9 @@ public class EV3DevDistros {
 
     private static EV3DevDistro retrieveDistro() {
 
-        final String stretchResult = Shell.execute(JESSIE_DISTRO_DETECTION_QUERY);
-        if (stretchResult.length() > 0) {
+        final String jessieResult = Shell.execute(JESSIE_DISTRO_DETECTION_QUERY);
+        LOGGER.debug("Result: {}", jessieResult);
+        if (jessieResult.length() > 0) {
             LOGGER.debug("Debian Jessie detected");
             return EV3DevDistro.JESSIE;
         } else {
