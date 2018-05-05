@@ -86,42 +86,6 @@ public class EV3IRSensor extends BaseSensor {
                 1f);
     }
 
-    /*
-    private class DistanceMode extends EV3DevSensorMode {
-
-        private final File pathDevice;
-    	
-        public DistanceMode(final File pathDevice) {
-        	this.pathDevice = pathDevice;
-        }
-
-		@Override
-        public int sampleSize() {
-            return 1;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-
-            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-
-            if (rawValue < MIN_RANGE) {
-                sample[offset] = 0;
-            } else if (rawValue >= MAX_RANGE) {
-                sample[offset] = Float.POSITIVE_INFINITY;
-            } else {
-                sample[offset] = rawValue;
-            }
-        }
-
-        @Override
-        public String getName() {
-            return "Distance";
-        }
-        
-    }
-    */
-
     /**
      * <b>EV3 Infra Red sensor, Seek mode</b><br>
      * In seek mode the sensor locates up to four beacons and provides bearing and distance of each beacon.
@@ -151,40 +115,6 @@ public class EV3IRSensor extends BaseSensor {
                 "Seek",
                 3);
     }
-
-    /*
-    private class SeekMode extends EV3DevSensorMode {
-
-        private final File pathDevice;
-
-        public SeekMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 8;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE3);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE4);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE5);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE6);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE7);
-        }
-
-        @Override
-        public String getName() {
-            return "Seek";
-        }
-
-    }
-    */
 
     /**
      * Return the current remote command from the specified channel. Remote commands

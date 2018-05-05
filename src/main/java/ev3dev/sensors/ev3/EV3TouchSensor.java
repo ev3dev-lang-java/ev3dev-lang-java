@@ -70,31 +70,5 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
         return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE0) == 0) ? false : true;
     }
 
-    /*
-    private class TouchMode extends EV3DevSensorMode {
-    	
-    	private final File pathDevice;
-    	
-        public TouchMode(final File pathDevice) {
-        	this.pathDevice = pathDevice;
-		}
-
-		@Override
-		public int sampleSize() {
-            return 1;
-        }
-
-		@Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-        }
-
-		@Override
-        public String getName() {
-           return "Touch";
-        }
-     
-    }
-    */
 
 }

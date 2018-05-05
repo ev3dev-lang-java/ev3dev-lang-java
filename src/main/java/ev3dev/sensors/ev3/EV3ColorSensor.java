@@ -152,33 +152,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
                 1);
     }
 
-    /*
-    private class ColorIDMode extends EV3DevSensorMode {
-
-    	private final File pathDevice;
-    	
-        public ColorIDMode(File pathDevice) {
-        	this.pathDevice = pathDevice;
-		}
-    	
-        @Override
-        public int sampleSize() {
-            return 1;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-        }
-
-        @Override
-        public String getName() {
-            return "ColorID";
-        }
-    }
-    */
-    
-
     //TODO: Implement in the right way
     /**
      * <b>EV3 color sensors, Red mode</b><br>
@@ -203,34 +176,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
                 1);
     }
 
-    /*
-    private class RedMode extends EV3DevSensorMode {
-
-        private final File pathDevice;
-
-        public RedMode(File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-          return 1;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[offset]  = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-        }
-
-        @Override
-        public String getName() {
-            return "Red";
-        }
-
-    }
-    */
-    
-
     /**
      * <b>EV3 color sensors, Ambient mode</b><br>
      * Measures the level of ambient light while the sensors lights are off. 
@@ -253,33 +198,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
                 "Ambient",
                 1);
     }
-
-    /*
-	  private class AmbientMode extends EV3DevSensorMode {
-
-	    	private final File pathDevice;
-	    	
-	        public AmbientMode(File pathDevice) {
-	        	this.pathDevice = pathDevice;
-			}
-
-			@Override
-		    public int sampleSize() {
-		      return 1;
-		    }
-
-		    @Override
-		    public void fetchSample(float[] sample, int offset) {
-                sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-		    }
-
-		    @Override
-		    public String getName() {
-		      return "Ambient";
-		    }
-
-		  }
-    */
 
     /**
      * get a sample provider that returns the light values (RGB) when illuminated by a
@@ -308,34 +226,5 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
                 "RGB",
                 3);
     }
-
-    /*
-    private class RGBMode extends EV3DevSensorMode {
-
-        private final File pathDevice;
-
-        public RGBMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-          return 3;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-        }
-
-        @Override
-        public String getName() {
-          return "RGB";
-        }
-
-    }
-    */
 
 }
