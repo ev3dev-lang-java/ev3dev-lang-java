@@ -1,12 +1,9 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
-
-import java.io.File;
 
 import static ev3dev.sensors.EV3DevSensorMode.*;
 
@@ -49,15 +46,17 @@ public class EV3IRSensor extends BaseSensor {
 
     public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
-		init();
+		//init();
 	}
 
+	/*
     private void init() {
         setModes(new SensorMode[] {
                 new DistanceMode(this.PATH_DEVICE),
                 new SeekMode(this.PATH_DEVICE)
         });
     }
+    */
 	
     /**
      * <b>EV3 Infra Red sensors, Distance mode</b><br>
@@ -78,9 +77,16 @@ public class EV3IRSensor extends BaseSensor {
      */    
 	public SensorMode getDistanceMode() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
-	    return getMode(0);
+	    return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "Distance",
+                2,
+                MIN_RANGE,
+                MAX_RANGE);
     }
 
+    /*
     private class DistanceMode extends EV3DevSensorMode {
 
         private final File pathDevice;
@@ -114,6 +120,7 @@ public class EV3IRSensor extends BaseSensor {
         }
         
     }
+    */
 
     /**
      * <b>EV3 Infra Red sensor, Seek mode</b><br>
@@ -138,9 +145,14 @@ public class EV3IRSensor extends BaseSensor {
      */
     public SensorMode getSeekMode() {
         switchMode(MODE_SEEK, SWITCH_DELAY);
-        return getMode(1);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                8,
+                "Seek",
+                3);
     }
 
+    /*
     private class SeekMode extends EV3DevSensorMode {
 
         private final File pathDevice;
@@ -172,6 +184,7 @@ public class EV3IRSensor extends BaseSensor {
         }
 
     }
+    */
 
     /**
      * Return the current remote command from the specified channel. Remote commands

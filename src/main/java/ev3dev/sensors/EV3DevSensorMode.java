@@ -10,6 +10,7 @@ import lejos.hardware.sensor.SensorMode;
  */
 public abstract class EV3DevSensorMode implements SensorMode {
 
+	public static final String VALUE = "value";
 	public static final String VALUE0 = "value0";
 	public static final String VALUE1 = "value1";
 	public static final String VALUE2 = "value2";

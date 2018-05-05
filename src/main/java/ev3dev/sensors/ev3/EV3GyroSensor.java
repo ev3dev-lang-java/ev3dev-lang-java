@@ -1,13 +1,8 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
-import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
-
-import java.io.File;
 
 /**
  * <b>EV3 Gyro sensors</b><br>
@@ -46,11 +41,13 @@ public class EV3GyroSensor extends BaseSensor {
 
 	public EV3GyroSensor(final Port portName) {
 		super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
+		/*
 		setModes(new SensorMode[] {
 				new RateMode(this.PATH_DEVICE),
 				new AngleMode(this.PATH_DEVICE),
 				new RateAndAngleMode(this.PATH_DEVICE)
 		});
+		*/
 	}
 
 	/**
@@ -71,7 +68,11 @@ public class EV3GyroSensor extends BaseSensor {
 	 */
 	public SampleProvider getRateMode() {
 		switchMode(MODE_RATE, SWITCH_DELAY);
-		return getMode(0);
+		return new GenericMode(
+				this.PATH_DEVICE,
+				1,
+				"Rate",
+				1);
 	}
 
 	/**
@@ -92,7 +93,11 @@ public class EV3GyroSensor extends BaseSensor {
 	*/
 	public SampleProvider getAngleMode() {
 		switchMode(MODE_ANGLE, SWITCH_DELAY);
-		return getMode(1);
+		return new GenericMode(
+				this.PATH_DEVICE,
+				1,
+				"Angle",
+				1);
 	}
 
 	/**
@@ -113,7 +118,11 @@ public class EV3GyroSensor extends BaseSensor {
 	 */
 	public SampleProvider getAngleAndRateMode() {
 		switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
-		return getMode(2);
+		return new GenericMode(
+				this.PATH_DEVICE,
+				2,
+				"Angle and Rate",
+				3);
 	}
 
 	/**
@@ -127,6 +136,7 @@ public class EV3GyroSensor extends BaseSensor {
 		switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
 	}
 
+	/*
 	private class RateMode extends EV3DevSensorMode {
 
 		private final File pathDevice;
@@ -151,6 +161,7 @@ public class EV3GyroSensor extends BaseSensor {
 		}
 
 	}
+
 
 	private class AngleMode extends EV3DevSensorMode {
 
@@ -200,5 +211,6 @@ public class EV3GyroSensor extends BaseSensor {
 			return "Angle and Rate";
 		}
 	}
+		*/
 
 }

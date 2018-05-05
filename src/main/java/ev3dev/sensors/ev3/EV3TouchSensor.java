@@ -7,8 +7,6 @@ import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.Touch;
 
-import java.io.File;
-
 /**
  * Basic sensors driver for the Lego EV3 Touch sensors
  * @author andy
@@ -36,12 +34,14 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
 
     public EV3TouchSensor(final Port portName) {
 		super(portName, LEGO_ANALOG_SENSOR);
-		init();
+		//init();
 	}
 
+	/*
 	private void init() {
       setModes(new SensorMode[]{ new TouchMode(this.PATH_DEVICE) }); 
     }
+    */
 
     /**
      * <b>Lego EV3 Touch sensors, Touch mode</b><br>
@@ -58,7 +58,11 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
      *      SampleProviders}
      */
     public SensorMode getTouchMode() {
-        return getMode(0);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "Touch",
+                1);
     }
 
     @Override
@@ -66,6 +70,7 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
         return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  EV3DevSensorMode.VALUE0) == 0) ? false : true;
     }
 
+    /*
     private class TouchMode extends EV3DevSensorMode {
     	
     	private final File pathDevice;
@@ -90,5 +95,6 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
         }
      
     }
+    */
 
 }

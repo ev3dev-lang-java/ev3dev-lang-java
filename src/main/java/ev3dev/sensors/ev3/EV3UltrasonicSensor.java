@@ -2,13 +2,9 @@ package ev3dev.sensors.ev3;
 
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
-import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
-import java.io.File;
 import java.util.Objects;
 
 /**
@@ -60,14 +56,16 @@ public class EV3UltrasonicSensor extends BaseSensor {
     */
     public EV3UltrasonicSensor(final Port portName) {
       super(portName, LEGO_UART_SENSOR, LEGO_EV3_US);
-      init();
+      //init();
     }
 
+    /*
     private void init() {
       setModes(new SensorMode[] {
             new DistanceMode(this.PATH_DEVICE),
             new ListenMode(this.PATH_DEVICE) });
     }
+    */
 
     /**
     * <b>Lego EV3 Ultrasonic sensors, Listen mode</b><br>
@@ -82,7 +80,11 @@ public class EV3UltrasonicSensor extends BaseSensor {
     */
     public SampleProvider getListenMode() {
         switchMode(MODE_LISTEN, SWITCH_DELAY);
-        return getMode(1);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "Listen",
+                1);
     }
 
     /**
@@ -98,7 +100,13 @@ public class EV3UltrasonicSensor extends BaseSensor {
     */
     public SampleProvider getDistanceMode() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
-        return getMode(0);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "Distance",
+                2,
+                MIN_RANGE,
+                MAX_RANGE);
     }
 
     /**
@@ -125,6 +133,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
         return !Objects.equals(currentModeS, MODE_SINGLE_MEASURE);
     }
 
+    /*
     private class DistanceMode extends EV3DevSensorMode {
 
         private final File pathDevice;
@@ -158,10 +167,12 @@ public class EV3UltrasonicSensor extends BaseSensor {
         }
 
     }
+    */
 
     /**
     * Represents a Ultrasonic sensors in listen mode
     */
+    /*
     private class ListenMode extends EV3DevSensorMode {
 
         private File pathDevice;
@@ -185,5 +196,6 @@ public class EV3UltrasonicSensor extends BaseSensor {
           return "Listen";
         }
     }
+    */
 
 }
