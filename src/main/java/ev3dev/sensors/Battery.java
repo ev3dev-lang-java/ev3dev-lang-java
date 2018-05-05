@@ -73,8 +73,7 @@ public class Battery extends EV3DevDevice implements Power {
 	 * @return voltage
 	 */
 	public float getVoltage() {
-	    LOGGER.debug(Sysfs.getElements(BATTERY_PATH_LOCAL).toString());
-		return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000000;
+	    return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000000;
 	}
 
 	//TODO Review output
