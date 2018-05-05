@@ -1,11 +1,14 @@
-package ev3dev.sensors.ev3;
+package ev3dev.sensors;
 
-import ev3dev.sensors.EV3DevSensorMode;
 import ev3dev.utils.Sysfs;
+import lejos.hardware.sensor.SensorMode;
 
 import java.io.File;
 
-public class GenericMode extends EV3DevSensorMode {
+public class GenericMode implements SensorMode {
+
+    private final String VALUE = "value";
+    private final String VALUE0 = "value0";
 
     private final File pathDevice;
     private final int sampleSize;

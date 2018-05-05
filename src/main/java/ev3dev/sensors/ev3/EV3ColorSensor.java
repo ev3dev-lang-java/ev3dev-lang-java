@@ -1,15 +1,12 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.utils.Sysfs;
+import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.Color;
 import lejos.robotics.ColorIdentifier;
 import lejos.robotics.LampController;
-
-import java.io.File;
 
 
 /**
@@ -56,6 +53,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     private static final int []lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
     protected short[]raw = new short[3];
 
+    /*
     private void initModes() {
         setModes(
         		new SensorMode[]{
@@ -65,10 +63,11 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         				new AmbientMode(this.PATH_DEVICE)
         		});
     }
+    */
 
 	public EV3ColorSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_COLOR_SENSOR);
-		initModes();
+		//initModes();
 	}
 
     /** {@inheritDoc}
@@ -146,9 +145,14 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      */
     public SensorMode getColorIDMode() {
         switchMode(COL_COLOR, SWITCH_DELAY);
-        return getMode(0);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "ColorID",
+                1);
     }
-    
+
+    /*
     private class ColorIDMode extends EV3DevSensorMode {
 
     	private final File pathDevice;
@@ -172,6 +176,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
             return "ColorID";
         }
     }
+    */
     
 
     //TODO: Implement in the right way
@@ -191,9 +196,14 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      */
     public SensorMode getRedMode() {
         switchMode(COL_REFLECT, SWITCH_DELAY);
-        return getMode(1);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "Red",
+                1);
     }
 
+    /*
     private class RedMode extends EV3DevSensorMode {
 
         private final File pathDevice;
@@ -218,6 +228,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         }
 
     }
+    */
     
 
     /**
@@ -236,9 +247,14 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      */
     public SensorMode getAmbientMode() {
         switchMode(COL_AMBIENT, SWITCH_DELAY);
-        return getMode(3);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "Ambient",
+                1);
     }
-    
+
+    /*
 	  private class AmbientMode extends EV3DevSensorMode {
 
 	    	private final File pathDevice;
@@ -263,7 +279,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 		    }
 
 		  }
-    
+    */
+
     /**
      * get a sample provider that returns the light values (RGB) when illuminated by a
      * white light source.
@@ -285,9 +302,14 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      */
     public SensorMode getRGBMode() {
         switchMode(COL_RGBRAW, SWITCH_DELAY);
-        return getMode(2);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                3,
+                "RGB",
+                3);
     }
-    
+
+    /*
     private class RGBMode extends EV3DevSensorMode {
 
         private final File pathDevice;
@@ -314,5 +336,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         }
 
     }
+    */
 
 }

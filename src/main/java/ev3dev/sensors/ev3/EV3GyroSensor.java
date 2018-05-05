@@ -1,6 +1,7 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
+import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
 import lejos.robotics.SampleProvider;
 

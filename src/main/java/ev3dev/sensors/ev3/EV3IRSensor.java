@@ -1,11 +1,10 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
+import ev3dev.sensors.GenericMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
-
-import static ev3dev.sensors.EV3DevSensorMode.*;
 
 /**
  * <b>EV3 Infra Red sensors</b><br>

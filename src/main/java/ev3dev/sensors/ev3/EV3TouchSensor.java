@@ -1,7 +1,7 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
+import ev3dev.sensors.GenericMode;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
@@ -67,7 +67,7 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
 
     @Override
     public boolean isPressed() {
-        return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  EV3DevSensorMode.VALUE0) == 0) ? false : true;
+        return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE0) == 0) ? false : true;
     }
 
     /*

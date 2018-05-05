@@ -14,6 +14,15 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
     protected static final int SWITCH_DELAY = 400;
 
+    protected final String VALUE0 = "value0";
+    protected final String VALUE1 = "value1";
+    protected final String VALUE2 = "value2";
+    protected final String VALUE3 = "value3";
+    protected final String VALUE4 = "value4";
+    protected final String VALUE5 = "value5";
+    protected final String VALUE6 = "value6";
+    protected final String VALUE7 = "value7";
+
     public BaseSensor(final Port sensorPort, final String mode, final String device){
         super(sensorPort, mode, device);
     }

@@ -1,13 +1,10 @@
 package ev3dev.sensors.mindsensors;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
+import ev3dev.sensors.GenericMode;
 import ev3dev.utils.Shell;
-import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
-
-import java.io.File;
 
 /**
  * <b>Mindsensors AbsoluteIMU</b><br>
@@ -125,6 +122,7 @@ public class AbsoluteIMU extends BaseSensor {
     //I2C Register
     public static final int GYRO_FILTER = 0x5a;
 
+    /*
     private void initModes() {
         setModes(
                 new SensorMode[]{
@@ -136,10 +134,11 @@ public class AbsoluteIMU extends BaseSensor {
                 });
         setRange(LOW);
     }
+    */
 
     public AbsoluteIMU(final Port portName) {
         super(portName, LEGO_I2C, MINDSENSORS_ABSOLUTEIMU);
-        this.initModes();
+        //this.initModes();
     }
 
     /**
@@ -158,7 +157,12 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getCompassMode() {
-        return getMode(3);
+        switchMode(MODE_COMPASS, SWITCH_DELAY);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                1,
+                "Compass",
+                1);
     }
 
     /**
@@ -168,7 +172,12 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getAccelerationMode() {
-        return getMode(0);
+        switchMode(MODE_ACCELEROMETER, SWITCH_DELAY);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                3,
+                "Acceleration",
+                3);
     }
 
     /**
@@ -178,15 +187,30 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getMagneticMode() {
-        return getMode(1);
+        switchMode(MODE_MAGNETIC, SWITCH_DELAY);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                3,
+                "Magnetic",
+                3);
     }
 
     public SensorMode getGyroMode() {
-        return getMode(2);
+        switchMode(MODE_GYRO, SWITCH_DELAY);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                3,
+                "Gyro",
+                3);
     }
 
     public SensorMode getTiltMode() {
-        return getMode(4);
+        switchMode(MODE_TILT, SWITCH_DELAY);
+        return new GenericMode(
+                this.PATH_DEVICE,
+                3,
+                "Tilt",
+                3);
     }
 
 
@@ -223,6 +247,7 @@ public class AbsoluteIMU extends BaseSensor {
         sendCommand(cmd);
     }
 
+    /*
     private class AccelerometerMode extends EV3DevSensorMode {
 
         private File pathDevice = null;
@@ -250,6 +275,7 @@ public class AbsoluteIMU extends BaseSensor {
         }
 
     }
+
 
     private class MagnetometerMode extends EV3DevSensorMode {
 
@@ -279,6 +305,7 @@ public class AbsoluteIMU extends BaseSensor {
 
     }
 
+
     private class GyroMode extends EV3DevSensorMode {
 
         private File pathDevice = null;
@@ -306,6 +333,7 @@ public class AbsoluteIMU extends BaseSensor {
         }
 
     }
+
 
     private class CompassMode extends EV3DevSensorMode {
 
@@ -360,6 +388,7 @@ public class AbsoluteIMU extends BaseSensor {
         }
 
     }
+    */
 
     /**
      * Set the smoothing filter for the gyro. <br>
