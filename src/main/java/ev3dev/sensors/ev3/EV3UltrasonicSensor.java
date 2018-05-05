@@ -107,7 +107,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
                 "Distance",
                 2,
                 MIN_RANGE,
-                MAX_RANGE);
+                MAX_RANGE,
+                10f);
     }
 
     /**

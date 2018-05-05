@@ -82,7 +82,8 @@ public class EV3IRSensor extends BaseSensor {
                 "Distance",
                 2,
                 MIN_RANGE,
-                MAX_RANGE);
+                MAX_RANGE,
+                1f);
     }
 
     /*

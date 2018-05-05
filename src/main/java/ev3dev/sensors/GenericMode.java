@@ -16,6 +16,7 @@ public class GenericMode implements SensorMode {
     private final int type;
     private float minRange;
     private float maxRange;
+    private float correctionFactor;
 
     public GenericMode (
             final File pathDevice,
@@ -34,10 +35,12 @@ public class GenericMode implements SensorMode {
             final String name,
             final int type,
             final float minRange,
-            final float maxRange) {
+            final float maxRange,
+            final float correctionFactor) {
         this(pathDevice, sampleSize, name, type);
         this.minRange = minRange;
         this.maxRange = maxRange;
+        this.correctionFactor = correctionFactor;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class GenericMode implements SensorMode {
             sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
 
         } else if (type == 2) {
-            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0) / 10f;
+            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0) / correctionFactor;
 
             if (rawValue < minRange) {
                 sample[offset] = 0;
