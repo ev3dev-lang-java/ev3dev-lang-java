@@ -7,6 +7,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: "jacoco"
+apply plugin: 'checkstyle'
 
 repositories {
     jcenter()
@@ -15,6 +16,8 @@ repositories {
 }
 
 dependencies {
+    checkstyle 'com.puppycrawl.tools:checkstyle:8.2'
+
     compile("org.slf4j:slf4j-api:1.7.25")
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
 
@@ -41,6 +44,10 @@ compileJava.options.encoding = 'UTF-8'
 compileJava {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
+}
+
+tasks.withType(Test) {
+    maxParallelForks = Runtime.runtime.availableProcessors() / 2
 }
 
 jacoco {
