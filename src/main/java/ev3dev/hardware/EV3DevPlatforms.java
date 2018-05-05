@@ -24,13 +24,12 @@ public class EV3DevPlatforms {
      */
     private static EV3DevPlatform retrievePlatform() {
 
-        //TODO Duplicated code
-        final String BATTERY = "power_supply";
+        final String BATTERY = ev3DevProperties.getProperty("battery");
         final String BATTERY_PATH = EV3DevFileSystem.getRootPath() + "/" + BATTERY;
-        final String BATTERY_EV3 =  ev3DevProperties.getProperty("BATTERY_EV3");
-        final String BATTERY_PISTORMS =  "pistorms-battery";
-        final String BATTERY_BRICKPI =  "brickpi-battery";
-        final String BATTERY_BRICKPI3 =  "brickpi3-battery";
+        final String BATTERY_EV3 =  ev3DevProperties.getProperty("ev3.battery");
+        final String BATTERY_PISTORMS =  ev3DevProperties.getProperty("pistorms.battery");
+        final String BATTERY_BRICKPI = ev3DevProperties.getProperty("brickpi.battery");;
+        final String BATTERY_BRICKPI3 =  ev3DevProperties.getProperty("brickpi3.battery");
         final String EV3BRICK_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_EV3;
         final String PISTORMS_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_PISTORMS;
         final String BRICKPI_DISCOVERY_PATTERN_PATH = BATTERY_PATH + "/" + BATTERY_BRICKPI;
@@ -86,37 +85,37 @@ public class EV3DevPlatforms {
         } else if(getPlatform().equals(EV3DevPlatform.BRICKPI)) {
 
             if (port.equals(MotorPort.A)) {
-                return "ttyAMA0:MA";
+                return ev3DevProperties.getProperty("brickpi.motor.port.a");
             } else if (port.equals(MotorPort.B)) {
-                return "ttyAMA0:MB";
+                return ev3DevProperties.getProperty("brickpi.motor.port.a");
             } else if (port.equals(MotorPort.C)) {
-                return "ttyAMA0:MC";
+                return ev3DevProperties.getProperty("brickpi.motor.port.a");
             } else if (port.equals(MotorPort.D)) {
-                return "ttyAMA0:MD";
+                return ev3DevProperties.getProperty("brickpi.motor.port.a");
             }
 
         } else if(getPlatform().equals(EV3DevPlatform.BRICKPI3)) {
 
             if (port.equals(MotorPort.A)) {
-                return "spi0.1:MA";
+                return ev3DevProperties.getProperty("brickpi3.motor.port.a");
             } else if (port.equals(MotorPort.B)) {
-                return "spi0.1:MB";
+                return ev3DevProperties.getProperty("brickpi3.motor.port.a");
             } else if (port.equals(MotorPort.C)) {
-                return "spi0.1:MC";
+                return ev3DevProperties.getProperty("brickpi3.motor.port.a");
             } else if (port.equals(MotorPort.D)) {
-                return "spi0.1:MD";
+                return ev3DevProperties.getProperty("brickpi3.motor.port.a");
             }
 
         } else {
 
             if (port.equals(MotorPort.A)) {
-                return "pistorms:BBM1";
+                return ev3DevProperties.getProperty("pistorms.motor.port.a");
             } else if (port.equals(MotorPort.B)) {
-                return "pistorms:BBM2";
+                return ev3DevProperties.getProperty("pistorms.motor.port.a");
             } else if (port.equals(MotorPort.C)) {
-                return "pistorms:BAM2";
+                return ev3DevProperties.getProperty("pistorms.motor.port.a");
             } else if (port.equals(MotorPort.D)) {
-                return "pistorms:BAM1";
+                return ev3DevProperties.getProperty("pistorms.motor.port.a");
             }
 
         }
@@ -140,38 +139,38 @@ public class EV3DevPlatforms {
 
         } else if(getPlatform().equals(EV3DevPlatform.BRICKPI)) {
 
-            if (port.equals(SensorPort.S1)) {
-                return "ttyAMA0:S1";
-            } else if (port.equals(SensorPort.S2)) {
-                return "ttyAMA0:S2";
-            } else if (port.equals(SensorPort.S3)) {
-                return "ttyAMA0:S3";
-            } else if (port.equals(SensorPort.S4)) {
-                return "ttyAMA0:S4";
+            if(port.equals(SensorPort.S1)){
+                return ev3DevProperties.getProperty("brickpi.sensor.port.1");
+            }else if(port.equals(SensorPort.S2)){
+                return ev3DevProperties.getProperty("brickpi.sensor.port.2");
+            }else if(port.equals(SensorPort.S3)){
+                return ev3DevProperties.getProperty("brickpi.sensor.port.3");
+            }else if(port.equals(SensorPort.S4)){
+                return ev3DevProperties.getProperty("brickpi.sensor.port.4");
             }
 
         } else if(getPlatform().equals(EV3DevPlatform.BRICKPI3)) {
 
-            if (port.equals(SensorPort.S1)) {
-                return "spi0.1:S1";
-            } else if (port.equals(SensorPort.S2)) {
-                return "spi0.1:S2";
-            } else if (port.equals(SensorPort.S3)) {
-                return "spi0.1:S3";
-            } else if (port.equals(SensorPort.S4)) {
-                return "spi0.1:S4";
+            if(port.equals(SensorPort.S1)){
+                return ev3DevProperties.getProperty("brickpi3.sensor.port.1");
+            }else if(port.equals(SensorPort.S2)){
+                return ev3DevProperties.getProperty("brickpi3.sensor.port.2");
+            }else if(port.equals(SensorPort.S3)){
+                return ev3DevProperties.getProperty("brickpi3.sensor.port.3");
+            }else if(port.equals(SensorPort.S4)){
+                return ev3DevProperties.getProperty("brickpi3.sensor.port.4");
             }
 
         } else {
 
-            if (port.equals(SensorPort.S1)) {
-                return "pistorms:BBS2";
-            } else if (port.equals(SensorPort.S2)) {
-                return "pistorms:BBS1";
-            } else if (port.equals(SensorPort.S3)) {
-                return "pistorms:BAS1";
-            } else if (port.equals(SensorPort.S4)) {
-                return "pistorms:BAS2";
+            if(port.equals(SensorPort.S1)){
+                return ev3DevProperties.getProperty("pistorms.sensor.port.1");
+            }else if(port.equals(SensorPort.S2)){
+                return ev3DevProperties.getProperty("pistorms.sensor.port.2");
+            }else if(port.equals(SensorPort.S3)){
+                return ev3DevProperties.getProperty("pistorms.sensor.port.3");
+            }else if(port.equals(SensorPort.S4)){
+                return ev3DevProperties.getProperty("pistorms.sensor.port.4");
             }
 
         }

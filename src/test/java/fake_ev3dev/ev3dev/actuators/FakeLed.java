@@ -14,7 +14,7 @@ public class FakeLed extends BaseElement{
     public static final String RED_LED = ":red:ev3dev";
     public static final String GREEN_LED = ":green:ev3dev";
     public static final String BRIGHTNESS = "brightness";
-    
+
     public FakeLed(final EV3DevPlatform ev3DevPlatform) throws IOException {
 
         Path ledRightGreen = Paths.get(
