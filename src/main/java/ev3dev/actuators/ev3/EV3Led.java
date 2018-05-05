@@ -16,13 +16,7 @@ public class EV3Led extends EV3DevDevice implements LED {
     public static final int RIGHT = 1;
 
     final private int direction;
-
-    public static final String LEFT_LED = "leds/ev3:left";
-    public static final String RIGHT_LED = "leds/ev3:right";
-    public static final String RED_LED = ":red:ev3dev";
-    public static final String GREEN_LED = ":green:ev3dev";
-    public static final String BRIGHTNESS = "brightness";
-
+    
 	public EV3Led(final int button) {
 
         if(!EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
