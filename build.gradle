@@ -47,8 +47,8 @@ compileJava {
     targetCompatibility = 1.8
 }
 
-tasks.withType(Test) {
-    maxParallelForks = Runtime.runtime.availableProcessors() / 2
+test.testLogging {
+    exceptionFormat "full"
 }
 
 jacoco {
