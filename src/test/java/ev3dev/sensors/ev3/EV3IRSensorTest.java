@@ -8,6 +8,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class EV3IRSensorTest {
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
+    @Ignore
     @Test
     public void getSensorNameTest() throws Exception {
 
@@ -41,6 +43,7 @@ public class EV3IRSensorTest {
         assertThat(irSensor.getName(), Matchers.is("Distance"));
     }
 
+    @Ignore
     @Test
     public void getAvailableModes() throws Exception {
 

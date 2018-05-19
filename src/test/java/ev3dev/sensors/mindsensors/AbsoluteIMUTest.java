@@ -8,6 +8,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -36,6 +37,7 @@ public class AbsoluteIMUTest {
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
+    @Ignore
     @Test
     public void getAvailableModesTest() throws Exception {
 
@@ -50,6 +52,7 @@ public class AbsoluteIMUTest {
         assertThat(modes, Matchers.is(expectedModes));
     }
 
+    @Ignore
     @Test
     public void getAccelerationModeTest() throws Exception {
 

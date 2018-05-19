@@ -9,6 +9,7 @@ import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class EV3TouchSensorTest {
 
     }
 
+    @Ignore
     @Test
     public void getSensorNameTest() throws Exception {
 
@@ -40,6 +42,7 @@ public class EV3TouchSensorTest {
         assertThat(touchSensor.getName(), Matchers.is("Touch"));
     }
 
+    @Ignore
     @Test
     public void getAvailableModes() throws Exception {
 
