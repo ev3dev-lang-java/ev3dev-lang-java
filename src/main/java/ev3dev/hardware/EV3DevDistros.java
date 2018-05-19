@@ -20,11 +20,9 @@ public class EV3DevDistros {
         if (jessieResult.length() > 0) {
             LOGGER.debug("Debian Jessie detected");
             return EV3DevDistro.JESSIE;
-        } else {
-            LOGGER.debug("Debian Stretch detected");
-            return EV3DevDistro.STRETCH;
         }
-
+        LOGGER.debug("Debian Stretch detected");
+        return EV3DevDistro.STRETCH;
     }
 
     public static EV3DevDistro getDistro() {
