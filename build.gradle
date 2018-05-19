@@ -19,9 +19,8 @@ dependencies {
     checkstyle 'com.puppycrawl.tools:checkstyle:8.2'
 
     annotationProcessor("org.projectlombok:lombok:1.16.20")
-    testCompile("org.projectlombok:lombok:1.16.20")
-    //compileOnly("org.projectlombok:lombok:1.16.20")
-    //testCompileOnly("org.projectlombok:lombok:1.16.20")
+    compileOnly("org.projectlombok:lombok:1.16.20")
+    testCompileOnly("org.projectlombok:lombok:1.16.20")
 
     compile("org.slf4j:slf4j-api:1.7.25")
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
