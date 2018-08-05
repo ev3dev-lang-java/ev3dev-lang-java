@@ -2,7 +2,6 @@ package ev3dev.actuators.ev3;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.LED;
 import org.slf4j.Logger;
@@ -17,14 +16,19 @@ public class EV3Led extends EV3DevDevice implements LED {
 
     final private int direction;
 
-    private final String LED_LEFT_RED = ev3DevProperties.getProperty("ev3.led.left.red");
-	private final String LED_LEFT_GREEN = ev3DevProperties.getProperty("ev3.led.left.green");
-	private final String LED_RIGHT_RED = ev3DevProperties.getProperty("ev3.led.right.red");
-	private final String LED_RIGHT_GREEN = ev3DevProperties.getProperty("ev3.led.right.green");
+	private final String LED_LEFT_RED;
+	private final String LED_LEFT_GREEN;
+	private final String LED_RIGHT_RED;
+	private final String LED_RIGHT_GREEN;
 
 	public EV3Led(final int button) {
 
-        if(!EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+		LED_LEFT_RED = ev3DevProperties.getProperty("ev3.led.left.red");
+		LED_LEFT_GREEN = ev3DevProperties.getProperty("ev3.led.left.green");
+		LED_RIGHT_RED = ev3DevProperties.getProperty("ev3.led.right.red");
+		LED_RIGHT_GREEN = ev3DevProperties.getProperty("ev3.led.right.green");
+
+		if(!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
             log.error("This actuator is specific of: {}", EV3DevPlatform.EV3BRICK);
             throw new RuntimeException("This actuator is specific of: " + EV3DevPlatform.EV3BRICK);
         }

@@ -7,6 +7,7 @@ import lejos.hardware.port.Port;
 import lejos.robotics.DCMotor;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** 
  * Abstraction for basic motors operations.
@@ -19,7 +20,7 @@ import org.slf4j.Logger;
  */
 public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BasicMotor.class);
+    private static final Logger log = LoggerFactory.getLogger(BasicMotor.class);
 
     private int power = 50;
 
@@ -30,11 +31,12 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
 	public BasicMotor(final Port motorPort) {
 
-		if(!EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+		if(!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
 			throw new RuntimeException("This device is not supported in this platform");
 		}
 
-		final String port = EV3DevPlatforms.getMotorPort(motorPort);
+		final EV3DevPlatforms ev3DevPlatforms = new EV3DevPlatforms();
+		final String port = ev3DevPlatforms.getMotorPort(motorPort);
 
         log.debug("Detecting motor on port: {}", port);
         this.detect(LEGO_PORT, port);

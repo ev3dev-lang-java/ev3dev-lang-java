@@ -2,7 +2,6 @@ package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
@@ -54,7 +53,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     // Prevent duplicate objects
     private LCD() {
-        if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+        if(CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
             init(EV3_SCREEN_WIDTH, EV3_SCREEN_HEIGHT, EV3_LINE_LEN, EV3_BUFFER_SIZE);
         } else {
             log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);

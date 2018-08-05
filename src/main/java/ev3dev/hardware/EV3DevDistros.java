@@ -12,21 +12,21 @@ public class EV3DevDistros {
     private static final String STRETCH_DISTRO_DETECTION_QUERY = DEBIAN_DISTRO_DETECTION_QUERY + " | grep stretch";
     private static final String JESSIE_DISTRO_DETECTION_QUERY = DEBIAN_DISTRO_DETECTION_QUERY + " | grep jessie";
 
-    private static final EV3DevDistro CURRENT_DISTRO = retrieveDistro();
+    private EV3DevDistro CURRENT_DISTRO;
 
-    private static EV3DevDistro retrieveDistro() {
+    public EV3DevDistros() {
 
         final String jessieResult = Shell.execute(JESSIE_DISTRO_DETECTION_QUERY);
         if (jessieResult.length() > 0) {
             LOGGER.debug("Debian Jessie detected");
-            return EV3DevDistro.JESSIE;
+            CURRENT_DISTRO = EV3DevDistro.JESSIE;
         }
 
         LOGGER.debug("Debian Stretch detected");
-        return EV3DevDistro.STRETCH;
+        CURRENT_DISTRO = EV3DevDistro.STRETCH;
     }
 
-    public static EV3DevDistro getDistro() {
+    public EV3DevDistro getDistro() {
         return CURRENT_DISTRO;
     }
 

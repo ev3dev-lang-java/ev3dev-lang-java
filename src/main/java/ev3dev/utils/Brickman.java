@@ -5,6 +5,7 @@ import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,7 +16,7 @@ import java.util.Set;
 
 public class Brickman {
 
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Shell.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Shell.class);
 
     private static final String DISABLE_BRICKMAN_COMMAND = "sudo systemctl stop brickman";
     private static final String ENABLE_BRICKMAN_COMMAND = "sudo systemctl start brickman";
@@ -27,8 +28,8 @@ public class Brickman {
         final Set<EV3DevPlatform> platforms = new HashSet<>();
         platforms.add(EV3DevPlatform.EV3BRICK);
 
-        final Brickman obj = new Brickman();
-        if(platforms.contains(EV3DevPlatforms.getPlatform())) {
+        EV3DevPlatforms ev3DevPlatforms = new EV3DevPlatforms();
+        if(platforms.contains(ev3DevPlatforms.getPlatform())) {
 
             if(LOGGER.isTraceEnabled())
                 LOGGER.trace("Disabling Brickman to run a Java process");
