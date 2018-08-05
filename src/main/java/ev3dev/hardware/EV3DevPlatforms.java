@@ -13,16 +13,12 @@ public class EV3DevPlatforms {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevPlatforms.class);
 
-    private static final Properties ev3DevProperties = EV3DevPropertyLoader.getEV3DevProperties();
-    private static final EV3DevPlatform CURRENT_PLATFORM = retrievePlatform();
+    private final EV3DevPlatform CURRENT_PLATFORM;
 
-    /**
-     * This method returns the platform
-     *
-     * @return Platform used
-     * @throws RuntimeException Exception
-     */
-    private static EV3DevPlatform retrievePlatform() {
+    public EV3DevPlatforms() {
+
+        final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
+        final Properties ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
 
         final String BATTERY = ev3DevProperties.getProperty("battery");
         final String BATTERY_PATH = EV3DevFileSystem.getRootPath() + "/" + BATTERY;
@@ -39,22 +35,22 @@ public class EV3DevPlatforms {
             if(LOGGER.isTraceEnabled())
                 LOGGER.trace(EV3BRICK_DISCOVERY_PATTERN_PATH);
                 LOGGER.trace("Detected platform: " + EV3DevPlatform.EV3BRICK);
-            return EV3DevPlatform.EV3BRICK;
+            CURRENT_PLATFORM = EV3DevPlatform.EV3BRICK;
         } else if(Sysfs.existPath(PISTORMS_DISCOVERY_PATTERN_PATH)){
             if(LOGGER.isTraceEnabled())
                 LOGGER.trace(PISTORMS_DISCOVERY_PATTERN_PATH);
                 LOGGER.trace("Detected platform: " + EV3DevPlatform.PISTORMS);
-            return EV3DevPlatform.PISTORMS;
+            CURRENT_PLATFORM =  EV3DevPlatform.PISTORMS;
         } else if(Sysfs.existPath(BRICKPI_DISCOVERY_PATTERN_PATH)){
             if(LOGGER.isTraceEnabled())
                 LOGGER.trace(BRICKPI_DISCOVERY_PATTERN_PATH);
                 LOGGER.trace("Detected platform: " + EV3DevPlatform.BRICKPI);
-            return EV3DevPlatform.BRICKPI;
+            CURRENT_PLATFORM =  EV3DevPlatform.BRICKPI;
         } else if(Sysfs.existPath(BRICKPI3_DISCOVERY_PATTERN_PATH)){
             if(LOGGER.isTraceEnabled())
                 LOGGER.trace(BRICKPI3_DISCOVERY_PATTERN_PATH);
                 LOGGER.trace("Detected platform: " + EV3DevPlatform.BRICKPI3);
-            return EV3DevPlatform.BRICKPI3;
+            CURRENT_PLATFORM =  EV3DevPlatform.BRICKPI3;
         } else {
             final String OS_NAME = System.getProperty("os.name");
             final String OS_VERSION = System.getProperty("os.version");
@@ -64,11 +60,14 @@ public class EV3DevPlatforms {
         }
     }
 
-    public static EV3DevPlatform getPlatform() {
+    public EV3DevPlatform getPlatform() {
         return CURRENT_PLATFORM;
     }
 
-    public static String getMotorPort(final Port port) {
+    public String getMotorPort(final Port port) {
+
+        final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
+        final Properties ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
 
         if(getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
@@ -123,7 +122,10 @@ public class EV3DevPlatforms {
         throw new RuntimeException("Bad port used");
     }
 
-    public static String getSensorPort(final Port port) {
+    public String getSensorPort(final Port port) {
+
+        final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
+        final Properties ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
 
         if(getPlatform().equals(EV3DevPlatform.EV3BRICK)){
 
