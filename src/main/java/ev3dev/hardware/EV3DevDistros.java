@@ -20,10 +20,10 @@ public class EV3DevDistros {
         if (jessieResult.length() > 0) {
             LOGGER.debug("Debian Jessie detected");
             CURRENT_DISTRO = EV3DevDistro.JESSIE;
-        } else {
-            LOGGER.debug("Debian Stretch detected");
-            CURRENT_DISTRO = EV3DevDistro.STRETCH;
         }
+
+        LOGGER.debug("Debian Stretch detected");
+        CURRENT_DISTRO = EV3DevDistro.STRETCH;
     }
 
     public EV3DevDistro getDistro() {
