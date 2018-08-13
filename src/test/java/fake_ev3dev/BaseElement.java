@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class BaseElement {
 
     private static final String JAVA_IO_TEMPDIR = System.getProperty("java.io.tmpdir");
-    public static final String EV3DEV_FAKE_SYSTEM_PATH = JAVA_IO_TEMPDIR + "ev3dev_fake_system";
+    public static final String EV3DEV_FAKE_SYSTEM_PATH = JAVA_IO_TEMPDIR + "/" + "ev3dev_fake_system";
 
     protected static final String LEGO_PORT_PATH = "lego-port";
     protected static final String PORT = "port";
