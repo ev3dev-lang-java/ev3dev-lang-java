@@ -1,13 +1,39 @@
 //Gradle file library ev3dev-lang-java
 //Author: Juan Antonio Breña Moral
 
-version = '2.4.0-SNAPSHOT'
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+        classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
+    }
+}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: "jacoco"
-apply plugin: 'checkstyle'
+//Deploy on Brick
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
+    }
+}
+
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    id "jacoco"
+    id 'checkstyle'
+}
+
+version = '2.4.0-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -15,12 +41,13 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+lombok {
+    version = '1.18.2'
+    sha256 = ""
+}
+
 dependencies {
     checkstyle 'com.puppycrawl.tools:checkstyle:8.2'
-
-    annotationProcessor("org.projectlombok:lombok:1.16.20")
-    compileOnly("org.projectlombok:lombok:1.16.20")
-    testCompileOnly("org.projectlombok:lombok:1.16.20")
 
     compile("org.slf4j:slf4j-api:1.7.25")
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
@@ -93,17 +120,6 @@ jar {
     }
 }
 
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
-        classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
-    }
-}
-
 //Fat Jar
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: "net.ossindex.audit"
@@ -113,17 +129,6 @@ task fatJar << {
 }
 fatJar.dependsOn shadowJar
 
-//Deploy on Brick
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
-    }
-}
 apply plugin: 'org.hidetake.ssh'
 
 apply from: './gradle/deploy.gradle'
