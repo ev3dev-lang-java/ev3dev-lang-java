@@ -31,6 +31,7 @@ plugins {
     id 'idea'
     id "jacoco"
     id 'checkstyle'
+    id 'maven-publish'
 }
 
 version = '2.4.0-SNAPSHOT'
@@ -145,3 +146,16 @@ configure(allprojects) { project ->
             "-Xlint:deprecation", "-Xlint:unchecked", "-Xlint:rawtypes",
     ]
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.ev3dev-lang-java'
+            artifactId = 'ev3dev-lang-java'
+            version = "${version}"
+
+            from components.java
+        }
+    }
+}
+
