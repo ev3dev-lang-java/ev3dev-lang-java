@@ -86,11 +86,11 @@ public class EV3DevPlatforms {
             if (port.equals(MotorPort.A)) {
                 return ev3DevProperties.getProperty("brickpi.motor.port.a");
             } else if (port.equals(MotorPort.B)) {
-                return ev3DevProperties.getProperty("brickpi.motor.port.a");
+                return ev3DevProperties.getProperty("brickpi.motor.port.b");
             } else if (port.equals(MotorPort.C)) {
-                return ev3DevProperties.getProperty("brickpi.motor.port.a");
+                return ev3DevProperties.getProperty("brickpi.motor.port.c");
             } else if (port.equals(MotorPort.D)) {
-                return ev3DevProperties.getProperty("brickpi.motor.port.a");
+                return ev3DevProperties.getProperty("brickpi.motor.port.d");
             }
 
         } else if(getPlatform().equals(EV3DevPlatform.BRICKPI3)) {
@@ -98,11 +98,11 @@ public class EV3DevPlatforms {
             if (port.equals(MotorPort.A)) {
                 return ev3DevProperties.getProperty("brickpi3.motor.port.a");
             } else if (port.equals(MotorPort.B)) {
-                return ev3DevProperties.getProperty("brickpi3.motor.port.a");
+                return ev3DevProperties.getProperty("brickpi3.motor.port.b");
             } else if (port.equals(MotorPort.C)) {
-                return ev3DevProperties.getProperty("brickpi3.motor.port.a");
+                return ev3DevProperties.getProperty("brickpi3.motor.port.c");
             } else if (port.equals(MotorPort.D)) {
-                return ev3DevProperties.getProperty("brickpi3.motor.port.a");
+                return ev3DevProperties.getProperty("brickpi3.motor.port.d");
             }
 
         } else {
@@ -110,11 +110,11 @@ public class EV3DevPlatforms {
             if (port.equals(MotorPort.A)) {
                 return ev3DevProperties.getProperty("pistorms.motor.port.a");
             } else if (port.equals(MotorPort.B)) {
-                return ev3DevProperties.getProperty("pistorms.motor.port.a");
+                return ev3DevProperties.getProperty("pistorms.motor.port.b");
             } else if (port.equals(MotorPort.C)) {
-                return ev3DevProperties.getProperty("pistorms.motor.port.a");
+                return ev3DevProperties.getProperty("pistorms.motor.port.c");
             } else if (port.equals(MotorPort.D)) {
-                return ev3DevProperties.getProperty("pistorms.motor.port.a");
+                return ev3DevProperties.getProperty("pistorms.motor.port.d");
             }
 
         }
