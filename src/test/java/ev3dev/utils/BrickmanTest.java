@@ -1,6 +1,8 @@
 package ev3dev.utils;
 
 import ev3dev.actuators.LCD;
+import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.actuators.FakeLCD;
@@ -31,10 +33,13 @@ public class BrickmanTest {
     @Test
     public void disableBrickmanOnEV3Test() throws Exception {
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + LCD.EV3DEV_EV3_LCD_PATH);
-
         final EV3DevPlatform platform = EV3DevPlatform.EV3BRICK;
+
+        EV3DevPlatforms conf = new EV3DevPlatforms(platform);
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
 
@@ -46,10 +51,13 @@ public class BrickmanTest {
 
         thrown.expect(RuntimeException.class);
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + LCD.EV3DEV_EV3_LCD_PATH);
-
         final EV3DevPlatform platform = EV3DevPlatform.BRICKPI;
+
+        EV3DevPlatforms conf = new EV3DevPlatforms(platform);
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
 
@@ -61,10 +69,13 @@ public class BrickmanTest {
 
         thrown.expect(RuntimeException.class);
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + LCD.EV3DEV_EV3_LCD_PATH);
-
         final EV3DevPlatform platform = EV3DevPlatform.BRICKPI3;
+
+        EV3DevPlatforms conf = new EV3DevPlatforms(platform);
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
 
@@ -77,10 +88,13 @@ public class BrickmanTest {
 
         thrown.expect(RuntimeException.class);
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + LCD.EV3DEV_EV3_LCD_PATH);
-
         final EV3DevPlatform platform = EV3DevPlatform.PISTORMS;
+
+        EV3DevPlatforms conf = new EV3DevPlatforms(platform);
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
 
@@ -92,10 +106,13 @@ public class BrickmanTest {
 
         thrown.expect(RuntimeException.class);
 
-        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
-        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + LCD.EV3DEV_EV3_LCD_PATH);
-
         final EV3DevPlatform platform = EV3DevPlatform.UNKNOWN;
+
+        EV3DevPlatforms conf = new EV3DevPlatforms(platform);
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
 

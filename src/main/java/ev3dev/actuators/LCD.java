@@ -2,6 +2,8 @@ package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.hardware.EV3DevScreenInfo;
+import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.awt.color.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
@@ -17,22 +20,10 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     private static final Logger log = LoggerFactory.getLogger(LCD.class);
 
-    public static final String EV3DEV_EV3_DEVICES_PATH = "/dev";
-    public static final String EV3DEV_EV3_LCD_NAME = "fb0";
-    public static final String EV3DEV_EV3_LCD_PATH = EV3DEV_EV3_DEVICES_PATH + "/" + EV3DEV_EV3_LCD_NAME;
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
-    public static final String FB_PATH = Objects.nonNull(System.getProperty(EV3DEV_LCD_KEY)) ? System.getProperty(EV3DEV_LCD_KEY) : EV3DEV_EV3_LCD_PATH;
 
-    private int SCREEN_WIDTH = 0;
-    private int SCREEN_HEIGHT = 0;
-    private int LINE_LEN = 0;
-    private int BUFFER_SIZE = 0;
-
-    public static final int EV3_SCREEN_WIDTH = 178;
-    public static final int EV3_SCREEN_HEIGHT = 128;
-    public static final int EV3_LINE_LEN = 24;
-    public static final int EV3_ROWS = 128;
-    public static final int EV3_BUFFER_SIZE = EV3_LINE_LEN * EV3_ROWS;
+    private EV3DevScreenInfo info;
+    private int bufferSize;
 
     private BufferedImage image;
     private Graphics2D g2d;
@@ -53,37 +44,78 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     // Prevent duplicate objects
     private LCD() {
-        if(CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
-            init(EV3_SCREEN_WIDTH, EV3_SCREEN_HEIGHT, EV3_LINE_LEN, EV3_BUFFER_SIZE);
+        EV3DevPlatforms conf = new EV3DevPlatforms();
+
+        if(conf.getPlatform() == EV3DevPlatform.EV3BRICK){
+            init(conf.getFramebufferInfo());
         } else {
             log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
             throw new RuntimeException("This actuator was only tested for: " + EV3DevPlatform.EV3BRICK);
         }
     }
 
-    private void init(
-            final int width,
-            final int height,
-            final int lineLength,
-            final int bufferSize) {
+    private BufferedImage initBitplane() {
+        // initialize backing store
+        byte[] data = new byte[bufferSize];
+        DataBuffer db = new DataBufferByte(data, data.length);
 
-        this.SCREEN_WIDTH = width;
-        this.SCREEN_HEIGHT = height;
-        this.LINE_LEN = lineLength;
-        this.BUFFER_SIZE = bufferSize;
+        // initialize buffer <-> sample mapping
+        MultiPixelPackedSampleModel packing =
+            new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE,
+                                            info.getWidth(), info.getHeight(),
+                                            1, info.getStride(), 0);
 
-        if (Files.notExists(Paths.get(FB_PATH))) {
-            throw new RuntimeException("Device path not found: " + FB_PATH);
+        // initialize raster
+        WritableRaster wr = Raster.createWritableRaster(packing, db, null);
+
+        // initialize color interpreter
+        int[] bits = new int[]{1};
+        ColorSpace gray = ColorSpace.getInstance(ColorSpace.CS_GRAY);
+        ComponentColorModel cm = new ComponentColorModel(gray, bits, false, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+
+        // glue everything together
+        return new BufferedImage(cm, wr, false, null);
+    }
+
+    private BufferedImage initXrgb() {
+        // initialize backing store
+        byte[] data = new byte[bufferSize];
+        DataBuffer db = new DataBufferByte(data, data.length);
+
+        // initialize buffer <-> sample mapping
+        //            offset of:  R  G  B  A
+        int[] offsets = new int[]{1, 2, 3, 0};
+        PixelInterleavedSampleModel packing =
+            new PixelInterleavedSampleModel(DataBuffer.TYPE_BYTE,
+                                            info.getWidth(), info.getHeight(),
+                                            4, 4 * info.getWidth(), offsets);
+
+        // initialize raster
+        WritableRaster wr = Raster.createWritableRaster(packing, db, null);
+
+        // initialize color interpreter
+        // sample order: R, G, B, A
+        ColorSpace rgb = ColorSpace.getInstance(ColorSpace.CS_LINEAR_RGB);
+        ComponentColorModel cm = new ComponentColorModel(rgb, true, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+
+        // glue everything together
+        return new BufferedImage(cm, wr, false, null);
+    }
+
+    private void init(EV3DevScreenInfo inInfo) {
+        this.info = inInfo;
+        this.bufferSize = this.info.getStride() * this.info.getHeight();
+
+        String alternative = System.getProperty(EV3DEV_LCD_KEY);
+        if (alternative != null) {
+            this.info.setKernelPath(alternative);
         }
 
-        byte[] data = new byte[bufferSize];
-        byte[] bwarr = {(byte) 0xff, (byte) 0x00};
-        IndexColorModel bwcm = new IndexColorModel(1, bwarr.length, bwarr, bwarr, bwarr);
+        if (Files.notExists(Paths.get(info.getKernelPath()))) {
+            throw new RuntimeException("Device path not found: " + info.getKernelPath());
+        }
 
-        DataBuffer db = new DataBufferByte(data, data.length);
-        WritableRaster wr = Raster.createPackedRaster(db, SCREEN_WIDTH, SCREEN_HEIGHT, 1, null);
-
-        this.image = new BufferedImage(bwcm, wr, false, null);
+        this.image = info.getKernelMode() == EV3DevScreenInfo.Mode.BITPLANE ? initBitplane() : initXrgb();
         this.g2d = (Graphics2D) image.getGraphics();
 
         g2d.setColor(Color.WHITE);
@@ -99,30 +131,8 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
      * Write LCD with current context
      */
     public void flush(){
-
-        byte[] buf = new byte[BUFFER_SIZE];
-        int bitPos;
-        for (int i = 0; i < SCREEN_HEIGHT; i++){
-            bitPos = 0;
-            for (int j = 0; j < SCREEN_WIDTH; j++){
-
-                if (bitPos > 7){
-                    bitPos = 0;
-                }
-
-                //TODO: Rewrite not to use getRGB()! It results in low performance
-                Color color = new Color(image.getRGB(j, i));
-                int y = (int) (0.2126 * color.getRed() + 0.7152 * color.getBlue() + 0.0722 * color.getGreen()); //Combine all colours together 255+255+255 = 765
-                if (y < 128){
-                    buf[i * LINE_LEN + j / 8] |= (1 << bitPos);
-                } else {
-                    buf[i * LINE_LEN + j / 8] &= ~(1 << bitPos);
-                }
-                bitPos++;
-            }
-        }
-
-        Sysfs.writeBytes(FB_PATH, buf);
+        byte[] data = getHWDisplay();
+        Sysfs.writeBytes(info.getKernelPath(), data);
     }
 
 
@@ -290,30 +300,30 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     @Override
     public void clear() {
         g2d.setColor(Color.WHITE);
-        g2d.fillRect(0,0, this.SCREEN_WIDTH, this.SCREEN_HEIGHT);
+        g2d.fillRect(0,0, info.getWidth(), info.getHeight());
         flush();
     }
 
     @Override
     public int getWidth() {
-        return this.SCREEN_WIDTH;
+        return info.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return this.SCREEN_HEIGHT;
+        return info.getHeight();
     }
 
     @Override
     public byte[] getDisplay() {
-        log.debug("Feature not implemented");
-        return null;
+        return getHWDisplay();
     }
 
     @Override
     public byte[] getHWDisplay() {
-        log.debug("Feature not implemented");
-        return null;
+        Raster rst = image.getRaster();
+        DataBufferByte buf = (DataBufferByte) rst.getDataBuffer();
+        return buf.getData();
     }
 
     @Override
