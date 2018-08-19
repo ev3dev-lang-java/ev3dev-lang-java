@@ -47,6 +47,15 @@ task remoteRun << {
     }
 }
 
+task remoteRunClassVerbose << {
+    ssh.run {
+        session(remotes.ev3dev) {
+            println "java -verbose:class -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            execute "java -verbose:class -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+        }
+    }
+}
+
 task remoteSudoRun << {
     ssh.run {
         session(remotes.ev3dev) {
@@ -103,6 +112,7 @@ testConnection.group = groupName
 removePreviousJar.group = groupName
 deploy.group = groupName
 remoteRun.group = groupName
+remoteRunClassVerbose.group = groupName
 remoteSudoRun.group = groupName
 remoteProfilingRun.group = groupName
 remoteProfilingSudoRun.group = groupName

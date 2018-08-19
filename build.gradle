@@ -52,8 +52,8 @@ dependencies {
 
     compile("org.slf4j:slf4j-api:1.7.25")
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
-    
-    testCompile("ch.qos.logback:logback-classic:1.2.3")
+
+    compile("ch.qos.logback:logback-classic:1.2.3")
 
     testCompile("commons-io:commons-io:2.5")
     
