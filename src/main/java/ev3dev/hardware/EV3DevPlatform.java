@@ -5,20 +5,26 @@ package ev3dev.hardware;
  */
 public enum EV3DevPlatform {
 
-    EV3BRICK("EV3BRICK"),
-    PISTORMS("PISTORMS"),
-    BRICKPI("BRICKPI"),
-    BRICKPI3("BRICKPI3"),
-    UNKNOWN("UNKNOWN");
+    EV3BRICK("EV3BRICK", "ev3"),
+    PISTORMS("PISTORMS", "pistorms"),
+    BRICKPI ("BRICKPI",  "brickpi"),
+    BRICKPI3("BRICKPI3", "brickpi3"),
+    UNKNOWN ("UNKNOWN",  "unknown");
 
-    private String platform;
+    private final String platform;
+    private final String propNamespace;
 
-    private EV3DevPlatform(String stringVal) {
+    private EV3DevPlatform(String stringVal, String ns) {
         platform = stringVal;
+        propNamespace = ns;
     }
 
-    public String toString(){
+    public String toString() {
         return platform;
+    }
+
+    public String getPropertyNamespace() {
+        return propNamespace;
     }
 
     public static String getPlatformByString(final String code){
