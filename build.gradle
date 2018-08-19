@@ -52,11 +52,7 @@ dependencies {
 
     compile("org.slf4j:slf4j-api:1.7.25")
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
-
-    annotationProcessor("org.projectlombok:lombok:1.18.2")
-    compileOnly("org.projectlombok:lombok:1.18.2")
-    testCompileOnly("org.projectlombok:lombok:1.18.2")
-
+    
     testCompile("ch.qos.logback:logback-classic:1.2.3")
 
     testCompile("commons-io:commons-io:2.5")
