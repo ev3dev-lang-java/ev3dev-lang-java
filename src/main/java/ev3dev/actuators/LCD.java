@@ -95,7 +95,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
         // initialize color interpreter
         // sample order: R, G, B, A
-        ColorSpace rgb = ColorSpace.getInstance(ColorSpace.CS_LINEAR_RGB);
+        ColorSpace rgb = ColorSpace.getInstance(ColorSpace.CS_sRGB);
         ComponentColorModel cm = new ComponentColorModel(rgb, true, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
 
         // glue everything together
