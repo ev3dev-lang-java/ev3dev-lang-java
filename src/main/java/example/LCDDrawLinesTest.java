@@ -3,6 +3,7 @@ package example;
 import ev3dev.actuators.LCD;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.robotics.Color;
+import lejos.utility.Delay;
 
 public class LCDDrawLinesTest {
 
@@ -17,6 +18,8 @@ public class LCDDrawLinesTest {
         lcd.drawLine(0, 0, 50, 50);
         lcd.drawLine(0, 0, 30, 60);
         lcd.refresh();
+
+        Delay.msDelay(5000);
     }
 
     public static void clear(){
