@@ -63,7 +63,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         MultiPixelPackedSampleModel packing =
             new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE,
                                             info.getWidth(), info.getHeight(),
-                                            1, info.getStride(), 0);
+                                            1, info.getBitModeStride(), 0);
 
         // initialize raster
         WritableRaster wr = Raster.createWritableRaster(packing, db, null);
@@ -104,7 +104,16 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     private void init(EV3DevScreenInfo inInfo) {
         this.info = inInfo;
-        this.bufferSize = this.info.getStride() * this.info.getHeight();
+
+        int bits = Sysfs.readInteger(Paths.get(info.getSysfsPath(), "bits_per_pixel").toString());
+
+        if (bits == 32) {
+            this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
+            this.bufferSize = this.info.getWidth() * this.info.getHeight() * 4;
+        } else {
+            this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
+            this.bufferSize = this.info.getBitModeStride() * this.info.getHeight();
+        }
 
         String alternative = System.getProperty(EV3DEV_LCD_KEY);
         if (alternative != null) {

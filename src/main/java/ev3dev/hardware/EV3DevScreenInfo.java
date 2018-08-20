@@ -16,18 +16,20 @@ import java.util.EnumSet;
 
 public class EV3DevScreenInfo {
     public enum Mode {
-        BITPLANE, XRGB;
+        UNKNOWN, BITPLANE, XRGB;
     }
 
     private String path;
+    private String sysfs;
     private Mode mode;
     private int width;
     private int height;
     private int stride;
 
-    public EV3DevScreenInfo(String path, Mode mode, int w, int h, int s) {
+    public EV3DevScreenInfo(String path, String sysfs, int w, int h, int s) {
         this.path = path;
-        this.mode = mode;
+        this.sysfs = sysfs;
+        this.mode = Mode.UNKNOWN;
         this.width = w;
         this.height = h;
         this.stride = s;
@@ -41,8 +43,20 @@ public class EV3DevScreenInfo {
         this.path = path;
     }
 
+    public String getSysfsPath() {
+        return sysfs;
+    }
+
+    public void setSysfsPath(String path) {
+        this.sysfs = path;
+    }
+
     public Mode getKernelMode() {
         return mode;
+    }
+
+    public void setKernelMode(Mode m) {
+        this.mode = m;
     }
 
     public int getWidth() {
@@ -53,7 +67,7 @@ public class EV3DevScreenInfo {
         return height;
     }
 
-    public int getStride() {
+    public int getBitModeStride() {
         return stride;
     }
 }

@@ -114,24 +114,17 @@ class EV3DevPlatformsImpl {
     public EV3DevScreenInfo getFramebufferInfo() {
         // fetch from properties
         String path = Objects.requireNonNull(getProperty("framebuffer.path"));
-        String mode = Objects.requireNonNull(getProperty("framebuffer.mode"));
+        String sys  = Objects.requireNonNull(getProperty("framebuffer.sysfs"));
         String wStr = Objects.requireNonNull(getProperty("framebuffer.width"));
         String hStr = Objects.requireNonNull(getProperty("framebuffer.height"));
-        String sStr = getProperty("framebuffer.stride");
+        String sStr = Objects.requireNonNull(getProperty("framebuffer.bitstride"));
 
         // parse and pack
         int w = Integer.parseInt(wStr);
         int h = Integer.parseInt(hStr);
+        int s = Integer.parseInt(sStr);
         EV3DevScreenInfo pack = null;
-        if (mode.equals("bitplane")) {
-            int s = Integer.parseInt(Objects.requireNonNull(sStr));
-            pack = new EV3DevScreenInfo(path, EV3DevScreenInfo.Mode.BITPLANE, w, h, s);
-        } else if (mode.equals("xrgb")) {
-            pack = new EV3DevScreenInfo(path, EV3DevScreenInfo.Mode.XRGB, w, h, w * 4);
-        } else {
-            throw new RuntimeException("Invalid framebuffer mode");
-        }
-        return pack;
+        return new EV3DevScreenInfo(path, sys, w, h, s);
     }
 
     public String getProperty(String base) {
