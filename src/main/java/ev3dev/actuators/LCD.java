@@ -24,6 +24,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     private static final Logger log = LoggerFactory.getLogger(LCD.class);
 
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
+    public static final String EV3DEV_LCD_MODE_KEY = "EV3DEV_LCD_MODE_KEY";
 
     private EV3DevScreenInfo info;
 
@@ -60,12 +61,23 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     }
 
     private void identifyMode() {
-        int bits = Sysfs.readInteger(Paths.get(info.getSysfsPath(), "bits_per_pixel").toString());
+        String alternative = System.getProperty(EV3DEV_LCD_MODE_KEY);
+        if (alternative == null) {
+            int bits = Sysfs.readInteger(Paths.get(info.getSysfsPath(), "bits_per_pixel").toString());
 
-        if (bits == 32) {
-            this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
+            if (bits == 32) {
+                this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
+            } else {
+                this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
+            }
         } else {
-            this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
+            if (alternative == "xrgb") {
+                this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
+            } else if (alternative == "bitplane") {
+                this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
+            } else {
+                throw new RuntimeException("Invalid fake lcd mode.");
+            }
         }
     }
 
