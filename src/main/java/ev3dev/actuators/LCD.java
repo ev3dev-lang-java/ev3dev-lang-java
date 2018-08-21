@@ -12,8 +12,11 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.color.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.RandomAccessFile;
+import java.io.IOException;
+import java.nio.*;
+import java.nio.file.*;
+import java.nio.channels.FileChannel;
 import java.util.Objects;
 
 public class LCD extends EV3DevDevice implements GraphicsLCD {
@@ -23,12 +26,14 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
 
     private EV3DevScreenInfo info;
-    private int bufferSize;
 
     private BufferedImage image;
     private Graphics2D g2d;
 
     private static GraphicsLCD instance;
+
+    private MappedByteBuffer fbmem;
+    private int bufferSize;
 
     /**
      * Return a Instance of Sound.
@@ -51,6 +56,38 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         } else {
             log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
             throw new RuntimeException("This actuator was only tested for: " + EV3DevPlatform.EV3BRICK);
+        }
+    }
+
+    private void identifyMode() {
+        int bits = Sysfs.readInteger(Paths.get(info.getSysfsPath(), "bits_per_pixel").toString());
+
+        if (bits == 32) {
+            this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
+        } else {
+            this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
+        }
+    }
+
+    private void initFramebuffer() throws IOException {
+        String alternative = System.getProperty(EV3DEV_LCD_KEY);
+        if (alternative != null) {
+            this.info.setKernelPath(alternative);
+        }
+
+        if (Files.notExists(Paths.get(info.getKernelPath()))) {
+            throw new RuntimeException("Device path not found: " + info.getKernelPath());
+        }
+
+        if (info.getKernelMode() == EV3DevScreenInfo.Mode.BITPLANE) {
+            bufferSize = info.getBitModeStride() * info.getHeight();
+        } else {
+            bufferSize = 4 * info.getWidth() * info.getHeight();
+        }
+
+        try (RandomAccessFile f = new RandomAccessFile(info.getKernelPath(), "rw");
+             FileChannel chan = f.getChannel();) {
+            fbmem = chan.map(FileChannel.MapMode.READ_WRITE, 0, bufferSize);
         }
     }
 
@@ -78,25 +115,23 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     }
 
     private BufferedImage initXrgb() {
-        // initialize backing store
-        byte[] data = new byte[bufferSize];
-        DataBuffer db = new DataBufferByte(data, data.length);
+        // data masks
+        final int maskAlpha = 0xFF000000;
+        final int maskRed   = 0x00FF0000;
+        final int maskGreen = 0x0000FF00;
+        final int maskBlue  = 0x000000FF;
+        final int maskNone  = 0x00000000;
 
-        // initialize buffer <-> sample mapping
-        //            offset of:  R  G  B  A
-        int[] offsets = new int[]{1, 2, 3, 0};
-        PixelInterleavedSampleModel packing =
-            new PixelInterleavedSampleModel(DataBuffer.TYPE_BYTE,
-                                            info.getWidth(), info.getHeight(),
-                                            4, 4 * info.getWidth(), offsets);
+        // initialize backing store
+        int[] data = new int[bufferSize / 4];
+        DataBuffer db = new DataBufferInt(data, data.length);
 
         // initialize raster
-        WritableRaster wr = Raster.createWritableRaster(packing, db, null);
+        WritableRaster wr = Raster.createPackedRaster(db, info.getWidth(), info.getHeight(), info.getWidth(),
+                                                      new int[]{ maskRed, maskGreen, maskBlue, maskAlpha }, null);
 
         // initialize color interpreter
-        // sample order: R, G, B, A
-        ColorSpace rgb = ColorSpace.getInstance(ColorSpace.CS_sRGB);
-        ComponentColorModel cm = new ComponentColorModel(rgb, true, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+        DirectColorModel cm = new DirectColorModel(32, maskRed, maskGreen, maskBlue, maskAlpha);
 
         // glue everything together
         return new BufferedImage(cm, wr, false, null);
@@ -105,23 +140,12 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     private void init(EV3DevScreenInfo inInfo) {
         this.info = inInfo;
 
-        int bits = Sysfs.readInteger(Paths.get(info.getSysfsPath(), "bits_per_pixel").toString());
+        identifyMode();
 
-        if (bits == 32) {
-            this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
-            this.bufferSize = this.info.getWidth() * this.info.getHeight() * 4;
-        } else {
-            this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
-            this.bufferSize = this.info.getBitModeStride() * this.info.getHeight();
-        }
-
-        String alternative = System.getProperty(EV3DEV_LCD_KEY);
-        if (alternative != null) {
-            this.info.setKernelPath(alternative);
-        }
-
-        if (Files.notExists(Paths.get(info.getKernelPath()))) {
-            throw new RuntimeException("Device path not found: " + info.getKernelPath());
+        try {
+            initFramebuffer();
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to map the framebuffer", e);
         }
 
         this.image = info.getKernelMode() == EV3DevScreenInfo.Mode.BITPLANE ? initBitplane() : initXrgb();
@@ -139,9 +163,21 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     /**
      * Write LCD with current context
      */
-    public void flush(){
-        byte[] data = getHWDisplay();
-        Sysfs.writeBytes(info.getKernelPath(), data);
+    public void flush() {
+        WritableRaster rst = image.getRaster();
+        DataBuffer buf     = rst.getDataBuffer();
+        if (buf instanceof DataBufferByte) {
+            byte[] data = ((DataBufferByte) buf).getData();
+            ByteBuffer bytes = ByteBuffer.wrap(data);
+            fbmem.rewind();
+            fbmem.put(bytes);
+        } else if (buf instanceof DataBufferInt) {
+            int[] data = ((DataBufferInt) buf).getData();
+            IntBuffer ints = IntBuffer.wrap(data);
+            IntBuffer dest = fbmem.asIntBuffer();
+            dest.rewind();
+            dest.put(ints);
+        }
     }
 
 
@@ -325,14 +361,14 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     @Override
     public byte[] getDisplay() {
-        return getHWDisplay();
+        log.debug("Feature not implemented");
+        return null;
     }
 
     @Override
     public byte[] getHWDisplay() {
-        Raster rst = image.getRaster();
-        DataBufferByte buf = (DataBufferByte) rst.getDataBuffer();
-        return buf.getData();
+        log.debug("Feature not implemented");
+        return null;
     }
 
     @Override
