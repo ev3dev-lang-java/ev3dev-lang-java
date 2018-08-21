@@ -31,7 +31,7 @@ public class BrickmanTest {
     //OK PiStorms
 
     @Test
-    public void disableBrickmanOnEV3Test() throws Exception {
+    public void disableBrickmanOnNewEV3Test() throws Exception {
 
         final EV3DevPlatform platform = EV3DevPlatform.EV3BRICK;
 
@@ -39,6 +39,24 @@ public class BrickmanTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
         System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+        System.setProperty(LCD.EV3DEV_LCD_MODE_KEY, "xrgb");
+
+        final FakeBattery fakeBattery = new FakeBattery(platform);
+        final FakeLCD fakeLCD = new FakeLCD(platform);
+
+        Brickman.disable();
+    }
+
+    @Test
+    public void disableBrickmanOnOldEV3Test() throws Exception {
+
+        final EV3DevPlatform platform = EV3DevPlatform.EV3BRICK;
+
+        EV3DevPlatforms conf = new EV3DevPlatforms(platform);
+
+        System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+        System.setProperty(LCD.EV3DEV_LCD_MODE_KEY, "bitplane");
 
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
@@ -57,6 +75,7 @@ public class BrickmanTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
         System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+        System.setProperty(LCD.EV3DEV_LCD_MODE_KEY, "xrgb");
 
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
@@ -75,6 +94,7 @@ public class BrickmanTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
         System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+        System.setProperty(LCD.EV3DEV_LCD_MODE_KEY, "xrgb");
 
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
@@ -94,6 +114,7 @@ public class BrickmanTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
         System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+        System.setProperty(LCD.EV3DEV_LCD_MODE_KEY, "xrgb");
 
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
@@ -112,6 +133,7 @@ public class BrickmanTest {
 
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
         System.setProperty(LCD.EV3DEV_LCD_KEY, FakeLCD.EV3DEV_FAKE_SYSTEM_PATH + "/" + conf.getFramebufferInfo().getKernelPath());
+        System.setProperty(LCD.EV3DEV_LCD_MODE_KEY, "xrgb");
 
         final FakeBattery fakeBattery = new FakeBattery(platform);
         final FakeLCD fakeLCD = new FakeLCD(platform);
