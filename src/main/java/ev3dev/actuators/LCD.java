@@ -106,9 +106,8 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         WritableRaster wr = Raster.createWritableRaster(packing, db, null);
 
         // initialize color interpreter
-        int[] bits = new int[]{1};
-        ColorSpace gray = ColorSpace.getInstance(ColorSpace.CS_GRAY);
-        ComponentColorModel cm = new ComponentColorModel(gray, bits, false, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+        byte[] mapPixels = new byte[]{ (byte)0xFF, (byte)0x00 };
+        IndexColorModel cm = new IndexColorModel(1, mapPixels.length, mapPixels, mapPixels, mapPixels);
 
         // glue everything together
         return new BufferedImage(cm, wr, false, null);
