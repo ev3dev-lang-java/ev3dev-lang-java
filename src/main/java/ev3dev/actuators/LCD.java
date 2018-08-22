@@ -33,7 +33,6 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     private static GraphicsLCD instance;
 
-    private MappedByteBuffer fbmem;
     private int bufferSize;
 
     /**
@@ -95,11 +94,6 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
             bufferSize = info.getBitModeStride() * info.getHeight();
         } else {
             bufferSize = 4 * info.getWidth() * info.getHeight();
-        }
-
-        try (RandomAccessFile f = new RandomAccessFile(info.getKernelPath(), "rw");
-             FileChannel chan = f.getChannel();) {
-            fbmem = chan.map(FileChannel.MapMode.READ_WRITE, 0, bufferSize);
         }
     }
 
@@ -179,15 +173,14 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         DataBuffer buf     = rst.getDataBuffer();
         if (buf instanceof DataBufferByte) {
             byte[] data = ((DataBufferByte) buf).getData();
-            ByteBuffer bytes = ByteBuffer.wrap(data);
-            fbmem.rewind();
-            fbmem.put(bytes);
+            Sysfs.writeBytes(info.getKernelPath(), data);
         } else if (buf instanceof DataBufferInt) {
             int[] data = ((DataBufferInt) buf).getData();
-            IntBuffer ints = IntBuffer.wrap(data);
-            IntBuffer dest = fbmem.asIntBuffer();
-            dest.rewind();
-            dest.put(ints);
+            ByteBuffer bytes = ByteBuffer.allocate(data.length * 4);
+            IntBuffer wrap = IntBuffer.wrap(data);
+            IntBuffer dest = bytes.asIntBuffer();
+            dest.put(wrap);
+            Sysfs.writeBytes(info.getKernelPath(), bytes.array());
         }
     }
 
