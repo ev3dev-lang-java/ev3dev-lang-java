@@ -120,23 +120,20 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     }
 
     private BufferedImage initXrgb() {
-        // data masks
-        final int maskAlpha = 0xFF000000;
-        final int maskRed   = 0x00FF0000;
-        final int maskGreen = 0x0000FF00;
-        final int maskBlue  = 0x000000FF;
-        final int maskNone  = 0x00000000;
-
         // initialize backing store
-        int[] data = new int[bufferSize / 4];
-        DataBuffer db = new DataBufferInt(data, data.length);
+        byte[] data = new byte[bufferSize];
+        DataBuffer db = new DataBufferByte(data, data.length);
 
-        // initialize raster
-        WritableRaster wr = Raster.createPackedRaster(db, info.getWidth(), info.getHeight(), info.getWidth(),
-                                                      new int[]{ maskRed, maskGreen, maskBlue, maskAlpha }, null);
+        //                        R  G  B  A
+        int[] offsets = new int[]{2, 1, 0, 3};
+        PixelInterleavedSampleModel sm = new PixelInterleavedSampleModel(
+                DataBuffer.TYPE_BYTE, width, height, 4, width * 4, offsets);
 
-        // initialize color interpreter
-        DirectColorModel cm = new DirectColorModel(32, maskRed, maskGreen, maskBlue, maskAlpha);
+        ColorSpace spc = ColorSpace.getInstance(ColorSpace.CS_sRGB);
+        ComponentColorModel cm = new ComponentColorModel(spc, true, false,
+                Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+
+        WritableRaster wr = Raster.createWritableRaster(sm, db, null);
 
         // glue everything together
         return new BufferedImage(cm, wr, false, null);
@@ -171,19 +168,9 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     public void flush() {
         WritableRaster rst = image.getRaster();
         DataBuffer buf     = rst.getDataBuffer();
-        if (buf instanceof DataBufferByte) {
-            byte[] data = ((DataBufferByte) buf).getData();
-            Sysfs.writeBytes(info.getKernelPath(), data);
-        } else if (buf instanceof DataBufferInt) {
-            int[] data = ((DataBufferInt) buf).getData();
-            ByteBuffer bytes = ByteBuffer.allocate(data.length * 4);
-            IntBuffer wrap = IntBuffer.wrap(data);
-            IntBuffer dest = bytes.asIntBuffer();
-            dest.put(wrap);
-            Sysfs.writeBytes(info.getKernelPath(), bytes.array());
-        }
+        byte[] data        = ((DataBufferByte) buf).getData();
+        Sysfs.writeBytes(info.getKernelPath(), data);
     }
-
 
     //Graphics LCD
 
