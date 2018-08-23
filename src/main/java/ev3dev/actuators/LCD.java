@@ -127,7 +127,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         //                        R  G  B  A
         int[] offsets = new int[]{2, 1, 0, 3};
         PixelInterleavedSampleModel sm = new PixelInterleavedSampleModel(
-                DataBuffer.TYPE_BYTE, width, height, 4, width * 4, offsets);
+                DataBuffer.TYPE_BYTE, info.getWidth(), info.getHeight(), 4, info.getWidth() * 4, offsets);
 
         ColorSpace spc = ColorSpace.getInstance(ColorSpace.CS_sRGB);
         ComponentColorModel cm = new ComponentColorModel(spc, true, false,
