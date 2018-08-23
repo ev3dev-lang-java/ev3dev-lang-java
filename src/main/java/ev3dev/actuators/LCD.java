@@ -98,6 +98,8 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     }
 
     private BufferedImage initBitplane() {
+		if(log.isTraceEnabled())
+			log.trace("old-style 1bpp framebuffer");
         // initialize backing store
         byte[] data = new byte[bufferSize];
         DataBuffer db = new DataBufferByte(data, data.length);
@@ -120,6 +122,8 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     }
 
     private BufferedImage initXrgb() {
+		if(log.isTraceEnabled())
+			log.trace("new-style 32bpp framebuffer");
         // initialize backing store
         byte[] data = new byte[bufferSize];
         DataBuffer db = new DataBufferByte(data, data.length);
@@ -147,7 +151,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         try {
             initFramebuffer();
         } catch (IOException e) {
-            throw new RuntimeException("Unable to map the framebuffer", e);
+            throw new RuntimeException("Unable to open the framebuffer", e);
         }
 
         this.image = info.getKernelMode() == EV3DevScreenInfo.Mode.BITPLANE ? initBitplane() : initXrgb();
@@ -166,6 +170,8 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
      * Write LCD with current context
      */
     public void flush() {
+		if(log.isTraceEnabled())
+			log.trace("flushing framebuffer");
         WritableRaster rst = image.getRaster();
         DataBuffer buf     = rst.getDataBuffer();
         byte[] data        = ((DataBufferByte) buf).getData();
