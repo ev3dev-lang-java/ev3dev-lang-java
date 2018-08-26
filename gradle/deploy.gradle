@@ -2,105 +2,127 @@ ssh.settings {
     knownHosts = allowAnyHosts
 }
 
-task testConnection << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "ls "
-            execute "ls "
+task testConnection {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "ls "
+                execute "ls "
+            }
         }
     }
 }
 
-task pkillJava << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "pkill java"
-            execute "pkill java"
+task pkillJava {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "pkill java"
+                execute "pkill java"
+            }
         }
     }
 }
 
-task removePreviousJar << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "rm /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-            execute "rm /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+task removePreviousJar {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "rm /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "rm /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            }
         }
     }
 }
 
-task deploy << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            put from: "./build/libs/" + "${rootProject.name}" + "-" + version + "-all.jar", into: "/home/robot/"
+task deploy {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                put from: "./build/libs/" + "${rootProject.name}" + "-" + version + "-all.jar", into: "/home/robot/"
+            }
         }
     }
 }
 deploy.dependsOn clean, fatJar
 
-task remoteRun << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-            execute "java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+task remoteRun {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            }
         }
     }
 }
 
-task remoteRunClassVerbose << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "java -verbose:class -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-            execute "java -verbose:class -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+task remoteRunClassVerbose {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "java -verbose:class -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "java -verbose:class -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            }
         }
     }
 }
 
-task remoteSudoRun << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
-            execute "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+task remoteSudoRun {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+                execute "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+            }
         }
     }
 }
 
-task remoteProfilingRun << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-            execute "java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+task remoteProfilingRun {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            }
         }
     }
 }
 
-task remoteProfilingSudoRun << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "echo -e \"maker\" | sudo -S java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-            execute "echo -e \"maker\" | sudo -S java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+task remoteProfilingSudoRun {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "echo -e \"maker\" | sudo -S java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "echo -e \"maker\" | sudo -S java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            }
         }
     }
 }
 
-task deployAndRun << {
-
+task deployAndRun {
+    doLast {
+    }
 }
 deployAndRun.dependsOn deploy, remoteRun
 
 
-task deployAndSudoRun << {
-
+task deployAndSudoRun {
+    doLast {
+    }
 }
 deployAndSudoRun.dependsOn deploy, remoteSudoRun
 
-task deployAndProfilingRun << {
-
+task deployAndProfilingRun {
+    doLast {
+    }
 }
 deployAndProfilingRun.dependsOn deploy, remoteProfilingRun
 
-task deployAndProfilingSudoRun << {
-
+task deployAndProfilingSudoRun {
+    doLast {
+    }
 }
 deployAndProfilingSudoRun.dependsOn deploy, remoteProfilingSudoRun
 

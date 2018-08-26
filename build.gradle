@@ -56,7 +56,7 @@ dependencies {
     compile("ch.qos.logback:logback-classic:1.2.3")
 
     testCompile("commons-io:commons-io:2.5")
-    
+
     testCompile("junit:junit:4.12")
     testCompile("org.hamcrest:hamcrest-all:1.3")
 }
@@ -125,8 +125,10 @@ jar {
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: "net.ossindex.audit"
 
-task fatJar << {
+task fatJar {
+    doLast {
 
+    }
 }
 fatJar.dependsOn shadowJar
 
