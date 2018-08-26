@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
         classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
+        classpath 'net.java.dev.jna:jna:4.5.2'
     }
 }
 
@@ -52,6 +53,7 @@ dependencies {
 
     compile("org.slf4j:slf4j-api:1.7.25")
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
+    compile("net.java.dev.jna:jna:4.5.2")
 
     compile("ch.qos.logback:logback-classic:1.2.3")
 
@@ -160,4 +162,3 @@ publishing {
         }
     }
 }
-
