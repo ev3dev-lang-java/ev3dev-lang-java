@@ -1,6 +1,7 @@
 package ev3dev.utils.display;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,7 +52,8 @@ public class RGBFramebuffer extends LinuxFramebuffer {
         offsets[0] = getVariableInfo().red.toLEByteOffset();
         offsets[1] = getVariableInfo().green.toLEByteOffset();
         offsets[2] = getVariableInfo().blue.toLEByteOffset();
-        List<Integer> avail = Arrays.asList(0, 1, 2, 3);
+        List<Integer> set = Arrays.asList(0, 1, 2, 3);
+        ArrayList<Integer> avail = new ArrayList<>(set);
         avail.remove((Integer) offsets[0]);
         avail.remove((Integer) offsets[1]);
         avail.remove((Integer) offsets[2]);
