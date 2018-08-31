@@ -42,12 +42,12 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
         varinfo.xoffset = 0;
         varinfo.yoffset = 0;
         device.setVariableScreenInfo(varinfo);
-        videomem = device.mmap(fixinfo.mmio_len);
+        videomem = device.mmap(getBufferSize());
     }
 
     @Override
     public void close() {
-        device.munmap(videomem, fixinfo.mmio_len);
+        device.munmap(videomem, getBufferSize());
         device.close();
     }
 
@@ -84,7 +84,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
 
     @Override
     public void flushScreen(BufferedImage compatible) {
-        videomem.write(0, ImageUtils.getImageBytes(compatible), 0, fixinfo.mmio_len);
+        videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int)getBufferSize());
     }
 
     /**
@@ -131,6 +131,6 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      * @see LinuxFramebuffer#getMemory() for memory pointer.
      */
     public long getBufferSize() {
-        return fixinfo.mmio_len;
+        return getHeight() * getStride();
     }
 }
