@@ -1,4 +1,4 @@
 /**
  * Framebuffer service provider interface package
  */
-package ev3dev.utils.display.spi;
+package ev3dev.hardware.display.spi;

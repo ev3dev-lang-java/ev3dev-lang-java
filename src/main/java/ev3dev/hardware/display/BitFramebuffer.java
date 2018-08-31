@@ -1,9 +1,9 @@
-package ev3dev.utils.display;
+package ev3dev.hardware.display;
 
 import java.awt.image.BufferedImage;
 import java.io.IOError;
 
-import static ev3dev.utils.display.NativeFramebuffer.*;
+import static ev3dev.hardware.display.NativeFramebuffer.*;
 
 /**
  * Linux black-and-white 1bpp framebuffer

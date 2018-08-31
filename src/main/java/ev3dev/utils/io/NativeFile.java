@@ -4,8 +4,7 @@ import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
-import com.sun.jna.ptr.PointerByReference;
-import ev3dev.utils.display.NativeFramebuffer;
+import ev3dev.hardware.display.NativeFramebuffer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

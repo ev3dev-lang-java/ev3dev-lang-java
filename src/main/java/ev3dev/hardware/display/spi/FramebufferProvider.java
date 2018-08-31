@@ -1,6 +1,6 @@
-package ev3dev.utils.display.spi;
+package ev3dev.hardware.display.spi;
 
-import ev3dev.utils.display.JavaFramebuffer;
+import ev3dev.hardware.display.JavaFramebuffer;
 
 import java.io.IOError;
 

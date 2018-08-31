@@ -1,6 +1,6 @@
-package ev3dev.utils.display;
+package ev3dev.hardware.display;
 
-import ev3dev.utils.display.spi.FramebufferProvider;
+import ev3dev.hardware.display.spi.FramebufferProvider;
 
 /**
  * Creates new Linux RGB framebuffer.

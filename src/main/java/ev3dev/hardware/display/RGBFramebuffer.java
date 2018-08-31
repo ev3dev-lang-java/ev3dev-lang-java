@@ -1,4 +1,4 @@
-package ev3dev.utils.display;
+package ev3dev.hardware.display;
 
 import java.awt.image.BufferedImage;
 import java.io.IOError;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static ev3dev.utils.display.NativeFramebuffer.FB_TYPE_PACKED_PIXELS;
-import static ev3dev.utils.display.NativeFramebuffer.FB_VISUAL_TRUECOLOR;
+import static ev3dev.hardware.display.NativeFramebuffer.FB_TYPE_PACKED_PIXELS;
+import static ev3dev.hardware.display.NativeFramebuffer.FB_VISUAL_TRUECOLOR;
 
 /**
  * Linux XRGB 32bpp framebuffer

@@ -1,10 +1,9 @@
 package ev3dev.actuators;
 
-import ev3dev.utils.display.*;
+import ev3dev.hardware.display.*;
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
-import ev3dev.utils.display.spi.FramebufferProvider;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +15,6 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
-import java.util.Iterator;
-import java.util.ServiceLoader;
 import java.util.Timer;
 import java.util.TimerTask;
 

@@ -1,7 +1,7 @@
-package ev3dev.utils.display;
+package ev3dev.hardware.display;
 
 import ev3dev.actuators.LCD;
-import ev3dev.utils.display.spi.FramebufferProvider;
+import ev3dev.hardware.display.spi.FramebufferProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

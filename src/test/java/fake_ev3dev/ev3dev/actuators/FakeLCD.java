@@ -3,8 +3,8 @@ package fake_ev3dev.ev3dev.actuators;
 import ev3dev.actuators.LCD;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
-import ev3dev.utils.display.ImageUtils;
-import ev3dev.utils.display.JavaFramebuffer;
+import ev3dev.hardware.display.ImageUtils;
+import ev3dev.hardware.display.JavaFramebuffer;
 import fake_ev3dev.BaseElement;
 
 import javax.imageio.ImageIO;

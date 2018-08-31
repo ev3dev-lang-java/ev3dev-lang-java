@@ -1,4 +1,4 @@
-package ev3dev.utils.display;
+package ev3dev.hardware.display;
 
 import com.sun.jna.NativeLong;
 import com.sun.jna.Structure;

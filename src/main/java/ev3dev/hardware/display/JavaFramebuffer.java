@@ -1,4 +1,4 @@
-package ev3dev.utils.display;
+package ev3dev.hardware.display;
 
 import java.awt.image.BufferedImage;
 

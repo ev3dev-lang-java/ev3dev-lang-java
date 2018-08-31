@@ -1,4 +1,4 @@
-package ev3dev.utils.display;
+package ev3dev.hardware.display;
 
 import ev3dev.utils.JarResource;
 import fake_ev3dev.BaseElement;
