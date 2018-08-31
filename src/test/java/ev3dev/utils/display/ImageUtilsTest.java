@@ -33,6 +33,8 @@ public class ImageUtilsTest {
         int[] offsets = new int[]{0, 1, 2, 3};
         BufferedImage img = ImageUtils.createXRGBImage(width, height, xrgbStrideBig);
         Graphics2D gfx = img.createGraphics();
+        gfx.setColor(Color.WHITE);
+        gfx.fillRect(0, 0, width, height);
 
         BufferedImage logo = ImageIO.read(JarResource.stream(imageResource));
         gfx.drawImage(logo, 0, 0, null);
@@ -50,6 +52,8 @@ public class ImageUtilsTest {
         // intentional wider stride
         BufferedImage img = ImageUtils.createBWImage(width, height, bitStrideBig, true);
         Graphics2D gfx = img.createGraphics();
+        gfx.setColor(Color.WHITE);
+        gfx.fillRect(0, 0, width, height);
 
         BufferedImage logo = ImageIO.read(JarResource.stream(imageResource));
         gfx.drawImage(logo, 0, 0, null);
