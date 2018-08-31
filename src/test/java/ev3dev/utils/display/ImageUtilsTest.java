@@ -38,8 +38,8 @@ public class ImageUtilsTest {
         gfx.drawImage(logo, 0, 0, null);
         gfx.dispose();
 
-        Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "xrgb_render.raw");
-        File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "xrgb_render.png").toFile();
+        Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "xrgb_render.raw");
+        File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "xrgb_render.png").toFile();
         ImageIO.write(img, "png", path);
         Files.write(raw, ImageUtils.getImageBytes(img),
                 StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
@@ -55,8 +55,8 @@ public class ImageUtilsTest {
         gfx.drawImage(logo, 0, 0, null);
         gfx.dispose();
 
-        Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "bw_render.raw");
-        File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "bw_render.png").toFile();
+        Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "bw_render.raw");
+        File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "bw_render.png").toFile();
         ImageIO.write(img, "png", path);
         Files.write(raw, ImageUtils.getImageBytes(img),
                 StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
