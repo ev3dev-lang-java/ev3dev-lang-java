@@ -85,7 +85,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
 
     @Override
     public void flushScreen(BufferedImage compatible) {
-        videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int)getBufferSize());
+        videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int) getBufferSize());
     }
 
     /**
