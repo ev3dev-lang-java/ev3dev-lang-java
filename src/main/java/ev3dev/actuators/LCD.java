@@ -1,9 +1,6 @@
 package ev3dev.actuators;
 
-import ev3dev.utils.display.BitFramebuffer;
-import ev3dev.utils.display.ImageUtils;
-import ev3dev.utils.display.JavaFramebuffer;
-import ev3dev.utils.display.RGBFramebuffer;
+import ev3dev.utils.display.*;
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
@@ -87,18 +84,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         if (path == null) {
             path = EV3DEV_LCD_DEFAULT;
         }
-        ServiceLoader<FramebufferProvider> loader = ServiceLoader.load(FramebufferProvider.class);
-        Iterator<FramebufferProvider> iter = loader.iterator();
-        for (FramebufferProvider provider = iter.next(); iter.hasNext(); provider = iter.next()) {
-            try {
-                JavaFramebuffer ok = provider.createFramebuffer(path);
-                log.info("Framebuffer '%s' is compatible", provider.getClass().getName());
-                return ok;
-            } catch (IllegalArgumentException ex) {
-                log.info("Framebuffer '%s' not compatible", provider.getClass().getName());
-            }
-        }
-        throw new RuntimeException("No suitable framebuffer found");
+        return Framebuffers.load(path);
     }
 
     /**
