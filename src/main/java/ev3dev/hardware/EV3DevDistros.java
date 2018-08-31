@@ -19,6 +19,7 @@ public class EV3DevDistros {
 
     public EV3DevDistros() {
 
+        /*
         final String osResult = Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY);
         if (osResult.contains(JESSIE_DISTRO_DETECTION_PATTERN)) {
             setStretch();
@@ -40,7 +41,9 @@ public class EV3DevDistros {
             LOGGER.error("Debian distro not recognized");
             throw new RuntimeException("Debian distro not recognized");
         }
+        */
 
+        setStretch();
     }
 
     void setStretch() {

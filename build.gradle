@@ -110,7 +110,6 @@ test {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
     }
-    systemProperty "EV3DEV_DISTRO", project.getProperty("EV3DEV_DISTRO")
 }
 
 test.finalizedBy jacocoTestReport
