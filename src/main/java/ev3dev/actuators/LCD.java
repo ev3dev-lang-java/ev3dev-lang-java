@@ -113,6 +113,14 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         return instance;
     }
 
+    /**
+     * Do not use, only for testing.
+     * @param lcd The Great Fake LCD
+     */
+    public static void setInstance(GraphicsLCD lcd) {
+        instance = lcd;
+    }
+
     public JavaFramebuffer getFramebuffer() {
         return fb;
     }
