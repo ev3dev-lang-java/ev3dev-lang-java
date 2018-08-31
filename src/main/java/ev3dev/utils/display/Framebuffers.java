@@ -5,6 +5,10 @@ import ev3dev.utils.display.spi.FramebufferProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOError;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ServiceLoader;
 
 public final class Framebuffers {
@@ -27,6 +31,14 @@ public final class Framebuffers {
                 return ok;
             } catch (IllegalArgumentException ex) {
                 log.info("Framebuffer '{}' is not compatible", provider.getClass().getSimpleName());
+            } catch (IOError e) {
+                log.warn("Framebuffer '{}' threw IOError", provider.getClass().getSimpleName());
+                log.warn("Message: {}", e.getLocalizedMessage());
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                try (PrintStream chos = new PrintStream(bos)) {
+                    e.printStackTrace(chos);
+                }
+                log.warn(new String(bos.toByteArray(), StandardCharsets.UTF_8));
             }
         }
         throw new RuntimeException("No suitable framebuffer found");

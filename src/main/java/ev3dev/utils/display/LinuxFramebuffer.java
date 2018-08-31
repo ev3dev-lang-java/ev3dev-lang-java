@@ -4,6 +4,7 @@ import com.sun.jna.Pointer;
 
 import java.awt.image.BufferedImage;
 import java.io.Closeable;
+import java.io.IOError;
 
 /**
  * Linux Java2D framebuffer
@@ -33,7 +34,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      *
      * @param path Path to the framebuffer device (e.g. /dev/fb0)
      */
-    public LinuxFramebuffer(String path) {
+    public LinuxFramebuffer(String path) throws IOError {
         device = new NativeFramebuffer(path);
         fixinfo = device.getFixedScreenInfo();
         varinfo = device.getVariableScreenInfo();

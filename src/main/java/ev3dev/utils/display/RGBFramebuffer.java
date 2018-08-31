@@ -1,6 +1,7 @@
 package ev3dev.utils.display;
 
 import java.awt.image.BufferedImage;
+import java.io.IOError;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ public class RGBFramebuffer extends LinuxFramebuffer {
      *
      * @param path Path to the framebuffer device (e.g. /dev/fb0)
      */
-    public RGBFramebuffer(String path) {
+    public RGBFramebuffer(String path) throws IllegalArgumentException, IOError {
         super(path);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             close();

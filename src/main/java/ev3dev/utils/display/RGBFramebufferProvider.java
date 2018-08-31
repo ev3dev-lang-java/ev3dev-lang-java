@@ -9,7 +9,7 @@ import ev3dev.utils.display.spi.FramebufferProvider;
  */
 public class RGBFramebufferProvider implements FramebufferProvider {
     @Override
-    public JavaFramebuffer createFramebuffer(String fbPath) {
+    public JavaFramebuffer createFramebuffer(String fbPath) throws IllegalArgumentException {
         return new RGBFramebuffer(fbPath);
     }
 }

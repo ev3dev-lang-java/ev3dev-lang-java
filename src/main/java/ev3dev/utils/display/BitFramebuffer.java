@@ -1,6 +1,7 @@
 package ev3dev.utils.display;
 
 import java.awt.image.BufferedImage;
+import java.io.IOError;
 
 import static ev3dev.utils.display.NativeFramebuffer.*;
 
@@ -15,7 +16,7 @@ public class BitFramebuffer extends LinuxFramebuffer {
      *
      * @param path Path to the framebuffer device (e.g. /dev/fb0)
      */
-    public BitFramebuffer(String path) {
+    public BitFramebuffer(String path) throws IllegalArgumentException, IOError {
         super(path);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             close();
