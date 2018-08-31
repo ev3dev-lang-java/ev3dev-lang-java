@@ -61,8 +61,7 @@ public class Brickman {
 
         final GraphicsLCD lcd = LCD.getInstance();
         try {
-            JarResource.export(JAVA_DUKE_IMAGE_NAME);
-            final Image image = ImageIO.read(new File(JAVA_DUKE_IMAGE_NAME));
+            final Image image = ImageIO.read(JarResource.stream(JAVA_DUKE_IMAGE_NAME));
             lcd.drawImage(image, 40, 10, 0);
             lcd.refresh();
         }catch (IOException e){
