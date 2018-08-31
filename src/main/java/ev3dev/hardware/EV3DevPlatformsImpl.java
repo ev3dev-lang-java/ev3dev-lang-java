@@ -1,14 +1,12 @@
 package ev3dev.hardware;
 
 import ev3dev.utils.Sysfs;
-import ev3dev.hardware.EV3DevScreenInfo;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.EnumSet;
-import java.util.Objects;
 
 import java.nio.file.*;
 
@@ -109,22 +107,6 @@ class EV3DevPlatformsImpl {
         }
 
         return props.getProperty(propPrefix + ".sensor.port." + portNumber);
-    }
-
-    public EV3DevScreenInfo getFramebufferInfo() {
-        // fetch from properties
-        String path = Objects.requireNonNull(getProperty("framebuffer.path"));
-        String sys  = Objects.requireNonNull(getProperty("framebuffer.sysfs"));
-        String wStr = Objects.requireNonNull(getProperty("framebuffer.width"));
-        String hStr = Objects.requireNonNull(getProperty("framebuffer.height"));
-        String sStr = Objects.requireNonNull(getProperty("framebuffer.bitstride"));
-
-        // parse and pack
-        int w = Integer.parseInt(wStr);
-        int h = Integer.parseInt(hStr);
-        int s = Integer.parseInt(sStr);
-        EV3DevScreenInfo pack = null;
-        return new EV3DevScreenInfo(path, sys, w, h, s);
     }
 
     public String getProperty(String base) {

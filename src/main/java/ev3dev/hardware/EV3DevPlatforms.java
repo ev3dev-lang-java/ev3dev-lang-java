@@ -1,12 +1,6 @@
 package ev3dev.hardware;
 
-import ev3dev.hardware.EV3DevPlatformsImpl;
-import ev3dev.hardware.EV3DevScreenInfo;
-import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
-import lejos.hardware.port.SensorPort;
-
-import java.util.Properties;
 
 public class EV3DevPlatforms {
     private static EV3DevPlatformsImpl globalInstance = null;
@@ -36,10 +30,6 @@ public class EV3DevPlatforms {
 
     public String getSensorPort(final Port port) {
         return instance.getSensorPort(port);
-    }
-
-    public EV3DevScreenInfo getFramebufferInfo() {
-        return instance.getFramebufferInfo();
     }
 
     public String getProperty(String base) {
