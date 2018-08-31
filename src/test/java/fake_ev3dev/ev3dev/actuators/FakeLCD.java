@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 public class FakeLCD extends BaseElement {
     private int width;
     private int height;
-    private int flushes = 0;
+    private static int flushes = 0;
 
     public FakeLCD(final EV3DevPlatform ev3DevPlatform) throws IOException {
         EV3DevPlatforms conf = new EV3DevPlatforms(ev3DevPlatform);
@@ -80,9 +80,8 @@ public class FakeLCD extends BaseElement {
 
         @Override
         public void flushScreen(BufferedImage compatible) {
-            String filename = "image" + flushes + ".png";
-            flushes++;
-            Path pth = Paths.get(EV3DEV_FAKE_SYSTEM_PATH, filename);
+            String filename = "lcdflush" + (flushes++) + ".png";
+            Path pth = Paths.get(EV3DEV_FAKE_SYSTEM_PATH, "..", filename);
             try {
                 ImageIO.write(compatible, "png", new File(pth.toUri()));
             } catch (Exception e) {
