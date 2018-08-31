@@ -1,44 +1,110 @@
 package ev3dev.actuators;
 
+import ev3dev.utils.display.BitFramebuffer;
+import ev3dev.utils.display.ImageUtils;
+import ev3dev.utils.display.JavaFramebuffer;
+import ev3dev.utils.display.RGBFramebuffer;
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.hardware.EV3DevScreenInfo;
 import ev3dev.hardware.EV3DevPlatforms;
-import ev3dev.utils.Sysfs;
+import ev3dev.utils.display.spi.FramebufferProvider;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.awt.image.*;
-import java.awt.color.*;
-import java.io.RandomAccessFile;
-import java.io.IOException;
-import java.nio.*;
-import java.nio.file.*;
-import java.nio.channels.FileChannel;
-import java.util.Objects;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.util.Iterator;
+import java.util.ServiceLoader;
+import java.util.Timer;
+import java.util.TimerTask;
 
+/**
+ * Lejos LCD reimplementation using Java2D API
+ */
 public class LCD extends EV3DevDevice implements GraphicsLCD {
-
-    private static final Logger log = LoggerFactory.getLogger(LCD.class);
-
+    // custom config
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
+    public static final String EV3DEV_LCD_DEFAULT = "/dev/fb0";
     public static final String EV3DEV_LCD_MODE_KEY = "EV3DEV_LCD_MODE_KEY";
 
-    private EV3DevScreenInfo info;
+    // logger
+    private static final Logger log = LoggerFactory.getLogger(LCD.class);
 
+    // singleton instance
+    private static GraphicsLCD instance;
+
+    // drawable
+    private JavaFramebuffer fb;
     private BufferedImage image;
     private Graphics2D g2d;
 
-    private static GraphicsLCD instance;
+    // autorefresh
+    private Timer timer;
+    private boolean timer_run = false;
+    private int timer_msec = 0;
 
-    private int bufferSize;
+    // stroke
+    private int stroke;
 
     /**
-     * Return a Instance of Sound.
+     * Initialize new LCD using the system framebuffer.
+     */
+    private LCD() {
+        this(initSystemFramebuffer());
+    }
+
+    /**
+     * Initialize new LCD using the user-provided framebuffer
+     * @param fb Image output.
+     */
+    public LCD(JavaFramebuffer fb) {
+        EV3DevPlatforms conf = new EV3DevPlatforms();
+
+        if (conf.getPlatform() != EV3DevPlatform.EV3BRICK) {
+            log.warn("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
+        }
+
+        this.fb = fb;
+        this.timer = new Timer("LCD flusher", true);
+        this.image = fb.createCompatibleBuffer();
+        this.g2d = this.image.createGraphics();
+        this.clear();
+    }
+
+    /**
+     * Initialize system framebuffer
+     * @throws RuntimeException if no suitable framebuffer is found
+     * @return
+     */
+    private static JavaFramebuffer initSystemFramebuffer() {
+        String path = System.getProperty(EV3DEV_LCD_KEY);
+        if (path == null) {
+            path = EV3DEV_LCD_DEFAULT;
+        }
+        ServiceLoader<FramebufferProvider> loader = ServiceLoader.load(FramebufferProvider.class);
+        Iterator<FramebufferProvider> iter = loader.iterator();
+        for (FramebufferProvider provider = iter.next(); iter.hasNext(); provider = iter.next()) {
+            try {
+                JavaFramebuffer ok = provider.createFramebuffer(path);
+                log.info("Framebuffer '%s' is compatible", provider.getClass().getName());
+                return ok;
+            } catch (IllegalArgumentException ex) {
+                log.info("Framebuffer '%s' not compatible", provider.getClass().getName());
+            }
+        }
+        throw new RuntimeException("No suitable framebuffer found");
+    }
+
+    /**
+     * Return a Instance of LCD.
      *
-     * @return A Sound instance
+     * @return A LCD instance
      */
     public static GraphicsLCD getInstance() {
         if (instance == null) {
@@ -47,138 +113,21 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         return instance;
     }
 
-    // Prevent duplicate objects
-    private LCD() {
-        EV3DevPlatforms conf = new EV3DevPlatforms();
-
-        if(conf.getPlatform() == EV3DevPlatform.EV3BRICK){
-            init(conf.getFramebufferInfo());
-        } else {
-            log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
-            throw new RuntimeException("This actuator was only tested for: " + EV3DevPlatform.EV3BRICK);
-        }
+    public JavaFramebuffer getFramebuffer() {
+        return fb;
     }
 
-    private void identifyMode() {
-        String alternative = System.getProperty(EV3DEV_LCD_MODE_KEY);
-        if (alternative == null) {
-            int bits = Sysfs.readInteger(Paths.get(info.getSysfsPath(), "bits_per_pixel").toString());
-
-            if (bits == 32) {
-                this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
-            } else {
-                this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
-            }
-        } else {
-            if (alternative == "xrgb") {
-                this.info.setKernelMode(EV3DevScreenInfo.Mode.XRGB);
-            } else if (alternative == "bitplane") {
-                this.info.setKernelMode(EV3DevScreenInfo.Mode.BITPLANE);
-            } else {
-                throw new RuntimeException("Invalid fake lcd mode.");
-            }
-        }
-    }
-
-    private void initFramebuffer() throws IOException {
-        String alternative = System.getProperty(EV3DEV_LCD_KEY);
-        if (alternative != null) {
-            this.info.setKernelPath(alternative);
-        }
-
-        if (Files.notExists(Paths.get(info.getKernelPath()))) {
-            throw new RuntimeException("Device path not found: " + info.getKernelPath());
-        }
-
-        if (info.getKernelMode() == EV3DevScreenInfo.Mode.BITPLANE) {
-            bufferSize = info.getBitModeStride() * info.getHeight();
-        } else {
-            bufferSize = 4 * info.getWidth() * info.getHeight();
-        }
-    }
-
-    private BufferedImage initBitplane() {
-		if(log.isTraceEnabled())
-			log.trace("old-style 1bpp framebuffer");
-        // initialize backing store
-        byte[] data = new byte[bufferSize];
-        DataBuffer db = new DataBufferByte(data, data.length);
-
-        // initialize buffer <-> sample mapping
-        MultiPixelPackedSampleModel packing =
-            new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE,
-                                            info.getWidth(), info.getHeight(),
-                                            1, info.getBitModeStride(), 0);
-
-        // initialize raster
-        WritableRaster wr = Raster.createWritableRaster(packing, db, null);
-
-        // initialize color interpreter
-        byte[] mapPixels = new byte[]{ (byte)0xFF, (byte)0x00 };
-        IndexColorModel cm = new IndexColorModel(1, mapPixels.length, mapPixels, mapPixels, mapPixels);
-
-        // glue everything together
-        return new BufferedImage(cm, wr, false, null);
-    }
-
-    private BufferedImage initXrgb() {
-		if(log.isTraceEnabled())
-			log.trace("new-style 32bpp framebuffer");
-        // initialize backing store
-        byte[] data = new byte[bufferSize];
-        DataBuffer db = new DataBufferByte(data, data.length);
-
-        //                        R  G  B  A
-        int[] offsets = new int[]{2, 1, 0, 3};
-        PixelInterleavedSampleModel sm = new PixelInterleavedSampleModel(
-                DataBuffer.TYPE_BYTE, info.getWidth(), info.getHeight(), 4, info.getWidth() * 4, offsets);
-
-        ColorSpace spc = ColorSpace.getInstance(ColorSpace.CS_sRGB);
-        ComponentColorModel cm = new ComponentColorModel(spc, true, false,
-                Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
-
-        WritableRaster wr = Raster.createWritableRaster(sm, db, null);
-
-        // glue everything together
-        return new BufferedImage(cm, wr, false, null);
-    }
-
-    private void init(EV3DevScreenInfo inInfo) {
-        this.info = inInfo;
-
-        identifyMode();
-
-        try {
-            initFramebuffer();
-        } catch (IOException e) {
-            throw new RuntimeException("Unable to open the framebuffer", e);
-        }
-
-        this.image = info.getKernelMode() == EV3DevScreenInfo.Mode.BITPLANE ? initBitplane() : initXrgb();
-        this.g2d = (Graphics2D) image.getGraphics();
-
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(0, 0, image.getWidth(), image.getHeight());
-        this.refresh();
-    }
-
-    public BufferedImage getImage(){
-        return image;
-    }
+    //Graphics LCD
 
     /**
      * Write LCD with current context
      */
     public void flush() {
-		if(log.isTraceEnabled())
-			log.trace("flushing framebuffer");
-        WritableRaster rst = image.getRaster();
-        DataBuffer buf     = rst.getDataBuffer();
-        byte[] data        = ((DataBufferByte) buf).getData();
-        Sysfs.writeBytes(info.getKernelPath(), data);
-    }
+        if (log.isTraceEnabled())
+            log.trace("flushing framebuffer");
 
-    //Graphics LCD
+        fb.flushScreen(image);
+    }
 
     @Override
     public void translate(int x, int y) {
@@ -195,106 +144,196 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         g2d.setFont(font);
     }
 
-
     @Override
     public int getTranslateX() {
-        return 0;
+        return (int) g2d.getTransform().getTranslateX();
     }
 
     @Override
     public int getTranslateY() {
-        return 0;
+        return (int) g2d.getTransform().getTranslateY();
     }
 
     /**
      * Use in combination with possible values from
      * lejos.robotics.Color
      *
-     * @param color
+     * @param rgb
      */
     @Override
-    public void setColor(int color) {
-        if(color == lejos.robotics.Color.WHITE){
-            g2d.setColor(Color.WHITE);
-        }else if(color == lejos.robotics.Color.BLACK){
-            g2d.setColor(Color.BLACK);
-        }else{
-            throw new IllegalArgumentException("Bad color configured");
-        }
+    public void setColor(int rgb) {
+        g2d.setColor(new Color(rgb));
     }
 
     @Override
-    public void setColor(int i, int i1, int i2) {
-        log.debug("Feature not implemented");
+    public void setColor(int r, int g, int b) {
+        g2d.setColor(new Color(r, g, b));
     }
 
     @Override
-    public void setPixel(int i, int i1, int i2) {
-        log.debug("Feature not implemented");
+    public void setPixel(int x, int y, int color) {
+        Point2D.Float in = new Point2D.Float(x, y);
+        Point2D.Float dst = new Point2D.Float();
+        g2d.getTransform().transform(in, dst);
+
+        Color fill = color == 0 ? Color.WHITE : Color.BLACK;
+
+        image.setRGB((int) dst.x, (int) dst.y, fill.getRGB());
     }
 
     @Override
-    public int getPixel(int i, int i1) {
-        log.debug("Feature not implemented");
-        return -1;
+    public int getPixel(int x, int y) {
+        Point2D.Float in = new Point2D.Float(x, y);
+        Point2D.Float dst = new Point2D.Float();
+        g2d.getTransform().transform(in, dst);
+
+        int rgb = image.getRGB((int) dst.x, (int) dst.y);
+        if ((rgb & 0x00FFFFFF) == 0x00FFFFFF)
+            return 0;
+        else
+            return 1;
     }
 
     @Override
-    public void drawString(String s, int i, int i1, int i2, boolean b) {
-        log.debug("Feature not implemented");
+    public void drawString(String str, int x, int y, int anchor, boolean inverted) {
+        Color oldFg = g2d.getColor();
+        Color oldBg = g2d.getBackground();
+        g2d.setColor(inverted ? Color.WHITE : Color.BLACK);
+        g2d.setBackground(inverted ? Color.BLACK : Color.WHITE);
+
+        drawString(str, x, y, anchor);
+
+        g2d.setColor(oldFg);
+        g2d.setBackground(oldBg);
     }
 
     @Override
-    public void drawString(String s, int i, int i1, int i2) {
-        g2d.drawString(s, i, i1);
+    public void drawString(String str, int x, int y, int anchor) {
+        FontMetrics metrics = g2d.getFontMetrics();
+        int w = metrics.stringWidth(str);
+        int h = metrics.getHeight();
+        x = adjustX(x, w, anchor);
+        y = adjustY(y, h, anchor);
+
+        g2d.drawString(str, x, y);
     }
 
     @Override
-    public void drawSubstring(String s, int i, int i1, int i2, int i3, int i4) {
-        log.debug("Feature not implemented");
+    public void drawSubstring(String str, int offset, int len,
+                              int x, int y, int anchor) {
+        String sub = str.substring(offset, offset + len);
+        drawString(sub, x, y, anchor);
     }
 
     @Override
-    public void drawChar(char c, int i, int i1, int i2) {
-        log.debug("Feature not implemented");
+    public void drawChar(char character, int x, int y, int anchor) {
+        String str = new String(new char[]{character});
+        drawString(str, x, y, anchor);
     }
 
     @Override
-    public void drawChars(char[] chars, int i, int i1, int i2, int i3, int i4) {
-        log.debug("Feature not implemented");
+    public void drawChars(char[] data, int offset, int length,
+                          int x, int y, int anchor) {
+        String str = new String(data);
+        drawString(str, x, y, anchor);
     }
 
-    //TODO Review LeJOS Javadocs
     @Override
     public int getStrokeStyle() {
-        log.debug("Feature not implemented");
-        return -1;
+        return this.stroke;
     }
 
-    //TODO Review LeJOS Javadocs
     @Override
     public void setStrokeStyle(int i) {
-        log.debug("Feature not implemented");
+        this.stroke = i;
+        Stroke stroke;
+        if (i == DOTTED) {
+            float[] dash = new float[]{3.0f, 3.0f};
+            float dash_phase = 0.0f;
+            stroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0.0f, dash, dash_phase);
+        } else if (i == SOLID) {
+            stroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0.0f);
+        } else {
+            throw new IllegalArgumentException("Invalid stroke");
+        }
+        g2d.setStroke(stroke);
     }
 
     @Override
-    public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-        log.debug("Feature not implemented");
+    public void drawRegionRop(Image src, int sx, int sy, int w, int h, int x, int y, int anchor, int rop) {
+        drawRegionRop(src, sx, sy, w, h, x, y, TRANS_NONE, anchor, rop);
     }
 
     @Override
-    public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-        log.debug("Feature not implemented");
+    public void drawRegionRop(Image src, int sx, int sy, int w, int h, int transform, int x, int y, int anchor, int rop) {
+        x = adjustX(x, w, anchor);
+        y = adjustY(y, h, anchor);
+        BufferedImage srcI = any2rgb(src);
+
+        double midx = srcI.getWidth() / 2.0;
+        double midy = srcI.getHeight() / 2.0;
+        AffineTransform tf = new AffineTransform();
+        tf.translate(midx, midy);
+        int h0 = h;
+        switch (transform) {
+            case TRANS_MIRROR:
+                tf.scale(-1.0, 1.0);
+                break;
+            case TRANS_MIRROR_ROT90:
+                tf.scale(-1.0, 1.0);
+                tf.quadrantRotate(1);
+                h = w;
+                w = h0;
+                break;
+            case TRANS_MIRROR_ROT180:
+                tf.scale(-1.0, 1.0);
+                tf.quadrantRotate(2);
+                break;
+            case TRANS_MIRROR_ROT270:
+                tf.scale(-1.0, 1.0);
+                tf.quadrantRotate(3);
+                h = w;
+                w = h0;
+                break;
+            case TRANS_NONE:
+                break;
+            case TRANS_ROT90:
+                tf.quadrantRotate(1);
+                h = w;
+                w = h0;
+                break;
+            case TRANS_ROT180:
+                tf.quadrantRotate(2);
+                break;
+            case TRANS_ROT270:
+                tf.quadrantRotate(3);
+                h = w;
+                w = h0;
+                break;
+        }
+        tf.translate(-midx, -midy);
+        AffineTransformOp op = new AffineTransformOp(tf, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        BufferedImage transformed = ImageUtils.createXRGBImage(w, h);
+        transformed = op.filter(srcI, transformed);
+
+        BufferedImage dstI = any2rgb(image);
+        bitBlt(srcI, sx, sy, dstI, x, y, w, h, rop);
+        g2d.drawImage(dstI, 0, 0, null);
     }
 
     @Override
-    public void drawRegion(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-        log.debug("Feature not implemented");
+    public void drawRegion(Image src,
+                           int sx, int sy,
+                           int w, int h,
+                           int transform,
+                           int x, int y,
+                           int anchor) {
+        drawRegionRop(src, sx, sy, w, h, transform, x, y, anchor, ROP_COPY);
     }
 
     @Override
     public void drawImage(Image image, int i, int i1, int i2) {
-        g2d.drawImage(image,i, i1, null);
+        g2d.drawImage(image, i, i1, null);
     }
 
     @Override
@@ -308,14 +347,54 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     }
 
     @Override
-    public void copyArea(int i, int i1, int i2, int i3, int i4, int i5, int i6) {
-        log.debug("Feature not implemented");
+    public void copyArea(int sx, int sy,
+                         int w, int h,
+                         int x, int y, int anchor) {
+        x = adjustX(x, w, anchor);
+        y = adjustY(y, h, anchor);
+        g2d.copyArea(sx, sy, w, h, x, y);
+    }
+
+    /**
+     * Adjust the x co-ordinate to use the translation and anchor values.
+     */
+    private int adjustX(int x, int w, int anchor) {
+        switch (anchor & (LEFT | RIGHT | HCENTER)) {
+            case LEFT:
+                break;
+            case RIGHT:
+                x -= w;
+                break;
+            case HCENTER:
+                x -= w / 2;
+                break;
+        }
+        return x;
+    }
+
+    /**
+     * Adjust the y co-ordinate to use the translation and anchor values.
+     */
+    private int adjustY(int y, int h, int anchor) {
+        switch (anchor & (TOP | BOTTOM | VCENTER)) {
+            case TOP:
+                break;
+            case BOTTOM:
+                y -= h;
+                break;
+            case VCENTER:
+                y -= h / 2;
+                break;
+        }
+        return y;
     }
 
     @Override
     public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
         g2d.drawRoundRect(x, y, width, height, arcWidth, arcHeight);
     }
+
+    // CommonLCD
 
     @Override
     public void drawRect(int x, int y, int width, int height) {
@@ -332,8 +411,6 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         g2d.fillArc(x, y, width, height, startAngle, arcAngle);
     }
 
-    // CommonLCD
-
     @Override
     public void refresh() {
         flush();
@@ -341,56 +418,172 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     @Override
     public void clear() {
+        AffineTransform tf = (AffineTransform)g2d.getTransform().clone();
+        g2d.getTransform().setToIdentity();
         g2d.setColor(Color.WHITE);
-        g2d.fillRect(0,0, info.getWidth(), info.getHeight());
+        g2d.fillRect(0, 0, fb.getWidth(), fb.getHeight());
         flush();
+        g2d.setTransform(tf);
     }
 
     @Override
     public int getWidth() {
-        return info.getWidth();
+        return fb.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return info.getHeight();
+        return fb.getHeight();
     }
 
     @Override
     public byte[] getDisplay() {
-        log.debug("Feature not implemented");
-        return null;
+        return ImageUtils.getImageBytes(image);
     }
+
 
     @Override
     public byte[] getHWDisplay() {
-        log.debug("Feature not implemented");
-        return null;
+        return getDisplay();
     }
 
     @Override
     public void setContrast(int i) {
+        // not implemented even on leJOS
         log.debug("Feature not implemented");
     }
 
-    @Override
-    public void bitBlt(byte[] bytes, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-        log.debug("Feature not implemented");
+    /**
+     * Convert from leJOS image format to Java image
+     */
+    private BufferedImage lejos2rgb(byte[] src, int width, int height) {
+        @SuppressWarnings("SuspiciousNameCombination")
+        BufferedImage in = ImageUtils.createBWImage(height, width, true, src);
+        BufferedImage out = ImageUtils.createXRGBImage(width, height);
+        return java_lejos_flip(in, out);
     }
 
-    @Override
-    public void bitBlt(byte[] bytes, int i, int i1, int i2, int i3, byte[] bytes1, int i4, int i5, int i6, int i7, int i8, int i9, int i10) {
-        log.debug("Feature not implemented");
+    private BufferedImage any2rgb(Image img) {
+        BufferedImage copy = ImageUtils.createXRGBImage(img.getWidth(null), img.getHeight(null));
+        Graphics2D gfx = (Graphics2D) copy.getGraphics();
+        gfx.drawImage(img, 0, 0, null);
+        gfx.dispose();
+        return copy;
     }
+
+    /**
+     * Convert from Java image to leJOS image format
+     */
+    private byte[] any2lejos(BufferedImage img) {
+        BufferedImage out = ImageUtils.createBWImage(img.getHeight(), img.getWidth(), true);
+        BufferedImage right = java_lejos_flip(img, out);
+        return ((DataBufferByte) right.getRaster().getDataBuffer()).getData();
+    }
+
+    private BufferedImage java_lejos_flip(BufferedImage in, BufferedImage out) {
+        AffineTransform tf = new AffineTransform();
+        tf.quadrantRotate(1);
+        tf.scale(-1.0, +1.0);
+        AffineTransformOp op = new AffineTransformOp(tf, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        return op.filter(in, out);
+    }
+
+    /**
+     * Slow emulation of leJOS bitBlt()
+     */
+    @Override
+    public void bitBlt(byte[] src, int sw, int sh, int sx, int sy, int dx, int dy, int w, int h, int rop) {
+        BufferedImage srcI = lejos2rgb(src, sw, sh);
+        BufferedImage dstI = any2rgb(image);
+        bitBlt(srcI, sx, sy, dstI, dx, dy, w, h, rop);
+        g2d.drawImage(dstI, 0, 0, null);
+    }
+
+    /**
+     * Slow emulation of leJOS bitBlt()
+     */
+    @Override
+    public void bitBlt(byte[] src, int sw, int sh, int sx, int sy, byte dst[], int dw, int dh, int dx, int dy, int w, int h, int rop) {
+        BufferedImage srcI = lejos2rgb(src, sw, sh);
+        BufferedImage dstI = lejos2rgb(dst, dw, dh);
+        bitBlt(srcI, sx, sy, dstI, dx, dy, w, h, rop);
+        Graphics2D gfx = dstI.createGraphics();
+        gfx.drawImage(srcI,
+                dy, dx, dy + h, dx + w,
+                sy, sx, sy + h, sx + w,
+                Color.WHITE, null);
+        gfx.dispose();
+        byte[] data = any2lejos(dstI);
+        System.arraycopy(data, 0, dst, 0, Math.min(data.length, dst.length));
+    }
+
+    private void bitBlt(BufferedImage src, int sx, int sy, BufferedImage dst, int dx, int dy, int w, int h, int rop) {
+        WritableRaster srcR = src.getRaster();
+        WritableRaster dstR = dst.getRaster();
+
+        byte msk_dst = (byte) (0xFF & (rop >> 24));
+        byte xor_dst = (byte) (0xFF & (rop >> 16));
+        byte msk_src = (byte) (0xFF & (rop >> 8));
+        byte xor_src = (byte) (0xFF & (rop));
+        boolean dstskip = msk_dst == 0 && xor_dst == 0;
+
+        int[] dstpix = new int[4];
+        int[] srcpix = new int[4];
+        for (int vx = 0; vx < w; vx++) {
+            for (int vy = 0; vy < h; vy++) {
+                int srcx = sx + vx;
+                int srcy = sy + vy;
+                int dstx = dx + vx;
+                int dsty = dy + vy;
+                srcR.getPixel(srcx, srcy, srcpix);
+
+                if (dstskip) {
+                    // only rgb, no a
+                    for (int s = 0; s < 3; s++) {
+                        dstpix[s] = ((srcpix[s] & msk_src) ^ xor_src);
+                    }
+                } else {
+                    dstR.getPixel(dstx, dsty, dstpix);
+                    // only rgb, no a
+                    for (int s = 0; s < 3; s++) {
+                        dstpix[s] = ((dstpix[s] & msk_dst) ^ xor_dst) ^ ((srcpix[s] & msk_src) ^ xor_src);
+                    }
+                }
+                dstR.setPixel(dstx, dsty, dstpix);
+            }
+        }
+    }
+
 
     @Override
     public void setAutoRefresh(boolean b) {
-        log.debug("Feature not implemented");
+        if (this.timer_run != b) {
+            this.timer_run = b;
+            timerUpdate();
+        }
     }
 
     @Override
     public int setAutoRefreshPeriod(int i) {
-        log.debug("Feature not implemented");
-        return -1;
+        int old = this.timer_msec;
+        if (old != i) {
+            this.timer_msec = i;
+            timerUpdate();
+        }
+        return old;
+    }
+
+    private void timerUpdate() {
+        timer.cancel();
+        if (timer_run && timer_msec > 0) {
+            timer.scheduleAtFixedRate(new Flusher(), 0, timer_msec);
+        }
+    }
+
+    private class Flusher extends TimerTask {
+        @Override
+        public void run() {
+            refresh();
+        }
     }
 }
