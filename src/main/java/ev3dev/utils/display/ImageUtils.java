@@ -61,6 +61,9 @@ public class ImageUtils {
         if (buffer.length < (stride * height)) {
             throw new IllegalArgumentException("Buffer is smaller than height*stride");
         }
+        if (stride < width * 4) {
+            throw new IllegalArgumentException("Stride is smaller than width * 4");
+        }
         DataBuffer db = new DataBufferByte(buffer, buffer.length);
 
         // initialize buffer <-> samples bridge
@@ -141,6 +144,12 @@ public class ImageUtils {
      * @return Configured BufferedImage.
      */
     public static BufferedImage createBWImage(int width, int height, int stride, boolean zeroBlack, byte[] backed) {
+        if (backed.length < (stride * height)) {
+            throw new IllegalArgumentException("Buffer is smaller than height*stride");
+        }
+        if (stride < width / 8) {
+            throw new IllegalArgumentException("Stride is smaller than width/8");
+        }
         // initialize backing store
         DataBuffer db = new DataBufferByte(backed, backed.length);
 
