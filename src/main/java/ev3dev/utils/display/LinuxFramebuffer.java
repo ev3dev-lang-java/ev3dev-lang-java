@@ -62,6 +62,11 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
     }
 
     @Override
+    public int getStride() {
+        return fixinfo.line_length;
+    }
+
+    @Override
     public BufferedImage createCompatibleBuffer() {
         return createCompatibleBuffer(getWidth(), getHeight(), getFixedInfo().line_length);
     }

@@ -54,6 +54,11 @@ public class FakeLCD extends BaseElement {
         }
 
         @Override
+        public int getStride() {
+            return 4;
+        }
+
+        @Override
         public BufferedImage createCompatibleBuffer() {
             return createCompatibleBuffer(getWidth(), getHeight());
         }

@@ -23,6 +23,13 @@ public interface JavaFramebuffer {
     int getHeight();
 
     /**
+     * Query framebuffer scanline stride, e.g. real row length in bytes.
+     *
+     * @return Screen scanline stride in bytes
+     */
+    int getStride();
+
+    /**
      * Create full-screen buffer.
      *
      * @return BufferedImage with correct settings.
