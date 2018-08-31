@@ -4,6 +4,8 @@ import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
+import com.sun.jna.ptr.PointerByReference;
+import ev3dev.utils.display.NativeFramebuffer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -46,10 +48,13 @@ public class NativeFile {
     static final int MAP_FILE = 0;
 
 
-    static class Linux_C_lib_DirectMapping {
+
+    private static class Linux_C_lib_DirectMapping {
         native public int fcntl(int fd, int cmd, int arg);
         native public int ioctl(int fd, int cmd, byte[] arg);
-        native public int ioctl(int fd, int cmd, Pointer p);
+        native public int ioctl(int fd, int cmd, Pointer arg);
+        native public int ioctl(int fd, int cmd, NativeFramebuffer.fb_fix_screeninfo p);
+        native public int ioctl(int fd, int cmd, NativeFramebuffer.fb_var_screeninfo p);
         native public int open(String path, int flags);
         native public int close(int fd);
         native public int write(int fd, Buffer buffer, int count);
@@ -67,11 +72,11 @@ public class NativeFile {
 
     }
 
-    static Linux_C_lib_DirectMapping clib = new Linux_C_lib_DirectMapping();
+    private static Linux_C_lib_DirectMapping clib = new Linux_C_lib_DirectMapping();
 
-    int fd;
-    RandomAccessFile jfd;
-    FileChannel fc;
+    protected int fd;
+    protected RandomAccessFile jfd;
+    protected FileChannel fc;
 
     protected NativeFile() {
 
@@ -173,11 +178,22 @@ public class NativeFile {
      * Perform a Linux style ioctl operation on the associated file.
      *
      * @param req ioctl operation to be performed
-     * @param buf byte array containing the ioctl parameters if any
+     * @param info output as fb_fix_screeninfo structure
      * @return Linux style ioctl return
      */
-    public int ioctl(int req, byte[] buf) {
-        return clib.ioctl(fd, req, buf);
+    public int ioctl(int req, NativeFramebuffer.fb_fix_screeninfo info) {
+        return clib.ioctl(fd, req, info);
+    }
+
+    /**
+     * Perform a Linux style ioctl operation on the associated file.
+     *
+     * @param req ioctl operation to be performed
+     * @param info output as fb_var_screeninfo structure
+     * @return Linux style ioctl return
+     */
+    public int ioctl(int req, NativeFramebuffer.fb_var_screeninfo info) {
+        return clib.ioctl(fd, req, info);
     }
 
     /**
@@ -188,6 +204,17 @@ public class NativeFile {
      * @return Linux style ioctl return
      */
     public int ioctl(int req, Pointer buf) {
+        return clib.ioctl(fd, req, buf);
+    }
+
+    /**
+     * Perform a Linux style ioctl operation on the associated file.
+     *
+     * @param req ioctl operation to be performed
+     * @param buf byte array containing the ioctl parameters if any
+     * @return Linux style ioctl return
+     */
+    public int ioctl(int req, byte[] buf) {
         return clib.ioctl(fd, req, buf);
     }
 

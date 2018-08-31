@@ -59,7 +59,7 @@ public class NativeFramebuffer extends NativeDevice {
      */
     public fb_fix_screeninfo getFixedScreenInfo() {
         fb_fix_screeninfo info = new fb_fix_screeninfo();
-        int res = super.ioctl(FBIOGET_FSCREENINFO, info.getPointer());
+        int res = super.ioctl(FBIOGET_FSCREENINFO, info);
         if (res == -1) {
             throw new RuntimeException("ioctl(FBIOGET_FSCREENINFO) failed");
         }
@@ -73,7 +73,7 @@ public class NativeFramebuffer extends NativeDevice {
      */
     public fb_var_screeninfo getVariableScreenInfo() {
         fb_var_screeninfo info = new fb_var_screeninfo();
-        int res = super.ioctl(FBIOGET_VSCREENINFO, info.getPointer());
+        int res = super.ioctl(FBIOGET_VSCREENINFO, info);
         if (res == -1) {
             throw new RuntimeException("ioctl(FBIOGET_VSCREENINFO) failed");
         }
@@ -86,7 +86,7 @@ public class NativeFramebuffer extends NativeDevice {
      * @param info Changeable info about the display.
      */
     public void setVariableScreenInfo(fb_var_screeninfo info) {
-        int res = super.ioctl(FBIOPUT_VSCREENINFO, info.getPointer());
+        int res = super.ioctl(FBIOPUT_VSCREENINFO, info);
         if (res == -1) {
             throw new RuntimeException("ioctl(FBIOPUT_VSCREENINFO) failed");
         }
@@ -281,19 +281,19 @@ public class NativeFramebuffer extends NativeDevice {
         /**
          * info about red channel
          */
-        public fb_bitfield red;
+        public fb_bitfield.ByValue red;
         /**
          * info about green channel
          */
-        public fb_bitfield green;
+        public fb_bitfield.ByValue green;
         /**
          * info about blue channel
          */
-        public fb_bitfield blue;
+        public fb_bitfield.ByValue blue;
         /**
          * info about transparency channel
          */
-        public fb_bitfield transp;
+        public fb_bitfield.ByValue transp;
         /**
          * != 0 Non standard pixel format
          */
