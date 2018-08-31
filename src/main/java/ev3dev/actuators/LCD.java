@@ -149,8 +149,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     }
 
     /**
-     * Use in combination with possible values from
-     * lejos.robotics.Color
+     * Set RGB value
      *
      * @param rgb
      */

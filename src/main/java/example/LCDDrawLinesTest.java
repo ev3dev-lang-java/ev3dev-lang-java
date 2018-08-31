@@ -13,18 +13,12 @@ public class LCDDrawLinesTest {
 
         System.out.println("EV3 LCD Example");
 
-        clear();
-        lcd.setColor(Color.BLACK);
+        lcd.clear();
+        lcd.setColor(0, 0, 0);
         lcd.drawLine(0, 0, 50, 50);
         lcd.drawLine(0, 0, 30, 60);
         lcd.refresh();
 
         Delay.msDelay(5000);
     }
-
-    public static void clear(){
-        lcd.setColor(Color.WHITE);
-        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
-    }
-
 }
