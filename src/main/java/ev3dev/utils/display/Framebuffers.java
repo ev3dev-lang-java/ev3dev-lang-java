@@ -41,6 +41,24 @@ public final class Framebuffers {
                 log.warn(new String(bos.toByteArray(), StandardCharsets.UTF_8));
             }
         }
-        throw new RuntimeException("No suitable framebuffer found");
+        throw new NoAvailableImplementationException("No suitable framebuffer found");
+    }
+
+    public static class NoAvailableImplementationException extends RuntimeException {
+        public NoAvailableImplementationException() {
+            super();
+        }
+
+        public NoAvailableImplementationException(String message) {
+            super(message);
+        }
+
+        public NoAvailableImplementationException(Throwable cause) {
+            super(cause);
+        }
+
+        public NoAvailableImplementationException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 }
