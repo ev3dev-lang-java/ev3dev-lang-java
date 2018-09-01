@@ -73,8 +73,8 @@ compileJava.options.encoding = 'UTF-8'
 
 //Compile
 compileJava {
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 1.9
+    targetCompatibility = 1.9
 }
 
 test.testLogging {
@@ -99,7 +99,7 @@ jacocoTestCoverageVerification {
         rule {
             limit {
                 //minimum = 0.75 // implement more tests
-                minimum = 0.60
+                minimum = 0.50
             }
         }
     }
