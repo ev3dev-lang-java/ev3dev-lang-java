@@ -2,6 +2,7 @@ package ev3dev.hardware.display;
 
 import com.sun.jna.Pointer;
 import ev3dev.utils.io.NativeFramebuffer;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import java.io.IOException;
  *
  * @since 2.4.7
  */
+@Slf4j
 abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
     /**
      * Underlying fixed framebuffer info.
@@ -49,6 +51,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      * @param path Path to the framebuffer device (e.g. /dev/fb0)
      */
     public LinuxFramebuffer(String path) throws IOException {
+        LOGGER.debug("Initializing LinuxFB on {}", path);
         device = new NativeFramebuffer(path);
         fixinfo = device.getFixedScreenInfo();
         varinfo = device.getVariableScreenInfo();
@@ -61,10 +64,12 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
         backup = new byte[(int) getBufferSize()];
         blank = null;
         flushEnabled = false;
+        LOGGER.debug("mode {}x{}x{}bpp", varinfo.xres, varinfo.yres, varinfo.bits_per_pixel);
     }
 
     @Override
     public void close() throws IOException {
+        LOGGER.trace("Closing LinuxFB");
         device.munmap(videomem, getBufferSize());
         device.close();
     }
@@ -103,7 +108,10 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
     @Override
     public void flushScreen(BufferedImage compatible) {
         if (flushEnabled) {
+            LOGGER.trace("Drawing frame on framebuffer");
             videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int) getBufferSize());
+        } else {
+            LOGGER.trace("Not drawing frame on framebuffer");
         }
     }
 
@@ -114,16 +122,19 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
 
     @Override
     public void storeData() {
+        LOGGER.trace("Storing framebuffer snapshot");
         videomem.read(0, backup, 0, (int) getBufferSize());
     }
 
     @Override
     public void restoreData() {
+        LOGGER.trace("Retoring framebuffer snapshot");
         videomem.write(0, backup, 0, (int) getBufferSize());
     }
 
     @Override
     public void clear() {
+        LOGGER.trace("Clearing framebuffer");
         if (blank == null) {
             blank = createCompatibleBuffer();
             Graphics2D gfx = blank.createGraphics();

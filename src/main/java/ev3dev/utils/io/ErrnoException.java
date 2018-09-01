@@ -1,9 +1,11 @@
 package ev3dev.utils.io;
 
 import com.sun.jna.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 public class ErrnoException extends IOException {
     private static final int BUFFER_CAPACITY = 64;
     private static libc_err libc = new libc_err();
@@ -16,6 +18,7 @@ public class ErrnoException extends IOException {
     public ErrnoException(int errno, String info) {
         super(cookMessage(errno, info));
         this.err = errno;
+        LOGGER.debug("ErrnoException created, errno={}, message={}", errno, info);
     }
 
     public static int wrap(int retval, String what) throws ErrnoException {

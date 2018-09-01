@@ -1,5 +1,7 @@
 package ev3dev.hardware.display;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.awt.image.BufferedImage;
 import java.io.IOError;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import static ev3dev.utils.io.NativeConstants.*;
  *
  * @since 2.4.7
  */
+@Slf4j
 public class RGBFramebuffer extends LinuxFramebuffer {
     /**
      * Create and initialize new Linux RGB framebuffer.
@@ -24,10 +27,12 @@ public class RGBFramebuffer extends LinuxFramebuffer {
         super(path);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             close();
+            LOGGER.debug("Framebuffer {} uses non-packed pixels", path);
             throw new IllegalArgumentException("Only framebuffers with packed pixels are supported");
         }
         if (getFixedInfo().visual != FB_VISUAL_TRUECOLOR || getVariableInfo().bits_per_pixel != 32) {
             close();
+            LOGGER.debug("Framebuffer {} is not 32bpp truecolor", path);
             throw new IllegalArgumentException("Only framebuffers with 32bpp RGB are supported");
         }
     }

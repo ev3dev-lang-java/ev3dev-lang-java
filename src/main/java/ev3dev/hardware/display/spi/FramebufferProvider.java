@@ -25,25 +25,27 @@ public interface FramebufferProvider {
      * @throws RuntimeException if no suitable framebuffer is found
      */
     static JavaFramebuffer load(String path) throws UnknownFramebufferException {
-        final Logger log = LoggerFactory.getLogger(JavaFramebuffer.class);
+        final Logger LOGGER = LoggerFactory.getLogger(FramebufferProvider.class);
+        LOGGER.debug("Loading framebuffer for {}", path);
         ServiceLoader<FramebufferProvider> loader = ServiceLoader.load(FramebufferProvider.class);
         for (FramebufferProvider provider : loader) {
             try {
                 JavaFramebuffer ok = provider.createFramebuffer(path);
-                log.info("Framebuffer '{}' is compatible", provider.getClass().getSimpleName());
+                LOGGER.debug("Framebuffer '{}' is compatible", provider.getClass().getSimpleName());
                 return ok;
             } catch (IllegalArgumentException ex) {
-                log.info("Framebuffer '{}' is not compatible", provider.getClass().getSimpleName());
+                LOGGER.debug("Framebuffer '{}' is not compatible", provider.getClass().getSimpleName());
             } catch (IOException e) {
-                log.warn("Framebuffer '{}' threw IOException", provider.getClass().getSimpleName());
-                log.warn("Message: {}", e.getLocalizedMessage());
+                LOGGER.warn("Framebuffer '{}' threw IOException", provider.getClass().getSimpleName());
+                LOGGER.warn("Message: {}", e.getLocalizedMessage());
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 try (PrintStream chos = new PrintStream(bos)) {
                     e.printStackTrace(chos);
                 }
-                log.warn(new String(bos.toByteArray(), StandardCharsets.UTF_8));
+                LOGGER.warn(new String(bos.toByteArray(), StandardCharsets.UTF_8));
             }
         }
+        LOGGER.error("All framebuffer implementations failed");
         throw new UnknownFramebufferException("No suitable framebuffer found for" + path);
     }
 

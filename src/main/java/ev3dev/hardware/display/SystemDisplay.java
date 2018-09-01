@@ -5,6 +5,7 @@ import ev3dev.utils.io.ErrnoException;
 import ev3dev.utils.io.NativeConstants;
 import ev3dev.utils.io.NativeFramebuffer;
 import ev3dev.utils.io.NativeTTY;
+import lombok.extern.slf4j.Slf4j;
 import sun.misc.Signal;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ import static ev3dev.utils.io.NativeConstants.*;
  * @author Jakub Vaněk
  * @since 2.4.7
  */
+@Slf4j
 public class SystemDisplay implements DisplayInterface {
     private static DisplayInterface instance = null;
     private String fbPath = null;
@@ -42,11 +44,13 @@ public class SystemDisplay implements DisplayInterface {
      */
     private SystemDisplay() {
         try {
+            LOGGER.trace("Initialing system console");
             initialize();
             Signal.handle(new Signal("USR2"), this::console_switch_handler);
             Runtime.getRuntime().addShutdownHook(new Thread(this::deinitialize, "console restore"));
             switchToTextMode();
         } catch (IOException e) {
+            LOGGER.debug("System console initialization failed");
             throw new RuntimeException("Error initializing system console", e);
         }
     }
@@ -65,6 +69,7 @@ public class SystemDisplay implements DisplayInterface {
             } catch (RuntimeException e) {
                 if (e.getCause() instanceof ErrnoException &&
                         ((ErrnoException) e.getCause()).getErrno() == NativeConstants.ENOTTY) {
+                    LOGGER.debug("but the failure was caused by not having a real TTY, using fake console");
                     // we do not run from Brickman
                     instance = new FakeDisplay();
                 } else {
@@ -87,18 +92,23 @@ public class SystemDisplay implements DisplayInterface {
         NativeFramebuffer fbfd = null;
         boolean success = false;
         try {
+            LOGGER.trace("Opening TTY");
             ttyfd = new NativeTTY("/dev/tty", O_RDWR);
             int activeVT = ttyfd.getVTstate().v_active;
             old_kbmode = ttyfd.getKeyboardMode();
 
+            LOGGER.trace("Opening FB 0");
             fbfd = new NativeFramebuffer("/dev/fb0");
             int fbn = fbfd.mapConsoleToFramebuffer(activeVT);
+            LOGGER.trace("map vt{} -> fb{}", activeVT, fbn);
 
             if (fbn < 0) {
+                LOGGER.error("No framebuffer for current TTY");
                 throw new IOException("No framebuffer device for the current VT");
             }
             fbPath = "/dev/fb" + fbn;
             if (fbn != 0) {
+                LOGGER.trace("Redirected to FB {}", fbn);
                 fbfd.close();
                 fbfd = new NativeFramebuffer(fbPath);
             }
@@ -121,6 +131,7 @@ public class SystemDisplay implements DisplayInterface {
      * Then, console file descriptor is closed.</p>
      */
     private void deinitialize() {
+        LOGGER.trace("Closing system console");
         try {
             ttyfd.setKeyboardMode(old_kbmode);
             ttyfd.setConsoleMode(KD_TEXT);
@@ -150,6 +161,7 @@ public class SystemDisplay implements DisplayInterface {
      * @throws RuntimeException when the switch fails
      */
     public void switchToGraphicsMode() {
+        LOGGER.trace("Switching console to graphics mode");
         try {
             ttyfd.setKeyboardMode(K_OFF);
             ttyfd.setConsoleMode(KD_GRAPHICS);
@@ -179,6 +191,7 @@ public class SystemDisplay implements DisplayInterface {
      * @throws RuntimeException when the switch fails
      */
     public void switchToTextMode() {
+        LOGGER.trace("Switching console to text mode");
         if (fbInstance != null) {
             fbInstance.setFlushEnabled(false);
             fbInstance.storeData();
@@ -204,6 +217,7 @@ public class SystemDisplay implements DisplayInterface {
      * Then, it allows kernel to switch the VT.</p>
      */
     private void vt_release() {
+        LOGGER.trace("Releasing VT");
         if (fbInstance != null) {
             fbInstance.setFlushEnabled(false);
             fbInstance.storeData();
@@ -222,6 +236,7 @@ public class SystemDisplay implements DisplayInterface {
      * Then, it restores framebuffer contents and enables write access.</p>
      */
     private void vt_acquire() {
+        LOGGER.trace("Acquiring VT");
         try {
             ttyfd.signalSwitch(VT_ACKACQ);
             ttyfd.setKeyboardMode(K_OFF);
@@ -242,6 +257,7 @@ public class SystemDisplay implements DisplayInterface {
      * @param sig unused argument for SignalHandler compatibility
      */
     private void console_switch_handler(Signal sig) {
+        LOGGER.trace("VT switch handler called");
         if (gfx_active) {
             vt_release();
             gfx_active = false;
@@ -262,6 +278,7 @@ public class SystemDisplay implements DisplayInterface {
      */
     public synchronized JavaFramebuffer openFramebuffer() {
         if (fbInstance == null) {
+            LOGGER.debug("Initialing framebuffer in system console");
             switchToGraphicsMode();
             try {
                 fbInstance = FramebufferProvider.load(fbPath);
@@ -281,6 +298,7 @@ public class SystemDisplay implements DisplayInterface {
      * @author Jakub Vaněk
      * @since 2.4.7
      */
+    @Slf4j
     private static class FakeDisplay implements DisplayInterface {
         private JavaFramebuffer fbInstance = null;
 
@@ -295,6 +313,7 @@ public class SystemDisplay implements DisplayInterface {
          */
         @Override
         public void switchToGraphicsMode() {
+            LOGGER.trace("Fake switch to graphics mode");
         }
 
         /**
@@ -302,11 +321,13 @@ public class SystemDisplay implements DisplayInterface {
          */
         @Override
         public void switchToTextMode() {
+            LOGGER.trace("Fake switch to text mode");
         }
 
         @Override
         public synchronized JavaFramebuffer openFramebuffer() {
             if (fbInstance == null) {
+                LOGGER.debug("Initialing framebuffer in fake console");
                 Brickman.disable();
                 try {
                     fbInstance = FramebufferProvider.load("/dev/fb0");

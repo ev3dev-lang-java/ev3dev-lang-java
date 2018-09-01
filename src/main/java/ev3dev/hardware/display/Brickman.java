@@ -4,6 +4,7 @@ import ev3dev.actuators.LCD;
 import ev3dev.utils.JarResource;
 import ev3dev.utils.Shell;
 import lejos.hardware.lcd.GraphicsLCD;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,8 +13,8 @@ import java.awt.*;
 import java.io.IOException;
 
 // intentionally package-local to prevent API misuse
+@Slf4j
 class Brickman {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Shell.class);
 
     private static final String DISABLE_BRICKMAN_COMMAND = "sudo systemctl stop brickman";
     private static final String ENABLE_BRICKMAN_COMMAND = "sudo systemctl start brickman";
@@ -28,6 +29,7 @@ class Brickman {
 
     private static void restoreBrickman() {
         LOGGER.trace("Enabling Brickman service");
+
         Shell.execute(ENABLE_BRICKMAN_COMMAND);
     }
 

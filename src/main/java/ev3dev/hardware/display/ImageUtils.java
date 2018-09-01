@@ -1,5 +1,7 @@
 package ev3dev.hardware.display;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.image.*;
@@ -9,6 +11,7 @@ import java.awt.image.*;
  *
  * @since 2.4.7
  */
+@Slf4j
 public class ImageUtils {
 
     /**
@@ -58,6 +61,7 @@ public class ImageUtils {
      * @return Configured BufferedImage
      */
     public static BufferedImage createXRGBImage(int width, int height, int stride, int[] offsets, byte[] buffer) {
+        LOGGER.trace("creating XRGB image {}x{} with stride={}", width, height, stride);
         if (buffer.length < (stride * height)) {
             throw new IllegalArgumentException("Buffer is smaller than height*stride");
         }
@@ -144,6 +148,7 @@ public class ImageUtils {
      * @return Configured BufferedImage.
      */
     public static BufferedImage createBWImage(int width, int height, int stride, boolean zeroBlack, byte[] backed) {
+        LOGGER.trace("creating BW image {}x{} with stride={}", width, height, stride);
         if (backed.length < (stride * height)) {
             throw new IllegalArgumentException("Buffer is smaller than height*stride");
         }
