@@ -19,7 +19,6 @@ public class EV3DevDistros {
 
     public EV3DevDistros() {
 
-        /*
         final String osResult = Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY);
         if (osResult.contains(JESSIE_DISTRO_DETECTION_PATTERN)) {
             setStretch();
@@ -37,21 +36,17 @@ public class EV3DevDistros {
                         return;
                 }
             }
-            LOGGER.debug(osResult);
-            LOGGER.error("Debian distro not recognized");
-            throw new RuntimeException("Debian distro not recognized");
+            LOGGER.warn("Failed to detect distro, falling back to Stretch.");
+            setStretch();
         }
-        */
-
-        setStretch();
     }
 
-    void setStretch() {
+    private void setStretch() {
         LOGGER.debug("Debian Stretch detected");
         CURRENT_DISTRO = EV3DevDistro.STRETCH;
     }
 
-    void setJessie() {
+    private void setJessie() {
         LOGGER.debug("Debian Jessie detected");
         CURRENT_DISTRO = EV3DevDistro.JESSIE;
     }
