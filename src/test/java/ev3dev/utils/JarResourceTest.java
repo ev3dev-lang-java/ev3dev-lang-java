@@ -5,7 +5,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.io.InputStream;
 import java.nio.file.Paths;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,7 +22,7 @@ public class JarResourceTest {
     @Test
     public void exportSuccessTest() throws Exception {
 
-        final String JAVA_LOGO = Brickman.JAVA_DUKE_IMAGE_NAME;
+        final String JAVA_LOGO = JarResource.JAVA_DUKE_IMAGE_NAME;
 
         final String JAVA_LOGO_EXPORTED_PATH = JarResource.export(JAVA_LOGO);
         LOGGER.info(JAVA_LOGO_EXPORTED_PATH);
@@ -43,7 +42,7 @@ public class JarResourceTest {
     @Test
     public void readSuccessTest() throws Exception {
 
-        final String JAVA_LOGO = Brickman.JAVA_DUKE_IMAGE_NAME;
+        final String JAVA_LOGO = JarResource.JAVA_DUKE_IMAGE_NAME;
 
         byte[] data = JarResource.read(JAVA_LOGO);
 
@@ -61,7 +60,7 @@ public class JarResourceTest {
     @Test
     public void deleteSuccessTest() throws Exception {
 
-        final String JAVA_LOGO = Brickman.JAVA_DUKE_IMAGE_NAME;
+        final String JAVA_LOGO = JarResource.JAVA_DUKE_IMAGE_NAME;
 
         final String JAVA_LOGO_EXPORTED_PATH = JarResource.export(JAVA_LOGO);
         LOGGER.info(JAVA_LOGO_EXPORTED_PATH);

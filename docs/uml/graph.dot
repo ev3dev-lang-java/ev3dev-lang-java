@@ -1111,8 +1111,8 @@ digraph G {
 <tr><td align="left" balign="left"> + getRectangle(id : int) : Rectangle2D </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.utils.Brickman
-	c51 [label=<<table title="ev3dev.utils.Brickman" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	// ev3dev.hardware.display.Brickman
+	c51 [label=<<table title="ev3dev.hardware.display.Brickman" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Brickman </td></tr>
 		</table></td></tr>

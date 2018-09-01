@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 /**
  * <p>Java2D-based framebuffer interface</p>
  *
+ * <p>This class provides an interface between BufferedImages and native framebuffers.</p>
+ *
  * @since 2.4.7
  */
 public interface JavaFramebuffer {
@@ -72,4 +74,26 @@ public interface JavaFramebuffer {
      * @param compatible What to draw onto the screen.
      */
     void flushScreen(BufferedImage compatible);
+
+    /**
+     * Controls whether {@link JavaFramebuffer#flushScreen(BufferedImage)} has effect or not.
+     *
+     * @param rly Whether flushing should be enabled or not.
+     */
+    void setFlushEnabled(boolean rly);
+
+    /**
+     * Store current hardware framebuffer state.
+     */
+    void storeData();
+
+    /**
+     * Restore original hardware framebuffer state.
+     */
+    void restoreData();
+
+    /**
+     * Clear the hardware framebuffer.
+     */
+    void clear();
 }

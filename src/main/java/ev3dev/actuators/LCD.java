@@ -77,11 +77,7 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
      * @return
      */
     private static JavaFramebuffer initSystemFramebuffer() {
-        String path = System.getProperty(EV3DEV_LCD_KEY);
-        if (path == null) {
-            path = EV3DEV_LCD_DEFAULT;
-        }
-        return Framebuffers.load(path);
+        return SystemDisplay.getInstance().openFramebuffer();
     }
 
     /**

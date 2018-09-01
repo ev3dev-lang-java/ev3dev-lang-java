@@ -15,16 +15,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FakeLCD extends BaseElement {
+    private static int flushes = 0;
     private int width;
     private int height;
-    private static int flushes = 0;
 
     public FakeLCD(final EV3DevPlatform ev3DevPlatform) throws IOException {
         EV3DevPlatforms conf = new EV3DevPlatforms(ev3DevPlatform);
 
         Path devPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
         createDirectories(devPath);
-        switch(ev3DevPlatform) {
+        switch (ev3DevPlatform) {
             case EV3BRICK:
                 width = 178;
                 height = 128;
@@ -42,6 +42,7 @@ public class FakeLCD extends BaseElement {
     }
 
     public class FakeLCDImpl implements JavaFramebuffer {
+        private boolean flushEnable = true;
 
         @Override
         public int getWidth() {
@@ -80,6 +81,9 @@ public class FakeLCD extends BaseElement {
 
         @Override
         public void flushScreen(BufferedImage compatible) {
+            if (!flushEnable) {
+                return;
+            }
             String filename = "lcdflush" + (flushes++) + ".png";
             Path pth = Paths.get(EV3DEV_FAKE_SYSTEM_PATH, "..", filename);
             try {
@@ -87,6 +91,26 @@ public class FakeLCD extends BaseElement {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        public void setFlushEnabled(boolean rly) {
+            flushEnable = rly;
+        }
+
+        @Override
+        public void storeData() {
+            // noop
+        }
+
+        @Override
+        public void restoreData() {
+            // noop
+        }
+
+        @Override
+        public void clear() {
+            // noop
         }
     }
 

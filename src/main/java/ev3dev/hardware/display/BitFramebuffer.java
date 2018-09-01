@@ -1,9 +1,9 @@
 package ev3dev.hardware.display;
 
 import java.awt.image.BufferedImage;
-import java.io.IOError;
+import java.io.IOException;
 
-import static ev3dev.hardware.display.NativeFramebuffer.*;
+import static ev3dev.utils.io.NativeConstants.*;
 
 /**
  * Linux black-and-white 1bpp framebuffer
@@ -16,13 +16,16 @@ public class BitFramebuffer extends LinuxFramebuffer {
      *
      * @param path Path to the framebuffer device (e.g. /dev/fb0)
      */
-    public BitFramebuffer(String path) throws IllegalArgumentException, IOError {
+    public BitFramebuffer(String path) throws IOException, IllegalArgumentException {
         super(path);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             close();
             throw new IllegalArgumentException("Only framebuffers with packed pixels are supported");
         }
-        if (getFixedInfo().visual != FB_VISUAL_MONO10 && getFixedInfo().visual != FB_VISUAL_MONO01) {
+        // probably duplicated, but this way we are sure
+        boolean nonMono = getFixedInfo().visual != FB_VISUAL_MONO10 && getFixedInfo().visual != FB_VISUAL_MONO01;
+        boolean non1bpp = getVariableInfo().bits_per_pixel != 1;
+        if (nonMono || non1bpp) {
             close();
             throw new IllegalArgumentException("Only framebuffers with 1bpp BW are supported");
         }

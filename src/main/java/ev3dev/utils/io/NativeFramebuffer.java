@@ -1,11 +1,13 @@
-package ev3dev.hardware.display;
+package ev3dev.utils.io;
 
 import com.sun.jna.NativeLong;
+import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-import ev3dev.utils.io.NativeDevice;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static ev3dev.utils.io.NativeConstants.*;
 
 /**
  * Linux framebuffer wrapper class
@@ -13,42 +15,14 @@ import java.util.List;
  * @since 2.4.7
  */
 public class NativeFramebuffer extends NativeDevice {
-    /**
-     * Pixels are laid at once one-by-one.
-     */
-    public static final int FB_TYPE_PACKED_PIXELS = 0;
-    /**
-     * 1BPP visual, 0 = black, 1 = white
-     */
-    public static final int FB_VISUAL_MONO01 = 0;
-    /**
-     * 1BPP visual, 1 = black, 0 = white
-     */
-    public static final int FB_VISUAL_MONO10 = 1;
-    /**
-     * 32BPP visual
-     */
-    public static final int FB_VISUAL_TRUECOLOR = 2;
-
-    /**
-     * IOCTL number for getting variable screen info.
-     */
-    private static final int FBIOGET_VSCREENINFO = 0x4600;
-    /**
-     * IOCTL number for setting variable screen info.
-     */
-    private static final int FBIOPUT_VSCREENINFO = 0x4601;
-    /**
-     * IOCTL number for getting fixed screen info.
-     */
-    private static final int FBIOGET_FSCREENINFO = 0x4602;
 
     /**
      * Create a native device to provide access to the specified character device
      *
      * @param dname name of the character device
+     * @throws ErrnoException when operations fails
      */
-    public NativeFramebuffer(String dname) {
+    public NativeFramebuffer(String dname) throws ErrnoException {
         super(dname);
     }
 
@@ -57,12 +31,10 @@ public class NativeFramebuffer extends NativeDevice {
      *
      * @return Non-changing info about the display.
      */
-    public fb_fix_screeninfo getFixedScreenInfo() {
+    public fb_fix_screeninfo getFixedScreenInfo() throws ErrnoException {
         fb_fix_screeninfo info = new fb_fix_screeninfo();
-        int res = super.ioctl(FBIOGET_FSCREENINFO, info);
-        if (res == -1) {
-            throw new RuntimeException("ioctl(FBIOGET_FSCREENINFO) failed");
-        }
+        super.ioctl(FBIOGET_FSCREENINFO, info.getPointer());
+        info.read();
         return info;
     }
 
@@ -70,13 +42,12 @@ public class NativeFramebuffer extends NativeDevice {
      * Fetch variable screen info.
      *
      * @return Changeable info about the display.
+     * @throws ErrnoException when operations fails
      */
-    public fb_var_screeninfo getVariableScreenInfo() {
+    public fb_var_screeninfo getVariableScreenInfo() throws ErrnoException {
         fb_var_screeninfo info = new fb_var_screeninfo();
-        int res = super.ioctl(FBIOGET_VSCREENINFO, info);
-        if (res == -1) {
-            throw new RuntimeException("ioctl(FBIOGET_VSCREENINFO) failed");
-        }
+        super.ioctl(FBIOGET_VSCREENINFO, info.getPointer());
+        info.read();
         return info;
     }
 
@@ -84,12 +55,27 @@ public class NativeFramebuffer extends NativeDevice {
      * Send variable screen info.
      *
      * @param info Changeable info about the display.
+     * @throws ErrnoException when operations fails
      */
-    public void setVariableScreenInfo(fb_var_screeninfo info) {
-        int res = super.ioctl(FBIOPUT_VSCREENINFO, info);
-        if (res == -1) {
-            throw new RuntimeException("ioctl(FBIOPUT_VSCREENINFO) failed");
-        }
+    public void setVariableScreenInfo(fb_var_screeninfo info) throws ErrnoException {
+        info.write();
+        super.ioctl(FBIOPUT_VSCREENINFO, info.getPointer());
+    }
+
+    /**
+     * Identify which framebuffer is connected to a specified VT.
+     *
+     * @param console VT number.
+     * @return Framebuffer number or -1 if console has no framebuffer.
+     * @throws ErrnoException when operations fails
+     */
+    public int mapConsoleToFramebuffer(int console) throws ErrnoException {
+        fb_con2fbmap map = new fb_con2fbmap();
+        map.console = console;
+        map.write();
+        super.ioctl(FBIOGET_CON2FBMAP, map.getPointer());
+        map.read();
+        return map.framebuffer;
     }
 
     /**
@@ -161,7 +147,11 @@ public class NativeFramebuffer extends NativeDevice {
          * Initialize this structure.
          */
         public fb_fix_screeninfo() {
-            super();
+            super(ALIGN_GNUC);
+        }
+
+        public fb_fix_screeninfo(Pointer p) {
+            super(p, ALIGN_GNUC);
         }
 
         @Override
@@ -206,7 +196,11 @@ public class NativeFramebuffer extends NativeDevice {
          * Initialize this structure.
          */
         public fb_bitfield() {
-            super();
+            super(ALIGN_GNUC);
+        }
+
+        public fb_bitfield(Pointer p) {
+            super(p, ALIGN_GNUC);
         }
 
         @Override
@@ -367,8 +361,13 @@ public class NativeFramebuffer extends NativeDevice {
          * Initialize this structure.
          */
         public fb_var_screeninfo() {
-            super();
+            super(ALIGN_GNUC);
         }
+
+        public fb_var_screeninfo(Pointer p) {
+            super(p, ALIGN_GNUC);
+        }
+
 
         @Override
         protected List<String> getFieldOrder() {
@@ -390,6 +389,24 @@ public class NativeFramebuffer extends NativeDevice {
          * Value wrapper
          */
         public static class ByValue extends fb_var_screeninfo implements Structure.ByValue {
+        }
+    }
+
+    public static class fb_con2fbmap extends Structure {
+        public int console;
+        public int framebuffer;
+
+        public fb_con2fbmap() {
+            super(ALIGN_GNUC);
+        }
+
+        public fb_con2fbmap(Pointer p) {
+            super(p, ALIGN_GNUC);
+        }
+
+        @Override
+        protected List<String> getFieldOrder() {
+            return Arrays.asList("console", "framebuffer");
         }
     }
 }

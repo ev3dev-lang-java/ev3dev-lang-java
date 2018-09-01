@@ -1,13 +1,15 @@
 package ev3dev.hardware.display;
 
 import com.sun.jna.Pointer;
+import ev3dev.utils.io.NativeFramebuffer;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.Closeable;
-import java.io.IOError;
+import java.io.IOException;
 
 /**
- * Linux Java2D framebuffer
+ * <p>Linux Java2D framebuffer.</p>
  *
  * @since 2.4.7
  */
@@ -28,13 +30,25 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      * Memory-mapped memory from Linux framebuffer device.
      */
     private Pointer videomem;
+    /**
+     * Whether to enable display output.
+     */
+    private boolean flushEnabled;
+    /**
+     * Framebuffer backup for VT switches.
+     */
+    private byte[] backup;
+    /**
+     * Cache blank image.
+     */
+    private BufferedImage blank;
 
     /**
      * Create and initialize new Linux-based Java2D framebuffer.
      *
      * @param path Path to the framebuffer device (e.g. /dev/fb0)
      */
-    public LinuxFramebuffer(String path) throws IOError {
+    public LinuxFramebuffer(String path) throws IOException {
         device = new NativeFramebuffer(path);
         fixinfo = device.getFixedScreenInfo();
         varinfo = device.getVariableScreenInfo();
@@ -44,10 +58,13 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
         varinfo.yoffset = 0;
         device.setVariableScreenInfo(varinfo);
         videomem = device.mmap(getBufferSize());
+        backup = new byte[(int) getBufferSize()];
+        blank = null;
+        flushEnabled = false;
     }
 
     @Override
-    public void close() {
+    public void close() throws IOException {
         device.munmap(videomem, getBufferSize());
         device.close();
     }
@@ -85,7 +102,36 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
 
     @Override
     public void flushScreen(BufferedImage compatible) {
-        videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int) getBufferSize());
+        if (flushEnabled) {
+            videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int) getBufferSize());
+        }
+    }
+
+    @Override
+    public void setFlushEnabled(boolean rly) {
+        this.flushEnabled = rly;
+    }
+
+    @Override
+    public void storeData() {
+        videomem.read(0, backup, 0, (int) getBufferSize());
+    }
+
+    @Override
+    public void restoreData() {
+        videomem.write(0, backup, 0, (int) getBufferSize());
+    }
+
+    @Override
+    public void clear() {
+        if (blank == null) {
+            blank = createCompatibleBuffer();
+            Graphics2D gfx = blank.createGraphics();
+            gfx.setColor(Color.WHITE);
+            gfx.fillRect(0, 0, getWidth(), getHeight());
+            gfx.dispose();
+        }
+        flushScreen(blank);
     }
 
     /**

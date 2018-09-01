@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JarResource {
-
+    public static final String JAVA_DUKE_IMAGE_NAME = "java_logo.png";
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(Shell.class);
 
     /**

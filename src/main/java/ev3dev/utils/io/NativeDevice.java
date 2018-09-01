@@ -1,42 +1,44 @@
 package ev3dev.utils.io;
 
-import java.io.IOError;
 import com.sun.jna.Pointer;
 
+import static ev3dev.utils.io.NativeConstants.*;
+
 /**
- * This class provides access from Java to Linux character devices. It is intended
+ * <p>This class provides access from Java to Linux character devices. It is intended
  * to allow access from Java to the Lego kernel modules which provide access to
- * EV3 hardware features.
- * <p><p>
- * TODO: Find a better way to return memory mapped data for use by Java.
- * @author andy
+ * EV3 hardware features.</p>
  *
+ * @author andy, Jakub Vaněk
  */
-public class NativeDevice extends NativeFile
-{
+public class NativeDevice extends NativeFile {
     /**
      * Create a native device to provide access to the specified character device
+     *
      * @param dname name of the character device
      */
-    public NativeDevice(String dname)
-    {
-        super();
-        try {
-            open(dname, O_RDWR, 0);
-        } catch(Exception e)
-        {
-            throw new IOError(e);
-        }
+    public NativeDevice(String dname) throws ErrnoException {
+        super(dname, O_RDWR, 0);
+    }
+
+    /**
+     * Create a native device to provide access to the specified character device
+     *
+     * @param flags opening flags of the device - read, write or both
+     * @param dname name of the character device
+     */
+    public NativeDevice(String dname, int flags) throws ErrnoException {
+        super(dname, flags);
     }
 
     /**
      * Map a portion of the device into memory and return a pointer which can be
      * used to read/write the device.
+     *
      * @param len number of bytes to map
      * @return a pointer that can be used to access the device memory
      */
-    public Pointer mmap(long len)
-    {
+    public Pointer mmap(long len) throws ErrnoException {
         return super.mmap(len, PROT_READ | PROT_WRITE, MAP_SHARED, 0);
     }
 }
