@@ -21,9 +21,9 @@ public class EV3DevDistros {
 
         final String osResult = Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY);
         if (osResult.contains(JESSIE_DISTRO_DETECTION_PATTERN)) {
-            setStretch();
-        } else if (osResult.contains(STRETCH_DISTRO_DETECTION_PATTERN)) {
             setJessie();
+        } else if (osResult.contains(STRETCH_DISTRO_DETECTION_PATTERN)) {
+            setStretch();
         } else {
             String value = System.getProperty(DEBIAN_DISTRO_DETECTION_KEY);
             if (value != null) {
