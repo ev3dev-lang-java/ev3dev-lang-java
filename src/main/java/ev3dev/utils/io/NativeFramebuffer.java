@@ -1,5 +1,6 @@
 package ev3dev.utils.io;
 
+import com.sun.jna.LastErrorException;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
@@ -20,9 +21,9 @@ public class NativeFramebuffer extends NativeDevice {
      * Create a native device to provide access to the specified character device
      *
      * @param dname name of the character device
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public NativeFramebuffer(String dname) throws ErrnoException {
+    public NativeFramebuffer(String dname) throws LastErrorException {
         super(dname);
     }
 
@@ -31,7 +32,7 @@ public class NativeFramebuffer extends NativeDevice {
      *
      * @return Non-changing info about the display.
      */
-    public fb_fix_screeninfo getFixedScreenInfo() throws ErrnoException {
+    public fb_fix_screeninfo getFixedScreenInfo() throws LastErrorException {
         fb_fix_screeninfo info = new fb_fix_screeninfo();
         super.ioctl(FBIOGET_FSCREENINFO, info.getPointer());
         info.read();
@@ -42,9 +43,9 @@ public class NativeFramebuffer extends NativeDevice {
      * Fetch variable screen info.
      *
      * @return Changeable info about the display.
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public fb_var_screeninfo getVariableScreenInfo() throws ErrnoException {
+    public fb_var_screeninfo getVariableScreenInfo() throws LastErrorException {
         fb_var_screeninfo info = new fb_var_screeninfo();
         super.ioctl(FBIOGET_VSCREENINFO, info.getPointer());
         info.read();
@@ -55,9 +56,9 @@ public class NativeFramebuffer extends NativeDevice {
      * Send variable screen info.
      *
      * @param info Changeable info about the display.
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public void setVariableScreenInfo(fb_var_screeninfo info) throws ErrnoException {
+    public void setVariableScreenInfo(fb_var_screeninfo info) throws LastErrorException {
         info.write();
         super.ioctl(FBIOPUT_VSCREENINFO, info.getPointer());
     }
@@ -67,9 +68,9 @@ public class NativeFramebuffer extends NativeDevice {
      *
      * @param console VT number.
      * @return Framebuffer number or -1 if console has no framebuffer.
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int mapConsoleToFramebuffer(int console) throws ErrnoException {
+    public int mapConsoleToFramebuffer(int console) throws LastErrorException {
         fb_con2fbmap map = new fb_con2fbmap();
         map.console = console;
         map.write();

@@ -1,6 +1,7 @@
 package ev3dev.hardware.display.spi;
 
 import ev3dev.hardware.display.JavaFramebuffer;
+import ev3dev.utils.AllImplFailedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +25,7 @@ public interface FramebufferProvider {
      * @return Initialized framebuffer for the specified path.
      * @throws RuntimeException if no suitable framebuffer is found
      */
-    static JavaFramebuffer load(String path) throws UnknownFramebufferException {
+    static JavaFramebuffer load(String path) throws AllImplFailedException {
         final Logger LOGGER = LoggerFactory.getLogger(FramebufferProvider.class);
         LOGGER.debug("Loading framebuffer for {}", path);
         ServiceLoader<FramebufferProvider> loader = ServiceLoader.load(FramebufferProvider.class);
@@ -46,7 +47,7 @@ public interface FramebufferProvider {
             }
         }
         LOGGER.error("All framebuffer implementations failed");
-        throw new UnknownFramebufferException("No suitable framebuffer found for" + path);
+        throw new AllImplFailedException("No suitable framebuffer found for" + path);
     }
 
     /**
@@ -58,28 +59,4 @@ public interface FramebufferProvider {
      */
     JavaFramebuffer createFramebuffer(String fbPath) throws IOException, IllegalArgumentException;
 
-    /**
-     * Situation when framebuffer is to be open, but none of
-     * the available implementations worked.
-     *
-     * @author Jakub Vaněk
-     * @since 2.4.7
-     */
-    class UnknownFramebufferException extends Exception {
-        /**
-         * Initialize new exception.
-         */
-        public UnknownFramebufferException() {
-            super();
-        }
-
-        /**
-         * Initialize new exception with message.
-         *
-         * @param message Message detailing the problem.
-         */
-        public UnknownFramebufferException(String message) {
-            super(message);
-        }
-    }
 }

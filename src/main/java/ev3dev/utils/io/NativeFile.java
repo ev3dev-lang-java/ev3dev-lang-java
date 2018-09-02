@@ -1,13 +1,9 @@
 package ev3dev.utils.io;
 
-import com.sun.jna.Native;
-import com.sun.jna.NativeLong;
-import com.sun.jna.Platform;
-import com.sun.jna.Pointer;
+import com.sun.jna.*;
 import com.sun.jna.ptr.IntByReference;
 
 import java.io.Closeable;
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
 /**
@@ -22,7 +18,7 @@ import java.nio.ByteBuffer;
  * @author andy, Jakub Vaněk
  */
 public class NativeFile implements Closeable, AutoCloseable {
-    private static libc_main libc = new libc_main();
+    private NativeLibc libc = new NativeLibc();
     protected int fd = -1;
 
     protected NativeFile() {
@@ -35,9 +31,9 @@ public class NativeFile implements Closeable, AutoCloseable {
      *
      * @param fname the name of the file to open
      * @param flags Linux style file access flags
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public NativeFile(String fname, int flags) throws ErrnoException {
+    public NativeFile(String fname, int flags) throws LastErrorException {
         open(fname, flags);
     }
 
@@ -48,9 +44,9 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param fname the name of the file to open
      * @param flags Linux style file access flags
      * @param mode  Linux style file access mode
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public NativeFile(String fname, int flags, int mode) throws ErrnoException {
+    public NativeFile(String fname, int flags, int mode) throws LastErrorException {
         open(fname, flags, mode);
     }
 
@@ -59,11 +55,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      *
      * @param fname the name of the file to open
      * @param flags Linux style file access flags
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public void open(String fname, int flags) throws ErrnoException {
-        fd = ErrnoException.wrap(libc.open(fname, flags),
-                "open(" + fname + ") failed");
+    public void open(String fname, int flags) throws LastErrorException {
+        fd = libc.open(fname, flags);
     }
 
     /**
@@ -72,11 +67,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param fname the name of the file to open
      * @param flags Linux style file access flags
      * @param mode  Linux style file access mode
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public void open(String fname, int flags, int mode) throws ErrnoException {
-        fd = ErrnoException.wrap(libc.open(fname, flags, mode),
-                "open(" + fname + ") failed");
+    public void open(String fname, int flags, int mode) throws LastErrorException {
+        fd = libc.open(fname, flags, mode);
     }
 
     /**
@@ -85,11 +79,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param buf location to store the read bytes
      * @param len number of bytes to attempt to read
      * @return number of bytes read
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int read(byte[] buf, int len) throws ErrnoException {
-        return ErrnoException.wrap(libc.read(fd, ByteBuffer.wrap(buf), len),
-                "read() failed");
+    public int read(byte[] buf, int len) throws LastErrorException {
+        return libc.read(fd, ByteBuffer.wrap(buf), len);
     }
 
     /**
@@ -99,11 +92,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param offset the offset within buf to take data from for the write
      * @param len    number of bytes to attempt to read
      * @return number of bytes read
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int write(byte[] buf, int offset, int len) throws ErrnoException {
-        return ErrnoException.wrap(libc.write(fd, ByteBuffer.wrap(buf, offset, len), len),
-                "write() failed");
+    public int write(byte[] buf, int offset, int len) throws LastErrorException {
+        return libc.write(fd, ByteBuffer.wrap(buf, offset, len), len);
     }
 
     /**
@@ -113,11 +105,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param offset offset with buf to start storing the read bytes
      * @param len    number of bytes to attempt to read
      * @return number of bytes read
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int read(byte[] buf, int offset, int len) throws ErrnoException {
-        return ErrnoException.wrap(libc.read(fd, ByteBuffer.wrap(buf, offset, len), len),
-                "read() failed");
+    public int read(byte[] buf, int offset, int len) throws LastErrorException {
+        return libc.read(fd, ByteBuffer.wrap(buf, offset, len), len);
     }
 
     /**
@@ -126,11 +117,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param buf location to store the read bytes
      * @param len number of bytes to attempt to read
      * @return number of bytes read
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int write(byte[] buf, int len) throws ErrnoException {
-        return ErrnoException.wrap(libc.write(fd, ByteBuffer.wrap(buf), len),
-                "write() failed");
+    public int write(byte[] buf, int len) throws LastErrorException {
+        return libc.write(fd, ByteBuffer.wrap(buf), len);
     }
 
     /**
@@ -139,11 +129,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param req  ioctl operation to be performed
      * @param info output as integer
      * @return Linux style ioctl return
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int ioctl(int req, IntByReference info) throws ErrnoException {
-        return ErrnoException.wrap(libc.ioctl(fd, req, info),
-                "ioctl(" + req + ") failed");
+    public int ioctl(int req, IntByReference info) throws LastErrorException {
+        return libc.ioctl(fd, req, info);
     }
 
     /**
@@ -152,11 +141,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param req  ioctl operation to be performed
      * @param info input as integer
      * @return Linux style ioctl return
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int ioctl(int req, int info) throws ErrnoException {
-        return ErrnoException.wrap(libc.ioctl(fd, req, info),
-                "ioctl(" + req + ") failed");
+    public int ioctl(int req, int info) throws LastErrorException {
+        return libc.ioctl(fd, req, info);
     }
 
     /**
@@ -165,11 +153,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param req ioctl operation to be performed
      * @param buf pointer to ioctl parameters
      * @return Linux style ioctl return
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int ioctl(int req, Pointer buf) throws ErrnoException {
-        return ErrnoException.wrap(libc.ioctl(fd, req, buf),
-                "ioctl(" + req + ") failed");
+    public int ioctl(int req, Pointer buf) throws LastErrorException {
+        return libc.ioctl(fd, req, buf);
     }
 
     /**
@@ -178,24 +165,23 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param req ioctl operation to be performed
      * @param buf byte array containing the ioctl parameters if any
      * @return Linux style ioctl return
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public int ioctl(int req, byte[] buf) throws ErrnoException {
-        return ErrnoException.wrap(libc.ioctl(fd, req, buf),
-                "ioctl(" + req + ") failed");
+    public int ioctl(int req, byte[] buf) throws LastErrorException {
+        return libc.ioctl(fd, req, buf);
     }
 
     /**
      * Close the associated file
      *
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
     @Override
-    public void close() throws ErrnoException {
+    public void close() throws LastErrorException {
         if (fd != -1) {
             int copy = fd;
             fd = -1;
-            ErrnoException.wrap(libc.close(copy), "close() failed");
+            libc.close(copy);
         }
     }
 
@@ -208,12 +194,12 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param flags Linux mmap flags
      * @param off   offset within the file for the start of the region
      * @return a pointer that can be used to access the mapped data
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public Pointer mmap(long len, int prot, int flags, long off) throws ErrnoException {
+    public Pointer mmap(long len, int prot, int flags, long off) throws LastErrorException {
         Pointer p = libc.mmap(new Pointer(0), new NativeLong(len), prot, flags, fd, new NativeLong(off));
         if (p.equals(new Pointer(-1))) {
-            throw new ErrnoException(Native.getLastError(), "mmap() failed");
+            throw new LastErrorException("mmap() failed");
         }
         return p;
     }
@@ -223,52 +209,10 @@ public class NativeFile implements Closeable, AutoCloseable {
      *
      * @param addr Mapped address.
      * @param len  Region length.
-     * @throws ErrnoException when operations fails
+     * @throws LastErrorException when operations fails
      */
-    public void munmap(Pointer addr, long len) throws ErrnoException {
-        ErrnoException.wrap(libc.munmap(addr, new NativeLong(len)), "munmap() failed");
-    }
-
-    /**
-     * Basic POSIX C Library bindings for file operations
-     */
-    private static class libc_main {
-        static {
-            try {
-                Native.register(Platform.C_LIBRARY_NAME);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        // file descriptor operations
-        native public int fcntl(int fd, int cmd, int arg);
-
-        // ioctls
-        native public int ioctl(int fd, int cmd, int arg);
-
-        native public int ioctl(int fd, int cmd, byte[] arg);
-
-        native public int ioctl(int fd, int cmd, Pointer arg);
-
-        native public int ioctl(int fd, int cmd, IntByReference arg);
-
-        // open/close
-        native public int open(String path, int flags);
-
-        native public int open(String path, int flags, int mode);
-
-        native public int close(int fd);
-
-        // read/write
-        native public int write(int fd, Buffer buffer, int count);
-
-        native public int read(int fd, Buffer buffer, int count);
-
-        // map/unmap
-        native public Pointer mmap(Pointer addr, NativeLong len, int prot, int flags, int fd, NativeLong off);
-
-        native public int munmap(Pointer addr, NativeLong len);
+    public void munmap(Pointer addr, long len) throws LastErrorException {
+        libc.munmap(addr, new NativeLong(len));
     }
 
 }

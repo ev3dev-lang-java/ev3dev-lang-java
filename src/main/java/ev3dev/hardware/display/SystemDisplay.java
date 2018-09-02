@@ -1,7 +1,6 @@
 package ev3dev.hardware.display;
 
 import ev3dev.hardware.display.spi.FramebufferProvider;
-import ev3dev.utils.io.ErrnoException;
 import ev3dev.utils.io.NativeConstants;
 import ev3dev.utils.io.NativeFramebuffer;
 import ev3dev.utils.io.NativeTTY;
