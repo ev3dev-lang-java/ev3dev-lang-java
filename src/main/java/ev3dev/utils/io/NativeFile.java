@@ -1,6 +1,8 @@
 package ev3dev.utils.io;
 
-import com.sun.jna.*;
+import com.sun.jna.LastErrorException;
+import com.sun.jna.NativeLong;
+import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
 import java.io.Closeable;
@@ -18,11 +20,23 @@ import java.nio.ByteBuffer;
  * @author andy, Jakub Vaněk
  */
 public class NativeFile implements Closeable, AutoCloseable {
-    private NativeLibc libc = new NativeLibc();
     protected int fd = -1;
+    private ILibc libc;
 
+    /**
+     * Basic constructor.
+     */
     protected NativeFile() {
+        this(new NativeLibc());
+    }
 
+    /**
+     * Basic constructor.
+     *
+     * @param libc standard C library interface to be used.
+     */
+    protected NativeFile(ILibc libc) {
+        this.libc = libc;
     }
 
     /**
@@ -34,7 +48,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @throws LastErrorException when operations fails
      */
     public NativeFile(String fname, int flags) throws LastErrorException {
-        open(fname, flags);
+        this(fname, flags, new NativeLibc());
     }
 
     /**
@@ -47,6 +61,35 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @throws LastErrorException when operations fails
      */
     public NativeFile(String fname, int flags, int mode) throws LastErrorException {
+        this(fname, flags, mode, new NativeLibc());
+    }
+
+    /**
+     * Create a NativeFile object and open the associated file/device
+     * for native access.
+     *
+     * @param fname the name of the file to open
+     * @param flags Linux style file access flags
+     * @param libc  standard C library interface to be used.
+     * @throws LastErrorException when operations fails
+     */
+    public NativeFile(String fname, int flags, ILibc libc) throws LastErrorException {
+        this.libc = libc;
+        open(fname, flags);
+    }
+
+    /**
+     * Create a NativeFile object and open the associated file/device
+     * for native access.
+     *
+     * @param fname the name of the file to open
+     * @param flags Linux style file access flags
+     * @param mode  Linux style file access mode
+     * @param libc  standard C library interface to be used.
+     * @throws LastErrorException when operations fails
+     */
+    public NativeFile(String fname, int flags, int mode, ILibc libc) throws LastErrorException {
+        this.libc = libc;
         open(fname, flags, mode);
     }
 

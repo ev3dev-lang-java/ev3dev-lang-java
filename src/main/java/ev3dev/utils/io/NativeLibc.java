@@ -5,7 +5,13 @@ import com.sun.jna.ptr.IntByReference;
 
 import java.nio.Buffer;
 
-public class NativeLibc {
+/**
+ * Native library bindings for standard C library
+ *
+ * @author leJOS, Jakub Vaněk
+ * @since 2.4.7
+ */
+public class NativeLibc implements ILibc {
     private static boolean initialized = false;
 
     public NativeLibc() {
