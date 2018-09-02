@@ -1,6 +1,8 @@
 package ev3dev.hardware.display;
 
+import com.sun.jna.LastErrorException;
 import ev3dev.hardware.display.spi.FramebufferProvider;
+import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.NativeConstants;
 import ev3dev.utils.io.NativeFramebuffer;
 import ev3dev.utils.io.NativeTTY;
@@ -66,8 +68,8 @@ public class SystemDisplay implements DisplayInterface {
             try {
                 instance = new SystemDisplay();
             } catch (RuntimeException e) {
-                if (e.getCause() instanceof ErrnoException &&
-                        ((ErrnoException) e.getCause()).getErrno() == NativeConstants.ENOTTY) {
+                if (e.getCause() instanceof LastErrorException &&
+                        ((LastErrorException) e.getCause()).getErrorCode() == NativeConstants.ENOTTY) {
                     LOGGER.debug("but the failure was caused by not having a real TTY, using fake console");
                     // we do not run from Brickman
                     instance = new FakeDisplay();
@@ -143,7 +145,7 @@ public class SystemDisplay implements DisplayInterface {
 
             ttyfd.close();
 
-        } catch (IOException e) {
+        } catch (LastErrorException e) {
             System.err.println("Error occured during console shutdown: " + e.getMessage());
             e.printStackTrace();
         }
@@ -170,7 +172,7 @@ public class SystemDisplay implements DisplayInterface {
             vtm.relsig = SIGUSR2;
             vtm.acqsig = SIGUSR2;
             ttyfd.setVTmode(vtm);
-        } catch (IOException e) {
+        } catch (LastErrorException e) {
             throw new RuntimeException("Switch to graphics mode failed", e);
         }
 
@@ -203,7 +205,7 @@ public class SystemDisplay implements DisplayInterface {
             vtm.relsig = 0;
             vtm.acqsig = 0;
             ttyfd.setVTmode(vtm);
-        } catch (IOException e) {
+        } catch (LastErrorException e) {
             throw new RuntimeException("Switch to text mode failed", e);
         }
 
@@ -223,7 +225,7 @@ public class SystemDisplay implements DisplayInterface {
         }
         try {
             ttyfd.signalSwitch(1);
-        } catch (IOException e) {
+        } catch (LastErrorException e) {
             System.err.println("Error occured during VT switch: " + e.getMessage());
             e.printStackTrace();
         }
@@ -240,7 +242,7 @@ public class SystemDisplay implements DisplayInterface {
             ttyfd.signalSwitch(VT_ACKACQ);
             ttyfd.setKeyboardMode(K_OFF);
             ttyfd.setConsoleMode(KD_GRAPHICS);
-        } catch (IOException e) {
+        } catch (LastErrorException e) {
             System.err.println("Error occured during VT switch: " + e.getMessage());
             e.printStackTrace();
         }
@@ -281,7 +283,7 @@ public class SystemDisplay implements DisplayInterface {
             switchToGraphicsMode();
             try {
                 fbInstance = FramebufferProvider.load(fbPath);
-            } catch (FramebufferProvider.UnknownFramebufferException e) {
+            } catch (AllImplFailedException e) {
                 throw new RuntimeException("System framebuffer opening failed", e);
             }
             fbInstance.setFlushEnabled(gfx_active);
@@ -330,7 +332,7 @@ public class SystemDisplay implements DisplayInterface {
                 Brickman.disable();
                 try {
                     fbInstance = FramebufferProvider.load("/dev/fb0");
-                } catch (FramebufferProvider.UnknownFramebufferException e) {
+                } catch (AllImplFailedException e) {
                     throw new RuntimeException("System framebuffer opening failed", e);
                 }
                 fbInstance.setFlushEnabled(true);
