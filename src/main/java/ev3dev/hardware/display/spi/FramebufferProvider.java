@@ -1,5 +1,6 @@
 package ev3dev.hardware.display.spi;
 
+import com.sun.jna.LastErrorException;
 import ev3dev.hardware.display.JavaFramebuffer;
 import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.NativeFramebuffer;
@@ -7,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ServiceLoader;
@@ -37,7 +37,7 @@ public interface FramebufferProvider {
                 return ok;
             } catch (IllegalArgumentException ex) {
                 LOGGER.debug("Framebuffer '{}' is not compatible", provider.getClass().getSimpleName());
-            } catch (IOException e) {
+            } catch (LastErrorException e) {
                 LOGGER.warn("Framebuffer '{}' threw IOException", provider.getClass().getSimpleName());
                 LOGGER.warn("Message: {}", e.getLocalizedMessage());
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -56,8 +56,8 @@ public interface FramebufferProvider {
      *
      * @param fb The framebuffer device (e.g. /dev/fb0)
      * @throws IllegalArgumentException When this framebuffer is not compatible with this device.
-     * @throws IOException              When there was an error accessing the device.
+     * @throws LastErrorException       When there was an error accessing the device.
      */
-    JavaFramebuffer createFramebuffer(NativeFramebuffer fb) throws IOException, IllegalArgumentException;
+    JavaFramebuffer createFramebuffer(NativeFramebuffer fb) throws LastErrorException, IllegalArgumentException;
 
 }

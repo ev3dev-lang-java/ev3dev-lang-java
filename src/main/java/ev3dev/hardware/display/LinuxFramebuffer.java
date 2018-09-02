@@ -55,7 +55,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      *
      * @param fb    Framebuffer device (e.g. /dev/fb0)
      */
-    public LinuxFramebuffer(NativeFramebuffer fb) throws IOException {
+    public LinuxFramebuffer(NativeFramebuffer fb) throws LastErrorException {
         setDeviceClose(false);
         device = fb;
         fixinfo = device.getFixedScreenInfo();
@@ -72,7 +72,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
         LOGGER.debug("mode {}x{}x{}bpp", varinfo.xres, varinfo.yres, varinfo.bits_per_pixel);
     }
 
-    protected void initializeMemory() {
+    protected void initializeMemory() throws LastErrorException {
         videomem = device.mmap(getBufferSize());
     }
 
