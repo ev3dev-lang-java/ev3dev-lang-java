@@ -1,14 +1,14 @@
 package example;
 
-import ev3dev.actuators.LCD;
+import ev3dev.hardware.display.SystemDisplay;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.robotics.Color;
 
 public class LCDDrawRectanglesTest {
 
-    public static GraphicsLCD lcd = LCD.getInstance();
+    public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
 
-    public static void main(final String[] args){
+    public static void main(final String[] args) {
 
         System.out.println("EV3 LCD Example");
 
@@ -19,9 +19,9 @@ public class LCDDrawRectanglesTest {
         lcd.refresh();
     }
 
-    public static void clear(){
+    public static void clear() {
         lcd.setColor(Color.WHITE);
-        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
+        lcd.fillRect(0, 0, lcd.getWidth(), lcd.getHeight());
     }
 
 }

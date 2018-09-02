@@ -1,6 +1,6 @@
 package example;
 
-import ev3dev.actuators.LCD;
+import ev3dev.hardware.display.SystemDisplay;
 import ev3dev.utils.JarResource;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.robotics.Color;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class LCDDrawImagesTest {
 
-    public static GraphicsLCD lcd = LCD.getInstance();
+    public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
 
     public static void main(final String[] args) throws IOException {
 
@@ -35,9 +35,9 @@ public class LCDDrawImagesTest {
         lcd.setColor(Color.BLACK);
         //LCD.drawImage(img, new AffineTransform(1f, 0f, 0f, 1f, 0, 0), null);
         //LCD.drawImage(image, 40,40, null);
-        lcd.drawImage(image,40,40,0);
+        lcd.drawImage(image, 40, 40, 0);
         //LCD.drawImage(img, 0,0, Color.WHITE, null);
-        lcd.drawImage(img, 0,0,0);
+        lcd.drawImage(img, 0, 0, 0);
 
         lcd.refresh();
 
@@ -46,9 +46,9 @@ public class LCDDrawImagesTest {
 
     }
 
-    public static void clear(){
+    public static void clear() {
         lcd.setColor(Color.WHITE);
-        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
+        lcd.fillRect(0, 0, lcd.getWidth(), lcd.getHeight());
     }
 
 }

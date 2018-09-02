@@ -1,15 +1,12 @@
 package ev3dev.hardware.display;
 
-import ev3dev.actuators.LCD;
 import ev3dev.utils.JarResource;
 import ev3dev.utils.Shell;
-import lejos.hardware.lcd.GraphicsLCD;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 // intentionally package-local to prevent API misuse
@@ -33,14 +30,15 @@ class Brickman {
         Shell.execute(ENABLE_BRICKMAN_COMMAND);
     }
 
-    public static void showJavaLogo() {
+    public static void drawJavaLogo(Graphics2D gfx) {
         LOGGER.debug("Showing Java logo on EV3 Brick");
 
-        final GraphicsLCD lcd = LCD.getInstance();
         try {
-            final Image image = ImageIO.read(JarResource.stream(JarResource.JAVA_DUKE_IMAGE_NAME));
-            lcd.drawImage(image, 40, 10, 0);
-            lcd.refresh();
+            Rectangle bounds = gfx.getClipBounds();
+            final BufferedImage image = ImageIO.read(JarResource.stream(JarResource.JAVA_DUKE_IMAGE_NAME));
+            int x = (bounds.width - image.getWidth()) / 2;
+            int y = (bounds.height - image.getHeight()) / 2;
+            gfx.drawImage(image, x, y, null);
         } catch (IOException e) {
             LOGGER.error(e.getLocalizedMessage());
         }

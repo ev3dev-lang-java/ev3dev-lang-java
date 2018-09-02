@@ -30,9 +30,6 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     // logger
     private static final Logger log = LoggerFactory.getLogger(LCD.class);
 
-    // singleton instance
-    private static GraphicsLCD instance;
-
     // drawable
     private JavaFramebuffer fb;
     private BufferedImage image;
@@ -45,13 +42,6 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
 
     // stroke
     private int stroke;
-
-    /**
-     * Initialize new LCD using the system framebuffer.
-     */
-    private LCD() {
-        this(initSystemFramebuffer());
-    }
 
     /**
      * Initialize new LCD using the user-provided framebuffer
@@ -69,35 +59,6 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
         this.image = fb.createCompatibleBuffer();
         this.g2d = this.image.createGraphics();
         this.clear();
-    }
-
-    /**
-     * Initialize system framebuffer
-     * @throws RuntimeException if no suitable framebuffer is found
-     * @return
-     */
-    private static JavaFramebuffer initSystemFramebuffer() {
-        return SystemDisplay.getInstance().openFramebuffer();
-    }
-
-    /**
-     * Return a Instance of LCD.
-     *
-     * @return A LCD instance
-     */
-    public static GraphicsLCD getInstance() {
-        if (instance == null) {
-            instance = new LCD();
-        }
-        return instance;
-    }
-
-    /**
-     * Do not use, only for testing.
-     * @param lcd The Great Fake LCD
-     */
-    public static void setInstance(GraphicsLCD lcd) {
-        instance = lcd;
     }
 
     public JavaFramebuffer getFramebuffer() {

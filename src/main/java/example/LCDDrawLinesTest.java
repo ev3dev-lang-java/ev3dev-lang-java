@@ -1,15 +1,14 @@
 package example;
 
-import ev3dev.actuators.LCD;
+import ev3dev.hardware.display.SystemDisplay;
 import lejos.hardware.lcd.GraphicsLCD;
-import lejos.robotics.Color;
 import lejos.utility.Delay;
 
 public class LCDDrawLinesTest {
 
-    public static GraphicsLCD lcd = LCD.getInstance();
+    public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
 
-    public static void main(final String[] args){
+    public static void main(final String[] args) {
 
         System.out.println("EV3 LCD Example");
 

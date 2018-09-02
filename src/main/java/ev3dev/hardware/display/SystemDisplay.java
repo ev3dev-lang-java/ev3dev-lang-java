@@ -1,6 +1,7 @@
 package ev3dev.hardware.display;
 
 import com.sun.jna.LastErrorException;
+import ev3dev.actuators.LCD;
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeConstants;
 import ev3dev.utils.io.NativeLibc;
@@ -25,7 +26,7 @@ public final class SystemDisplay {
      * @return new instance of display appropriate for the current session
      * @throws RuntimeException initialization of the display fails
      */
-    public static synchronized DisplayInterface initializeRealDisplay() {
+    public static DisplayInterface initializeRealDisplay() {
         ILibc libc = new NativeLibc();
 
         LOGGER.debug("initializing new real display");
@@ -41,5 +42,29 @@ public final class SystemDisplay {
                 throw e;
             }
         }
+    }
+
+    /**
+     * <p>Initialize real on-brick display with framebuffer.</p>
+     * <p><b>BEWARE:</b> this function may be called only once,
+     * otherwise the behavior is undefined.</p>
+     *
+     * @return new instance of framebuffer appropriate for the current session
+     * @throws RuntimeException initialization of the display or framebuffer fails
+     */
+    public static JavaFramebuffer initializeRealFramebuffer() {
+        return initializeRealDisplay().openFramebuffer();
+    }
+
+    /**
+     * <p>Initialize real on-brick display with framebuffer and LCD.</p>
+     * <p><b>BEWARE:</b> this function may be called only once,
+     * otherwise the behavior is undefined.</p>
+     *
+     * @return new instance of framebuffer appropriate for the current session
+     * @throws RuntimeException initialization of the display or framebuffer fails
+     */
+    public static LCD initializeRealLCD() {
+        return new LCD(initializeRealFramebuffer());
     }
 }
