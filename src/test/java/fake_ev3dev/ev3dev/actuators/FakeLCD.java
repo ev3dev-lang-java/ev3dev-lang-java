@@ -3,6 +3,7 @@ package fake_ev3dev.ev3dev.actuators;
 import ev3dev.actuators.LCD;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
+import ev3dev.hardware.display.DisplayInterface;
 import ev3dev.hardware.display.ImageUtils;
 import ev3dev.hardware.display.JavaFramebuffer;
 import fake_ev3dev.BaseElement;
@@ -111,6 +112,15 @@ public class FakeLCD extends BaseElement {
         @Override
         public void clear() {
             // noop
+        }
+
+        @Override
+        public DisplayInterface getDisplay() {
+            return null;
+        }
+
+        @Override
+        public void close() {
         }
     }
 

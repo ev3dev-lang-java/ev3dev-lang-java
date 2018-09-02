@@ -3,7 +3,9 @@ package ev3dev.hardware.display;
 import com.sun.jna.LastErrorException;
 import ev3dev.hardware.display.spi.FramebufferProvider;
 import ev3dev.utils.AllImplFailedException;
-import ev3dev.utils.io.*;
+import ev3dev.utils.io.ILibc;
+import ev3dev.utils.io.NativeFramebuffer;
+import ev3dev.utils.io.NativeTTY;
 import lombok.extern.slf4j.Slf4j;
 import sun.misc.Signal;
 import sun.misc.SignalHandler;
@@ -30,10 +32,9 @@ import static ev3dev.utils.io.NativeConstants.*;
  * @since 2.4.7
  */
 @Slf4j
-class OwnedDisplay implements DisplayInterface, Closeable {
+class OwnedDisplay extends DisplayInterface {
     private ILibc libc;
     private String fbPath = null;
-    private JavaFramebuffer fbInstance = null;
     private NativeTTY ttyfd = null;
     private boolean gfx_active = false;
     private int old_kbmode;
@@ -106,10 +107,12 @@ class OwnedDisplay implements DisplayInterface, Closeable {
 
     @Override
     public void close() {
-        if (ttyfd.isOpen()) {
+        if (ttyfd != null && ttyfd.isOpen()) {
             deinitialize();
             Runtime.getRuntime().removeShutdownHook(deinitializer);
             Signal.handle(new Signal("USR2"), oldSignaller);
+            oldSignaller = null;
+            deinitializer = null;
         }
     }
 
@@ -138,6 +141,10 @@ class OwnedDisplay implements DisplayInterface, Closeable {
             e.printStackTrace();
         }
         gfx_active = false;
+        // free objects
+        closeFramebuffer();
+        ttyfd = null;
+        libc = null;
     }
 
     /**
@@ -269,15 +276,7 @@ class OwnedDisplay implements DisplayInterface, Closeable {
         if (fbInstance == null) {
             LOGGER.debug("Initialing framebuffer in system console");
             switchToGraphicsMode();
-            try {
-                NativeFramebuffer fbfd = new NativeFramebuffer(fbPath, libc);
-                fbInstance = FramebufferProvider.load(fbfd);
-            } catch (AllImplFailedException e) {
-                throw new RuntimeException("System framebuffer opening failed", e);
-            }
-            fbInstance.setFlushEnabled(gfx_active);
-            fbInstance.clear();
-            fbInstance.storeData();
+            initializeFramebuffer(new NativeFramebuffer(fbPath, libc), true);
         }
         return fbInstance;
     }

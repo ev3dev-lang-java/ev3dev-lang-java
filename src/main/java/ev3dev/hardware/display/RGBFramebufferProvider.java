@@ -9,7 +9,7 @@ import ev3dev.utils.io.NativeFramebuffer;
  */
 public class RGBFramebufferProvider implements FramebufferProvider {
     @Override
-    public JavaFramebuffer createFramebuffer(NativeFramebuffer fb) throws LastErrorException, IllegalArgumentException {
-        return new RGBFramebuffer(fb);
+    public JavaFramebuffer createFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
+        return new RGBFramebuffer(fb, disp);
     }
 }

@@ -1,12 +1,8 @@
 package ev3dev.hardware.display;
 
-import ev3dev.hardware.display.spi.FramebufferProvider;
-import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeFramebuffer;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.IOException;
 
 /**
  * Class to allow running programs over SSH
@@ -15,8 +11,7 @@ import java.io.IOException;
  * @since 2.4.7
  */
 @Slf4j
-class StolenDisplay implements DisplayInterface {
-    private JavaFramebuffer fbInstance = null;
+class StolenDisplay extends DisplayInterface {
     private ILibc libc;
 
     /**
@@ -46,8 +41,11 @@ class StolenDisplay implements DisplayInterface {
      * noop, we do not have any resources
      */
     @Override
-    public void close() throws IOException {
+    public void close() {
         LOGGER.trace("Display close");
+        // free objects
+        closeFramebuffer();
+        libc = null;
     }
 
     @Override
@@ -55,15 +53,7 @@ class StolenDisplay implements DisplayInterface {
         if (fbInstance == null) {
             LOGGER.debug("Initialing framebuffer in fake console");
             Brickman.disable();
-            try {
-                NativeFramebuffer fbfd = new NativeFramebuffer("/dev/fb0", libc);
-                fbInstance = FramebufferProvider.load(fbfd);
-            } catch (AllImplFailedException e) {
-                throw new RuntimeException("System framebuffer opening failed", e);
-            }
-            fbInstance.setFlushEnabled(true);
-            fbInstance.clear();
-            fbInstance.storeData();
+            initializeFramebuffer(new NativeFramebuffer("/dev/fb0", libc), true);
         }
         return fbInstance;
     }

@@ -23,14 +23,15 @@ public class RGBFramebuffer extends LinuxFramebuffer {
     /**
      * Create and initialize new Linux RGB framebuffer.
      *
-     * @param fb The framebuffer device (e.g. /dev/fb0)
+     * @param fb   The framebuffer device (e.g. /dev/fb0)
+     * @param disp Display manager (e.g. /dev/tty)
      */
-    public RGBFramebuffer(NativeFramebuffer fb) throws LastErrorException, IllegalArgumentException {
-        super(fb);
+    public RGBFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
+        super(fb, disp);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             try {
                 close();
-            } catch (IOException e) {
+            } catch (LastErrorException e) {
                 throw new RuntimeException("Cannot close framebuffer", e);
             }
             LOGGER.debug("Framebuffer uses non-packed pixels");
@@ -39,7 +40,7 @@ public class RGBFramebuffer extends LinuxFramebuffer {
         if (getFixedInfo().visual != FB_VISUAL_TRUECOLOR || getVariableInfo().bits_per_pixel != 32) {
             try {
                 close();
-            } catch (IOException e) {
+            } catch (LastErrorException e) {
                 throw new RuntimeException("Cannot close framebuffer", e);
             }
             LOGGER.debug("Framebuffer is not 32bpp truecolor");

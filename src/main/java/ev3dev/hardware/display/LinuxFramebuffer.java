@@ -17,7 +17,7 @@ import java.io.IOException;
  * @since 2.4.7
  */
 @Slf4j
-abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
+abstract class LinuxFramebuffer implements JavaFramebuffer {
     /**
      * Underlying fixed framebuffer info.
      */
@@ -50,15 +50,21 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      * Whether to close the nativeframebuffer device when closing this framebuffer.
      */
     private boolean closeDevice;
+    /**
+     * Display manager
+     */
+    private DisplayInterface display;
 
     /**
      * Create and initialize new Linux-based Java2D framebuffer.
      *
-     * @param fb    Framebuffer device (e.g. /dev/fb0)
+     * @param fb   Framebuffer device (e.g. /dev/fb0)
+     * @param disp Display manager (e.g. /dev/tty)
      */
-    public LinuxFramebuffer(NativeFramebuffer fb) throws LastErrorException {
+    public LinuxFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException {
         setDeviceClose(false);
         device = fb;
+        display = disp;
         fixinfo = device.getFixedScreenInfo();
         varinfo = device.getVariableScreenInfo();
         varinfo.xres_virtual = varinfo.xres;
@@ -78,14 +84,22 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
     }
 
     @Override
-    public void close() throws IOException {
-        LOGGER.trace("Unmapping LinuxFB");
+    public void close() throws LastErrorException {
+        LOGGER.trace("Closing LinuxFB");
         if (videomem != null) {
             device.munmap(videomem, getBufferSize());
         }
-        if (closeDevice) {
+        if (closeDevice && device != null) {
             device.close();
         }
+        // free objects
+        display.releaseFramebuffer(this);
+        display = null;
+        blank = null;
+        device = null;
+        backup = null;
+        fixinfo = null;
+        varinfo = null;
     }
 
     @Override
@@ -158,6 +172,11 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
             gfx.dispose();
         }
         flushScreen(blank);
+    }
+
+    @Override
+    public DisplayInterface getDisplay() {
+        return display;
     }
 
     /**

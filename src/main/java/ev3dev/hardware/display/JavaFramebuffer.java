@@ -1,6 +1,7 @@
 package ev3dev.hardware.display;
 
 import java.awt.image.BufferedImage;
+import java.io.Closeable;
 
 /**
  * <p>Java2D-based framebuffer interface</p>
@@ -9,7 +10,7 @@ import java.awt.image.BufferedImage;
  *
  * @since 2.4.7
  */
-public interface JavaFramebuffer {
+public interface JavaFramebuffer extends Closeable {
     /**
      * Query framebuffer width.
      *
@@ -96,4 +97,11 @@ public interface JavaFramebuffer {
      * Clear the hardware framebuffer.
      */
     void clear();
+
+    /**
+     * Get the associated display manager.
+     *
+     * @return reference to display manager
+     */
+    DisplayInterface getDisplay();
 }

@@ -20,13 +20,14 @@ public class BitFramebuffer extends LinuxFramebuffer {
      * Create and initialize new Linux 1bpp framebuffer.
      *
      * @param fb The framebuffer device (e.g. /dev/fb0)
+     * @param disp Display manager (e.g. /dev/tty)
      */
-    public BitFramebuffer(NativeFramebuffer fb) throws LastErrorException, IllegalArgumentException {
-        super(fb);
+    public BitFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
+        super(fb, disp);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             try {
                 close();
-            } catch (IOException e) {
+            } catch (LastErrorException e) {
                 throw new RuntimeException("Cannot close framebuffer", e);
             }
             LOGGER.debug("Framebuffer uses non-packed pixels");
@@ -38,7 +39,7 @@ public class BitFramebuffer extends LinuxFramebuffer {
         if (nonMono || non1bpp) {
             try {
                 close();
-            } catch (IOException e) {
+            } catch (LastErrorException e) {
                 throw new RuntimeException("Cannot close framebuffer", e);
             }
             LOGGER.debug("Framebuffer is not 1bpp mono");
