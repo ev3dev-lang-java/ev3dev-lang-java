@@ -36,6 +36,7 @@ public class BitFramebuffer extends LinuxFramebuffer {
             throw new IllegalArgumentException("Only framebuffers with 1bpp BW are supported");
         }
         // taking ownership
+        initializeMemory();
         setDeviceClose(true);
     }
 

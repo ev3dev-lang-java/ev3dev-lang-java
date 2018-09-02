@@ -37,6 +37,7 @@ public class RGBFramebuffer extends LinuxFramebuffer {
             throw new IllegalArgumentException("Only framebuffers with 32bpp RGB are supported");
         }
         // taking ownership
+        initializeMemory();
         setDeviceClose(true);
     }
 

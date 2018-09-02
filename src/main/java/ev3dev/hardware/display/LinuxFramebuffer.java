@@ -65,11 +65,15 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
         varinfo.xoffset = 0;
         varinfo.yoffset = 0;
         device.setVariableScreenInfo(varinfo);
-        videomem = device.mmap(getBufferSize());
+        videomem = null;
         backup = new byte[(int) getBufferSize()];
         blank = null;
         flushEnabled = false;
         LOGGER.debug("mode {}x{}x{}bpp", varinfo.xres, varinfo.yres, varinfo.bits_per_pixel);
+    }
+
+    protected void initializeMemory() {
+        videomem = device.mmap(getBufferSize());
     }
 
     @Override
