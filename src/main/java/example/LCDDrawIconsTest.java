@@ -3,6 +3,7 @@ package example;
 import ev3dev.hardware.display.SystemDisplay;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.robotics.Color;
+import lejos.utility.Delay;
 
 import java.awt.*;
 
@@ -14,12 +15,16 @@ public class LCDDrawIconsTest {
 
         System.out.println("EV3 LCD Example");
 
-        clear();
-        lcd.setColor(Color.BLACK);
+        //clear();
+        lcd.clear();
+        //lcd.setColor(Color.BLACK);
+        lcd.setColor(0, 0, 0);
         lcd.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 70));
         lcd.drawString("\u2665", 50, 50, 0);
         lcd.drawString("\u2661", 70, 70, 0);
         lcd.refresh();
+
+        Delay.msDelay(5000);
     }
 
     public static void clear() {
