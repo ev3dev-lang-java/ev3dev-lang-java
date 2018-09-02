@@ -52,6 +52,10 @@ public final class NativeConstants {
     public static final int VT_ACKACQ = 0x02;    /* acknowledge switch */
     public static final int SIGUSR2 = 12;
     public static final int ENOTTY = 25;
+
+    public static final int MS_ASYNC = 1; /* sync memory asynchronously */
+    public static final int MS_INVALIDATE = 2; /* invalidate the caches */
+    public static final int MS_SYNC = 4; /* synchronous memory sync */
     /**
      * Pixels are laid at once one-by-one.
      */

@@ -2,6 +2,7 @@ package ev3dev.hardware.display;
 
 import com.sun.jna.LastErrorException;
 import com.sun.jna.Pointer;
+import ev3dev.utils.io.NativeConstants;
 import ev3dev.utils.io.NativeFramebuffer;
 import lombok.extern.slf4j.Slf4j;
 
@@ -123,6 +124,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
         if (flushEnabled) {
             LOGGER.trace("Drawing frame on framebuffer");
             videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int) getBufferSize());
+            device.msync(videomem, getBufferSize(), NativeConstants.MS_SYNC);
         } else {
             LOGGER.trace("Not drawing frame on framebuffer");
         }

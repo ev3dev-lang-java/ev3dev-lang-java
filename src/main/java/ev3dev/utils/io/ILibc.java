@@ -42,4 +42,6 @@ public interface ILibc {
     Pointer mmap(Pointer addr, NativeLong len, int prot, int flags, int fd, NativeLong off) throws LastErrorException;
 
     int munmap(Pointer addr, NativeLong len) throws LastErrorException;
+
+    int msync(Pointer addr, NativeLong len, int flags) throws LastErrorException;
 }

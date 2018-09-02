@@ -55,4 +55,6 @@ public class NativeLibc implements ILibc {
     native public Pointer mmap(Pointer addr, NativeLong len, int prot, int flags, int fd, NativeLong off) throws LastErrorException;
 
     native public int munmap(Pointer addr, NativeLong len) throws LastErrorException;
+
+    native public int msync(Pointer addr, NativeLong len, int flags) throws LastErrorException;
 }

@@ -267,4 +267,16 @@ public class NativeFile implements Closeable, AutoCloseable {
         libc.munmap(addr, new NativeLong(len));
     }
 
+    /**
+     * Synchronize mapped memory region.
+     *
+     * @param addr Mapped address.
+     * @param len  Region length.
+     * @param flags Synchronization flags
+     * @throws LastErrorException when operations fails
+     */
+    public void msync(Pointer addr, long len, int flags) throws LastErrorException {
+        libc.msync(addr, new NativeLong(len), flags);
+    }
+
 }
