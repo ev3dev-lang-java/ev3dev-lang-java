@@ -1,6 +1,5 @@
 package fake_ev3dev.ev3dev.actuators;
 
-import ev3dev.actuators.LCD;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.hardware.display.DisplayInterface;
@@ -15,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+// TODO unbreak this broken design
 public class FakeLCD extends BaseElement {
     private static int flushes = 0;
     private int width;
@@ -39,7 +39,6 @@ public class FakeLCD extends BaseElement {
             case UNKNOWN:
                 throw new RuntimeException("Nope");
         }
-        LCD.setInstance(new LCD(new FakeLCDImpl()));
     }
 
     public class FakeLCDImpl implements JavaFramebuffer {
