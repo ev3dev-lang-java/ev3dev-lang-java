@@ -3,12 +3,12 @@ package ev3dev.hardware.display;
 import com.sun.jna.LastErrorException;
 import ev3dev.hardware.display.spi.FramebufferProvider;
 import ev3dev.utils.AllImplFailedException;
-import ev3dev.utils.io.NativeConstants;
-import ev3dev.utils.io.NativeFramebuffer;
-import ev3dev.utils.io.NativeTTY;
+import ev3dev.utils.io.*;
 import lombok.extern.slf4j.Slf4j;
 import sun.misc.Signal;
+import sun.misc.SignalHandler;
 
+import java.io.Closeable;
 import java.io.IOException;
 
 import static ev3dev.utils.io.NativeConstants.*;
@@ -30,25 +30,30 @@ import static ev3dev.utils.io.NativeConstants.*;
  * @since 2.4.7
  */
 @Slf4j
-public class SystemDisplay implements DisplayInterface {
+public class SystemDisplay implements DisplayInterface, Closeable {
     private static DisplayInterface instance = null;
+    private ILibc libc;
     private String fbPath = null;
     private JavaFramebuffer fbInstance = null;
     private NativeTTY ttyfd = null;
     private boolean gfx_active = false;
     private int old_kbmode;
+    private Thread deinitializer;
+    private SignalHandler oldSignaller;
 
     /**
      * <p>Initialize the display, register event handlers and switch to text mode.</p>
      *
      * @throws RuntimeException when initialization or mode switch fails.
      */
-    private SystemDisplay() {
+    private SystemDisplay(ILibc libc) {
+        this.libc = libc;
         try {
             LOGGER.trace("Initialing system console");
             initialize();
-            Signal.handle(new Signal("USR2"), this::console_switch_handler);
-            Runtime.getRuntime().addShutdownHook(new Thread(this::deinitialize, "console restore"));
+            oldSignaller = Signal.handle(new Signal("USR2"), this::console_switch_handler);
+            deinitializer = new Thread(this::deinitialize, "console restore");
+            Runtime.getRuntime().addShutdownHook(deinitializer);
             switchToTextMode();
         } catch (IOException e) {
             LOGGER.debug("System console initialization failed");
@@ -65,20 +70,35 @@ public class SystemDisplay implements DisplayInterface {
      */
     public static synchronized DisplayInterface getInstance() {
         if (instance == null) {
+            ILibc libc = new NativeLibc();
             try {
-                instance = new SystemDisplay();
+                instance = new SystemDisplay(libc);
             } catch (RuntimeException e) {
                 if (e.getCause() instanceof LastErrorException &&
                         ((LastErrorException) e.getCause()).getErrorCode() == NativeConstants.ENOTTY) {
                     LOGGER.debug("but the failure was caused by not having a real TTY, using fake console");
                     // we do not run from Brickman
-                    instance = new FakeDisplay();
+                    instance = new FakeDisplay(libc);
                 } else {
                     throw e;
                 }
             }
         }
         return instance;
+    }
+
+    public static DisplayInterface createMockedInstance(ILibc libc) {
+        if (libc instanceof NativeLibc) {
+            throw new IllegalArgumentException("Mocking is not allowed with native libc!");
+        }
+        return new SystemDisplay(libc);
+    }
+
+    public static DisplayInterface createMockedFakeInstance(ILibc libc) {
+        if (libc instanceof NativeLibc) {
+            throw new IllegalArgumentException("Mocking is not allowed with native libc!");
+        }
+        return new FakeDisplay(libc);
     }
 
     /**
@@ -94,12 +114,12 @@ public class SystemDisplay implements DisplayInterface {
         boolean success = false;
         try {
             LOGGER.trace("Opening TTY");
-            ttyfd = new NativeTTY("/dev/tty", O_RDWR);
+            ttyfd = new NativeTTY("/dev/tty", O_RDWR, libc);
             int activeVT = ttyfd.getVTstate().v_active;
             old_kbmode = ttyfd.getKeyboardMode();
 
             LOGGER.trace("Opening FB 0");
-            fbfd = new NativeFramebuffer("/dev/fb0");
+            fbfd = new NativeFramebuffer("/dev/fb0", libc);
             int fbn = fbfd.mapConsoleToFramebuffer(activeVT);
             LOGGER.trace("map vt{} -> fb{}", activeVT, fbn);
 
@@ -111,7 +131,7 @@ public class SystemDisplay implements DisplayInterface {
             if (fbn != 0) {
                 LOGGER.trace("Redirected to FB {}", fbn);
                 fbfd.close();
-                fbfd = new NativeFramebuffer(fbPath);
+                fbfd = new NativeFramebuffer(fbPath, libc);
             }
 
             success = true;
@@ -122,6 +142,15 @@ public class SystemDisplay implements DisplayInterface {
             if (!success) {
                 ttyfd.close();
             }
+        }
+    }
+
+    @Override
+    public void close() {
+        if (ttyfd.isOpen()) {
+            deinitialize();
+            Runtime.getRuntime().removeShutdownHook(deinitializer);
+            Signal.handle(new Signal("USR2"), oldSignaller);
         }
     }
 
@@ -282,7 +311,8 @@ public class SystemDisplay implements DisplayInterface {
             LOGGER.debug("Initialing framebuffer in system console");
             switchToGraphicsMode();
             try {
-                fbInstance = FramebufferProvider.load(new NativeFramebuffer(fbPath));
+                NativeFramebuffer fbfd = new NativeFramebuffer(fbPath, libc);
+                fbInstance = FramebufferProvider.load(fbfd);
             } catch (AllImplFailedException e) {
                 throw new RuntimeException("System framebuffer opening failed", e);
             }
@@ -302,11 +332,13 @@ public class SystemDisplay implements DisplayInterface {
     @Slf4j
     private static class FakeDisplay implements DisplayInterface {
         private JavaFramebuffer fbInstance = null;
+        private ILibc libc;
 
         /**
          * noop
          */
-        private FakeDisplay() {
+        private FakeDisplay(ILibc libc) {
+            this.libc = libc;
         }
 
         /**
@@ -331,7 +363,8 @@ public class SystemDisplay implements DisplayInterface {
                 LOGGER.debug("Initialing framebuffer in fake console");
                 Brickman.disable();
                 try {
-                    fbInstance = FramebufferProvider.load(new NativeFramebuffer("/dev/fb0"));
+                    NativeFramebuffer fbfd = new NativeFramebuffer("/dev/fb0", libc);
+                    fbInstance = FramebufferProvider.load(fbfd);
                 } catch (AllImplFailedException e) {
                     throw new RuntimeException("System framebuffer opening failed", e);
                 }
