@@ -93,7 +93,9 @@ abstract class LinuxFramebuffer implements JavaFramebuffer {
             device.close();
         }
         // free objects
-        display.releaseFramebuffer(this);
+        if (display != null) {
+            display.releaseFramebuffer(this);
+        }
         display = null;
         blank = null;
         device = null;
