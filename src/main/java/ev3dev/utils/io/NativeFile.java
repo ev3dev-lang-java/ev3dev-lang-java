@@ -94,6 +94,15 @@ public class NativeFile implements Closeable, AutoCloseable {
     }
 
     /**
+     * Check whether this file has been open()en.
+     *
+     * @return True when the filedescriptor is valid.
+     */
+    public boolean isOpen() {
+        return fd != -1;
+    }
+
+    /**
      * Open the specified file/device for native access.
      *
      * @param fname the name of the file to open
