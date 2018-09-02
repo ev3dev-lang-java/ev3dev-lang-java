@@ -28,6 +28,40 @@ public class NativeFramebuffer extends NativeDevice {
     }
 
     /**
+     * Create a native device to provide access to the specified character device
+     *
+     * @param dname name of the character device
+     * @param flags Opening mode, e.g. read, write or both.
+     * @throws LastErrorException when operations fails
+     */
+    public NativeFramebuffer(String dname, int flags) throws LastErrorException {
+        super(dname, flags);
+    }
+
+    /**
+     * Create a native device to provide access to the specified character device
+     *
+     * @param dname name of the character device
+     * @param libc  standard C library interface to be used.
+     * @throws LastErrorException when operations fails
+     */
+    public NativeFramebuffer(String dname, ILibc libc) throws LastErrorException {
+        super(dname, libc);
+    }
+
+    /**
+     * Create a native device to provide access to the specified character device
+     *
+     * @param dname name of the character device
+     * @param flags Opening mode, e.g. read, write or both.
+     * @param libc  standard C library interface to be used.
+     * @throws LastErrorException when operations fails
+     */
+    public NativeFramebuffer(String dname, int flags, ILibc libc) throws LastErrorException {
+        super(dname, flags, libc);
+    }
+
+    /**
      * Fetch fixed screen info.
      *
      * @return Non-changing info about the display.

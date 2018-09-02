@@ -33,6 +33,27 @@ public class NativeDevice extends NativeFile {
     }
 
     /**
+     * Create a native device to provide access to the specified character device
+     *
+     * @param dname name of the character device
+     * @param libc  standard C library interface to be used.
+     */
+    public NativeDevice(String dname, ILibc libc) throws LastErrorException {
+        super(dname, O_RDWR, 0, libc);
+    }
+
+    /**
+     * Create a native device to provide access to the specified character device
+     *
+     * @param flags opening flags of the device - read, write or both
+     * @param dname name of the character device
+     * @param libc  standard C library interface to be used.
+     */
+    public NativeDevice(String dname, int flags, ILibc libc) throws LastErrorException {
+        super(dname, flags, libc);
+    }
+
+    /**
      * Map a portion of the device into memory and return a pointer which can be
      * used to read/write the device.
      *
