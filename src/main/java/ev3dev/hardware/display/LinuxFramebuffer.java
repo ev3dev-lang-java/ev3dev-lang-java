@@ -68,7 +68,7 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
         videomem = null;
         backup = new byte[(int) getBufferSize()];
         blank = null;
-        flushEnabled = false;
+        flushEnabled = true;
         LOGGER.debug("mode {}x{}x{}bpp", varinfo.xres, varinfo.yres, varinfo.bits_per_pixel);
     }
 
