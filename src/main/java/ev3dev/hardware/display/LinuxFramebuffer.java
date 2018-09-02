@@ -17,7 +17,7 @@ import java.io.IOException;
  * @since 2.4.7
  */
 @Slf4j
-abstract class LinuxFramebuffer implements JavaFramebuffer {
+public abstract class LinuxFramebuffer implements JavaFramebuffer {
     /**
      * Underlying fixed framebuffer info.
      */
