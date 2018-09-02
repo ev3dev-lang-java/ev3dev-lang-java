@@ -1,5 +1,7 @@
 package ev3dev.hardware.display;
 
+import java.io.Closeable;
+
 /**
  * <p>Display manager interface.</p>
  *
@@ -10,7 +12,7 @@ package ev3dev.hardware.display;
  * @author Jakub Vaněk
  * @since 2.4.7
  */
-public interface DisplayInterface {
+public interface DisplayInterface extends Closeable {
 
     /**
      * <p>Switch the display to a graphics mode.</p>
