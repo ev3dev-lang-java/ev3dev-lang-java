@@ -1,5 +1,6 @@
 package ev3dev.hardware.display;
 
+import ev3dev.utils.io.NativeFramebuffer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.image.BufferedImage;
@@ -17,13 +18,13 @@ public class BitFramebuffer extends LinuxFramebuffer {
     /**
      * Create and initialize new Linux 1bpp framebuffer.
      *
-     * @param path Path to the framebuffer device (e.g. /dev/fb0)
+     * @param fb The framebuffer device (e.g. /dev/fb0)
      */
-    public BitFramebuffer(String path) throws IOException, IllegalArgumentException {
-        super(path);
+    public BitFramebuffer(NativeFramebuffer fb) throws IOException, IllegalArgumentException {
+        super(fb);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             close();
-            LOGGER.debug("Framebuffer {} uses non-packed pixels", path);
+            LOGGER.debug("Framebuffer uses non-packed pixels");
             throw new IllegalArgumentException("Only framebuffers with packed pixels are supported");
         }
         // probably duplicated, but this way we are sure
@@ -31,9 +32,11 @@ public class BitFramebuffer extends LinuxFramebuffer {
         boolean non1bpp = getVariableInfo().bits_per_pixel != 1;
         if (nonMono || non1bpp) {
             close();
-            LOGGER.debug("Framebuffer {} is not 1bpp mono", path);
+            LOGGER.debug("Framebuffer is not 1bpp mono");
             throw new IllegalArgumentException("Only framebuffers with 1bpp BW are supported");
         }
+        // taking ownership
+        setDeviceClose(true);
     }
 
     @Override

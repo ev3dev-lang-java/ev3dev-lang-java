@@ -1,5 +1,6 @@
 package ev3dev.hardware.display;
 
+import com.sun.jna.LastErrorException;
 import com.sun.jna.Pointer;
 import ev3dev.utils.io.NativeFramebuffer;
 import lombok.extern.slf4j.Slf4j;
@@ -44,15 +45,19 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      * Cache blank image.
      */
     private BufferedImage blank;
+    /**
+     * Whether to close the nativeframebuffer device when closing this framebuffer.
+     */
+    private boolean closeDevice;
 
     /**
      * Create and initialize new Linux-based Java2D framebuffer.
      *
-     * @param path Path to the framebuffer device (e.g. /dev/fb0)
+     * @param fb    Framebuffer device (e.g. /dev/fb0)
      */
-    public LinuxFramebuffer(String path) throws IOException {
-        LOGGER.debug("Initializing LinuxFB on {}", path);
-        device = new NativeFramebuffer(path);
+    public LinuxFramebuffer(NativeFramebuffer fb) throws IOException {
+        setDeviceClose(false);
+        device = fb;
         fixinfo = device.getFixedScreenInfo();
         varinfo = device.getVariableScreenInfo();
         varinfo.xres_virtual = varinfo.xres;
@@ -69,9 +74,13 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
 
     @Override
     public void close() throws IOException {
-        LOGGER.trace("Closing LinuxFB");
-        device.munmap(videomem, getBufferSize());
-        device.close();
+        LOGGER.trace("Unmapping LinuxFB");
+        if (videomem != null) {
+            device.munmap(videomem, getBufferSize());
+        }
+        if (closeDevice) {
+            device.close();
+        }
     }
 
     @Override
@@ -190,5 +199,12 @@ abstract class LinuxFramebuffer implements JavaFramebuffer, Closeable {
      */
     public long getBufferSize() {
         return getHeight() * getStride();
+    }
+
+    /**
+     * Set whether to close the underlying device on exit.
+     */
+    protected void setDeviceClose(boolean rly) {
+        closeDevice = rly;
     }
 }

@@ -282,7 +282,7 @@ public class SystemDisplay implements DisplayInterface {
             LOGGER.debug("Initialing framebuffer in system console");
             switchToGraphicsMode();
             try {
-                fbInstance = FramebufferProvider.load(fbPath);
+                fbInstance = FramebufferProvider.load(new NativeFramebuffer(fbPath));
             } catch (AllImplFailedException e) {
                 throw new RuntimeException("System framebuffer opening failed", e);
             }
@@ -331,7 +331,7 @@ public class SystemDisplay implements DisplayInterface {
                 LOGGER.debug("Initialing framebuffer in fake console");
                 Brickman.disable();
                 try {
-                    fbInstance = FramebufferProvider.load("/dev/fb0");
+                    fbInstance = FramebufferProvider.load(new NativeFramebuffer("/dev/fb0"));
                 } catch (AllImplFailedException e) {
                     throw new RuntimeException("System framebuffer opening failed", e);
                 }

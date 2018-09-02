@@ -1,15 +1,16 @@
 package ev3dev.hardware.display;
 
+import ev3dev.utils.io.NativeFramebuffer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.image.BufferedImage;
-import java.io.IOError;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static ev3dev.utils.io.NativeConstants.*;
+import static ev3dev.utils.io.NativeConstants.FB_TYPE_PACKED_PIXELS;
+import static ev3dev.utils.io.NativeConstants.FB_VISUAL_TRUECOLOR;
 
 /**
  * Linux XRGB 32bpp framebuffer
@@ -21,20 +22,22 @@ public class RGBFramebuffer extends LinuxFramebuffer {
     /**
      * Create and initialize new Linux RGB framebuffer.
      *
-     * @param path Path to the framebuffer device (e.g. /dev/fb0)
+     * @param fb The framebuffer device (e.g. /dev/fb0)
      */
-    public RGBFramebuffer(String path) throws IOException, IllegalArgumentException {
-        super(path);
+    public RGBFramebuffer(NativeFramebuffer fb) throws IOException, IllegalArgumentException {
+        super(fb);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             close();
-            LOGGER.debug("Framebuffer {} uses non-packed pixels", path);
+            LOGGER.debug("Framebuffer uses non-packed pixels");
             throw new IllegalArgumentException("Only framebuffers with packed pixels are supported");
         }
         if (getFixedInfo().visual != FB_VISUAL_TRUECOLOR || getVariableInfo().bits_per_pixel != 32) {
             close();
-            LOGGER.debug("Framebuffer {} is not 32bpp truecolor", path);
+            LOGGER.debug("Framebuffer is not 32bpp truecolor");
             throw new IllegalArgumentException("Only framebuffers with 32bpp RGB are supported");
         }
+        // taking ownership
+        setDeviceClose(true);
     }
 
     @Override
