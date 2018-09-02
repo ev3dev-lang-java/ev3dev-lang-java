@@ -7,7 +7,7 @@ import ev3dev.utils.io.NativeFramebuffer;
 /**
  * Creates new Linux BW framebuffer.
  */
-class BitFramebufferProvider implements FramebufferProvider {
+public class BitFramebufferProvider implements FramebufferProvider {
     @Override
     public JavaFramebuffer createFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
         return new BitFramebuffer(fb, disp);
