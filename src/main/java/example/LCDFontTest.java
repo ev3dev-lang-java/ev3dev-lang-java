@@ -30,14 +30,18 @@ public class LCDFontTest {
         writeMessage("Hello World");
     }
 
-    public static void writeMessage(final String message) {
-        lcd.setColor(lejos.robotics.Color.BLACK);
-        lcd.drawString(message, 50, 50, 0);
+
+    public static void writeMessage(final String message){
+        //lcd.setColor(lejos.robotics.Color.BLACK);
+        lcd.setColor(0,0,0);
+        lcd.drawString(message, 50,50, 0);
         lcd.refresh();
     }
 
-    public static void clear() {
-        lcd.setColor(lejos.robotics.Color.WHITE);
-        lcd.fillRect(0, 0, lcd.getWidth(), lcd.getHeight());
+    public static void clear(){
+        //lcd.setColor(lejos.robotics.Color.WHITE);
+        lcd.setColor(255,255,255);
+        lcd.fillRect(0,0, lcd.getWidth(), lcd.getHeight());
+
     }
 }

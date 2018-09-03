@@ -4,6 +4,7 @@ import ev3dev.hardware.display.SystemDisplay;
 import ev3dev.utils.JarResource;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.robotics.Color;
+import lejos.utility.Delay;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,23 +33,15 @@ public class LCDDrawImagesTest {
 
         }
 
-        lcd.setColor(Color.BLACK);
-        //LCD.drawImage(img, new AffineTransform(1f, 0f, 0f, 1f, 0, 0), null);
-        //LCD.drawImage(image, 40,40, null);
-        lcd.drawImage(image, 40, 40, 0);
-        //LCD.drawImage(img, 0,0, Color.WHITE, null);
-        lcd.drawImage(img, 0, 0, 0);
-
-        lcd.refresh();
-
-        JarResource.delete("cross.gif");
-        JarResource.delete("nought.gif");
-
     }
 
+
     public static void clear() {
-        lcd.setColor(Color.WHITE);
+        //lcd.setColor(Color.WHITE);
+        lcd.setColor(255, 255, 255);
         lcd.fillRect(0, 0, lcd.getWidth(), lcd.getHeight());
+
+
     }
 
 }
