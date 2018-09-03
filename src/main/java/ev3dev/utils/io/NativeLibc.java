@@ -33,15 +33,9 @@ public class NativeLibc implements ILibc {
     // ioctls
     native public int ioctl(int fd, int cmd, int arg) throws LastErrorException;
 
-    native public int ioctl(int fd, int cmd, byte[] arg) throws LastErrorException;
-
     native public int ioctl(int fd, int cmd, Pointer arg) throws LastErrorException;
 
-    native public int ioctl(int fd, int cmd, IntByReference arg) throws LastErrorException;
-
     // open/close
-    native public int open(String path, int flags) throws LastErrorException;
-
     native public int open(String path, int flags, int mode) throws LastErrorException;
 
     native public int close(int fd) throws LastErrorException;
