@@ -1496,10 +1496,7 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + fcntl(fd : int, cmd : int, arg : int) : int </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : int) : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : byte[]) : int </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : Pointer) : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : IntByReference) : int </font></td></tr>
-<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + open(path : String, flags : int) : int </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + open(path : String, flags : int, mode : int) : int </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + close(fd : int) : int </font></td></tr>
 <tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + write(fd : int, buffer : Buffer, count : int) : int </font></td></tr>
@@ -1561,7 +1558,40 @@ digraph G {
 <tr><td align="left" balign="left"> + VT_PROCESS : int </td></tr>
 <tr><td align="left" balign="left"> + VT_ACKACQ : int </td></tr>
 <tr><td align="left" balign="left"> + SIGUSR2 : int </td></tr>
+<tr><td align="left" balign="left"> + EPERM : int </td></tr>
+<tr><td align="left" balign="left"> + ENOENT : int </td></tr>
+<tr><td align="left" balign="left"> + ESRCH : int </td></tr>
+<tr><td align="left" balign="left"> + EINTR : int </td></tr>
+<tr><td align="left" balign="left"> + EIO : int </td></tr>
+<tr><td align="left" balign="left"> + ENXIO : int </td></tr>
+<tr><td align="left" balign="left"> + E2BIG : int </td></tr>
+<tr><td align="left" balign="left"> + ENOEXEC : int </td></tr>
+<tr><td align="left" balign="left"> + EBADF : int </td></tr>
+<tr><td align="left" balign="left"> + ECHILD : int </td></tr>
+<tr><td align="left" balign="left"> + EAGAIN : int </td></tr>
+<tr><td align="left" balign="left"> + ENOMEM : int </td></tr>
+<tr><td align="left" balign="left"> + EACCES : int </td></tr>
+<tr><td align="left" balign="left"> + EFAULT : int </td></tr>
+<tr><td align="left" balign="left"> + ENOTBLK : int </td></tr>
+<tr><td align="left" balign="left"> + EBUSY : int </td></tr>
+<tr><td align="left" balign="left"> + EEXIST : int </td></tr>
+<tr><td align="left" balign="left"> + EXDEV : int </td></tr>
+<tr><td align="left" balign="left"> + ENODEV : int </td></tr>
+<tr><td align="left" balign="left"> + ENOTDIR : int </td></tr>
+<tr><td align="left" balign="left"> + EISDIR : int </td></tr>
+<tr><td align="left" balign="left"> + EINVAL : int </td></tr>
+<tr><td align="left" balign="left"> + ENFILE : int </td></tr>
+<tr><td align="left" balign="left"> + EMFILE : int </td></tr>
 <tr><td align="left" balign="left"> + ENOTTY : int </td></tr>
+<tr><td align="left" balign="left"> + ETXTBSY : int </td></tr>
+<tr><td align="left" balign="left"> + EFBIG : int </td></tr>
+<tr><td align="left" balign="left"> + ENOSPC : int </td></tr>
+<tr><td align="left" balign="left"> + ESPIPE : int </td></tr>
+<tr><td align="left" balign="left"> + EROFS : int </td></tr>
+<tr><td align="left" balign="left"> + EMLINK : int </td></tr>
+<tr><td align="left" balign="left"> + EPIPE : int </td></tr>
+<tr><td align="left" balign="left"> + EDOM : int </td></tr>
+<tr><td align="left" balign="left"> + ERANGE : int </td></tr>
 <tr><td align="left" balign="left"> + MS_ASYNC : int </td></tr>
 <tr><td align="left" balign="left"> + MS_INVALIDATE : int </td></tr>
 <tr><td align="left" balign="left"> + MS_SYNC : int </td></tr>
@@ -1599,6 +1629,7 @@ digraph G {
 <tr><td align="center" balign="center"> NativeFile </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - DEFAULT_PRIVS : int </td></tr>
 <tr><td align="left" balign="left"> # fd : int </td></tr>
 <tr><td align="left" balign="left"> - libc : ILibc </td></tr>
 		</table></td></tr>
@@ -1829,10 +1860,7 @@ digraph G {
 <tr><td align="left" balign="left"> + NativeLibc() </td></tr>
 <tr><td align="left" balign="left"> + fcntl(fd : int, cmd : int, arg : int) : int </td></tr>
 <tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : int) : int </td></tr>
-<tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : byte[]) : int </td></tr>
 <tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : Pointer) : int </td></tr>
-<tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : IntByReference) : int </td></tr>
-<tr><td align="left" balign="left"> + open(path : String, flags : int) : int </td></tr>
 <tr><td align="left" balign="left"> + open(path : String, flags : int, mode : int) : int </td></tr>
 <tr><td align="left" balign="left"> + close(fd : int) : int </td></tr>
 <tr><td align="left" balign="left"> + write(fd : int, buffer : Buffer, count : int) : int </td></tr>
