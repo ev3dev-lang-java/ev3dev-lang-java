@@ -7,7 +7,7 @@ import ev3dev.utils.io.NativeFramebuffer;
 /**
  * Creates new Linux RGB framebuffer.
  */
-class RGBFramebufferProvider implements FramebufferProvider {
+public class RGBFramebufferProvider implements FramebufferProvider {
     @Override
     public JavaFramebuffer createFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
         return new RGBFramebuffer(fb, disp);

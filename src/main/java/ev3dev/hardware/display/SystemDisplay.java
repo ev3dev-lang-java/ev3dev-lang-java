@@ -32,9 +32,8 @@ public final class SystemDisplay {
         LOGGER.debug("initializing new real display");
         try {
             return new OwnedDisplay(libc);
-        } catch (RuntimeException e) {
-            if (e.getCause() instanceof LastErrorException &&
-                    ((LastErrorException) e.getCause()).getErrorCode() == NativeConstants.ENOTTY) {
+        } catch (LastErrorException e) {
+            if (e.getErrorCode() == NativeConstants.ENOTTY) {
                 LOGGER.debug("but the failure was caused by not having a real TTY, using fake console");
                 // we do not run from Brickman
                 return new StolenDisplay(libc);
