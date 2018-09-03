@@ -15,54 +15,47 @@ digraph G {
 <tr><td align="center" balign="center"> LCD </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - log : Logger </td></tr>
-<tr><td align="left" balign="left"> + EV3DEV_EV3_DEVICES_PATH : String </td></tr>
-<tr><td align="left" balign="left"> + EV3DEV_EV3_LCD_NAME : String </td></tr>
-<tr><td align="left" balign="left"> + EV3DEV_EV3_LCD_PATH : String </td></tr>
 <tr><td align="left" balign="left"> + EV3DEV_LCD_KEY : String </td></tr>
-<tr><td align="left" balign="left"> + FB_PATH : String </td></tr>
-<tr><td align="left" balign="left"> - SCREEN_WIDTH : int </td></tr>
-<tr><td align="left" balign="left"> - SCREEN_HEIGHT : int </td></tr>
-<tr><td align="left" balign="left"> - LINE_LEN : int </td></tr>
-<tr><td align="left" balign="left"> - BUFFER_SIZE : int </td></tr>
-<tr><td align="left" balign="left"> + EV3_SCREEN_WIDTH : int </td></tr>
-<tr><td align="left" balign="left"> + EV3_SCREEN_HEIGHT : int </td></tr>
-<tr><td align="left" balign="left"> + EV3_LINE_LEN : int </td></tr>
-<tr><td align="left" balign="left"> + EV3_ROWS : int </td></tr>
-<tr><td align="left" balign="left"> + EV3_BUFFER_SIZE : int </td></tr>
+<tr><td align="left" balign="left"> + EV3DEV_LCD_DEFAULT : String </td></tr>
+<tr><td align="left" balign="left"> + EV3DEV_LCD_MODE_KEY : String </td></tr>
+<tr><td align="left" balign="left"> - log : Logger </td></tr>
+<tr><td align="left" balign="left"> - fb : JavaFramebuffer </td></tr>
 <tr><td align="left" balign="left"> - image : BufferedImage </td></tr>
 <tr><td align="left" balign="left"> - g2d : Graphics2D </td></tr>
-<tr><td align="left" balign="left"> - instance : GraphicsLCD </td></tr>
+<tr><td align="left" balign="left"> - timer : Timer </td></tr>
+<tr><td align="left" balign="left"> - timer_run : boolean </td></tr>
+<tr><td align="left" balign="left"> - timer_msec : int </td></tr>
+<tr><td align="left" balign="left"> - stroke : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - LCD() </td></tr>
-<tr><td align="left" balign="left"> + getInstance() : GraphicsLCD </td></tr>
-<tr><td align="left" balign="left"> - init(width : int, height : int, lineLength : int, bufferSize : int) </td></tr>
-<tr><td align="left" balign="left"> + getImage() : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + LCD(fb : JavaFramebuffer) </td></tr>
+<tr><td align="left" balign="left"> + getFramebuffer() : JavaFramebuffer </td></tr>
 <tr><td align="left" balign="left"> + flush() </td></tr>
 <tr><td align="left" balign="left"> + translate(x : int, y : int) </td></tr>
 <tr><td align="left" balign="left"> + getFont() : Font </td></tr>
 <tr><td align="left" balign="left"> + setFont(font : Font) </td></tr>
 <tr><td align="left" balign="left"> + getTranslateX() : int </td></tr>
 <tr><td align="left" balign="left"> + getTranslateY() : int </td></tr>
-<tr><td align="left" balign="left"> + setColor(color : int) </td></tr>
-<tr><td align="left" balign="left"> + setColor(i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + setPixel(i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + getPixel(i : int, i1 : int) : int </td></tr>
-<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int, b : boolean) </td></tr>
-<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawSubstring(s : String, i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawChar(c : char, i : int, i1 : int, i2 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawChars(chars : char[], i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
+<tr><td align="left" balign="left"> + setColor(rgb : int) </td></tr>
+<tr><td align="left" balign="left"> + setColor(r : int, g : int, b : int) </td></tr>
+<tr><td align="left" balign="left"> + setPixel(x : int, y : int, color : int) </td></tr>
+<tr><td align="left" balign="left"> + getPixel(x : int, y : int) : int </td></tr>
+<tr><td align="left" balign="left"> + drawString(str : String, x : int, y : int, anchor : int, inverted : boolean) </td></tr>
+<tr><td align="left" balign="left"> + drawString(str : String, x : int, y : int, anchor : int) </td></tr>
+<tr><td align="left" balign="left"> + drawSubstring(str : String, offset : int, len : int, x : int, y : int, anchor : int) </td></tr>
+<tr><td align="left" balign="left"> + drawChar(character : char, x : int, y : int, anchor : int) </td></tr>
+<tr><td align="left" balign="left"> + drawChars(data : char[], offset : int, length : int, x : int, y : int, anchor : int) </td></tr>
 <tr><td align="left" balign="left"> + getStrokeStyle() : int </td></tr>
 <tr><td align="left" balign="left"> + setStrokeStyle(i : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
-<tr><td align="left" balign="left"> + drawRegion(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegionRop(src : Image, sx : int, sy : int, w : int, h : int, x : int, y : int, anchor : int, rop : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegionRop(src : Image, sx : int, sy : int, w : int, h : int, transform : int, x : int, y : int, anchor : int, rop : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegion(src : Image, sx : int, sy : int, w : int, h : int, transform : int, x : int, y : int, anchor : int) </td></tr>
 <tr><td align="left" balign="left"> + drawImage(image : Image, i : int, i1 : int, i2 : int) </td></tr>
 <tr><td align="left" balign="left"> + drawLine(x1 : int, y1 : int, x2 : int, y2 : int) </td></tr>
 <tr><td align="left" balign="left"> + fillRect(x : int, y : int, width : int, height : int) </td></tr>
-<tr><td align="left" balign="left"> + copyArea(i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int) </td></tr>
+<tr><td align="left" balign="left"> + copyArea(sx : int, sy : int, w : int, h : int, x : int, y : int, anchor : int) </td></tr>
+<tr><td align="left" balign="left"> - adjustX(x : int, w : int, anchor : int) : int </td></tr>
+<tr><td align="left" balign="left"> - adjustY(y : int, h : int, anchor : int) : int </td></tr>
 <tr><td align="left" balign="left"> + drawRoundRect(x : int, y : int, width : int, height : int, arcWidth : int, arcHeight : int) </td></tr>
 <tr><td align="left" balign="left"> + drawRect(x : int, y : int, width : int, height : int) </td></tr>
 <tr><td align="left" balign="left"> + drawArc(x : int, y : int, width : int, height : int, startAngle : int, arcAngle : int) </td></tr>
@@ -74,14 +67,33 @@ digraph G {
 <tr><td align="left" balign="left"> + getDisplay() : byte[] </td></tr>
 <tr><td align="left" balign="left"> + getHWDisplay() : byte[] </td></tr>
 <tr><td align="left" balign="left"> + setContrast(i : int) </td></tr>
-<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
-<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, bytes1 : byte[], i4 : int, i5 : int, i6 : int, i7 : int, i8 : int, i9 : int, i10 : int) </td></tr>
+<tr><td align="left" balign="left"> - lejos2rgb(src : byte[], width : int, height : int) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> - any2rgb(img : Image) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> - any2lejos(img : BufferedImage) : byte[] </td></tr>
+<tr><td align="left" balign="left"> - java_lejos_flip(in : BufferedImage, out : BufferedImage) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + bitBlt(src : byte[], sw : int, sh : int, sx : int, sy : int, dx : int, dy : int, w : int, h : int, rop : int) </td></tr>
+<tr><td align="left" balign="left"> + bitBlt(src : byte[], sw : int, sh : int, sx : int, sy : int, dst : byte[], dw : int, dh : int, dx : int, dy : int, w : int, h : int, rop : int) </td></tr>
+<tr><td align="left" balign="left"> - bitBlt(src : BufferedImage, sx : int, sy : int, dst : BufferedImage, dx : int, dy : int, w : int, h : int, rop : int) </td></tr>
 <tr><td align="left" balign="left"> + setAutoRefresh(b : boolean) </td></tr>
 <tr><td align="left" balign="left"> + setAutoRefreshPeriod(i : int) : int </td></tr>
+<tr><td align="left" balign="left"> - timerUpdate() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.actuators.LCD.Flusher
+	c1 [label=<<table title="ev3dev.actuators.LCD.Flusher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Flusher </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - Flusher() </td></tr>
+<tr><td align="left" balign="left"> + run() </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.Sound
-	c1 [label=<<table title="ev3dev.actuators.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c2 [label=<<table title="ev3dev.actuators.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sound </td></tr>
 		</table></td></tr>
@@ -105,13 +117,15 @@ digraph G {
 <tr><td align="left" balign="left"> + playTone(frequency : int, duration : int, volume : int) </td></tr>
 <tr><td align="left" balign="left"> + playTone(frequency : int, duration : int) </td></tr>
 <tr><td align="left" balign="left"> + playSample(file : File, volume : int) </td></tr>
+<tr><td align="left" balign="left"> + playSample(file : InputStream, volume : int) </td></tr>
+<tr><td align="left" balign="left"> + playSample(file : InputStream) </td></tr>
 <tr><td align="left" balign="left"> + playSample(file : File) </td></tr>
 <tr><td align="left" balign="left"> + setVolume(volume : int) </td></tr>
 <tr><td align="left" balign="left"> + getVolume() : int </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.ev3.EV3Led
-	c2 [label=<<table title="ev3dev.actuators.ev3.EV3Led" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c3 [label=<<table title="ev3dev.actuators.ev3.EV3Led" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3Led </td></tr>
 		</table></td></tr>
@@ -120,11 +134,10 @@ digraph G {
 <tr><td align="left" balign="left"> + LEFT : int </td></tr>
 <tr><td align="left" balign="left"> + RIGHT : int </td></tr>
 <tr><td align="left" balign="left"> - direction : int </td></tr>
-<tr><td align="left" balign="left"> + LEFT_LED : String </td></tr>
-<tr><td align="left" balign="left"> + RIGHT_LED : String </td></tr>
-<tr><td align="left" balign="left"> + RED_LED : String </td></tr>
-<tr><td align="left" balign="left"> + GREEN_LED : String </td></tr>
-<tr><td align="left" balign="left"> + BRIGHTNESS : String </td></tr>
+<tr><td align="left" balign="left"> - LED_LEFT_RED : String </td></tr>
+<tr><td align="left" balign="left"> - LED_LEFT_GREEN : String </td></tr>
+<tr><td align="left" balign="left"> - LED_RIGHT_RED : String </td></tr>
+<tr><td align="left" balign="left"> - LED_RIGHT_GREEN : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3Led(button : int) </td></tr>
@@ -132,7 +145,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c3 [label=<<table title="ev3dev.actuators.lego.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c4 [label=<<table title="ev3dev.actuators.lego.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseRegulatedMotor </font></td></tr>
 		</table></td></tr>
@@ -179,7 +192,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.BasicMotor
-	c4 [label=<<table title="ev3dev.actuators.lego.motors.BasicMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c5 [label=<<table title="ev3dev.actuators.lego.motors.BasicMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BasicMotor </font></td></tr>
 		</table></td></tr>
@@ -200,7 +213,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor
-	c5 [label=<<table title="ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c6 [label=<<table title="ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3LargeRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -219,7 +232,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor
-	c6 [label=<<table title="ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c7 [label=<<table title="ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3MediumRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -238,7 +251,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.Motor
-	c7 [label=<<table title="ev3dev.actuators.lego.motors.Motor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c8 [label=<<table title="ev3dev.actuators.lego.motors.Motor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Motor </td></tr>
 		</table></td></tr>
@@ -253,7 +266,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.NXTRegulatedMotor
-	c8 [label=<<table title="ev3dev.actuators.lego.motors.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c9 [label=<<table title="ev3dev.actuators.lego.motors.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NXTRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -272,7 +285,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.UnregulatedMotor
-	c9 [label=<<table title="ev3dev.actuators.lego.motors.UnregulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c10 [label=<<table title="ev3dev.actuators.lego.motors.UnregulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnregulatedMotor </td></tr>
 		</table></td></tr>
@@ -284,7 +297,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevDevice
-	c10 [label=<<table title="ev3dev.hardware.EV3DevDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c11 [label=<<table title="ev3dev.hardware.EV3DevDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevDevice </font></td></tr>
 		</table></td></tr>
@@ -309,7 +322,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevDistro
-	c11 [label=<<table title="ev3dev.hardware.EV3DevDistro" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c12 [label=<<table title="ev3dev.hardware.EV3DevDistro" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> EV3DevDistro </td></tr>
@@ -323,25 +336,29 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevDistros
-	c12 [label=<<table title="ev3dev.hardware.EV3DevDistros" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c13 [label=<<table title="ev3dev.hardware.EV3DevDistros" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevDistros </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
 <tr><td align="left" balign="left"> - DEBIAN_DISTRO_DETECTION_QUERY : String </td></tr>
-<tr><td align="left" balign="left"> - STRETCH_DISTRO_DETECTION_QUERY : String </td></tr>
-<tr><td align="left" balign="left"> - JESSIE_DISTRO_DETECTION_QUERY : String </td></tr>
+<tr><td align="left" balign="left"> - JESSIE_DISTRO_DETECTION_PATTERN : String </td></tr>
+<tr><td align="left" balign="left"> - STRETCH_DISTRO_DETECTION_PATTERN : String </td></tr>
+<tr><td align="left" balign="left"> - DEBIAN_DISTRO_DETECTION_KEY : String </td></tr>
+<tr><td align="left" balign="left"> - DEBIAN_DISTRO_DETECTION_JESSIE : String </td></tr>
+<tr><td align="left" balign="left"> - DEBIAN_DISTRO_DETECTION_STRETCH : String </td></tr>
 <tr><td align="left" balign="left"> - CURRENT_DISTRO : EV3DevDistro </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevDistros() </td></tr>
-<tr><td align="left" balign="left"> - retrieveDistro() : EV3DevDistro </td></tr>
+<tr><td align="left" balign="left"> - setStretch() </td></tr>
+<tr><td align="left" balign="left"> - setJessie() </td></tr>
 <tr><td align="left" balign="left"> + getDistro() : EV3DevDistro </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevFileSystem
-	c13 [label=<<table title="ev3dev.hardware.EV3DevFileSystem" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c14 [label=<<table title="ev3dev.hardware.EV3DevFileSystem" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevFileSystem </td></tr>
 		</table></td></tr>
@@ -358,7 +375,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevMotorDevice
-	c14 [label=<<table title="ev3dev.hardware.EV3DevMotorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c15 [label=<<table title="ev3dev.hardware.EV3DevMotorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevMotorDevice </font></td></tr>
 		</table></td></tr>
@@ -394,13 +411,14 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPlatform
-	c15 [label=<<table title="ev3dev.hardware.EV3DevPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c16 [label=<<table title="ev3dev.hardware.EV3DevPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> EV3DevPlatform </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - platform : String </td></tr>
+<tr><td align="left" balign="left"> - propNamespace : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> EV3BRICK </td></tr>
@@ -411,25 +429,47 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPlatforms
-	c16 [label=<<table title="ev3dev.hardware.EV3DevPlatforms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c17 [label=<<table title="ev3dev.hardware.EV3DevPlatforms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevPlatforms </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
-<tr><td align="left" balign="left"> - ev3DevProperties : Properties </td></tr>
-<tr><td align="left" balign="left"> - CURRENT_PLATFORM : EV3DevPlatform </td></tr>
+<tr><td align="left" balign="left"> - globalInstance : EV3DevPlatformsImpl </td></tr>
+<tr><td align="left" balign="left"> - instance : EV3DevPlatformsImpl </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevPlatforms() </td></tr>
-<tr><td align="left" balign="left"> - retrievePlatform() : EV3DevPlatform </td></tr>
+<tr><td align="left" balign="left"> + EV3DevPlatforms(platform : EV3DevPlatform) </td></tr>
 <tr><td align="left" balign="left"> + getPlatform() : EV3DevPlatform </td></tr>
 <tr><td align="left" balign="left"> + getMotorPort(port : Port) : String </td></tr>
 <tr><td align="left" balign="left"> + getSensorPort(port : Port) : String </td></tr>
+<tr><td align="left" balign="left"> + getProperty(base : String) : String </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.EV3DevPlatformsImpl
+	c18 [label=<<table title="ev3dev.hardware.EV3DevPlatformsImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> EV3DevPlatformsImpl </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
+<tr><td align="left" balign="left"> - platform : EV3DevPlatform </td></tr>
+<tr><td align="left" balign="left"> - propPrefix : String </td></tr>
+<tr><td align="left" balign="left"> - props : Properties </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + EV3DevPlatformsImpl() </td></tr>
+<tr><td align="left" balign="left"> + EV3DevPlatformsImpl(platform : EV3DevPlatform) </td></tr>
+<tr><td align="left" balign="left"> - batteryTest(batteryDir : String, propPrefix : String) : boolean </td></tr>
+<tr><td align="left" balign="left"> - throwNoPlatform() : RuntimeException </td></tr>
+<tr><td align="left" balign="left"> + getPlatform() : EV3DevPlatform </td></tr>
+<tr><td align="left" balign="left"> + getMotorPort(port : Port) : String </td></tr>
+<tr><td align="left" balign="left"> + getSensorPort(port : Port) : String </td></tr>
+<tr><td align="left" balign="left"> + getProperty(base : String) : String </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPropertyLoader
-	c17 [label=<<table title="ev3dev.hardware.EV3DevPropertyLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c19 [label=<<table title="ev3dev.hardware.EV3DevPropertyLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevPropertyLoader </td></tr>
 		</table></td></tr>
@@ -441,12 +481,11 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DevPropertyLoader() </td></tr>
-<tr><td align="left" balign="left"> - retrieveEV3DevProperties() : Properties </td></tr>
 <tr><td align="left" balign="left"> + getEV3DevProperties() : Properties </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevSensorDevice
-	c18 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c20 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevSensorDevice </font></td></tr>
 		</table></td></tr>
@@ -463,8 +502,257 @@ digraph G {
 <tr><td align="left" balign="left"> # EV3DevSensorDevice(portName : Port, mode : String) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.BitFramebuffer
+	c21 [label=<<table title="ev3dev.hardware.display.BitFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> BitFramebuffer </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + BitFramebuffer(fb : NativeFramebuffer, disp : DisplayInterface) </td></tr>
+<tr><td align="left" balign="left"> + createCompatibleBuffer(width : int, height : int) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createCompatibleBuffer(width : int, height : int, stride : int, backed : byte[]) : BufferedImage </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.BitFramebufferProvider
+	c22 [label=<<table title="ev3dev.hardware.display.BitFramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> BitFramebufferProvider </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + BitFramebufferProvider() </td></tr>
+<tr><td align="left" balign="left"> + createFramebuffer(fb : NativeFramebuffer, disp : DisplayInterface) : JavaFramebuffer </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.Brickman
+	c23 [label=<<table title="ev3dev.hardware.display.Brickman" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Brickman </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - DISABLE_BRICKMAN_COMMAND : String </td></tr>
+<tr><td align="left" balign="left"> - ENABLE_BRICKMAN_COMMAND : String </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> ~ Brickman() </td></tr>
+<tr><td align="left" balign="left"> ~ disable() </td></tr>
+<tr><td align="left" balign="left"> - restoreBrickman() </td></tr>
+<tr><td align="left" balign="left"> + drawJavaLogo(gfx : Graphics2D) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.DisplayInterface
+	c24 [label=<<table title="ev3dev.hardware.display.DisplayInterface" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DisplayInterface </font></td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> # fbInstance : JavaFramebuffer </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + DisplayInterface() </td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + switchToGraphicsMode() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + switchToTextMode() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + openFramebuffer() : JavaFramebuffer </font></td></tr>
+<tr><td align="left" balign="left"> + releaseFramebuffer(fb : JavaFramebuffer) </td></tr>
+<tr><td align="left" balign="left"> # closeFramebuffer() </td></tr>
+<tr><td align="left" balign="left"> # initializeFramebuffer(backend : NativeFramebuffer, enable : boolean) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.ImageUtils
+	c25 [label=<<table title="ev3dev.hardware.display.ImageUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ImageUtils </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ImageUtils() </td></tr>
+<tr><td align="left" balign="left"> + createXRGBImage(w : int, h : int) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createXRGBImage(w : int, h : int, stride : int) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createXRGBImage(width : int, height : int, stride : int, buffer : byte[]) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createXRGBImage(width : int, height : int, stride : int, offsets : int[], buffer : byte[]) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + getDefaultComponentOffsets() : int[] </td></tr>
+<tr><td align="left" balign="left"> + createBWImage(width : int, height : int, zeroBlack : boolean) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createBWImage(width : int, height : int, zeroBlack : boolean, backed : byte[]) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createBWImage(width : int, height : int, stride : int, zeroBlack : boolean) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createBWImage(width : int, height : int, stride : int, zeroBlack : boolean, backed : byte[]) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + getImageBytes(image : BufferedImage) : byte[] </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.JavaFramebuffer
+	c26 [label=<<table title="ev3dev.hardware.display.JavaFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> JavaFramebuffer </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getWidth() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getHeight() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getStride() : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + createCompatibleBuffer() : BufferedImage </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + createCompatibleBuffer(width : int, height : int) : BufferedImage </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + createCompatibleBuffer(width : int, height : int, stride : int) : BufferedImage </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + createCompatibleBuffer(width : int, height : int, stride : int, backed : byte[]) : BufferedImage </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + flushScreen(compatible : BufferedImage) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + setFlushEnabled(rly : boolean) </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + storeData() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + restoreData() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + clear() </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + getDisplay() : DisplayInterface </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.LinuxFramebuffer
+	c27 [label=<<table title="ev3dev.hardware.display.LinuxFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> LinuxFramebuffer </font></td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - fixinfo : NativeFramebuffer.fb_fix_screeninfo </td></tr>
+<tr><td align="left" balign="left"> - varinfo : NativeFramebuffer.fb_var_screeninfo </td></tr>
+<tr><td align="left" balign="left"> - device : NativeFramebuffer </td></tr>
+<tr><td align="left" balign="left"> - videomem : Pointer </td></tr>
+<tr><td align="left" balign="left"> - flushEnabled : boolean </td></tr>
+<tr><td align="left" balign="left"> - backup : byte[] </td></tr>
+<tr><td align="left" balign="left"> - blank : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> - closeDevice : boolean </td></tr>
+<tr><td align="left" balign="left"> - display : DisplayInterface </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LinuxFramebuffer(fb : NativeFramebuffer, disp : DisplayInterface) </td></tr>
+<tr><td align="left" balign="left"> # initializeMemory() </td></tr>
+<tr><td align="left" balign="left"> + close() </td></tr>
+<tr><td align="left" balign="left"> + getWidth() : int </td></tr>
+<tr><td align="left" balign="left"> + getHeight() : int </td></tr>
+<tr><td align="left" balign="left"> + getStride() : int </td></tr>
+<tr><td align="left" balign="left"> + createCompatibleBuffer() : BufferedImage </td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + createCompatibleBuffer(width : int, height : int) : BufferedImage </font></td></tr>
+<tr><td align="left" balign="left"> + createCompatibleBuffer(width : int, height : int, stride : int) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + createCompatibleBuffer(width : int, height : int, stride : int, backed : byte[]) : BufferedImage </font></td></tr>
+<tr><td align="left" balign="left"> + flushScreen(compatible : BufferedImage) </td></tr>
+<tr><td align="left" balign="left"> + setFlushEnabled(rly : boolean) </td></tr>
+<tr><td align="left" balign="left"> + storeData() </td></tr>
+<tr><td align="left" balign="left"> + restoreData() </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+<tr><td align="left" balign="left"> + getDisplay() : DisplayInterface </td></tr>
+<tr><td align="left" balign="left"> + getFixedInfo() : NativeFramebuffer.fb_fix_screeninfo </td></tr>
+<tr><td align="left" balign="left"> + getVariableInfo() : NativeFramebuffer.fb_var_screeninfo </td></tr>
+<tr><td align="left" balign="left"> + getDevice() : NativeFramebuffer </td></tr>
+<tr><td align="left" balign="left"> + getMemory() : Pointer </td></tr>
+<tr><td align="left" balign="left"> + getBufferSize() : long </td></tr>
+<tr><td align="left" balign="left"> # setDeviceClose(rly : boolean) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.OwnedDisplay
+	c28 [label=<<table title="ev3dev.hardware.display.OwnedDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> OwnedDisplay </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - libc : ILibc </td></tr>
+<tr><td align="left" balign="left"> - fbPath : String </td></tr>
+<tr><td align="left" balign="left"> - ttyfd : NativeTTY </td></tr>
+<tr><td align="left" balign="left"> - gfx_active : boolean </td></tr>
+<tr><td align="left" balign="left"> - old_kbmode : int </td></tr>
+<tr><td align="left" balign="left"> - deinitializer : Thread </td></tr>
+<tr><td align="left" balign="left"> - oldSignaller : SignalHandler </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + OwnedDisplay(libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> - initialize() </td></tr>
+<tr><td align="left" balign="left"> + close() </td></tr>
+<tr><td align="left" balign="left"> - deinitialize() </td></tr>
+<tr><td align="left" balign="left"> + switchToGraphicsMode() </td></tr>
+<tr><td align="left" balign="left"> + switchToTextMode() </td></tr>
+<tr><td align="left" balign="left"> - vt_release() </td></tr>
+<tr><td align="left" balign="left"> - vt_acquire() </td></tr>
+<tr><td align="left" balign="left"> - console_switch_handler(sig : Signal) </td></tr>
+<tr><td align="left" balign="left"> + openFramebuffer() : JavaFramebuffer </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.RGBFramebuffer
+	c29 [label=<<table title="ev3dev.hardware.display.RGBFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RGBFramebuffer </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RGBFramebuffer(fb : NativeFramebuffer, disp : DisplayInterface) </td></tr>
+<tr><td align="left" balign="left"> + createCompatibleBuffer(width : int, height : int) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + createCompatibleBuffer(width : int, height : int, stride : int, buffer : byte[]) : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> - getComponentOffsets() : int[] </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.RGBFramebufferProvider
+	c30 [label=<<table title="ev3dev.hardware.display.RGBFramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RGBFramebufferProvider </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RGBFramebufferProvider() </td></tr>
+<tr><td align="left" balign="left"> + createFramebuffer(fb : NativeFramebuffer, disp : DisplayInterface) : JavaFramebuffer </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.StolenDisplay
+	c31 [label=<<table title="ev3dev.hardware.display.StolenDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> StolenDisplay </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - libc : ILibc </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + StolenDisplay(libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + switchToGraphicsMode() </td></tr>
+<tr><td align="left" balign="left"> + switchToTextMode() </td></tr>
+<tr><td align="left" balign="left"> + close() </td></tr>
+<tr><td align="left" balign="left"> + openFramebuffer() : JavaFramebuffer </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.SystemDisplay
+	c32 [label=<<table title="ev3dev.hardware.display.SystemDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> SystemDisplay </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - SystemDisplay() </td></tr>
+<tr><td align="left" balign="left"> + initializeRealDisplay() : DisplayInterface </td></tr>
+<tr><td align="left" balign="left"> + initializeRealFramebuffer() : JavaFramebuffer </td></tr>
+<tr><td align="left" balign="left"> + initializeRealLCD() : LCD </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.hardware.display.spi.FramebufferProvider
+	c33 [label=<<table title="ev3dev.hardware.display.spi.FramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> FramebufferProvider </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + load(fb : NativeFramebuffer, disp : DisplayInterface) : JavaFramebuffer </td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + createFramebuffer(fb : NativeFramebuffer, disp : DisplayInterface) : JavaFramebuffer </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.robotics.tts.Espeak
-	c19 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c34 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Espeak </td></tr>
 		</table></td></tr>
@@ -497,7 +785,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.BaseSensor
-	c20 [label=<<table title="ev3dev.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c35 [label=<<table title="ev3dev.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseSensor </td></tr>
 		</table></td></tr>
@@ -529,27 +817,26 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.Battery
-	c21 [label=<<table title="ev3dev.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c36 [label=<<table title="ev3dev.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Battery </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
-<tr><td align="left" balign="left"> + BATTERY : String </td></tr>
-<tr><td align="left" balign="left"> + BATTERY_EV3 : String </td></tr>
-<tr><td align="left" balign="left"> + BATTERY_PISTORMS : String </td></tr>
-<tr><td align="left" balign="left"> + BATTERY_BRICKPI : String </td></tr>
-<tr><td align="left" balign="left"> + BATTERY_BRICKPI3 : String </td></tr>
+<tr><td align="left" balign="left"> - BATTERY : String </td></tr>
+<tr><td align="left" balign="left"> - BATTERY_EV3 : String </td></tr>
+<tr><td align="left" balign="left"> - BATTERY_PISTORMS : String </td></tr>
+<tr><td align="left" balign="left"> - BATTERY_BRICKPI : String </td></tr>
+<tr><td align="left" balign="left"> - BATTERY_BRICKPI3 : String </td></tr>
 <tr><td align="left" balign="left"> - BATTERY_PATH : String </td></tr>
-<tr><td align="left" balign="left"> + VOLTAGE : String </td></tr>
-<tr><td align="left" balign="left"> + CURRENT : String </td></tr>
+<tr><td align="left" balign="left"> - VOLTAGE : String </td></tr>
+<tr><td align="left" balign="left"> - CURRENT : String </td></tr>
 <tr><td align="left" balign="left"> - BATTERY_PATH_LOCAL : String </td></tr>
 <tr><td align="left" balign="left"> - instance : Battery </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - Battery() </td></tr>
 <tr><td align="left" balign="left"> + getInstance() : Battery </td></tr>
-<tr><td align="left" balign="left"> - init() </td></tr>
 <tr><td align="left" balign="left"> + getVoltageMilliVolt() : int </td></tr>
 <tr><td align="left" balign="left"> + getVoltage() : float </td></tr>
 <tr><td align="left" balign="left"> + getBatteryCurrent() : float </td></tr>
@@ -557,7 +844,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.Button
-	c22 [label=<<table title="ev3dev.sensors.Button" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c37 [label=<<table title="ev3dev.sensors.Button" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Button </td></tr>
 		</table></td></tr>
@@ -580,7 +867,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.EV3DevSensorMode
-	c23 [label=<<table title="ev3dev.sensors.EV3DevSensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c38 [label=<<table title="ev3dev.sensors.EV3DevSensorMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevSensorMode </font></td></tr>
 		</table></td></tr>
@@ -599,7 +886,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.EV3Key
-	c24 [label=<<table title="ev3dev.sensors.EV3Key" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c39 [label=<<table title="ev3dev.sensors.EV3Key" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3Key </td></tr>
 		</table></td></tr>
@@ -615,7 +902,6 @@ digraph G {
 <tr><td align="left" balign="left"> + BUTTON_ALL : int </td></tr>
 <tr><td align="left" balign="left"> ~ STATE_KEY_DOWN : byte </td></tr>
 <tr><td align="left" balign="left"> ~ STATE_KEY_UP : byte </td></tr>
-<tr><td align="left" balign="left"> - SYSTEM_EVENT_PATH : String </td></tr>
 <tr><td align="left" balign="left"> - EVENT_BUFFER_LEN : int </td></tr>
 <tr><td align="left" balign="left"> - KEY_ID_INDEX : int </td></tr>
 <tr><td align="left" balign="left"> - KEY_STATE_INDEX : int </td></tr>
@@ -644,7 +930,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.EV3Key.KeyType
-	c25 [label=<<table title="ev3dev.sensors.EV3Key.KeyType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c40 [label=<<table title="ev3dev.sensors.EV3Key.KeyType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> KeyType </td></tr>
@@ -666,7 +952,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor
-	c26 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c41 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3ColorSensor </td></tr>
 		</table></td></tr>
@@ -698,7 +984,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode
-	c27 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c42 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ColorIDMode </td></tr>
 		</table></td></tr>
@@ -713,7 +999,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.RedMode
-	c28 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RedMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c43 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RedMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedMode </td></tr>
 		</table></td></tr>
@@ -728,7 +1014,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode
-	c29 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c44 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AmbientMode </td></tr>
 		</table></td></tr>
@@ -743,7 +1029,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor.RGBMode
-	c30 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RGBMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c45 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor.RGBMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RGBMode </td></tr>
 		</table></td></tr>
@@ -758,7 +1044,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor
-	c31 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c46 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3GyroSensor </td></tr>
 		</table></td></tr>
@@ -777,7 +1063,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor.RateMode
-	c32 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c47 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RateMode </td></tr>
 		</table></td></tr>
@@ -792,7 +1078,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor.AngleMode
-	c33 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.AngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c48 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.AngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AngleMode </td></tr>
 		</table></td></tr>
@@ -807,7 +1093,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode
-	c34 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c49 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RateAndAngleMode </td></tr>
 		</table></td></tr>
@@ -822,7 +1108,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor
-	c35 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c50 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3IRSensor </td></tr>
 		</table></td></tr>
@@ -833,17 +1119,19 @@ digraph G {
 <tr><td align="left" balign="left"> - MODE_DISTANCE : String </td></tr>
 <tr><td align="left" balign="left"> - MODE_SEEK : String </td></tr>
 <tr><td align="left" balign="left"> - MODE_REMOTE : String </td></tr>
+<tr><td align="left" balign="left"> + IR_CHANNELS : int </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3IRSensor(portName : Port) </td></tr>
 <tr><td align="left" balign="left"> - init() </td></tr>
 <tr><td align="left" balign="left"> + getDistanceMode() : SensorMode </td></tr>
 <tr><td align="left" balign="left"> + getSeekMode() : SensorMode </td></tr>
-<tr><td align="left" balign="left"> + getRemoteMode() : SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getRemoteCommand(chan : int) : int </td></tr>
+<tr><td align="left" balign="left"> + getRemoteCommands(cmds : byte[], offset : int, len : int) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor.DistanceMode
-	c36 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c51 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
@@ -858,7 +1146,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor.SeekMode
-	c37 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.SeekMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c52 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.SeekMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SeekMode </td></tr>
 		</table></td></tr>
@@ -872,23 +1160,8 @@ digraph G {
 <tr><td align="left" balign="left"> + getName() : String </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.sensors.ev3.EV3IRSensor.RemoteMode
-	c38 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor.RemoteMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> RemoteMode </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - pathDevice : File </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + RemoteMode(pathDevice : File) </td></tr>
-<tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
-<tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
-<tr><td align="left" balign="left"> + getName() : String </td></tr>
-		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3TouchSensor
-	c39 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c53 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3TouchSensor </td></tr>
 		</table></td></tr>
@@ -903,7 +1176,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3TouchSensor.TouchMode
-	c40 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c54 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor.TouchMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TouchMode </td></tr>
 		</table></td></tr>
@@ -918,7 +1191,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor
-	c41 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c55 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3UltrasonicSensor </td></tr>
 		</table></td></tr>
@@ -929,6 +1202,7 @@ digraph G {
 <tr><td align="left" balign="left"> + MAX_RANGE : float </td></tr>
 <tr><td align="left" balign="left"> - MODE_DISTANCE : String </td></tr>
 <tr><td align="left" balign="left"> - MODE_LISTEN : String </td></tr>
+<tr><td align="left" balign="left"> - MODE_SINGLE_MEASURE : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3UltrasonicSensor(portName : Port) </td></tr>
@@ -941,7 +1215,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode
-	c42 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c56 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DistanceMode </td></tr>
 		</table></td></tr>
@@ -956,7 +1230,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode
-	c43 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c57 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ListenMode </td></tr>
 		</table></td></tr>
@@ -971,7 +1245,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.AbsoluteIMU
-	c44 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c58 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbsoluteIMU </td></tr>
 		</table></td></tr>
@@ -1010,7 +1284,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.AbsoluteIMU.AccelerometerMode
-	c45 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.AccelerometerMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c59 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.AccelerometerMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AccelerometerMode </td></tr>
 		</table></td></tr>
@@ -1025,7 +1299,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.AbsoluteIMU.MagnetometerMode
-	c46 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.MagnetometerMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c60 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.MagnetometerMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MagnetometerMode </td></tr>
 		</table></td></tr>
@@ -1040,7 +1314,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.AbsoluteIMU.GyroMode
-	c47 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.GyroMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c61 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.GyroMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GyroMode </td></tr>
 		</table></td></tr>
@@ -1055,7 +1329,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.AbsoluteIMU.CompassMode
-	c48 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.CompassMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c62 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.CompassMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CompassMode </td></tr>
 		</table></td></tr>
@@ -1070,7 +1344,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.AbsoluteIMU.TiltMode
-	c49 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.TiltMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c63 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU.TiltMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TiltMode </td></tr>
 		</table></td></tr>
@@ -1085,7 +1359,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.NXTCamV5
-	c50 [label=<<table title="ev3dev.sensors.mindsensors.NXTCamV5" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c64 [label=<<table title="ev3dev.sensors.mindsensors.NXTCamV5" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NXTCamV5 </td></tr>
 		</table></td></tr>
@@ -1111,25 +1385,21 @@ digraph G {
 <tr><td align="left" balign="left"> + getRectangle(id : int) : Rectangle2D </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.hardware.display.Brickman
-	c51 [label=<<table title="ev3dev.hardware.display.Brickman" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	// ev3dev.utils.AllImplFailedException
+	c65 [label=<<table title="ev3dev.utils.AllImplFailedException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Brickman </td></tr>
+<tr><td align="center" balign="center"> AllImplFailedException </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
-<tr><td align="left" balign="left"> - DISABLE_BRICKMAN_COMMAND : String </td></tr>
-<tr><td align="left" balign="left"> - ENABLE_BRICKMAN_COMMAND : String </td></tr>
-<tr><td align="left" balign="left"> + JAVA_DUKE_IMAGE_NAME : String </td></tr>
+<tr><td align="left" balign="left">  </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + Brickman() </td></tr>
-<tr><td align="left" balign="left"> + disable() </td></tr>
-<tr><td align="left" balign="left"> - showJavaLogo() </td></tr>
+<tr><td align="left" balign="left"> + AllImplFailedException() </td></tr>
+<tr><td align="left" balign="left"> + AllImplFailedException(message : String) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Interpolation
-	c52 [label=<<table title="ev3dev.utils.Interpolation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c66 [label=<<table title="ev3dev.utils.Interpolation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Interpolation </td></tr>
 		</table></td></tr>
@@ -1142,21 +1412,24 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.JarResource
-	c53 [label=<<table title="ev3dev.utils.JarResource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c67 [label=<<table title="ev3dev.utils.JarResource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JarResource </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + JAVA_DUKE_IMAGE_NAME : String </td></tr>
 <tr><td align="left" balign="left"> - log : Logger </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + JarResource() </td></tr>
+<tr><td align="left" balign="left"> + stream(resourceName : String) : InputStream </td></tr>
+<tr><td align="left" balign="left"> + read(resourceName : String) : byte[] </td></tr>
 <tr><td align="left" balign="left"> + export(resourceName : String) : String </td></tr>
 <tr><td align="left" balign="left"> + delete(resourceName : String) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.PilotProps
-	c54 [label=<<table title="ev3dev.utils.PilotProps" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c68 [label=<<table title="ev3dev.utils.PilotProps" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PilotProps </td></tr>
 		</table></td></tr>
@@ -1176,7 +1449,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Shell
-	c55 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c69 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Shell </td></tr>
 		</table></td></tr>
@@ -1191,7 +1464,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Sysfs
-	c56 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c70 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sysfs </td></tr>
 		</table></td></tr>
@@ -1211,86 +1484,683 @@ digraph G {
 <tr><td align="left" balign="left"> + writeBytes(path : String, value : byte[]) : boolean </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.ILibc
+	c71 [label=<<table title="ev3dev.utils.io.ILibc" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> ILibc </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + fcntl(fd : int, cmd : int, arg : int) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : int) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : byte[]) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : Pointer) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + ioctl(fd : int, cmd : int, arg : IntByReference) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + open(path : String, flags : int) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + open(path : String, flags : int, mode : int) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + close(fd : int) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + write(fd : int, buffer : Buffer, count : int) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + read(fd : int, buffer : Buffer, count : int) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + mmap(addr : Pointer, len : NativeLong, prot : int, flags : int, fd : int, off : NativeLong) : Pointer </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + munmap(addr : Pointer, len : NativeLong) : int </font></td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + msync(addr : Pointer, len : NativeLong, flags : int) : int </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeConstants
+	c72 [label=<<table title="ev3dev.utils.io.NativeConstants" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> NativeConstants </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + O_ACCMODE : int </td></tr>
+<tr><td align="left" balign="left"> + O_RDONLY : int </td></tr>
+<tr><td align="left" balign="left"> + O_WRONLY : int </td></tr>
+<tr><td align="left" balign="left"> + O_RDWR : int </td></tr>
+<tr><td align="left" balign="left"> + O_CREAT : int </td></tr>
+<tr><td align="left" balign="left"> + O_EXCL : int </td></tr>
+<tr><td align="left" balign="left"> + O_NOCTTY : int </td></tr>
+<tr><td align="left" balign="left"> + O_TRUNC : int </td></tr>
+<tr><td align="left" balign="left"> + O_APPEND : int </td></tr>
+<tr><td align="left" balign="left"> + O_NONBLOCK : int </td></tr>
+<tr><td align="left" balign="left"> + O_NDELAY : int </td></tr>
+<tr><td align="left" balign="left"> + O_SYNC : int </td></tr>
+<tr><td align="left" balign="left"> + O_FSYNC : int </td></tr>
+<tr><td align="left" balign="left"> + O_ASYNC : int </td></tr>
+<tr><td align="left" balign="left"> + PROT_READ : int </td></tr>
+<tr><td align="left" balign="left"> + PROT_WRITE : int </td></tr>
+<tr><td align="left" balign="left"> + MAP_SHARED : int </td></tr>
+<tr><td align="left" balign="left"> + MAP_public : int </td></tr>
+<tr><td align="left" balign="left"> + MAP_FILE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_OPENQRY : int </td></tr>
+<tr><td align="left" balign="left"> + VT_GETMODE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_SETMODE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_GETSTATE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_SENDSIG : int </td></tr>
+<tr><td align="left" balign="left"> + VT_RELDISP : int </td></tr>
+<tr><td align="left" balign="left"> + VT_ACTIVATE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_WAITACTIVE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_DISALLOCATE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_RESIZE : int </td></tr>
+<tr><td align="left" balign="left"> + VT_RESIZEX : int </td></tr>
+<tr><td align="left" balign="left"> + VT_LOCKSWITCH : int </td></tr>
+<tr><td align="left" balign="left"> + VT_UNLOCKSWITCH : int </td></tr>
+<tr><td align="left" balign="left"> + VT_GETHIFONTMASK : int </td></tr>
+<tr><td align="left" balign="left"> + VT_WAITEVENT : int </td></tr>
+<tr><td align="left" balign="left"> + VT_SETACTIVATE : int </td></tr>
+<tr><td align="left" balign="left"> + KDGKBMODE : int </td></tr>
+<tr><td align="left" balign="left"> + KDSKBMODE : int </td></tr>
+<tr><td align="left" balign="left"> + FBIOGET_CON2FBMAP : int </td></tr>
+<tr><td align="left" balign="left"> + KDSETMODE : int </td></tr>
+<tr><td align="left" balign="left"> + KD_TEXT : int </td></tr>
+<tr><td align="left" balign="left"> + KD_GRAPHICS : int </td></tr>
+<tr><td align="left" balign="left"> + K_OFF : int </td></tr>
+<tr><td align="left" balign="left"> + VT_AUTO : int </td></tr>
+<tr><td align="left" balign="left"> + VT_PROCESS : int </td></tr>
+<tr><td align="left" balign="left"> + VT_ACKACQ : int </td></tr>
+<tr><td align="left" balign="left"> + SIGUSR2 : int </td></tr>
+<tr><td align="left" balign="left"> + ENOTTY : int </td></tr>
+<tr><td align="left" balign="left"> + MS_ASYNC : int </td></tr>
+<tr><td align="left" balign="left"> + MS_INVALIDATE : int </td></tr>
+<tr><td align="left" balign="left"> + MS_SYNC : int </td></tr>
+<tr><td align="left" balign="left"> + FB_TYPE_PACKED_PIXELS : int </td></tr>
+<tr><td align="left" balign="left"> + FB_VISUAL_MONO01 : int </td></tr>
+<tr><td align="left" balign="left"> + FB_VISUAL_MONO10 : int </td></tr>
+<tr><td align="left" balign="left"> + FB_VISUAL_TRUECOLOR : int </td></tr>
+<tr><td align="left" balign="left"> + FBIOGET_VSCREENINFO : int </td></tr>
+<tr><td align="left" balign="left"> + FBIOPUT_VSCREENINFO : int </td></tr>
+<tr><td align="left" balign="left"> + FBIOGET_FSCREENINFO : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + NativeConstants() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeDevice
+	c73 [label=<<table title="ev3dev.utils.io.NativeDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> NativeDevice </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + NativeDevice(dname : String) </td></tr>
+<tr><td align="left" balign="left"> + NativeDevice(dname : String, flags : int) </td></tr>
+<tr><td align="left" balign="left"> + NativeDevice(dname : String, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + NativeDevice(dname : String, flags : int, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + mmap(len : long) : Pointer </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFile
+	c74 [label=<<table title="ev3dev.utils.io.NativeFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> NativeFile </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> # fd : int </td></tr>
+<tr><td align="left" balign="left"> - libc : ILibc </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> # NativeFile() </td></tr>
+<tr><td align="left" balign="left"> # NativeFile(libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + NativeFile(fname : String, flags : int) </td></tr>
+<tr><td align="left" balign="left"> + NativeFile(fname : String, flags : int, mode : int) </td></tr>
+<tr><td align="left" balign="left"> + NativeFile(fname : String, flags : int, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + NativeFile(fname : String, flags : int, mode : int, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + isOpen() : boolean </td></tr>
+<tr><td align="left" balign="left"> + open(fname : String, flags : int) </td></tr>
+<tr><td align="left" balign="left"> + open(fname : String, flags : int, mode : int) </td></tr>
+<tr><td align="left" balign="left"> + read(buf : byte[], len : int) : int </td></tr>
+<tr><td align="left" balign="left"> + write(buf : byte[], offset : int, len : int) : int </td></tr>
+<tr><td align="left" balign="left"> + read(buf : byte[], offset : int, len : int) : int </td></tr>
+<tr><td align="left" balign="left"> + write(buf : byte[], len : int) : int </td></tr>
+<tr><td align="left" balign="left"> + ioctl(req : int, info : IntByReference) : int </td></tr>
+<tr><td align="left" balign="left"> + ioctl(req : int, buf : Pointer) : int </td></tr>
+<tr><td align="left" balign="left"> + close() </td></tr>
+<tr><td align="left" balign="left"> + mmap(len : long, prot : int, flags : int, off : long) : Pointer </td></tr>
+<tr><td align="left" balign="left"> + munmap(addr : Pointer, len : long) </td></tr>
+<tr><td align="left" balign="left"> + msync(addr : Pointer, len : long, flags : int) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer
+	c75 [label=<<table title="ev3dev.utils.io.NativeFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> NativeFramebuffer </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + NativeFramebuffer(dname : String) </td></tr>
+<tr><td align="left" balign="left"> + NativeFramebuffer(dname : String, flags : int) </td></tr>
+<tr><td align="left" balign="left"> + NativeFramebuffer(dname : String, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + NativeFramebuffer(dname : String, flags : int, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + getFixedScreenInfo() : NativeFramebuffer.fb_fix_screeninfo </td></tr>
+<tr><td align="left" balign="left"> + getVariableScreenInfo() : NativeFramebuffer.fb_var_screeninfo </td></tr>
+<tr><td align="left" balign="left"> + setVariableScreenInfo(info : NativeFramebuffer.fb_var_screeninfo) </td></tr>
+<tr><td align="left" balign="left"> + mapConsoleToFramebuffer(console : int) : int </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo
+	c76 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> fb_fix_screeninfo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + id : byte[] </td></tr>
+<tr><td align="left" balign="left"> + smem_start : NativeLong </td></tr>
+<tr><td align="left" balign="left"> + smem_len : int </td></tr>
+<tr><td align="left" balign="left"> + type : int </td></tr>
+<tr><td align="left" balign="left"> + type_aux : int </td></tr>
+<tr><td align="left" balign="left"> + visual : int </td></tr>
+<tr><td align="left" balign="left"> + xpanstep : short </td></tr>
+<tr><td align="left" balign="left"> + ypanstep : short </td></tr>
+<tr><td align="left" balign="left"> + ywrapstep : short </td></tr>
+<tr><td align="left" balign="left"> + line_length : int </td></tr>
+<tr><td align="left" balign="left"> + mmio_start : NativeLong </td></tr>
+<tr><td align="left" balign="left"> + mmio_len : int </td></tr>
+<tr><td align="left" balign="left"> + accel : int </td></tr>
+<tr><td align="left" balign="left"> + capabilities : short </td></tr>
+<tr><td align="left" balign="left"> + reserved : short[] </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + fb_fix_screeninfo() </td></tr>
+<tr><td align="left" balign="left"> + fb_fix_screeninfo(p : Pointer) </td></tr>
+<tr><td align="left" balign="left"> # getFieldOrder() : List&lt;String&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByReference
+	c77 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ByReference </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ByReference() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByValue
+	c78 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ByValue </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ByValue() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_bitfield
+	c79 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> fb_bitfield </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + offset : int </td></tr>
+<tr><td align="left" balign="left"> + length : int </td></tr>
+<tr><td align="left" balign="left"> + msb_right : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + fb_bitfield() </td></tr>
+<tr><td align="left" balign="left"> + fb_bitfield(p : Pointer) </td></tr>
+<tr><td align="left" balign="left"> # getFieldOrder() : List&lt;String&gt; </td></tr>
+<tr><td align="left" balign="left"> + toLEByteOffset() : int </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByReference
+	c80 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ByReference </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ByReference() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByValue
+	c81 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ByValue </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ByValue() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo
+	c82 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> fb_var_screeninfo </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + xres : int </td></tr>
+<tr><td align="left" balign="left"> + yres : int </td></tr>
+<tr><td align="left" balign="left"> + xres_virtual : int </td></tr>
+<tr><td align="left" balign="left"> + yres_virtual : int </td></tr>
+<tr><td align="left" balign="left"> + xoffset : int </td></tr>
+<tr><td align="left" balign="left"> + yoffset : int </td></tr>
+<tr><td align="left" balign="left"> + bits_per_pixel : int </td></tr>
+<tr><td align="left" balign="left"> + grayscale : int </td></tr>
+<tr><td align="left" balign="left"> + red : NativeFramebuffer.fb_bitfield.ByValue </td></tr>
+<tr><td align="left" balign="left"> + green : NativeFramebuffer.fb_bitfield.ByValue </td></tr>
+<tr><td align="left" balign="left"> + blue : NativeFramebuffer.fb_bitfield.ByValue </td></tr>
+<tr><td align="left" balign="left"> + transp : NativeFramebuffer.fb_bitfield.ByValue </td></tr>
+<tr><td align="left" balign="left"> + nonstd : int </td></tr>
+<tr><td align="left" balign="left"> + activate : int </td></tr>
+<tr><td align="left" balign="left"> + height : int </td></tr>
+<tr><td align="left" balign="left"> + width : int </td></tr>
+<tr><td align="left" balign="left"> + accel_flags : int </td></tr>
+<tr><td align="left" balign="left"> + pixclock : int </td></tr>
+<tr><td align="left" balign="left"> + left_margin : int </td></tr>
+<tr><td align="left" balign="left"> + right_margin : int </td></tr>
+<tr><td align="left" balign="left"> + upper_margin : int </td></tr>
+<tr><td align="left" balign="left"> + lower_margin : int </td></tr>
+<tr><td align="left" balign="left"> + hsync_len : int </td></tr>
+<tr><td align="left" balign="left"> + vsync_len : int </td></tr>
+<tr><td align="left" balign="left"> + sync : int </td></tr>
+<tr><td align="left" balign="left"> + vmode : int </td></tr>
+<tr><td align="left" balign="left"> + rotate : int </td></tr>
+<tr><td align="left" balign="left"> + colorspace : int </td></tr>
+<tr><td align="left" balign="left"> + reserved : int[] </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + fb_var_screeninfo() </td></tr>
+<tr><td align="left" balign="left"> + fb_var_screeninfo(p : Pointer) </td></tr>
+<tr><td align="left" balign="left"> # getFieldOrder() : List&lt;String&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByReference
+	c83 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ByReference </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ByReference() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByValue
+	c84 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ByValue </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + ByValue() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeFramebuffer.fb_con2fbmap
+	c85 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_con2fbmap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> fb_con2fbmap </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + console : int </td></tr>
+<tr><td align="left" balign="left"> + framebuffer : int </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + fb_con2fbmap() </td></tr>
+<tr><td align="left" balign="left"> + fb_con2fbmap(p : Pointer) </td></tr>
+<tr><td align="left" balign="left"> # getFieldOrder() : List&lt;String&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeLibc
+	c86 [label=<<table title="ev3dev.utils.io.NativeLibc" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> NativeLibc </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - initialized : boolean </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + NativeLibc() </td></tr>
+<tr><td align="left" balign="left"> + fcntl(fd : int, cmd : int, arg : int) : int </td></tr>
+<tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : int) : int </td></tr>
+<tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : byte[]) : int </td></tr>
+<tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : Pointer) : int </td></tr>
+<tr><td align="left" balign="left"> + ioctl(fd : int, cmd : int, arg : IntByReference) : int </td></tr>
+<tr><td align="left" balign="left"> + open(path : String, flags : int) : int </td></tr>
+<tr><td align="left" balign="left"> + open(path : String, flags : int, mode : int) : int </td></tr>
+<tr><td align="left" balign="left"> + close(fd : int) : int </td></tr>
+<tr><td align="left" balign="left"> + write(fd : int, buffer : Buffer, count : int) : int </td></tr>
+<tr><td align="left" balign="left"> + read(fd : int, buffer : Buffer, count : int) : int </td></tr>
+<tr><td align="left" balign="left"> + mmap(addr : Pointer, len : NativeLong, prot : int, flags : int, fd : int, off : NativeLong) : Pointer </td></tr>
+<tr><td align="left" balign="left"> + munmap(addr : Pointer, len : NativeLong) : int </td></tr>
+<tr><td align="left" balign="left"> + msync(addr : Pointer, len : NativeLong, flags : int) : int </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeTTY
+	c87 [label=<<table title="ev3dev.utils.io.NativeTTY" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> NativeTTY </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + NativeTTY(dname : String) </td></tr>
+<tr><td align="left" balign="left"> + NativeTTY(dname : String, flags : int) </td></tr>
+<tr><td align="left" balign="left"> + NativeTTY(dname : String, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + NativeTTY(dname : String, flags : int, libc : ILibc) </td></tr>
+<tr><td align="left" balign="left"> + getVTmode() : NativeTTY.vt_mode </td></tr>
+<tr><td align="left" balign="left"> + setVTmode(mode : NativeTTY.vt_mode) </td></tr>
+<tr><td align="left" balign="left"> + getVTstate() : NativeTTY.vt_stat </td></tr>
+<tr><td align="left" balign="left"> + getKeyboardMode() : int </td></tr>
+<tr><td align="left" balign="left"> + setKeyboardMode(mode : int) </td></tr>
+<tr><td align="left" balign="left"> + setConsoleMode(mode : int) </td></tr>
+<tr><td align="left" balign="left"> + signalSwitch(mode : int) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeTTY.vt_stat
+	c88 [label=<<table title="ev3dev.utils.io.NativeTTY.vt_stat" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> vt_stat </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + v_active : short </td></tr>
+<tr><td align="left" balign="left"> + v_signal : short </td></tr>
+<tr><td align="left" balign="left"> + v_state : short </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + vt_stat() </td></tr>
+<tr><td align="left" balign="left"> + vt_stat(p : Pointer) </td></tr>
+<tr><td align="left" balign="left"> # getFieldOrder() : List&lt;String&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.utils.io.NativeTTY.vt_mode
+	c89 [label=<<table title="ev3dev.utils.io.NativeTTY.vt_mode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> vt_mode </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + mode : byte </td></tr>
+<tr><td align="left" balign="left"> + waitv : byte </td></tr>
+<tr><td align="left" balign="left"> + relsig : short </td></tr>
+<tr><td align="left" balign="left"> + acqsig : short </td></tr>
+<tr><td align="left" balign="left"> + frsig : short </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + vt_mode() </td></tr>
+<tr><td align="left" balign="left"> + vt_mode(p : Pointer) </td></tr>
+<tr><td align="left" balign="left"> # getFieldOrder() : List&lt;String&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// example.LCDDrawIconsTest
+	c90 [label=<<table title="example.LCDDrawIconsTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDDrawIconsTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + lcd : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCDDrawIconsTest() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// example.LCDDrawImagesTest
+	c91 [label=<<table title="example.LCDDrawImagesTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDDrawImagesTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + lcd : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCDDrawImagesTest() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// example.LCDDrawLinesTest
+	c92 [label=<<table title="example.LCDDrawLinesTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDDrawLinesTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + lcd : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCDDrawLinesTest() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// example.LCDDrawRectanglesTest
+	c93 [label=<<table title="example.LCDDrawRectanglesTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDDrawRectanglesTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + lcd : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCDDrawRectanglesTest() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// example.LCDFontTest
+	c94 [label=<<table title="example.LCDFontTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDFontTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + lcd : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCDFontTest() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+<tr><td align="left" balign="left"> + writeMessage(message : String) </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// example.LCDTest
+	c95 [label=<<table title="example.LCDTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + lcd : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCDTest() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// example.LCDWriteTextTest
+	c96 [label=<<table title="example.LCDWriteTextTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDWriteTextTest </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + lcd : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCDWriteTextTest() </td></tr>
+<tr><td align="left" balign="left"> + main(args : String[]) </td></tr>
+<tr><td align="left" balign="left"> + writeMessage(message : String) </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//ev3dev.actuators.LCD extends ev3dev.hardware.EV3DevDevice
-	c10:p -> c0:p [dir=back,arrowtail=empty];
+	c11:p -> c0:p [dir=back,arrowtail=empty];
+	//ev3dev.actuators.LCD.Flusher extends java.util.TimerTask
+	c97:p -> c1:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.Sound extends ev3dev.hardware.EV3DevDevice
-	c10:p -> c1:p [dir=back,arrowtail=empty];
+	c11:p -> c2:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.ev3.EV3Led extends ev3dev.hardware.EV3DevDevice
-	c10:p -> c2:p [dir=back,arrowtail=empty];
+	c11:p -> c3:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.BaseRegulatedMotor extends ev3dev.hardware.EV3DevMotorDevice
-	c14:p -> c3:p [dir=back,arrowtail=empty];
+	c15:p -> c4:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.BasicMotor extends ev3dev.hardware.EV3DevMotorDevice
-	c14:p -> c4:p [dir=back,arrowtail=empty];
+	c15:p -> c5:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor extends ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c3:p -> c5:p [dir=back,arrowtail=empty];
+	c4:p -> c6:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor extends ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c3:p -> c6:p [dir=back,arrowtail=empty];
+	c4:p -> c7:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.NXTRegulatedMotor extends ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c3:p -> c8:p [dir=back,arrowtail=empty];
-	//ev3dev.actuators.lego.motors.UnregulatedMotor extends ev3dev.actuators.lego.motors.BasicMotor
 	c4:p -> c9:p [dir=back,arrowtail=empty];
+	//ev3dev.actuators.lego.motors.UnregulatedMotor extends ev3dev.actuators.lego.motors.BasicMotor
+	c5:p -> c10:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevMotorDevice extends ev3dev.hardware.EV3DevDevice
-	c10:p -> c14:p [dir=back,arrowtail=empty];
+	c11:p -> c15:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevSensorDevice extends ev3dev.hardware.EV3DevDevice
-	c10:p -> c18:p [dir=back,arrowtail=empty];
+	c11:p -> c20:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.display.BitFramebuffer extends ev3dev.hardware.display.LinuxFramebuffer
+	c27:p -> c21:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.display.BitFramebufferProvider implements ev3dev.hardware.display.spi.FramebufferProvider
+	c33:p -> c22:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.hardware.display.DisplayInterface implements java.io.Closeable
+	c98:p -> c24:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.hardware.display.JavaFramebuffer implements java.io.Closeable
+	c98:p -> c26:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.hardware.display.LinuxFramebuffer implements ev3dev.hardware.display.JavaFramebuffer
+	c26:p -> c27:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.hardware.display.OwnedDisplay extends ev3dev.hardware.display.DisplayInterface
+	c24:p -> c28:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.display.RGBFramebuffer extends ev3dev.hardware.display.LinuxFramebuffer
+	c27:p -> c29:p [dir=back,arrowtail=empty];
+	//ev3dev.hardware.display.RGBFramebufferProvider implements ev3dev.hardware.display.spi.FramebufferProvider
+	c33:p -> c30:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.hardware.display.StolenDisplay extends ev3dev.hardware.display.DisplayInterface
+	c24:p -> c31:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.BaseSensor extends ev3dev.hardware.EV3DevSensorDevice
-	c18:p -> c20:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.Battery extends ev3dev.hardware.EV3DevDevice
-	c10:p -> c21:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3ColorSensor extends ev3dev.sensors.BaseSensor
-	c20:p -> c26:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c27:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3ColorSensor.RedMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c28:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c29:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3ColorSensor.RGBMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c30:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3GyroSensor extends ev3dev.sensors.BaseSensor
-	c20:p -> c31:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3GyroSensor.RateMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c32:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3GyroSensor.AngleMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c33:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c34:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3IRSensor extends ev3dev.sensors.BaseSensor
 	c20:p -> c35:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.Battery extends ev3dev.hardware.EV3DevDevice
+	c11:p -> c36:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3ColorSensor extends ev3dev.sensors.BaseSensor
+	c35:p -> c41:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3ColorSensor.ColorIDMode extends ev3dev.sensors.EV3DevSensorMode
+	c38:p -> c42:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3ColorSensor.RedMode extends ev3dev.sensors.EV3DevSensorMode
+	c38:p -> c43:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3ColorSensor.AmbientMode extends ev3dev.sensors.EV3DevSensorMode
+	c38:p -> c44:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3ColorSensor.RGBMode extends ev3dev.sensors.EV3DevSensorMode
+	c38:p -> c45:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3GyroSensor extends ev3dev.sensors.BaseSensor
+	c35:p -> c46:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3GyroSensor.RateMode extends ev3dev.sensors.EV3DevSensorMode
+	c38:p -> c47:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3GyroSensor.AngleMode extends ev3dev.sensors.EV3DevSensorMode
+	c38:p -> c48:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3GyroSensor.RateAndAngleMode extends ev3dev.sensors.EV3DevSensorMode
+	c38:p -> c49:p [dir=back,arrowtail=empty];
+	//ev3dev.sensors.ev3.EV3IRSensor extends ev3dev.sensors.BaseSensor
+	c35:p -> c50:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor.DistanceMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c36:p [dir=back,arrowtail=empty];
+	c38:p -> c51:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor.SeekMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c37:p [dir=back,arrowtail=empty];
-	//ev3dev.sensors.ev3.EV3IRSensor.RemoteMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c38:p [dir=back,arrowtail=empty];
+	c38:p -> c52:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3TouchSensor extends ev3dev.sensors.BaseSensor
-	c20:p -> c39:p [dir=back,arrowtail=empty];
+	c35:p -> c53:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3TouchSensor.TouchMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c40:p [dir=back,arrowtail=empty];
+	c38:p -> c54:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor extends ev3dev.sensors.BaseSensor
-	c20:p -> c41:p [dir=back,arrowtail=empty];
+	c35:p -> c55:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor.DistanceMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c42:p [dir=back,arrowtail=empty];
+	c38:p -> c56:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor.ListenMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c43:p [dir=back,arrowtail=empty];
+	c38:p -> c57:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.AbsoluteIMU extends ev3dev.sensors.BaseSensor
-	c20:p -> c44:p [dir=back,arrowtail=empty];
+	c35:p -> c58:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.AbsoluteIMU.AccelerometerMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c45:p [dir=back,arrowtail=empty];
+	c38:p -> c59:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.AbsoluteIMU.MagnetometerMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c46:p [dir=back,arrowtail=empty];
+	c38:p -> c60:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.AbsoluteIMU.GyroMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c47:p [dir=back,arrowtail=empty];
+	c38:p -> c61:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.AbsoluteIMU.CompassMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c48:p [dir=back,arrowtail=empty];
+	c38:p -> c62:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.AbsoluteIMU.TiltMode extends ev3dev.sensors.EV3DevSensorMode
-	c23:p -> c49:p [dir=back,arrowtail=empty];
+	c38:p -> c63:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.NXTCamV5 extends ev3dev.sensors.BaseSensor
-	c20:p -> c50:p [dir=back,arrowtail=empty];
+	c35:p -> c64:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.AllImplFailedException extends java.lang.RuntimeException
+	c99:p -> c65:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.PilotProps extends java.util.Properties
-	c57:p -> c54:p [dir=back,arrowtail=empty];
+	c100:p -> c68:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeDevice extends ev3dev.utils.io.NativeFile
+	c74:p -> c73:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFile implements java.io.Closeable
+	c98:p -> c74:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.utils.io.NativeFile implements java.lang.AutoCloseable
+	c101:p -> c74:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.utils.io.NativeFramebuffer extends ev3dev.utils.io.NativeDevice
+	c73:p -> c75:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo extends Structure
+	c102:p -> c76:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByReference extends ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo
+	c76:p -> c77:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByValue extends ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo
+	c76:p -> c78:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_bitfield extends Structure
+	c102:p -> c79:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByReference extends ev3dev.utils.io.NativeFramebuffer.fb_bitfield
+	c79:p -> c80:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByValue extends ev3dev.utils.io.NativeFramebuffer.fb_bitfield
+	c79:p -> c81:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo extends Structure
+	c102:p -> c82:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByReference extends ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo
+	c82:p -> c83:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByValue extends ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo
+	c82:p -> c84:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeFramebuffer.fb_con2fbmap extends Structure
+	c102:p -> c85:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeLibc implements ev3dev.utils.io.ILibc
+	c71:p -> c86:p [dir=back,arrowtail=empty,style=dashed];
+	//ev3dev.utils.io.NativeTTY extends ev3dev.utils.io.NativeDevice
+	c73:p -> c87:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeTTY.vt_stat extends Structure
+	c102:p -> c88:p [dir=back,arrowtail=empty];
+	//ev3dev.utils.io.NativeTTY.vt_mode extends Structure
+	c102:p -> c89:p [dir=back,arrowtail=empty];
+	// java.util.TimerTask
+	c97 [label=<<table title="java.util.TimerTask" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TimerTask.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> TimerTask </font></td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> ~ lock : Object </td></tr>
+<tr><td align="left" balign="left"> ~ state : int </td></tr>
+<tr><td align="left" balign="left"> ~ VIRGIN : int </td></tr>
+<tr><td align="left" balign="left"> ~ SCHEDULED : int </td></tr>
+<tr><td align="left" balign="left"> ~ EXECUTED : int </td></tr>
+<tr><td align="left" balign="left"> ~ CANCELLED : int </td></tr>
+<tr><td align="left" balign="left"> ~ nextExecutionTime : long </td></tr>
+<tr><td align="left" balign="left"> ~ period : long </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> # TimerTask() </td></tr>
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + run() </font></td></tr>
+<tr><td align="left" balign="left"> + cancel() : boolean </td></tr>
+<tr><td align="left" balign="left"> + scheduledExecutionTime() : long </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TimerTask.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// Structure
+	c102[label=<<table title="Structure" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//Structure.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Structure </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.util.Properties
-	c57 [label=<<table title="java.util.Properties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html">
+	c100 [label=<<table title="java.util.Properties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Properties </td></tr>
 		</table></td></tr>
@@ -1302,7 +2172,9 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + Properties() </td></tr>
+<tr><td align="left" balign="left"> + Properties(arg0 : int) </td></tr>
 <tr><td align="left" balign="left"> + Properties(arg0 : Properties) </td></tr>
+<tr><td align="left" balign="left"> - Properties(arg0 : Properties, arg1 : int) </td></tr>
 <tr><td align="left" balign="left"> + setProperty(arg0 : String, arg1 : String) : Object </td></tr>
 <tr><td align="left" balign="left"> + load(arg0 : Reader) </td></tr>
 <tr><td align="left" balign="left"> + load(arg0 : InputStream) </td></tr>
@@ -1317,6 +2189,7 @@ digraph G {
 <tr><td align="left" balign="left"> + loadFromXML(arg0 : InputStream) </td></tr>
 <tr><td align="left" balign="left"> + storeToXML(arg0 : OutputStream, arg1 : String) </td></tr>
 <tr><td align="left" balign="left"> + storeToXML(arg0 : OutputStream, arg1 : String, arg2 : String) </td></tr>
+<tr><td align="left" balign="left"> + storeToXML(arg0 : OutputStream, arg1 : String, arg2 : Charset) </td></tr>
 <tr><td align="left" balign="left"> + getProperty(arg0 : String) : String </td></tr>
 <tr><td align="left" balign="left"> + getProperty(arg0 : String, arg1 : String) : String </td></tr>
 <tr><td align="left" balign="left"> + propertyNames() : Enumeration&lt;?&gt; </td></tr>
@@ -1361,5 +2234,47 @@ digraph G {
 <tr><td align="left" balign="left"> ~ readHashtable(arg0 : ObjectInputStream) </td></tr>
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// java.lang.RuntimeException
+	c99 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RuntimeException </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> ~ serialVersionUID : long </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + RuntimeException() </td></tr>
+<tr><td align="left" balign="left"> + RuntimeException(arg0 : String) </td></tr>
+<tr><td align="left" balign="left"> + RuntimeException(arg0 : String, arg1 : Throwable) </td></tr>
+<tr><td align="left" balign="left"> + RuntimeException(arg0 : Throwable) </td></tr>
+<tr><td align="left" balign="left"> # RuntimeException(arg0 : String, arg1 : Throwable, arg2 : boolean, arg3 : boolean) </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// java.lang.AutoCloseable
+	c101 [label=<<table title="java.lang.AutoCloseable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/AutoCloseable.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> AutoCloseable </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + close() </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/AutoCloseable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// java.io.Closeable
+	c98 [label=<<table title="java.io.Closeable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Closeable.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Closeable </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"><font face="Helvetica-Oblique" point-size="10.0"> + close() </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Closeable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
