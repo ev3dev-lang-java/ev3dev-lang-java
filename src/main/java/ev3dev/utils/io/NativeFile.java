@@ -20,6 +20,7 @@ import java.nio.ByteBuffer;
  * @author andy, Jakub Vaněk
  */
 public class NativeFile implements Closeable, AutoCloseable {
+    private static int DEFAULT_PRIVS = 0777;
     protected int fd = -1;
     private ILibc libc;
 
@@ -110,7 +111,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @throws LastErrorException when operations fails
      */
     public void open(String fname, int flags) throws LastErrorException {
-        fd = libc.open(fname, flags);
+        fd = libc.open(fname, flags, DEFAULT_PRIVS);
     }
 
     /**
@@ -184,7 +185,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @throws LastErrorException when operations fails
      */
     public int ioctl(int req, IntByReference info) throws LastErrorException {
-        return libc.ioctl(fd, req, info);
+        return libc.ioctl(fd, req, info.getPointer());
     }
 
     /**
@@ -208,18 +209,6 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @throws LastErrorException when operations fails
      */
     public int ioctl(int req, Pointer buf) throws LastErrorException {
-        return libc.ioctl(fd, req, buf);
-    }
-
-    /**
-     * Perform a Linux style ioctl operation on the associated file.
-     *
-     * @param req ioctl operation to be performed
-     * @param buf byte array containing the ioctl parameters if any
-     * @return Linux style ioctl return
-     * @throws LastErrorException when operations fails
-     */
-    public int ioctl(int req, byte[] buf) throws LastErrorException {
         return libc.ioctl(fd, req, buf);
     }
 
@@ -270,8 +259,8 @@ public class NativeFile implements Closeable, AutoCloseable {
     /**
      * Synchronize mapped memory region.
      *
-     * @param addr Mapped address.
-     * @param len  Region length.
+     * @param addr  Mapped address.
+     * @param len   Region length.
      * @param flags Synchronization flags
      * @throws LastErrorException when operations fails
      */

@@ -20,14 +20,9 @@ public interface ILibc {
     // ioctls
     int ioctl(int fd, int cmd, int arg) throws LastErrorException;
 
-    int ioctl(int fd, int cmd, byte[] arg) throws LastErrorException;
-
     int ioctl(int fd, int cmd, Pointer arg) throws LastErrorException;
 
-    int ioctl(int fd, int cmd, IntByReference arg) throws LastErrorException;
-
     // open/close
-    int open(String path, int flags) throws LastErrorException;
 
     int open(String path, int flags, int mode) throws LastErrorException;
 
