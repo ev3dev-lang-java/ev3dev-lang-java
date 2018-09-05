@@ -2,6 +2,7 @@ package example;
 
 import ev3dev.hardware.display.SystemDisplay;
 import lejos.hardware.lcd.GraphicsLCD;
+import lejos.utility.Delay;
 
 import java.awt.*;
 
@@ -28,6 +29,8 @@ public class LCDFontTest {
         }
 
         writeMessage("Hello World");
+
+        Delay.msDelay(5000);
     }
 
 

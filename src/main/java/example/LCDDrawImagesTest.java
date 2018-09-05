@@ -33,6 +33,21 @@ public class LCDDrawImagesTest {
 
         }
 
+        //lcd.setColor(Color.BLACK);
+        lcd.setColor(0,0,0);
+        //LCD.drawImage(img, new AffineTransform(1f, 0f, 0f, 1f, 0, 0), null);
+        //LCD.drawImage(image, 40,40, null);
+        lcd.drawImage(image,40,40,0);
+        //LCD.drawImage(img, 0,0, Color.WHITE, null);
+        lcd.drawImage(img, 0,0,0);
+
+        lcd.refresh();
+
+        Delay.msDelay(5000);
+
+        JarResource.delete("cross.gif");
+        JarResource.delete("nought.gif");
+
     }
 
 
