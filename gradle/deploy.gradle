@@ -61,8 +61,8 @@ task remoteRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "time brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-                execute "time brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                println "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
             }
         }
     }
