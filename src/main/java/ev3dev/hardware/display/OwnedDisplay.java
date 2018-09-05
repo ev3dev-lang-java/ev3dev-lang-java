@@ -1,16 +1,11 @@
 package ev3dev.hardware.display;
 
 import com.sun.jna.LastErrorException;
-import ev3dev.hardware.display.spi.FramebufferProvider;
-import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeFramebuffer;
 import ev3dev.utils.io.NativeTTY;
 import lombok.extern.slf4j.Slf4j;
-import sun.misc.Signal;
-import sun.misc.SignalHandler;
 
-import java.io.Closeable;
 import java.io.IOException;
 
 import static ev3dev.utils.io.NativeConstants.*;
@@ -36,10 +31,8 @@ class OwnedDisplay extends DisplayInterface {
     private ILibc libc;
     private String fbPath = null;
     private NativeTTY ttyfd = null;
-    private boolean gfx_active = false;
     private int old_kbmode;
     private Thread deinitializer;
-    private SignalHandler oldSignaller;
 
     /**
      * <p>Initialize the display, register event handlers and switch to text mode.</p>
@@ -51,7 +44,6 @@ class OwnedDisplay extends DisplayInterface {
         try {
             LOGGER.trace("Initialing system console");
             initialize();
-            oldSignaller = Signal.handle(new Signal("USR2"), this::console_switch_handler);
             deinitializer = new Thread(this::deinitialize, "console restore");
             Runtime.getRuntime().addShutdownHook(deinitializer);
             switchToTextMode();
@@ -100,7 +92,9 @@ class OwnedDisplay extends DisplayInterface {
                 fbfd.close();
             }
             if (!success) {
-                ttyfd.close();
+                if (ttyfd != null) {
+                    ttyfd.close();
+                }
             }
         }
     }
@@ -110,8 +104,6 @@ class OwnedDisplay extends DisplayInterface {
         if (ttyfd != null && ttyfd.isOpen()) {
             deinitialize();
             Runtime.getRuntime().removeShutdownHook(deinitializer);
-            Signal.handle(new Signal("USR2"), oldSignaller);
-            oldSignaller = null;
             deinitializer = null;
         }
     }
@@ -140,7 +132,6 @@ class OwnedDisplay extends DisplayInterface {
             System.err.println("Error occured during console shutdown: " + e.getMessage());
             e.printStackTrace();
         }
-        gfx_active = false;
         // free objects
         closeFramebuffer();
         ttyfd = null;
@@ -171,7 +162,6 @@ class OwnedDisplay extends DisplayInterface {
             throw new RuntimeException("Switch to graphics mode failed", e);
         }
 
-        gfx_active = true;
         if (fbInstance != null) {
             fbInstance.restoreData();
             fbInstance.setFlushEnabled(true);
@@ -204,63 +194,6 @@ class OwnedDisplay extends DisplayInterface {
             throw new RuntimeException("Switch to text mode failed", e);
         }
 
-        gfx_active = false;
-    }
-
-    /**
-     * <p>Release ownership of our VT.</p>
-     * <p>Stores framebuffer contents and disables write access.
-     * Then, it allows kernel to switch the VT.</p>
-     */
-    private void vt_release() {
-        LOGGER.trace("Releasing VT");
-        if (fbInstance != null) {
-            fbInstance.setFlushEnabled(false);
-            fbInstance.storeData();
-        }
-        try {
-            ttyfd.signalSwitch(1);
-        } catch (LastErrorException e) {
-            System.err.println("Error occured during VT switch: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * <p>Take ownership of our VT.</p>
-     * <p>Acknowledges VT transition, enables graphics mode and disables keyboard.
-     * Then, it restores framebuffer contents and enables write access.</p>
-     */
-    private void vt_acquire() {
-        LOGGER.trace("Acquiring VT");
-        try {
-            ttyfd.signalSwitch(VT_ACKACQ);
-            ttyfd.setKeyboardMode(K_OFF);
-            ttyfd.setConsoleMode(KD_GRAPHICS);
-        } catch (LastErrorException e) {
-            System.err.println("Error occured during VT switch: " + e.getMessage());
-            e.printStackTrace();
-        }
-        if (fbInstance != null) {
-            fbInstance.restoreData();
-            fbInstance.setFlushEnabled(true);
-        }
-    }
-
-    /**
-     * <p>Handle VT switch signal.</p>
-     *
-     * @param sig unused argument for SignalHandler compatibility
-     */
-    private void console_switch_handler(Signal sig) {
-        LOGGER.trace("VT switch handler called");
-        if (gfx_active) {
-            vt_release();
-            gfx_active = false;
-        } else {
-            vt_acquire();
-            gfx_active = true;
-        }
     }
 
     /**
