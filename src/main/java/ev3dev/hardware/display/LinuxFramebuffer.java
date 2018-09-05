@@ -161,6 +161,7 @@ public abstract class LinuxFramebuffer implements JavaFramebuffer {
     public void restoreData() {
         LOGGER.trace("Retoring framebuffer snapshot");
         videomem.write(0, backup, 0, (int) getBufferSize());
+        device.msync(videomem, getBufferSize(), NativeConstants.MS_SYNC);
     }
 
     @Override
