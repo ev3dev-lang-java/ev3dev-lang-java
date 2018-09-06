@@ -22,31 +22,20 @@ public class LCDDrawImagesTest {
 
         clear();
 
-        JarResource.export("cross.gif");
-        JarResource.export("nought.gif");
-
-        BufferedImage img = null;
-        Image image = ImageIO.read(new File("nought.gif"));
-        try {
-            img = ImageIO.read(new File("cross.gif"));
-        } catch (IOException e) {
-
-        }
+        BufferedImage cross  = ImageIO.read(JarResource.stream("cross.gif"));
+        BufferedImage nought = ImageIO.read(JarResource.stream("nought.gif"));
 
         //lcd.setColor(Color.BLACK);
         lcd.setColor(0,0,0);
         //LCD.drawImage(img, new AffineTransform(1f, 0f, 0f, 1f, 0, 0), null);
         //LCD.drawImage(image, 40,40, null);
-        lcd.drawImage(image,40,40,0);
+        lcd.drawImage(cross,40,40,0);
         //LCD.drawImage(img, 0,0, Color.WHITE, null);
-        lcd.drawImage(img, 0,0,0);
+        lcd.drawImage(nought, 0,0,0);
 
         lcd.refresh();
 
         Delay.msDelay(5000);
-
-        JarResource.delete("cross.gif");
-        JarResource.delete("nought.gif");
 
     }
 
@@ -55,8 +44,6 @@ public class LCDDrawImagesTest {
         //lcd.setColor(Color.WHITE);
         lcd.setColor(255, 255, 255);
         lcd.fillRect(0, 0, lcd.getWidth(), lcd.getHeight());
-
-
     }
 
 }
