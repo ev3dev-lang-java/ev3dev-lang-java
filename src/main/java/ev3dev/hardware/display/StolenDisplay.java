@@ -20,6 +20,7 @@ class StolenDisplay extends DisplayInterface {
      */
     public StolenDisplay(@NonNull ILibc libc) {
         this.libc = libc;
+        Brickman.disable();
     }
 
     /**
@@ -53,7 +54,6 @@ class StolenDisplay extends DisplayInterface {
     public synchronized JavaFramebuffer openFramebuffer() {
         if (fbInstance == null) {
             LOGGER.debug("Initialing framebuffer in fake console");
-            Brickman.disable();
             initializeFramebuffer(new NativeFramebuffer("/dev/fb0", libc), true);
         }
         return fbInstance;
