@@ -2,6 +2,7 @@ package ev3dev.utils.io;
 
 import com.sun.jna.LastErrorException;
 import com.sun.jna.Pointer;
+import lombok.NonNull;
 
 import static ev3dev.utils.io.NativeConstants.*;
 
@@ -18,7 +19,7 @@ public class NativeDevice extends NativeFile {
      *
      * @param dname name of the character device
      */
-    public NativeDevice(String dname) throws LastErrorException {
+    public NativeDevice(@NonNull String dname) throws LastErrorException {
         super(dname, O_RDWR, 0);
     }
 
@@ -28,7 +29,7 @@ public class NativeDevice extends NativeFile {
      * @param flags opening flags of the device - read, write or both
      * @param dname name of the character device
      */
-    public NativeDevice(String dname, int flags) throws LastErrorException {
+    public NativeDevice(@NonNull String dname, int flags) throws LastErrorException {
         super(dname, flags);
     }
 
@@ -38,7 +39,7 @@ public class NativeDevice extends NativeFile {
      * @param dname name of the character device
      * @param libc  standard C library interface to be used.
      */
-    public NativeDevice(String dname, ILibc libc) throws LastErrorException {
+    public NativeDevice(@NonNull String dname, @NonNull ILibc libc) throws LastErrorException {
         super(dname, O_RDWR, 0, libc);
     }
 
@@ -49,7 +50,7 @@ public class NativeDevice extends NativeFile {
      * @param dname name of the character device
      * @param libc  standard C library interface to be used.
      */
-    public NativeDevice(String dname, int flags, ILibc libc) throws LastErrorException {
+    public NativeDevice(@NonNull String dname, int flags, @NonNull ILibc libc) throws LastErrorException {
         super(dname, flags, libc);
     }
 

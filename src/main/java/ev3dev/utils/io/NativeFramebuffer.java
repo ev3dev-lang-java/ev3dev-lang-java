@@ -4,6 +4,7 @@ import com.sun.jna.LastErrorException;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import lombok.NonNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class NativeFramebuffer extends NativeDevice {
      * @param dname name of the character device
      * @throws LastErrorException when operations fails
      */
-    public NativeFramebuffer(String dname) throws LastErrorException {
+    public NativeFramebuffer(@NonNull String dname) throws LastErrorException {
         super(dname);
     }
 
@@ -34,7 +35,7 @@ public class NativeFramebuffer extends NativeDevice {
      * @param flags Opening mode, e.g. read, write or both.
      * @throws LastErrorException when operations fails
      */
-    public NativeFramebuffer(String dname, int flags) throws LastErrorException {
+    public NativeFramebuffer(@NonNull String dname, int flags) throws LastErrorException {
         super(dname, flags);
     }
 
@@ -45,7 +46,7 @@ public class NativeFramebuffer extends NativeDevice {
      * @param libc  standard C library interface to be used.
      * @throws LastErrorException when operations fails
      */
-    public NativeFramebuffer(String dname, ILibc libc) throws LastErrorException {
+    public NativeFramebuffer(@NonNull String dname, @NonNull ILibc libc) throws LastErrorException {
         super(dname, libc);
     }
 
@@ -57,7 +58,7 @@ public class NativeFramebuffer extends NativeDevice {
      * @param libc  standard C library interface to be used.
      * @throws LastErrorException when operations fails
      */
-    public NativeFramebuffer(String dname, int flags, ILibc libc) throws LastErrorException {
+    public NativeFramebuffer(@NonNull String dname, int flags, @NonNull ILibc libc) throws LastErrorException {
         super(dname, flags, libc);
     }
 
@@ -92,7 +93,7 @@ public class NativeFramebuffer extends NativeDevice {
      * @param info Changeable info about the display.
      * @throws LastErrorException when operations fails
      */
-    public void setVariableScreenInfo(fb_var_screeninfo info) throws LastErrorException {
+    public void setVariableScreenInfo(@NonNull fb_var_screeninfo info) throws LastErrorException {
         info.write();
         super.ioctl(FBIOPUT_VSCREENINFO, info.getPointer());
     }

@@ -4,6 +4,7 @@ import com.sun.jna.LastErrorException;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
+import lombok.NonNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +25,7 @@ public class NativeTTY extends NativeDevice {
      * @param dname Path to TTY device.
      * @throws LastErrorException when the operation fails.
      */
-    public NativeTTY(String dname) throws LastErrorException {
+    public NativeTTY(@NonNull String dname) throws LastErrorException {
         super(dname, NativeConstants.O_RDWR);
     }
 
@@ -35,7 +36,7 @@ public class NativeTTY extends NativeDevice {
      * @param flags Opening mode, e.g. read, write or both.
      * @throws LastErrorException when the operation fails.
      */
-    public NativeTTY(String dname, int flags) throws LastErrorException {
+    public NativeTTY(@NonNull String dname, int flags) throws LastErrorException {
         super(dname, flags);
     }
 
@@ -46,7 +47,7 @@ public class NativeTTY extends NativeDevice {
      * @param libc  standard C library interface to be used.
      * @throws LastErrorException when the operation fails.
      */
-    public NativeTTY(String dname, ILibc libc) throws LastErrorException {
+    public NativeTTY(@NonNull String dname, @NonNull ILibc libc) throws LastErrorException {
         super(dname, NativeConstants.O_RDWR, libc);
     }
 
@@ -58,7 +59,7 @@ public class NativeTTY extends NativeDevice {
      * @param libc  standard C library interface to be used.
      * @throws LastErrorException when the operation fails.
      */
-    public NativeTTY(String dname, int flags, ILibc libc) throws LastErrorException {
+    public NativeTTY(@NonNull String dname, int flags, @NonNull ILibc libc) throws LastErrorException {
         super(dname, flags, libc);
     }
 
@@ -81,7 +82,7 @@ public class NativeTTY extends NativeDevice {
      * @param mode TTY mode.
      * @throws LastErrorException when the operation fails.
      */
-    public void setVTmode(vt_mode mode) throws LastErrorException {
+    public void setVTmode(@NonNull vt_mode mode) throws LastErrorException {
         mode.write();
         super.ioctl(VT_SETMODE, mode.getPointer());
     }

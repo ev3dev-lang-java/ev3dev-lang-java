@@ -4,6 +4,7 @@ import com.sun.jna.LastErrorException;
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeFramebuffer;
 import ev3dev.utils.io.NativeTTY;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ class OwnedDisplay extends DisplayInterface {
      *
      * @throws RuntimeException when initialization or mode switch fails.
      */
-    public OwnedDisplay(ILibc libc) {
+    public OwnedDisplay(@NonNull ILibc libc) {
         this.libc = libc;
         try {
             LOGGER.trace("Initialing system console");

@@ -5,6 +5,7 @@ import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeConstants;
+import lombok.NonNull;
 
 import java.nio.Buffer;
 import java.util.HashMap;
@@ -59,7 +60,7 @@ public class EmulatedLibc implements ILibc {
      * @param path Path from which the calls should be routed.
      * @param mock Implementation where should the calls be routed to.
      */
-    public void install(String path, IFile mock) {
+    public void install(@NonNull String path, @NonNull IFile mock) {
         mapping.put(path, mock);
     }
 
@@ -68,7 +69,7 @@ public class EmulatedLibc implements ILibc {
      *
      * @param path Which path to deregister.
      */
-    public void remove(String path) {
+    public void remove(@NonNull String path) {
         mapping.remove(path);
     }
 
@@ -92,7 +93,7 @@ public class EmulatedLibc implements ILibc {
      * @return Path from where this pointer was mapped.
      * @throws LastErrorException EINVAL when the pointer was not found.
      */
-    private String path(Pointer mem) {
+    private String path(@NonNull Pointer mem) {
         return Optional
                 .ofNullable(mmaps.get(mem))
                 .orElseThrow(() -> new LastErrorException(NativeConstants.EINVAL));
@@ -105,7 +106,7 @@ public class EmulatedLibc implements ILibc {
      * @return Implementation of the file.
      * @throws LastErrorException ENOENT when the file isn't known.
      */
-    private IFile impl(String path) {
+    private IFile impl(@NonNull String path) {
         return Optional
                 .ofNullable(mapping.get(path))
                 .orElseThrow(() -> new LastErrorException(NativeConstants.ENOENT));
@@ -122,12 +123,12 @@ public class EmulatedLibc implements ILibc {
     }
 
     @Override
-    public int ioctl(int fd, int cmd, Pointer arg) throws LastErrorException {
+    public int ioctl(int fd, int cmd, @NonNull Pointer arg) throws LastErrorException {
         return impl(path(fd)).ioctl(fd, cmd, arg);
     }
 
     @Override
-    public int open(String path, int flags, int mode) throws LastErrorException {
+    public int open(@NonNull String path, int flags, int mode) throws LastErrorException {
         IFile impl = impl(path);
 
         int fd = filecounter++;
@@ -160,7 +161,7 @@ public class EmulatedLibc implements ILibc {
     }
 
     @Override
-    public Pointer mmap(Pointer addr, NativeLong natLen, int prot, int flags, int fd, NativeLong off) throws LastErrorException {
+    public Pointer mmap(@NonNull Pointer addr, @NonNull NativeLong natLen, int prot, int flags, int fd, @NonNull NativeLong off) throws LastErrorException {
         addr = impl(path(fd)).mmap(addr, natLen, prot, flags, fd, off);
         String path = opened.get(fd);
         mmaps.put(addr, path);
@@ -168,7 +169,7 @@ public class EmulatedLibc implements ILibc {
     }
 
     @Override
-    public int munmap(Pointer addr, NativeLong len) throws LastErrorException {
+    public int munmap(@NonNull Pointer addr, @NonNull NativeLong len) throws LastErrorException {
         try {
             return impl(path(addr)).munmap(addr, len);
         } finally {
@@ -177,7 +178,7 @@ public class EmulatedLibc implements ILibc {
     }
 
     @Override
-    public int msync(Pointer addr, NativeLong len, int flags) throws LastErrorException {
+    public int msync(@NonNull Pointer addr, @NonNull NativeLong len, int flags) throws LastErrorException {
         return impl(path(addr)).msync(addr, len, flags);
     }
 }

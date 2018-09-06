@@ -1,5 +1,7 @@
 package ev3dev.hardware.display;
 
+import lombok.NonNull;
+
 import java.awt.image.BufferedImage;
 import java.io.Closeable;
 
@@ -67,14 +69,14 @@ public interface JavaFramebuffer extends Closeable {
      * @param stride Requested scanline stride.
      * @return BufferedImage with correct settings.
      */
-    BufferedImage createCompatibleBuffer(int width, int height, int stride, byte[] backed);
+    BufferedImage createCompatibleBuffer(int width, int height, int stride, @NonNull byte[] backed);
 
     /**
      * Write full-screen buffer into the framebuffer.
      *
      * @param compatible What to draw onto the screen.
      */
-    void flushScreen(BufferedImage compatible);
+    void flushScreen(@NonNull BufferedImage compatible);
 
     /**
      * Controls whether {@link JavaFramebuffer#flushScreen(BufferedImage)} has effect or not.

@@ -5,6 +5,7 @@ import ev3dev.hardware.display.DisplayInterface;
 import ev3dev.hardware.display.JavaFramebuffer;
 import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.NativeFramebuffer;
+import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +28,7 @@ public interface FramebufferProvider {
      * @return Initialized framebuffer for the specified path.
      * @throws RuntimeException if no suitable framebuffer is found
      */
-    static JavaFramebuffer load(NativeFramebuffer fb, DisplayInterface disp) throws AllImplFailedException {
+    static JavaFramebuffer load(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws AllImplFailedException {
         final Logger LOGGER = LoggerFactory.getLogger(FramebufferProvider.class);
         LOGGER.debug("Loading framebuffer");
         ServiceLoader<FramebufferProvider> loader = ServiceLoader.load(FramebufferProvider.class);
@@ -60,6 +61,6 @@ public interface FramebufferProvider {
      * @throws IllegalArgumentException When this framebuffer is not compatible with this device.
      * @throws LastErrorException       When there was an error accessing the device.
      */
-    JavaFramebuffer createFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException;
+    JavaFramebuffer createFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException;
 
 }

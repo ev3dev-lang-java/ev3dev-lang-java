@@ -4,6 +4,7 @@ import com.sun.jna.LastErrorException;
 import ev3dev.hardware.display.spi.FramebufferProvider;
 import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.NativeFramebuffer;
+import lombok.NonNull;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -80,7 +81,7 @@ public abstract class DisplayInterface implements Closeable {
      * @param backend Device behind JavaFramebuffer.
      * @param enable Whether to enable framebuffer flushing from the beginning.
      */
-    protected void initializeFramebuffer(NativeFramebuffer backend, boolean enable) {
+    protected void initializeFramebuffer(@NonNull NativeFramebuffer backend, boolean enable) {
         try {
             fbInstance = FramebufferProvider.load(backend, this);
         } catch (AllImplFailedException e) {

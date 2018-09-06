@@ -1,5 +1,6 @@
 package ev3dev.hardware.display;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
@@ -46,7 +47,7 @@ public class ImageUtils {
      * @param buffer Backing buffer.
      * @return Configured BufferedImage
      */
-    public static BufferedImage createXRGBImage(int width, int height, int stride, byte[] buffer) {
+    public static BufferedImage createXRGBImage(int width, int height, int stride, @NonNull byte[] buffer) {
         return createXRGBImage(width, height, stride, getDefaultComponentOffsets(), buffer);
     }
 
@@ -60,7 +61,7 @@ public class ImageUtils {
      * @param buffer  Backing buffer.
      * @return Configured BufferedImage
      */
-    public static BufferedImage createXRGBImage(int width, int height, int stride, int[] offsets, byte[] buffer) {
+    public static BufferedImage createXRGBImage(int width, int height, int stride, int[] offsets, @NonNull byte[] buffer) {
         LOGGER.trace("creating XRGB image {}x{} with stride={}", width, height, stride);
         if (buffer.length < (stride * height)) {
             throw new IllegalArgumentException("Buffer is smaller than height*stride");
@@ -118,7 +119,7 @@ public class ImageUtils {
      * @param backed    Backing byte buffer.
      * @return Configured BufferedImage.
      */
-    public static BufferedImage createBWImage(int width, int height, boolean zeroBlack, byte[] backed) {
+    public static BufferedImage createBWImage(int width, int height, boolean zeroBlack, @NonNull byte[] backed) {
         int stride = (width + 7) / 8;
         return createBWImage(width, height, stride, zeroBlack, backed);
     }
@@ -147,7 +148,7 @@ public class ImageUtils {
      * @param backed    Backing byte buffer.
      * @return Configured BufferedImage.
      */
-    public static BufferedImage createBWImage(int width, int height, int stride, boolean zeroBlack, byte[] backed) {
+    public static BufferedImage createBWImage(int width, int height, int stride, boolean zeroBlack, @NonNull byte[] backed) {
         LOGGER.trace("creating BW image {}x{} with stride={}", width, height, stride);
         if (backed.length < (stride * height)) {
             throw new IllegalArgumentException("Buffer is smaller than height*stride");
@@ -186,7 +187,7 @@ public class ImageUtils {
      * @param image Configured BufferedImage.
      * @return Byte array.
      */
-    public static byte[] getImageBytes(BufferedImage image) {
+    public static byte[] getImageBytes(@NonNull BufferedImage image) {
         WritableRaster rst = image.getRaster();
         DataBuffer buf = rst.getDataBuffer();
         return ((DataBufferByte) buf).getData();

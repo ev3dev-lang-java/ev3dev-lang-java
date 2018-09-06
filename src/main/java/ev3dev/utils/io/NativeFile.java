@@ -4,6 +4,7 @@ import com.sun.jna.LastErrorException;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
+import lombok.NonNull;
 
 import java.io.Closeable;
 import java.nio.ByteBuffer;
@@ -36,7 +37,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      *
      * @param libc standard C library interface to be used.
      */
-    protected NativeFile(ILibc libc) {
+    protected NativeFile(@NonNull ILibc libc) {
         this.libc = libc;
     }
 
@@ -48,7 +49,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param flags Linux style file access flags
      * @throws LastErrorException when operations fails
      */
-    public NativeFile(String fname, int flags) throws LastErrorException {
+    public NativeFile(@NonNull String fname, int flags) throws LastErrorException {
         this(fname, flags, new NativeLibc());
     }
 
@@ -61,7 +62,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param mode  Linux style file access mode
      * @throws LastErrorException when operations fails
      */
-    public NativeFile(String fname, int flags, int mode) throws LastErrorException {
+    public NativeFile(@NonNull String fname, int flags, int mode) throws LastErrorException {
         this(fname, flags, mode, new NativeLibc());
     }
 
@@ -74,7 +75,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param libc  standard C library interface to be used.
      * @throws LastErrorException when operations fails
      */
-    public NativeFile(String fname, int flags, ILibc libc) throws LastErrorException {
+    public NativeFile(@NonNull String fname, int flags, @NonNull ILibc libc) throws LastErrorException {
         this.libc = libc;
         open(fname, flags);
     }
@@ -89,7 +90,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param libc  standard C library interface to be used.
      * @throws LastErrorException when operations fails
      */
-    public NativeFile(String fname, int flags, int mode, ILibc libc) throws LastErrorException {
+    public NativeFile(@NonNull String fname, int flags, int mode, @NonNull ILibc libc) throws LastErrorException {
         this.libc = libc;
         open(fname, flags, mode);
     }
@@ -110,7 +111,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param flags Linux style file access flags
      * @throws LastErrorException when operations fails
      */
-    public void open(String fname, int flags) throws LastErrorException {
+    public void open(@NonNull String fname, int flags) throws LastErrorException {
         fd = libc.open(fname, flags, DEFAULT_PRIVS);
     }
 
@@ -122,7 +123,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param mode  Linux style file access mode
      * @throws LastErrorException when operations fails
      */
-    public void open(String fname, int flags, int mode) throws LastErrorException {
+    public void open(@NonNull String fname, int flags, int mode) throws LastErrorException {
         fd = libc.open(fname, flags, mode);
     }
 
@@ -134,7 +135,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @return number of bytes read
      * @throws LastErrorException when operations fails
      */
-    public int read(byte[] buf, int len) throws LastErrorException {
+    public int read(@NonNull byte[] buf, int len) throws LastErrorException {
         return libc.read(fd, ByteBuffer.wrap(buf), len);
     }
 
@@ -147,7 +148,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @return number of bytes read
      * @throws LastErrorException when operations fails
      */
-    public int write(byte[] buf, int offset, int len) throws LastErrorException {
+    public int write(@NonNull byte[] buf, int offset, int len) throws LastErrorException {
         return libc.write(fd, ByteBuffer.wrap(buf, offset, len), len);
     }
 
@@ -160,7 +161,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @return number of bytes read
      * @throws LastErrorException when operations fails
      */
-    public int read(byte[] buf, int offset, int len) throws LastErrorException {
+    public int read(@NonNull byte[] buf, int offset, int len) throws LastErrorException {
         return libc.read(fd, ByteBuffer.wrap(buf, offset, len), len);
     }
 
@@ -172,7 +173,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @return number of bytes read
      * @throws LastErrorException when operations fails
      */
-    public int write(byte[] buf, int len) throws LastErrorException {
+    public int write(@NonNull byte[] buf, int len) throws LastErrorException {
         return libc.write(fd, ByteBuffer.wrap(buf), len);
     }
 
@@ -184,7 +185,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @return Linux style ioctl return
      * @throws LastErrorException when operations fails
      */
-    public int ioctl(int req, IntByReference info) throws LastErrorException {
+    public int ioctl(int req, @NonNull IntByReference info) throws LastErrorException {
         return libc.ioctl(fd, req, info.getPointer());
     }
 
@@ -208,7 +209,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @return Linux style ioctl return
      * @throws LastErrorException when operations fails
      */
-    public int ioctl(int req, Pointer buf) throws LastErrorException {
+    public int ioctl(int req, @NonNull Pointer buf) throws LastErrorException {
         return libc.ioctl(fd, req, buf);
     }
 
@@ -252,7 +253,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param len  Region length.
      * @throws LastErrorException when operations fails
      */
-    public void munmap(Pointer addr, long len) throws LastErrorException {
+    public void munmap(@NonNull Pointer addr, long len) throws LastErrorException {
         libc.munmap(addr, new NativeLong(len));
     }
 
@@ -264,7 +265,7 @@ public class NativeFile implements Closeable, AutoCloseable {
      * @param flags Synchronization flags
      * @throws LastErrorException when operations fails
      */
-    public void msync(Pointer addr, long len, int flags) throws LastErrorException {
+    public void msync(@NonNull Pointer addr, long len, int flags) throws LastErrorException {
         libc.msync(addr, new NativeLong(len), flags);
     }
 

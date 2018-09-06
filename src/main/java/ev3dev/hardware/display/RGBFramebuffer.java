@@ -2,6 +2,7 @@ package ev3dev.hardware.display;
 
 import com.sun.jna.LastErrorException;
 import ev3dev.utils.io.NativeFramebuffer;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.image.BufferedImage;
@@ -26,7 +27,7 @@ public class RGBFramebuffer extends LinuxFramebuffer {
      * @param fb   The framebuffer device (e.g. /dev/fb0)
      * @param disp Display manager (e.g. /dev/tty)
      */
-    public RGBFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
+    public RGBFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
         super(fb, disp);
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             try {
@@ -58,7 +59,7 @@ public class RGBFramebuffer extends LinuxFramebuffer {
     }
 
     @Override
-    public BufferedImage createCompatibleBuffer(int width, int height, int stride, byte[] buffer) {
+    public BufferedImage createCompatibleBuffer(int width, int height, int stride, @NonNull byte[] buffer) {
         return ImageUtils.createXRGBImage(width, height, stride, getComponentOffsets(), buffer);
     }
 

@@ -4,6 +4,7 @@ import com.sun.jna.LastErrorException;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.nio.Buffer;
 
@@ -78,7 +79,7 @@ public class CountingFile implements ICounter {
      *
      * @param sub Where to forward the function calls.
      */
-    public CountingFile(IFile sub) {
+    public CountingFile(@NonNull IFile sub) {
         this.sub = sub;
         resetCount();
     }
@@ -103,7 +104,7 @@ public class CountingFile implements ICounter {
     }
 
     @Override
-    public int open(int fd, String path, int flags, int mode) throws LastErrorException {
+    public int open(int fd, @NonNull String path, int flags, int mode) throws LastErrorException {
         countOpen++;
         return sub.open(fd, path, flags, mode);
     }
@@ -121,7 +122,7 @@ public class CountingFile implements ICounter {
     }
 
     @Override
-    public int ioctl(int fd, int cmd, Pointer arg) throws LastErrorException {
+    public int ioctl(int fd, int cmd, @NonNull Pointer arg) throws LastErrorException {
         countIoctl_ptr++;
         return sub.ioctl(fd, cmd, arg);
     }
@@ -133,31 +134,31 @@ public class CountingFile implements ICounter {
     }
 
     @Override
-    public int write(int fd, Buffer buffer, int count) throws LastErrorException {
+    public int write(int fd, @NonNull Buffer buffer, int count) throws LastErrorException {
         countWrite++;
         return sub.write(fd, buffer, count);
     }
 
     @Override
-    public int read(int fd, Buffer buffer, int count) throws LastErrorException {
+    public int read(int fd, @NonNull Buffer buffer, int count) throws LastErrorException {
         countRead++;
         return sub.read(fd, buffer, count);
     }
 
     @Override
-    public Pointer mmap(Pointer addr, NativeLong natLen, int prot, int flags, int fd, NativeLong natOff) throws LastErrorException {
+    public Pointer mmap(@NonNull Pointer addr, @NonNull NativeLong natLen, int prot, int flags, int fd, @NonNull NativeLong natOff) throws LastErrorException {
         countMmap++;
         return sub.mmap(addr, natLen, prot, flags, fd, natOff);
     }
 
     @Override
-    public int munmap(Pointer addr, NativeLong len) throws LastErrorException {
+    public int munmap(@NonNull Pointer addr, @NonNull NativeLong len) throws LastErrorException {
         countMunmap++;
         return sub.munmap(addr, len);
     }
 
     @Override
-    public int msync(Pointer addr, NativeLong len, int flags) throws LastErrorException {
+    public int msync(@NonNull Pointer addr, @NonNull NativeLong len, int flags) throws LastErrorException {
         countMsync++;
         return sub.msync(addr, len, flags);
     }

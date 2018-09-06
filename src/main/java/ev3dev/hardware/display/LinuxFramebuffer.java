@@ -4,6 +4,7 @@ import com.sun.jna.LastErrorException;
 import com.sun.jna.Pointer;
 import ev3dev.utils.io.NativeConstants;
 import ev3dev.utils.io.NativeFramebuffer;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
@@ -61,7 +62,7 @@ public abstract class LinuxFramebuffer implements JavaFramebuffer {
      * @param fb   Framebuffer device (e.g. /dev/fb0)
      * @param disp Display manager (e.g. /dev/tty)
      */
-    public LinuxFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException {
+    public LinuxFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException {
         setDeviceClose(false);
         device = fb;
         display = disp;
@@ -133,10 +134,10 @@ public abstract class LinuxFramebuffer implements JavaFramebuffer {
     }
 
     @Override
-    public abstract BufferedImage createCompatibleBuffer(int width, int height, int stride, byte[] backed);
+    public abstract BufferedImage createCompatibleBuffer(int width, int height, int stride, @NonNull byte[] backed);
 
     @Override
-    public void flushScreen(BufferedImage compatible) {
+    public void flushScreen(@NonNull BufferedImage compatible) {
         if (flushEnabled) {
             LOGGER.trace("Drawing frame on framebuffer");
             videomem.write(0, ImageUtils.getImageBytes(compatible), 0, (int) getBufferSize());

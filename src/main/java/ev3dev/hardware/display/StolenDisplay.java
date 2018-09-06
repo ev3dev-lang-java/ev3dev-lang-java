@@ -2,6 +2,7 @@ package ev3dev.hardware.display;
 
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeFramebuffer;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -17,7 +18,7 @@ class StolenDisplay extends DisplayInterface {
     /**
      * noop
      */
-    public StolenDisplay(ILibc libc) {
+    public StolenDisplay(@NonNull ILibc libc) {
         this.libc = libc;
     }
 
