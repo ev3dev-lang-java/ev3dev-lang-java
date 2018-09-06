@@ -76,7 +76,7 @@ public abstract class LinuxFramebuffer implements JavaFramebuffer {
         backup = new byte[(int) getBufferSize()];
         blank = null;
         flushEnabled = true;
-        LOGGER.debug("mode {}x{}x{}bpp", varinfo.xres, varinfo.yres, varinfo.bits_per_pixel);
+        LOGGER.debug("Opened LinuxFB, mode {}x{}x{}bpp", varinfo.xres, varinfo.yres, varinfo.bits_per_pixel);
     }
 
     protected void initializeMemory() throws LastErrorException {
