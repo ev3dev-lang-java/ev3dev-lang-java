@@ -35,7 +35,7 @@ class Brickman {
 
         try {
             Rectangle bounds = gfx.getClipBounds();
-            final BufferedImage image = ImageIO.read(JarResource.stream(JarResource.JAVA_DUKE_IMAGE_NAME));
+            final BufferedImage image = JarResource.loadImage(JarResource.JAVA_DUKE_IMAGE_NAME);
             int x = (bounds.width - image.getWidth()) / 2;
             int y = (bounds.height - image.getHeight()) / 2;
             gfx.drawImage(image, x, y, null);

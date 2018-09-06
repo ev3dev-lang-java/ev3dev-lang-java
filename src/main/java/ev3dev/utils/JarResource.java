@@ -2,6 +2,11 @@ package ev3dev.utils;
 
 import org.slf4j.Logger;
 
+import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,6 +28,18 @@ public class JarResource {
             throw new IllegalArgumentException("Cannot get resource \"" + resourceName + "\" from Jar file.");
         }
         return stream;
+    }
+
+    /**
+     * Obtain an image stored as a resource embedded into this Jar.
+     *
+     * @param resourceName "logo.png"
+     * @return Loaded image.
+     */
+    public static BufferedImage loadImage(final String resourceName) throws IOException {
+        try (InputStream stream = stream(resourceName)) {
+            return ImageIO.read(stream);
+        }
     }
 
     /**

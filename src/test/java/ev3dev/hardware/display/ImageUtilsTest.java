@@ -36,7 +36,7 @@ public class ImageUtilsTest {
         gfx.setColor(Color.WHITE);
         gfx.fillRect(0, 0, width, height);
 
-        BufferedImage logo = ImageIO.read(JarResource.stream(imageResource));
+        BufferedImage logo = JarResource.loadImage(imageResource);
         gfx.drawImage(logo, 0, 0, null);
         gfx.dispose();
 
@@ -55,7 +55,7 @@ public class ImageUtilsTest {
         gfx.setColor(Color.WHITE);
         gfx.fillRect(0, 0, width, height);
 
-        BufferedImage logo = ImageIO.read(JarResource.stream(imageResource));
+        BufferedImage logo = JarResource.loadImage(imageResource);
         gfx.drawImage(logo, 0, 0, null);
         gfx.dispose();
 

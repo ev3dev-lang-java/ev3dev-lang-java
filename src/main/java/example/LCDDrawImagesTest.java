@@ -22,8 +22,8 @@ public class LCDDrawImagesTest {
 
         clear();
 
-        BufferedImage cross  = ImageIO.read(JarResource.stream("cross.gif"));
-        BufferedImage nought = ImageIO.read(JarResource.stream("nought.gif"));
+        BufferedImage cross  = JarResource.loadImage("cross.gif");
+        BufferedImage nought = JarResource.loadImage("nought.gif");
 
         //lcd.setColor(Color.BLACK);
         lcd.setColor(0,0,0);
