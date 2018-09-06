@@ -33,7 +33,8 @@ public final class SystemDisplay {
         try {
             return new OwnedDisplay(libc);
         } catch (LastErrorException e) {
-            if (e.getErrorCode() == NativeConstants.ENOTTY) {
+            int errno = e.getErrorCode();
+            if (errno == NativeConstants.ENOTTY || errno == NativeConstants.ENXIO) {
                 LOGGER.debug("but the failure was caused by not having a real TTY, using fake console");
                 // we do not run from Brickman
                 return new StolenDisplay(libc);
