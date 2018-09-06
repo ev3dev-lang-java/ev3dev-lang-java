@@ -18,7 +18,19 @@ import java.util.List;
 
 import static ev3dev.utils.io.NativeFramebuffer.*;
 
+/**
+ * <p>Emulated Linux framebuffer device.</p>
+ *
+ * <p>This device implements basic framebuffer interface.
+ * No acceleration features are available.</p>
+ *
+ * @author Jakub Vaněk
+ * @since 2.4.7
+ */
 public class EmulatedFramebuffer implements ICounter {
+    /**
+     * Size of one pixel.
+     */
     private static final float mm_per_dot = 0.5f;
     private int width;
     private int height;
@@ -36,27 +48,78 @@ public class EmulatedFramebuffer implements ICounter {
     private fb_var_screeninfo varinfo;
     private fb_fix_screeninfo fixinfo;
 
+    /**
+     * List of rendered images.
+     */
     @Getter
     private List<BufferedImage> snapshots;
+    /**
+     * Count of mmap calls with wrong flags set.
+     */
     @Getter
     private int countMmapBadFlags;
+    /**
+     * Count of mmap call with wrong protocol set.
+     */
     @Getter
     private int countMmapBadProt;
 
 
+    /**
+     * Initialize new emulated framebuffer.
+     *
+     * @param width  Screen width.
+     * @param height Screen height.
+     * @param bpp    Bits per screen pixel.
+     * @param stride Screen scanline stride.
+     */
     public EmulatedFramebuffer(int width, int height, int bpp, int stride) {
         this(width, height, bpp, stride, false, 2, 1, 0, 3);
     }
 
+    /**
+     * Initialize new emulated framebuffer.
+     *
+     * @param width     Screen width.
+     * @param height    Screen height.
+     * @param bpp       Bits per screen pixel.
+     * @param stride    Screen scanline stride.
+     * @param zeroblack Whether pixel with value zero is black (1bpp only)
+     */
     public EmulatedFramebuffer(int width, int height, int bpp, int stride, boolean zeroblack) {
         this(width, height, bpp, stride, zeroblack, 2, 1, 0, 3);
     }
 
+    /**
+     * Initialize new emulated framebuffer.
+     *
+     * @param width  Screen width.
+     * @param height Screen height.
+     * @param bpp    Bits per screen pixel.
+     * @param stride Screen scanline stride.
+     * @param rInd   Index of red component (32bpp only)
+     * @param gInd   Index of green component (32bpp only)
+     * @param bInd   Index of blue component (32bpp only)
+     * @param aInd   Index of alpha component (32bpp only)
+     */
     public EmulatedFramebuffer(int width, int height, int bpp, int stride,
                                int rInd, int gInd, int bInd, int aInd) {
         this(width, height, bpp, stride, false, rInd, gInd, bInd, aInd);
     }
 
+    /**
+     * Initialize new emulated framebuffer.
+     *
+     * @param width     Screen width.
+     * @param height    Screen height.
+     * @param bpp       Bits per screen pixel.
+     * @param stride    Screen scanline stride.
+     * @param zeroblack Whether pixel with value zero is black (1bpp only)
+     * @param rInd      Index of red component (32bpp only)
+     * @param gInd      Index of green component (32bpp only)
+     * @param bInd      Index of blue component (32bpp only)
+     * @param aInd      Index of alpha component (32bpp only)
+     */
     public EmulatedFramebuffer(int width, int height, int bpp, int stride, boolean zeroblack,
                                int rInd, int gInd, int bInd, int aInd) {
         this.zeroblack = zeroblack;
@@ -87,45 +150,30 @@ public class EmulatedFramebuffer implements ICounter {
         resetCount();
     }
 
-    private void transferImage() {
-        byte[] buffer = ImageUtils.getImageBytes(imageView);
-        memory.read(0, buffer, 0, bufferSize());
-    }
-
+    /**
+     * Set this framebuffer number.
+     *
+     * @param n Zero-based number of this framebuffer.
+     */
     public void setNumber(int n) {
         this.number = n;
     }
 
+    /**
+     * Add new VT-FB mapping.
+     *
+     * @param console Console number.
+     * @param fb      Associated framebuffer number.
+     */
     public void addMapping(int console, int fb) {
         con2fb.put(console, fb);
     }
 
-    @Override
-    public void resetCount() {
-        countMmapBadProt = 0;
-        countMmapBadFlags = 0;
-    }
-
-    @Override
-    public int open(String path, int flags, int mode) throws LastErrorException {
-        throw new UnsupportedOperationException("This should not be called");
-    }
-
-    @Override
-    public int open(int fd, String path, int flags, int mode) throws LastErrorException {
-        return fd;
-    }
-
-    @Override
-    public int fcntl(int fd, int cmd, int arg) throws LastErrorException {
-        throw new UnsupportedOperationException("This is not implemented");
-    }
-
-    @Override
-    public int ioctl(int fd, int cmd, int arg) throws LastErrorException {
-        throw new LastErrorException(NativeConstants.EINVAL);
-    }
-
+    /**
+     * Fill in fixed screen info.
+     *
+     * @param info Structure to fill.
+     */
     private void fillFixInfo(fb_fix_screeninfo info) {
         long peer = Pointer.nativeValue(memory);
         byte[] strBytes = ("Emulated#" + number).getBytes(StandardCharsets.UTF_8);
@@ -154,6 +202,11 @@ public class EmulatedFramebuffer implements ICounter {
         info.write();
     }
 
+    /**
+     * Fill in variable screen info.
+     *
+     * @param info Structure to fill.
+     */
     private void fillVarInfo(fb_var_screeninfo info) {
         info.xres = width;
         info.yres = height;
@@ -199,12 +252,90 @@ public class EmulatedFramebuffer implements ICounter {
         info.write();
     }
 
-    private void takeVarInfo(fb_var_screeninfo info) {
+    /**
+     * Process variable info set request.
+     *
+     * @param info Structure from the application.
+     * @throws LastErrorException EINVAL if the configured parameters do not meet the initial ones.
+     */
+    private void takeVarInfo(fb_var_screeninfo info) throws LastErrorException {
         if (!info.dataEquals(varinfo)) {
             throw new LastErrorException(NativeConstants.EINVAL);
         }
     }
 
+
+    @Override
+    public void resetCount() {
+        countMmapBadProt = 0;
+        countMmapBadFlags = 0;
+    }
+
+    /**
+     * Open a new file descriptor. [ILLEGAL OPERATION ON EMULATED FILES]
+     *
+     * @param path  Not used.
+     * @param flags Not used.
+     * @param mode  Not used.
+     * @return Nothing.
+     * @throws UnsupportedOperationException always
+     */
+    @Override
+    public int open(String path, int flags, int mode) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("This should not be called");
+    }
+
+    /**
+     * Signal the opening of a new file descriptor.
+     *
+     * @param fd    Associated file descriptor number, provided by the EmulatedLibc class.
+     * @param path  Path to the emulated file, provided by the tested code.
+     * @param flags Opening flags, provided by the tested code.
+     * @param mode  Opening mode, provided by the tested code.
+     * @return File descriptor number.
+     */
+    @Override
+    public int open(int fd, String path, int flags, int mode) {
+        return fd;
+    }
+
+    /**
+     * File descriptor control. [UNUSED OPERATION]
+     *
+     * @param fd  Not used.
+     * @param cmd Not used.
+     * @param arg Not used.
+     * @return Nothing.
+     * @throws UnsupportedOperationException always
+     */
+    @Override
+    public int fcntl(int fd, int cmd, int arg) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("This is not implemented");
+    }
+
+    /**
+     * Invoke i/o control action with integer argument [UNUSED OPERATION].
+     *
+     * @param fd  Not used.
+     * @param cmd Not used.
+     * @param arg Not used.
+     * @return Nothing.
+     * @throws LastErrorException EINVAL always.
+     */
+    @Override
+    public int ioctl(int fd, int cmd, int arg) throws LastErrorException {
+        throw new LastErrorException(NativeConstants.EINVAL);
+    }
+
+    /**
+     * Invoke i/o control action with pointer argument.
+     *
+     * @param fd  Not used.
+     * @param cmd IO control command.
+     * @param arg IO control argument ({@link fb_con2fbmap}, {@link fb_fix_screeninfo}, {@link fb_var_screeninfo})
+     * @return Zero.
+     * @throws LastErrorException EINVAL when the argument or command is invalid.
+     */
     @Override
     public int ioctl(int fd, int cmd, Pointer arg) throws LastErrorException {
         fb_con2fbmap map;
@@ -237,23 +368,58 @@ public class EmulatedFramebuffer implements ICounter {
         return 0;
     }
 
+    /**
+     * Close the framebuffer file descriptor.
+     *
+     * @param fd Not used.
+     * @return Zero.
+     */
     @Override
-    public int close(int fd) throws LastErrorException {
+    public int close(int fd) {
         return 0;
     }
 
+    /**
+     * Write bytes to the framebuffer [INVALID OPERATION].
+     *
+     * @param fd     Not used.
+     * @param buffer Not used.
+     * @param count  Not used.
+     * @return Nothing.
+     * @throws LastErrorException EIO always.
+     */
     @Override
     public int write(int fd, Buffer buffer, int count) throws LastErrorException {
         throw new LastErrorException(NativeConstants.EIO);
     }
 
+    /**
+     * Read bytes from the framebuffer [INVALID OPERATION].
+     *
+     * @param fd     Not used.
+     * @param buffer Not used.
+     * @param count  Not used.
+     * @return Nothing.
+     * @throws LastErrorException EIO always.
+     */
     @Override
     public int read(int fd, Buffer buffer, int count) throws LastErrorException {
         throw new LastErrorException(NativeConstants.EIO);
     }
 
+    /**
+     * Give a framebuffer memory pointer to the application.
+     *
+     * @param addr   Not used.
+     * @param natLen Length of the memory to be mapped.
+     * @param prot   Mapping protocol for verification.
+     * @param flags  Mapping flags for verification.
+     * @param fd     Not used.
+     * @param natOff Mapping offset.
+     * @return Address to the mapped memory.
+     */
     @Override
-    public Pointer mmap(Pointer addr, NativeLong natLen, int prot, int flags, int fd, NativeLong natOff) throws LastErrorException {
+    public Pointer mmap(Pointer addr, NativeLong natLen, int prot, int flags, int fd, NativeLong natOff) {
         long len = natLen.longValue();
         long off = natOff.longValue();
         if ((prot & NativeConstants.PROT_WRITE) == 0 || (prot & NativeConstants.PROT_READ) == 0) {
@@ -265,13 +431,28 @@ public class EmulatedFramebuffer implements ICounter {
         return memory.share(off, len);
     }
 
+    /**
+     * Unmap the mapped framebuffer memory (noop).
+     *
+     * @param addr Not used.
+     * @param len  Not used.
+     * @return Zero.
+     */
     @Override
-    public int munmap(Pointer addr, NativeLong len) throws LastErrorException {
+    public int munmap(Pointer addr, NativeLong len) {
         return 0;
     }
 
+    /**
+     * Save the rendered image.
+     *
+     * @param addr  Not used.
+     * @param len   Not used.
+     * @param flags Not used.
+     * @return Zero.
+     */
     @Override
-    public int msync(Pointer addr, NativeLong len, int flags) throws LastErrorException {
+    public int msync(Pointer addr, NativeLong len, int flags) {
         transferImage();
 
         BufferedImage snap = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -282,7 +463,20 @@ public class EmulatedFramebuffer implements ICounter {
         return 0;
     }
 
+    /**
+     * Calculate the screen buffer size.
+     *
+     * @return Scanline stride multiplied by height.
+     */
     private int bufferSize() {
         return stride * height;
+    }
+
+    /**
+     * Tranfer image from {@link EmulatedFramebuffer#memory} to {@link EmulatedFramebuffer#imageView}.
+     */
+    private void transferImage() {
+        byte[] buffer = ImageUtils.getImageBytes(imageView);
+        memory.read(0, buffer, 0, bufferSize());
     }
 }
