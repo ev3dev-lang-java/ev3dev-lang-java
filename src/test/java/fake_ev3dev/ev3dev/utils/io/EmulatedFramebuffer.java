@@ -11,7 +11,6 @@ import lombok.Getter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.Buffer;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,22 +27,8 @@ import static ev3dev.utils.io.NativeFramebuffer.*;
  * @since 2.4.7
  */
 public class EmulatedFramebuffer implements ICounter {
-    /**
-     * Size of one pixel.
-     */
-    private static final float mm_per_dot = 0.5f;
-    private int width;
-    private int height;
-    private int bpp;
-    private int stride;
     private Pointer memory;
     private BufferedImage imageView;
-    private boolean zeroblack;
-    private int indexRed;
-    private int indexGreen;
-    private int indexBlue;
-    private int indexAlpha;
-    private int number;
     private HashMap<Integer, Integer> con2fb;
     private fb_var_screeninfo varinfo;
     private fb_fix_screeninfo fixinfo;
@@ -65,191 +50,19 @@ public class EmulatedFramebuffer implements ICounter {
     private int countMmapBadProt;
 
 
-    /**
-     * Initialize new emulated framebuffer.
-     *
-     * @param width  Screen width.
-     * @param height Screen height.
-     * @param bpp    Bits per screen pixel.
-     * @param stride Screen scanline stride.
-     */
-    public EmulatedFramebuffer(int width, int height, int bpp, int stride) {
-        this(width, height, bpp, stride, false, 2, 1, 0, 3);
-    }
-
-    /**
-     * Initialize new emulated framebuffer.
-     *
-     * @param width     Screen width.
-     * @param height    Screen height.
-     * @param bpp       Bits per screen pixel.
-     * @param stride    Screen scanline stride.
-     * @param zeroblack Whether pixel with value zero is black (1bpp only)
-     */
-    public EmulatedFramebuffer(int width, int height, int bpp, int stride, boolean zeroblack) {
-        this(width, height, bpp, stride, zeroblack, 2, 1, 0, 3);
-    }
-
-    /**
-     * Initialize new emulated framebuffer.
-     *
-     * @param width  Screen width.
-     * @param height Screen height.
-     * @param bpp    Bits per screen pixel.
-     * @param stride Screen scanline stride.
-     * @param rInd   Index of red component (32bpp only)
-     * @param gInd   Index of green component (32bpp only)
-     * @param bInd   Index of blue component (32bpp only)
-     * @param aInd   Index of alpha component (32bpp only)
-     */
-    public EmulatedFramebuffer(int width, int height, int bpp, int stride,
-                               int rInd, int gInd, int bInd, int aInd) {
-        this(width, height, bpp, stride, false, rInd, gInd, bInd, aInd);
-    }
-
-    /**
-     * Initialize new emulated framebuffer.
-     *
-     * @param width     Screen width.
-     * @param height    Screen height.
-     * @param bpp       Bits per screen pixel.
-     * @param stride    Screen scanline stride.
-     * @param zeroblack Whether pixel with value zero is black (1bpp only)
-     * @param rInd      Index of red component (32bpp only)
-     * @param gInd      Index of green component (32bpp only)
-     * @param bInd      Index of blue component (32bpp only)
-     * @param aInd      Index of alpha component (32bpp only)
-     */
-    public EmulatedFramebuffer(int width, int height, int bpp, int stride, boolean zeroblack,
-                               int rInd, int gInd, int bInd, int aInd) {
-        this.zeroblack = zeroblack;
-        this.width = width;
-        this.height = height;
-        this.bpp = bpp;
-        this.stride = stride;
-        this.indexRed = rInd;
-        this.indexGreen = gInd;
-        this.indexBlue = bInd;
-        this.indexAlpha = aInd;
+    EmulatedFramebuffer(BufferedImage buffer,
+                        fb_fix_screeninfo fixinfo,
+                        fb_var_screeninfo varinfo,
+                        HashMap<Integer, Integer> con2fb) {
+        this.imageView = buffer;
+        this.fixinfo = fixinfo;
+        this.varinfo = varinfo;
+        this.con2fb = con2fb;
         this.memory = new Memory(bufferSize());
-        byte[] buffer = new byte[height * stride];
-        if (bpp == 1) {
-            imageView = ImageUtils.createBWImage(width, height, stride, zeroblack, buffer);
-        } else if (bpp == 32) {
-            int[] off = new int[]{rInd, gInd, bInd, aInd};
-            imageView = ImageUtils.createXRGBImage(width, height, stride, off, buffer);
-        } else {
-            throw new IllegalArgumentException("Only supported are 1bpp and 32bpp images");
-        }
-        this.fixinfo = new fb_fix_screeninfo();
-        this.varinfo = new fb_var_screeninfo();
-        this.con2fb = new HashMap<>();
+        this.fixinfo.smem_start = new NativeLong(Pointer.nativeValue(this.memory));
+        this.fixinfo.mmio_start = new NativeLong(Pointer.nativeValue(this.memory));
         this.snapshots = new LinkedList<>();
-        fillFixInfo(fixinfo);
-        fillVarInfo(varinfo);
         resetCount();
-    }
-
-    /**
-     * Set this framebuffer number.
-     *
-     * @param n Zero-based number of this framebuffer.
-     */
-    public void setNumber(int n) {
-        this.number = n;
-    }
-
-    /**
-     * Add new VT-FB mapping.
-     *
-     * @param console Console number.
-     * @param fb      Associated framebuffer number.
-     */
-    public void addMapping(int console, int fb) {
-        con2fb.put(console, fb);
-    }
-
-    /**
-     * Fill in fixed screen info.
-     *
-     * @param info Structure to fill.
-     */
-    private void fillFixInfo(fb_fix_screeninfo info) {
-        long peer = Pointer.nativeValue(memory);
-        byte[] strBytes = ("Emulated#" + number).getBytes(StandardCharsets.UTF_8);
-        System.arraycopy(strBytes, 0, info.id, 0, strBytes.length);
-        info.smem_start = new NativeLong(peer);
-        info.smem_len = bufferSize();
-        info.type = NativeConstants.FB_TYPE_PACKED_PIXELS;
-        info.type_aux = 0;
-        if (bpp == 32) {
-            info.visual = NativeConstants.FB_VISUAL_TRUECOLOR;
-        } else {
-            if (zeroblack) {
-                info.visual = NativeConstants.FB_VISUAL_MONO01;
-            } else {
-                info.visual = NativeConstants.FB_VISUAL_MONO10;
-            }
-        }
-        info.xpanstep = 0;
-        info.ypanstep = 0;
-        info.ywrapstep = 0;
-        info.line_length = stride;
-        info.mmio_start = new NativeLong(peer);
-        info.mmio_len = bufferSize();
-        info.accel = 0;
-        info.capabilities = 0;
-        info.write();
-    }
-
-    /**
-     * Fill in variable screen info.
-     *
-     * @param info Structure to fill.
-     */
-    private void fillVarInfo(fb_var_screeninfo info) {
-        info.xres = width;
-        info.yres = height;
-        info.xres_virtual = width;
-        info.yres_virtual = height;
-        info.xoffset = 0;
-        info.yoffset = 0;
-        info.bits_per_pixel = bpp;
-        info.grayscale = bpp == 32 ? 0 : 1;
-
-        info.red.offset = bpp == 32 ? indexRed * 8 : 0;
-        info.red.length = bpp == 32 ? 8 : 1;
-        info.red.msb_right = 0;
-        info.green.offset = bpp == 32 ? indexGreen * 8 : 0;
-        info.green.length = bpp == 32 ? 8 : 1;
-        info.green.msb_right = 0;
-        info.blue.offset = bpp == 32 ? indexBlue * 8 : 0;
-        info.blue.length = bpp == 32 ? 8 : 1;
-        info.blue.msb_right = 0;
-        info.transp.offset = bpp == 32 ? indexAlpha * 8 : 0;
-        info.transp.length = 0;
-        info.transp.msb_right = 0;
-
-        info.nonstd = 0;
-        info.activate = 0;
-
-        info.height = (int) (mm_per_dot * height);
-        info.width = (int) (mm_per_dot * width);
-
-        info.accel_flags = 0;
-        info.pixclock = 0;
-        info.left_margin = 0;
-        info.right_margin = 0;
-        info.upper_margin = 0;
-        info.lower_margin = 0;
-        info.hsync_len = 0;
-        info.vsync_len = 0;
-
-        info.sync = 0;
-        info.vmode = 0;
-        info.rotate = 0;
-        info.colorspace = 0;
-        info.write();
     }
 
     /**
@@ -455,7 +268,7 @@ public class EmulatedFramebuffer implements ICounter {
     public int msync(Pointer addr, NativeLong len, int flags) {
         transferImage();
 
-        BufferedImage snap = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage snap = new BufferedImage(varinfo.xres, varinfo.yres, BufferedImage.TYPE_INT_ARGB);
         Graphics2D gfx = snap.createGraphics();
         gfx.drawImage(imageView, 0, 0, null);
         gfx.dispose();
@@ -469,7 +282,7 @@ public class EmulatedFramebuffer implements ICounter {
      * @return Scanline stride multiplied by height.
      */
     private int bufferSize() {
-        return stride * height;
+        return fixinfo.line_length * varinfo.yres;
     }
 
     /**

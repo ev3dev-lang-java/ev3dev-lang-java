@@ -1,9 +1,8 @@
 package ev3dev.hardware.display;
 
-import com.sun.jna.LastErrorException;
 import ev3dev.utils.io.NativeFramebuffer;
 import fake_ev3dev.ev3dev.utils.io.CountingFile;
-import fake_ev3dev.ev3dev.utils.io.EmulatedFramebuffer;
+import fake_ev3dev.ev3dev.utils.io.EmulatedFramebufferBuilder;
 import fake_ev3dev.ev3dev.utils.io.EmulatedLibc;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,9 +23,11 @@ public class RGBFramebufferTest extends BaseFramebufferTest {
     @Before
     public void reset() {
         eLibc = new EmulatedLibc();
-        eFb = new EmulatedFramebuffer(WIDTH, HEIGHT, BPP, STRIDE, 2, 1, 0, 3);
-        eFb.setNumber(0);
-        eFb.addMapping(0, 0);
+        eFb = new EmulatedFramebufferBuilder()
+                .setXRGB()
+                .setScreenSize(WIDTH, HEIGHT, STRIDE)
+                .setNumber(0).addConsoleFramebufferMap(0, 0)
+                .build();
         eCtr = new CountingFile(eFb);
         eLibc.install("/dev/fb0", eCtr);
         device = new NativeFramebuffer("/dev/fb0", eLibc);
@@ -73,9 +74,11 @@ public class RGBFramebufferTest extends BaseFramebufferTest {
     @Test(expected = IllegalArgumentException.class)
     public void DoTestInvalidType() throws IOException {
         eLibc.remove("/dev/fb0");
-        eFb = new EmulatedFramebuffer(WIDTH, HEIGHT, BPP_BAD, STRIDE_BAD, true);
-        eFb.setNumber(0);
-        eFb.addMapping(0, 0);
+        eFb = new EmulatedFramebufferBuilder()
+                .setBW(true)
+                .setScreenSize(WIDTH, HEIGHT, STRIDE_BAD)
+                .setNumber(0).addConsoleFramebufferMap(0, 0)
+                .build();
         eCtr = new CountingFile(eFb);
         eLibc.install("/dev/fb0", eCtr);
         device = new NativeFramebuffer("/dev/fb0", eLibc);
