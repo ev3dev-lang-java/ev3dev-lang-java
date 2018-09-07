@@ -6,14 +6,16 @@ import lejos.robotics.Color;
 import lejos.utility.Delay;
 
 import java.awt.*;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LCDDrawIconsTest {
 
     public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
 
     public static void main(final String[] args) {
 
-        System.out.println("EV3 LCD Example");
+        LOGGER.info("EV3 LCD Example");
 
         //clear();
         lcd.clear();

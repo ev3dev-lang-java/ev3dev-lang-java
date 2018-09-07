@@ -3,29 +3,30 @@ package example;
 import ev3dev.hardware.display.SystemDisplay;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.utility.Delay;
-
 import java.awt.*;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LCDFontTest {
 
     public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
 
     public static void main(final String[] args) {
 
-        System.out.println("EV3 LCD Example");
+        LOGGER.info("EV3 LCD Example");
 
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
         // Get all font family name in a String[]
         String[] fontNames = env.getAvailableFontFamilyNames();
         for (String fontName : fontNames) {
-            System.out.println("Font: {}" + fontName);
+            LOGGER.info("Font: {}", fontName);
         }
 
         // Construct all Font instance (with font size of 1)
         Font[] fonts = env.getAllFonts();
         for (Font font : fonts) {
-            System.out.println("Font: {}" + font);
+            LOGGER.info("Font: {}", font);
         }
 
         writeMessage("Hello World");

@@ -11,14 +11,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LCDDrawImagesTest {
 
     public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
 
     public static void main(final String[] args) throws IOException {
 
-        System.out.println("EV3 LCD Example");
+        LOGGER.info("EV3 LCD Example");
 
         clear();
 

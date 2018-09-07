@@ -8,8 +8,9 @@ import lejos.utility.Delay;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
     protected static final int SWITCH_DELAY = 400;
@@ -63,19 +64,19 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         // TODO: I'm sure there is a better way to do this, but it is late!
         int i = 0;
         for(String s : getAvailableModes()) {
-        	System.out.println(modeName + " " + s);
+            LOGGER.debug("getMode(): {} {}", modeName, s);
             if (s.equals(modeName))
                 return modes[i];
             i++;
         }
         throw new IllegalArgumentException("No such mode " + modeName);
     }
-    
+
     private boolean isValid(int mode) {
       if (mode < 0 || modes == null || mode >= modes.length) return false;
       return true;
     }
-    
+
     private int getIndex(String modeName) {
       int i = 0;
       for(String s : getAvailableModes()) {
@@ -85,7 +86,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
       }
       return -1;
     }
-    
+
 
     public String getName() {
       return modes[currentMode].getName();
@@ -158,5 +159,5 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
             Delay.msDelay(switchDelay);
         }
     }
-    
+
 }
