@@ -61,8 +61,8 @@ task remoteRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-                execute "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                println "time brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "time brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
             }
         }
     }
@@ -83,8 +83,8 @@ task remoteSudoRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
-                execute "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+                println "echo -e \"maker\" | sudo -S brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+                execute "echo -e \"maker\" | sudo -S brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
             }
         }
     }
@@ -94,8 +94,8 @@ task remoteProfilingRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-                execute "java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                println "brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
             }
         }
     }
@@ -105,8 +105,8 @@ task remoteProfilingSudoRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "echo -e \"maker\" | sudo -S java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-                execute "echo -e \"maker\" | sudo -S java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                println "echo -e \"maker\" | sudo -S brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "echo -e \"maker\" | sudo -S brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
             }
         }
     }
