@@ -3,7 +3,6 @@ package ev3dev.utils.io;
 import com.sun.jna.LastErrorException;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
-import com.sun.jna.ptr.IntByReference;
 
 import java.nio.Buffer;
 

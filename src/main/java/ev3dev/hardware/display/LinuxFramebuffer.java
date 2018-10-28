@@ -9,8 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.Closeable;
-import java.io.IOException;
 
 /**
  * <p>Linux Java2D framebuffer.</p>

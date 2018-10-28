@@ -6,10 +6,10 @@ import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.EnumSet;
-
-import java.nio.file.*;
-
 import java.util.Properties;
 
 class EV3DevPlatformsImpl {

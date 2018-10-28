@@ -1,7 +1,6 @@
 package ev3dev.utils.io;
 
 import com.sun.jna.*;
-import com.sun.jna.ptr.IntByReference;
 
 import java.nio.Buffer;
 

@@ -4,7 +4,6 @@ import ev3dev.utils.JarResource;
 import ev3dev.utils.Shell;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
