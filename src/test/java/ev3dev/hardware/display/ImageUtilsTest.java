@@ -28,7 +28,6 @@ public class ImageUtilsTest {
     private static final int bitStrideSmall = width / 16;
     private static final String imageResource = "java_logo.png";
 
-    @Ignore
     @Test
     public void renderXRGBImage() throws IOException {
         // intentional wider stride
@@ -42,14 +41,17 @@ public class ImageUtilsTest {
         gfx.drawImage(logo, 0, 0, null);
         gfx.dispose();
 
-        Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "xrgb_render.raw");
-        File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "xrgb_render.png").toFile();
-        ImageIO.write(img, "png", path);
-        Files.write(raw, ImageUtils.getImageBytes(img),
-                StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+        try {
+            Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "xrgb_render.raw");
+            File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "xrgb_render.png").toFile();
+            ImageIO.write(img, "png", path);
+            Files.write(raw, ImageUtils.getImageBytes(img),
+                    StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    @Ignore
     @Test
     public void renderBWImage() throws IOException {
         // intentional wider stride
@@ -62,11 +64,15 @@ public class ImageUtilsTest {
         gfx.drawImage(logo, 0, 0, null);
         gfx.dispose();
 
-        Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "bw_render.raw");
-        File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "bw_render.png").toFile();
-        ImageIO.write(img, "png", path);
-        Files.write(raw, ImageUtils.getImageBytes(img),
-                StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+        try {
+            Path raw = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "bw_render.raw");
+            File path = Paths.get(BaseElement.EV3DEV_FAKE_SYSTEM_PATH, "..", "bw_render.png").toFile();
+            ImageIO.write(img, "png", path);
+            Files.write(raw, ImageUtils.getImageBytes(img),
+                    StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
