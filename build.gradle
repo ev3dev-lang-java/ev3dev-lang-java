@@ -113,8 +113,8 @@ test {
     }
 }
 
-test.finalizedBy jacocoTestReport
-test.finalizedBy jacocoTestCoverageVerification
+//test.finalizedBy jacocoTestReport
+//test.finalizedBy jacocoTestCoverageVerification
 
 //Jar
 jar {
