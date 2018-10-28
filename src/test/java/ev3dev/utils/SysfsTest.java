@@ -44,9 +44,9 @@ public class SysfsTest {
         final Properties ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
 
         BATTERY = ev3DevProperties.getProperty("battery");
-        BATTERY_EV3 =  ev3DevProperties.getProperty("ev3.battery");;
+        BATTERY_EV3 =  ev3DevProperties.getProperty("ev3.battery");
         BATTERY_PISTORMS =  ev3DevProperties.getProperty("pistorms.battery");
-        BATTERY_BRICKPI = ev3DevProperties.getProperty("brickpi.battery");;
+        BATTERY_BRICKPI = ev3DevProperties.getProperty("brickpi.battery");
         BATTERY_BRICKPI3 =  ev3DevProperties.getProperty("brickpi3.battery");
 
     }
