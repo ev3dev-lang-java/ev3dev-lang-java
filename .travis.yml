@@ -1,7 +1,7 @@
 sudo: required
 language: java
 jdk:
-  - openjdk10
+  - openjdk11
 before_install:
   - chmod +x gradlew
 services:
