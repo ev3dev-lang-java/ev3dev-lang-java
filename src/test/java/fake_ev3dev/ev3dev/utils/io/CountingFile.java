@@ -17,6 +17,7 @@ import java.nio.Buffer;
  * @author Jakub Vaněk
  * @since 2.4.7
  */
+@Getter
 public class CountingFile implements ICounter {
     /**
      * Actual file implementation.
@@ -26,52 +27,44 @@ public class CountingFile implements ICounter {
     /**
      * Number of calls to open()
      */
-    @Getter
+
     private int countOpen;
     /**
      * Number of calls to close()
      */
-    @Getter
     private int countClose;
     /**
      * Number of calls to mmap()
      */
-    @Getter
     private int countMmap;
     /**
      * Number of calls to munmap()
      */
-    @Getter
+
     private int countMunmap;
     /**
      * Number of calls to msync()
      */
-    @Getter
     private int countMsync;
     /**
      * Number of calls to read()
      */
-    @Getter
     private int countRead;
     /**
      * Number of calls to write()
      */
-    @Getter
     private int countWrite;
     /**
      * Number of calls to ioctl() with integer argument
      */
-    @Getter
     private int countIoctl_int;
     /**
      * Number of calls to ioctl() with pointer argument
      */
-    @Getter
     private int countIoctl_ptr;
     /**
      * Number of calls to fcntl()
      */
-    @Getter
     private int countFcntl;
 
     /**
