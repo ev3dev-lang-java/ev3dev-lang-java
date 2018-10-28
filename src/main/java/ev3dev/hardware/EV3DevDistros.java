@@ -4,6 +4,8 @@ import ev3dev.utils.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 public class EV3DevDistros {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevDistros.class);
@@ -19,36 +21,12 @@ public class EV3DevDistros {
 
     public EV3DevDistros() {
 
-        final String osResult = Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY);
-        if (osResult.contains(JESSIE_DISTRO_DETECTION_PATTERN)) {
-            setJessie();
-        } else if (osResult.contains(STRETCH_DISTRO_DETECTION_PATTERN)) {
-            setStretch();
-        } else {
-            String value = System.getProperty(DEBIAN_DISTRO_DETECTION_KEY);
-            if (value != null) {
-                switch (value) {
-                    case DEBIAN_DISTRO_DETECTION_JESSIE:
-                        setJessie();
-                        return;
-                    case DEBIAN_DISTRO_DETECTION_STRETCH:
-                        setStretch();
-                        return;
-                }
-            }
-            LOGGER.warn("Failed to detect distro, falling back to Stretch.");
-            setStretch();
-        }
+        setStretch();
     }
 
     private void setStretch() {
         LOGGER.debug("Debian Stretch detected");
         CURRENT_DISTRO = EV3DevDistro.STRETCH;
-    }
-
-    private void setJessie() {
-        LOGGER.debug("Debian Jessie detected");
-        CURRENT_DISTRO = EV3DevDistro.JESSIE;
     }
 
     public EV3DevDistro getDistro() {

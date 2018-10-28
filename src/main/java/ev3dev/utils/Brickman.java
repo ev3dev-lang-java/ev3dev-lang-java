@@ -1,16 +1,13 @@
-package ev3dev.hardware.display;
+package ev3dev.utils;
 
-import ev3dev.utils.JarResource;
-import ev3dev.utils.Shell;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-// intentionally package-local to prevent API misuse
 @Slf4j
-class Brickman {
+public class Brickman {
 
     private static final String DISABLE_BRICKMAN_COMMAND = "sudo systemctl stop brickman";
     private static final String ENABLE_BRICKMAN_COMMAND = "sudo systemctl start brickman";

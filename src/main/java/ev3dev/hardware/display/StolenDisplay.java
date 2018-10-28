@@ -20,7 +20,6 @@ class StolenDisplay extends DisplayInterface {
      */
     public StolenDisplay(@NonNull ILibc libc) {
         this.libc = libc;
-        Brickman.disable();
     }
 
     /**
