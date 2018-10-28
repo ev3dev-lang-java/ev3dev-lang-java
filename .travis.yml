@@ -18,6 +18,6 @@ notifications:
     recipients:
       - bren@juanantonio.info
 script:
-  - ./gradlew dockerTest
+  - ./gradlew test --stacktrace
 after_success:
   - bash <(curl -s https://codecov.io/bash)
