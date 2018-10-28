@@ -2,6 +2,7 @@ package ev3dev.hardware.display;
 
 import ev3dev.utils.JarResource;
 import fake_ev3dev.BaseElement;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -27,6 +28,7 @@ public class ImageUtilsTest {
     private static final int bitStrideSmall = width / 16;
     private static final String imageResource = "java_logo.png";
 
+    @Ignore
     @Test
     public void renderXRGBImage() throws IOException {
         // intentional wider stride
@@ -47,6 +49,7 @@ public class ImageUtilsTest {
                 StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
     }
 
+    @Ignore
     @Test
     public void renderBWImage() throws IOException {
         // intentional wider stride
