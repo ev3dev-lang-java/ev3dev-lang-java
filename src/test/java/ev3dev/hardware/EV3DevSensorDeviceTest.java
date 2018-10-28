@@ -13,7 +13,7 @@ import java.io.IOException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-/*
+
 @Slf4j
 public class EV3DevSensorDeviceTest {
 
@@ -58,4 +58,3 @@ public class EV3DevSensorDeviceTest {
         assertThat(device.getStringAttribute("address"), is("spi0.1:S1"));
     }
 }
-*/

@@ -9,7 +9,7 @@ import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 
-/*
+
 @Slf4j
 public class EV3DevDeviceTest {
 
@@ -53,4 +53,4 @@ public class EV3DevDeviceTest {
     }
 
 }
-*/
+

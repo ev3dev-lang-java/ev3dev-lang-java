@@ -30,7 +30,7 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'idea'
-    //id "jacoco"
+    id "jacoco"
     id 'checkstyle'
     id 'maven-publish'
 }
@@ -81,7 +81,7 @@ test.testLogging {
     exceptionFormat "full"
 }
 
-/*
+//Coverage
 jacoco {
     toolVersion = "0.8.2"
     reportsDir = file("$buildDir/customJacocoReportDir")
@@ -114,10 +114,8 @@ test {
     }
 }
 
-
 test.finalizedBy jacocoTestReport
 test.finalizedBy jacocoTestCoverageVerification
-*/
 
 //Jar
 jar {
