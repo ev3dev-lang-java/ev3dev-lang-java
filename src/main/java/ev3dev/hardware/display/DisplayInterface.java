@@ -1,8 +1,8 @@
 package ev3dev.hardware.display;
 
 import com.sun.jna.LastErrorException;
+import ev3dev.hardware.display.spi.AllImplFailedException;
 import ev3dev.hardware.display.spi.FramebufferProvider;
-import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.NativeFramebuffer;
 import lombok.NonNull;
 

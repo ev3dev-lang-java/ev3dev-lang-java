@@ -1,4 +1,4 @@
-package ev3dev.utils;
+package ev3dev.hardware.display.spi;
 
 /**
  * Situation when SPI is to be open, but none of

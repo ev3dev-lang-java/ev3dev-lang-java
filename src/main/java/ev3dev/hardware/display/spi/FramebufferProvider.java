@@ -3,7 +3,6 @@ package ev3dev.hardware.display.spi;
 import com.sun.jna.LastErrorException;
 import ev3dev.hardware.display.DisplayInterface;
 import ev3dev.hardware.display.JavaFramebuffer;
-import ev3dev.utils.AllImplFailedException;
 import ev3dev.utils.io.NativeFramebuffer;
 import lombok.NonNull;
 import org.slf4j.Logger;
@@ -61,6 +60,7 @@ public interface FramebufferProvider {
      * @throws IllegalArgumentException When this framebuffer is not compatible with this device.
      * @throws LastErrorException       When there was an error accessing the device.
      */
-    JavaFramebuffer createFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException;
+    JavaFramebuffer createFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp)
+            throws LastErrorException, IllegalArgumentException;
 
 }
