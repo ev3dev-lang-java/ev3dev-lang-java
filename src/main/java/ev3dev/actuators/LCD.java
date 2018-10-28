@@ -44,9 +44,9 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     // stroke
     private int stroke;
 
-    private static GraphicsLCD instance;
+    private static LCD instance;
 
-    public static GraphicsLCD getInstance() {
+    public static LCD getInstance() {
         if (instance == null) {
             instance = new LCD();
         }
