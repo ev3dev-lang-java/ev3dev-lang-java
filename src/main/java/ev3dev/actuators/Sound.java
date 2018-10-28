@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.sound.sampled.*;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 /**
@@ -128,13 +130,23 @@ public class Sound extends EV3DevDevice {
         this.playSample(file);
     }
 
+    /**
+     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     * @param volume the volume percentage 0 - 100
+     */
+    public void playSample(final InputStream file, final int volume) {
+        this.setVolume(volume);
+        this.playSample(file);
+    }
+
 
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
      */
-    public void playSample(final File file) {
-        try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file.toURI().toURL())) {
+    public void playSample(final InputStream file) {
+        try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file)) {
 
             Clip clip = AudioSystem.getClip();
             clip.open(audioIn);
@@ -143,6 +155,19 @@ public class Sound extends EV3DevDevice {
             clip.close();
 
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     */
+    public void playSample(final File file) {
+        try (FileInputStream is = new FileInputStream(file)) {
+            playSample(is);
+        } catch (IOException e) {
             LOGGER.error(e.getLocalizedMessage(), e);
             throw new RuntimeException(e);
         }
