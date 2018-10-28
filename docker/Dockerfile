@@ -1,5 +1,5 @@
 # Pull base image.
-FROM openjdk:9-jdk
+FROM openjdk:11-jdk-slim
 
 ADD app /app
 
