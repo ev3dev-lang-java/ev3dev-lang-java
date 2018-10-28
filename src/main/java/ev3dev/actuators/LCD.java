@@ -1,9 +1,10 @@
 package ev3dev.actuators;
 
-import ev3dev.hardware.display.*;
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.hardware.EV3DevPlatforms;
+import ev3dev.hardware.display.ImageUtils;
+import ev3dev.hardware.display.JavaFramebuffer;
+import ev3dev.hardware.display.SystemDisplay;
 import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,18 +44,24 @@ public class LCD extends EV3DevDevice implements GraphicsLCD {
     // stroke
     private int stroke;
 
-    /**
-     * Initialize new LCD using the user-provided framebuffer
-     * @param fb Image output.
-     */
-    public LCD(JavaFramebuffer fb) {
-        EV3DevPlatforms conf = new EV3DevPlatforms();
+    private static GraphicsLCD instance;
 
-        if (conf.getPlatform() != EV3DevPlatform.EV3BRICK) {
-            log.warn("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
+    public static GraphicsLCD getInstance() {
+        if (instance == null) {
+            instance = new LCD();
+        }
+        return instance;
+    }
+
+    // Prevent duplicate objects
+    private LCD() {
+
+        if(!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
+            log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
+            throw new RuntimeException("This actuator was only tested for: " + EV3DevPlatform.EV3BRICK);
         }
 
-        this.fb = fb;
+        this.fb = SystemDisplay.initializeRealFramebuffer();
         this.timer = new Timer("LCD flusher", true);
         this.image = fb.createCompatibleBuffer();
         this.g2d = this.image.createGraphics();

@@ -1,22 +1,18 @@
 package example;
 
-import ev3dev.hardware.display.SystemDisplay;
+import ev3dev.actuators.LCD;
 import ev3dev.utils.JarResource;
 import lejos.hardware.lcd.GraphicsLCD;
-import lejos.robotics.Color;
 import lejos.utility.Delay;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 @Slf4j
 public class LCDDrawImagesTest {
 
-    public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
+    public static GraphicsLCD lcd = LCD.getInstance();
 
     public static void main(final String[] args) throws IOException {
 

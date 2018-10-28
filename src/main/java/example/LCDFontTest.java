@@ -1,15 +1,16 @@
 package example;
 
-import ev3dev.hardware.display.SystemDisplay;
+import ev3dev.actuators.LCD;
 import lejos.hardware.lcd.GraphicsLCD;
 import lejos.utility.Delay;
-import java.awt.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.awt.*;
 
 @Slf4j
 public class LCDFontTest {
 
-    public static GraphicsLCD lcd = SystemDisplay.initializeRealLCD();
+    public static GraphicsLCD lcd = LCD.getInstance();
 
     public static void main(final String[] args) {
 
