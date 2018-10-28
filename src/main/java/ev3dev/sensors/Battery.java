@@ -9,11 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The class Battery interacts with EV3Dev to get information about battery used. 
- * 
+ * The class Battery interacts with EV3Dev to get information about battery used.
+ *
  * @see <a href="https://www.kernel.org/doc/Documentation/power/power_supply_class.txt">https://www.kernel.org/doc/Documentation/power/power_supply_class.txt</a>
  * @see <a href="https://github.com/ev3dev/ev3dev-lang/blob/develop/wrapper-specification.md#direct-attribute-mappings-5">https://github.com/ev3dev/ev3dev-lang/blob/develop/wrapper-specification.md#direct-attribute-mappings-5</a>
- * 
+ *
  * @author Juan Antonio Breña Moral
  *
  */
@@ -48,9 +48,9 @@ public class Battery extends EV3DevDevice implements Power {
         LOGGER.debug("Init sensor");
 
         BATTERY = ev3DevProperties.getProperty("battery");
-        BATTERY_EV3 =  ev3DevProperties.getProperty("ev3.battery");;
+        BATTERY_EV3 =  ev3DevProperties.getProperty("ev3.battery");
         BATTERY_PISTORMS =  ev3DevProperties.getProperty("pistorms.battery");
-        BATTERY_BRICKPI = ev3DevProperties.getProperty("brickpi.battery");;
+        BATTERY_BRICKPI = ev3DevProperties.getProperty("brickpi.battery");
         BATTERY_BRICKPI3 =  ev3DevProperties.getProperty("brickpi3.battery");
 
         //TODO Create separator variable for the whole project

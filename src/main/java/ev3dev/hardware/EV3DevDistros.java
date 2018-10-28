@@ -4,24 +4,27 @@ import ev3dev.utils.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 public class EV3DevDistros {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevDistros.class);
 
     private static final String DEBIAN_DISTRO_DETECTION_QUERY = "cat /etc/os-release";
-    private static final String STRETCH_DISTRO_DETECTION_QUERY = DEBIAN_DISTRO_DETECTION_QUERY + " | grep stretch";
-    private static final String JESSIE_DISTRO_DETECTION_QUERY = DEBIAN_DISTRO_DETECTION_QUERY + " | grep jessie";
+    private static final String JESSIE_DISTRO_DETECTION_PATTERN = "ev3dev-jessie";
+    private static final String STRETCH_DISTRO_DETECTION_PATTERN = "ev3dev-stretch";
+    private static final String DEBIAN_DISTRO_DETECTION_KEY = "EV3DEV_DISTRO";
+    private static final String DEBIAN_DISTRO_DETECTION_JESSIE = "jessie";
+    private static final String DEBIAN_DISTRO_DETECTION_STRETCH = "stretch";
 
     private EV3DevDistro CURRENT_DISTRO;
 
     public EV3DevDistros() {
 
-        final String jessieResult = Shell.execute(JESSIE_DISTRO_DETECTION_QUERY);
-        if (jessieResult.length() > 0) {
-            LOGGER.debug("Debian Jessie detected");
-            CURRENT_DISTRO = EV3DevDistro.JESSIE;
-        }
+        setStretch();
+    }
 
+    private void setStretch() {
         LOGGER.debug("Debian Stretch detected");
         CURRENT_DISTRO = EV3DevDistro.STRETCH;
     }

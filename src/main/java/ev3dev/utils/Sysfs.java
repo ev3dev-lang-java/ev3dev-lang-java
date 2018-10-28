@@ -2,18 +2,21 @@ package ev3dev.utils;
 
 import org.slf4j.Logger;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * The class responsible to interact with Sysfs on EV3Dev
- * 
+ *
  * @author Juan Antonio Breña Moral
  *
  */
@@ -23,7 +26,7 @@ public class Sysfs {
 
     /**
 	 * Write a value in a file.
-	 * 
+	 *
 	 * @param filePath File path
 	 * @param value value to write
 	 * @return A boolean value if the operation was written or not.
@@ -50,11 +53,11 @@ public class Sysfs {
 		}
 		return true;
 	}
-	
+
 	public static boolean writeInteger(final String filePath, final int value) {
 		return writeString(filePath, new StringBuilder().append(value).toString());
 	}
-	
+
 	/**
 	 * Read an Attribute in the Sysfs with containing String values
 	 * @param filePath path
@@ -77,7 +80,7 @@ public class Sysfs {
 			throw new RuntimeException("Problem reading path: " + filePath, e);
 		}
 	}
-	
+
 	/**
 	 * Read an Attribute in the Sysfs with containing Integer values
 	 * @param filePath path
@@ -86,13 +89,13 @@ public class Sysfs {
 	public static int readInteger(final String filePath) {
 		return Integer.parseInt(readString(filePath));
 	}
-	
+
 	public static float readFloat(final String filePath) {
 		return Float.parseFloat(readString(filePath));
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param filePath path
 	 * @return an List with options from a path
 	 */
@@ -123,11 +126,8 @@ public class Sysfs {
 	}
 
 	public static boolean writeBytes(final String path, final byte[] value) {
-        final File file = new File(path);
-		try (DataOutputStream out = new DataOutputStream(new FileOutputStream(file))) {
-			out.write(value);
-			out.flush();
-			out.close();
+		try {
+			Files.write(Paths.get(path), value, StandardOpenOption.WRITE);
 		} catch (IOException e) {
 			throw new RuntimeException("Unable to draw the LCD", e);
 		}
