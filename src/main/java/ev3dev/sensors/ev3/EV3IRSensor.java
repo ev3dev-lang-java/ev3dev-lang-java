@@ -123,7 +123,7 @@ public class EV3IRSensor extends BaseSensor {
      * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getRemoteMode() {
-        return getMode(3);
+        return getMode(2);
     }
 
     /**
