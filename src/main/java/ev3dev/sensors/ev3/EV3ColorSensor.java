@@ -34,9 +34,6 @@ import lejos.robotics.LampController;
  */
 public class EV3ColorSensor extends BaseSensor implements LampController, ColorIdentifier {
     // TODO: decide what to do to the LampController and ColorIdentifier interfaces
-    protected static int[] colorMap = {
-        Color.NONE, Color.BLACK, Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.WHITE, Color.BROWN
-    };
 
     private static final String LEGO_EV3_COLOR_SENSOR = "lego-ev3-color";
 
@@ -46,10 +43,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     private static final String COL_RGBRAW = "RGB-RAW"; // mode 3; raw RGB reflectivity
     private static final String COL_REFRAW = "REF-RAW"; // not used here; raw red reflectivity / ambient
     private static final String COL_CAL = "COL-CAL"; // not used here; maybe used for sensor bootstrap in LEGO
-
-    // following maps operating mode to lamp color
-    // NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN
-    private static final int[] lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
 
 	public EV3ColorSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_COLOR_SENSOR);
@@ -75,14 +68,25 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      */
     @Override
     public boolean isFloodlightOn() {
-        return lightColor[currentMode + 1] != Color.NONE;
+        return getFloodlight() != Color.NONE;
     }
 
     /** {@inheritDoc}
      */
     @Override
     public int getFloodlight() {
-        return lightColor[currentMode + 1];
+        switch (this.getStringAttribute(SENSOR_MODE)) {
+            case COL_COLOR:
+            case COL_RGBRAW:
+                return Color.WHITE;
+            case COL_REFRAW:
+            case COL_REFLECT:
+                return Color.RED;
+            case COL_AMBIENT:
+            case COL_CAL:
+            default:
+                return Color.NONE;
+        }
     }
 
     /**
