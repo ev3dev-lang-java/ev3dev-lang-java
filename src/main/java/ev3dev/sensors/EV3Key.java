@@ -286,8 +286,8 @@ public class EV3Key implements Key {
     // package-private such that it's VisibleForTesting
     static void processKeyEvent(final byte keyId, final byte keyState) {
         final KeyType keyType = KeyType.of(keyId);
-        if (log.isDebugEnabled()) {
-            log.debug("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
+        if (log.isTraceEnabled()) {
+            log.trace("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
         }
 
         if (keyState == STATE_KEY_UP) {
