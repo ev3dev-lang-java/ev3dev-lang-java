@@ -103,7 +103,27 @@ public abstract class EV3DevDevice {
      * @return value
      */
     protected int getIntegerAttribute(final String attribute){
-        return Sysfs.readInteger(PATH_DEVICE + "/" +  attribute);
+        return Integer.parseInt(getStringAttribute(attribute));
+    }
+
+    /**
+     * Returns the value of an attribute supported for a Device
+     *
+     * @param attribute attribute
+     * @return value
+     */
+    protected float getFloatAttribute(final String attribute) {
+        return Float.parseFloat(getStringAttribute(attribute));
+    }
+
+    /**
+     * Reads the specified value from the sensor.
+     *
+     * @param index Index of the returned value, e.g. value&lt;index&gt; will be read.
+     * @return Measured value.
+     */
+    public float readValue(final int index) {
+        return getFloatAttribute("value" + index);
     }
 
     /**
@@ -125,11 +145,8 @@ public abstract class EV3DevDevice {
      * @param attribute attribute
      * @param value value
      */
-    protected void setIntegerAttribute(final String attribute, final int value){
-        final boolean result = Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
-        if(!result){
-            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value " + value);
-        }
+    public void setIntegerAttribute(final String attribute, final int value) {
+        setStringAttribute(attribute, Integer.toString(value));
     }
 	
 }
