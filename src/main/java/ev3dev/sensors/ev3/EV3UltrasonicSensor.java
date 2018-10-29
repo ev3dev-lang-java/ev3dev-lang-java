@@ -114,7 +114,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     *         False, when the sensors is disabled.
     */
     public boolean isEnabled() {
-        return !Objects.equals(this.getStringAttribute(SENSOR_MODE), MODE_SINGLE_MEASURE);
+        return !Objects.equals(this.getSystemMode(), MODE_SINGLE_MEASURE);
     }
     
 }

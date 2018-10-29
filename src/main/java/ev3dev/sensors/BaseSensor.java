@@ -111,15 +111,33 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     }
 
     /**
+     * Read current sensor mode from the kernel.
+     *
+     * @return Sensor mode identifier.
+     */
+    protected String getSystemMode() {
+        return this.getStringAttribute(SENSOR_MODE);
+    }
+
+    /**
+     * Write requested sensor mode to the kernel.
+     *
+     * @param mode Sensor mode identifier.
+     */
+    private void setSystemMode(String mode) {
+        this.setStringAttribute(SENSOR_MODE, mode);
+    }
+
+    /**
      * Switch the sensor to the specified mode, if necessary.
      * @param newMode Identifier of the sensor mode.
      * @param switchDelay Delay until the sensor starts sending new data.
      */
     public void switchMode(String newMode, long switchDelay) {
-        String oldMode = this.getStringAttribute(SENSOR_MODE);
+        String oldMode = getSystemMode();
 
         if (!Objects.equals(oldMode, newMode)) {
-            this.setStringAttribute(SENSOR_MODE, newMode);
+            setSystemMode(newMode);
             Delay.msDelay(switchDelay);
         }
     }

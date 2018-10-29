@@ -75,7 +75,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      */
     @Override
     public int getFloodlight() {
-        switch (this.getStringAttribute(SENSOR_MODE)) {
+        switch (this.getSystemMode()) {
             case COL_COLOR:
             case COL_RGBRAW:
                 return Color.WHITE;
