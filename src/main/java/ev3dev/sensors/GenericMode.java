@@ -1,51 +1,98 @@
 package ev3dev.sensors;
 
-import ev3dev.utils.Sysfs;
 import lejos.hardware.sensor.SensorMode;
 
-import java.io.File;
-
+/**
+ * Generic ev3dev sensor handler.
+ */
 public class GenericMode implements SensorMode {
 
-    private final String VALUE = "value";
-    private final String VALUE0 = "value0";
+    private final BaseSensor sensor;
+    private final String sensorMode;
+    private final long sensorSwitchDelay;
 
-    private final File pathDevice;
     private final int sampleSize;
-    private final String name;
-    private final int type;
-    private float minRange;
-    private float maxRange;
-    private float correctionFactor;
+    private final String modeName;
 
+    private float correctMin;
+    private float correctMax;
+    private float correctFactor;
+
+    /**
+     * Create new generic sensor handler.
+     * @param sensor Reference to the object responsible for mode setting and value reading.
+     * @param sensorMode Identifier of the sensor mode this handler represents.
+     * @param sampleSize Number of returned samples.
+     * @param modeName Human-readable sensor mode name.
+     */
     public GenericMode (
-            final File pathDevice,
+            final BaseSensor sensor,
+            final String sensorMode,
             final int sampleSize,
-            final String name,
-            final int type) {
-        this.pathDevice = pathDevice;
-        this.sampleSize = sampleSize;
-        this.name = name;
-        this.type = type;
+            final String modeName) {
+        this(sensor, sensorMode,
+                sampleSize, modeName,
+                Float.MIN_VALUE, Float.MAX_VALUE, 1.0f,
+                BaseSensor.SWITCH_DELAY);
     }
 
+    /**
+     *
+     * @param sensor Reference to the object responsible for mode setting and value reading.
+     * @param sensorMode Identifier of the sensor mode this handler represents.
+     * @param sampleSize Number of returned samples.
+     * @param modeName Human-readable sensor mode name.
+     * @param correctMin Minimum value measured by the sensor. If the reading is lower, zero is returned.
+     * @param correctMax Maximum value measured by the sensor. If the reading is higher, positive infinity is returned.
+     * @param correctFactor Scaling factor applied to the sensor reading.
+     */
     public GenericMode(
-            final File pathDevice,
+            final BaseSensor sensor,
+            final String sensorMode,
             final int sampleSize,
-            final String name,
-            final int type,
-            final float minRange,
-            final float maxRange,
-            final float correctionFactor) {
-        this(pathDevice, sampleSize, name, type);
-        this.minRange = minRange;
-        this.maxRange = maxRange;
-        this.correctionFactor = correctionFactor;
+            final String modeName,
+            final float correctMin,
+            final float correctMax,
+            final float correctFactor) {
+        this(sensor, sensorMode,
+                sampleSize, modeName,
+                correctMin, correctMax, correctFactor,
+                BaseSensor.SWITCH_DELAY);
+    }
+
+    /**
+     *
+     * @param sensor Reference to the object responsible for mode setting and value reading.
+     * @param sensorMode Identifier of the sensor mode this handler represents.
+     * @param sampleSize Number of returned samples.
+     * @param modeName Human-readable sensor mode name.
+     * @param correctMin Minimum value measured by the sensor. If the reading is lower, zero is returned.
+     * @param correctMax Maximum value measured by the sensor. If the reading is higher, positive infinity is returned.
+     * @param correctFactor Scaling factor applied to the sensor reading.
+     * @param sensorSwitchDelay Delay when the sensor after mode switch still returns data from old sensor mode.
+     */
+    private GenericMode(
+            final BaseSensor sensor,
+            final String sensorMode,
+            final int sampleSize,
+            final String modeName,
+            final float correctMin,
+            final float correctMax,
+            final float correctFactor,
+            final long sensorSwitchDelay) {
+        this.sensor = sensor;
+        this.sensorMode = sensorMode;
+        this.sampleSize = sampleSize;
+        this.modeName = modeName;
+        this.correctMin = correctMin;
+        this.correctMax = correctMax;
+        this.correctFactor = correctFactor;
+        this.sensorSwitchDelay = sensorSwitchDelay;
     }
 
     @Override
     public String getName() {
-        return name;
+        return modeName;
     }
 
     @Override
@@ -55,26 +102,26 @@ public class GenericMode implements SensorMode {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-
-        if(type == 1) {
-            sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-
-        } else if (type == 2) {
-            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0) / correctionFactor;
-
-            if (rawValue < minRange) {
-                sample[offset] = 0;
-            } else if (rawValue >= maxRange) {
-                sample[offset] = Float.POSITIVE_INFINITY;
-            } else {
-                sample[offset] = rawValue;
-            }
-        } else if (type == 3) {
-
-            for(int x=0; x < sampleSize; x++) {
-                sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE + x);
-            }
+        // for analog sensors
+        if (sensorMode != null) {
+            sensor.switchMode(sensorMode, sensorSwitchDelay);
         }
 
+        // for all values
+        for (int n = 0; n < sampleSize; n++) {
+            // read
+            float reading = sensor.readValue(n);
+
+            // apply correction
+            reading *= correctFactor;
+            if (reading < correctMin) {
+                reading = 0;
+            } else if (reading >= correctMax) {
+                reading = Float.POSITIVE_INFINITY;
+            }
+
+            // store
+            sample[offset + n] = reading;
+        }
     }
 }
