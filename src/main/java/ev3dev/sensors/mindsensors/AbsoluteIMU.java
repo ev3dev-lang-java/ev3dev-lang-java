@@ -122,23 +122,18 @@ public class AbsoluteIMU extends BaseSensor {
     //I2C Register
     public static final int GYRO_FILTER = 0x5a;
 
-    /*
-    private void initModes() {
-        setModes(
-                new SensorMode[]{
-                        new AbsoluteIMU.AccelerometerMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.MagnetometerMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.GyroMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.CompassMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.TiltMode(this.PATH_DEVICE),
-                });
-        setRange(LOW);
-    }
-    */
 
     public AbsoluteIMU(final Port portName) {
         super(portName, LEGO_I2C, MINDSENSORS_ABSOLUTEIMU);
-        //this.initModes();
+
+        setModes(new SensorMode[]{
+                new GenericMode(this, MODE_ACCELEROMETER, 3, "Acceleration"),
+                new GenericMode(this, MODE_MAGNETIC, 3, "Magnetic"),
+                new GenericMode(this, MODE_GYRO, 3, "Gyro"),
+                new GenericMode(this, MODE_COMPASS, 1, "Compass"),
+                new GenericMode(this, MODE_TILT, 3, "Tilt")});
+
+        setRange(LOW);
     }
 
     /**
@@ -157,12 +152,7 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getCompassMode() {
-        switchMode(MODE_COMPASS, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "Compass",
-                1);
+        return getMode(3);
     }
 
     /**
@@ -172,12 +162,7 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getAccelerationMode() {
-        switchMode(MODE_ACCELEROMETER, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                3,
-                "Acceleration",
-                3);
+        return getMode(0);
     }
 
     /**
@@ -187,30 +172,15 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getMagneticMode() {
-        switchMode(MODE_MAGNETIC, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                3,
-                "Magnetic",
-                3);
+        return getMode(1);
     }
 
     public SensorMode getGyroMode() {
-        switchMode(MODE_GYRO, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                3,
-                "Gyro",
-                3);
+        return getMode(2);
     }
 
     public SensorMode getTiltMode() {
-        switchMode(MODE_TILT, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                3,
-                "Tilt",
-                3);
+        return getMode(4);
     }
 
 

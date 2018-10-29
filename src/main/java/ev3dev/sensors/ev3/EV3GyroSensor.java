@@ -3,6 +3,7 @@ package ev3dev.sensors.ev3;
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
 /**
@@ -42,13 +43,12 @@ public class EV3GyroSensor extends BaseSensor {
 
 	public EV3GyroSensor(final Port portName) {
 		super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
-		/*
+
 		setModes(new SensorMode[] {
-				new RateMode(this.PATH_DEVICE),
-				new AngleMode(this.PATH_DEVICE),
-				new RateAndAngleMode(this.PATH_DEVICE)
+				new GenericMode(this, MODE_RATE, 1, "Rate"),
+				new GenericMode(this, MODE_ANGLE, 1, "Angle"),
+				new GenericMode(this, MODE_RATE_ANGLE, 2, "Angle and Rate")
 		});
-		*/
 	}
 
 	/**
@@ -68,12 +68,7 @@ public class EV3GyroSensor extends BaseSensor {
 	 *      SampleProviders}
 	 */
 	public SampleProvider getRateMode() {
-		switchMode(MODE_RATE, SWITCH_DELAY);
-		return new GenericMode(
-				this.PATH_DEVICE,
-				1,
-				"Rate",
-				1);
+		return getMode(0);
 	}
 
 	/**
@@ -93,12 +88,7 @@ public class EV3GyroSensor extends BaseSensor {
 	*      SampleProviders}
 	*/
 	public SampleProvider getAngleMode() {
-		switchMode(MODE_ANGLE, SWITCH_DELAY);
-		return new GenericMode(
-				this.PATH_DEVICE,
-				1,
-				"Angle",
-				1);
+		return getMode(1);
 	}
 
 	/**
@@ -118,12 +108,7 @@ public class EV3GyroSensor extends BaseSensor {
 	 *      SampleProviders}
 	 */
 	public SampleProvider getAngleAndRateMode() {
-		switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
-		return new GenericMode(
-				this.PATH_DEVICE,
-				2,
-				"Angle and Rate",
-				3);
+		return getMode(2);
 	}
 
 	/**

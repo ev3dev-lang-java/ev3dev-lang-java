@@ -40,95 +40,85 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
     private static final String LEGO_EV3_COLOR_SENSOR = "lego-ev3-color";
 
-    private static final String COL_RESET = "RESET";//-1//??
-    private static final String COL_REFLECT = "COL-REFLECT";//0
-    private static final String COL_AMBIENT = "COL-AMBIENT";//1
-    private static final String COL_COLOR = "COL-COLOR";//2
-    protected static final String COL_REFRAW = "REF-RAW";//3
-    private static final String COL_RGBRAW = "RGB-RAW";
-    protected static final String COL_CAL = "COL-CAL";
+    private static final String COL_COLOR = "COL-COLOR"; // mode 0; color ID
+    private static final String COL_REFLECT = "COL-REFLECT";// mode 1; reflected intensity
+    private static final String COL_AMBIENT = "COL-AMBIENT";// mode 2; scaled ambient intensity
+    private static final String COL_RGBRAW = "RGB-RAW"; // mode 3; raw RGB reflectivity
+    private static final String COL_REFRAW = "REF-RAW"; // not used here; raw red reflectivity / ambient
+    private static final String COL_CAL = "COL-CAL"; // not used here; maybe used for sensor bootstrap in LEGO
 
     // following maps operating mode to lamp color
     // NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN
-    private static final int []lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
-    protected short[]raw = new short[3];
-
-    /*
-    private void initModes() {
-        setModes(
-        		new SensorMode[]{
-        				new ColorIDMode(this.PATH_DEVICE), 
-        				new RedMode(this.PATH_DEVICE),
-        				new RGBMode(this.PATH_DEVICE),
-        				new AmbientMode(this.PATH_DEVICE)
-        		});
-    }
-    */
+    private static final int[] lightColor = {Color.NONE, Color.RED, Color.BLUE, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE};
 
 	public EV3ColorSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_COLOR_SENSOR);
-		//initModes();
+
+        setModes(new SensorMode[]{
+                new GenericMode(this, COL_COLOR, 1, "ColorID"),
+                new GenericMode(this, COL_REFLECT, 1, "Red"),
+                new GenericMode(this, COL_AMBIENT, 1, "Ambient"),
+                new GenericMode(this, COL_RGBRAW, 3, "RGB")
+        });
 	}
 
     /** {@inheritDoc}
      */    
     @Override
     public int getColorID() {
-        setFloodlight(Color.WHITE);
-        return 0; //colorMap[ports.getByte()];
+        float[] sample = new float[1];
+        getColorIDMode().fetchSample(sample, 0);
+        return (int) sample[0];
     }
 
     /** {@inheritDoc}
-     */    
+     */
     @Override
-    public void setFloodlight(boolean floodlight)
-    {
-        setFloodlight(floodlight ? Color.RED : Color.NONE);
+    public boolean isFloodlightOn() {
+        return lightColor[currentMode + 1] != Color.NONE;
     }
 
     /** {@inheritDoc}
-     */    
+     */
     @Override
-    public boolean isFloodlightOn()
-    {
-        return lightColor[currentMode+1] != Color.NONE;
+    public int getFloodlight() {
+        return lightColor[currentMode + 1];
     }
 
-    /** {@inheritDoc}
-     */    
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int getFloodlight()
-    {
-         return lightColor[currentMode+1];
+    public void setFloodlight(boolean floodlight) {
+        setFloodlight(floodlight ? Color.RED : Color.BLUE);
     }
 
     /** {@inheritDoc}
      */    
     @Override
     public boolean setFloodlight(int color) {
-        String mode;
+        float[] dummy = new float[3];
+
+        SensorMode m;
         switch (color) {
+            case Color.NONE:
             case Color.BLUE:
-                mode = COL_AMBIENT;
+                m = getAmbientMode();
                 break;
             case Color.WHITE:
-                mode = COL_COLOR;
+                m = getColorIDMode();
                 break;
             case Color.RED:
-                mode = COL_REFLECT;
-                break;
-            case Color.NONE:
-                mode = COL_RESET;
+                m = getRedMode();
                 break;
             default:
                 // TODO: Should we ignore a wrong color or throw an exception?
                 throw new IllegalArgumentException("Invalid color specified");
         }
-        switchMode(mode, SWITCH_DELAY);
+        m.fetchSample(dummy, 0);
         return true;
     }
 
-    //TODO: Implement in the right way
     /**
      * <b>EV3 color sensors, Color ID mode</b><br>
      * Measures the color ID of a surface. The sensors can identify 8 unique colors (NONE, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN).
@@ -144,15 +134,9 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getColorIDMode() {
-        switchMode(COL_COLOR, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "ColorID",
-                1);
+        return getMode(0);
     }
 
-    //TODO: Implement in the right way
     /**
      * <b>EV3 color sensors, Red mode</b><br>
      * Measures the level of reflected light from the sensors RED LED. 
@@ -168,12 +152,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getRedMode() {
-        switchMode(COL_REFLECT, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "Red",
-                1);
+        return getMode(1);
     }
 
     /**
@@ -191,12 +170,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getAmbientMode() {
-        switchMode(COL_AMBIENT, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "Ambient",
-                1);
+        return getMode(2);
     }
 
     /**
@@ -219,12 +193,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getRGBMode() {
-        switchMode(COL_RGBRAW, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                3,
-                "RGB",
-                3);
+        return getMode(3);
     }
 
 }

@@ -45,17 +45,13 @@ public class EV3IRSensor extends BaseSensor {
 
     public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
-		//init();
+        setModes(new SensorMode[] {
+                new GenericMode(this, MODE_DISTANCE, 1, "Distance", MIN_RANGE, MAX_RANGE, 1.0f),
+                new GenericMode(this, MODE_SEEK, 8, "Seek"),
+                new GenericMode(this, MODE_REMOTE, IR_CHANNELS, "Remote")
+        });
 	}
 
-	/*
-    private void init() {
-        setModes(new SensorMode[] {
-                new DistanceMode(this.PATH_DEVICE),
-                new SeekMode(this.PATH_DEVICE)
-        });
-    }
-    */
 	
     /**
      * <b>EV3 Infra Red sensors, Distance mode</b><br>
@@ -75,15 +71,7 @@ public class EV3IRSensor extends BaseSensor {
      * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */    
 	public SensorMode getDistanceMode() {
-        switchMode(MODE_DISTANCE, SWITCH_DELAY);
-	    return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "Distance",
-                2,
-                MIN_RANGE,
-                MAX_RANGE,
-                1f);
+        return getMode(0);
     }
 
     /**
@@ -108,12 +96,34 @@ public class EV3IRSensor extends BaseSensor {
      * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */
     public SensorMode getSeekMode() {
-        switchMode(MODE_SEEK, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                8,
-                "Seek",
-                3);
+        return getMode(1);
+    }
+
+    /**
+     * <b>EV3 Infra Red sensor, Remote mode</b><br>
+     * In seek mode the sensor locates up to four beacons and provides bearing and distance of each beacon.
+     *
+     * Returns the current remote command from the specified channel. Remote commands
+     * are a single numeric value  which represents which button on the Lego IR
+     * remote is currently pressed (0 means no buttons pressed). Four channels are
+     * supported (0-3) which correspond to 1-4 on the remote. The button values are:<br>
+     * 1 TOP-LEFT<br>
+     * 2 BOTTOM-LEFT<br>
+     * 3 TOP-RIGHT<br>
+     * 4 BOTTOM-RIGHT<br>
+     * 5 TOP-LEFT + TOP-RIGHT<br>
+     * 6 TOP-LEFT + BOTTOM-RIGHT<br>
+     * 7 BOTTOM-LEFT + TOP-RIGHT<br>
+     * 8 BOTTOM-LEFT + BOTTOM-RIGHT<br>
+     * 9 CENTRE/BEACON<br>
+     * 10 BOTTOM-LEFT + TOP-LEFT<br>
+     * 11 TOP-RIGHT + BOTTOM-RIGHT<br>
+     *
+     * @return A sampleProvider
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     */
+    public SensorMode getRemoteMode() {
+        return getMode(3);
     }
 
     /**
@@ -136,19 +146,12 @@ public class EV3IRSensor extends BaseSensor {
      * @return the current command
      */
     public int getRemoteCommand(int chan) {
-        switchMode(MODE_REMOTE, SWITCH_DELAY);
-
-        if(chan == 0) {
-            return Sysfs.readInteger(this.PATH_DEVICE + "/" + VALUE0);
-        } else if(chan == 1) {
-            return  Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE1);
-        } else if(chan == 2) {
-            return  Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE2);
-        } else if(chan == 3) {
-            return Sysfs.readInteger(this.PATH_DEVICE + "/" + VALUE3);
-        } else {
+        if (chan < 0 || chan >= IR_CHANNELS) {
             throw new IllegalArgumentException("Bad channel");
         }
+        float[] samples = new float[4];
+        getRemoteMode().fetchSample(samples, 0);
+        return (int)samples[chan];
     }
 
     /**
@@ -159,12 +162,17 @@ public class EV3IRSensor extends BaseSensor {
      * @param len the number of commands to store.
      */
     public void getRemoteCommands(byte[] cmds, int offset, int len) {
-        switchMode(MODE_REMOTE, SWITCH_DELAY);
+        // TODO this should read multiple commands, but we probably cannot easily wait for new ones
+        float[] samples = new float[4];
+        getRemoteMode().fetchSample(samples, 0);
 
-        cmds[0] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE0);
-        cmds[1] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE1);
-        cmds[2] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE2);
-        cmds[3] = (byte) Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE3);
+        for (int i = 0; i < IR_CHANNELS; i++) {
+            int idx = offset+i;
+            if (idx >= len) {
+                break;
+            }
+            cmds[idx] = (byte) samples[i];
+        }
     }
 
 }

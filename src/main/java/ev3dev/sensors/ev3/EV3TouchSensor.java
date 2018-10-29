@@ -34,14 +34,8 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
 
     public EV3TouchSensor(final Port portName) {
 		super(portName, LEGO_ANALOG_SENSOR);
-		//init();
+        setModes(new SensorMode[]{ new GenericMode(this, null, 1, "Touch") });
 	}
-
-	/*
-	private void init() {
-      setModes(new SensorMode[]{ new TouchMode(this.PATH_DEVICE) }); 
-    }
-    */
 
     /**
      * <b>Lego EV3 Touch sensors, Touch mode</b><br>
@@ -58,17 +52,14 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
      *      SampleProviders}
      */
     public SensorMode getTouchMode() {
-        return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "Touch",
-                1);
+        return getMode(0);
     }
 
     @Override
     public boolean isPressed() {
-        return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  VALUE0) == 0) ? false : true;
+        float[] sample = new float[1];
+        getTouchMode().fetchSample(sample, 0);
+        return sample[0] != 0.0f;
     }
-
 
 }

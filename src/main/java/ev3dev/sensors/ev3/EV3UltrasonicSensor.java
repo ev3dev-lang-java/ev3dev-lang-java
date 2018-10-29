@@ -4,6 +4,7 @@ package ev3dev.sensors.ev3;
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
+import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
 import java.util.Objects;
@@ -38,8 +39,6 @@ import java.util.Objects;
  */
 public class EV3UltrasonicSensor extends BaseSensor {
 
-    private static final int DISABLED = 3;
-
     private static final String LEGO_EV3_US = "lego-ev3-us";
 
     public static float MIN_RANGE = 5f; //cm
@@ -56,17 +55,13 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @param portName port
     */
     public EV3UltrasonicSensor(final Port portName) {
-      super(portName, LEGO_UART_SENSOR, LEGO_EV3_US);
-      //init();
-    }
+        super(portName, LEGO_UART_SENSOR, LEGO_EV3_US);
 
-    /*
-    private void init() {
-      setModes(new SensorMode[] {
-            new DistanceMode(this.PATH_DEVICE),
-            new ListenMode(this.PATH_DEVICE) });
+        setModes(new SensorMode[]{
+                new GenericMode(this, MODE_DISTANCE, 1, "Distance", MIN_RANGE, MAX_RANGE, 0.1f),
+                new GenericMode(this, MODE_LISTEN, 1, "Listen")
+        });
     }
-    */
 
     /**
     * <b>Lego EV3 Ultrasonic sensors, Listen mode</b><br>
@@ -80,12 +75,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @return A sampleProvider
     */
     public SampleProvider getListenMode() {
-        switchMode(MODE_LISTEN, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "Listen",
-                1);
+        return getMode(1);
     }
 
     /**
@@ -100,15 +90,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @return A sampleProvider
     */
     public SampleProvider getDistanceMode() {
-        switchMode(MODE_DISTANCE, SWITCH_DELAY);
-        return new GenericMode(
-                this.PATH_DEVICE,
-                1,
-                "Distance",
-                2,
-                MIN_RANGE,
-                MAX_RANGE,
-                10f);
+        return getMode(0);
     }
 
     /**
@@ -132,7 +114,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     *         False, when the sensors is disabled.
     */
     public boolean isEnabled() {
-        return !Objects.equals(currentModeS, MODE_SINGLE_MEASURE);
+        return !Objects.equals(this.getStringAttribute(SENSOR_MODE), MODE_SINGLE_MEASURE);
     }
     
 }
