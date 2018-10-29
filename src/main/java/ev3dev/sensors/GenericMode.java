@@ -102,7 +102,7 @@ public class GenericMode implements SensorMode {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-        // for analog sensors
+        // for non-analog sensors
         if (sensorMode != null) {
             sensor.switchMode(sensorMode, sensorSwitchDelay);
         }
