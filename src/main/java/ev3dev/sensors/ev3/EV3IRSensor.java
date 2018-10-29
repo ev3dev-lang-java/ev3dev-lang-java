@@ -149,7 +149,7 @@ public class EV3IRSensor extends BaseSensor {
         if (chan < 0 || chan >= IR_CHANNELS) {
             throw new IllegalArgumentException("Bad channel");
         }
-        float[] samples = new float[4];
+        float[] samples = new float[IR_CHANNELS];
         getRemoteMode().fetchSample(samples, 0);
         return (int)samples[chan];
     }
@@ -163,7 +163,7 @@ public class EV3IRSensor extends BaseSensor {
      */
     public void getRemoteCommands(byte[] cmds, int offset, int len) {
         // TODO this should read multiple commands, but we probably cannot easily wait for new ones
-        float[] samples = new float[4];
+        float[] samples = new float[IR_CHANNELS];
         getRemoteMode().fetchSample(samples, 0);
 
         for (int i = 0; i < IR_CHANNELS; i++) {
