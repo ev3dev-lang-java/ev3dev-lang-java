@@ -43,7 +43,6 @@ public class EV3IRSensorTest {
         assertThat(irSensor.getName(), Matchers.is("Distance"));
     }
 
-    @Ignore
     @Test
     public void getAvailableModes() throws Exception {
 
@@ -52,7 +51,7 @@ public class EV3IRSensorTest {
 
         EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
 
-        final List<String> expectedModes = Arrays.asList("Distance", "Seek");
+        final List<String> expectedModes = Arrays.asList("Distance", "Seek", "Remote");
         final List<String> modes  = irSensor.getAvailableModes();
 
         assertThat(modes, Matchers.is(expectedModes));

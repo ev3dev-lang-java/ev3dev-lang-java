@@ -107,7 +107,7 @@ public class EV3ColorSensorTest {
         EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S1);
 
         int result = colorSensor.getColorID();
-        assertThat(result, is(0));
+        assertThat(result, is(Color.BLUE));
     }
 
     @Test
