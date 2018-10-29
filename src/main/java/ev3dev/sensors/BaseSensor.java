@@ -5,37 +5,26 @@ import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.hardware.sensor.SensorModes;
 import lejos.utility.Delay;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
-    protected static final int SWITCH_DELAY = 400;
+    public static final int SWITCH_DELAY = 400;
+    private ArrayList<String> modeList;
+    protected int currentMode = 0;
+    protected SensorMode[] modes;
 
-    protected final String VALUE0 = "value0";
-    protected final String VALUE1 = "value1";
-    protected final String VALUE2 = "value2";
-    protected final String VALUE3 = "value3";
-    protected final String VALUE4 = "value4";
-    protected final String VALUE5 = "value5";
-    protected final String VALUE6 = "value6";
-    protected final String VALUE7 = "value7";
-
-    public BaseSensor(final Port sensorPort, final String mode, final String device){
+    public BaseSensor(final Port sensorPort, final String mode, final String device) {
         super(sensorPort, mode, device);
     }
 
-    public BaseSensor(final Port sensorPort, final String mode){
+    public BaseSensor(final Port sensorPort, final String mode) {
         super(sensorPort, mode);
     }
-
-	protected int currentMode = 0;
-	protected String currentModeS = "";
-    protected SensorMode[] modes;
-    ArrayList<String> modeList;
 
     /**
      * Define the set of modes to be made available for this sensors.
@@ -51,120 +40,86 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     public ArrayList<String> getAvailableModes() {
         if (modeList == null) {
             modeList = new ArrayList<>(modes.length);
-            if (modes != null)
-                for(SensorMode m : modes) {
+            if (modes != null) {
+                for (SensorMode m : modes) {
                     modeList.add(m.getName());
                 }
+            }
         }
         return modeList;
     }
 
-    //TODO: Review interface
     public SensorMode getMode(int mode) {
-        if (mode < 0)
+        if (modeInvalid(mode))
             throw new IllegalArgumentException("Invalid mode " + mode);
-        if (modes == null || mode >= modes.length)
-        	throw new IllegalArgumentException("Invalid mode " + mode);            //return null;
         return modes[mode];
     }
 
 
     public SensorMode getMode(String modeName) {
-        // TODO: I'm sure there is a better way to do this, but it is late!
-        int i = 0;
-        for(String s : getAvailableModes()) {
-            LOGGER.debug("getMode(): {} {}", modeName, s);
-            if (s.equals(modeName))
-                return modes[i];
-            i++;
+        int index = getIndex(modeName);
+        if (index != -1) {
+            return modes[index];
+        } else {
+            throw new IllegalArgumentException("No such mode " + modeName);
         }
-        throw new IllegalArgumentException("No such mode " + modeName);
     }
 
-    private boolean isValid(int mode) {
-      if (mode < 0 || modes == null || mode >= modes.length) return false;
-      return true;
+    private boolean modeInvalid(int mode) {
+        return modes == null || mode < 0 || mode >= modes.length;
     }
 
     private int getIndex(String modeName) {
-      int i = 0;
-      for(String s : getAvailableModes()) {
-          if (s.equals(modeName))
-              return i;
-          i++;
-      }
-      return -1;
+        return getAvailableModes().indexOf(modeName);
     }
 
-
     public String getName() {
-      return modes[currentMode].getName();
+        return modes[currentMode].getName();
     }
 
     public int sampleSize() {
-      return modes[currentMode].sampleSize();
+        return modes[currentMode].sampleSize();
     }
 
     public void fetchSample(float[] sample, int offset) {
-      modes[currentMode].fetchSample(sample, offset);
+        modes[currentMode].fetchSample(sample, offset);
     }
-
 
     public void setCurrentMode(int mode) {
-      if (!isValid(mode)) {
-        throw new IllegalArgumentException("Invalid mode " + mode);
-      }
-      else {
-        currentMode = mode;
-      }
-    }
-
-
-    public void setCurrentMode(String modeName) {
-        int mode = getIndex(modeName);
-        if (mode==-1) {
-            throw new IllegalArgumentException("Invalid mode " + modeName);
+        if (modeInvalid(mode)) {
+            throw new IllegalArgumentException("Invalid mode " + mode);
         } else {
             currentMode = mode;
         }
     }
 
     public int getCurrentMode() {
-      return currentMode;
+        return currentMode;
     }
 
+    public void setCurrentMode(String modeName) {
+        int mode = getIndex(modeName);
+        if (mode == -1) {
+            throw new IllegalArgumentException("Invalid mode " + modeName);
+        } else {
+            currentMode = mode;
+        }
+    }
 
     public int getModeCount() {
-      return modes.length;
+        return modes.length;
     }
 
-    //TODO Remove this method
     /**
-     * Switch to the selected mode (if not already in that mode) and delay for the
-     * specified period to allow the sensors to settle in the new mode. <br>
-     * A mode of -1 resets the sensors.
-     * TODO: There really should be a better way to work out when the switch is
-     * complete, if you don't wait though you end up reading data from the previous
-     * mode.
-     * @param newMode The mode to switch to.
-     * @param switchDelay Time in mS to delay after the switch.
+     * Switch the sensor to the specified mode, if necessary.
+     * @param newMode Identifier of the sensor mode.
+     * @param switchDelay Delay until the sensor starts sending new data.
      */
-    protected void switchMode(int newMode, long switchDelay) {
-        if (currentMode != newMode) {
-        	if (newMode == -1)
-                //ports.resetSensor();
-            //else if (!ports.setMode(newMode))
-                throw new IllegalArgumentException("Invalid sensors mode");
-            currentMode = newMode;
-            Delay.msDelay(switchDelay);
-        }
+    public void switchMode(String newMode, long switchDelay) {
+        String oldMode = this.getStringAttribute(SENSOR_MODE);
 
-    }
-
-    protected void switchMode(String newMode, long switchDelay) {
-        if (!Objects.equals(currentModeS, newMode)) {
-        	this.setStringAttribute(SENSOR_MODE, newMode);
-            currentModeS = newMode;
+        if (!Objects.equals(oldMode, newMode)) {
+            this.setStringAttribute(SENSOR_MODE, newMode);
             Delay.msDelay(switchDelay);
         }
     }
