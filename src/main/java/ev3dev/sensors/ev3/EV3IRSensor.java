@@ -167,11 +167,7 @@ public class EV3IRSensor extends BaseSensor {
         getRemoteMode().fetchSample(samples, 0);
 
         for (int i = 0; i < IR_CHANNELS; i++) {
-            int idx = offset+i;
-            if (idx >= len) {
-                break;
-            }
-            cmds[idx] = (byte) samples[i];
+            cmds[offset + i] = (byte) samples[i];
         }
     }
 
