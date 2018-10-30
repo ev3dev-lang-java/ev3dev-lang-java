@@ -75,6 +75,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @return A sampleProvider
     */
     public SampleProvider getListenMode() {
+        switchMode(MODE_LISTEN, SWITCH_DELAY);
         return getMode(1);
     }
 
@@ -90,6 +91,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @return A sampleProvider
     */
     public SampleProvider getDistanceMode() {
+        switchMode(MODE_DISTANCE, SWITCH_DELAY);
         return getMode(0);
     }
 

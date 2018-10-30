@@ -9,7 +9,6 @@ public class GenericMode implements SensorMode {
 
     private final BaseSensor sensor;
     private final String sensorMode;
-    private final long sensorSwitchDelay;
 
     private final int sampleSize;
     private final String modeName;
@@ -32,8 +31,7 @@ public class GenericMode implements SensorMode {
             final String modeName) {
         this(sensor, sensorMode,
                 sampleSize, modeName,
-                Float.MIN_VALUE, Float.MAX_VALUE, 1.0f,
-                BaseSensor.SWITCH_DELAY);
+                Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
     }
 
     /**
@@ -54,32 +52,6 @@ public class GenericMode implements SensorMode {
             final float correctMin,
             final float correctMax,
             final float correctFactor) {
-        this(sensor, sensorMode,
-                sampleSize, modeName,
-                correctMin, correctMax, correctFactor,
-                BaseSensor.SWITCH_DELAY);
-    }
-
-    /**
-     *
-     * @param sensor Reference to the object responsible for mode setting and value reading.
-     * @param sensorMode Identifier of the sensor mode this handler represents.
-     * @param sampleSize Number of returned samples.
-     * @param modeName Human-readable sensor mode name.
-     * @param correctMin Minimum value measured by the sensor. If the reading is lower, zero is returned.
-     * @param correctMax Maximum value measured by the sensor. If the reading is higher, positive infinity is returned.
-     * @param correctFactor Scaling factor applied to the sensor reading.
-     * @param sensorSwitchDelay Delay when the sensor after mode switch still returns data from old sensor mode.
-     */
-    private GenericMode(
-            final BaseSensor sensor,
-            final String sensorMode,
-            final int sampleSize,
-            final String modeName,
-            final float correctMin,
-            final float correctMax,
-            final float correctFactor,
-            final long sensorSwitchDelay) {
         this.sensor = sensor;
         this.sensorMode = sensorMode;
         this.sampleSize = sampleSize;
@@ -87,7 +59,6 @@ public class GenericMode implements SensorMode {
         this.correctMin = correctMin;
         this.correctMax = correctMax;
         this.correctFactor = correctFactor;
-        this.sensorSwitchDelay = sensorSwitchDelay;
     }
 
     @Override
@@ -102,10 +73,6 @@ public class GenericMode implements SensorMode {
 
     @Override
     public void fetchSample(float[] sample, int offset) {
-        // for non-analog sensors
-        if (sensorMode != null) {
-            sensor.switchMode(sensorMode, sensorSwitchDelay);
-        }
 
         // for all values
         for (int n = 0; n < sampleSize; n++) {

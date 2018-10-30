@@ -37,6 +37,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
     private static final String LEGO_EV3_COLOR_SENSOR = "lego-ev3-color";
 
+    private static final String COL_RESET = "RESET";//-1//??
     private static final String COL_COLOR = "COL-COLOR"; // mode 0; color ID
     private static final String COL_REFLECT = "COL-REFLECT";// mode 1; reflected intensity
     private static final String COL_AMBIENT = "COL-AMBIENT";// mode 2; scaled ambient intensity
@@ -98,28 +99,28 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
     }
 
     /** {@inheritDoc}
-     */    
+     */
     @Override
     public boolean setFloodlight(int color) {
-        float[] dummy = new float[3];
-
-        SensorMode m;
+        String mode;
         switch (color) {
-            case Color.NONE:
             case Color.BLUE:
-                m = getAmbientMode();
+                mode = COL_AMBIENT;
                 break;
             case Color.WHITE:
-                m = getColorIDMode();
+                mode = COL_COLOR;
                 break;
             case Color.RED:
-                m = getRedMode();
+                mode = COL_REFLECT;
+                break;
+            case Color.NONE:
+                mode = COL_RESET;
                 break;
             default:
                 // TODO: Should we ignore a wrong color or throw an exception?
                 throw new IllegalArgumentException("Invalid color specified");
         }
-        m.fetchSample(dummy, 0);
+        switchMode(mode, SWITCH_DELAY);
         return true;
     }
 
@@ -138,6 +139,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getColorIDMode() {
+        switchMode(COL_COLOR, SWITCH_DELAY);
         return getMode(0);
     }
 
@@ -156,6 +158,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getRedMode() {
+        switchMode(COL_REFLECT, SWITCH_DELAY);
         return getMode(1);
     }
 
@@ -174,6 +177,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getAmbientMode() {
+        switchMode(COL_AMBIENT, SWITCH_DELAY);
         return getMode(2);
     }
 
@@ -197,6 +201,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *      SampleProviders}
      */
     public SensorMode getRGBMode() {
+        switchMode(COL_RGBRAW, SWITCH_DELAY);
         return getMode(3);
     }
 

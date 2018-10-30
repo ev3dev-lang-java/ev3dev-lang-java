@@ -68,6 +68,7 @@ public class EV3GyroSensor extends BaseSensor {
 	 *      SampleProviders}
 	 */
 	public SampleProvider getRateMode() {
+		switchMode(MODE_RATE, SWITCH_DELAY);
 		return getMode(0);
 	}
 
@@ -88,6 +89,7 @@ public class EV3GyroSensor extends BaseSensor {
 	*      SampleProviders}
 	*/
 	public SampleProvider getAngleMode() {
+		switchMode(MODE_ANGLE, SWITCH_DELAY);
 		return getMode(1);
 	}
 
@@ -108,6 +110,7 @@ public class EV3GyroSensor extends BaseSensor {
 	 *      SampleProviders}
 	 */
 	public SampleProvider getAngleAndRateMode() {
+		switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
 		return getMode(2);
 	}
 

@@ -152,6 +152,7 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getCompassMode() {
+        switchMode(MODE_COMPASS, SWITCH_DELAY);
         return getMode(3);
     }
 
@@ -162,6 +163,7 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getAccelerationMode() {
+        switchMode(MODE_ACCELEROMETER, SWITCH_DELAY);
         return getMode(0);
     }
 
@@ -172,14 +174,17 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getMagneticMode() {
+        switchMode(MODE_MAGNETIC, SWITCH_DELAY);
         return getMode(1);
     }
 
     public SensorMode getGyroMode() {
+        switchMode(MODE_GYRO, SWITCH_DELAY);
         return getMode(2);
     }
 
     public SensorMode getTiltMode() {
+        switchMode(MODE_TILT, SWITCH_DELAY);
         return getMode(4);
     }
 

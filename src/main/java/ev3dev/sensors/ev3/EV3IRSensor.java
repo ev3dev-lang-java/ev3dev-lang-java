@@ -71,6 +71,7 @@ public class EV3IRSensor extends BaseSensor {
      * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */    
 	public SensorMode getDistanceMode() {
+        switchMode(MODE_DISTANCE, SWITCH_DELAY);
         return getMode(0);
     }
 
@@ -96,6 +97,7 @@ public class EV3IRSensor extends BaseSensor {
      * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */
     public SensorMode getSeekMode() {
+        switchMode(MODE_SEEK, SWITCH_DELAY);
         return getMode(1);
     }
 
@@ -146,6 +148,8 @@ public class EV3IRSensor extends BaseSensor {
      * @return the current command
      */
     public int getRemoteCommand(int chan) {
+        switchMode(MODE_REMOTE, SWITCH_DELAY);
+
         if (chan < 0 || chan >= IR_CHANNELS) {
             throw new IllegalArgumentException("Bad channel");
         }
@@ -162,6 +166,8 @@ public class EV3IRSensor extends BaseSensor {
      * @param len the number of commands to store.
      */
     public void getRemoteCommands(byte[] cmds, int offset, int len) {
+        switchMode(MODE_REMOTE, SWITCH_DELAY);
+
         // TODO this should read multiple commands, but we probably cannot easily wait for new ones
         float[] samples = new float[IR_CHANNELS];
         getRemoteMode().fetchSample(samples, 0);
