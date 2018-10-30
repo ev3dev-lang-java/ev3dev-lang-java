@@ -103,7 +103,7 @@ public abstract class EV3DevDevice {
      * @return value
      */
     protected int getIntegerAttribute(final String attribute){
-        return Integer.parseInt(getStringAttribute(attribute));
+        return Sysfs.readInteger(PATH_DEVICE + "/" +  attribute);
     }
 
     /**
@@ -113,7 +113,7 @@ public abstract class EV3DevDevice {
      * @return value
      */
     protected float getFloatAttribute(final String attribute) {
-        return Float.parseFloat(getStringAttribute(attribute));
+        return Sysfs.readFloat(PATH_DEVICE + "/" +  attribute);
     }
 
     /**
