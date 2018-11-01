@@ -149,6 +149,10 @@ public class AbsoluteIMU extends BaseSensor {
      * . The sample contains one element containing the bearing of the sensor
      * relative to north expressed in degrees. East being at 90 degrees.
      *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes returned by other
+     * get*Mode() functions will be invalid.</p>
+     *
      * @return a SensorMode object
      */
     public SensorMode getCompassMode() {
@@ -159,6 +163,10 @@ public class AbsoluteIMU extends BaseSensor {
     /**
      * Return a SensorMode object that will acceleration data for the X, Y and Z
      * axis. The data is returned in units of m/s/s.
+     *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes returned by other
+     * get*Mode() functions will be invalid.</p>
      *
      * @return a SensorMode object
      */
@@ -171,6 +179,10 @@ public class AbsoluteIMU extends BaseSensor {
      * Return a SensorMode object that will return Magnetic data for the X, Y and
      * Z axis The data is returned in Guass
      *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes returned by other
+     * get*Mode() functions will be invalid.</p>
+     *
      * @return a SensorMode object
      */
     public SensorMode getMagneticMode() {
@@ -178,11 +190,29 @@ public class AbsoluteIMU extends BaseSensor {
         return getMode(1);
     }
 
+    /**
+     *
+     *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes returned by other
+     * get*Mode() functions will be invalid.</p>
+     *
+     * @return SensorMode for reading the mode's data.
+     */
     public SensorMode getGyroMode() {
         switchMode(MODE_GYRO, SWITCH_DELAY);
         return getMode(2);
     }
 
+    /**
+     *
+     *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes returned by other
+     * get*Mode() functions will be invalid.</p>
+     *
+     * @return SensorMode for reading the mode's data.
+     */
     public SensorMode getTiltMode() {
         switchMode(MODE_TILT, SWITCH_DELAY);
         return getMode(4);

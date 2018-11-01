@@ -64,47 +64,63 @@ public class EV3UltrasonicSensor extends BaseSensor {
     }
 
     /**
-    * <b>Lego EV3 Ultrasonic sensors, Listen mode</b><br>
-    * Listens for the presence of other ultrasonic sensors.
-    *
-    * <p>
-    * <b>Size and content of the sample</b><br>
-    * The sample contains one elements indicating the presence of another ultrasonic sensors.
-    * A value of 1 indicates that the sensors detects another ultrasonic sensors.
-    *
-    * @return A sampleProvider
-    */
+     * <b>Lego EV3 Ultrasonic sensors, Listen mode</b><br>
+     * Listens for the presence of other ultrasonic sensors.
+     *
+     * <p>
+     * <b>Size and content of the sample</b><br>
+     * The sample contains one elements indicating the presence of another ultrasonic sensors.
+     * A value of 1 indicates that the sensors detects another ultrasonic sensors.
+     *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes returned by other
+     * get*Mode() functions will be invalid.</p>
+     *
+     * @return A sampleProvider
+     */
     public SampleProvider getListenMode() {
         switchMode(MODE_LISTEN, SWITCH_DELAY);
         return getMode(1);
     }
 
     /**
-    * <b>Lego EV3 Ultrasonic sensors, Distance mode</b><br>
-    * Measures distance to an object in front of the sensors
-    *
-    * <p>
-    * <b>Size and content of the sample</b><br>
-    * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
-    * unit).
-    *
-    * @return A sampleProvider
-    */
+     * <b>Lego EV3 Ultrasonic sensors, Distance mode</b><br>
+     * Measures distance to an object in front of the sensors
+     *
+     * <p>
+     * <b>Size and content of the sample</b><br>
+     * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
+     * unit).
+     *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes returned by other
+     * get*Mode() functions will be invalid.</p>
+     *
+     * @return A sampleProvider
+     */
     public SampleProvider getDistanceMode() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
         return getMode(0);
     }
 
     /**
-    * Enable the sensors. This puts the indicater LED on.
-    */
+     * Enable the sensor. This puts the indicater LED on.
+     *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes different from the one
+     * returned by getDistanceMode() will be invalid.</p>
+     */
     public void enable() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
     }
 
     /**
-    * Disable the sensors. This puts the indicater LED off.
-    */
+     * Disable the sensor. This puts the indicater LED off.
+     *
+     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * This means that reads from SensorModes will be invalid
+     * until enable() or get*Mode() is called.</p>
+     */
     public void disable() {
         switchMode(MODE_SINGLE_MEASURE, SWITCH_DELAY);
     }

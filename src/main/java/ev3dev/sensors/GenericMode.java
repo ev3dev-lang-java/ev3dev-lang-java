@@ -4,6 +4,14 @@ import lejos.hardware.sensor.SensorMode;
 
 /**
  * Generic ev3dev sensor handler.
+ *
+ * <p>This class wraps ev3dev sysfs sensor interface to
+ * a leJOS-style SampleProvider. It gets the reads
+ * itself from {@link BaseSensor#readValue(int)}.</p>
+ *
+ * <p><b>WARNING:</b> data returned by {@link GenericMode#fetchSample(float[], int)}
+ * are valid only when the sensor itself is in the correct mode.
+ * Otherwise, wrong data will be returned.</p>
  */
 public class GenericMode implements SensorMode {
 
@@ -18,6 +26,7 @@ public class GenericMode implements SensorMode {
 
     /**
      * Create new generic sensor handler.
+     *
      * @param sensor Reference to the object responsible for mode setting and value reading.
      * @param sampleSize Number of returned samples.
      * @param modeName Human-readable sensor mode name.
@@ -30,6 +39,7 @@ public class GenericMode implements SensorMode {
     }
 
     /**
+     * Create new generic sensor handler.
      *
      * @param sensor Reference to the object responsible for mode setting and value reading.
      * @param sampleSize Number of returned samples.
@@ -63,6 +73,19 @@ public class GenericMode implements SensorMode {
         return sampleSize;
     }
 
+
+    /**
+     * Fetches a sample from the sensor.
+     *
+     * <p><b>WARNING:</b> this function works properly only when
+     * the sensor is already in the appropriate mode. Safety check
+     * against the current sensor mode is not performed. If this function
+     * is called with the sensor being in a wrong mode, returned data
+     * will be invalid.</p>
+     *
+     * @param sample The array to store the sample in.
+     * @param offset The elements of the sample are stored in the array starting at the offset position.
+     */
     @Override
     public void fetchSample(float[] sample, int offset) {
 
