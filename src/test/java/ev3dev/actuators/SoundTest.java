@@ -102,23 +102,29 @@ public class SoundTest {
     @Test
     public void playSample() throws Exception {
 
+        String filePath = "nod_low_power.wav";
+        String result = JarResource.export(filePath);
+
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
-        sound.playSample(JarResource.stream(defaultSound));
+        sound.playSample(new File(result));
     }
 
     @Ignore("It is not running on Travis CI")
     @Test
     public void playMultipleSamples() throws Exception {
 
+        String filePath = "nod_low_power.wav";
+        String result = JarResource.export(filePath);
+
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
         sound.setVolume(100);
-        sound.playSample(JarResource.stream(defaultSound));
+        sound.playSample(new File(result));
         sound.setVolume(50);
-        sound.playSample(JarResource.stream(defaultSound));
+        sound.playSample(new File(result));
 
         assertThat(sound.getVolume(), is(50));
     }
@@ -141,7 +147,7 @@ public class SoundTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
-        sound.playSample(JarResource.stream(defaultSound), 40);
+        sound.playSample(new File(nullSound), 40);
 
         assertThat(sound.getVolume(), is(40));
     }
