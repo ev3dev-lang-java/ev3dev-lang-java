@@ -37,7 +37,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
 
     private static final String LEGO_EV3_COLOR_SENSOR = "lego-ev3-color";
 
-    private static final String COL_RESET = "RESET";//-1//??
     private static final String COL_COLOR = "COL-COLOR"; // mode 0; color ID
     private static final String COL_REFLECT = "COL-REFLECT";// mode 1; reflected intensity
     private static final String COL_AMBIENT = "COL-AMBIENT";// mode 2; scaled ambient intensity
@@ -112,9 +111,6 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
                 break;
             case Color.RED:
                 mode = COL_REFLECT;
-                break;
-            case Color.NONE:
-                mode = COL_RESET;
                 break;
             default:
                 // TODO: Should we ignore a wrong color or throw an exception?
