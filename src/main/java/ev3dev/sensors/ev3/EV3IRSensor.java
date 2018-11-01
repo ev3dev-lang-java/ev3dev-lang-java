@@ -64,11 +64,6 @@ public class EV3IRSensor extends BaseSensor {
      * The effective range of the sensors in Distance mode  is about 5 to 50 centimeters. Outside this range a zero is returned
      * for low values and positive infinity for high values.
      *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
-     * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.
-     * See {@link GenericMode#fetchSample(float[], int)}</p>
-     * 
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
@@ -92,11 +87,6 @@ public class EV3IRSensor extends BaseSensor {
      * directly in front of the sensor. <br>
      * Distance values are not to scale. Al increasing values indicate increasing distance. <br>
      * If no beacon is detected both bearing is set to zero, and distance to positive infinity.
-     *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
-     * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.
-     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -128,11 +118,6 @@ public class EV3IRSensor extends BaseSensor {
      * 10 BOTTOM-LEFT + TOP-LEFT<br>
      * 11 TOP-RIGHT + BOTTOM-RIGHT<br>
      *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
-     * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.
-     * See {@link GenericMode#fetchSample(float[], int)}</p>
-     *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
@@ -157,11 +142,6 @@ public class EV3IRSensor extends BaseSensor {
      * 10 BOTTOM-LEFT + TOP-LEFT<br>
      * 11 TOP-RIGHT + BOTTOM-RIGHT<br>
      *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
-     * This means that reads from SensorModes different from the one
-     * returned by getRemoteMode() will be invalid.
-     * See {@link GenericMode#fetchSample(float[], int)}</p>
-     *
      * @param chan channel to obtain the command for
      * @return the current command
      */
@@ -179,11 +159,6 @@ public class EV3IRSensor extends BaseSensor {
     /**
      * Obtain the commands associated with one or more channels. Each element of
      * the array contains the command for the associated channel (0-3).
-     *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
-     * This means that reads from SensorModes different from the one
-     * returned by getRemoteMode() will be invalid.
-     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @param cmds the array to store the commands
      * @param offset the offset to start storing

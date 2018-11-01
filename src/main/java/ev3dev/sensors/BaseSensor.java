@@ -182,7 +182,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     /**
      * Switch the sensor to the specified mode, if necessary.
      *
-     * <p><b>WARNING:</b> the mode switch will make future reads from
+     * <p>Note: the mode switch will make future reads from
      * SensorModes for other modes invalid. On the other hand, it will
      * make reads valid for the SensorMode associated with the mode the
      * sensor is switching to.

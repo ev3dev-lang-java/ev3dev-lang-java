@@ -63,11 +63,6 @@ public class EV3GyroSensor extends BaseSensor {
 	 * <b>Configuration</b><br>
 	 * The sensor can be recalibrated using the reset method of the sensor.
 	 *
-	 * <p><b>WARNING:</b> this function switches the sensor mode.
-	 * This means that reads from SensorModes returned by other
-	 * get*Mode() functions will be invalid.
-	 * See {@link GenericMode#fetchSample(float[], int)}</p>
-	 *
 	 * @return A sampleProvider
 	 * See {@link lejos.robotics.SampleProvider leJOS conventions for
 	 *      SampleProviders}
@@ -89,11 +84,6 @@ public class EV3GyroSensor extends BaseSensor {
 	* <b>Configuration</b><br>
 	* The start position can be set to the current position using the reset method of the sensors.
 	*
-	 * <p><b>WARNING:</b> this function switches the sensor mode.
-	 * This means that reads from SensorModes returned by other
-	 * get*Mode() functions will be invalid.
-	 * See {@link GenericMode#fetchSample(float[], int)}</p>
-	 *
 	* @return A sampleProvider
 	* See {@link lejos.robotics.SampleProvider leJOS conventions for
 	*      SampleProviders}
@@ -115,11 +105,6 @@ public class EV3GyroSensor extends BaseSensor {
 	 * <b>Configuration</b><br>
 	 * The sensor can be recalibrated using the reset method of the sensor.
 	 *
-	 * <p><b>WARNING:</b> this function switches the sensor mode.
-	 * This means that reads from SensorModes returned by other
-	 * get*Mode() functions will be invalid.
-	 * See {@link GenericMode#fetchSample(float[], int)}</p>
-	 *
 	 * @return A sampleProvider
 	 * See {@link lejos.robotics.SampleProvider leJOS conventions for
 	 *      SampleProviders}
@@ -137,7 +122,7 @@ public class EV3GyroSensor extends BaseSensor {
 	 * This means that reads from SensorModes returned by get*Mode()
 	 * are invalid until a new call to get*Mode() is made.
 	 * See {@link GenericMode#fetchSample(float[], int)}</p>
-	*/
+	 */
 	public void reset() {
 		// Reset mode (4) is not used here as it behaves erratically. Instead the reset is done implicitly by going to mode 1.
 		switchMode(MODE_RATE, SWITCH_DELAY);

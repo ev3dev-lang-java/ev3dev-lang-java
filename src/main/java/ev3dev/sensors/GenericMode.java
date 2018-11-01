@@ -9,7 +9,7 @@ import lejos.hardware.sensor.SensorMode;
  * a leJOS-style SampleProvider. It gets the reads
  * itself from {@link BaseSensor#readValue(int)}.</p>
  *
- * <p><b>WARNING:</b> data returned by {@link GenericMode#fetchSample(float[], int)}
+ * <p>Note: data returned by {@link GenericMode#fetchSample(float[], int)}
  * are valid only when the sensor itself is in the correct mode.
  * Otherwise, wrong data will be returned.</p>
  */
@@ -77,11 +77,9 @@ public class GenericMode implements SensorMode {
     /**
      * Fetches a sample from the sensor.
      *
-     * <p><b>WARNING:</b> this function works properly only when
-     * the sensor is already in the appropriate mode. Safety check
-     * against the current sensor mode is not performed. If this function
-     * is called with the sensor being in a wrong mode, returned data
-     * will be invalid.</p>
+     * <p>Note: this function works properly only when
+     * the sensor is already in the appropriate mode. Otherwise,
+     * returned data will be invalid.</p>
      *
      * @param sample The array to store the sample in.
      * @param offset The elements of the sample are stored in the array starting at the offset position.

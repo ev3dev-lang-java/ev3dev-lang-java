@@ -72,11 +72,6 @@ public class EV3UltrasonicSensor extends BaseSensor {
      * The sample contains one elements indicating the presence of another ultrasonic sensors.
      * A value of 1 indicates that the sensors detects another ultrasonic sensors.
      *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
-     * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.
-     * See {@link GenericMode#fetchSample(float[], int)}</p>
-     *
      * @return A sampleProvider
      */
     public SampleProvider getListenMode() {
@@ -93,11 +88,6 @@ public class EV3UltrasonicSensor extends BaseSensor {
      * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
      * unit).
      *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
-     * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.
-     * See {@link GenericMode#fetchSample(float[], int)}</p>
-     *
      * @return A sampleProvider
      */
     public SampleProvider getDistanceMode() {
@@ -108,7 +98,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     /**
      * Enable the sensor. This puts the indicater LED on.
      *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * <p>Note: this function switches the sensor mode.
      * This means that reads from SensorModes different from the one
      * returned by getDistanceMode() will be invalid.
      * See {@link GenericMode#fetchSample(float[], int)}</p>
@@ -120,7 +110,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     /**
      * Disable the sensor. This puts the indicater LED off.
      *
-     * <p><b>WARNING:</b> this function switches the sensor mode.
+     * <p>Note: this function switches the sensor mode.
      * This means that reads from SensorModes will be invalid
      * until enable() or get*Mode() is called.
      * See {@link GenericMode#fetchSample(float[], int)}</p>
