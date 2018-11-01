@@ -151,7 +151,8 @@ public class AbsoluteIMU extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return a SensorMode object
      */
@@ -166,7 +167,8 @@ public class AbsoluteIMU extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return a SensorMode object
      */
@@ -181,7 +183,8 @@ public class AbsoluteIMU extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return a SensorMode object
      */
@@ -195,7 +198,8 @@ public class AbsoluteIMU extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return SensorMode for reading the mode's data.
      */
@@ -209,7 +213,8 @@ public class AbsoluteIMU extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return SensorMode for reading the mode's data.
      */

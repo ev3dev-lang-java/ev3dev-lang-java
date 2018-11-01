@@ -74,7 +74,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return A sampleProvider
      */
@@ -94,7 +95,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
      * @return A sampleProvider
      */
@@ -108,7 +110,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes different from the one
-     * returned by getDistanceMode() will be invalid.</p>
+     * returned by getDistanceMode() will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      */
     public void enable() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
@@ -119,7 +122,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes will be invalid
-     * until enable() or get*Mode() is called.</p>
+     * until enable() or get*Mode() is called.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      */
     public void disable() {
         switchMode(MODE_SINGLE_MEASURE, SWITCH_DELAY);

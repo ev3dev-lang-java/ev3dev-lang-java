@@ -65,7 +65,8 @@ public class EV3GyroSensor extends BaseSensor {
 	 *
 	 * <p><b>WARNING:</b> this function switches the sensor mode.
 	 * This means that reads from SensorModes returned by other
-	 * get*Mode() functions will be invalid.</p>
+	 * get*Mode() functions will be invalid.
+	 * See {@link GenericMode#fetchSample(float[], int)}</p>
 	 *
 	 * @return A sampleProvider
 	 * See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -90,7 +91,8 @@ public class EV3GyroSensor extends BaseSensor {
 	*
 	 * <p><b>WARNING:</b> this function switches the sensor mode.
 	 * This means that reads from SensorModes returned by other
-	 * get*Mode() functions will be invalid.</p>
+	 * get*Mode() functions will be invalid.
+	 * See {@link GenericMode#fetchSample(float[], int)}</p>
 	 *
 	* @return A sampleProvider
 	* See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -115,7 +117,8 @@ public class EV3GyroSensor extends BaseSensor {
 	 *
 	 * <p><b>WARNING:</b> this function switches the sensor mode.
 	 * This means that reads from SensorModes returned by other
-	 * get*Mode() functions will be invalid.</p>
+	 * get*Mode() functions will be invalid.
+	 * See {@link GenericMode#fetchSample(float[], int)}</p>
 	 *
 	 * @return A sampleProvider
 	 * See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -132,7 +135,8 @@ public class EV3GyroSensor extends BaseSensor {
 	 *
 	 * <p><b>WARNING:</b> this function switches the sensor mode.
 	 * This means that reads from SensorModes returned by get*Mode()
-	 * are invalid until a new call to get*Mode() is made.</p>
+	 * are invalid until a new call to get*Mode() is made.
+	 * See {@link GenericMode#fetchSample(float[], int)}</p>
 	*/
 	public void reset() {
 		// Reset mode (4) is not used here as it behaves erratically. Instead the reset is done implicitly by going to mode 1.

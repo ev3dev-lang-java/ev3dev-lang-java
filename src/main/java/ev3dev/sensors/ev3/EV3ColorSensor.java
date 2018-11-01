@@ -59,7 +59,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes different from the one
-     * returned by getColorIDMode() will be invalid.</p>
+     * returned by getColorIDMode() will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      */    
     @Override
     public int getColorID() {
@@ -72,7 +73,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes different from the one
-     * returned by the appropriate get*Mode() will be invalid.</p>
+     * returned by the appropriate get*Mode() will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      */
     @Override
     public boolean isFloodlightOn() {
@@ -102,7 +104,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes different from the one
-     * returned by the appropriate get*Mode() will be invalid.</p>
+     * returned by the appropriate get*Mode() will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      */
     @Override
     public void setFloodlight(boolean floodlight) {
@@ -114,7 +117,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes different from the one
-     * returned by the appropriate get*Mode() will be invalid.</p>
+     * returned by the appropriate get*Mode() will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      */
     @Override
     public boolean setFloodlight(int color) {
@@ -147,7 +151,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      * 
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -168,7 +173,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      * 
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -189,7 +195,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      * 
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -215,7 +222,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      *
      * <p><b>WARNING:</b> this function switches the sensor mode.
      * This means that reads from SensorModes returned by other
-     * get*Mode() functions will be invalid.</p>
+     * get*Mode() functions will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
      * 
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
