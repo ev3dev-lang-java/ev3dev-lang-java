@@ -58,8 +58,8 @@ public class EV3UltrasonicSensor extends BaseSensor {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_US);
 
         setModes(new SensorMode[]{
-                new GenericMode(this, MODE_DISTANCE, 1, "Distance", MIN_RANGE, MAX_RANGE, 0.1f),
-                new GenericMode(this, MODE_LISTEN, 1, "Listen")
+                new GenericMode(this, 1, "Distance", MIN_RANGE, MAX_RANGE, 0.1f),
+                new GenericMode(this, 1, "Listen")
         });
     }
 

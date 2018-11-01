@@ -48,10 +48,10 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_COLOR_SENSOR);
 
         setModes(new SensorMode[]{
-                new GenericMode(this, COL_COLOR, 1, "ColorID"),
-                new GenericMode(this, COL_REFLECT, 1, "Red"),
-                new GenericMode(this, COL_AMBIENT, 1, "Ambient"),
-                new GenericMode(this, COL_RGBRAW, 3, "RGB")
+                new GenericMode(this, 1, "ColorID"),
+                new GenericMode(this, 1, "Red"),
+                new GenericMode(this, 1, "Ambient"),
+                new GenericMode(this, 3, "RGB")
         });
 	}
 

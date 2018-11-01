@@ -46,9 +46,9 @@ public class EV3IRSensor extends BaseSensor {
     public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
         setModes(new SensorMode[] {
-                new GenericMode(this, MODE_DISTANCE, 1, "Distance", MIN_RANGE, MAX_RANGE, 1.0f),
-                new GenericMode(this, MODE_SEEK, 8, "Seek"),
-                new GenericMode(this, MODE_REMOTE, IR_CHANNELS, "Remote")
+                new GenericMode(this, 1, "Distance", MIN_RANGE, MAX_RANGE, 1.0f),
+                new GenericMode(this, 8, "Seek"),
+                new GenericMode(this, IR_CHANNELS, "Remote")
         });
 	}
 

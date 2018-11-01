@@ -8,7 +8,6 @@ import lejos.hardware.sensor.SensorMode;
 public class GenericMode implements SensorMode {
 
     private final BaseSensor sensor;
-    private final String sensorMode;
 
     private final int sampleSize;
     private final String modeName;
@@ -20,24 +19,19 @@ public class GenericMode implements SensorMode {
     /**
      * Create new generic sensor handler.
      * @param sensor Reference to the object responsible for mode setting and value reading.
-     * @param sensorMode Identifier of the sensor mode this handler represents.
      * @param sampleSize Number of returned samples.
      * @param modeName Human-readable sensor mode name.
      */
     public GenericMode (
             final BaseSensor sensor,
-            final String sensorMode,
             final int sampleSize,
             final String modeName) {
-        this(sensor, sensorMode,
-                sampleSize, modeName,
-                Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
+        this(sensor, sampleSize, modeName, Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
     }
 
     /**
      *
      * @param sensor Reference to the object responsible for mode setting and value reading.
-     * @param sensorMode Identifier of the sensor mode this handler represents.
      * @param sampleSize Number of returned samples.
      * @param modeName Human-readable sensor mode name.
      * @param correctMin Minimum value measured by the sensor. If the reading is lower, zero is returned.
@@ -46,14 +40,12 @@ public class GenericMode implements SensorMode {
      */
     public GenericMode(
             final BaseSensor sensor,
-            final String sensorMode,
             final int sampleSize,
             final String modeName,
             final float correctMin,
             final float correctMax,
             final float correctFactor) {
         this.sensor = sensor;
-        this.sensorMode = sensorMode;
         this.sampleSize = sampleSize;
         this.modeName = modeName;
         this.correctMin = correctMin;
