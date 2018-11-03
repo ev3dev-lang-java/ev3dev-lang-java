@@ -2,7 +2,6 @@ package ev3dev.hardware.display;
 
 import ev3dev.utils.JarResource;
 import fake_ev3dev.BaseElement;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;

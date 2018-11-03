@@ -1,10 +1,7 @@
 package ev3dev.hardware;
 
-import ev3dev.utils.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Objects;
 
 public class EV3DevDistros {
 
