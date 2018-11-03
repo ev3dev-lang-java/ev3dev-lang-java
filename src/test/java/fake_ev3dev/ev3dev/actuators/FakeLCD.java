@@ -21,7 +21,9 @@ public class FakeLCD extends BaseElement {
     private int height;
 
     public FakeLCD(final EV3DevPlatform ev3DevPlatform) throws IOException {
-        EV3DevPlatforms conf = new EV3DevPlatforms(ev3DevPlatform);
+
+        //TODO Review this idea.
+        //EV3DevPlatforms conf = new EV3DevPlatforms(ev3DevPlatform);
 
         Path devPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
         createDirectories(devPath);

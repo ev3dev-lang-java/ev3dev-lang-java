@@ -79,7 +79,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
             log.info("Configuring motor connected on Port: {}", motorPort.getName());
 
         MAX_SPEED_AT_9V = maxSpeed;
-        final EV3DevPlatforms ev3DevPlatforms = new EV3DevPlatforms();
+        final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         final String port = ev3DevPlatforms.getMotorPort(motorPort);
 
         if(log.isDebugEnabled())

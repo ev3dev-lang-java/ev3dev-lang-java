@@ -35,7 +35,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
 			throw new RuntimeException("This device is not supported in this platform");
 		}
 
-		final EV3DevPlatforms ev3DevPlatforms = new EV3DevPlatforms();
+		final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
 		final String port = ev3DevPlatforms.getMotorPort(motorPort);
 
         log.debug("Detecting motor on port: {}", port);

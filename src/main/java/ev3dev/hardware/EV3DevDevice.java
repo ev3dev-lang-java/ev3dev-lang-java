@@ -40,7 +40,7 @@ public abstract class EV3DevDevice {
 
         final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
         ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
-        final EV3DevPlatforms ev3DevPlatforms = new EV3DevPlatforms();
+        final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         CURRENT_PLATFORM = ev3DevPlatforms.getPlatform();
     }
 

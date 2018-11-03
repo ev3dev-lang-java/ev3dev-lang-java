@@ -31,7 +31,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      */
     protected EV3DevSensorDevice(final Port portName, final String mode, final String device) {
 
-		final EV3DevPlatforms ev3DevPlatforms = new EV3DevPlatforms();
+		final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
 		final String port = ev3DevPlatforms.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
@@ -60,7 +60,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      */
 	protected EV3DevSensorDevice(final Port portName, final String mode) {
 
-		final EV3DevPlatforms ev3DevPlatforms = new EV3DevPlatforms();
+		final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
 		final String port = ev3DevPlatforms.getSensorPort(portName);
 
 		//EV3 Brick detect in a automatic way the sensors
