@@ -45,14 +45,14 @@ public class EV3IRSensor extends BaseSensor {
 
     public EV3IRSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_IR);
+
         setModes(new SensorMode[] {
-                new GenericMode(this, MODE_DISTANCE, 1, "Distance", MIN_RANGE, MAX_RANGE, 1.0f),
-                new GenericMode(this, MODE_SEEK, 8, "Seek"),
-                new GenericMode(this, MODE_REMOTE, IR_CHANNELS, "Remote")
+                new GenericMode(this.PATH_DEVICE, 1, "Distance", MIN_RANGE, MAX_RANGE, 1.0f),
+                new GenericMode(this.PATH_DEVICE, 8, "Seek"),
+                new GenericMode(this.PATH_DEVICE, IR_CHANNELS, "Remote")
         });
 	}
 
-	
     /**
      * <b>EV3 Infra Red sensors, Distance mode</b><br>
      * Measures the distance to an object in front of the sensors.
@@ -125,6 +125,7 @@ public class EV3IRSensor extends BaseSensor {
      * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getRemoteMode() {
+        switchMode(MODE_REMOTE, SWITCH_DELAY);
         return getMode(2);
     }
 
@@ -148,8 +149,6 @@ public class EV3IRSensor extends BaseSensor {
      * @return the current command
      */
     public int getRemoteCommand(int chan) {
-        switchMode(MODE_REMOTE, SWITCH_DELAY);
-
         if (chan < 0 || chan >= IR_CHANNELS) {
             throw new IllegalArgumentException("Bad channel");
         }
@@ -166,7 +165,6 @@ public class EV3IRSensor extends BaseSensor {
      * @param len the number of commands to store.
      */
     public void getRemoteCommands(byte[] cmds, int offset, int len) {
-        switchMode(MODE_REMOTE, SWITCH_DELAY);
 
         // TODO this should read multiple commands, but we probably cannot easily wait for new ones
         float[] samples = new float[IR_CHANNELS];

@@ -1,43 +1,40 @@
 package ev3dev.sensors;
 
+import ev3dev.utils.Sysfs;
 import lejos.hardware.sensor.SensorMode;
+
+import java.io.File;
 
 /**
  * Generic ev3dev sensor handler.
  */
 public class GenericMode implements SensorMode {
 
-    private final BaseSensor sensor;
-    private final String sensorMode;
-
+    private final File pathDevice;
     private final int sampleSize;
     private final String modeName;
 
-    private float correctMin;
-    private float correctMax;
-    private float correctFactor;
+    private final float correctMin;
+    private final float correctMax;
+    private final float correctFactor;
 
     /**
      * Create new generic sensor handler.
-     * @param sensor Reference to the object responsible for mode setting and value reading.
-     * @param sensorMode Identifier of the sensor mode this handler represents.
+     * @param pathDevice Reference to the object responsible for mode setting and value reading.
      * @param sampleSize Number of returned samples.
      * @param modeName Human-readable sensor mode name.
      */
     public GenericMode (
-            final BaseSensor sensor,
-            final String sensorMode,
+            final File pathDevice,
             final int sampleSize,
             final String modeName) {
-        this(sensor, sensorMode,
-                sampleSize, modeName,
+        this(pathDevice, sampleSize, modeName,
                 Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
     }
 
     /**
      *
-     * @param sensor Reference to the object responsible for mode setting and value reading.
-     * @param sensorMode Identifier of the sensor mode this handler represents.
+     * @param pathDevice Reference to the object responsible for mode setting and value reading.
      * @param sampleSize Number of returned samples.
      * @param modeName Human-readable sensor mode name.
      * @param correctMin Minimum value measured by the sensor. If the reading is lower, zero is returned.
@@ -45,15 +42,13 @@ public class GenericMode implements SensorMode {
      * @param correctFactor Scaling factor applied to the sensor reading.
      */
     public GenericMode(
-            final BaseSensor sensor,
-            final String sensorMode,
+            final File pathDevice,
             final int sampleSize,
             final String modeName,
             final float correctMin,
             final float correctMax,
             final float correctFactor) {
-        this.sensor = sensor;
-        this.sensorMode = sensorMode;
+        this.pathDevice = pathDevice;
         this.sampleSize = sampleSize;
         this.modeName = modeName;
         this.correctMin = correctMin;
@@ -77,7 +72,7 @@ public class GenericMode implements SensorMode {
         // for all values
         for (int n = 0; n < sampleSize; n++) {
             // read
-            float reading = sensor.readValue(n);
+            float reading = Sysfs.readFloat(this.pathDevice + "/" + "value" + n);
 
             // apply correction
             reading *= correctFactor;

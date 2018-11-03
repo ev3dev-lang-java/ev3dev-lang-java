@@ -34,7 +34,7 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
 
     public EV3TouchSensor(final Port portName) {
 		super(portName, LEGO_ANALOG_SENSOR);
-        setModes(new SensorMode[]{ new GenericMode(this, null, 1, "Touch") });
+        setModes(new SensorMode[]{ new GenericMode(this.PATH_DEVICE, 1, "Touch") });
 	}
 
     /**

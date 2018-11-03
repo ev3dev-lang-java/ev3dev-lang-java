@@ -107,26 +107,6 @@ public abstract class EV3DevDevice {
     }
 
     /**
-     * Returns the value of an attribute supported for a Device
-     *
-     * @param attribute attribute
-     * @return value
-     */
-    protected float getFloatAttribute(final String attribute) {
-        return Sysfs.readFloat(PATH_DEVICE + "/" +  attribute);
-    }
-
-    /**
-     * Reads the specified value from the sensor.
-     *
-     * @param index Index of the returned value, e.g. value&lt;index&gt; will be read.
-     * @return Measured value.
-     */
-    public float readValue(final int index) {
-        return getFloatAttribute("value" + index);
-    }
-
-    /**
      * Set a value on an attribute
      *
      * @param attribute attribute
@@ -145,7 +125,7 @@ public abstract class EV3DevDevice {
      * @param attribute attribute
      * @param value value
      */
-    public void setIntegerAttribute(final String attribute, final int value) {
+    protected void setIntegerAttribute(final String attribute, final int value) {
         setStringAttribute(attribute, Integer.toString(value));
     }
 	
