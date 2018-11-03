@@ -2,13 +2,11 @@ package ev3dev.sensors.ev3;
 
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.utils.Sysfs;
+import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
 
-import java.io.File;
 import java.util.Objects;
 
 /**
@@ -41,8 +39,6 @@ import java.util.Objects;
  */
 public class EV3UltrasonicSensor extends BaseSensor {
 
-    private static final int DISABLED = 3;
-
     private static final String LEGO_EV3_US = "lego-ev3-us";
 
     public static float MIN_RANGE = 5f; //cm
@@ -59,14 +55,12 @@ public class EV3UltrasonicSensor extends BaseSensor {
     * @param portName port
     */
     public EV3UltrasonicSensor(final Port portName) {
-      super(portName, LEGO_UART_SENSOR, LEGO_EV3_US);
-      init();
-    }
+        super(portName, LEGO_UART_SENSOR, LEGO_EV3_US);
 
-    private void init() {
-      setModes(new SensorMode[] {
-            new DistanceMode(this.PATH_DEVICE),
-            new ListenMode(this.PATH_DEVICE) });
+        setModes(new SensorMode[]{
+                new GenericMode(this.PATH_DEVICE, 1, "Distance", MIN_RANGE, MAX_RANGE, 0.1f),
+                new GenericMode(this.PATH_DEVICE, 1, "Listen")
+        });
     }
 
     /**
@@ -86,31 +80,41 @@ public class EV3UltrasonicSensor extends BaseSensor {
     }
 
     /**
-    * <b>Lego EV3 Ultrasonic sensors, Distance mode</b><br>
-    * Measures distance to an object in front of the sensors
-    *
-    * <p>
-    * <b>Size and content of the sample</b><br>
-    * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
-    * unit).
-    *
-    * @return A sampleProvider
-    */
+     * <b>Lego EV3 Ultrasonic sensors, Distance mode</b><br>
+     * Measures distance to an object in front of the sensors
+     *
+     * <p>
+     * <b>Size and content of the sample</b><br>
+     * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
+     * unit).
+     *
+     * @return A sampleProvider
+     */
     public SampleProvider getDistanceMode() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
         return getMode(0);
     }
 
     /**
-    * Enable the sensors. This puts the indicater LED on.
-    */
+     * Enable the sensor. This puts the indicater LED on.
+     *
+     * <p>Note: this function switches the sensor mode.
+     * This means that reads from SensorModes different from the one
+     * returned by getDistanceMode() will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void enable() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
     }
 
     /**
-    * Disable the sensors. This puts the indicater LED off.
-    */
+     * Disable the sensor. This puts the indicater LED off.
+     *
+     * <p>Note: this function switches the sensor mode.
+     * This means that reads from SensorModes will be invalid
+     * until enable() or get*Mode() is called.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void disable() {
         switchMode(MODE_SINGLE_MEASURE, SWITCH_DELAY);
     }
@@ -122,68 +126,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
     *         False, when the sensors is disabled.
     */
     public boolean isEnabled() {
-        return !Objects.equals(currentModeS, MODE_SINGLE_MEASURE);
+        return !Objects.equals(this.getSystemMode(), MODE_SINGLE_MEASURE);
     }
-
-    private class DistanceMode extends EV3DevSensorMode {
-
-        private final File pathDevice;
-
-        public DistanceMode(File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-          return 1;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-
-            float rawValue = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0) / 10f;
-
-            if (rawValue < MIN_RANGE) {
-                sample[offset] = 0;
-            } else if (rawValue >= MAX_RANGE) {
-                sample[offset] = Float.POSITIVE_INFINITY;
-            } else {
-                sample[offset] = rawValue;
-            }
-        }
-
-        @Override
-        public String getName() {
-          return "Distance";
-        }
-
-    }
-
-    /**
-    * Represents a Ultrasonic sensors in listen mode
-    */
-    private class ListenMode extends EV3DevSensorMode {
-
-        private File pathDevice;
-
-        public ListenMode(File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-          return 1;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-        }
-
-        @Override
-        public String getName() {
-          return "Listen";
-        }
-    }
-
+    
 }

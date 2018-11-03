@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class BaseElement {
 
     private static final String JAVA_IO_TEMPDIR = System.getProperty("java.io.tmpdir");
-    public static final String EV3DEV_FAKE_SYSTEM_PATH = JAVA_IO_TEMPDIR + "/" + "ev3dev_fake_system";
+    public static final String EV3DEV_FAKE_SYSTEM_PATH = Paths.get(JAVA_IO_TEMPDIR, "ev3dev_fake_system").toString();
 
     protected static final String LEGO_PORT_PATH = "lego-port";
     protected static final String PORT = "port";
@@ -34,14 +34,9 @@ public abstract class BaseElement {
     protected static final String SENSOR_ADDRESS = "address";
     protected static final String SENSOR_MODE = "mode";
     protected static final String SENSOR_COMMAND = "command";
-    protected static final String VALUE0 = "value0";
-    protected static final String VALUE1 = "value1";
-    protected static final String VALUE2 = "value2";
-    protected static final String VALUE3 = "value3";
-    protected static final String VALUE4 = "value4";
-    protected static final String VALUE5 = "value5";
-    protected static final String VALUE6 = "value6";
-    protected static final String VALUE7 = "value7";
+
+    protected static final String SENSOR1_BASE = Paths.get(EV3DEV_FAKE_SYSTEM_PATH, LEGO_SENSOR_PATH, SENSOR1).toString();
+    protected static final String PORT1_BASE = Paths.get(EV3DEV_FAKE_SYSTEM_PATH, LEGO_SENSOR_PATH, PORT1).toString();
 
     /**
      *
@@ -65,10 +60,20 @@ public abstract class BaseElement {
         System.out.println(Files.exists(path));
     }
 
+    protected void createDirectoriesDirect(final String first, final String... more) throws IOException {
+        createDirectories(Paths.get(first, more));
+    }
+
     protected void createFile(final Path path) throws IOException {
-        if(!Files.exists(path)) {
+        if (!Files.exists(path)) {
             Files.createFile(path);
         }
+    }
+
+    protected void writeFileDirect(final String contents,
+                                   final String first,
+                                   final String... more) throws IOException {
+        createFile(Paths.get(first, more), contents);
     }
 
     protected void createFile(final Path path, final String value) throws IOException {
@@ -77,79 +82,10 @@ public abstract class BaseElement {
     }
 
     protected void populateValues(final List<Integer> values) throws IOException {
-
-        if(values.size() >= 1) {
-            Path value0 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE0);
-            createFile(value0, String.valueOf(values.get(0)));
+        for (int i = 0; i < values.size(); i++) {
+            Path value = Paths.get(SENSOR1_BASE, "value" + i);
+            createFile(value, String.valueOf(values.get(i)));
         }
-
-        if(values.size() >= 2) {
-            Path value1 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE1);
-            createFile(value1, String.valueOf(values.get(1)));
-        }
-
-        if(values.size() >= 3) {
-            Path value2 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE2);
-            createFile(value2, String.valueOf(values.get(2)));
-        }
-
-        if(values.size() >= 4) {
-            Path value3 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE3);
-            createFile(value3, String.valueOf(values.get(3)));
-        }
-
-        if(values.size() >= 5) {
-            Path value4 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE4);
-            createFile(value4, String.valueOf(values.get(4)));
-        }
-
-        if(values.size() >= 6) {
-            Path value5 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE5);
-            createFile(value5, String.valueOf(values.get(5)));
-        }
-
-        if(values.size() >= 7) {
-            Path value6 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE6);
-            createFile(value6, String.valueOf(values.get(6)));
-        }
-
-        if(values.size() >= 8) {
-            Path value7 = Paths.get(
-                    EV3DEV_FAKE_SYSTEM_PATH + "/" +
-                            LEGO_SENSOR_PATH + "/" +
-                            SENSOR1 + "/" +
-                            VALUE7);
-            createFile(value7, String.valueOf(values.get(7)));
-        }
-
     }
 
 }

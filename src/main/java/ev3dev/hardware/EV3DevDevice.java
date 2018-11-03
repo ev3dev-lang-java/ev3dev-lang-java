@@ -125,11 +125,8 @@ public abstract class EV3DevDevice {
      * @param attribute attribute
      * @param value value
      */
-    protected void setIntegerAttribute(final String attribute, final int value){
-        final boolean result = Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
-        if(!result){
-            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value " + value);
-        }
+    protected void setIntegerAttribute(final String attribute, final int value) {
+        setStringAttribute(attribute, Integer.toString(value));
     }
 	
 }

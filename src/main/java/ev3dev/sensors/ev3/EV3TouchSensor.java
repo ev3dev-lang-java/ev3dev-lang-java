@@ -1,13 +1,10 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.utils.Sysfs;
+import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.Touch;
-
-import java.io.File;
 
 /**
  * Basic sensors driver for the Lego EV3 Touch sensors
@@ -36,12 +33,8 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
 
     public EV3TouchSensor(final Port portName) {
 		super(portName, LEGO_ANALOG_SENSOR);
-		init();
+        setModes(new SensorMode[]{ new GenericMode(this.PATH_DEVICE, 1, "Touch") });
 	}
-
-	private void init() {
-      setModes(new SensorMode[]{ new TouchMode(this.PATH_DEVICE) }); 
-    }
 
     /**
      * <b>Lego EV3 Touch sensors, Touch mode</b><br>
@@ -63,32 +56,9 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
 
     @Override
     public boolean isPressed() {
-        return (Sysfs.readInteger(this.PATH_DEVICE + "/" +  EV3DevSensorMode.VALUE0) == 0) ? false : true;
-    }
-
-    private class TouchMode extends EV3DevSensorMode {
-    	
-    	private final File pathDevice;
-    	
-        public TouchMode(final File pathDevice) {
-        	this.pathDevice = pathDevice;
-		}
-
-		@Override
-		public int sampleSize() {
-            return 1;
-        }
-
-		@Override
-        public void fetchSample(float[] sample, int offset) {
-            sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-        }
-
-		@Override
-        public String getName() {
-           return "Touch";
-        }
-     
+        float[] sample = new float[1];
+        getTouchMode().fetchSample(sample, 0);
+        return sample[0] != 0.0f;
     }
 
 }
