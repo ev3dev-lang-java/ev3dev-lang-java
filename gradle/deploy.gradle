@@ -61,6 +61,17 @@ task remoteRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
+                println "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                execute "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+            }
+        }
+    }
+}
+
+task remoteBrickRun {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
                 println "time brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
                 execute "time brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
             }
@@ -118,6 +129,12 @@ task deployAndRun {
 }
 deployAndRun.dependsOn deploy, remoteRun
 
+task deployAndBrickRun {
+    doLast {
+    }
+}
+deployAndBrickRun.dependsOn deploy, remoteBrickRun
+
 
 task deployAndSudoRun {
     doLast {
@@ -145,12 +162,14 @@ testConnection.group = groupName
 ev3devInfo.group = groupName
 removePreviousJar.group = groupName
 deploy.group = groupName
+remoteBrickRun.group = groupName
 remoteRun.group = groupName
 remoteRunClassVerbose.group = groupName
 remoteSudoRun.group = groupName
 remoteProfilingRun.group = groupName
 remoteProfilingSudoRun.group = groupName
 deployAndRun.group = groupName
+deployAndBrickRun.group = groupName
 deployAndSudoRun.group = groupName
 deployAndProfilingRun.group = groupName
 deployAndProfilingSudoRun.group = groupName

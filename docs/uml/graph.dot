@@ -119,8 +119,6 @@ digraph G {
 <tr><td align="left" balign="left"> + playTone(frequency : int, duration : int, volume : int) </td></tr>
 <tr><td align="left" balign="left"> + playTone(frequency : int, duration : int) </td></tr>
 <tr><td align="left" balign="left"> + playSample(file : File, volume : int) </td></tr>
-<tr><td align="left" balign="left"> + playSample(file : InputStream, volume : int) </td></tr>
-<tr><td align="left" balign="left"> + playSample(file : InputStream) </td></tr>
 <tr><td align="left" balign="left"> + playSample(file : File) </td></tr>
 <tr><td align="left" balign="left"> + setVolume(volume : int) </td></tr>
 <tr><td align="left" balign="left"> + getVolume() : int </td></tr>
@@ -782,19 +780,10 @@ digraph G {
 <tr><td align="center" balign="center"> BaseSensor </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> # SWITCH_DELAY : int </td></tr>
-<tr><td align="left" balign="left"> # VALUE0 : String </td></tr>
-<tr><td align="left" balign="left"> # VALUE1 : String </td></tr>
-<tr><td align="left" balign="left"> # VALUE2 : String </td></tr>
-<tr><td align="left" balign="left"> # VALUE3 : String </td></tr>
-<tr><td align="left" balign="left"> # VALUE4 : String </td></tr>
-<tr><td align="left" balign="left"> # VALUE5 : String </td></tr>
-<tr><td align="left" balign="left"> # VALUE6 : String </td></tr>
-<tr><td align="left" balign="left"> # VALUE7 : String </td></tr>
+<tr><td align="left" balign="left"> + SWITCH_DELAY : int </td></tr>
+<tr><td align="left" balign="left"> - modeList : ArrayList&lt;String&gt; </td></tr>
 <tr><td align="left" balign="left"> # currentMode : int </td></tr>
-<tr><td align="left" balign="left"> # currentModeS : String </td></tr>
 <tr><td align="left" balign="left"> # modes : SensorMode[] </td></tr>
-<tr><td align="left" balign="left"> ~ modeList : ArrayList&lt;String&gt; </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + BaseSensor(sensorPort : Port, mode : String, device : String) </td></tr>
@@ -803,17 +792,18 @@ digraph G {
 <tr><td align="left" balign="left"> + getAvailableModes() : ArrayList&lt;String&gt; </td></tr>
 <tr><td align="left" balign="left"> + getMode(mode : int) : SensorMode </td></tr>
 <tr><td align="left" balign="left"> + getMode(modeName : String) : SensorMode </td></tr>
-<tr><td align="left" balign="left"> - isValid(mode : int) : boolean </td></tr>
+<tr><td align="left" balign="left"> - modeInvalid(mode : int) : boolean </td></tr>
 <tr><td align="left" balign="left"> - getIndex(modeName : String) : int </td></tr>
 <tr><td align="left" balign="left"> + getName() : String </td></tr>
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
 <tr><td align="left" balign="left"> + setCurrentMode(mode : int) </td></tr>
-<tr><td align="left" balign="left"> + setCurrentMode(modeName : String) </td></tr>
 <tr><td align="left" balign="left"> + getCurrentMode() : int </td></tr>
+<tr><td align="left" balign="left"> + setCurrentMode(modeName : String) </td></tr>
 <tr><td align="left" balign="left"> + getModeCount() : int </td></tr>
-<tr><td align="left" balign="left"> # switchMode(newMode : int, switchDelay : long) </td></tr>
-<tr><td align="left" balign="left"> # switchMode(newMode : String, switchDelay : long) </td></tr>
+<tr><td align="left" balign="left"> # getSystemMode() : String </td></tr>
+<tr><td align="left" balign="left"> - setSystemMode(mode : String) </td></tr>
+<tr><td align="left" balign="left"> + switchMode(newMode : String, switchDelay : long) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.Battery
@@ -938,19 +928,16 @@ digraph G {
 <tr><td align="center" balign="center"> GenericMode </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - VALUE : String </td></tr>
-<tr><td align="left" balign="left"> - VALUE0 : String </td></tr>
 <tr><td align="left" balign="left"> - pathDevice : File </td></tr>
 <tr><td align="left" balign="left"> - sampleSize : int </td></tr>
-<tr><td align="left" balign="left"> - name : String </td></tr>
-<tr><td align="left" balign="left"> - type : int </td></tr>
-<tr><td align="left" balign="left"> - minRange : float </td></tr>
-<tr><td align="left" balign="left"> - maxRange : float </td></tr>
-<tr><td align="left" balign="left"> - correctionFactor : float </td></tr>
+<tr><td align="left" balign="left"> - modeName : String </td></tr>
+<tr><td align="left" balign="left"> - correctMin : float </td></tr>
+<tr><td align="left" balign="left"> - correctMax : float </td></tr>
+<tr><td align="left" balign="left"> - correctFactor : float </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + GenericMode(pathDevice : File, sampleSize : int, name : String, type : int) </td></tr>
-<tr><td align="left" balign="left"> + GenericMode(pathDevice : File, sampleSize : int, name : String, type : int, minRange : float, maxRange : float, correctionFactor : float) </td></tr>
+<tr><td align="left" balign="left"> + GenericMode(pathDevice : File, sampleSize : int, modeName : String) </td></tr>
+<tr><td align="left" balign="left"> + GenericMode(pathDevice : File, sampleSize : int, modeName : String, correctMin : float, correctMax : float, correctFactor : float) </td></tr>
 <tr><td align="left" balign="left"> + getName() : String </td></tr>
 <tr><td align="left" balign="left"> + sampleSize() : int </td></tr>
 <tr><td align="left" balign="left"> + fetchSample(sample : float[], offset : int) </td></tr>
@@ -962,24 +949,20 @@ digraph G {
 <tr><td align="center" balign="center"> EV3ColorSensor </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> # colorMap : int[] </td></tr>
 <tr><td align="left" balign="left"> - LEGO_EV3_COLOR_SENSOR : String </td></tr>
-<tr><td align="left" balign="left"> - COL_RESET : String </td></tr>
+<tr><td align="left" balign="left"> - COL_COLOR : String </td></tr>
 <tr><td align="left" balign="left"> - COL_REFLECT : String </td></tr>
 <tr><td align="left" balign="left"> - COL_AMBIENT : String </td></tr>
-<tr><td align="left" balign="left"> - COL_COLOR : String </td></tr>
-<tr><td align="left" balign="left"> # COL_REFRAW : String </td></tr>
 <tr><td align="left" balign="left"> - COL_RGBRAW : String </td></tr>
-<tr><td align="left" balign="left"> # COL_CAL : String </td></tr>
-<tr><td align="left" balign="left"> - lightColor : int[] </td></tr>
-<tr><td align="left" balign="left"> # raw : short[] </td></tr>
+<tr><td align="left" balign="left"> - COL_REFRAW : String </td></tr>
+<tr><td align="left" balign="left"> - COL_CAL : String </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3ColorSensor(portName : Port) </td></tr>
 <tr><td align="left" balign="left"> + getColorID() : int </td></tr>
-<tr><td align="left" balign="left"> + setFloodlight(floodlight : boolean) </td></tr>
 <tr><td align="left" balign="left"> + isFloodlightOn() : boolean </td></tr>
 <tr><td align="left" balign="left"> + getFloodlight() : int </td></tr>
+<tr><td align="left" balign="left"> + setFloodlight(floodlight : boolean) </td></tr>
 <tr><td align="left" balign="left"> + setFloodlight(color : int) : boolean </td></tr>
 <tr><td align="left" balign="left"> + getColorIDMode() : SensorMode </td></tr>
 <tr><td align="left" balign="left"> + getRedMode() : SensorMode </td></tr>
@@ -1024,6 +1007,7 @@ digraph G {
 <tr><td align="left" balign="left"> + EV3IRSensor(portName : Port) </td></tr>
 <tr><td align="left" balign="left"> + getDistanceMode() : SensorMode </td></tr>
 <tr><td align="left" balign="left"> + getSeekMode() : SensorMode </td></tr>
+<tr><td align="left" balign="left"> + getRemoteMode() : SensorMode </td></tr>
 <tr><td align="left" balign="left"> + getRemoteCommand(chan : int) : int </td></tr>
 <tr><td align="left" balign="left"> + getRemoteCommands(cmds : byte[], offset : int, len : int) </td></tr>
 		</table></td></tr>
@@ -1048,7 +1032,6 @@ digraph G {
 <tr><td align="center" balign="center"> EV3UltrasonicSensor </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - DISABLED : int </td></tr>
 <tr><td align="left" balign="left"> - LEGO_EV3_US : String </td></tr>
 <tr><td align="left" balign="left"> + MIN_RANGE : float </td></tr>
 <tr><td align="left" balign="left"> + MAX_RANGE : float </td></tr>
@@ -1824,14 +1807,11 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - serialVersionUID : long </td></tr>
 <tr><td align="left" balign="left"> # defaults : Properties </td></tr>
-<tr><td align="left" balign="left"> - map : ConcurrentHashMap&lt;Object, Object&gt; </td></tr>
 <tr><td align="left" balign="left"> - hexDigit : char[] </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + Properties() </td></tr>
-<tr><td align="left" balign="left"> + Properties(arg0 : int) </td></tr>
 <tr><td align="left" balign="left"> + Properties(arg0 : Properties) </td></tr>
-<tr><td align="left" balign="left"> - Properties(arg0 : Properties, arg1 : int) </td></tr>
 <tr><td align="left" balign="left"> + setProperty(arg0 : String, arg1 : String) : Object </td></tr>
 <tr><td align="left" balign="left"> + load(arg0 : Reader) </td></tr>
 <tr><td align="left" balign="left"> + load(arg0 : InputStream) </td></tr>
@@ -1846,49 +1826,15 @@ digraph G {
 <tr><td align="left" balign="left"> + loadFromXML(arg0 : InputStream) </td></tr>
 <tr><td align="left" balign="left"> + storeToXML(arg0 : OutputStream, arg1 : String) </td></tr>
 <tr><td align="left" balign="left"> + storeToXML(arg0 : OutputStream, arg1 : String, arg2 : String) </td></tr>
-<tr><td align="left" balign="left"> + storeToXML(arg0 : OutputStream, arg1 : String, arg2 : Charset) </td></tr>
 <tr><td align="left" balign="left"> + getProperty(arg0 : String) : String </td></tr>
 <tr><td align="left" balign="left"> + getProperty(arg0 : String, arg1 : String) : String </td></tr>
 <tr><td align="left" balign="left"> + propertyNames() : Enumeration&lt;?&gt; </td></tr>
 <tr><td align="left" balign="left"> + stringPropertyNames() : Set&lt;String&gt; </td></tr>
 <tr><td align="left" balign="left"> + list(arg0 : PrintStream) </td></tr>
 <tr><td align="left" balign="left"> + list(arg0 : PrintWriter) </td></tr>
-<tr><td align="left" balign="left"> - enumerate(arg0 : Map&lt;String, Object&gt;) </td></tr>
-<tr><td align="left" balign="left"> - enumerateStringProperties(arg0 : Map&lt;String, String&gt;) </td></tr>
+<tr><td align="left" balign="left"> - enumerate(arg0 : Hashtable&lt;String, Object&gt;) </td></tr>
+<tr><td align="left" balign="left"> - enumerateStringProperties(arg0 : Hashtable&lt;String, String&gt;) </td></tr>
 <tr><td align="left" balign="left"> - toHex(arg0 : int) : char </td></tr>
-<tr><td align="left" balign="left"> + size() : int </td></tr>
-<tr><td align="left" balign="left"> + isEmpty() : boolean </td></tr>
-<tr><td align="left" balign="left"> + keys() : Enumeration&lt;Object&gt; </td></tr>
-<tr><td align="left" balign="left"> + elements() : Enumeration&lt;Object&gt; </td></tr>
-<tr><td align="left" balign="left"> + contains(arg0 : Object) : boolean </td></tr>
-<tr><td align="left" balign="left"> + containsValue(arg0 : Object) : boolean </td></tr>
-<tr><td align="left" balign="left"> + containsKey(arg0 : Object) : boolean </td></tr>
-<tr><td align="left" balign="left"> + get(arg0 : Object) : Object </td></tr>
-<tr><td align="left" balign="left"> + put(arg0 : Object, arg1 : Object) : Object </td></tr>
-<tr><td align="left" balign="left"> + remove(arg0 : Object) : Object </td></tr>
-<tr><td align="left" balign="left"> + putAll(arg0 : Map&lt;?, ?&gt;) </td></tr>
-<tr><td align="left" balign="left"> + clear() </td></tr>
-<tr><td align="left" balign="left"> + toString() : String </td></tr>
-<tr><td align="left" balign="left"> + keySet() : Set&lt;Object&gt; </td></tr>
-<tr><td align="left" balign="left"> + values() : Collection&lt;Object&gt; </td></tr>
-<tr><td align="left" balign="left"> + entrySet() : Set&lt;Map.Entry&lt;Object, Object&gt;&gt; </td></tr>
-<tr><td align="left" balign="left"> + equals(arg0 : Object) : boolean </td></tr>
-<tr><td align="left" balign="left"> + hashCode() : int </td></tr>
-<tr><td align="left" balign="left"> + getOrDefault(arg0 : Object, arg1 : Object) : Object </td></tr>
-<tr><td align="left" balign="left"> + forEach(arg0 : BiConsumer&lt;?, ?&gt;) </td></tr>
-<tr><td align="left" balign="left"> + replaceAll(arg0 : BiFunction&lt;?, ?, ?&gt;) </td></tr>
-<tr><td align="left" balign="left"> + putIfAbsent(arg0 : Object, arg1 : Object) : Object </td></tr>
-<tr><td align="left" balign="left"> + remove(arg0 : Object, arg1 : Object) : boolean </td></tr>
-<tr><td align="left" balign="left"> + replace(arg0 : Object, arg1 : Object, arg2 : Object) : boolean </td></tr>
-<tr><td align="left" balign="left"> + replace(arg0 : Object, arg1 : Object) : Object </td></tr>
-<tr><td align="left" balign="left"> + computeIfAbsent(arg0 : Object, arg1 : Function&lt;?, ?&gt;) : Object </td></tr>
-<tr><td align="left" balign="left"> + computeIfPresent(arg0 : Object, arg1 : BiFunction&lt;?, ?, ?&gt;) : Object </td></tr>
-<tr><td align="left" balign="left"> + compute(arg0 : Object, arg1 : BiFunction&lt;?, ?, ?&gt;) : Object </td></tr>
-<tr><td align="left" balign="left"> + merge(arg0 : Object, arg1 : Object, arg2 : BiFunction&lt;?, ?, ?&gt;) : Object </td></tr>
-<tr><td align="left" balign="left"> # rehash() </td></tr>
-<tr><td align="left" balign="left"> + clone() : Object </td></tr>
-<tr><td align="left" balign="left"> ~ writeHashtable(arg0 : ObjectOutputStream) </td></tr>
-<tr><td align="left" balign="left"> ~ readHashtable(arg0 : ObjectInputStream) </td></tr>
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.lang.RuntimeException
