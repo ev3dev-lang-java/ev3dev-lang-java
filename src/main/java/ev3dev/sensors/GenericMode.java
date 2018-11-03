@@ -7,6 +7,10 @@ import java.io.File;
 
 /**
  * Generic ev3dev sensor handler.
+ *
+ * <p>Note: data returned by {@link GenericMode#fetchSample(float[], int)}
+ * are valid only when the sensor itself is in the correct mode.
+ * Otherwise, wrong data will be returned.</p>
  */
 public class GenericMode implements SensorMode {
 
@@ -33,6 +37,7 @@ public class GenericMode implements SensorMode {
     }
 
     /**
+     * Create new generic sensor handler.
      *
      * @param pathDevice Reference to the object responsible for mode setting and value reading.
      * @param sampleSize Number of returned samples.
@@ -66,6 +71,17 @@ public class GenericMode implements SensorMode {
         return sampleSize;
     }
 
+
+    /**
+     * Fetches a sample from the sensor.
+     *
+     * <p>Note: this function works properly only when
+     * the sensor is already in the appropriate mode. Otherwise,
+     * returned data will be invalid.</p>
+     *
+     * @param sample The array to store the sample in.
+     * @param offset The elements of the sample are stored in the array starting at the offset position.
+     */
     @Override
     public void fetchSample(float[] sample, int offset) {
 

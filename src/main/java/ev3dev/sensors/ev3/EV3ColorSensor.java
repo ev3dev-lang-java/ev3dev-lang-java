@@ -97,7 +97,8 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
         setFloodlight(floodlight ? Color.RED : Color.BLUE);
     }
 
-    /** {@inheritDoc}
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean setFloodlight(int color) {
@@ -127,9 +128,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * <p>
      * <b>Size and content of the sample</b><br>
      * The sample contains one element containing the ID (0-7) of the detected color.
-     * 
-     * <p>
-     * 
+     *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
@@ -146,9 +145,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * <p>
      * <b>Size and content of the sample</b><br>
      * The sample contains one element containing the intensity level (Normalized between 0 and 1) of reflected light.
-     * 
-     * <p>
-     * 
+     *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
@@ -165,9 +162,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * <p>
      * <b>Size and content of the sample</b><br>
      * The sample contains one element containing the intensity level (Normalized between 0 and 1) of ambient light.
-     * 
-     * <p>
-     * 
+     *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
@@ -189,9 +184,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * <p>
      * <b>Size and content of the sample</b><br>
      * The sample contains 3 elements containing the intensity level (Normalized between 0 and 1) of red, green and blue light respectivily.
-     * 
-     * <p>
-     * 
+     *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}

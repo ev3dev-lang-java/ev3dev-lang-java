@@ -178,11 +178,19 @@ public class AbsoluteIMU extends BaseSensor {
         return getMode(1);
     }
 
+    /**
+     *
+     * @return SensorMode for reading the mode's data.
+     */
     public SensorMode getGyroMode() {
         switchMode(MODE_GYRO, SWITCH_DELAY);
         return getMode(2);
     }
 
+    /**
+     *
+     * @return SensorMode for reading the mode's data.
+     */
     public SensorMode getTiltMode() {
         switchMode(MODE_TILT, SWITCH_DELAY);
         return getMode(4);

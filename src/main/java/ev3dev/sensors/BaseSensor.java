@@ -49,6 +49,16 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         return modeList;
     }
 
+
+    /**
+     * Get a SensorMode associated with a mode index.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from this SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public SensorMode getMode(int mode) {
         if (modeInvalid(mode))
             throw new IllegalArgumentException("Invalid mode " + mode);
@@ -56,6 +66,15 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     }
 
 
+    /**
+     * Get a SensorMode associated with a mode name.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from this SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public SensorMode getMode(String modeName) {
         int index = getIndex(modeName);
         if (index != -1) {
@@ -81,10 +100,32 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         return modes[currentMode].sampleSize();
     }
 
+    /**
+     * Set the current SensorMode index.
+     *
+     * <p><b>WARNING:</b> this function works properly only when
+     * the sensor is already in the appropriate mode. This means
+     * that the returned reading will be valid only when
+     * you previously activated the "current mode" via a call
+     * to get*Mode() or switchMode().
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     *
+     * @param sample The array to store the sample in.
+     * @param offset The elements of the sample are stored in the array starting at the offset position.
+     */
     public void fetchSample(float[] sample, int offset) {
         modes[currentMode].fetchSample(sample, offset);
     }
 
+    /**
+     * Set the current SensorMode index.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from the"current" SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void setCurrentMode(int mode) {
         if (modeInvalid(mode)) {
             throw new IllegalArgumentException("Invalid mode " + mode);
@@ -93,10 +134,20 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         }
     }
 
+
     public int getCurrentMode() {
         return currentMode;
     }
 
+    /**
+     * Set the current SensorMode name.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from the"current" SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void setCurrentMode(String modeName) {
         int mode = getIndex(modeName);
         if (mode == -1) {
@@ -130,7 +181,14 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
     /**
      * Switch the sensor to the specified mode, if necessary.
-     * @param newMode Identifier of the sensor mode.
+     *
+     * <p>Note: the mode switch will make future reads from
+     * SensorModes for other modes invalid. On the other hand, it will
+     * make reads valid for the SensorMode associated with the mode the
+     * sensor is switching to.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     *
+     * @param newMode Identifier of the sensor mode (not its name).
      * @param switchDelay Delay until the sensor starts sending new data.
      */
     public void switchMode(String newMode, long switchDelay) {

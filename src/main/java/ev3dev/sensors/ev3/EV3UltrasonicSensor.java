@@ -80,31 +80,41 @@ public class EV3UltrasonicSensor extends BaseSensor {
     }
 
     /**
-    * <b>Lego EV3 Ultrasonic sensors, Distance mode</b><br>
-    * Measures distance to an object in front of the sensors
-    *
-    * <p>
-    * <b>Size and content of the sample</b><br>
-    * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
-    * unit).
-    *
-    * @return A sampleProvider
-    */
+     * <b>Lego EV3 Ultrasonic sensors, Distance mode</b><br>
+     * Measures distance to an object in front of the sensors
+     *
+     * <p>
+     * <b>Size and content of the sample</b><br>
+     * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
+     * unit).
+     *
+     * @return A sampleProvider
+     */
     public SampleProvider getDistanceMode() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
         return getMode(0);
     }
 
     /**
-    * Enable the sensors. This puts the indicater LED on.
-    */
+     * Enable the sensor. This puts the indicater LED on.
+     *
+     * <p>Note: this function switches the sensor mode.
+     * This means that reads from SensorModes different from the one
+     * returned by getDistanceMode() will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void enable() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
     }
 
     /**
-    * Disable the sensors. This puts the indicater LED off.
-    */
+     * Disable the sensor. This puts the indicater LED off.
+     *
+     * <p>Note: this function switches the sensor mode.
+     * This means that reads from SensorModes will be invalid
+     * until enable() or get*Mode() is called.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void disable() {
         switchMode(MODE_SINGLE_MEASURE, SWITCH_DELAY);
     }

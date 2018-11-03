@@ -53,6 +53,7 @@ public class EV3IRSensor extends BaseSensor {
         });
 	}
 
+	
     /**
      * <b>EV3 Infra Red sensors, Distance mode</b><br>
      * Measures the distance to an object in front of the sensors.
@@ -63,8 +64,7 @@ public class EV3IRSensor extends BaseSensor {
      * but needs conversion to give better distance. See product page for details. <br>
      * The effective range of the sensors in Distance mode  is about 5 to 50 centimeters. Outside this range a zero is returned
      * for low values and positive infinity for high values.
-     * 
-     * 
+     *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
      *      SampleProviders}
@@ -88,8 +88,6 @@ public class EV3IRSensor extends BaseSensor {
      * directly in front of the sensor. <br>
      * Distance values are not to scale. Al increasing values indicate increasing distance. <br>
      * If no beacon is detected both bearing is set to zero, and distance to positive infinity.
-     *
-     * <p>
      *
      * @return A sampleProvider
      * See {@link lejos.robotics.SampleProvider leJOS conventions for
@@ -145,6 +143,7 @@ public class EV3IRSensor extends BaseSensor {
      * 9 CENTRE/BEACON<br>
      * 10 BOTTOM-LEFT + TOP-LEFT<br>
      * 11 TOP-RIGHT + BOTTOM-RIGHT<br>
+     *
      * @param chan channel to obtain the command for
      * @return the current command
      */
@@ -160,6 +159,7 @@ public class EV3IRSensor extends BaseSensor {
     /**
      * Obtain the commands associated with one or more channels. Each element of
      * the array contains the command for the associated channel (0-3).
+     *
      * @param cmds the array to store the commands
      * @param offset the offset to start storing
      * @param len the number of commands to store.
