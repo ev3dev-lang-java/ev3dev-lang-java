@@ -1,17 +1,18 @@
 package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevDistro;
+import ev3dev.hardware.EV3DevDistros;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Shell;
+import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sound.sampled.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Objects;
 
 /**
@@ -37,6 +38,8 @@ public class Sound extends EV3DevDevice {
 
     private static String VOLUME_PATH;
     private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabled for this platform.";
+
+    private final EV3DevDistro CURRENT_DISTRO;
 
     private static Sound instance;
 
@@ -64,6 +67,8 @@ public class Sound extends EV3DevDevice {
 
         EV3_SOUND_PATH  = Objects.nonNull(System.getProperty(EV3DEV_SOUND_KEY)) ? System.getProperty(EV3DEV_SOUND_KEY) : EV3_PHYSICAL_SOUND_PATH;
         VOLUME_PATH = EV3_SOUND_PATH + "/" + VOLUME;
+
+        CURRENT_DISTRO = EV3DevDistros.getInstance().getDistro();
     }
     
     /**
@@ -156,8 +161,14 @@ public class Sound extends EV3DevDevice {
     public void setVolume(final int volume) {
 
         this.volume = volume;
-        final String cmdVolume = "amixer set PCM,0 " + volume + "%";
-        Shell.execute(cmdVolume);
+
+        if(CURRENT_DISTRO.equals(EV3DevDistro.JESSIE)) {
+            //TODO Review to move to this.setIntegerAttribute();
+            Sysfs.writeString(VOLUME_PATH, "" + volume);
+        } else {
+            final String cmdVolume = "amixer set PCM,0 " + volume + "%";
+            Shell.execute(cmdVolume);
+        }
     }
 
     /**
@@ -165,7 +176,13 @@ public class Sound extends EV3DevDevice {
      * @return the current master volume 0-100
      */
     public int getVolume() {
-        return this.volume;
+
+        if(CURRENT_DISTRO.equals(EV3DevDistro.JESSIE)) {
+            //TODO Review to move to this.getIntegerAttribute()
+            return Sysfs.readInteger(VOLUME_PATH);
+        } else {
+            return this.volume;
+        }
     }
 
 }

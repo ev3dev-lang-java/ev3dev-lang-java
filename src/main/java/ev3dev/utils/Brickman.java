@@ -12,7 +12,7 @@ public class Brickman {
     private static final String DISABLE_BRICKMAN_COMMAND = "sudo systemctl stop brickman";
     private static final String ENABLE_BRICKMAN_COMMAND = "sudo systemctl start brickman";
 
-    static void disable() {
+    public static void disable() {
         LOGGER.trace("Disabling Brickman service");
 
         Shell.execute(DISABLE_BRICKMAN_COMMAND);

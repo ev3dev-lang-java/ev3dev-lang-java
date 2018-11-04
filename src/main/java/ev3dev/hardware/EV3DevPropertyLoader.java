@@ -17,11 +17,8 @@ public class EV3DevPropertyLoader {
 
     public EV3DevPropertyLoader() {
 
-        final EV3DevDistros ev3DevDistros = new EV3DevDistros();
-        EV3DevDistro ev3DevDistro = ev3DevDistros.getDistro();
-
         String propertyName;
-        if(ev3DevDistro.equals(EV3DevDistro.STRETCH)) {
+        if(EV3DevDistros.getInstance().getDistro().equals(EV3DevDistro.STRETCH)) {
             propertyName = STRETCH_PROPERTY_FILENAME;
         }else {
             propertyName = JESSIE_PROPERTY_FILENAME;
