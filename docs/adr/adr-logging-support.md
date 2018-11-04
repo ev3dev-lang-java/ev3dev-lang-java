@@ -1,6 +1,6 @@
 # Logging Support
 
-The library move away from the idea to use `System.out.println("Your message")`
+We recommend to move away from using `System.out.println("Your message")`
 because using `stdout` is not the same as using `stderr` or a logging interface.
 
 The reason you shouldn't use `System.out` is that we depend on output redirection
@@ -9,21 +9,21 @@ when running remotely. If you use `System.out`, the message will be
 displayed on the brick display only. On the other hand, this might
 be intentional, in which case you should use `System.out`.
 
-The library follow some Best practices in the software industry and use
-the dependency SLF4J (Simple Logging Facade for Java).
+Also, to align with the best practises in the software industry, we
+integrated support for SLF4J (Simple Logging Facade for Java).
 
 The Simple Logging Facade for Java (SLF4J) serves as
 a simple facade or abstraction for various logging frameworks
 (e.g. java.util.logging, logback, log4j) allowing
 the end user to plug in the desired logging framework at deployment time.
 
-The library uses SLF4J in the whole project and later the user has to
-choose the final implementation. In the example, the development use
-Logback but any user could use any logging framework.
+The library uses SLF4J in the whole project, but the user has to
+choose the final implementation. In the example, the development uses
+Logback but users can choose any other compatible logging framework.
 
-For testing purposes, enable traces is a good practice but for
-production projects try to disable some levels.
-Generate many traces in your logs impact in your performance.
+For testing purposes, enabling traces is a good practice, but for
+production builds you might want to disable some levels.
+Generating too many tracing output creates a measurable impact on the program performance.
 
 ## Links
 
