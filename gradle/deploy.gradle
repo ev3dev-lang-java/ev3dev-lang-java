@@ -13,6 +13,50 @@ task testConnection {
     }
 }
 
+task free {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "free "
+                execute "free "
+            }
+        }
+    }
+}
+
+task top {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "top "
+                execute "top "
+            }
+        }
+    }
+}
+
+task ps {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "ps "
+                execute "ps aux | sort -n -k 4 "
+            }
+        }
+    }
+}
+
+task stopBluetooth {
+    doLast {
+        ssh.run {
+            session(remotes.ev3dev) {
+                println "echo -e \"maker\" | sudo systemctl stop bluetooth"
+                execute "echo -e \"maker\" | sudo systemctl stop bluetooth"
+            }
+        }
+    }
+}
+
 task ev3devInfo {
     doLast {
         ssh.run {
@@ -94,8 +138,8 @@ task remoteSudoRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "echo -e \"maker\" | sudo -S brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
-                execute "echo -e \"maker\" | sudo -S brickrun -- java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+                println "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
+                execute "echo -e \"maker\" | sudo -S java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all" + ".jar"
             }
         }
     }
@@ -159,6 +203,10 @@ apply from: './gradle/config.gradle'
 //Organize tasks in a Group
 def groupName = "ev3dev-lang-java"
 testConnection.group = groupName
+free.group = groupName
+ps.group = groupName
+top.group = groupName
+stopBluetooth.group = groupName
 ev3devInfo.group = groupName
 removePreviousJar.group = groupName
 deploy.group = groupName
