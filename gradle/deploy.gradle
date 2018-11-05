@@ -167,15 +167,6 @@ task remoteProfilingSudoRun {
     }
 }
 
-task remoteNativeRun << {
-    ssh.run {
-        session(remotes.ev3dev) {
-            println "time java -verbose:class -verbose:jni -Djava.library.path=/usr/lib/jni/ -cp /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar:/usr/share/OpenCV/java/opencv-249.jar examples.opencv.HelloWorldCV"
-            execute "time java -verbose:class -verbose:jni -Djava.library.path=/usr/lib/jni/ -cp /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar:/usr/share/OpenCV/java/opencv-249.jar examples.opencv.HelloWorldCV"
-        }
-    }
-}
-
 task deployAndRun {
     doLast {
     }
@@ -207,14 +198,6 @@ task deployAndProfilingSudoRun {
 }
 deployAndProfilingSudoRun.dependsOn deploy, remoteProfilingSudoRun
 
-task deployAndNativeRun {
-    doLast {
-    }
-}
-deployAndNativeRun.dependsOn deploy, remoteNativeRun
-
-
-
 apply from: './gradle/config.gradle'
 
 //Organize tasks in a Group
@@ -233,11 +216,9 @@ remoteRunClassVerbose.group = groupName
 remoteSudoRun.group = groupName
 remoteProfilingRun.group = groupName
 remoteProfilingSudoRun.group = groupName
-remoteNativeRun.group = groupName
 deployAndRun.group = groupName
 deployAndBrickRun.group = groupName
 deployAndSudoRun.group = groupName
 deployAndProfilingRun.group = groupName
 deployAndProfilingSudoRun.group = groupName
-deployAndNativeRun.group = groupName
 pkillJava.group = groupName
