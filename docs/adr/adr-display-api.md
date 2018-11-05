@@ -1,4 +1,4 @@
-# ev3dev Display API
+# ev3dev Display API (October 2018)
 
 ## Reason
 

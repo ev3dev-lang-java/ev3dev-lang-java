@@ -1,4 +1,4 @@
-# Support for newer Java versions
+# Support for newer Java versions (April 2018)
 
 In December 2017, we noticed that Oracle had released their HotSpot port
 for ARM32. Until that moment, there were only a few options of JVMs

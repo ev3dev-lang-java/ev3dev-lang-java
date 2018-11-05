@@ -1,4 +1,4 @@
-# Modular design
+# Modular design (Nov 2015)
 
 The project has been designed like a set of libraries stackables 
 to offer different solutions for different use cases with the Brick.

@@ -1,4 +1,4 @@
-# Logging Support
+# Logging Support (Nov 2015)
 
 We recommend to move away from using `System.out.println("Your message")`
 because using `stdout` is not the same as using `stderr` or a logging interface.
