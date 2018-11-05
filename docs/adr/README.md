@@ -7,6 +7,7 @@ in this project.
 * [Logging support](adr-logging-support.md)
 * [New Display API](adr-display-api.md)
 * [Changes to leJOS sensor API](adr-lejos-sensor.md)
+* [Support for newer Java versions](adr-openjdk-builds.md)
 
 ## References:
 
