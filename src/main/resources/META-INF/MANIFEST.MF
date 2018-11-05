@@ -1,5 +1,4 @@
 Manifest-Version: 1.0
 Implementation-Title: EV3Dev-lang-java
-Implementation-Version: 2.1.0-SNAPSHOT
+Implementation-Version: 2.4.7-SNAPSHOT
 Implementation-Vendor: Juan Antonio Breña Moral
-Main-Class: examples.actuators.ev3.LEDExample

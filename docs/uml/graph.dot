@@ -15,6 +15,90 @@ digraph G {
 <tr><td align="center" balign="center"> LCD </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left">  </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> + LCD() </td></tr>
+<tr><td align="left" balign="left"> + getInstance() : GraphicsLCD </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.actuators.LCDJessie
+	c1 [label=<<table title="ev3dev.actuators.LCDJessie" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDJessie </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - log : Logger </td></tr>
+<tr><td align="left" balign="left"> + EV3DEV_EV3_DEVICES_PATH : String </td></tr>
+<tr><td align="left" balign="left"> + EV3DEV_EV3_LCD_NAME : String </td></tr>
+<tr><td align="left" balign="left"> + EV3DEV_EV3_LCD_PATH : String </td></tr>
+<tr><td align="left" balign="left"> + EV3DEV_LCD_KEY : String </td></tr>
+<tr><td align="left" balign="left"> + FB_PATH : String </td></tr>
+<tr><td align="left" balign="left"> - SCREEN_WIDTH : int </td></tr>
+<tr><td align="left" balign="left"> - SCREEN_HEIGHT : int </td></tr>
+<tr><td align="left" balign="left"> - LINE_LEN : int </td></tr>
+<tr><td align="left" balign="left"> - BUFFER_SIZE : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_SCREEN_WIDTH : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_SCREEN_HEIGHT : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_LINE_LEN : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_ROWS : int </td></tr>
+<tr><td align="left" balign="left"> + EV3_BUFFER_SIZE : int </td></tr>
+<tr><td align="left" balign="left"> - image : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> - g2d : Graphics2D </td></tr>
+<tr><td align="left" balign="left"> - instance : GraphicsLCD </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="left" balign="left"> - LCDJessie() </td></tr>
+<tr><td align="left" balign="left"> + getInstance() : GraphicsLCD </td></tr>
+<tr><td align="left" balign="left"> - init(width : int, height : int, lineLength : int, bufferSize : int) </td></tr>
+<tr><td align="left" balign="left"> + getImage() : BufferedImage </td></tr>
+<tr><td align="left" balign="left"> + flush() </td></tr>
+<tr><td align="left" balign="left"> + translate(x : int, y : int) </td></tr>
+<tr><td align="left" balign="left"> + getFont() : Font </td></tr>
+<tr><td align="left" balign="left"> + setFont(font : Font) </td></tr>
+<tr><td align="left" balign="left"> + getTranslateX() : int </td></tr>
+<tr><td align="left" balign="left"> + getTranslateY() : int </td></tr>
+<tr><td align="left" balign="left"> + setColor(color : int) </td></tr>
+<tr><td align="left" balign="left"> + setColor(i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + setPixel(i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + getPixel(i : int, i1 : int) : int </td></tr>
+<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int, b : boolean) </td></tr>
+<tr><td align="left" balign="left"> + drawString(s : String, i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawSubstring(s : String, i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawChar(c : char, i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawChars(chars : char[], i : int, i1 : int, i2 : int, i3 : int, i4 : int) </td></tr>
+<tr><td align="left" balign="left"> + getStrokeStyle() : int </td></tr>
+<tr><td align="left" balign="left"> + setStrokeStyle(i : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegionRop(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRegion(image : Image, i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawImage(image : Image, i : int, i1 : int, i2 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawLine(x1 : int, y1 : int, x2 : int, y2 : int) </td></tr>
+<tr><td align="left" balign="left"> + fillRect(x : int, y : int, width : int, height : int) </td></tr>
+<tr><td align="left" balign="left"> + copyArea(i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRoundRect(x : int, y : int, width : int, height : int, arcWidth : int, arcHeight : int) </td></tr>
+<tr><td align="left" balign="left"> + drawRect(x : int, y : int, width : int, height : int) </td></tr>
+<tr><td align="left" balign="left"> + drawArc(x : int, y : int, width : int, height : int, startAngle : int, arcAngle : int) </td></tr>
+<tr><td align="left" balign="left"> + fillArc(x : int, y : int, width : int, height : int, startAngle : int, arcAngle : int) </td></tr>
+<tr><td align="left" balign="left"> + refresh() </td></tr>
+<tr><td align="left" balign="left"> + clear() </td></tr>
+<tr><td align="left" balign="left"> + getWidth() : int </td></tr>
+<tr><td align="left" balign="left"> + getHeight() : int </td></tr>
+<tr><td align="left" balign="left"> + getDisplay() : byte[] </td></tr>
+<tr><td align="left" balign="left"> + getHWDisplay() : byte[] </td></tr>
+<tr><td align="left" balign="left"> + setContrast(i : int) </td></tr>
+<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, i4 : int, i5 : int, i6 : int, i7 : int, i8 : int) </td></tr>
+<tr><td align="left" balign="left"> + bitBlt(bytes : byte[], i : int, i1 : int, i2 : int, i3 : int, bytes1 : byte[], i4 : int, i5 : int, i6 : int, i7 : int, i8 : int, i9 : int, i10 : int) </td></tr>
+<tr><td align="left" balign="left"> + setAutoRefresh(b : boolean) </td></tr>
+<tr><td align="left" balign="left"> + setAutoRefreshPeriod(i : int) : int </td></tr>
+		</table></td></tr>
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// ev3dev.actuators.LCDStretch
+	c2 [label=<<table title="ev3dev.actuators.LCDStretch" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> LCDStretch </td></tr>
+		</table></td></tr>
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + EV3DEV_LCD_KEY : String </td></tr>
 <tr><td align="left" balign="left"> + EV3DEV_LCD_DEFAULT : String </td></tr>
 <tr><td align="left" balign="left"> + EV3DEV_LCD_MODE_KEY : String </td></tr>
@@ -26,11 +110,11 @@ digraph G {
 <tr><td align="left" balign="left"> - timer_run : boolean </td></tr>
 <tr><td align="left" balign="left"> - timer_msec : int </td></tr>
 <tr><td align="left" balign="left"> - stroke : int </td></tr>
-<tr><td align="left" balign="left"> - instance : LCD </td></tr>
+<tr><td align="left" balign="left"> - instance : LCDStretch </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> - LCD() </td></tr>
-<tr><td align="left" balign="left"> + getInstance() : LCD </td></tr>
+<tr><td align="left" balign="left"> - LCDStretch() </td></tr>
+<tr><td align="left" balign="left"> + getInstance() : GraphicsLCD </td></tr>
 <tr><td align="left" balign="left"> + getFramebuffer() : JavaFramebuffer </td></tr>
 <tr><td align="left" balign="left"> + flush() </td></tr>
 <tr><td align="left" balign="left"> + translate(x : int, y : int) </td></tr>
@@ -81,8 +165,8 @@ digraph G {
 <tr><td align="left" balign="left"> - timerUpdate() </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// ev3dev.actuators.LCD.Flusher
-	c1 [label=<<table title="ev3dev.actuators.LCD.Flusher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	// ev3dev.actuators.LCDStretch.Flusher
+	c3 [label=<<table title="ev3dev.actuators.LCDStretch.Flusher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Flusher </td></tr>
 		</table></td></tr>
@@ -95,7 +179,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.Sound
-	c2 [label=<<table title="ev3dev.actuators.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c4 [label=<<table title="ev3dev.actuators.Sound" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sound </td></tr>
 		</table></td></tr>
@@ -108,6 +192,7 @@ digraph G {
 <tr><td align="left" balign="left"> + VOLUME : String </td></tr>
 <tr><td align="left" balign="left"> - VOLUME_PATH : String </td></tr>
 <tr><td align="left" balign="left"> - DISABLED_FEATURE_MESSAGE : String </td></tr>
+<tr><td align="left" balign="left"> - CURRENT_DISTRO : EV3DevDistro </td></tr>
 <tr><td align="left" balign="left"> - instance : Sound </td></tr>
 <tr><td align="left" balign="left"> - volume : int </td></tr>
 		</table></td></tr>
@@ -125,7 +210,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.ev3.EV3Led
-	c3 [label=<<table title="ev3dev.actuators.ev3.EV3Led" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c5 [label=<<table title="ev3dev.actuators.ev3.EV3Led" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3Led </td></tr>
 		</table></td></tr>
@@ -145,7 +230,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c4 [label=<<table title="ev3dev.actuators.lego.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c6 [label=<<table title="ev3dev.actuators.lego.motors.BaseRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseRegulatedMotor </font></td></tr>
 		</table></td></tr>
@@ -192,7 +277,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.BasicMotor
-	c5 [label=<<table title="ev3dev.actuators.lego.motors.BasicMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c7 [label=<<table title="ev3dev.actuators.lego.motors.BasicMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BasicMotor </font></td></tr>
 		</table></td></tr>
@@ -213,7 +298,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor
-	c6 [label=<<table title="ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c8 [label=<<table title="ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3LargeRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -232,7 +317,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor
-	c7 [label=<<table title="ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c9 [label=<<table title="ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3MediumRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -251,7 +336,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.Motor
-	c8 [label=<<table title="ev3dev.actuators.lego.motors.Motor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c10 [label=<<table title="ev3dev.actuators.lego.motors.Motor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Motor </td></tr>
 		</table></td></tr>
@@ -266,7 +351,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.NXTRegulatedMotor
-	c9 [label=<<table title="ev3dev.actuators.lego.motors.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c11 [label=<<table title="ev3dev.actuators.lego.motors.NXTRegulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NXTRegulatedMotor </td></tr>
 		</table></td></tr>
@@ -285,7 +370,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.actuators.lego.motors.UnregulatedMotor
-	c10 [label=<<table title="ev3dev.actuators.lego.motors.UnregulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c12 [label=<<table title="ev3dev.actuators.lego.motors.UnregulatedMotor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnregulatedMotor </td></tr>
 		</table></td></tr>
@@ -297,7 +382,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevDevice
-	c11 [label=<<table title="ev3dev.hardware.EV3DevDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c13 [label=<<table title="ev3dev.hardware.EV3DevDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevDevice </font></td></tr>
 		</table></td></tr>
@@ -322,7 +407,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevDistro
-	c12 [label=<<table title="ev3dev.hardware.EV3DevDistro" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c14 [label=<<table title="ev3dev.hardware.EV3DevDistro" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> EV3DevDistro </td></tr>
@@ -336,12 +421,13 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevDistros
-	c13 [label=<<table title="ev3dev.hardware.EV3DevDistros" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c15 [label=<<table title="ev3dev.hardware.EV3DevDistros" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevDistros </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> - LOGGER : Logger </td></tr>
+<tr><td align="left" balign="left"> - instance : EV3DevDistros </td></tr>
 <tr><td align="left" balign="left"> - DEBIAN_DISTRO_DETECTION_QUERY : String </td></tr>
 <tr><td align="left" balign="left"> - JESSIE_DISTRO_DETECTION_PATTERN : String </td></tr>
 <tr><td align="left" balign="left"> - STRETCH_DISTRO_DETECTION_PATTERN : String </td></tr>
@@ -351,13 +437,15 @@ digraph G {
 <tr><td align="left" balign="left"> - CURRENT_DISTRO : EV3DevDistro </td></tr>
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> + EV3DevDistros() </td></tr>
+<tr><td align="left" balign="left"> - EV3DevDistros() </td></tr>
+<tr><td align="left" balign="left"> + getInstance() : EV3DevDistros </td></tr>
 <tr><td align="left" balign="left"> - setStretch() </td></tr>
+<tr><td align="left" balign="left"> - setJessie() </td></tr>
 <tr><td align="left" balign="left"> + getDistro() : EV3DevDistro </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevFileSystem
-	c14 [label=<<table title="ev3dev.hardware.EV3DevFileSystem" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c16 [label=<<table title="ev3dev.hardware.EV3DevFileSystem" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevFileSystem </td></tr>
 		</table></td></tr>
@@ -374,7 +462,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevMotorDevice
-	c15 [label=<<table title="ev3dev.hardware.EV3DevMotorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c17 [label=<<table title="ev3dev.hardware.EV3DevMotorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevMotorDevice </font></td></tr>
 		</table></td></tr>
@@ -410,7 +498,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPlatform
-	c16 [label=<<table title="ev3dev.hardware.EV3DevPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c18 [label=<<table title="ev3dev.hardware.EV3DevPlatform" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> EV3DevPlatform </td></tr>
@@ -428,7 +516,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPlatforms
-	c17 [label=<<table title="ev3dev.hardware.EV3DevPlatforms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c19 [label=<<table title="ev3dev.hardware.EV3DevPlatforms" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevPlatforms </td></tr>
 		</table></td></tr>
@@ -449,7 +537,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevPropertyLoader
-	c18 [label=<<table title="ev3dev.hardware.EV3DevPropertyLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c20 [label=<<table title="ev3dev.hardware.EV3DevPropertyLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3DevPropertyLoader </td></tr>
 		</table></td></tr>
@@ -465,7 +553,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.EV3DevSensorDevice
-	c19 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c21 [label=<<table title="ev3dev.hardware.EV3DevSensorDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> EV3DevSensorDevice </font></td></tr>
 		</table></td></tr>
@@ -483,7 +571,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.BitFramebuffer
-	c20 [label=<<table title="ev3dev.hardware.display.BitFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c22 [label=<<table title="ev3dev.hardware.display.BitFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BitFramebuffer </td></tr>
 		</table></td></tr>
@@ -497,7 +585,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.BitFramebufferProvider
-	c21 [label=<<table title="ev3dev.hardware.display.BitFramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c23 [label=<<table title="ev3dev.hardware.display.BitFramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BitFramebufferProvider </td></tr>
 		</table></td></tr>
@@ -510,7 +598,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.DisplayInterface
-	c22 [label=<<table title="ev3dev.hardware.display.DisplayInterface" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c24 [label=<<table title="ev3dev.hardware.display.DisplayInterface" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DisplayInterface </font></td></tr>
 		</table></td></tr>
@@ -528,7 +616,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.ImageUtils
-	c23 [label=<<table title="ev3dev.hardware.display.ImageUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c25 [label=<<table title="ev3dev.hardware.display.ImageUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ImageUtils </td></tr>
 		</table></td></tr>
@@ -550,7 +638,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.JavaFramebuffer
-	c24 [label=<<table title="ev3dev.hardware.display.JavaFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c26 [label=<<table title="ev3dev.hardware.display.JavaFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> JavaFramebuffer </td></tr>
@@ -575,7 +663,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.LinuxFramebuffer
-	c25 [label=<<table title="ev3dev.hardware.display.LinuxFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c27 [label=<<table title="ev3dev.hardware.display.LinuxFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> LinuxFramebuffer </font></td></tr>
 		</table></td></tr>
@@ -616,7 +704,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.OwnedDisplay
-	c26 [label=<<table title="ev3dev.hardware.display.OwnedDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c28 [label=<<table title="ev3dev.hardware.display.OwnedDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OwnedDisplay </td></tr>
 		</table></td></tr>
@@ -638,7 +726,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.RGBFramebuffer
-	c27 [label=<<table title="ev3dev.hardware.display.RGBFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c29 [label=<<table title="ev3dev.hardware.display.RGBFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RGBFramebuffer </td></tr>
 		</table></td></tr>
@@ -653,7 +741,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.RGBFramebufferProvider
-	c28 [label=<<table title="ev3dev.hardware.display.RGBFramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c30 [label=<<table title="ev3dev.hardware.display.RGBFramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RGBFramebufferProvider </td></tr>
 		</table></td></tr>
@@ -666,7 +754,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.StolenDisplay
-	c29 [label=<<table title="ev3dev.hardware.display.StolenDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c31 [label=<<table title="ev3dev.hardware.display.StolenDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StolenDisplay </td></tr>
 		</table></td></tr>
@@ -682,7 +770,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.SystemDisplay
-	c30 [label=<<table title="ev3dev.hardware.display.SystemDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c32 [label=<<table title="ev3dev.hardware.display.SystemDisplay" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SystemDisplay </td></tr>
 		</table></td></tr>
@@ -696,7 +784,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.spi.AllImplFailedException
-	c31 [label=<<table title="ev3dev.hardware.display.spi.AllImplFailedException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c33 [label=<<table title="ev3dev.hardware.display.spi.AllImplFailedException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AllImplFailedException </td></tr>
 		</table></td></tr>
@@ -709,7 +797,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.hardware.display.spi.FramebufferProvider
-	c32 [label=<<table title="ev3dev.hardware.display.spi.FramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c34 [label=<<table title="ev3dev.hardware.display.spi.FramebufferProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FramebufferProvider </td></tr>
@@ -723,7 +811,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.robotics.tts.Espeak
-	c33 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c35 [label=<<table title="ev3dev.robotics.tts.Espeak" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Espeak </td></tr>
 		</table></td></tr>
@@ -756,7 +844,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.BaseSensor
-	c34 [label=<<table title="ev3dev.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c36 [label=<<table title="ev3dev.sensors.BaseSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseSensor </td></tr>
 		</table></td></tr>
@@ -788,7 +876,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.Battery
-	c35 [label=<<table title="ev3dev.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c37 [label=<<table title="ev3dev.sensors.Battery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Battery </td></tr>
 		</table></td></tr>
@@ -815,7 +903,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.Button
-	c36 [label=<<table title="ev3dev.sensors.Button" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c38 [label=<<table title="ev3dev.sensors.Button" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Button </td></tr>
 		</table></td></tr>
@@ -838,7 +926,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.EV3Key
-	c37 [label=<<table title="ev3dev.sensors.EV3Key" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c39 [label=<<table title="ev3dev.sensors.EV3Key" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3Key </td></tr>
 		</table></td></tr>
@@ -882,7 +970,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.EV3Key.KeyType
-	c38 [label=<<table title="ev3dev.sensors.EV3Key.KeyType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c40 [label=<<table title="ev3dev.sensors.EV3Key.KeyType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> KeyType </td></tr>
@@ -904,7 +992,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.GenericMode
-	c39 [label=<<table title="ev3dev.sensors.GenericMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c41 [label=<<table title="ev3dev.sensors.GenericMode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GenericMode </td></tr>
 		</table></td></tr>
@@ -925,7 +1013,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3ColorSensor
-	c40 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c42 [label=<<table title="ev3dev.sensors.ev3.EV3ColorSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3ColorSensor </td></tr>
 		</table></td></tr>
@@ -952,7 +1040,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3GyroSensor
-	c41 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c43 [label=<<table title="ev3dev.sensors.ev3.EV3GyroSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3GyroSensor </td></tr>
 		</table></td></tr>
@@ -971,7 +1059,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3IRSensor
-	c42 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c44 [label=<<table title="ev3dev.sensors.ev3.EV3IRSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3IRSensor </td></tr>
 		</table></td></tr>
@@ -994,7 +1082,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3TouchSensor
-	c43 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c45 [label=<<table title="ev3dev.sensors.ev3.EV3TouchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3TouchSensor </td></tr>
 		</table></td></tr>
@@ -1008,7 +1096,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.ev3.EV3UltrasonicSensor
-	c44 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c46 [label=<<table title="ev3dev.sensors.ev3.EV3UltrasonicSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EV3UltrasonicSensor </td></tr>
 		</table></td></tr>
@@ -1030,7 +1118,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.AbsoluteIMU
-	c45 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c47 [label=<<table title="ev3dev.sensors.mindsensors.AbsoluteIMU" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbsoluteIMU </td></tr>
 		</table></td></tr>
@@ -1068,7 +1156,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.sensors.mindsensors.NXTCamV5
-	c46 [label=<<table title="ev3dev.sensors.mindsensors.NXTCamV5" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c48 [label=<<table title="ev3dev.sensors.mindsensors.NXTCamV5" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NXTCamV5 </td></tr>
 		</table></td></tr>
@@ -1095,7 +1183,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Brickman
-	c47 [label=<<table title="ev3dev.utils.Brickman" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c49 [label=<<table title="ev3dev.utils.Brickman" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Brickman </td></tr>
 		</table></td></tr>
@@ -1105,13 +1193,13 @@ digraph G {
 		</table></td></tr>
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="left" balign="left"> + Brickman() </td></tr>
-<tr><td align="left" balign="left"> ~ disable() </td></tr>
+<tr><td align="left" balign="left"> + disable() </td></tr>
 <tr><td align="left" balign="left"> - restoreBrickman() </td></tr>
 <tr><td align="left" balign="left"> + drawJavaLogo(gfx : Graphics2D) </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Interpolation
-	c48 [label=<<table title="ev3dev.utils.Interpolation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c50 [label=<<table title="ev3dev.utils.Interpolation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Interpolation </td></tr>
 		</table></td></tr>
@@ -1124,7 +1212,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.JarResource
-	c49 [label=<<table title="ev3dev.utils.JarResource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c51 [label=<<table title="ev3dev.utils.JarResource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JarResource </td></tr>
 		</table></td></tr>
@@ -1142,7 +1230,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.PilotProps
-	c50 [label=<<table title="ev3dev.utils.PilotProps" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c52 [label=<<table title="ev3dev.utils.PilotProps" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PilotProps </td></tr>
 		</table></td></tr>
@@ -1162,7 +1250,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Shell
-	c51 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c53 [label=<<table title="ev3dev.utils.Shell" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Shell </td></tr>
 		</table></td></tr>
@@ -1177,7 +1265,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.Sysfs
-	c52 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c54 [label=<<table title="ev3dev.utils.Sysfs" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Sysfs </td></tr>
 		</table></td></tr>
@@ -1198,7 +1286,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.ILibc
-	c53 [label=<<table title="ev3dev.utils.io.ILibc" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c55 [label=<<table title="ev3dev.utils.io.ILibc" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ILibc </td></tr>
@@ -1220,7 +1308,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeConstants
-	c54 [label=<<table title="ev3dev.utils.io.NativeConstants" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c56 [label=<<table title="ev3dev.utils.io.NativeConstants" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NativeConstants </td></tr>
 		</table></td></tr>
@@ -1321,7 +1409,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeDevice
-	c55 [label=<<table title="ev3dev.utils.io.NativeDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c57 [label=<<table title="ev3dev.utils.io.NativeDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NativeDevice </td></tr>
 		</table></td></tr>
@@ -1337,7 +1425,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFile
-	c56 [label=<<table title="ev3dev.utils.io.NativeFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c58 [label=<<table title="ev3dev.utils.io.NativeFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NativeFile </td></tr>
 		</table></td></tr>
@@ -1369,7 +1457,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer
-	c57 [label=<<table title="ev3dev.utils.io.NativeFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c59 [label=<<table title="ev3dev.utils.io.NativeFramebuffer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NativeFramebuffer </td></tr>
 		</table></td></tr>
@@ -1388,7 +1476,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo
-	c58 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c60 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> fb_fix_screeninfo </td></tr>
 		</table></td></tr>
@@ -1416,7 +1504,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByReference
-	c59 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c61 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ByReference </td></tr>
 		</table></td></tr>
@@ -1428,7 +1516,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByValue
-	c60 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c62 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ByValue </td></tr>
 		</table></td></tr>
@@ -1440,7 +1528,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_bitfield
-	c61 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c63 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> fb_bitfield </td></tr>
 		</table></td></tr>
@@ -1457,7 +1545,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByReference
-	c62 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c64 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ByReference </td></tr>
 		</table></td></tr>
@@ -1469,7 +1557,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByValue
-	c63 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c65 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ByValue </td></tr>
 		</table></td></tr>
@@ -1481,7 +1569,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo
-	c64 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c66 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> fb_var_screeninfo </td></tr>
 		</table></td></tr>
@@ -1523,7 +1611,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByReference
-	c65 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c67 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByReference" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ByReference </td></tr>
 		</table></td></tr>
@@ -1535,7 +1623,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByValue
-	c66 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c68 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ByValue </td></tr>
 		</table></td></tr>
@@ -1547,7 +1635,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeFramebuffer.fb_con2fbmap
-	c67 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_con2fbmap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c69 [label=<<table title="ev3dev.utils.io.NativeFramebuffer.fb_con2fbmap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> fb_con2fbmap </td></tr>
 		</table></td></tr>
@@ -1562,7 +1650,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeLibc
-	c68 [label=<<table title="ev3dev.utils.io.NativeLibc" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c70 [label=<<table title="ev3dev.utils.io.NativeLibc" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NativeLibc </td></tr>
 		</table></td></tr>
@@ -1584,7 +1672,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeTTY
-	c69 [label=<<table title="ev3dev.utils.io.NativeTTY" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c71 [label=<<table title="ev3dev.utils.io.NativeTTY" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NativeTTY </td></tr>
 		</table></td></tr>
@@ -1606,7 +1694,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeTTY.vt_stat
-	c70 [label=<<table title="ev3dev.utils.io.NativeTTY.vt_stat" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c72 [label=<<table title="ev3dev.utils.io.NativeTTY.vt_stat" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> vt_stat </td></tr>
 		</table></td></tr>
@@ -1622,7 +1710,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// ev3dev.utils.io.NativeTTY.vt_mode
-	c71 [label=<<table title="ev3dev.utils.io.NativeTTY.vt_mode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c73 [label=<<table title="ev3dev.utils.io.NativeTTY.vt_mode" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> vt_mode </td></tr>
 		</table></td></tr>
@@ -1639,108 +1727,110 @@ digraph G {
 <tr><td align="left" balign="left"> # getFieldOrder() : List&lt;String&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//ev3dev.actuators.LCD extends ev3dev.hardware.EV3DevDevice
-	c11:p -> c0:p [dir=back,arrowtail=empty];
-	//ev3dev.actuators.LCD.Flusher extends java.util.TimerTask
-	c72:p -> c1:p [dir=back,arrowtail=empty];
+	//ev3dev.actuators.LCDJessie extends ev3dev.hardware.EV3DevDevice
+	c13:p -> c1:p [dir=back,arrowtail=empty];
+	//ev3dev.actuators.LCDStretch extends ev3dev.hardware.EV3DevDevice
+	c13:p -> c2:p [dir=back,arrowtail=empty];
+	//ev3dev.actuators.LCDStretch.Flusher extends java.util.TimerTask
+	c74:p -> c3:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.Sound extends ev3dev.hardware.EV3DevDevice
-	c11:p -> c2:p [dir=back,arrowtail=empty];
+	c13:p -> c4:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.ev3.EV3Led extends ev3dev.hardware.EV3DevDevice
-	c11:p -> c3:p [dir=back,arrowtail=empty];
+	c13:p -> c5:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.BaseRegulatedMotor extends ev3dev.hardware.EV3DevMotorDevice
-	c15:p -> c4:p [dir=back,arrowtail=empty];
+	c17:p -> c6:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.BasicMotor extends ev3dev.hardware.EV3DevMotorDevice
-	c15:p -> c5:p [dir=back,arrowtail=empty];
+	c17:p -> c7:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.EV3LargeRegulatedMotor extends ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c4:p -> c6:p [dir=back,arrowtail=empty];
+	c6:p -> c8:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.EV3MediumRegulatedMotor extends ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c4:p -> c7:p [dir=back,arrowtail=empty];
+	c6:p -> c9:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.NXTRegulatedMotor extends ev3dev.actuators.lego.motors.BaseRegulatedMotor
-	c4:p -> c9:p [dir=back,arrowtail=empty];
+	c6:p -> c11:p [dir=back,arrowtail=empty];
 	//ev3dev.actuators.lego.motors.UnregulatedMotor extends ev3dev.actuators.lego.motors.BasicMotor
-	c5:p -> c10:p [dir=back,arrowtail=empty];
+	c7:p -> c12:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevMotorDevice extends ev3dev.hardware.EV3DevDevice
-	c11:p -> c15:p [dir=back,arrowtail=empty];
+	c13:p -> c17:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.EV3DevSensorDevice extends ev3dev.hardware.EV3DevDevice
-	c11:p -> c19:p [dir=back,arrowtail=empty];
+	c13:p -> c21:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.display.BitFramebuffer extends ev3dev.hardware.display.LinuxFramebuffer
-	c25:p -> c20:p [dir=back,arrowtail=empty];
+	c27:p -> c22:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.display.BitFramebufferProvider implements ev3dev.hardware.display.spi.FramebufferProvider
-	c32:p -> c21:p [dir=back,arrowtail=empty,style=dashed];
+	c34:p -> c23:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.display.DisplayInterface implements java.io.Closeable
-	c73:p -> c22:p [dir=back,arrowtail=empty,style=dashed];
+	c75:p -> c24:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.display.JavaFramebuffer implements java.io.Closeable
-	c73:p -> c24:p [dir=back,arrowtail=empty,style=dashed];
+	c75:p -> c26:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.display.LinuxFramebuffer implements ev3dev.hardware.display.JavaFramebuffer
-	c24:p -> c25:p [dir=back,arrowtail=empty,style=dashed];
+	c26:p -> c27:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.display.OwnedDisplay extends ev3dev.hardware.display.DisplayInterface
-	c22:p -> c26:p [dir=back,arrowtail=empty];
+	c24:p -> c28:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.display.RGBFramebuffer extends ev3dev.hardware.display.LinuxFramebuffer
-	c25:p -> c27:p [dir=back,arrowtail=empty];
+	c27:p -> c29:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.display.RGBFramebufferProvider implements ev3dev.hardware.display.spi.FramebufferProvider
-	c32:p -> c28:p [dir=back,arrowtail=empty,style=dashed];
+	c34:p -> c30:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.hardware.display.StolenDisplay extends ev3dev.hardware.display.DisplayInterface
-	c22:p -> c29:p [dir=back,arrowtail=empty];
+	c24:p -> c31:p [dir=back,arrowtail=empty];
 	//ev3dev.hardware.display.spi.AllImplFailedException extends java.lang.RuntimeException
-	c74:p -> c31:p [dir=back,arrowtail=empty];
+	c76:p -> c33:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.BaseSensor extends ev3dev.hardware.EV3DevSensorDevice
-	c19:p -> c34:p [dir=back,arrowtail=empty];
+	c21:p -> c36:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.Battery extends ev3dev.hardware.EV3DevDevice
-	c11:p -> c35:p [dir=back,arrowtail=empty];
+	c13:p -> c37:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3ColorSensor extends ev3dev.sensors.BaseSensor
-	c34:p -> c40:p [dir=back,arrowtail=empty];
+	c36:p -> c42:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3GyroSensor extends ev3dev.sensors.BaseSensor
-	c34:p -> c41:p [dir=back,arrowtail=empty];
+	c36:p -> c43:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3IRSensor extends ev3dev.sensors.BaseSensor
-	c34:p -> c42:p [dir=back,arrowtail=empty];
+	c36:p -> c44:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3TouchSensor extends ev3dev.sensors.BaseSensor
-	c34:p -> c43:p [dir=back,arrowtail=empty];
+	c36:p -> c45:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.ev3.EV3UltrasonicSensor extends ev3dev.sensors.BaseSensor
-	c34:p -> c44:p [dir=back,arrowtail=empty];
+	c36:p -> c46:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.AbsoluteIMU extends ev3dev.sensors.BaseSensor
-	c34:p -> c45:p [dir=back,arrowtail=empty];
+	c36:p -> c47:p [dir=back,arrowtail=empty];
 	//ev3dev.sensors.mindsensors.NXTCamV5 extends ev3dev.sensors.BaseSensor
-	c34:p -> c46:p [dir=back,arrowtail=empty];
+	c36:p -> c48:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.PilotProps extends java.util.Properties
-	c75:p -> c50:p [dir=back,arrowtail=empty];
+	c77:p -> c52:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeDevice extends ev3dev.utils.io.NativeFile
-	c56:p -> c55:p [dir=back,arrowtail=empty];
+	c58:p -> c57:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFile implements java.io.Closeable
-	c73:p -> c56:p [dir=back,arrowtail=empty,style=dashed];
+	c75:p -> c58:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.utils.io.NativeFile implements java.lang.AutoCloseable
-	c76:p -> c56:p [dir=back,arrowtail=empty,style=dashed];
+	c78:p -> c58:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.utils.io.NativeFramebuffer extends ev3dev.utils.io.NativeDevice
-	c55:p -> c57:p [dir=back,arrowtail=empty];
+	c57:p -> c59:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo extends Structure
-	c77:p -> c58:p [dir=back,arrowtail=empty];
+	c79:p -> c60:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByReference extends ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo
-	c58:p -> c59:p [dir=back,arrowtail=empty];
+	c60:p -> c61:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo.ByValue extends ev3dev.utils.io.NativeFramebuffer.fb_fix_screeninfo
-	c58:p -> c60:p [dir=back,arrowtail=empty];
+	c60:p -> c62:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_bitfield extends Structure
-	c77:p -> c61:p [dir=back,arrowtail=empty];
+	c79:p -> c63:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByReference extends ev3dev.utils.io.NativeFramebuffer.fb_bitfield
-	c61:p -> c62:p [dir=back,arrowtail=empty];
+	c63:p -> c64:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_bitfield.ByValue extends ev3dev.utils.io.NativeFramebuffer.fb_bitfield
-	c61:p -> c63:p [dir=back,arrowtail=empty];
+	c63:p -> c65:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo extends Structure
-	c77:p -> c64:p [dir=back,arrowtail=empty];
+	c79:p -> c66:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByReference extends ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo
-	c64:p -> c65:p [dir=back,arrowtail=empty];
+	c66:p -> c67:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo.ByValue extends ev3dev.utils.io.NativeFramebuffer.fb_var_screeninfo
-	c64:p -> c66:p [dir=back,arrowtail=empty];
+	c66:p -> c68:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeFramebuffer.fb_con2fbmap extends Structure
-	c77:p -> c67:p [dir=back,arrowtail=empty];
+	c79:p -> c69:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeLibc implements ev3dev.utils.io.ILibc
-	c53:p -> c68:p [dir=back,arrowtail=empty,style=dashed];
+	c55:p -> c70:p [dir=back,arrowtail=empty,style=dashed];
 	//ev3dev.utils.io.NativeTTY extends ev3dev.utils.io.NativeDevice
-	c55:p -> c69:p [dir=back,arrowtail=empty];
+	c57:p -> c71:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeTTY.vt_stat extends Structure
-	c77:p -> c70:p [dir=back,arrowtail=empty];
+	c79:p -> c72:p [dir=back,arrowtail=empty];
 	//ev3dev.utils.io.NativeTTY.vt_mode extends Structure
-	c77:p -> c71:p [dir=back,arrowtail=empty];
+	c79:p -> c73:p [dir=back,arrowtail=empty];
 	// java.lang.AutoCloseable
-	c76 [label=<<table title="java.lang.AutoCloseable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/AutoCloseable.html">
+	c78 [label=<<table title="java.lang.AutoCloseable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/AutoCloseable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> AutoCloseable </td></tr>
@@ -1753,7 +1843,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/AutoCloseable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.util.TimerTask
-	c72 [label=<<table title="java.util.TimerTask" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TimerTask.html">
+	c74 [label=<<table title="java.util.TimerTask" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TimerTask.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> TimerTask </font></td></tr>
 		</table></td></tr>
@@ -1775,13 +1865,13 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TimerTask.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// Structure
-	c77[label=<<table title="Structure" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//Structure.html">
+	c79[label=<<table title="Structure" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//Structure.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Structure </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.util.Properties
-	c75 [label=<<table title="java.util.Properties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html">
+	c77 [label=<<table title="java.util.Properties" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Properties </td></tr>
 		</table></td></tr>
@@ -1819,7 +1909,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.lang.RuntimeException
-	c74 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html">
+	c76 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RuntimeException </td></tr>
 		</table></td></tr>
@@ -1835,7 +1925,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// java.io.Closeable
-	c73 [label=<<table title="java.io.Closeable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Closeable.html">
+	c75 [label=<<table title="java.io.Closeable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Closeable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Closeable </td></tr>

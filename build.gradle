@@ -55,7 +55,7 @@ dependencies {
     compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
     compile("net.java.dev.jna:jna:4.5.2")
 
-    compile("ch.qos.logback:logback-classic:1.2.3")
+    testCompile("ch.qos.logback:logback-classic:1.2.3")
 
     testCompile("commons-io:commons-io:2.5")
 
@@ -94,7 +94,7 @@ jacocoTestCoverageVerification {
         rule {
             limit {
                 //minimum = 0.75 // implement more tests
-                minimum = 0.35
+                minimum = 0.5
             }
         }
     }
