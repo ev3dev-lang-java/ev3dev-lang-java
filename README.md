@@ -38,14 +38,16 @@ If you need to use any Raspberry Pi Boards, I recommend to use the latest stable
 
 Using the same `Java` objects, it is possible to deploy the software for Robots on EV3 Brick, Raspberry Pi 3 with BrickPi 3 & PiStorms.
 
-| # | Element  | LEGO                                                                                     | Raspberry Pi 3 Model B+          |
-|---|----------|------------------------------------------------------------------------------------------|----------------------------------|
-| 1 | Hardware | EV3 Brick                                                                                | BrickPi+  BrickPi3 PiStorms      |
-| 2 | SoC      | Sitara Processor AM1808                                                                  | Broadcom BCM2837 RISC de 64 bits |
-| 3 | CPU      | ARM9 300MHz                                                                              | 4× ARM Cortex-A53, 1.4GHz        |
-| 4 | RAM      | 16KB of Instruction Cache,  16KB of Data Cache,  8KB of RAM (Vector Table),  64KB of ROM | 1GB LPDDR2 (900 MHz)             |
-| 5 | USB      | 1x                                                                                       | 4x                               |
-| 6 | Year     | 2010                                                                                     | 2018                             |
+| # | Element  | EV3 P-Brick                                | Raspberry Pi 3 Model B+            |
+|---|----------|--------------------------------------------|------------------------------------|
+| 1 | Hardware | EV3 Brick                                  | BrickPi+, BrickPi3, PiStorms       |
+| 2 | SoC      | TI Sitara AM1808                           | Broadcom BCM2837B0                 |
+| 3 | CPU      | 1× ARM926EJ-S @ 300MHz ([max 456MHz][clk]) | 4× ARM Cortex-A53 @ 1400MHz        |
+| 4 | RAM      | 64 MB LPDDR                                | 1024 MB LPDDR2 (900 MHz)           |
+| 5 | USB Host | 1× USB 1.1  (without onboard hub)          | 4× USB 2.0 (from onboard hub)      |
+| 6 | Year     | 2010                                       | 2018                               |
+
+[clk]: https://lechnology.com/2018/06/overclocking-lego-mindstorms-ev3-part-2/
 
 ## Project architecture
 
