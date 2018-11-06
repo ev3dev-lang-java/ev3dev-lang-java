@@ -1,13 +1,10 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
-import ev3dev.utils.Sysfs;
+import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
-
-import java.io.File;
 
 /**
  * <b>EV3 Gyro sensors</b><br>
@@ -46,10 +43,11 @@ public class EV3GyroSensor extends BaseSensor {
 
 	public EV3GyroSensor(final Port portName) {
 		super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
+
 		setModes(new SensorMode[] {
-				new RateMode(this.PATH_DEVICE),
-				new AngleMode(this.PATH_DEVICE),
-				new RateAndAngleMode(this.PATH_DEVICE)
+				new GenericMode(this.PATH_DEVICE, 1, "Rate"),
+				new GenericMode(this.PATH_DEVICE, 1, "Angle"),
+				new GenericMode(this.PATH_DEVICE, 2, "Angle and Rate")
 		});
 	}
 
@@ -125,80 +123,6 @@ public class EV3GyroSensor extends BaseSensor {
 		switchMode(MODE_RATE, SWITCH_DELAY);
 		// And back to 3 to prevent another reset when fetching the next sample
 		switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
-	}
-
-	private class RateMode extends EV3DevSensorMode {
-
-		private final File pathDevice;
-
-		public RateMode(final File pathDevice) {
-			this.pathDevice = pathDevice;
-		}
-
-		@Override
-		public int sampleSize() {
-			return 1;
-		}
-
-		@Override
-		public void fetchSample(float[] sample, int offset) {
-			sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-		}
-
-		@Override
-		public String getName() {
-			return "Rate";
-		}
-
-	}
-
-	private class AngleMode extends EV3DevSensorMode {
-
-		private final File pathDevice;
-
-		public AngleMode(final File pathDevice) {
-			this.pathDevice = pathDevice;
-		}
-
-		@Override
-		public int sampleSize() {
-		  return 1;
-		}
-
-		@Override
-		public void fetchSample(float[] sample, int offset) {
-			sample[offset] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-		}
-
-		@Override
-		public String getName() {
-		  return "Angle";
-		}
-	}
-
-	private class RateAndAngleMode extends EV3DevSensorMode {
-
-		private final File pathDevice;
-
-		public RateAndAngleMode(final File pathDevice) {
-			this.pathDevice = pathDevice;
-		}
-
-		@Override
-		public int sampleSize() {
-			return 2;
-		}
-
-		@Override
-		public void fetchSample(float[] sample, int offset) {
-			sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-			sample[offset++] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-		}
-
-		@Override
-		public String getName() {
-			return "Angle and Rate";
-		}
 	}
 
 }

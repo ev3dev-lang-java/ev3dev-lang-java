@@ -62,7 +62,7 @@ task dockerTest(type: Exec) {
     group = "verification"
     group = "docker"
     workingDir project.projectDir
-    commandLine 'docker', 'run', dockerName , "./gradlew", "test"
+    commandLine 'docker', 'run', dockerName , "./gradlew", "test", "--debug"
 }
 
 dockerTest.dependsOn dockerBuild

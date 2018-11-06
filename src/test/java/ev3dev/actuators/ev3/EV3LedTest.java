@@ -1,6 +1,5 @@
 package ev3dev.actuators.ev3;
 
-import ev3dev.actuators.Sound;
 import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.actuators.FakeLed;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 public class EV3LedTest {
 
@@ -25,9 +23,9 @@ public class EV3LedTest {
 
         //Reset the singleton
         //https://stackoverflow.com/questions/8256989/singleton-and-unit-testing
-        Field instance = Sound.class.getDeclaredField("instance");
-        instance.setAccessible(true);
-        instance.set(null, null);
+        //Field instance = Sound.class.getDeclaredField("instance");
+        //instance.setAccessible(true);
+        //instance.set(null, null);
 
         FakeBattery.resetEV3DevInfrastructure();
 

@@ -1,13 +1,10 @@
 package ev3dev.sensors.mindsensors;
 
 import ev3dev.sensors.BaseSensor;
-import ev3dev.sensors.EV3DevSensorMode;
+import ev3dev.sensors.GenericMode;
 import ev3dev.utils.Shell;
-import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
-
-import java.io.File;
 
 /**
  * <b>Mindsensors AbsoluteIMU</b><br>
@@ -125,21 +122,18 @@ public class AbsoluteIMU extends BaseSensor {
     //I2C Register
     public static final int GYRO_FILTER = 0x5a;
 
-    private void initModes() {
-        setModes(
-                new SensorMode[]{
-                        new AbsoluteIMU.AccelerometerMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.MagnetometerMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.GyroMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.CompassMode(this.PATH_DEVICE),
-                        new AbsoluteIMU.TiltMode(this.PATH_DEVICE),
-                });
-        setRange(LOW);
-    }
 
     public AbsoluteIMU(final Port portName) {
         super(portName, LEGO_I2C, MINDSENSORS_ABSOLUTEIMU);
-        this.initModes();
+
+        setModes(new SensorMode[]{
+                new GenericMode(this.PATH_DEVICE, 3, "Acceleration"),
+                new GenericMode(this.PATH_DEVICE, 3, "Magnetic"),
+                new GenericMode(this.PATH_DEVICE, 3, "Gyro"),
+                new GenericMode(this.PATH_DEVICE, 1, "Compass"),
+                new GenericMode(this.PATH_DEVICE, 3, "Tilt")});
+
+        setRange(LOW);
     }
 
     /**
@@ -158,6 +152,7 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getCompassMode() {
+        switchMode(MODE_COMPASS, SWITCH_DELAY);
         return getMode(3);
     }
 
@@ -168,6 +163,7 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getAccelerationMode() {
+        switchMode(MODE_ACCELEROMETER, SWITCH_DELAY);
         return getMode(0);
     }
 
@@ -178,14 +174,25 @@ public class AbsoluteIMU extends BaseSensor {
      * @return a SensorMode object
      */
     public SensorMode getMagneticMode() {
+        switchMode(MODE_MAGNETIC, SWITCH_DELAY);
         return getMode(1);
     }
 
+    /**
+     *
+     * @return SensorMode for reading the mode's data.
+     */
     public SensorMode getGyroMode() {
+        switchMode(MODE_GYRO, SWITCH_DELAY);
         return getMode(2);
     }
 
+    /**
+     *
+     * @return SensorMode for reading the mode's data.
+     */
     public SensorMode getTiltMode() {
+        switchMode(MODE_TILT, SWITCH_DELAY);
         return getMode(4);
     }
 
@@ -221,144 +228,6 @@ public class AbsoluteIMU extends BaseSensor {
                 throw new IllegalArgumentException("Range setting invalid");
         }
         sendCommand(cmd);
-    }
-
-    private class AccelerometerMode extends EV3DevSensorMode {
-
-        private File pathDevice = null;
-
-        public AccelerometerMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 3;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE_ACCELEROMETER, SWITCH_DELAY);
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-        }
-
-        @Override
-        public String getName() {
-            return "Acceleration";
-        }
-
-    }
-
-    private class MagnetometerMode extends EV3DevSensorMode {
-
-        private File pathDevice = null;
-
-        public MagnetometerMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 3;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE_MAGNETIC, SWITCH_DELAY);
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-        }
-
-        @Override
-        public String getName() {
-            return "Magnetic";
-        }
-
-    }
-
-    private class GyroMode extends EV3DevSensorMode {
-
-        private File pathDevice = null;
-
-        public GyroMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 3;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE_GYRO, SWITCH_DELAY);
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-        }
-
-        @Override
-        public String getName() {
-            return "Gyro";
-        }
-
-    }
-
-    private class CompassMode extends EV3DevSensorMode {
-
-        private File pathDevice = null;
-
-        public CompassMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 1;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE_COMPASS, SWITCH_DELAY);
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-        }
-
-        @Override
-        public String getName() {
-            return "Compass";
-        }
-
-    }
-
-    private class TiltMode extends EV3DevSensorMode {
-
-        private File pathDevice = null;
-
-        public TiltMode(final File pathDevice) {
-            this.pathDevice = pathDevice;
-        }
-
-        @Override
-        public int sampleSize() {
-            return 3;
-        }
-
-        @Override
-        public void fetchSample(float[] sample, int offset) {
-            switchMode(MODE_TILT, SWITCH_DELAY);
-            sample[0] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE0);
-            sample[1] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE1);
-            sample[2] = Sysfs.readFloat(this.pathDevice + "/" +  VALUE2);
-        }
-
-        @Override
-        public String getName() {
-            return "Tilt";
-        }
-
     }
 
     /**

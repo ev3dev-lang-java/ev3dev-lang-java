@@ -8,6 +8,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class EV3IRSensorTest {
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
     }
 
+    @Ignore
     @Test
     public void getSensorNameTest() throws Exception {
 
@@ -49,7 +51,7 @@ public class EV3IRSensorTest {
 
         EV3IRSensor irSensor = new EV3IRSensor(SensorPort.S1);
 
-        final List<String> expectedModes = Arrays.asList("Distance", "Seek");
+        final List<String> expectedModes = Arrays.asList("Distance", "Seek", "Remote");
         final List<String> modes  = irSensor.getAvailableModes();
 
         assertThat(modes, Matchers.is(expectedModes));

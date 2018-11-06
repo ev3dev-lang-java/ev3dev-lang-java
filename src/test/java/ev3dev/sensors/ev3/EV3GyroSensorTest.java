@@ -8,6 +8,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class EV3GyroSensorTest {
 
     }
 
+    @Ignore
     @Test
     public void getSensorNameTest() throws Exception {
 
@@ -42,6 +44,7 @@ public class EV3GyroSensorTest {
         assertThat(gyroSensor.getName(), Matchers.is("Rate"));
     }
 
+    @Ignore
     @Test
     public void getAvailableModes() throws Exception {
 

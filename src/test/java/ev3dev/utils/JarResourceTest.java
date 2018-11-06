@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 import java.nio.file.Paths;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 @Slf4j
@@ -21,7 +22,7 @@ public class JarResourceTest {
     @Test
     public void exportSuccessTest() throws Exception {
 
-        final String JAVA_LOGO = Brickman.JAVA_DUKE_IMAGE_NAME;
+        final String JAVA_LOGO = JarResource.JAVA_DUKE_IMAGE_NAME;
 
         final String JAVA_LOGO_EXPORTED_PATH = JarResource.export(JAVA_LOGO);
         LOGGER.info(JAVA_LOGO_EXPORTED_PATH);
@@ -33,15 +34,33 @@ public class JarResourceTest {
     @Test
     public void exportKoTest() throws Exception {
 
-        thrown.expect(RuntimeException.class);
+        thrown.expect(IllegalArgumentException.class);
 
         JarResource.export("BadPath.png");
     }
 
     @Test
+    public void readSuccessTest() throws Exception {
+
+        final String JAVA_LOGO = JarResource.JAVA_DUKE_IMAGE_NAME;
+
+        byte[] data = JarResource.read(JAVA_LOGO);
+
+        assertThat(data.length, greaterThan(0));
+    }
+
+    @Test
+    public void readKoTest() throws Exception {
+
+        thrown.expect(IllegalArgumentException.class);
+
+        JarResource.read("BadPath.png");
+    }
+
+    @Test
     public void deleteSuccessTest() throws Exception {
 
-        final String JAVA_LOGO = Brickman.JAVA_DUKE_IMAGE_NAME;
+        final String JAVA_LOGO = JarResource.JAVA_DUKE_IMAGE_NAME;
 
         final String JAVA_LOGO_EXPORTED_PATH = JarResource.export(JAVA_LOGO);
         LOGGER.info(JAVA_LOGO_EXPORTED_PATH);

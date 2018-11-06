@@ -1,9 +1,11 @@
 package ev3dev.sensors;
 
+import ev3dev.hardware.EV3DevPropertyLoader;
 import lejos.hardware.Key;
 import lejos.hardware.KeyListener;
 import lejos.hardware.Keys;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
  */
 public class EV3Key implements Key {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EV3Key.class);
+    private static final Logger log = LoggerFactory.getLogger(EV3Key.class);
 
     public static final int BUTTON_UP        = 0x67;
     public static final int BUTTON_DOWN      = 0x6c;
@@ -38,7 +40,6 @@ public class EV3Key implements Key {
     static final byte STATE_KEY_UP   = 0;
 
     // to look at the raw values, use: $ hexdump -e '16/1 "%02x " "\n"' < /dev/input/by-path/platform-gpio-keys.0-event
-    private static final String SYSTEM_EVENT_PATH = "/dev/input/by-path/platform-gpio_keys-event";
 
     private static final int EVENT_BUFFER_LEN = 16;
     private static final int KEY_ID_INDEX     = 10;   // one of the BUTTON_* values
@@ -57,6 +58,11 @@ public class EV3Key implements Key {
     static {
         keyEventReader = new Thread(() -> {
             final byte[] event = new byte[EVENT_BUFFER_LEN];
+
+            final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
+            final Properties ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
+            final String SYSTEM_EVENT_PATH = ev3DevProperties.getProperty("ev3.key");
+
             try (final DataInputStream in = new DataInputStream(new FileInputStream(SYSTEM_EVENT_PATH))) {
                 while (true) {
                     // reading the event
@@ -280,8 +286,8 @@ public class EV3Key implements Key {
     // package-private such that it's VisibleForTesting
     static void processKeyEvent(final byte keyId, final byte keyState) {
         final KeyType keyType = KeyType.of(keyId);
-        if (log.isDebugEnabled()) {
-            log.debug("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
+        if (log.isTraceEnabled()) {
+            log.trace("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
         }
 
         if (keyState == STATE_KEY_UP) {
