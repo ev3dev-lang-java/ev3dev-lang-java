@@ -57,9 +57,9 @@ The project has been designed with the following solution in mind:
 |---|------------------|--------------------------------------------|-------------------------|
 | 1 | Platforms        | EV3 BrickPi BrickPi3 PiStorms              | EV3                     |
 | 2 | OS               | Debian Jessie                              | Debian Stretch          |
-| 3 | JVM              | Oracle JRE 8                               | OpenJDK JRI 10          |
+| 3 | JVM              | OpenJDK 11                               | OpenJDK JRI 11 / 12 ea          |
 | 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-ev3 4.4.47-19-ev3dev-rpi2 | 4.9.58-ev3dev-1.6.0-ev3 |
-| 5 | ev3dev-lang-java | 0.7.0                                      | 2.3.0                   |
+| 5 | ev3dev-lang-java | 0.7.0                                      | 2.4.0                   |
 
 **Note:** At the moment, the whole solution is scalable until the next `LEGO Mindstorms` product estimated 
 for next January of 2020. 
@@ -68,7 +68,7 @@ for next January of 2020.
 
 **Java features**
 
-* OpenJDK Java 10 support for EV3 Brick, Brickpi+/PiStorms + Raspberry Pi 3
+* OpenJDK Java 11/12ea support for EV3 Brick, Brickpi+/PiStorms + Raspberry Pi 3
 * Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Logging support based on [SLF4J](https://www.slf4j.org/)
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
@@ -142,10 +142,6 @@ https://github.com/ev3dev-lang-java/examples
 ## UML Design
 
 ![ScreenShot](https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/develop/docs/uml/graph.png)
-
-**Known issues:**
-
-- https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues/121
 
 ## References:
 
