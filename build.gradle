@@ -35,7 +35,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = '2.4.8-SNAPSHOT'
+version = '2.4.10-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -151,6 +151,17 @@ configure(allprojects) { project ->
     ]
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+//TODO Review failing classes in the next release
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
@@ -159,6 +170,12 @@ publishing {
             version = "${version}"
 
             from components.java
+            artifact (sourcesJar) {
+                classifier = 'sources'
+            }
+            //artifact (javadocJar) {
+            //    classifier = 'javadoc'
+            //}
         }
     }
 }
