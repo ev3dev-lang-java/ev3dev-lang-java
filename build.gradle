@@ -35,7 +35,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = '2.4.10-SNAPSHOT'
+version = '2.4.11-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -56,7 +56,7 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:1.16.20")
 
     compile("org.slf4j:slf4j-api:1.7.25")
-    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
+    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.2")
     compile("net.java.dev.jna:jna:4.5.2")
 
     testCompile("ch.qos.logback:logback-classic:1.2.3")
