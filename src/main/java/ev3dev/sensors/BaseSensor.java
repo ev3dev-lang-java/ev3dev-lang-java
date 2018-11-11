@@ -5,27 +5,26 @@ import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.hardware.sensor.SensorModes;
 import lejos.utility.Delay;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+@Slf4j
 public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
-    protected static final int SWITCH_DELAY = 400;
+    public static final int SWITCH_DELAY = 400;
+    private ArrayList<String> modeList;
+    protected int currentMode = 0;
+    protected SensorMode[] modes;
 
-    public BaseSensor(final Port sensorPort, final String mode, final String device){
+    public BaseSensor(final Port sensorPort, final String mode, final String device) {
         super(sensorPort, mode, device);
     }
 
-    public BaseSensor(final Port sensorPort, final String mode){
+    public BaseSensor(final Port sensorPort, final String mode) {
         super(sensorPort, mode);
     }
-
-	protected int currentMode = 0;
-	protected String currentModeS = "";
-    protected SensorMode[] modes;
-    ArrayList<String> modeList;
 
     /**
      * Define the set of modes to be made available for this sensors.
@@ -41,122 +40,164 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     public ArrayList<String> getAvailableModes() {
         if (modeList == null) {
             modeList = new ArrayList<>(modes.length);
-            if (modes != null)
-                for(SensorMode m : modes) {
+            if (modes != null) {
+                for (SensorMode m : modes) {
                     modeList.add(m.getName());
                 }
+            }
         }
         return modeList;
     }
 
-    //TODO: Review interface
+
+    /**
+     * Get a SensorMode associated with a mode index.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from this SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public SensorMode getMode(int mode) {
-        if (mode < 0)
+        if (modeInvalid(mode))
             throw new IllegalArgumentException("Invalid mode " + mode);
-        if (modes == null || mode >= modes.length)
-        	throw new IllegalArgumentException("Invalid mode " + mode);            //return null;
         return modes[mode];
     }
 
 
+    /**
+     * Get a SensorMode associated with a mode name.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from this SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public SensorMode getMode(String modeName) {
-        // TODO: I'm sure there is a better way to do this, but it is late!
-        int i = 0;
-        for(String s : getAvailableModes()) {
-        	System.out.println(modeName + " " + s);
-            if (s.equals(modeName))
-                return modes[i];
-            i++;
+        int index = getIndex(modeName);
+        if (index != -1) {
+            return modes[index];
+        } else {
+            throw new IllegalArgumentException("No such mode " + modeName);
         }
-        throw new IllegalArgumentException("No such mode " + modeName);
     }
-    
-    private boolean isValid(int mode) {
-      if (mode < 0 || modes == null || mode >= modes.length) return false;
-      return true;
+
+    private boolean modeInvalid(int mode) {
+        return modes == null || mode < 0 || mode >= modes.length;
     }
-    
+
     private int getIndex(String modeName) {
-      int i = 0;
-      for(String s : getAvailableModes()) {
-          if (s.equals(modeName))
-              return i;
-          i++;
-      }
-      return -1;
+        return getAvailableModes().indexOf(modeName);
     }
-    
 
     public String getName() {
-      return modes[currentMode].getName();
+        return modes[currentMode].getName();
     }
 
     public int sampleSize() {
-      return modes[currentMode].sampleSize();
+        return modes[currentMode].sampleSize();
     }
 
+    /**
+     * Set the current SensorMode index.
+     *
+     * <p><b>WARNING:</b> this function works properly only when
+     * the sensor is already in the appropriate mode. This means
+     * that the returned reading will be valid only when
+     * you previously activated the "current mode" via a call
+     * to get*Mode() or switchMode().
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     *
+     * @param sample The array to store the sample in.
+     * @param offset The elements of the sample are stored in the array starting at the offset position.
+     */
     public void fetchSample(float[] sample, int offset) {
-      modes[currentMode].fetchSample(sample, offset);
+        modes[currentMode].fetchSample(sample, offset);
     }
 
-
+    /**
+     * Set the current SensorMode index.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from the"current" SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void setCurrentMode(int mode) {
-      if (!isValid(mode)) {
-        throw new IllegalArgumentException("Invalid mode " + mode);
-      }
-      else {
-        currentMode = mode;
-      }
+        if (modeInvalid(mode)) {
+            throw new IllegalArgumentException("Invalid mode " + mode);
+        } else {
+            currentMode = mode;
+        }
     }
 
 
+    public int getCurrentMode() {
+        return currentMode;
+    }
+
+    /**
+     * Set the current SensorMode name.
+     *
+     * <p><b>WARNING:</b> This function <b>does not</b>
+     * switch the sensor to the correct mode. Unless the sensor is
+     * switched to the correct mode, the reads from the"current" SensorMode
+     * will be invalid.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     */
     public void setCurrentMode(String modeName) {
         int mode = getIndex(modeName);
-        if (mode==-1) {
+        if (mode == -1) {
             throw new IllegalArgumentException("Invalid mode " + modeName);
         } else {
             currentMode = mode;
         }
     }
 
-    public int getCurrentMode() {
-      return currentMode;
-    }
-
-
     public int getModeCount() {
-      return modes.length;
+        return modes.length;
     }
 
-    //TODO Remove this method
     /**
-     * Switch to the selected mode (if not already in that mode) and delay for the
-     * specified period to allow the sensors to settle in the new mode. <br>
-     * A mode of -1 resets the sensors.
-     * TODO: There really should be a better way to work out when the switch is
-     * complete, if you don't wait though you end up reading data from the previous
-     * mode.
-     * @param newMode The mode to switch to.
-     * @param switchDelay Time in mS to delay after the switch.
+     * Read current sensor mode from the kernel.
+     *
+     * @return Sensor mode identifier.
      */
-    protected void switchMode(int newMode, long switchDelay) {
-        if (currentMode != newMode) {
-        	if (newMode == -1)
-                //ports.resetSensor();
-            //else if (!ports.setMode(newMode))
-                throw new IllegalArgumentException("Invalid sensors mode");
-            currentMode = newMode;
-            Delay.msDelay(switchDelay);
-        }
-
+    protected String getSystemMode() {
+        return this.getStringAttribute(SENSOR_MODE);
     }
 
-    protected void switchMode(String newMode, long switchDelay) {
-        if (!Objects.equals(currentModeS, newMode)) {
-        	this.setStringAttribute(SENSOR_MODE, newMode);
-            currentModeS = newMode;
+    /**
+     * Write requested sensor mode to the kernel.
+     *
+     * @param mode Sensor mode identifier.
+     */
+    private void setSystemMode(String mode) {
+        this.setStringAttribute(SENSOR_MODE, mode);
+    }
+
+    /**
+     * Switch the sensor to the specified mode, if necessary.
+     *
+     * <p>Note: the mode switch will make future reads from
+     * SensorModes for other modes invalid. On the other hand, it will
+     * make reads valid for the SensorMode associated with the mode the
+     * sensor is switching to.
+     * See {@link GenericMode#fetchSample(float[], int)}</p>
+     *
+     * @param newMode Identifier of the sensor mode (not its name).
+     * @param switchDelay Delay until the sensor starts sending new data.
+     */
+    public void switchMode(String newMode, long switchDelay) {
+        String oldMode = getSystemMode();
+
+        if (!Objects.equals(oldMode, newMode)) {
+            setSystemMode(newMode);
             Delay.msDelay(switchDelay);
         }
     }
-    
+
 }

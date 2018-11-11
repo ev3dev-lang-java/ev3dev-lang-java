@@ -25,8 +25,8 @@ public abstract class EV3DevDevice {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevDevice.class);
 
-    protected static final Properties ev3DevProperties = EV3DevPropertyLoader.getEV3DevProperties();
-    protected static final EV3DevPlatform CURRENT_PLATFORM = EV3DevPlatforms.getPlatform();
+    protected final Properties ev3DevProperties;
+    protected final EV3DevPlatform CURRENT_PLATFORM;
 
     protected static final String LEGO_PORT = "lego-port";
     protected static final String ADDRESS = "address";
@@ -35,6 +35,14 @@ public abstract class EV3DevDevice {
     protected static final String DEVICE = "set_device";
 
     protected File PATH_DEVICE = null;
+
+    public EV3DevDevice() {
+
+        final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
+        ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
+        final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
+        CURRENT_PLATFORM = ev3DevPlatforms.getPlatform();
+    }
 
     //TODO Rename method to detect
     /**
@@ -117,11 +125,8 @@ public abstract class EV3DevDevice {
      * @param attribute attribute
      * @param value value
      */
-    protected void setIntegerAttribute(final String attribute, final int value){
-        final boolean result = Sysfs.writeInteger(this.PATH_DEVICE + "/" +  attribute, value);
-        if(!result){
-            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value " + value);
-        }
+    protected void setIntegerAttribute(final String attribute, final int value) {
+        setStringAttribute(attribute, Integer.toString(value));
     }
 	
 }

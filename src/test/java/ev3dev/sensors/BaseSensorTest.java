@@ -219,7 +219,7 @@ public class BaseSensorTest {
 
     //Sensor Mode created for the tests
 
-    private class ModeTestMode extends EV3DevSensorMode {
+    private class ModeTestMode implements SensorMode {
 
         private static final String MODE = "TEST-MODE";
 

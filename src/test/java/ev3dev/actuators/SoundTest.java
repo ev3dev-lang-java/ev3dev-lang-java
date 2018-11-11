@@ -16,6 +16,9 @@ import static org.junit.Assert.assertThat;
 
 public class SoundTest {
 
+    private static final String defaultSound = "nod_low_power.wav";
+    private static final String nullSound = "myUnknownSong.wav";
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -106,8 +109,6 @@ public class SoundTest {
 
         Sound sound = Sound.getInstance();
         sound.playSample(new File(result));
-
-        JarResource.delete(result);
     }
 
     @Ignore("It is not running on Travis CI")
@@ -126,8 +127,6 @@ public class SoundTest {
         sound.playSample(new File(result));
 
         assertThat(sound.getVolume(), is(50));
-
-        JarResource.delete(result);
     }
 
     @Test
@@ -135,29 +134,22 @@ public class SoundTest {
 
         thrown.expect(RuntimeException.class);
 
-        String filePath = "myUnknownSong.wav";
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
-        sound.playSample(new File(filePath));
+        sound.playSample(new File(nullSound));
     }
 
     @Ignore("It is not running on Travis CI")
     @Test
     public void playSampleWitVolume() throws Exception {
 
-        String filePath = "nod_low_power.wav";
-        String result = JarResource.export(filePath);
-
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         Sound sound = Sound.getInstance();
-        sound.playSample(new File(result), 40);
+        sound.playSample(new File(nullSound), 40);
 
         assertThat(sound.getVolume(), is(40));
-
-        JarResource.delete(result);
     }
 
     @Test

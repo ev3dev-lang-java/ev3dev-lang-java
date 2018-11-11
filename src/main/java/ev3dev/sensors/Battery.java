@@ -6,29 +6,30 @@ import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.Power;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * The class Battery interacts with EV3Dev to get information about battery used. 
- * 
+ * The class Battery interacts with EV3Dev to get information about battery used.
+ *
  * @see <a href="https://www.kernel.org/doc/Documentation/power/power_supply_class.txt">https://www.kernel.org/doc/Documentation/power/power_supply_class.txt</a>
  * @see <a href="https://github.com/ev3dev/ev3dev-lang/blob/develop/wrapper-specification.md#direct-attribute-mappings-5">https://github.com/ev3dev/ev3dev-lang/blob/develop/wrapper-specification.md#direct-attribute-mappings-5</a>
- * 
+ *
  * @author Juan Antonio Breña Moral
  *
  */
 public class Battery extends EV3DevDevice implements Power {
 
-    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Battery.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Battery.class);
 
-    public static final String BATTERY =  "power_supply";
-    public static final String BATTERY_EV3 =  ev3DevProperties.getProperty("BATTERY_EV3");;
-    public static final String BATTERY_PISTORMS =  "pistorms-battery";
-    public static final String BATTERY_BRICKPI =  "brickpi-battery";
-    public static final String BATTERY_BRICKPI3 =  "brickpi3-battery";
+    private final String BATTERY;
+    private final String BATTERY_EV3;
+    private final String BATTERY_PISTORMS;
+    private final String BATTERY_BRICKPI;
+    private final String BATTERY_BRICKPI3;
 
-    private static String BATTERY_PATH;
-    public static final String VOLTAGE = "voltage_now";
-    public static final String CURRENT = "current_now";
+    private String BATTERY_PATH;
+    private final String VOLTAGE = "voltage_now";
+    private final String CURRENT = "current_now";
 
     private String BATTERY_PATH_LOCAL = "";
 
@@ -43,11 +44,14 @@ public class Battery extends EV3DevDevice implements Power {
 
     // Prevent duplicate objects
     private Battery() {
-        init();
-    }
 
-    private void init(){
         LOGGER.debug("Init sensor");
+
+        BATTERY = ev3DevProperties.getProperty("battery");
+        BATTERY_EV3 =  ev3DevProperties.getProperty("ev3.battery");
+        BATTERY_PISTORMS =  ev3DevProperties.getProperty("pistorms.battery");
+        BATTERY_BRICKPI = ev3DevProperties.getProperty("brickpi.battery");
+        BATTERY_BRICKPI3 =  ev3DevProperties.getProperty("brickpi3.battery");
 
         //TODO Create separator variable for the whole project
         BATTERY_PATH = EV3DevFileSystem.getRootPath() + "/" + BATTERY;
@@ -72,8 +76,7 @@ public class Battery extends EV3DevDevice implements Power {
 	 * @return voltage
 	 */
 	public float getVoltage() {
-	    LOGGER.debug(Sysfs.getElements(BATTERY_PATH_LOCAL).toString());
-		return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000000;
+	    return Sysfs.readFloat(BATTERY_PATH_LOCAL + "/" +  VOLTAGE) / 1000000;
 	}
 
 	//TODO Review output

@@ -1,12 +1,41 @@
 //Gradle file library ev3dev-lang-java
 //Author: Juan Antonio Breña Moral
 
-version = '2.3.0'
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+        classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
+        classpath 'net.java.dev.jna:jna:4.5.2'
+    }
+}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: "jacoco"
+//Deploy on Brick
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
+    }
+}
+
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    id "jacoco"
+    id 'checkstyle'
+    id 'maven-publish'
+}
+
+version = '2.4.12'
 
 repositories {
     jcenter()
@@ -14,26 +43,31 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+lombok {
+    version = '1.18.2'
+    sha256 = ""
+}
+
 dependencies {
-    compile("org.slf4j:slf4j-api:1.7.25")
-    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.1")
+    checkstyle 'com.puppycrawl.tools:checkstyle:8.2'
 
     annotationProcessor("org.projectlombok:lombok:1.16.20")
-    testCompile("org.projectlombok:lombok:1.16.20")
+    compileOnly("org.projectlombok:lombok:1.16.20")
+    testCompileOnly("org.projectlombok:lombok:1.16.20")
+
+    compile("org.slf4j:slf4j-api:1.7.25")
+    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.2")
+    compile("net.java.dev.jna:jna:4.5.2")
 
     testCompile("ch.qos.logback:logback-classic:1.2.3")
 
     testCompile("commons-io:commons-io:2.5")
-    
+
     testCompile("junit:junit:4.12")
     testCompile("org.hamcrest:hamcrest-all:1.3")
 }
 
-//Wrapper
-task wrapper(type: Wrapper) {
-    description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.7'
-}
+compileJava.options.encoding = 'UTF-8'
 
 //Compile
 compileJava {
@@ -41,8 +75,13 @@ compileJava {
     targetCompatibility = 1.8
 }
 
+test.testLogging {
+    exceptionFormat "full"
+}
+
+//Coverage
 jacoco {
-    toolVersion = "0.8.1"
+    toolVersion = "0.8.2"
     reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
@@ -58,7 +97,8 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 0.75
+                //minimum = 0.75 // implement more tests
+                minimum = 0.5
             }
         }
     }
@@ -83,37 +123,17 @@ jar {
     }
 }
 
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
-        classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
-    }
-}
-
 //Fat Jar
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: "net.ossindex.audit"
 
-task fatJar << {
+task fatJar {
+    doLast {
 
+    }
 }
 fatJar.dependsOn shadowJar
 
-//Deploy on Brick
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
-    }
-}
 apply plugin: 'org.hidetake.ssh'
 
 apply from: './gradle/deploy.gradle'
@@ -129,4 +149,33 @@ configure(allprojects) { project ->
     compileTestJava.options*.compilerArgs = [
             "-Xlint:deprecation", "-Xlint:unchecked", "-Xlint:rawtypes",
     ]
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+//TODO Review failing classes in the next release
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.ev3dev-lang-java'
+            artifactId = 'ev3dev-lang-java'
+            version = "${version}"
+
+            from components.java
+            artifact (sourcesJar) {
+                classifier = 'sources'
+            }
+            //artifact (javadocJar) {
+            //    classifier = 'javadoc'
+            //}
+        }
+    }
 }

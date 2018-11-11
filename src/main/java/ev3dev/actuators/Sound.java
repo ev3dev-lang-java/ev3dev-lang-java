@@ -1,9 +1,11 @@
 package ev3dev.actuators;
 
 import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevDistro;
+import ev3dev.hardware.EV3DevDistros;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.utils.Shell;
+import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,8 @@ public class Sound extends EV3DevDevice {
     private static String VOLUME_PATH;
     private final static  String DISABLED_FEATURE_MESSAGE = "This feature is disabled for this platform.";
 
+    private final EV3DevDistro CURRENT_DISTRO;
+
     private static Sound instance;
 
     private int volume = 0;
@@ -63,13 +67,15 @@ public class Sound extends EV3DevDevice {
 
         EV3_SOUND_PATH  = Objects.nonNull(System.getProperty(EV3DEV_SOUND_KEY)) ? System.getProperty(EV3DEV_SOUND_KEY) : EV3_PHYSICAL_SOUND_PATH;
         VOLUME_PATH = EV3_SOUND_PATH + "/" + VOLUME;
+
+        CURRENT_DISTRO = EV3DevDistros.getInstance().getDistro();
     }
     
     /**
      * Beeps once.
      */
     public void beep() {
-        if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+        if(CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
             LOGGER.debug(CMD_BEEP);
             Shell.execute(CMD_BEEP);
             Delay.msDelay(100);
@@ -82,7 +88,7 @@ public class Sound extends EV3DevDevice {
      * Beeps twice.
      */
     public void twoBeeps() {
-        if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+        if(CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
             beep();
             beep();
         } else {
@@ -97,7 +103,7 @@ public class Sound extends EV3DevDevice {
      * @param volume The volume of the playback 100 corresponds to 100%
      */
     public void playTone(final int frequency, final int duration, final int volume) {
-        if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)){
+        if(CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
             this.setVolume(volume);
     	    this.playTone(frequency, duration);
         } else {
@@ -111,7 +117,7 @@ public class Sound extends EV3DevDevice {
      * @param duration The duration of the tone, in milliseconds.
      */
     public void playTone(final int frequency, final int duration) {
-        if(EV3DevPlatforms.getPlatform().equals(EV3DevPlatform.EV3BRICK)) {
+        if(CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
             final String cmdTone = CMD_BEEP + " -f " + frequency + " -l " + duration;
             Shell.execute(cmdTone);
         } else {
@@ -128,7 +134,6 @@ public class Sound extends EV3DevDevice {
         this.setVolume(volume);
         this.playSample(file);
     }
-
 
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
@@ -156,8 +161,14 @@ public class Sound extends EV3DevDevice {
     public void setVolume(final int volume) {
 
         this.volume = volume;
-        final String cmdVolume = "amixer set PCM,0 " + volume + "%";
-        Shell.execute(cmdVolume);
+
+        if(CURRENT_DISTRO.equals(EV3DevDistro.JESSIE)) {
+            //TODO Review to move to this.setIntegerAttribute();
+            Sysfs.writeString(VOLUME_PATH, "" + volume);
+        } else {
+            final String cmdVolume = "amixer set PCM,0 " + volume + "%";
+            Shell.execute(cmdVolume);
+        }
     }
 
     /**
@@ -165,7 +176,13 @@ public class Sound extends EV3DevDevice {
      * @return the current master volume 0-100
      */
     public int getVolume() {
-        return this.volume;
+
+        if(CURRENT_DISTRO.equals(EV3DevDistro.JESSIE)) {
+            //TODO Review to move to this.getIntegerAttribute()
+            return Sysfs.readInteger(VOLUME_PATH);
+        } else {
+            return this.volume;
+        }
     }
 
 }

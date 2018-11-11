@@ -29,7 +29,8 @@ EV3Dev-lang-java contributors (sorted alphabetically)
 
 * **[Jakub Vaněk](https://github.com/JakubVanek)**
 
-  * OpenJDK 9/10 for EV3Dev
+  * OpenJDK 9/10/11/12 for EV3Dev
+  * EV3LCD for EV3Dev-lang-java
 
 * **[Juan Antonio Breña Moral](https://github.com/jabrena)**
 
