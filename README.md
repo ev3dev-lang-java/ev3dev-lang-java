@@ -55,7 +55,7 @@ The project has been designed with the following solution in mind:
 
 | # | Layer            | Option 1                                   | Option 2                |
 |---|------------------|--------------------------------------------|-------------------------|
-| 1 | Platforms        | EV3 BrickPi BrickPi3 PiStorms              | EV3                     |
+| 1 | Platforms        | BrickPi BrickPi3 PiStorms              | EV3                     |
 | 2 | OS               | Debian Jessie                              | Debian Jessie/Stretch          |
 | 3 | JVM              | OpenJDK 11                               | OpenJDK JRI 11 / 12 ea          |
 | 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-rpi2 | 4.14.71-ev3dev-2.3.0-ev3 |
