@@ -28,11 +28,11 @@ and LeJOS with the rich local navigation stack and the remote support in the fut
 **What Debian versions are supported with this library?**
 
 The library has support for `Debian Jessie` & `Debian Stretch`. 
-In this release, we have added initial support for `Debian Stretch`, so the Brick support is limited,
-only `EV3 Brick` is supported for this Debian distro but soon you will have all Bricks supported but 
-in the other hand, you have the possibility to use OpenJDK 10 and it is amazing! 
+In this release, we have finished the support for `Debian Stretch` for EV3 and you could
+ use OpenJDK 11 or OpenJDK 12 EA and it is amazing! 
 
-If you need to use any Raspberry Pi Boards, I recommend to use the latest stable `EV3Dev` release: [Debian Jessie](http://www.ev3dev.org/downloads/)
+If you need to use any Raspberry Pi Boards, I recommend to use the stable `EV3Dev` 
+[Debian Jessie](http://www.ev3dev.org/downloads/) release.
 
 **What is the hardware platforms supported in this project?**
 
@@ -56,12 +56,12 @@ The project has been designed with the following solution in mind:
 | # | Layer            | Option 1                                   | Option 2                |
 |---|------------------|--------------------------------------------|-------------------------|
 | 1 | Platforms        | EV3 BrickPi BrickPi3 PiStorms              | EV3                     |
-| 2 | OS               | Debian Jessie                              | Debian Stretch          |
+| 2 | OS               | Debian Jessie                              | Debian Jessie/Stretch          |
 | 3 | JVM              | OpenJDK 11                               | OpenJDK JRI 11 / 12 ea          |
-| 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-ev3 4.4.47-19-ev3dev-rpi2 | 4.9.58-ev3dev-1.6.0-ev3 |
-| 5 | ev3dev-lang-java | 0.7.0                                      | 2.4.0                   |
+| 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-rpi2 | 4.14.71-ev3dev-2.3.0-ev3 |
+| 5 | ev3dev-lang-java | 0.7.0                                      | 2.4.12                   |
 
-**Note:** At the moment, the whole solution is scalable until the next `LEGO Mindstorms` product estimated 
+**Note:** At the moment, we will maintain the whole solution  until the next `LEGO Mindstorms` product estimated 
 for next January of 2020. 
 
 ## Features included in the whole project
@@ -97,6 +97,7 @@ for next January of 2020.
   
 Stable projects:
  
+- [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRI/JDK (9,10,11,12) build for EV3 
 - [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level interation with EV3Dev
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
@@ -106,8 +107,6 @@ Stable projects:
 Incubator projects:
 
 - [lejos-navigation](https://github.com/ev3dev-lang-java/lejos-navigation): LeJOS navigation stack
-- [Battery Monitor](https://github.com/ev3dev-lang-java/batteryMonitor): A battery monitor to protect your hardware against low battery levels
-- [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRE build for EV3
 - [Usb Devices](https://github.com/ev3dev-lang-java/usb-devices): A library to use Arduino, Grove Sensors, GPS, IMU, LIDAR, and more devices...
 - [ROS](https://github.com/ev3dev-lang-java/ros): A library to publish Sensor data to ROS for SLAM purposes
 
@@ -125,7 +124,7 @@ http://ev3dev-lang-java.github.io/docs/support/index.html
 
 and use this easy template project with examples to use the project in a quick way:
 
-https://github.com/ev3dev-lang-java/template_project_gradle
+https://github.com/ev3dev-lang-java/template-project-gradle
 
 ## Examples
 
@@ -135,13 +134,22 @@ https://github.com/ev3dev-lang-java/examples
 
 ## Videos
 
+- https://www.youtube.com/watch?v=6l5NqRXmz7s
 - https://www.youtube.com/watch?v=Gxew3aNH6ks
 - https://www.youtube.com/watch?v=1d9q24aNMHQ
 - https://www.youtube.com/watch?v=SIwG848ODI8
 
 ## UML Design
 
-![ScreenShot](https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/develop/docs/uml/graph.png)
+![ScreenShot](https://github.com/ev3dev-lang-java/ev3dev-lang-java/raw/master/docs/uml/graph.png)
+
+## Architecture decision record (ADR)
+
+* [Why this project was started](./docs/adr/adr-lejos-support.md)
+* [Logging support](./docs/adr/adr-logging-support.md)
+* [New Display API](./docs/adr/adr-display-api.md)
+* [Changes to leJOS sensor API](./docs/adr/adr-lejos-sensor.md)
+* [Support for newer Java versions](./docs/adr/adr-openjdk-builds.md)
 
 ## References:
 
@@ -152,4 +160,5 @@ https://github.com/ev3dev-lang-java/examples
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
 * EVEDev // Linux Kernel Drivers: http://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-jessie/
 * Dexter Forum: http://forum.dexterindustries.com/search?q=java
-
+* AdoptOpenJDK CI: https://ci.adoptopenjdk.net/view/ev3dev/
+* OpenJDK: https://openjdk.java.net/
