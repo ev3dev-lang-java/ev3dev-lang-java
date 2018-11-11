@@ -35,7 +35,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = '2.4.11-SNAPSHOT'
+version = '2.4.12-SNAPSHOT'
 
 repositories {
     jcenter()
