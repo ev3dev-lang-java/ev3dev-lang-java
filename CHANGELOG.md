@@ -4,6 +4,7 @@
 
 - Add support for BrickPi3 for EV3Dev Debian Stretch
 - Add support for BrickPi+ for EV3Dev Debian Stretch
+- Add support for Unregulated motors on BrickPi 3
 
 ## 2.4.16 2018-11-15
 

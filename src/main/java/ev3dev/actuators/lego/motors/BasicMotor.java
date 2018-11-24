@@ -9,6 +9,9 @@ import lejos.utility.Delay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /** 
  * Abstraction for basic motors operations.
  *
@@ -31,8 +34,12 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
 	public BasicMotor(final Port motorPort) {
 
-		if(!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
-			throw new RuntimeException("This device is not supported in this platform");
+		Set<EV3DevPlatform> supportedUnregulatedMotors = new HashSet<>();
+		supportedUnregulatedMotors.add(EV3DevPlatform.EV3BRICK);
+		supportedUnregulatedMotors.add(EV3DevPlatform.BRICKPI3);
+
+		if(!supportedUnregulatedMotors.contains(CURRENT_PLATFORM)) {
+			throw new RuntimeException("This device is not supported in the platform: " + CURRENT_PLATFORM);
 		}
 
 		final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
