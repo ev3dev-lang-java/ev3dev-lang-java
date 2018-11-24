@@ -1,6 +1,19 @@
 # ev3dev-lang-java changelog
 
-## 2.2.3 2018-21-04 
+## 2.5.x 2018-12-31
+
+- Add support for BrickPi3 for EV3Dev Debian Stretch
+- Add support for BrickPi+ for EV3Dev Debian Stretch
+
+## 2.4.16 2018-11-15
+
+- Add Display support for EV3Dev Debian Stretch
+- Upgrade lejos-commons to 0.7.2
+- Support for EV3Dev Debian Stretch & EV3Dev Debian Jessie with the same library
+- Support for OpenJDK 11
+- Support for OpenJDK 12 ea
+
+## 2.2.3 2018-04-21
 
 - Support for Debian Stretch
 - Switch mode refactored to increase performance
