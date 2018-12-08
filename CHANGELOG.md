@@ -2,6 +2,8 @@
 
 ## 2.5.x 2018-12-31
 
+- Add support for drawOval
+- Upgrade lejos-commons to 0.7.3
 - Add support for BrickPi3 for EV3Dev Debian Stretch
 - Add support for BrickPi+ for EV3Dev Debian Stretch
 - Add support for Unregulated motors on BrickPi 3

@@ -1,4 +1,10 @@
-# leJOS Sensor API changes (Nov 2015)
+# lejos API changelog
+
+## GraphicsLCD
+
+- Added method drawOval 08/12/2018
+
+## leJOS Sensor API changes (Nov 2015)
 
 In this project, we reimplemented most of the leJOS sensor API.
 However, there are some incompatibilities and changes to enhance
