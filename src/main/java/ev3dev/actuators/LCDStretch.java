@@ -543,4 +543,10 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
             refresh();
         }
     }
+
+    @Override
+    public void drawOval(int x, int y, int width, int height) {
+        g2d.drawOval(x, y, width, height);
+    }
+
 }

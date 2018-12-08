@@ -350,4 +350,9 @@ public class LCDJessie extends EV3DevDevice implements GraphicsLCD {
         log.debug("Feature not implemented");
         return -1;
     }
+
+    @Override
+    public void drawOval(int x, int y, int width, int height) {
+        g2d.drawOval(x, y, width, height);
+    }
 }
