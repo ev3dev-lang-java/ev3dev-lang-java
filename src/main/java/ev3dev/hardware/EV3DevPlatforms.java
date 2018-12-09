@@ -50,7 +50,11 @@ public class EV3DevPlatforms {
                 .stream()
                 .filter(e -> batteryTest(batteryDirectory, e.getPropertyNamespace()))
                 .findFirst()
-                .orElseThrow(this::throwNoPlatform);
+                .get();
+
+        if(platform == EV3DevPlatform.UNKNOWN){
+            throwNoPlatform();
+        }
 
         // handle success
         if(LOGGER.isTraceEnabled()) {
@@ -69,12 +73,12 @@ public class EV3DevPlatforms {
         return Sysfs.existPath(path.toString());
     }
 
-    private RuntimeException throwNoPlatform() {
+    private void throwNoPlatform() {
         final String OS_NAME = System.getProperty("os.name");
         final String OS_VERSION = System.getProperty("os.version");
         final String message = "Platform not supported: " + OS_NAME + " " + OS_VERSION;
         LOGGER.error(message);
-        return new RuntimeException(message);
+        throw new RuntimeException(message);
     }
 
     public EV3DevPlatform getPlatform() {
