@@ -4,8 +4,7 @@ import ev3dev.hardware.EV3DevPropertyLoader;
 import lejos.hardware.Key;
 import lejos.hardware.KeyListener;
 import lejos.hardware.Keys;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -22,9 +21,8 @@ import java.util.stream.Collectors;
  *
  * @author Anthony, Juan Antonio Brenha Moral, Jaroslav Tupy
  */
+@Slf4j
 public class EV3Key implements Key {
-
-    private static final Logger log = LoggerFactory.getLogger(EV3Key.class);
 
     public static final int BUTTON_UP        = 0x67;
     public static final int BUTTON_DOWN      = 0x6c;
@@ -77,7 +75,7 @@ public class EV3Key implements Key {
                 }
 
             } catch (final IOException e){
-                log.error("Failed to read key press: " + e.getLocalizedMessage());
+                LOGGER.error("Failed to read key press: " + e.getLocalizedMessage());
                 // TODO: something like an exponential backoff reading restart in an error case like this
             }
         });
@@ -95,7 +93,7 @@ public class EV3Key implements Key {
         ESCAPE("ESCAPE", BUTTON_ESCAPE, Keys.ID_ESCAPE),
         ALL("ALL", BUTTON_ALL, 0xff);   // the 0xff must cover all bits of individual keys above (verified in unit tests)
 
-        private static final Map<Byte, KeyType> LOOKUP = Arrays.asList(KeyType.values()).stream()
+        private static final Map<Byte, KeyType> LOOKUP = Arrays.stream(KeyType.values())
                 .collect(Collectors.toMap(KeyType::getId, (keyType) -> keyType));
 
         private final String name;
@@ -192,7 +190,7 @@ public class EV3Key implements Key {
                 try {
                     keyEventReader.wait();
                 } catch (final InterruptedException e) {
-                    log.warn("Interrupted while waiting for {} key press: {}", this.keyType.getName(), e.getLocalizedMessage());
+                    LOGGER.warn("Interrupted while waiting for {} key press: {}", this.keyType.getName(), e.getLocalizedMessage());
                 }
             }
         }
@@ -213,7 +211,7 @@ public class EV3Key implements Key {
                 try {
                     keyEventReader.wait();
                 } catch (final InterruptedException e) {
-                    log.warn("Interrupted while waiting for {} key release: {}", this.keyType.getName(), e.getLocalizedMessage());
+                    LOGGER.warn("Interrupted while waiting for {} key release: {}", this.keyType.getName(), e.getLocalizedMessage());
                 }
             }
         }
@@ -222,7 +220,7 @@ public class EV3Key implements Key {
     /**
      * Adds a listener for this key's 'pressed' and 'released' events.
      *
-     * If this is the {@link Button#ALL} key, the listener will be getting notifications for any key events.
+     * If this is the Button#ALL key, the listener will be getting notifications for any key events.
      *
      * @param keyListener
      */
@@ -286,8 +284,8 @@ public class EV3Key implements Key {
     // package-private such that it's VisibleForTesting
     static void processKeyEvent(final byte keyId, final byte keyState) {
         final KeyType keyType = KeyType.of(keyId);
-        if (log.isTraceEnabled()) {
-            log.trace("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
         }
 
         if (keyState == STATE_KEY_UP) {
@@ -297,7 +295,7 @@ public class EV3Key implements Key {
             keyBits |= keyType.bitMask;   // setting the key bit
             broadcastToListeners(keyType, KeyListener::keyPressed);
         } else {
-            log.warn("Unexpected key state: " + keyState);
+            LOGGER.warn("Unexpected key state: " + keyState);
         }
     }
 
