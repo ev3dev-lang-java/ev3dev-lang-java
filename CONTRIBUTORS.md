@@ -53,4 +53,4 @@ EV3Dev-lang-java contributors (sorted alphabetically)
 
   * LeJOS navigation stack
 
-**[Full contributors list](https://github.com/ev3dev-lang-java/ev3dev-lang-java/blob/master/CONTRIBUTORS.md).**
+**[Full contributors list](https://github.com/ev3dev-lang-java/ev3dev-lang-java/graphs/contributors).**
