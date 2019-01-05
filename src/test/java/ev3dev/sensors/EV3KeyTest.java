@@ -8,7 +8,6 @@ import org.junit.Test;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class EV3KeyTest {
 
@@ -43,10 +42,24 @@ public class EV3KeyTest {
             } else if (obj == this) {
                 return true;
             } else {
-                final Pair cmp = (Pair)obj;
+                final Pair<?, ?> cmp = (Pair<?, ?>)obj;
                 return (Objects.equals(this.left, cmp.left) &&
                         Objects.equals(this.right, cmp.right));
             }
+        }
+    }
+
+    // kind of a substitute for Guava's ImmutableList.Builder
+    private static class ImmutableListBuilder<T> {
+        private List<T> list = new ArrayList<>();
+
+        public ImmutableListBuilder<T> add(final T entry) {
+            this.list.add(entry);
+            return this;
+        }
+
+        public List<T> build() {
+            return Collections.unmodifiableList(this.list);
         }
     }
 
@@ -211,59 +224,56 @@ public class EV3KeyTest {
 
         EV3Key.processKeyEvent((byte)EV3Key.BUTTON_LEFT, EV3Key.STATE_KEY_DOWN);
         Assert.assertTrue(Button.LEFT.isDown());
-        assertWaiters(toList(
-                Pair.of(leftKeyPressAndReleaseWaiter, true),
-                Pair.of(rightKeyPressWaiter, true),
-                Pair.of(allKeyPressWaiter, false)));   // triggered right after the first (or any) key press
+        assertWaiters(new ImmutableListBuilder<Pair<TestKeyEventWaiter, Boolean>>()
+                .add(Pair.of(leftKeyPressAndReleaseWaiter, true))
+                .add(Pair.of(rightKeyPressWaiter, true))
+                .add(Pair.of(allKeyPressWaiter, false)).build());   // triggered right after the first (or any) key press
 
         EV3Key.processKeyEvent((byte)EV3Key.BUTTON_RIGHT, EV3Key.STATE_KEY_DOWN);
         Assert.assertTrue(Button.LEFT.isDown());
         Assert.assertTrue(Button.RIGHT.isDown());
-        assertWaiters(toList(
-                Pair.of(leftKeyPressAndReleaseWaiter, true),
-                Pair.of(rightKeyPressWaiter, false),   // OK, right key pressed
-                Pair.of(allKeyPressWaiter, false)));
+        assertWaiters(new ImmutableListBuilder<Pair<TestKeyEventWaiter, Boolean>>()
+                .add(Pair.of(leftKeyPressAndReleaseWaiter, true))
+                .add(Pair.of(rightKeyPressWaiter, false))   // OK, right key pressed
+                .add(Pair.of(allKeyPressWaiter, false)).build());
 
         EV3Key.processKeyEvent((byte)EV3Key.BUTTON_RIGHT, EV3Key.STATE_KEY_UP);
         Assert.assertTrue(Button.LEFT.isDown());
         Assert.assertTrue(Button.RIGHT.isUp());
-        assertWaiters(toList(   // no change
-                Pair.of(leftKeyPressAndReleaseWaiter, true),
-                Pair.of(rightKeyPressWaiter, false),
-                Pair.of(allKeyPressWaiter, false)));
+        assertWaiters(new ImmutableListBuilder<Pair<TestKeyEventWaiter, Boolean>>()     // no change
+                .add(Pair.of(leftKeyPressAndReleaseWaiter, true))
+                .add(Pair.of(rightKeyPressWaiter, false))
+                .add(Pair.of(allKeyPressWaiter, false)).build());
 
         EV3Key.processKeyEvent((byte)EV3Key.BUTTON_LEFT, EV3Key.STATE_KEY_UP);
         Assert.assertTrue(Button.LEFT.isUp());
         Assert.assertTrue(Button.RIGHT.isUp());
-        assertWaiters(toList(   // no change
-                Pair.of(leftKeyPressAndReleaseWaiter, false),   // now also the left key is up
-                Pair.of(rightKeyPressWaiter, false),
-                Pair.of(allKeyPressWaiter, false)));
+        assertWaiters(new ImmutableListBuilder<Pair<TestKeyEventWaiter, Boolean>>()
+                .add(Pair.of(leftKeyPressAndReleaseWaiter, false))   // now also the left key is up
+                .add(Pair.of(rightKeyPressWaiter, false))
+                .add(Pair.of(allKeyPressWaiter, false)).build());
 
         EV3Key.processKeyEvent((byte)EV3Key.BUTTON_ESCAPE, EV3Key.STATE_KEY_DOWN);
         Assert.assertTrue(Button.ESCAPE.isDown());
         Assert.assertTrue(new EV3Key(EV3Key.BUTTON_BACKSPACE).isDown());  // sanity check
 
-        Assert.assertEquals(toList(
-                Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.PRESSED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.RELEASED)), leftKeyListener.keyEvents);
-        Assert.assertEquals(toList(
-                Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.PRESSED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.PRESSED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.RELEASED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.RELEASED)), leftRightKeyListener.keyEvents);
-        Assert.assertEquals(toList(
-                Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.PRESSED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.PRESSED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.RELEASED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.RELEASED),
-                Pair.of(new EV3Key(EV3Key.BUTTON_ESCAPE), KeyEvent.PRESSED)), allKeyListener.keyEvents);
-    }
-
-    private static <L, R> List<Pair<L, R>> toList(final Pair<L, R>... pairs) {
-        final List<Pair<L, R>> pairsList = new ArrayList<>();
-        IntStream.range(0, pairs.length).forEach((i) -> pairsList.add(pairs[i]));
-        return pairsList;
+        Assert.assertEquals(new ImmutableListBuilder<Pair<EV3Key, KeyEvent>>()
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.PRESSED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.RELEASED))
+                .build(), leftKeyListener.keyEvents);
+        Assert.assertEquals(new ImmutableListBuilder<Pair<EV3Key, KeyEvent>>()
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.PRESSED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.PRESSED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.RELEASED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.RELEASED))
+                .build(), leftRightKeyListener.keyEvents);
+        Assert.assertEquals(new ImmutableListBuilder<Pair<EV3Key, KeyEvent>>()
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.PRESSED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.PRESSED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_RIGHT), KeyEvent.RELEASED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_LEFT), KeyEvent.RELEASED))
+                .add(Pair.of(new EV3Key(EV3Key.BUTTON_ESCAPE), KeyEvent.PRESSED))
+                .build(), allKeyListener.keyEvents);
     }
 
     private static void assertWaiters(final List<Pair<TestKeyEventWaiter, Boolean>> waiterIsAlivePairs) throws InterruptedException {
