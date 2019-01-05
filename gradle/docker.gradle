@@ -1,68 +1,18 @@
-task copySrc(type: Copy) {
-    group = "docker"
-    from "src"
-    into "build/docker/app/src"
-}
-
-task copyWrapperFiles(type: Copy) {
-    group = "docker"
-    from "gradlew"
-    from "lombok.config"
-    from "settings.gradle"
-    from "build.gradle"
-    into "build/docker/app"
-}
-
-task copyGradleFiles(type: Copy) {
-    group = "docker"
-    from "gradle/deploy.gradle"
-    from "gradle/config.gradle"
-    from "gradle/docker.gradle"
-    into "build/docker/app/gradle"
-}
-
-task copyWrapper(type: Copy){
-    group = "docker"
-    from "gradle/wrapper/gradle-wrapper.jar"
-    from "gradle/wrapper/gradle-wrapper.properties"
-    into "build/docker/app/gradle/wrapper"
-}
-
-copyGradleFiles.dependsOn copyWrapperFiles
-copyWrapper.dependsOn copyGradleFiles
-
-task copyDockerFile(type: Copy) {
-    group = "docker"
-    from "docker"
-    into "build/docker"
-}
-
-def dockerFile = project.projectDir.getAbsolutePath() + "/build/docker"
-def dockerName = project.name.toLowerCase() + ":" + version.toLowerCase()
+def baseDir = project.projectDir.getAbsolutePath()
+def dockerName = "gdt-" + project.name.toLowerCase() + ":" + version.toLowerCase()
+def dockerFile = "$baseDir/docker/Dockerfile"
 
 task dockerBuild(type: Exec) {
-    workingDir project.projectDir
-    commandLine 'docker', 'build', '-t', dockerName, dockerFile
+    group "docker"
+    description "Builds the needed docker container."
+
+    commandLine "docker", "build", "-t", "$dockerName", "-f", "$dockerFile", "$baseDir"
 }
-
-dockerBuild.dependsOn copySrc
-dockerBuild.dependsOn copyWrapper
-dockerBuild.dependsOn copyDockerFile
-
-task dockerRun(type: Exec) {
-    group = "application"
-    group = "docker"
-    workingDir project.projectDir
-    commandLine 'docker', 'run', dockerName , "./gradlew", "run"
-}
-
-dockerRun.dependsOn dockerBuild
 
 task dockerTest(type: Exec) {
-    group = "verification"
-    group = "docker"
-    workingDir project.projectDir
-    commandLine 'docker', 'run', dockerName , "./gradlew", "test", "--debug"
-}
+    group "docker"
+    description "Runs gradle 'test' task in a Docker container."
+    dependsOn "dockerBuild"
 
-dockerTest.dependsOn dockerBuild
+    commandLine "docker", "run", "--rm", "$dockerName", "./gradlew", "test"
+}
