@@ -111,7 +111,11 @@ test.finalizedBy jacocoTestCoverageVerification
 jar {
     baseName = "${rootProject.name}"
     manifest {
-        from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
+        attributes("Implementation-Title": "EV3Dev-lang-java",
+                   "Implementation-Version": version,
+                   "Implementation-Vendor": "Juan Antonio Breña Moral",
+                   "Main-Class": brick.pref.mainClass,
+                   "Class-Path": brick.getClassPath(true) )
     }
 }
 
