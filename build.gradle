@@ -1,30 +1,6 @@
 //Gradle file library ev3dev-lang-java
 //Author: Juan Antonio Breña Moral
 
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
-        classpath "gradle.plugin.net.ossindex:ossindex-gradle-plugin:0.1.1"
-        classpath 'net.java.dev.jna:jna:4.5.2'
-    }
-}
-
-//Deploy on Brick
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "org.hidetake:gradle-ssh-plugin:2.9.0"
-    }
-}
-
 plugins {
     id 'io.franzbecker.gradle-lombok' version '1.14'
     id 'java'
@@ -33,6 +9,9 @@ plugins {
     id "jacoco"
     id 'checkstyle'
     id 'maven-publish'
+    id 'com.github.ev3dev-lang-java.gradle-plugin' version '1.6.4'
+    id "net.ossindex.audit" version "0.4.5-beta"
+    id "com.github.johnrengelman.shadow" version "4.0.3"
 }
 
 version = '2.5.5'
@@ -119,13 +98,13 @@ test.finalizedBy jacocoTestCoverageVerification
 jar {
     baseName = "${rootProject.name}"
     manifest {
-        from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
+        attributes("Implementation-Title": "EV3Dev-lang-java",
+                   "Implementation-Version": version,
+                   "Implementation-Vendor": "Juan Antonio Breña Moral",
+                   "Main-Class": brick.pref.mainClass,
+                   "Class-Path": brick.getClassPath(true) )
     }
 }
-
-//Fat Jar
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: "net.ossindex.audit"
 
 task fatJar {
     doLast {
@@ -134,9 +113,8 @@ task fatJar {
 }
 fatJar.dependsOn shadowJar
 
-apply plugin: 'org.hidetake.ssh'
 
-apply from: './gradle/deploy.gradle'
+apply from: './gradle/config.gradle'
 apply from: './gradle/docker.gradle'
 
 /* global settings */

@@ -1,8 +1,11 @@
 
-remotes {
-    ev3dev {
-        host = '192.168.43.2'
-        user = 'robot'
-        password = 'maker'
-    }
+// Project configuration
+brick.pref {
+    // Main class //
+    mainClass = ""
+
+    // Brick connection parameters //
+    sshHost = "10.0.0.89"
+    sshUser = "robot"
+    sshPassword = "maker"
 }
