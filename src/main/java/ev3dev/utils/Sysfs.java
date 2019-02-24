@@ -36,17 +36,12 @@ public class Sysfs {
 			log.trace("echo " + value + " > " + filePath);
 		try {
 			final File file = new File(filePath);
-			if(file.canWrite()) {
 				//TODO Review if it possible to improve
 				PrintWriter out = new PrintWriter(file);
 				out.println(value);
 				out.flush();
 				out.close();
 			//TODO Review
-			}else {
-				log.error("File: '{}' without write permissions.", filePath);
-				return false;
-			}
 		} catch (IOException e) {
             log.error(e.getLocalizedMessage(), e);
 			return false;
