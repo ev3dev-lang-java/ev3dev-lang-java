@@ -69,7 +69,8 @@ public class Sysfs {
 		try {
 			final Path path = Paths.get(filePath);
 			if(existFile(path) && Files.isReadable(path)){
-				final String result = Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+				final List<String> lines = Files.readAllLines(path, Charset.forName("UTF-8"));
+				final String result = lines.size() == 0 ? "" : lines.get(0);
 				if(log.isTraceEnabled())
 					log.trace("value: {}", result);
 				return result;
