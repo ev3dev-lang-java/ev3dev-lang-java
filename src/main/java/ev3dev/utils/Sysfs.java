@@ -59,7 +59,8 @@ public class Sysfs {
 	public static String readString(final String filePath) {
 		log.trace("cat {}", filePath);
 		try {
-			final String result = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8).get(0);
+			final List<String> lines = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8);
+			final String result = lines.size() == 0 ? "" : lines.get(0);
 			log.trace("value: {}", result);
 			return result;
 		} catch (IOException e) {
