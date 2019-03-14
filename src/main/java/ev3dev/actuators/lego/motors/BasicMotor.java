@@ -48,7 +48,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
         log.debug("Detecting motor on port: {}", port);
         this.detect(LEGO_PORT, port);
         log.debug("Setting port in mode: {}", DC_MOTOR);
-        this.setStringAttribute(MODE, DC_MOTOR);
+        this.setStringAttributeIfDifferent(MODE, DC_MOTOR);
         Delay.msDelay(500);
 		this.detect(DC_MOTOR, port);
 	}
