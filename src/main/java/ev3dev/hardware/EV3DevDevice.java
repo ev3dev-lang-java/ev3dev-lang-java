@@ -113,10 +113,7 @@ public abstract class EV3DevDevice {
      * @param value value
      */
     protected void setStringAttribute(final String attribute, final String value){
-        final boolean result = Sysfs.writeString(this.PATH_DEVICE + "/" +  attribute, value);
-        if(!result){
-            throw new RuntimeException("Operation not executed: " + this.PATH_DEVICE + "/" +  attribute + " with value " + value);
-        }
+        Sysfs.writeString(this.PATH_DEVICE + "/" +  attribute, value);
     }
 
     /**

@@ -2,10 +2,10 @@ package ev3dev.utils;
 
 import org.slf4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,28 +29,23 @@ public class Sysfs {
 	 *
 	 * @param filePath File path
 	 * @param value value to write
-	 * @return A boolean value if the operation was written or not.
 	 */
-	public static boolean writeString(final String filePath, final String value) {
-		if(log.isTraceEnabled())
-			log.trace("echo " + value + " > " + filePath);
-		try {
-			final File file = new File(filePath);
-				//TODO Review if it possible to improve
-				PrintWriter out = new PrintWriter(file);
-				out.println(value);
-				out.flush();
-				out.close();
-			//TODO Review
+	public static void writeString(final String filePath, final String value) {
+		log.trace("echo {} > {}", value, filePath);
+
+		final ByteBuffer data = StandardCharsets.UTF_8.encode(value);
+		try (final FileOutputStream fd = new FileOutputStream(filePath, false)) {
+			fd.write(data.array());
+
 		} catch (IOException e) {
             log.error(e.getLocalizedMessage(), e);
-			return false;
+            String msg = String.format("Sysfs write failed: '%s' with value '%s'", filePath, value);
+			throw new RuntimeException(msg, e);
 		}
-		return true;
 	}
 
-	public static boolean writeInteger(final String filePath, final int value) {
-		return writeString(filePath, new StringBuilder().append(value).toString());
+	public static void writeInteger(final String filePath, final int value) {
+		writeString(filePath, Integer.toString(value));
 	}
 
 	/**
@@ -59,20 +54,15 @@ public class Sysfs {
 	 * @return value from attribute
 	 */
 	public static String readString(final String filePath) {
-		if(log.isTraceEnabled())
-			log.trace("cat " + filePath);
+		log.trace("cat {}", filePath);
 		try {
-			final Path path = Paths.get(filePath);
-			if(existFile(path) && Files.isReadable(path)){
-				final String result = Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
-				if(log.isTraceEnabled())
-					log.trace("value: {}", result);
-				return result;
-			}
-			throw new IOException("Problem reading path: " + filePath);
+			final String result = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8).get(0);
+			log.trace("value: {}", result);
+			return result;
 		} catch (IOException e) {
 			log.error(e.getLocalizedMessage(), e);
-			throw new RuntimeException("Problem reading path: " + filePath, e);
+			String msg = String.format("Sysfs read failed: '%s'", filePath);
+			throw new RuntimeException(msg, e);
 		}
 	}
 
@@ -96,11 +86,14 @@ public class Sysfs {
 	 */
 	public static List<File> getElements(final String filePath) {
 		final File f = new File(filePath);
-		if(existPath(filePath) && (f.listFiles().length > 0)) {
-            return new ArrayList<>(Arrays.asList(f.listFiles()));
-		}else {
-			throw new RuntimeException("The path doesn't exist: " + filePath);
+		if (!existPath(filePath)) {
+			throw new RuntimeException("Not a directory: " + filePath);
 		}
+		final File[] list = f.listFiles();
+		if (list == null){
+			throw new RuntimeException("listFiles() returned null: " + filePath);
+		}
+		return new ArrayList<>(Arrays.asList(list));
 	}
 
 	/**
@@ -110,8 +103,7 @@ public class Sysfs {
 	 * @return boolean
 	 */
 	public static boolean existPath(final String filePath){
-		if(log.isTraceEnabled())
-			log.trace("ls " + filePath);
+		log.trace("ls {}", filePath);
 		final File f = new File(filePath);
         return f.exists() && f.isDirectory();
     }
@@ -120,13 +112,11 @@ public class Sysfs {
 		return Files.exists(pathToFind);
 	}
 
-	public static boolean writeBytes(final String path, final byte[] value) {
+	public static void writeBytes(final String path, final byte[] value) {
 		try {
 			Files.write(Paths.get(path), value, StandardOpenOption.WRITE);
 		} catch (IOException e) {
 			throw new RuntimeException("Unable to draw the LCD", e);
 		}
-		return true;
 	}
-
 }
