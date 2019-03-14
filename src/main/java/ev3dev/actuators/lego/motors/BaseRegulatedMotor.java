@@ -1,6 +1,7 @@
 package ev3dev.actuators.lego.motors;
 
 import ev3dev.hardware.EV3DevMotorDevice;
+import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
 import ev3dev.sensors.Battery;
 import lejos.hardware.port.Port;
@@ -85,9 +86,12 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         if(log.isDebugEnabled())
             log.debug("Detecting motor on port: {}", port);
         this.detect(LEGO_PORT, port);
+        // ev3 is slow and it can detect the motor, so let the kernel do its work
+        // other platforms cannot detect devices automatically, so it is necessary to manually force a tacho motor
+        String mode = ev3DevPlatforms.getPlatform() == EV3DevPlatform.EV3BRICK ? AUTO_MODE : TACHO_MOTOR;
         if(log.isDebugEnabled())
-            log.debug("Setting port in mode: {}", AUTO_MODE);
-        this.setStringAttributeIfDifferent(MODE, AUTO_MODE);
+            log.debug("Setting port in mode: {}", mode);
+        this.setStringAttributeIfDifferent(MODE, mode);
         Delay.msDelay(500);
         this.detect(TACHO_MOTOR, port);
         //TODO Review to implement asynchronous solution
