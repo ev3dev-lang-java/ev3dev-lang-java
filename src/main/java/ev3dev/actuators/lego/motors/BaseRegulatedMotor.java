@@ -86,8 +86,8 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
             log.debug("Detecting motor on port: {}", port);
         this.detect(LEGO_PORT, port);
         if(log.isDebugEnabled())
-            log.debug("Setting port in mode: {}", TACHO_MOTOR);
-        this.setStringAttributeIfDifferent(MODE, TACHO_MOTOR);
+            log.debug("Setting port in mode: {}", AUTO_MODE);
+        this.setStringAttributeIfDifferent(MODE, AUTO_MODE);
         Delay.msDelay(500);
         this.detect(TACHO_MOTOR, port);
         //TODO Review to implement asynchronous solution
