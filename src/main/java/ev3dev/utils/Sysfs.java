@@ -95,6 +95,18 @@ public class Sysfs {
 	}
 
 	/**
+	 * Write a sysfs attribute, but only do so if the value is different.
+	 * This can be useful in avoiding triggering kernel-side changes.
+	 * @param filePath Path to the attribute.
+	 * @param value Requested attribute value.
+	 */
+	public static void writeStringIfDifferent(final String filePath, final String value) {
+		if (!value.equals(readString(filePath))) {
+			writeString(filePath, value);
+		}
+	}
+
+	/**
 	 *
 	 * @param filePath path
 	 * @return an List with options from a path

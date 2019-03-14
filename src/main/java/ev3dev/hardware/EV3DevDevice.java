@@ -120,6 +120,16 @@ public abstract class EV3DevDevice {
     }
 
     /**
+     * Set a value on an attribute, but only if different.
+     *
+     * @param attribute attribute name
+     * @param value requested value
+     */
+    protected void setStringAttributeIfDifferent(final String attribute, final String value){
+        Sysfs.writeStringIfDifferent(this.PATH_DEVICE + "/" +  attribute, value);
+    }
+
+    /**
      * Set a value on an attribute
      *
      * @param attribute attribute
