@@ -39,6 +39,7 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         LED led = new EV3Led(EV3Led.LEFT);
+        led = new EV3Led(EV3Led.Direction.LEFT);
     }
 
     @Test
@@ -47,6 +48,7 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         LED led = new EV3Led(EV3Led.RIGHT);
+        led = new EV3Led(EV3Led.Direction.RIGHT);
     }
 
     @Ignore("Review how to reset a Static classic in JUnit")
@@ -67,8 +69,17 @@ public class EV3LedTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        //TODO Use a Enum in the constructor
         LED led = new EV3Led(2);
+    }
+
+    @Test
+    public void badDirectionTest() throws Exception {
+
+        thrown.expect(IllegalArgumentException.class);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        LED led = new EV3Led(null);
     }
 
     @Test
@@ -77,8 +88,13 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
 
-        //TODO Use a Enum in the constructor
         LED led = new EV3Led(EV3Led.LEFT);
+        led.setPattern(1);
+        led.setPattern(2);
+        led.setPattern(3);
+        led.setPattern(4);
+
+        led = new EV3Led(EV3Led.Direction.LEFT);
         led.setPattern(1);
         led.setPattern(2);
         led.setPattern(3);
@@ -91,8 +107,13 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
 
-        //TODO Use a Enum in the constructor
         LED led = new EV3Led(EV3Led.RIGHT);
+        led.setPattern(1);
+        led.setPattern(2);
+        led.setPattern(3);
+        led.setPattern(4);
+
+        led = new EV3Led(EV3Led.Direction.RIGHT);
         led.setPattern(1);
         led.setPattern(2);
         led.setPattern(3);
