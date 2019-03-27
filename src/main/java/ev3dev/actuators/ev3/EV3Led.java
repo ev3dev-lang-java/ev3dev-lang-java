@@ -7,6 +7,11 @@ import lejos.hardware.LED;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This class provides methods for interacting with the LEDs on the EV3Brick.
+ * <p>
+ * <i>Only EV3Bricks are supported.</i>
+ */
 public class EV3Led extends EV3DevDevice implements LED {
 
     /**
@@ -92,13 +97,17 @@ public class EV3Led extends EV3DevDevice implements LED {
     //TODO Add Enums for patterns
 
     /**
-     * 0: turn off button lights
-     * 1/2/3: static light green/red/yellow
-     * 4/5/6: normal blinking light green/red/yellow
-     * 7/8/9: fast blinking light green/red/yellow
-     * >9: same as 9.
+     * Sets the pattern of light to be shown with this LED.
      *
-     * @param pattern
+     * @param pattern the pattern to show with this LED.
+     *                <p>
+     *                0: Turns off the LED light;
+     *                <p>
+     *                1/2/3: Static green/red/yellow light;
+     *                <p>
+     *                4/5/6: Normal blinking green/red/yellow light, <i>not implemented</i>;
+     *                <p>
+     *                7/8/9: Fast blinking green/red/yellow light, <i>not implemented</i>.
      */
     @Override
     public void setPattern(final int pattern) {
@@ -120,6 +129,11 @@ public class EV3Led extends EV3DevDevice implements LED {
         }
     }
 
+    /**
+     * Returns the direction of the LED associated with this object.
+     *
+     * @return the direction of the LED, either {@link Direction#LEFT} or {@link Direction#RIGHT}.
+     */
     public Direction getDirection() {
         return direction;
     }
