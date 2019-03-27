@@ -5,10 +5,7 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.actuators.FakeLed;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lejos.hardware.LED;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
@@ -118,6 +115,19 @@ public class EV3LedTest {
         led.setPattern(2);
         led.setPattern(3);
         led.setPattern(4);
+    }
+
+    @Test
+    public void getDirectionTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
+
+        EV3Led led = new EV3Led(EV3Led.RIGHT);
+        Assert.assertEquals(EV3Led.Direction.RIGHT, led.getDirection());
+
+        led = new EV3Led(EV3Led.Direction.RIGHT);
+        Assert.assertEquals(EV3Led.Direction.RIGHT, led.getDirection());
     }
 
 }
