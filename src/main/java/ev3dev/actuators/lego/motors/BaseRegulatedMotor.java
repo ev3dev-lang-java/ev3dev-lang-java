@@ -265,6 +265,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      */
     public void rotate(int angle, boolean immediateReturn) {
 		this.setIntegerAttribute(POSITION_SP, angle);
+    	this.setSpeed(this.speed);
 		this.setStringAttribute(COMMAND, RUN_TO_REL_POS);
 		
 		if (!immediateReturn) {
@@ -289,6 +290,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     public void rotateTo(int limitAngle, boolean immediateReturn) {
     	this.setIntegerAttribute(POSITION_SP, limitAngle);
+    	this.setSpeed(this.speed);
     	this.setStringAttribute(COMMAND, RUN_TO_ABS_POS);
 		
 		if (!immediateReturn) {
