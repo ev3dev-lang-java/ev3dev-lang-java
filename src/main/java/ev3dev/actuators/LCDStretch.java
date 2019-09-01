@@ -216,11 +216,13 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
         g2d.setStroke(stroke);
     }
 
+    @Deprecated
     @Override
     public void drawRegionRop(Image src, int sx, int sy, int w, int h, int x, int y, int anchor, int rop) {
         drawRegionRop(src, sx, sy, w, h, x, y, TRANS_NONE, anchor, rop);
     }
 
+    @Deprecated
     @Override
     public void drawRegionRop(Image src, int sx, int sy, int w, int h, int transform, int x, int y, int anchor, int rop) {
         x = adjustX(x, w, anchor);
@@ -278,6 +280,7 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
         g2d.drawImage(dstI, 0, 0, null);
     }
 
+    @Deprecated
     @Override
     public void drawRegion(Image src,
                            int sx, int sy,
