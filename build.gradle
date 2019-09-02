@@ -14,7 +14,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "4.0.3"
 }
 
-version = '2.5.5'
+version = '2.6.0-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -94,6 +94,9 @@ test {
 test.finalizedBy jacocoTestReport
 test.finalizedBy jacocoTestCoverageVerification
 
+apply from: './gradle/config.gradle'
+apply from: './gradle/docker.gradle'
+
 //Jar
 jar {
     baseName = "${rootProject.name}"
@@ -114,8 +117,6 @@ task fatJar {
 fatJar.dependsOn shadowJar
 
 
-apply from: './gradle/config.gradle'
-apply from: './gradle/docker.gradle'
 
 /* global settings */
 configure(allprojects) { project ->

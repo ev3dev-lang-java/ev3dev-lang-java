@@ -36,7 +36,7 @@ public class EV3DevPlatforms {
 
     private EV3DevPlatforms() {
 
-        LOGGER.info("Providing a EV3DevPlatforms instance");
+        LOGGER.debug("Providing a EV3DevPlatforms instance");
 
         // load properties from jar
         final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
