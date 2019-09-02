@@ -234,16 +234,19 @@ public class LCDJessie extends EV3DevDevice implements GraphicsLCD {
         log.debug("Feature not implemented");
     }
 
+    @Deprecated
     @Override
     public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
         log.debug("Feature not implemented");
     }
 
+    @Deprecated
     @Override
     public void drawRegionRop(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
         log.debug("Feature not implemented");
     }
 
+    @Deprecated
     @Override
     public void drawRegion(Image image, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
         log.debug("Feature not implemented");

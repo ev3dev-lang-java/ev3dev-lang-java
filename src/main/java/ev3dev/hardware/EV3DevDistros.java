@@ -36,7 +36,7 @@ public class EV3DevDistros {
 
     private EV3DevDistros() {
 
-        LOGGER.info("Providing an EV3DevDistros instance");
+        LOGGER.debug("Providing an EV3DevDistros instance");
 
         final String osResult = Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY);
         if (osResult.contains(DEBIAN_DISTRO_DETECTION_JESSIE)) {

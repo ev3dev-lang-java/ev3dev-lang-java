@@ -5,10 +5,7 @@ import ev3dev.hardware.EV3DevPlatform;
 import fake_ev3dev.ev3dev.actuators.FakeLed;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import lejos.hardware.LED;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
@@ -39,6 +36,7 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         LED led = new EV3Led(EV3Led.LEFT);
+        led = new EV3Led(EV3Led.Direction.LEFT);
     }
 
     @Test
@@ -47,6 +45,7 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         LED led = new EV3Led(EV3Led.RIGHT);
+        led = new EV3Led(EV3Led.Direction.RIGHT);
     }
 
     @Ignore("Review how to reset a Static classic in JUnit")
@@ -67,8 +66,17 @@ public class EV3LedTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        //TODO Use a Enum in the constructor
         LED led = new EV3Led(2);
+    }
+
+    @Test
+    public void badDirectionTest() throws Exception {
+
+        thrown.expect(IllegalArgumentException.class);
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+
+        LED led = new EV3Led(null);
     }
 
     @Test
@@ -77,8 +85,13 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
 
-        //TODO Use a Enum in the constructor
         LED led = new EV3Led(EV3Led.LEFT);
+        led.setPattern(1);
+        led.setPattern(2);
+        led.setPattern(3);
+        led.setPattern(4);
+
+        led = new EV3Led(EV3Led.Direction.LEFT);
         led.setPattern(1);
         led.setPattern(2);
         led.setPattern(3);
@@ -91,12 +104,30 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
 
-        //TODO Use a Enum in the constructor
         LED led = new EV3Led(EV3Led.RIGHT);
         led.setPattern(1);
         led.setPattern(2);
         led.setPattern(3);
         led.setPattern(4);
+
+        led = new EV3Led(EV3Led.Direction.RIGHT);
+        led.setPattern(1);
+        led.setPattern(2);
+        led.setPattern(3);
+        led.setPattern(4);
+    }
+
+    @Test
+    public void getDirectionTest() throws Exception {
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
+
+        EV3Led led = new EV3Led(EV3Led.RIGHT);
+        Assert.assertEquals(EV3Led.Direction.RIGHT, led.getDirection());
+
+        led = new EV3Led(EV3Led.Direction.RIGHT);
+        Assert.assertEquals(EV3Led.Direction.RIGHT, led.getDirection());
     }
 
 }
