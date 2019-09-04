@@ -356,9 +356,8 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     @Override
     public void waitComplete() {
         //TODO Review the side effect with multiple motors
-        while(this.isMoving()){
-            // do stuff or do nothing
-            // possibly sleep for some short interval to not block
+        while(this.isMoving()) {
+            Delay.msDelay(1);
         }
     }
 
