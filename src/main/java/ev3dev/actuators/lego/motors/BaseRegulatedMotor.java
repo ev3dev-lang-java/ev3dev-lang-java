@@ -165,18 +165,18 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * and the position of the motors will not be maintained.
      */
     @Override
-    public void flt(boolean b) {
-        this.flt();
+    public void flt(boolean immediateReturn) {
+        doStop(COAST, immediateReturn);
     }
 
     @Override
     public void flt() {
-        this.setStringAttribute(STOP_COMMAND, COAST);
+        flt(false);
     }
 
     @Override
     public void coast() {
-        this.setStringAttribute(STOP_COMMAND, COAST);
+        doStop(COAST, false);
     }
 
     /**
@@ -186,7 +186,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * the motor to stop more quickly than coasting.
      */
     public void brake() {
-        this.setStringAttribute(STOP_COMMAND, BRAKE);
+        doStop(BRAKE, false);
     }
 
     /**
@@ -195,7 +195,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      */
     @Override
     public void hold() {
-        this.setStringAttribute(STOP_COMMAND, HOLD);
+        doStop(HOLD, false);
     }
 
     /**
@@ -206,17 +206,14 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * Cancels any rotate() orders in progress
      */
     public void stop() {
-		this.setStringAttribute(COMMAND, STOP);
-
-        for (RegulatedMotorListener listener : listenerList) {
-            listener.rotationStopped(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
-        }
+        stop(false);
     }
 
     @Override
-    public void stop(boolean b) {
-        this.setStringAttribute(COMMAND, STOP);
+    public void stop(boolean immediateReturn) {
+        doStop(HOLD, immediateReturn);
     }
+
 
     /**
      * Backend for all stop moves. This sets the stop action type and then triggers the stop action.
