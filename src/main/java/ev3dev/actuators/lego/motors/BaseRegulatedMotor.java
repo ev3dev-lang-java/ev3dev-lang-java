@@ -219,6 +219,24 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     }
 
     /**
+     * Backend for all stop moves. This sets the stop action type and then triggers the stop action.
+     * @param mode One of BRAKE, COAST and HOLD string constants.
+     * @param immediateReturn Whether the function should busy-wait until the motor stops reporting the 'running' state.
+     */
+    private void doStop(String mode, boolean immediateReturn) {
+        this.setStringAttribute(STOP_COMMAND, mode);
+        this.setStringAttribute(COMMAND, STOP);
+
+        if (!immediateReturn) {
+            waitComplete();
+        }
+
+        for (RegulatedMotorListener listener : listenerList) {
+            listener.rotationStopped(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
+        }
+    }
+
+    /**
      * This method returns <b>true </b> if the motors is attempting to rotate.
      * The return value may not correspond to the actual motors movement.<br>
      * For example,  If the motors is stalled, isMoving()  will return <b> true. </b><br>
