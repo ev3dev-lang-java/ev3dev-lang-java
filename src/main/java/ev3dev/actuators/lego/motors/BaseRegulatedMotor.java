@@ -53,7 +53,9 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     private int speed = 360;
     protected int acceleration = 6000;
 
+    // State
     private boolean regulationFlag = true;
+    private boolean inversePolarity = false;
 
     private final List<RegulatedMotorListener> listenerList;
 
@@ -114,7 +116,9 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * @see lejos.robotics.RegulatedMotor#getTachoCount()
      */
     public int getTachoCount() {
-    	return getIntegerAttribute(POSITION);
+        int signCorrection = inversePolarity ? -1 : 1;
+
+        return getIntegerAttribute(POSITION) * signCorrection;
     }
 
     /**
@@ -132,7 +136,8 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public void forward() {
-        this.setStringAttribute(POLARITY, POLARITY_NORMAL);
+        setPolarityInversion(false);
+
         this.setSpeed(this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
@@ -147,7 +152,8 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public void backward(){
-        this.setStringAttribute(POLARITY, POLARITY_INVERSED);
+        setPolarityInversion(true);
+
         this.setSpeed(this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
@@ -403,4 +409,16 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         log.warn("Not implemented the method: endSynchronization");
     }
 
+    /**
+     * Configure whether the motor polarity will be inverted or not.
+     *
+     * This sets the "inversePolarity" cache variable & it also
+     * sets the corresponding motor attribute.
+     *
+     * This will affect how the motor parameters are
+     */
+    private void setPolarityInversion(boolean inverted) {
+        this.inversePolarity = inverted;
+        this.setStringAttribute(POLARITY, inverted ? POLARITY_INVERSED : POLARITY_NORMAL);
+    }
 }
