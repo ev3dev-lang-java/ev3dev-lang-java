@@ -14,7 +14,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "4.0.3"
 }
 
-version = '2.6.0-SNAPSHOT'
+version = '2.6.1-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -34,9 +34,9 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.16.20")
     testCompileOnly("org.projectlombok:lombok:1.16.20")
 
-    implementation("org.slf4j:slf4j-api:1.7.25")
-    implementation("com.github.ev3dev-lang-java:lejos-commons:0.7.3")
-    implementation("net.java.dev.jna:jna:4.5.2")
+    compile("org.slf4j:slf4j-api:1.7.25")
+    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.3")
+    compile("net.java.dev.jna:jna:4.5.2")
 
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
 
