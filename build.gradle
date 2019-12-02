@@ -4,6 +4,7 @@
 plugins {
     id 'io.franzbecker.gradle-lombok' version '1.14'
     id 'java'
+    id 'java-library'
     id 'eclipse'
     id 'idea'
     id "jacoco"
@@ -14,7 +15,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "4.0.3"
 }
 
-version = '2.6.1-SNAPSHOT'
+version = '2.6.2-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -34,9 +35,9 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.16.20")
     testCompileOnly("org.projectlombok:lombok:1.16.20")
 
-    compile("org.slf4j:slf4j-api:1.7.25")
-    compile("com.github.ev3dev-lang-java:lejos-commons:0.7.3")
-    compile("net.java.dev.jna:jna:4.5.2")
+    api("org.slf4j:slf4j-api:1.7.25")
+    api("com.github.ev3dev-lang-java:lejos-commons:0.7.3")
+    api("net.java.dev.jna:jna:4.5.2")
 
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
 
