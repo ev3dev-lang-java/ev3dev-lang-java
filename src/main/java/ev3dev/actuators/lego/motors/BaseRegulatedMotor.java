@@ -132,8 +132,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public void forward() {
-        this.setStringAttribute(POLARITY, POLARITY_NORMAL);
-        this.setSpeed(this.speed);
+        this.setSpeedDirect(this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -147,8 +146,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public void backward(){
-        this.setStringAttribute(POLARITY, POLARITY_INVERSED);
-        this.setSpeed(this.speed);
+        this.setSpeedDirect(-this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -241,9 +239,13 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      */
     public void setSpeed(int speed) {
         this.speed = speed;
-		if (!this.regulationFlag) {
+        setSpeedDirect(speed);
+    }
+
+    private void setSpeedDirect(int speed) {
+        if (!this.regulationFlag) {
             this.setIntegerAttribute(DUTY_CYCLE, speed);
-		} else {
+        } else {
             this.setIntegerAttribute(SPEED, speed);
         }
     }
@@ -264,6 +266,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * Rotate by the requested number of degrees. Wait for the move to complete.
      */
     public void rotate(int angle, boolean immediateReturn) {
+		this.setSpeedDirect(this.speed);
 		this.setIntegerAttribute(POSITION_SP, angle);
 		this.setStringAttribute(COMMAND, RUN_TO_REL_POS);
 		
@@ -288,6 +291,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     }
 
     public void rotateTo(int limitAngle, boolean immediateReturn) {
+    	this.setSpeedDirect(this.speed);
     	this.setIntegerAttribute(POSITION_SP, limitAngle);
     	this.setStringAttribute(COMMAND, RUN_TO_ABS_POS);
 		
