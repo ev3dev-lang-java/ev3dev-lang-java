@@ -83,9 +83,13 @@ public abstract class BaseElement {
 
     protected void populateValues(final List<Integer> values) throws IOException {
         for (int i = 0; i < values.size(); i++) {
-            Path value = Paths.get(SENSOR1_BASE, "value" + i);
-            createFile(value, String.valueOf(values.get(i)));
+            setValue(i, String.valueOf(values.get(i)));
         }
+    }
+
+    public void setValue(final int index, final String value) throws IOException {
+        Path path = Paths.get(SENSOR1_BASE, "value" + index);
+        createFile(path, value);
     }
 
 }

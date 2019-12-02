@@ -147,4 +147,27 @@ public class EV3GyroSensorTest {
         assertThat(fakeEV3GyroSensor.getCurrentMode(), is("GYRO-G&A"));
     }
 
+
+    @Test
+    public void negativeAngleTest() throws Exception {
+        // Tests fix for https://github.com/ev3dev-lang-java/ev3dev-lang-java/issues/693
+        // Before: negative values get truncated to zero
+        // After:  negative values get passed through
+
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
+        final FakeEV3GyroSensor fakeEV3GyroSensor = new FakeEV3GyroSensor(EV3DevPlatform.EV3BRICK);
+
+        EV3GyroSensor gyroSensor = new EV3GyroSensor(SensorPort.S1);
+        final SampleProvider sp = gyroSensor.getAngleMode();
+
+        final float[] sample = new float[sp.sampleSize()];
+        final int realAngle = -180;
+
+        fakeEV3GyroSensor.setValue(0, String.valueOf(realAngle));
+        sp.fetchSample(sample, 0);
+
+        int measuredAngle = Math.round(sample[0]);
+
+        assertThat(measuredAngle, is(realAngle));
+    }
 }
