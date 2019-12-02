@@ -33,3 +33,5 @@ that break previously established promises:
   wait for a new value in ev3dev. This means that IR sensor function
   reading multiple commands will read only one, otherwise it will
   throw an exception.
+
+* Motor synchronization is not yet implemented.

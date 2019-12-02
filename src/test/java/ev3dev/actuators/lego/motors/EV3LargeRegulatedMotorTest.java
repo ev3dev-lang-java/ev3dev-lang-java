@@ -48,6 +48,8 @@ public class EV3LargeRegulatedMotorTest {
 
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
 
+        FakeEV3LargeRegulatedMotor.updateState("\n");
+
         motor.flt();
         motor.flt(true);
 
@@ -65,6 +67,7 @@ public class EV3LargeRegulatedMotorTest {
 
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
         motor.forward();
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
     }
 
@@ -77,6 +80,7 @@ public class EV3LargeRegulatedMotorTest {
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
         motor.suspendRegulation();
         motor.forward();
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
     }
 
@@ -88,6 +92,7 @@ public class EV3LargeRegulatedMotorTest {
 
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
         motor.backward();
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
     }
 
@@ -100,6 +105,7 @@ public class EV3LargeRegulatedMotorTest {
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
         motor.suspendRegulation();
         motor.backward();
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
     }
 
@@ -134,6 +140,7 @@ public class EV3LargeRegulatedMotorTest {
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
         motor.forward();
         motor.isMoving();
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
 
     }
@@ -148,6 +155,7 @@ public class EV3LargeRegulatedMotorTest {
         motor.forward();
         motor.isMoving();
         motor.isStalled();
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
     }
 
@@ -159,11 +167,12 @@ public class EV3LargeRegulatedMotorTest {
 
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
 
-        FakeEV3LargeRegulatedMotor.updateState(" ");
+        FakeEV3LargeRegulatedMotor.updateState("\n");
 
         motor.rotate(90);
         motor.rotate(90, true);
         motor.rotateTo(90);
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
         motor.stop(true);
     }
@@ -177,7 +186,7 @@ public class EV3LargeRegulatedMotorTest {
 
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
 
-        FakeEV3LargeRegulatedMotor.updateState(" ");
+        FakeEV3LargeRegulatedMotor.updateState("\n");
 
         motor.setSpeed(100);
         motor.getSpeed();
@@ -206,11 +215,13 @@ public class EV3LargeRegulatedMotorTest {
             }
         });
 
-        FakeEV3LargeRegulatedMotor.updateState(" ");
+        FakeEV3LargeRegulatedMotor.updateState("\n");
 
         motor.rotate(90);
         motor.rotateTo(90);
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
+        FakeEV3LargeRegulatedMotor.updateState("running\n");
         motor.backward();
         motor.forward();
         motor.removeListener();
@@ -224,10 +235,11 @@ public class EV3LargeRegulatedMotorTest {
 
         EV3LargeRegulatedMotor motor = new EV3LargeRegulatedMotor(MotorPort.A);
 
-        FakeEV3LargeRegulatedMotor.updateState(" ");
+        FakeEV3LargeRegulatedMotor.updateState("\n");
 
         motor.rotate(90,true);
         motor.waitComplete();
+        FakeEV3LargeRegulatedMotor.updateState("\n");
         motor.stop();
     }
 
