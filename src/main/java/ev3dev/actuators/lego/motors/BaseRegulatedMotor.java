@@ -132,8 +132,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public void forward() {
-        this.setStringAttribute(POLARITY, POLARITY_NORMAL);
-        this.setSpeed(this.speed);
+        this.setSpeedDirect(this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -147,8 +146,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public void backward(){
-        this.setStringAttribute(POLARITY, POLARITY_INVERSED);
-        this.setSpeed(this.speed);
+        this.setSpeedDirect(-this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
         } else {
@@ -165,18 +163,18 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * and the position of the motors will not be maintained.
      */
     @Override
-    public void flt(boolean b) {
-        this.flt();
+    public void flt(boolean immediateReturn) {
+        doStop(COAST, immediateReturn);
     }
 
     @Override
     public void flt() {
-        this.setStringAttribute(STOP_COMMAND, COAST);
+        flt(false);
     }
 
     @Override
     public void coast() {
-        this.setStringAttribute(STOP_COMMAND, COAST);
+        doStop(COAST, false);
     }
 
     /**
@@ -186,7 +184,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * the motor to stop more quickly than coasting.
      */
     public void brake() {
-        this.setStringAttribute(STOP_COMMAND, BRAKE);
+        doStop(BRAKE, false);
     }
 
     /**
@@ -195,7 +193,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      */
     @Override
     public void hold() {
-        this.setStringAttribute(STOP_COMMAND, HOLD);
+        doStop(HOLD, false);
     }
 
     /**
@@ -206,16 +204,31 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * Cancels any rotate() orders in progress
      */
     public void stop() {
-		this.setStringAttribute(COMMAND, STOP);
+        stop(false);
+    }
+
+    @Override
+    public void stop(boolean immediateReturn) {
+        doStop(HOLD, immediateReturn);
+    }
+
+
+    /**
+     * Backend for all stop moves. This sets the stop action type and then triggers the stop action.
+     * @param mode One of BRAKE, COAST and HOLD string constants.
+     * @param immediateReturn Whether the function should busy-wait until the motor stops reporting the 'running' state.
+     */
+    private void doStop(String mode, boolean immediateReturn) {
+        this.setStringAttribute(STOP_COMMAND, mode);
+        this.setStringAttribute(COMMAND, STOP);
+
+        if (!immediateReturn) {
+            waitComplete();
+        }
 
         for (RegulatedMotorListener listener : listenerList) {
             listener.rotationStopped(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
         }
-    }
-
-    @Override
-    public void stop(boolean b) {
-        this.setStringAttribute(COMMAND, STOP);
     }
 
     /**
@@ -241,9 +254,13 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      */
     public void setSpeed(int speed) {
         this.speed = speed;
-		if (!this.regulationFlag) {
+        setSpeedDirect(speed);
+    }
+
+    private void setSpeedDirect(int speed) {
+        if (!this.regulationFlag) {
             this.setIntegerAttribute(DUTY_CYCLE, speed);
-		} else {
+        } else {
             this.setIntegerAttribute(SPEED, speed);
         }
     }
@@ -264,6 +281,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * Rotate by the requested number of degrees. Wait for the move to complete.
      */
     public void rotate(int angle, boolean immediateReturn) {
+		this.setSpeedDirect(this.speed);
 		this.setIntegerAttribute(POSITION_SP, angle);
 		this.setStringAttribute(COMMAND, RUN_TO_REL_POS);
 		
@@ -288,6 +306,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     }
 
     public void rotateTo(int limitAngle, boolean immediateReturn) {
+    	this.setSpeedDirect(this.speed);
     	this.setIntegerAttribute(POSITION_SP, limitAngle);
     	this.setStringAttribute(COMMAND, RUN_TO_ABS_POS);
 		
@@ -356,9 +375,8 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     @Override
     public void waitComplete() {
         //TODO Review the side effect with multiple motors
-        while(this.isMoving()){
-            // do stuff or do nothing
-            // possibly sleep for some short interval to not block
+        while(this.isMoving()) {
+            Delay.msDelay(1);
         }
     }
 
