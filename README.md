@@ -98,7 +98,7 @@ for next January of 2020.
 Stable projects:
  
 - [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRI/JDK (9,10,11,12) build for EV3 
-- [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level interation with EV3Dev
+- [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level integration with EV3Dev
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
 - [Template project](https://github.com/ev3dev-lang-java/template_project_gradle): A Gradle project ready to test the project
