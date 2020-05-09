@@ -4,7 +4,10 @@ import com.sun.jna.LastErrorException;
 import com.sun.jna.Pointer;
 import lombok.NonNull;
 
-import static ev3dev.utils.io.NativeConstants.*;
+import static ev3dev.utils.io.NativeConstants.MAP_SHARED;
+import static ev3dev.utils.io.NativeConstants.O_RDWR;
+import static ev3dev.utils.io.NativeConstants.PROT_READ;
+import static ev3dev.utils.io.NativeConstants.PROT_WRITE;
 
 /**
  * <p>This class provides access from Java to Linux character devices. It is intended
