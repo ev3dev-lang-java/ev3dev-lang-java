@@ -10,7 +10,7 @@ plugins {
     id "jacoco"
     id 'checkstyle'
     id 'maven-publish'
-    id 'com.github.ev3dev-lang-java.gradle-plugin' version '2.0.0'
+    id 'org.hidetake.ssh' version '2.10.1'
     id "net.ossindex.audit" version "0.4.5-beta"
     id "com.github.johnrengelman.shadow" version "4.0.3"
 }
@@ -86,7 +86,6 @@ jacocoTestCoverageVerification {
 
 test {
     jacoco {
-        append = false
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
     }
@@ -95,18 +94,13 @@ test {
 test.finalizedBy jacocoTestReport
 test.finalizedBy jacocoTestCoverageVerification
 
-apply from: './gradle/config.gradle'
-apply from: './gradle/docker.gradle'
-
 //Jar
 jar {
     baseName = "${rootProject.name}"
     manifest {
         attributes("Implementation-Title": "EV3Dev-lang-java",
                    "Implementation-Version": version,
-                   "Implementation-Vendor": "Juan Antonio Breña Moral",
-                   "Main-Class": brick.pref.mainClass,
-                   "Class-Path": brick.getClassPath(true) )
+                   "Implementation-Vendor": "Juan Antonio Breña Moral")
     }
 }
 
@@ -117,7 +111,9 @@ task fatJar {
 }
 fatJar.dependsOn shadowJar
 
-
+apply from: './gradle/config.gradle'
+apply from: './gradle/deploy.gradle'
+apply from: './gradle/docker.gradle'
 
 /* global settings */
 configure(allprojects) { project ->
