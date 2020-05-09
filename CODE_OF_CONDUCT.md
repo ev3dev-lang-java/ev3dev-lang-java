@@ -1,84 +1,27 @@
-# Code of Conduct
+# Contributor Code of Conduct
 
-## 1. Purpose
+As contributors and maintainers of this project, and in the interest of fostering an open and welcoming community, 
+we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.
 
-A primary goal of Ev3dev Lang Java is to be inclusive to the largest number of contributors, with the most varied and diverse backgrounds possible. As such, we are committed to providing a friendly, safe and welcoming environment for all, regardless of gender, sexual orientation, ability, ethnicity, socioeconomic status, and religion (or lack thereof).
+We are committed to making participation in this project a harassment-free experience for everyone, regardless of level of experience, gender, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, religion, or nationality.
 
-This code of conduct outlines our expectations for all those who participate in our community, as well as the consequences for unacceptable behavior.
+Examples of unacceptable behavior by participants include:
 
-We invite all those who participate in Ev3dev Lang Java to help us create safe and positive experiences for everyone.
+* The use of sexualized language or imagery
+* Personal attacks
+* Trolling or insulting/derogatory comments
+* Public or private harassment
+* Publishing other's private information, such as physical or electronic addresses, without explicit permission
+* Other unethical or unprofessional conduct
 
-## 2. Open Source Citizenship
+Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
 
-A supplemental goal of this Code of Conduct is to increase open source citizenship by encouraging participants to recognize and strengthen the relationships between our actions and their effects on our community.
+By adopting this Code of Conduct, project maintainers commit themselves to fairly and consistently applying these principles to every aspect of managing this project. Project maintainers who do not follow or enforce the Code of Conduct may be permanently removed from the project team.
 
-Communities mirror the societies in which they exist and positive action is essential to counteract the many forms of inequality and abuses of power that exist in society.
+This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community.
 
-If you see someone who is making an extra effort to ensure our community is welcoming, friendly, and encourages all participants to contribute to the fullest extent, we want to know.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting any project maintainer, from **EV3Dev-lang-java**.
+All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
+Maintainers are obligated to maintain confidentiality with regard to the reporter of an incident.
 
-## 3. Expected Behavior
-
-The following behaviors are expected and requested of all community members:
-
-*   Participate in an authentic and active way. In doing so, you contribute to the health and longevity of this community.
-*   Exercise consideration and respect in your speech and actions.
-*   Attempt collaboration before conflict.
-*   Refrain from demeaning, discriminatory, or harassing behavior and speech.
-*   Be mindful of your surroundings and of your fellow participants. Alert community leaders if you notice a dangerous situation, someone in distress, or violations of this Code of Conduct, even if they seem inconsequential.
-*   Remember that community event venues may be shared with members of the public; please be respectful to all patrons of these locations.
-
-## 4. Unacceptable Behavior
-
-The following behaviors are considered harassment and are unacceptable within our community:
-
-*   Violence, threats of violence or violent language directed against another person.
-*   Sexist, racist, homophobic, transphobic, ableist or otherwise discriminatory jokes and language.
-*   Posting or displaying sexually explicit or violent material.
-*   Posting or threatening to post other people’s personally identifying information ("doxing").
-*   Personal insults, particularly those related to gender, sexual orientation, race, religion, or disability.
-*   Inappropriate photography or recording.
-*   Inappropriate physical contact. You should have someone’s consent before touching them.
-*   Unwelcome sexual attention. This includes, sexualized comments or jokes; inappropriate touching, groping, and unwelcomed sexual advances.
-*   Deliberate intimidation, stalking or following (online or in person).
-*   Advocating for, or encouraging, any of the above behavior.
-*   Sustained disruption of community events, including talks and presentations.
-
-## 5. Consequences of Unacceptable Behavior
-
-Unacceptable behavior from any community member, including sponsors and those with decision-making authority, will not be tolerated.
-
-Anyone asked to stop unacceptable behavior is expected to comply immediately.
-
-If a community member engages in unacceptable behavior, the community organizers may take any action they deem appropriate, up to and including a temporary ban or permanent expulsion from the community without warning (and without refund in the case of a paid event).
-
-## 6. Reporting Guidelines
-
-If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a community organizer as soon as possible. bren@juanantonio.info.
-
-
-
-Additionally, community organizers are available to help community members engage with local law enforcement or to otherwise help those experiencing unacceptable behavior feel safe. In the context of in-person events, organizers will also provide escorts as desired by the person experiencing distress.
-
-## 7. Addressing Grievances
-
-If you feel you have been falsely or unfairly accused of violating this Code of Conduct, you should notify Ev3dev Lang Java with a concise description of your grievance. Your grievance will be handled in accordance with our existing governing policies.
-
-
-
-## 8. Scope
-
-We expect all community participants (contributors, paid or otherwise; sponsors; and other guests) to abide by this Code of Conduct in all community venues–online and in-person–as well as in all one-on-one communications pertaining to community business.
-
-This code of conduct and its related procedures also applies to unacceptable behavior occurring outside the scope of community activities when such behavior has the potential to adversely affect the safety and well-being of community members.
-
-## 9. Contact info
-
-bren@juanantonio.info
-
-## 10. License and attribution
-
-This Code of Conduct is distributed under a [Creative Commons Attribution-ShareAlike license](http://creativecommons.org/licenses/by-sa/3.0/).
-
-Portions of text derived from the [Django Code of Conduct](https://www.djangoproject.com/conduct/) and the [Geek Feminism Anti-Harassment Policy](http://geekfeminism.wikia.com/wiki/Conference_anti-harassment/Policy).
-
-Retrieved on November 22, 2016 from [http://citizencodeofconduct.org/](http://citizencodeofconduct.org/)
+This Code of Conduct is adapted from the [Contributor Covenant](https://contributor-covenant.org), version 1.3.0, available at [contributor-covenant.org/version/1/3/0/](https://contributor-covenant.org/version/1/3/0/).
