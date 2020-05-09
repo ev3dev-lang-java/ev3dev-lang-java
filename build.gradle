@@ -15,7 +15,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "4.0.3"
 }
 
-version = '2.6.2-SNAPSHOT'
+version = '2.7.0-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -98,15 +98,12 @@ test.finalizedBy jacocoTestCoverageVerification
 jar {
     baseName = "${rootProject.name}"
     manifest {
-        attributes("Implementation-Title": "EV3Dev-lang-java",
-                   "Implementation-Version": version,
-                   "Implementation-Vendor": "Juan Antonio Breña Moral")
+        from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
     }
 }
 
 task fatJar {
     doLast {
-
     }
 }
 fatJar.dependsOn shadowJar

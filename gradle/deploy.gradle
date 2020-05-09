@@ -94,7 +94,7 @@ task deploy {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                put from: "./build/libs/" + "${rootProject.name}" + "-" + version + "-all.jar", into: "/home/robot/"
+                put from: "${projectDir}/build/libs/" + "${rootProject.name}" + "-" + version + ".jar", into: "/home/robot/"
             }
         }
     }
@@ -106,8 +106,8 @@ task remoteRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-                execute "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                println "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + ".jar "
+                execute "time java -jar /home/robot/" + "${rootProject.name}" + "-" + version + ".jar "
             }
         }
     }
