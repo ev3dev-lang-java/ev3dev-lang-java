@@ -55,6 +55,19 @@ compileJava {
     targetCompatibility = 11
 }
 
+tasks.withType(Checkstyle) {
+    source 'src/main/java'
+    exclude '**/ev3dev/actuators/'
+    exclude '**/ev3dev/hardware/'
+    exclude '**/ev3dev/robotics/'
+    exclude '**/ev3dev/sensors/'
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-noframes-sorted.xsl')
+    }
+}
+
 test.testLogging {
     exceptionFormat "full"
 }
