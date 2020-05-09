@@ -8,7 +8,6 @@ in this project.
 * [New Display API](adr-display-api.md)
 * [Changes to leJOS sensor API](adr-lejos-sensor.md)
 * [Support for newer Java versions](adr-openjdk-builds.md)
-* [Gradle-plugin integration](adr-plugin-integration.md)
 
 ## References:
 

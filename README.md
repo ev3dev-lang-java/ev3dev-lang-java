@@ -29,7 +29,7 @@ and LeJOS with the rich local navigation stack and the remote support in the fut
 
 The library has support for `Debian Jessie` & `Debian Stretch`. 
 In this release, we have finished the support for `Debian Stretch` for EV3 and you could
- use OpenJDK 11 or OpenJDK 12 EA and it is amazing! 
+ use OpenJDK 11, or OpenJDK 14 and it is amazing! 
 
 If you need to use any Raspberry Pi Boards, I recommend to use the stable `EV3Dev` 
 [Debian Jessie](http://www.ev3dev.org/downloads/) release.
@@ -57,7 +57,7 @@ The project has been designed with the following solution in mind:
 |---|------------------|--------------------------------------------|-------------------------|
 | 1 | Platforms        | BrickPi BrickPi3 PiStorms              | EV3                     |
 | 2 | OS               | Debian Jessie                              | Debian Jessie/Stretch          |
-| 3 | JVM              | OpenJDK 11                               | OpenJDK JRI 11 / 12 ea          |
+| 3 | JVM              | OpenJDK 14                               | OpenJDK JRI 11 / 12 / 13 / 14           |
 | 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-rpi2 | 4.14.71-ev3dev-2.3.0-ev3 |
 | 5 | ev3dev-lang-java | 0.7.0                                      | 2.4.12                   |
 
