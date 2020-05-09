@@ -61,14 +61,14 @@ The project has been designed with the following solution in mind:
 | 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-rpi2 | 4.14.71-ev3dev-2.3.0-ev3 |
 | 5 | ev3dev-lang-java | 0.7.0                                      | 2.4.12                   |
 
-**Note:** At the moment, we will maintain the whole solution  until the next `LEGO Mindstorms` product estimated 
-for next January of 2020. 
+**Note:** At the moment, we will maintain the whole solution until the next `LEGO Mindstorms` product estimated 
+for next January of 2021. 
 
 ## Features included in the whole project
 
 **Java features**
 
-* OpenJDK Java 11/12ea support for EV3 Brick, Brickpi+/PiStorms + Raspberry Pi 3
+* OpenJDK Java 11/12/13/14 support for EV3 Brick, Brickpi+/PiStorms + Raspberry Pi 3
 * Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Logging support based on [SLF4J](https://www.slf4j.org/)
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
