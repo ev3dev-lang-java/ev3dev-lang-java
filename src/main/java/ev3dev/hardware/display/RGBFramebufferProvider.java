@@ -9,8 +9,10 @@ import lombok.NonNull;
  * Creates new Linux RGB framebuffer.
  */
 public class RGBFramebufferProvider implements FramebufferProvider {
+
     @Override
-    public JavaFramebuffer createFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
+    public JavaFramebuffer createFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp)
+        throws LastErrorException, IllegalArgumentException {
         return new RGBFramebuffer(fb, disp);
     }
 }

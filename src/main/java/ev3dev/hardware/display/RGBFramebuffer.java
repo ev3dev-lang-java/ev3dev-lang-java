@@ -26,8 +26,11 @@ public class RGBFramebuffer extends LinuxFramebuffer {
      * @param fb   The framebuffer device (e.g. /dev/fb0)
      * @param disp Display manager (e.g. /dev/tty)
      */
-    public RGBFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
+    public RGBFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp)
+        throws LastErrorException, IllegalArgumentException {
+
         super(fb, disp);
+
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             try {
                 close();

@@ -21,11 +21,11 @@ public class EV3DevFileSystem {
 
     private static String retrieveRootPath() {
 
-        if(Objects.nonNull(System.getProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY))) {
+        if (Objects.nonNull(System.getProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY))) {
             final String NEW_ROOT_PATH = System.getProperty(EV3DEV_TESTING_KEY);
             LOGGER.debug("ROOT_PATH modified: {}", NEW_ROOT_PATH);
             return NEW_ROOT_PATH;
-        }else {
+        } else {
             LOGGER.debug("Root Path: {}", EV3DEV_ROOT_PATH);
             return EV3DEV_ROOT_PATH;
         }

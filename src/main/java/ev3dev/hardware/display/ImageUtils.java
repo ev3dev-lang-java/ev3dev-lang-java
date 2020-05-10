@@ -3,9 +3,17 @@ package ev3dev.hardware.display;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.*;
+import java.awt.Transparency;
 import java.awt.color.ColorSpace;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ComponentColorModel;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferByte;
+import java.awt.image.IndexColorModel;
+import java.awt.image.MultiPixelPackedSampleModel;
+import java.awt.image.PixelInterleavedSampleModel;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 /**
  * Common image utilities for framebuffer manipulation
@@ -61,7 +69,9 @@ public class ImageUtils {
      * @param buffer  Backing buffer.
      * @return Configured BufferedImage
      */
-    public static BufferedImage createXRGBImage(int width, int height, int stride, int[] offsets, @NonNull byte[] buffer) {
+    public static BufferedImage createXRGBImage(
+        int width, int height, int stride, int[] offsets, @NonNull byte[] buffer) {
+
         LOGGER.trace("creating XRGB image {}x{} with stride={}", width, height, stride);
         if (buffer.length < (stride * height)) {
             throw new IllegalArgumentException("Buffer is smaller than height*stride");
@@ -148,7 +158,9 @@ public class ImageUtils {
      * @param backed    Backing byte buffer.
      * @return Configured BufferedImage.
      */
-    public static BufferedImage createBWImage(int width, int height, int stride, boolean zeroBlack, @NonNull byte[] backed) {
+    public static BufferedImage createBWImage(
+        int width, int height, int stride, boolean zeroBlack, @NonNull byte[] backed) {
+
         LOGGER.trace("creating BW image {}x{} with stride={}", width, height, stride);
         if (backed.length < (stride * height)) {
             throw new IllegalArgumentException("Buffer is smaller than height*stride");

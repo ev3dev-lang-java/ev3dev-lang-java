@@ -52,12 +52,12 @@ public class EV3DevPlatforms {
                 .findFirst()
                 .get();
 
-        if(platform == EV3DevPlatform.UNKNOWN){
+        if (platform == EV3DevPlatform.UNKNOWN) {
             throwNoPlatform();
         }
 
         // handle success
-        if(LOGGER.isTraceEnabled()) {
+        if (LOGGER.isTraceEnabled()) {
             LOGGER.trace("Detected platform: " + platform);
         }
         propPrefix = platform.getPropertyNamespace();
@@ -85,6 +85,12 @@ public class EV3DevPlatforms {
         return platform;
     }
 
+    /**
+     * Get motor Port
+     *
+     * @param port Port
+     * @return String with the motor representation
+     */
     public String getMotorPort(final Port port) {
         String portLetter = "";
         if (port.equals(MotorPort.A)) {
@@ -101,6 +107,12 @@ public class EV3DevPlatforms {
         return props.getProperty(propPrefix + ".motor.port." + portLetter);
     }
 
+    /**
+     * Get sensor Port
+     *
+     * @param port Port
+     * @return String with the sensor representation
+     */
     public String getSensorPort(final Port port) {
         String portNumber;
         if (port.equals(SensorPort.S1)) {

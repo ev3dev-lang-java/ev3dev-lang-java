@@ -7,9 +7,9 @@ public enum EV3DevPlatform {
 
     EV3BRICK("EV3BRICK", "ev3"),
     PISTORMS("PISTORMS", "pistorms"),
-    BRICKPI ("BRICKPI",  "brickpi"),
+    BRICKPI("BRICKPI",  "brickpi"),
     BRICKPI3("BRICKPI3", "brickpi3"),
-    UNKNOWN ("UNKNOWN",  "unknown");
+    UNKNOWN("UNKNOWN",  "unknown");
 
     private final String platform;
     private final String propNamespace;
@@ -27,9 +27,15 @@ public enum EV3DevPlatform {
         return propNamespace;
     }
 
-    public static String getPlatformByString(final String code){
-        for(EV3DevPlatform e : EV3DevPlatform.values()){
-            if(code == e.platform){
+    /**
+     * Method to find the platform
+     *
+     * @param code Code
+     * @return String representing the Platform
+     */
+    public static String getPlatformByString(final String code) {
+        for (EV3DevPlatform e : EV3DevPlatform.values()) {
+            if (code == e.platform) {
                 return e.name();
             }
         }
