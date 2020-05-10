@@ -15,27 +15,20 @@ import java.util.Objects;
  * sensors. It can also be used to detect other (active) Ultrasonic sensors in
  * the vicinity.
  *
- * 
- * 
- * <p>
- * <b>Sensor configuration</b><br>
+ *
+ *
+ *
+ * <p><b>Sensor configuration</b><br>
  * The sensors can be switched off and on using the {@link #enable} and
  * {@link #disable} methods. Disabling the sensors also shuts down the lights.
- * 
- * <p>
- * 
- * See <a href="http://www.ev-3.net/en/archives/844"> Sensor Product page </a>
+ *
+ * <p>See <a href="http://www.ev-3.net/en/archives/844"> Sensor Product page </a>
  * See <a href="http://sourceforge.net/p/lejos/wiki/Sensor%20Framework/"> The
- *      leJOS sensors framework</a>
- * See {@link lejos.robotics.SampleProvider leJOS conventions for
- *      SampleProviders}
- * 
- *      <p>
- * 
- * 
+ * leJOS sensors framework</a>
+ * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+ *
  * @author Aswin Bouwmeester
  * @author Juan Antonio Breña Moral
- * 
  */
 public class EV3UltrasonicSensor extends BaseSensor {
 
@@ -50,30 +43,29 @@ public class EV3UltrasonicSensor extends BaseSensor {
 
 
     /**
-    * Create the Ultrasonic sensors class.
-    *
-    * @param portName port
-    */
+     * Create the Ultrasonic sensors class.
+     *
+     * @param portName port
+     */
     public EV3UltrasonicSensor(final Port portName) {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_US);
 
         setModes(new SensorMode[]{
-                new GenericMode(this.PATH_DEVICE, 1, "Distance", MIN_RANGE, MAX_RANGE, 0.1f),
-                new GenericMode(this.PATH_DEVICE, 1, "Listen")
+            new GenericMode(this.PATH_DEVICE, 1, "Distance", MIN_RANGE, MAX_RANGE, 0.1f),
+            new GenericMode(this.PATH_DEVICE, 1, "Listen")
         });
     }
 
     /**
-    * <b>Lego EV3 Ultrasonic sensors, Listen mode</b><br>
-    * Listens for the presence of other ultrasonic sensors.
-    *
-    * <p>
-    * <b>Size and content of the sample</b><br>
-    * The sample contains one elements indicating the presence of another ultrasonic sensors.
-    * A value of 1 indicates that the sensors detects another ultrasonic sensors.
-    *
-    * @return A sampleProvider
-    */
+     * <b>Lego EV3 Ultrasonic sensors, Listen mode</b><br>
+     * Listens for the presence of other ultrasonic sensors.
+     *
+     * <p><b>Size and content of the sample</b><br>
+     * The sample contains one elements indicating the presence of another ultrasonic sensors.
+     * A value of 1 indicates that the sensors detects another ultrasonic sensors.
+     *
+     * @return A sampleProvider
+     */
     public SampleProvider getListenMode() {
         switchMode(MODE_LISTEN, SWITCH_DELAY);
         return getMode(1);
@@ -83,10 +75,9 @@ public class EV3UltrasonicSensor extends BaseSensor {
      * <b>Lego EV3 Ultrasonic sensors, Distance mode</b><br>
      * Measures distance to an object in front of the sensors
      *
-     * <p>
-     * <b>Size and content of the sample</b><br>
-     * The sample contains one elements representing the distance (in metres) to an object in front of the sensors.
-     * unit).
+     * <p><b>Size and content of the sample</b><br>
+     * The sample contains one elements representing the distance (in metres)
+     * to an object in front of the sensors unit.
      *
      * @return A sampleProvider
      */
@@ -120,13 +111,13 @@ public class EV3UltrasonicSensor extends BaseSensor {
     }
 
     /**
-    * Indicate that the sensors is enabled.
-    *
-    * @return True, when the sensors is enabled. <br>
-    *         False, when the sensors is disabled.
-    */
+     * Indicate that the sensors is enabled.
+     *
+     * @return True, when the sensors is enabled. <br>
+     *     False, when the sensors is disabled.
+     */
     public boolean isEnabled() {
         return !Objects.equals(this.getSystemMode(), MODE_SINGLE_MEASURE);
     }
-    
+
 }

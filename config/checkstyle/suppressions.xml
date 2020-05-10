@@ -24,6 +24,12 @@
               |.*/LCDStretch.java|
               |.*/Sound.java|
               |.*/EV3Led.java|
+              |.*/NXTCamV5.java|
+              |.*/AbsoluteIMU.java|
+              |.*/EV3ColorSensor.java|
+              |.*/EV3IRSensor.java|
+              |.*/EV3Key.java|
+              |.*/Battery.java|
               |.*/BaseRegulatedMotor.java|
               |.*/RGBFramebufferProvider.java" />
     <suppress checks="TypeName"
@@ -40,10 +46,12 @@
               |.*/LCDStretch.java|
               |.*/Sound.java|
               |.*/EV3Led.java|
+              |.*/Battery.java|
               |.*/NativeFramebuffer.java" />
     <suppress checks="VariableDeclarationUsageDistanceCheck"
               files=".*/OwnedDisplay.java
               |.*/LCDStretch.java|" />
     <suppress checks="JavadocParagraph" files=".*/EV3DevDevice.java" />
     <suppress checks="LocalVariableName" files=".*/LCDStretch.java" />
+    <suppress checks="OverloadMethodsDeclarationOrder" files=".*/BaseSensor.java" />
 </suppressions>

@@ -18,10 +18,23 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
     protected int currentMode = 0;
     protected SensorMode[] modes;
 
+    /**
+     * Constructor
+     *
+     * @param sensorPort sensorPort
+     * @param mode mode
+     * @param device device
+     */
     public BaseSensor(final Port sensorPort, final String mode, final String device) {
         super(sensorPort, mode, device);
     }
 
+    /**
+     * Constructor
+     *
+     * @param sensorPort sensorPort
+     * @param mode mode
+     */
     public BaseSensor(final Port sensorPort, final String mode) {
         super(sensorPort, mode);
     }
@@ -37,7 +50,13 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         currentMode = 0;
     }
 
+    /**
+     * Returns all modes availables from the sensor.
+     *
+     * @return List of modes available
+     */
     public ArrayList<String> getAvailableModes() {
+        //TODO Refactor
         if (modeList == null) {
             modeList = new ArrayList<>(modes.length);
             if (modes != null) {
@@ -60,8 +79,9 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
      * See {@link GenericMode#fetchSample(float[], int)}</p>
      */
     public SensorMode getMode(int mode) {
-        if (modeInvalid(mode))
+        if (modeInvalid(mode)) {
             throw new IllegalArgumentException("Invalid mode " + mode);
+        }
         return modes[mode];
     }
 
