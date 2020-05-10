@@ -55,6 +55,30 @@ compileJava {
     targetCompatibility = 11
 }
 
+def checkstyleConfigDir = file("${rootDir}/config/checkstyle")
+
+checkstyle {
+    toolVersion = "8.20"
+    configFile = new File(checkstyleConfigDir, "checkstyle.xml")
+    configProperties.checkstyleConfigDir = checkstyleConfigDir
+    checkstyleTest.enabled = false
+}
+
+tasks.withType(Checkstyle) {
+    ignoreFailures false
+    maxWarnings = 0
+    source 'src/main/java'
+    exclude '**/ev3dev/actuators/'
+    exclude '**/ev3dev/hardware/'
+    exclude '**/ev3dev/robotics/'
+    exclude '**/ev3dev/sensors/'
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-noframes-sorted.xsl')
+    }
+}
+
 test.testLogging {
     exceptionFormat "full"
 }

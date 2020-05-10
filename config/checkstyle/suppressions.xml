@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <suppress checks="OverloadMethodsDeclarationOrder" files=".*/utils/io/NativeFile.java" />
+    <suppress checks="AbbreviationAsWordInName" files=".*/utils/io/NativeTTY.java|.*/utils/io/NativeFramebuffer.java|.*/utils/USBPort.java" />
+    <suppress checks="TypeName" files=".*/utils/io/NativeTTY.java|.*/utils/io/NativeFramebuffer.java" />
+    <suppress checks="MemberName" files=".*/utils/io/NativeTTY.java|.*/utils/USBPort.java|.*/utils/io/NativeFramebuffer.java" />
+</suppressions>

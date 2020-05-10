@@ -6,12 +6,12 @@ public class Interpolation {
      * Method implemented with the ideas from:
      * http://wwwprof.uniandes.edu.co/~gprieto/classes/compufis/interpolacion.pdf
      *
-     * @param x
-     * @param x0
-     * @param x1
-     * @param y0
-     * @param y1
-     * @return
+     * @param x parameter
+     * @param x0 parameter
+     * @param x1 parameter
+     * @param y0 parameter
+     * @param y1 parameter
+     * @return result from interpolation
      */
     public static float interpolate(
             float x,
