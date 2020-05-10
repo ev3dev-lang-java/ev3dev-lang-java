@@ -6,7 +6,29 @@
 
 <suppressions>
     <suppress checks="OverloadMethodsDeclarationOrder" files=".*/utils/io/NativeFile.java" />
-    <suppress checks="AbbreviationAsWordInName" files=".*/utils/io/NativeTTY.java|.*/utils/io/NativeFramebuffer.java|.*/utils/USBPort.java" />
-    <suppress checks="TypeName" files=".*/utils/io/NativeTTY.java|.*/utils/io/NativeFramebuffer.java" />
-    <suppress checks="MemberName" files=".*/utils/io/NativeTTY.java|.*/utils/USBPort.java|.*/utils/io/NativeFramebuffer.java" />
+    <suppress checks="AbbreviationAsWordInName"
+              files=".*/NativeTTY.java|
+              |.*/NativeFramebuffer.java|
+              |.*/USBPort.java|
+              |.*/FramebufferProvider.java|
+              |.*/OwnedDisplay.java|
+              |.*/RGBFramebuffer.java|
+              |.*/ImageUtils.java|
+              |.*/EV3DevPlatforms.java|
+              |.*/EV3DevFileSystem.java|
+              |.*/EV3DevDistros.java|
+              |.*/EV3DevDevice.java|
+              |.*/RGBFramebufferProvider.java" />
+    <suppress checks="TypeName"
+              files=".*/NativeTTY.java|
+              |.*/NativeFramebuffer.java" />
+    <suppress checks="MemberName"
+              files=".*/NativeTTY.java|
+              |.*/USBPort.java|
+              |.*/OwnedDisplay.java|
+              |.*/EV3DevDistros.java|
+              |.*/EV3DevDevice.java|
+              |.*/NativeFramebuffer.java" />
+    <suppress checks="VariableDeclarationUsageDistanceCheck" files=".*/OwnedDisplay.java" />
+    <suppress checks="JavadocParagraph" files=".*/EV3DevDevice.java" />
 </suppressions>

@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.awt.image.BufferedImage;
 
-import static ev3dev.utils.io.NativeConstants.*;
+import static ev3dev.utils.io.NativeConstants.FB_TYPE_PACKED_PIXELS;
+import static ev3dev.utils.io.NativeConstants.FB_VISUAL_MONO01;
+import static ev3dev.utils.io.NativeConstants.FB_VISUAL_MONO10;
 
 /**
  * Linux black-and-white 1bpp framebuffer
@@ -15,14 +17,18 @@ import static ev3dev.utils.io.NativeConstants.*;
  */
 @Slf4j
 public class BitFramebuffer extends LinuxFramebuffer {
+
     /**
      * Create and initialize new Linux 1bpp framebuffer.
      *
      * @param fb The framebuffer device (e.g. /dev/fb0)
      * @param disp Display manager (e.g. /dev/tty)
      */
-    public BitFramebuffer(NativeFramebuffer fb, DisplayInterface disp) throws LastErrorException, IllegalArgumentException {
+    public BitFramebuffer(NativeFramebuffer fb, DisplayInterface disp)
+        throws LastErrorException, IllegalArgumentException {
+
         super(fb, disp);
+
         if (getFixedInfo().type != FB_TYPE_PACKED_PIXELS) {
             try {
                 close();

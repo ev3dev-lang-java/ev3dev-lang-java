@@ -20,6 +20,7 @@ import java.util.ServiceLoader;
  * @since 2.4.7
  */
 public interface FramebufferProvider {
+
     /**
      * Initialize system framebuffer
      *
@@ -28,7 +29,9 @@ public interface FramebufferProvider {
      * @throws RuntimeException if no suitable framebuffer is found
      */
     static JavaFramebuffer load(@NonNull NativeFramebuffer fb, DisplayInterface disp) throws AllImplFailedException {
+
         final Logger LOGGER = LoggerFactory.getLogger(FramebufferProvider.class);
+
         LOGGER.debug("Loading framebuffer");
         ServiceLoader<FramebufferProvider> loader = ServiceLoader.load(FramebufferProvider.class);
         for (FramebufferProvider provider : loader) {

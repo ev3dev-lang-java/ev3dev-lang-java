@@ -9,7 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
-import static ev3dev.utils.io.NativeConstants.*;
+import static ev3dev.utils.io.NativeConstants.KD_GRAPHICS;
+import static ev3dev.utils.io.NativeConstants.KD_TEXT;
+import static ev3dev.utils.io.NativeConstants.K_OFF;
+import static ev3dev.utils.io.NativeConstants.O_RDWR;
+import static ev3dev.utils.io.NativeConstants.SIGUSR2;
+import static ev3dev.utils.io.NativeConstants.VT_AUTO;
+import static ev3dev.utils.io.NativeConstants.VT_PROCESS;
 
 /**
  * <p>System console manager.</p>
@@ -29,6 +35,7 @@ import static ev3dev.utils.io.NativeConstants.*;
  */
 @Slf4j
 class OwnedDisplay extends DisplayInterface {
+
     private ILibc libc;
     private String fbPath = null;
     private NativeTTY ttyfd = null;
@@ -68,6 +75,7 @@ class OwnedDisplay extends DisplayInterface {
         try {
             LOGGER.trace("Opening TTY");
             ttyfd = new NativeTTY("/dev/tty", O_RDWR, libc);
+            //TODO Review to put final (Checkstyle)
             int activeVT = ttyfd.getVTstate().v_active;
             old_kbmode = ttyfd.getKeyboardMode();
 

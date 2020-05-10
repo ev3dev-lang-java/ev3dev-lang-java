@@ -15,12 +15,15 @@ public class EV3DevPropertyLoader {
     private static final String STRETCH_PROPERTY_FILENAME = "stretch.properties";
     private static final String JESSIE_PROPERTY_FILENAME = "jessie.properties";
 
+    /**
+     * Constructor
+     */
     public EV3DevPropertyLoader() {
 
         String propertyName;
-        if(EV3DevDistros.getInstance().getDistro().equals(EV3DevDistro.STRETCH)) {
+        if (EV3DevDistros.getInstance().getDistro().equals(EV3DevDistro.STRETCH)) {
             propertyName = STRETCH_PROPERTY_FILENAME;
-        }else {
+        } else {
             propertyName = JESSIE_PROPERTY_FILENAME;
         }
 
@@ -34,7 +37,11 @@ public class EV3DevPropertyLoader {
         }
     }
 
-    public Properties getEV3DevProperties(){
+    /**
+     * Return the properties
+     * @return Properties
+     */
+    public Properties getEV3DevProperties() {
         return ev3DevProperties;
     }
 }

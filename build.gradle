@@ -69,7 +69,6 @@ tasks.withType(Checkstyle) {
     maxWarnings = 0
     source 'src/main/java'
     exclude '**/ev3dev/actuators/'
-    exclude '**/ev3dev/hardware/'
     exclude '**/ev3dev/robotics/'
     exclude '**/ev3dev/sensors/'
     reports {

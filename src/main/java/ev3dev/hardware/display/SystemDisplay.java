@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public final class SystemDisplay {
+
     private SystemDisplay() {
     }
 
@@ -34,7 +35,8 @@ public final class SystemDisplay {
         } catch (LastErrorException e) {
             int errno = e.getErrorCode();
             if (errno == NativeConstants.ENOTTY || errno == NativeConstants.ENXIO) {
-                LOGGER.debug("real display init failed, but it was caused by not having a real TTY, using fake console");
+                LOGGER.debug("real display init failed, "
+                    + "but it was caused by not having a real TTY, using fake console");
                 // we do not run from Brickman
                 return new StolenDisplay(libc);
             } else {
