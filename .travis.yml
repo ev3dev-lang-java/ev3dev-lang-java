@@ -18,6 +18,6 @@ notifications:
     recipients:
       - bren@juanantonio.info
 script:
-  - ./gradlew test
+  - ./gradlew test checkstyleMain
 after_success:
   - bash <(curl -s https://codecov.io/bash)

@@ -6,7 +6,7 @@
 
 <suppressions>
     <suppress checks="OverloadMethodsDeclarationOrder" files=".*/utils/io/NativeFile.java" />
-    <suppress checks="AbbreviationAsWordInName" files=".*/utils/io/NativeTTY.java" />
-    <suppress checks="TypeName" files=".*/utils/io/NativeTTY.java" />
-    <suppress checks="MemberName" files=".*/utils/io/NativeTTY.java" />
+    <suppress checks="AbbreviationAsWordInName" files=".*/utils/io/NativeTTY.java|.*/utils/io/NativeFramebuffer.java|.*/utils/USBPort.java" />
+    <suppress checks="TypeName" files=".*/utils/io/NativeTTY.java|.*/utils/io/NativeFramebuffer.java" />
+    <suppress checks="MemberName" files=".*/utils/io/NativeTTY.java|.*/utils/USBPort.java|.*/utils/io/NativeFramebuffer.java" />
 </suppressions>

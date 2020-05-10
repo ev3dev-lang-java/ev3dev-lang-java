@@ -1,6 +1,6 @@
 package ev3dev.utils;
 
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,62 +11,73 @@ import java.io.InputStreamReader;
  *
  * @author Juan Antonio Breña Moral
  */
+@Slf4j
 public class Shell {
-
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Shell.class);
 
     public static String COMMAND_ERROR_MESSAGE = "COMMAND_ERROR";
 
+    /**
+     * Execute a command passed as a parameter
+     *
+     * @param command Command to execute in Linux
+     * @return Result from the command
+     */
     public static String execute(final String command) {
 
-        log.debug("Command: {}", command);
-		StringBuilder output = new StringBuilder();
+        LOGGER.debug("Command: {}", command);
+        StringBuilder output = new StringBuilder();
 
-		Process p;
-		try {
-			p = Runtime.getRuntime().exec(command);
-			p.waitFor();
-			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			
-			String line;
-			while ((line = reader.readLine())!= null) {
-				output.append(line).append("\n");
-			}
-			reader.close();
-		} catch (IOException | InterruptedException e) {
-			log.warn(e.getLocalizedMessage(), e);
-			return COMMAND_ERROR_MESSAGE;
-		}
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec(command);
+            p.waitFor();
 
-		return output.toString();
-	}
-	
-	public static String execute(final String[] command) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-        for (String cmd: command) {
-            log.info("Command chunk: {}", cmd);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+            reader.close();
+        } catch (IOException | InterruptedException e) {
+            LOGGER.warn(e.getLocalizedMessage(), e);
+            return COMMAND_ERROR_MESSAGE;
+        }
+
+        return output.toString();
+    }
+
+    /**
+     * Execute a set of commands passed as a parameter
+     *
+     * @param command Command to execute in Linux
+     * @return Result from the command
+     */
+    public static String execute(final String[] command) {
+
+        for (String cmd : command) {
+            LOGGER.info("Command chunk: {}", cmd);
         }
         StringBuilder output = new StringBuilder();
 
-		Process p;
-		try {
-			p = Runtime.getRuntime().exec(command);
-			p.waitFor();
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec(command);
+            p.waitFor();
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			
-			String line;
-			while ((line = reader.readLine())!= null) {
-				output.append(line).append("\n");
-			}
-			reader.close();
-		} catch (Exception e) {
-            log.error(e.getLocalizedMessage(), e);
-			e.printStackTrace();
-		}
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-		return output.toString();
-	}
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+            reader.close();
+        } catch (Exception e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+            e.printStackTrace();
+        }
+
+        return output.toString();
+    }
 
 }

@@ -9,7 +9,10 @@ import lombok.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
-import static ev3dev.utils.io.NativeConstants.*;
+import static ev3dev.utils.io.NativeConstants.FBIOGET_CON2FBMAP;
+import static ev3dev.utils.io.NativeConstants.FBIOGET_FSCREENINFO;
+import static ev3dev.utils.io.NativeConstants.FBIOGET_VSCREENINFO;
+import static ev3dev.utils.io.NativeConstants.FBIOPUT_VSCREENINFO;
 
 /**
  * Linux framebuffer wrapper class
@@ -167,7 +170,7 @@ public class NativeFramebuffer extends NativeDevice {
          */
         public int mmio_len;
         /**
-         * Indicate to driver which	specific chip/card we have
+         * Indicate to driver which specific chip/card we have
          */
         public int accel;
         /**

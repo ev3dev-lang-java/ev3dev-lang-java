@@ -16,13 +16,16 @@ public class USBPort {
     private String USBPath;
     private final String defaultUSBPath = "/sys/bus/usb/drivers/usb/";
 
-    public USBPort(){
+    /**
+     * Constructor
+     */
+    public USBPort() {
 
-        if(Objects.nonNull(System.getProperty(EV3DEV_TESTING_KEY))) {
+        if (Objects.nonNull(System.getProperty(EV3DEV_TESTING_KEY))) {
             final String NEW_ROOT_PATH = System.getProperty(EV3DEV_TESTING_KEY);
             LOGGER.debug("USB Path modified: {}", NEW_ROOT_PATH);
             USBPath = NEW_ROOT_PATH + "/usb";
-        }else {
+        } else {
             LOGGER.debug("Root Path: {}", defaultUSBPath);
             USBPath = defaultUSBPath;
         }
