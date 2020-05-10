@@ -6,12 +6,16 @@ import lejos.hardware.lcd.GraphicsLCD;
 
 public class LCD {
 
-    //Factory
+    /**
+     * Factory
+     *
+     * @return GraphicsLCD
+     */
     public static GraphicsLCD getInstance() {
 
-        if(EV3DevDistros.getInstance().getDistro().equals(EV3DevDistro.STRETCH)) {
+        if (EV3DevDistros.getInstance().getDistro().equals(EV3DevDistro.STRETCH)) {
             return LCDStretch.getInstance();
-        }else {
+        } else {
             return LCDJessie.getInstance();
         }
 

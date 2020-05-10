@@ -18,6 +18,13 @@
               |.*/EV3DevFileSystem.java|
               |.*/EV3DevDistros.java|
               |.*/EV3DevDevice.java|
+              |.*/NXTRegulatedMotor.java|
+              |.*/LCD.java|
+              |.*/LCDJessie.java|
+              |.*/LCDStretch.java|
+              |.*/Sound.java|
+              |.*/EV3Led.java|
+              |.*/BaseRegulatedMotor.java|
               |.*/RGBFramebufferProvider.java" />
     <suppress checks="TypeName"
               files=".*/NativeTTY.java|
@@ -28,7 +35,15 @@
               |.*/OwnedDisplay.java|
               |.*/EV3DevDistros.java|
               |.*/EV3DevDevice.java|
+              |.*/BaseRegulatedMotor.java|
+              |.*/LCDJessie.java|
+              |.*/LCDStretch.java|
+              |.*/Sound.java|
+              |.*/EV3Led.java|
               |.*/NativeFramebuffer.java" />
-    <suppress checks="VariableDeclarationUsageDistanceCheck" files=".*/OwnedDisplay.java" />
+    <suppress checks="VariableDeclarationUsageDistanceCheck"
+              files=".*/OwnedDisplay.java
+              |.*/LCDStretch.java|" />
     <suppress checks="JavadocParagraph" files=".*/EV3DevDevice.java" />
+    <suppress checks="LocalVariableName" files=".*/LCDStretch.java" />
 </suppressions>

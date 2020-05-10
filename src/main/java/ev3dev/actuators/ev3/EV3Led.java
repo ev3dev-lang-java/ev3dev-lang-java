@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class provides methods for interacting with the LEDs on the EV3Brick.
- * <p>
- * <i>Only EV3Bricks are supported.</i>
+ *
+ * <p><i>Only EV3Bricks are supported.</i>
  */
 public class EV3Led extends EV3DevDevice implements LED {
 
@@ -41,6 +41,7 @@ public class EV3Led extends EV3DevDevice implements LED {
     public EV3Led(final Direction direction) {
         checkPlatform();
 
+        //TODO Refactor
         if (direction == null) {
             log.error("You are not specifying any button.");
             throw new IllegalArgumentException("You are not specifying any button.");
@@ -100,13 +101,10 @@ public class EV3Led extends EV3DevDevice implements LED {
      * Sets the pattern of light to be shown with this LED.
      *
      * @param pattern the pattern to show with this LED.
-     *                <p>
+     *
      *                0: Turns off the LED light;
-     *                <p>
      *                1/2/3: Static green/red/yellow light;
-     *                <p>
      *                4/5/6: Normal blinking green/red/yellow light, <i>not implemented</i>;
-     *                <p>
      *                7/8/9: Fast blinking green/red/yellow light, <i>not implemented</i>.
      */
     @Override
