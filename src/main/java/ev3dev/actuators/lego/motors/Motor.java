@@ -5,8 +5,8 @@ import lejos.robotics.RegulatedMotor;
 
 /**
  * Motor class contains 3 instances of regulated motors.
- * <p>
- * Example:<p>
+ *
+ * <p>Example:
  * <code><pre>
  *   Motor.A.setSpeed(720);// 2 RPM
  *   Motor.C.setSpeed(720);

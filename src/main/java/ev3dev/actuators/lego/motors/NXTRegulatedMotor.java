@@ -4,7 +4,6 @@ import lejos.hardware.port.Port;
 
 /**
  * Abstraction for a  Lego NXT motors.
- * 
  */
 public class NXTRegulatedMotor extends BaseRegulatedMotor {
 
@@ -16,14 +15,15 @@ public class NXTRegulatedMotor extends BaseRegulatedMotor {
     private static final float HOLD_D = 8f;
     private static final int OFFSET = 0;
 
-    private static final int MAX_SPEED = 170*360/60;
+    private static final int MAX_SPEED = 170 * 360 / 60;
 
     /**
      * Constructor
+     *
      * @param motorPort motor port
      */
-	public NXTRegulatedMotor(final Port motorPort) {
+    public NXTRegulatedMotor(final Port motorPort) {
         super(motorPort, MOVE_P, MOVE_I, MOVE_D, HOLD_P, HOLD_I, HOLD_D, OFFSET, MAX_SPEED);
-	}
+    }
 
 }

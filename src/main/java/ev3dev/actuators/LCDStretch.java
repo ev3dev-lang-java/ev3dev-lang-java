@@ -9,7 +9,13 @@ import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.AffineTransformOp;
@@ -47,7 +53,13 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
 
     private static LCDStretch instance;
 
+    /**
+     * Singleton constructor
+     *
+     * @return GraphicsLCD
+     */
     public static GraphicsLCD getInstance() {
+        //TODO Refactor
         if (instance == null) {
             instance = new LCDStretch();
         }
@@ -59,7 +71,7 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
 
         log.info("Instancing LCD for Stretch");
 
-        if(!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)){
+        if (!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
             log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
             throw new RuntimeException("This actuator was only tested for: " + EV3DevPlatform.EV3BRICK);
         }
@@ -81,8 +93,9 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
      * Write LCD with current context
      */
     public void flush() {
-        if (log.isTraceEnabled())
+        if (log.isTraceEnabled()) {
             log.trace("flushing framebuffer");
+        }
 
         fb.flushScreen(image);
     }
@@ -115,7 +128,7 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
     /**
      * Set RGB value
      *
-     * @param rgb
+     * @param rgb rgb
      */
     @Override
     public void setColor(int rgb) {
@@ -145,10 +158,11 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
         g2d.getTransform().transform(in, dst);
 
         int rgb = image.getRGB((int) dst.x, (int) dst.y);
-        if ((rgb & 0x00FFFFFF) == 0x00FFFFFF)
+        if ((rgb & 0x00FFFFFF) == 0x00FFFFFF) {
             return 0;
-        else
+        } else {
             return 1;
+        }
     }
 
     @Override
@@ -224,7 +238,8 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
 
     @Deprecated
     @Override
-    public void drawRegionRop(Image src, int sx, int sy, int w, int h, int transform, int x, int y, int anchor, int rop) {
+    public void drawRegionRop(
+        Image src, int sx, int sy, int w, int h, int transform, int x, int y, int anchor, int rop) {
         x = adjustX(x, w, anchor);
         y = adjustY(y, h, anchor);
         BufferedImage srcI = any2rgb(src);
@@ -269,6 +284,8 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
                 h = w;
                 w = h0;
                 break;
+            default:
+                throw new RuntimeException("Bad Option");
         }
         tf.translate(-midx, -midy);
         AffineTransformOp op = new AffineTransformOp(tf, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
@@ -328,6 +345,8 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
             case HCENTER:
                 x -= w / 2;
                 break;
+            default:
+                throw new RuntimeException("Bad Option");
         }
         return x;
     }
@@ -345,6 +364,8 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
             case VCENTER:
                 y -= h / 2;
                 break;
+            default:
+                throw new RuntimeException("Bad Option");
         }
         return y;
     }
@@ -378,7 +399,7 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
 
     @Override
     public void clear() {
-        AffineTransform tf = (AffineTransform)g2d.getTransform().clone();
+        AffineTransform tf = (AffineTransform) g2d.getTransform().clone();
         g2d.getTransform().setToIdentity();
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, fb.getWidth(), fb.getHeight());
@@ -463,15 +484,16 @@ public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
      * Slow emulation of leJOS bitBlt()
      */
     @Override
-    public void bitBlt(byte[] src, int sw, int sh, int sx, int sy, byte dst[], int dw, int dh, int dx, int dy, int w, int h, int rop) {
+    public void bitBlt(
+        byte[] src, int sw, int sh, int sx, int sy, byte[] dst, int dw, int dh, int dx, int dy, int w, int h, int rop) {
         BufferedImage srcI = lejos2rgb(src, sw, sh);
         BufferedImage dstI = lejos2rgb(dst, dw, dh);
         bitBlt(srcI, sx, sy, dstI, dx, dy, w, h, rop);
         Graphics2D gfx = dstI.createGraphics();
         gfx.drawImage(srcI,
-                dy, dx, dy + h, dx + w,
-                sy, sx, sy + h, sx + w,
-                Color.WHITE, null);
+            dy, dx, dy + h, dx + w,
+            sy, sx, sy + h, sx + w,
+            Color.WHITE, null);
         gfx.dispose();
         byte[] data = any2lejos(dstI);
         System.arraycopy(data, 0, dst, 0, Math.min(data.length, dst.length));

@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Abstraction for a Regulated motors motors.
  * The basic control methods are:
- *  <code>forward, backward, reverseDirection, stop</code>
+ * <code>forward, backward, reverseDirection, stop</code>
  * and <code>flt</code>. To set each motors's velocity, use {@link #setSpeed(int)
  * <code>setSpeed  </code> }.
  * The maximum velocity of the motors is limited by the battery voltage and load.
@@ -30,7 +30,7 @@ import java.util.List;
  * The methods <code>rotate(int angle) </code> and <code>rotateTo(int ange)</code>
  * use the tachometer to control the position at which the motors stops, usually within 1 degree
  * or 2.<br>
- *  <br> <b> Listeners.</b>  An object implementing the {@link lejos.robotics
+ * <br> <b> Listeners.</b>  An object implementing the {@link lejos.robotics
  * <code> RegulatedMotorListener </code> } interface  may register with this class.
  * It will be informed each time the motors starts or stops.
  * <br> <b>Stall detection</b> If a stall is detected or if for some other reason
@@ -59,15 +59,16 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     /**
      * Constructor
+     *
      * @param motorPort motor port
-     * @param moveP moveP
-     * @param moveI moveI
-     * @param moveD moveD
-     * @param holdP holdP
-     * @param holdI holdI
-     * @param holdD holdD
-     * @param offset offset
-     * @param maxSpeed maxSpeed
+     * @param moveP     moveP
+     * @param moveI     moveI
+     * @param moveD     moveD
+     * @param holdP     holdP
+     * @param holdI     holdI
+     * @param holdD     holdD
+     * @param offset    offset
+     * @param maxSpeed  maxSpeed
      */
     public BaseRegulatedMotor(final Port motorPort, float moveP, float moveI, float moveD,
                               float holdP, float holdI, float holdD, int offset, int maxSpeed) {
@@ -75,37 +76,42 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         List<RegulatedMotorListener> list = new ArrayList<>();
         listenerList = Collections.synchronizedList(list);
 
-        if(log.isInfoEnabled())
+        if (log.isInfoEnabled()) {
             log.info("Configuring motor connected on Port: {}", motorPort.getName());
+        }
 
         MAX_SPEED_AT_9V = maxSpeed;
         final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         final String port = ev3DevPlatforms.getMotorPort(motorPort);
 
-        if(log.isDebugEnabled())
+        if (log.isDebugEnabled()) {
             log.debug("Detecting motor on port: {}", port);
+        }
         this.detect(LEGO_PORT, port);
-        if(log.isDebugEnabled())
+        if (log.isDebugEnabled()) {
             log.debug("Setting port in mode: {}", TACHO_MOTOR);
+        }
         this.setStringAttribute(MODE, TACHO_MOTOR);
         Delay.msDelay(1000);
         this.detect(TACHO_MOTOR, port);
         //TODO Review to implement asynchronous solution
         Delay.msDelay(1000);
         this.setStringAttribute(COMMAND, RESET);
-        if(log.isDebugEnabled())
-            log.debug("Motor ready to use on Port: {}",motorPort.getName());
+        if (log.isDebugEnabled()) {
+            log.debug("Motor ready to use on Port: {}", motorPort.getName());
+        }
     }
-    
+
     /**
      * Removes this motors from the motors regulation system. After this call
      * the motors will be in float mode and will have stopped. Note calling any
      * of the high level move operations (forward, rotate etc.), will
      * automatically enable regulation.
+     *
      * @return true iff regulation has been suspended.
      */
     public boolean suspendRegulation() {
-		this.regulationFlag = false;
+        this.regulationFlag = false;
         return this.regulationFlag;
     }
 
@@ -114,7 +120,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * @see lejos.robotics.RegulatedMotor#getTachoCount()
      */
     public int getTachoCount() {
-    	return getIntegerAttribute(POSITION);
+        return getIntegerAttribute(POSITION);
     }
 
     /**
@@ -124,6 +130,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * circumstances (activeMotors that are in the process of stalling, or activeMotors
      * that have been forced out of position), the two values may differ. Note that
      * if regulation has been suspended calling this method will restart it.
+     *
      * @return the current position calculated by the regulator.
      */
     public float getPosition() {
@@ -145,7 +152,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     }
 
     @Override
-    public void backward(){
+    public void backward() {
         this.setSpeedDirect(-this.speed);
         if (!this.regulationFlag) {
             this.setStringAttribute(COMMAND, RUN_DIRECT);
@@ -215,7 +222,8 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     /**
      * Backend for all stop moves. This sets the stop action type and then triggers the stop action.
-     * @param mode One of BRAKE, COAST and HOLD string constants.
+     *
+     * @param mode            One of BRAKE, COAST and HOLD string constants.
      * @param immediateReturn Whether the function should busy-wait until the motor stops reporting the 'running' state.
      */
     private void doStop(String mode, boolean immediateReturn) {
@@ -239,17 +247,19 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * axle may continue to rotate by inertia.
      * If the motors is stalled, isMoving()  will return <b> true. </b> . A stall can
      * be detected  by calling {@link #isStalled()};
+     *
      * @return true iff the motors is attempting to rotate.<br>
      */
     @Override
     public boolean isMoving() {
-		return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
+        return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
     }
 
     /**
      * Sets desired motors speed , in degrees per second;
      * The maximum reliably sustainable velocity is  100 x battery voltage under
      * moderate load, such as a direct drive robot on the level.
+     *
      * @param speed value in degrees/sec
      */
     public void setSpeed(int speed) {
@@ -270,27 +280,28 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * will cause any current move operation to be halted.
      */
     public void resetTachoCount() {
-		this.setStringAttribute(COMMAND, RESET);
+        this.setStringAttribute(COMMAND, RESET);
         this.regulationFlag = true;
     }
-    
+
     /**
      * Rotate by the request number of degrees.
-     * @param angle number of degrees to rotate relative to the current position
+     *
+     * @param angle           number of degrees to rotate relative to the current position
      * @param immediateReturn if true do not wait for the move to complete
-     * Rotate by the requested number of degrees. Wait for the move to complete.
+     *                        Rotate by the requested number of degrees. Wait for the move to complete.
      */
     public void rotate(int angle, boolean immediateReturn) {
-		this.setSpeedDirect(this.speed);
-		this.setIntegerAttribute(POSITION_SP, angle);
-		this.setStringAttribute(COMMAND, RUN_TO_REL_POS);
-		
-		if (!immediateReturn) {
-			while(this.isMoving()){
-			   // do stuff or do nothing
-			   // possibly sleep for some short interval to not block
-			}
-		}
+        this.setSpeedDirect(this.speed);
+        this.setIntegerAttribute(POSITION_SP, angle);
+        this.setStringAttribute(COMMAND, RUN_TO_REL_POS);
+
+        if (!immediateReturn) {
+            while (this.isMoving()) {
+                // do stuff or do nothing
+                // possibly sleep for some short interval to not block
+            }
+        }
 
         for (RegulatedMotorListener listener : listenerList) {
             listener.rotationStarted(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
@@ -299,45 +310,54 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     /**
      * Rotate by the requested number of degrees. Wait for the move to complete.
+     *
      * @param angle angle
      */
     public void rotate(int angle) {
         rotate(angle, false);
     }
 
+    /**
+     * Rotate to a specific angle
+     *
+     * @param limitAngle angle
+     * @param immediateReturn If the method behave in an asynchronous way
+     */
     public void rotateTo(int limitAngle, boolean immediateReturn) {
-    	this.setSpeedDirect(this.speed);
-    	this.setIntegerAttribute(POSITION_SP, limitAngle);
-    	this.setStringAttribute(COMMAND, RUN_TO_ABS_POS);
-		
-		if (!immediateReturn) {
-			while(this.isMoving()){
-			    // do stuff or do nothing
-			    // possibly sleep for some short interval to not block
-			}
-		}
+        this.setSpeedDirect(this.speed);
+        this.setIntegerAttribute(POSITION_SP, limitAngle);
+        this.setStringAttribute(COMMAND, RUN_TO_ABS_POS);
+
+        if (!immediateReturn) {
+            while (this.isMoving()) {
+                // do stuff or do nothing
+                // possibly sleep for some short interval to not block
+            }
+        }
 
         for (RegulatedMotorListener listener : listenerList) {
             listener.rotationStarted(this, this.getTachoCount(), this.isStalled(), System.currentTimeMillis());
         }
     }
-    
+
     /**
      * Rotate to the target angle. Do not return until the move is complete.
+     *
      * @param limitAngle Angle to rotate to.
      */
     public void rotateTo(int limitAngle) {
-    	rotateTo(limitAngle, false);
+        rotateTo(limitAngle, false);
     }
 
     /**
      * Return the current target speed.
+     *
      * @return the current target speed.
      */
     public int getSpeed() {
-		if(!this.regulationFlag) {
+        if (!this.regulationFlag) {
             return this.getIntegerAttribute(DUTY_CYCLE);
-		}else {
+        } else {
             return this.getIntegerAttribute(SPEED);
         }
 
@@ -345,14 +365,16 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     /**
      * Return true if the motors is currently stalled.
+     *
      * @return true if the motors is stalled, else false
      */
     public boolean isStalled() {
-		return (this.getStringAttribute(STATE).contains(STATE_STALLED));
+        return (this.getStringAttribute(STATE).contains(STATE_STALLED));
     }
-    
+
     /**
      * Return the current velocity.
+     *
      * @return current velocity in degrees/s
      */
     public int getRotationSpeed() {
@@ -366,7 +388,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     @Override
     public RegulatedMotorListener removeListener() {
-        if(listenerList.size() > 0){
+        if (listenerList.size() > 0) {
             listenerList.remove(listenerList.size() - 1);
         }
         return null;
@@ -375,7 +397,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     @Override
     public void waitComplete() {
         //TODO Review the side effect with multiple motors
-        while(this.isMoving()) {
+        while (this.isMoving()) {
             Delay.msDelay(1);
         }
     }
@@ -389,7 +411,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         // TODO: If we ever allow the regulator class be remote, then we will need to ensure we
         // get the voltage of the remote brick not the local one.
         //return LocalEV3.ev3.getPower().getVoltage() * MAX_SPEED_AT_9V/9.0f * 0.9f;
-        return Battery.getInstance().getVoltage() * MAX_SPEED_AT_9V/9.0f * 0.9f;
+        return Battery.getInstance().getVoltage() * MAX_SPEED_AT_9V / 9.0f * 0.9f;
     }
 
     @Override
