@@ -69,7 +69,7 @@ public class NXTCamV5 extends BaseSensor {
      * @param mode Use either OBJECT_TRACKING or LINE_TRACKING
      */
     public void setTrackingMode(final String mode) {
-        if(trackingAllowedModeList.contains(mode)) {
+        if (trackingAllowedModeList.contains(mode)) {
             sendCommand(mode);
         } else {
             throw new RuntimeException("Tracking mode not allowed: " + mode);
@@ -87,14 +87,14 @@ public class NXTCamV5 extends BaseSensor {
     /**
      * Create a new video
      */
-    public void createVideo(){
+    public void createVideo() {
         sendCommand(TAKE_VIDEO);
     }
 
     /**
      * Create a photo
      */
-    public void createPhoto(){
+    public void createPhoto() {
         sendCommand(TAKE_PHOTO);
     }
 

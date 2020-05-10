@@ -28,7 +28,7 @@ public class GenericMode implements SensorMode {
      * @param sampleSize Number of returned samples.
      * @param modeName Human-readable sensor mode name.
      */
-    public GenericMode (
+    public GenericMode(
             final File pathDevice,
             final int sampleSize,
             final String modeName) {
