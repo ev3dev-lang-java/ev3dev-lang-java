@@ -55,6 +55,14 @@ compileJava {
     targetCompatibility = 11
 }
 
+def checkstyleConfigDir = file("${rootDir}/config/checkstyle")
+
+checkstyle {
+    toolVersion = "8.20"
+    configFile = new File(checkstyleConfigDir, "checkstyle.xml")
+    configProperties.checkstyleConfigDir = checkstyleConfigDir
+}
+
 tasks.withType(Checkstyle) {
     source 'src/main/java'
     exclude '**/ev3dev/actuators/'
