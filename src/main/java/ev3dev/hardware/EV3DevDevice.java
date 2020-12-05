@@ -214,4 +214,56 @@ public abstract class EV3DevDevice implements AutoCloseable {
             closeAttr(attr);
         }
     }
+
+    /**
+     * Returns the value of an attribute supported for a Device
+     *
+     * @deprecated Replaced by fixed attribute system.
+     * @param attribute attribute
+     * @return value
+     */
+    @Deprecated
+    protected String getStringAttribute(final String attribute) {
+        return Sysfs.readString(PATH_DEVICE + "/" + attribute);
+    }
+
+    /**
+     * Returns the value of an attribute supported for a Device
+     *
+     * @deprecated Replaced by fixed attribute system.
+     * @param attribute attribute
+     * @return value
+     */
+    @Deprecated
+    protected int getIntegerAttribute(final String attribute) {
+        return Sysfs.readInteger(PATH_DEVICE + "/" + attribute);
+    }
+
+    /**
+     * Set a value on an attribute
+     *
+     * @deprecated Replaced by fixed attribute system.
+     * @param attribute attribute
+     * @param value     value
+     */
+    @Deprecated
+    protected void setStringAttribute(final String attribute, final String value) {
+        final boolean result = Sysfs.writeString(this.PATH_DEVICE + "/" + attribute, value);
+        if (!result) {
+            throw new RuntimeException("Operation not executed: "
+                + this.PATH_DEVICE + "/" + attribute + " with value " + value);
+        }
+    }
+
+    /**
+     * Set a value on an attribute
+     *
+     * @deprecated Replaced by fixed attribute system.
+     * @param attribute attribute
+     * @param value     value
+     */
+    @Deprecated
+    protected void setIntegerAttribute(final String attribute, final int value) {
+        setStringAttribute(attribute, Integer.toString(value));
+    }
 }
