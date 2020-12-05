@@ -1,6 +1,7 @@
 package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
+import ev3dev.sensors.BinDataMode;
 import ev3dev.sensors.GenericMode;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
@@ -41,12 +42,18 @@ public class EV3GyroSensor extends BaseSensor {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
 
         setModes(new SensorMode[]{
-            new GenericMode(this, 1, "Rate",
-                -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
-            new GenericMode(this, 1, "Angle",
-                -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
-            new GenericMode(this, 2, "Angle and Rate",
-                -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
+            new BinDataMode(this, 1, "Rate",
+                BinDataMode.WIDTH_INT16, true, true,
+                -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f
+                ),
+            new BinDataMode(this, 1, "Angle",
+                BinDataMode.WIDTH_INT16, true, true,
+                -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f
+            ),
+            new BinDataMode(this, 2, "Angle and Rate",
+                BinDataMode.WIDTH_INT16, true, true,
+                -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f
+            ),
         });
     }
 
@@ -117,5 +124,4 @@ public class EV3GyroSensor extends BaseSensor {
         // And back to 3 to prevent another reset when fetching the next sample
         switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
     }
-
 }
