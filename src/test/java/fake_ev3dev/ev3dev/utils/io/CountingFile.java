@@ -55,6 +55,14 @@ public class CountingFile implements ICounter {
      */
     private int countWrite;
     /**
+     * Number of calls to read()
+     */
+    private int countPread;
+    /**
+     * Number of calls to write()
+     */
+    private int countPwrite;
+    /**
      * Number of calls to ioctl() with integer argument
      */
     private int countIoctl_int;
@@ -86,6 +94,8 @@ public class CountingFile implements ICounter {
         countMsync = 0;
         countRead = 0;
         countWrite = 0;
+        countPread = 0;
+        countPwrite = 0;
         countIoctl_int = 0;
         countIoctl_ptr = 0;
         countFcntl = 0;
@@ -136,6 +146,18 @@ public class CountingFile implements ICounter {
     public int read(int fd, @NonNull Buffer buffer, int count) throws LastErrorException {
         countRead++;
         return sub.read(fd, buffer, count);
+    }
+
+    @Override
+    public int pread(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        countPread++;
+        return sub.pread(fd, buffer, count, offset);
+    }
+
+    @Override
+    public int pwrite(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        countPread++;
+        return sub.pwrite(fd, buffer, count, offset);
     }
 
     @Override

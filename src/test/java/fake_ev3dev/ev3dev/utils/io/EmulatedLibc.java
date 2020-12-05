@@ -74,6 +74,15 @@ public class EmulatedLibc implements ILibc {
     }
 
     /**
+     * Check if a file is installed at the specified path.
+     * @param path File path.
+     * @return Whether there is a mock implementation installed there.
+     */
+    protected boolean hasInstalled(@NonNull String path) {
+        return mapping.containsKey(path);
+    }
+
+    /**
      * Get path for selected file descriptor.
      *
      * @param fd Queried file descriptor.
@@ -82,8 +91,8 @@ public class EmulatedLibc implements ILibc {
      */
     private String path(int fd) {
         return Optional
-                .ofNullable(opened.get(fd))
-                .orElseThrow(() -> new LastErrorException(NativeConstants.EBADF));
+            .ofNullable(opened.get(fd))
+            .orElseThrow(() -> new LastErrorException(NativeConstants.EBADF));
     }
 
     /**
@@ -95,8 +104,8 @@ public class EmulatedLibc implements ILibc {
      */
     private String path(@NonNull Pointer mem) {
         return Optional
-                .ofNullable(mmaps.get(mem))
-                .orElseThrow(() -> new LastErrorException(NativeConstants.EINVAL));
+            .ofNullable(mmaps.get(mem))
+            .orElseThrow(() -> new LastErrorException(NativeConstants.EINVAL));
     }
 
     /**
@@ -108,8 +117,8 @@ public class EmulatedLibc implements ILibc {
      */
     private IFile impl(@NonNull String path) {
         return Optional
-                .ofNullable(mapping.get(path))
-                .orElseThrow(() -> new LastErrorException(NativeConstants.ENOENT));
+            .ofNullable(mapping.get(path))
+            .orElseThrow(() -> new LastErrorException(NativeConstants.ENOENT));
     }
 
     @Override
@@ -158,6 +167,16 @@ public class EmulatedLibc implements ILibc {
     @Override
     public int read(int fd, Buffer buffer, int count) throws LastErrorException {
         return impl(path(fd)).read(fd, buffer, count);
+    }
+
+    @Override
+    public int pread(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        return impl(path(fd)).pread(fd, buffer, count, offset);
+    }
+
+    @Override
+    public int pwrite(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        return impl(path(fd)).pwrite(fd, buffer, count, offset);
     }
 
     @Override

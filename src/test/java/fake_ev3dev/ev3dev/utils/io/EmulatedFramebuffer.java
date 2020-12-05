@@ -6,9 +6,9 @@ import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import ev3dev.hardware.display.ImageUtils;
 import ev3dev.utils.io.NativeConstants;
+import java.awt.Graphics2D;
 import lombok.Getter;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.Buffer;
 import java.util.HashMap;
@@ -217,6 +217,36 @@ public class EmulatedFramebuffer implements ICounter {
      */
     @Override
     public int read(int fd, Buffer buffer, int count) throws LastErrorException {
+        throw new LastErrorException(NativeConstants.EIO);
+    }
+
+    /**
+     * Read bytes from the framebuffer [INVALID OPERATION].
+     *
+     * @param fd     Not used.
+     * @param buffer Not used.
+     * @param count  Not used.
+     * @param offset Not used.
+     * @return Nothing.
+     * @throws LastErrorException EIO always.
+     */
+    @Override
+    public int pread(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        throw new LastErrorException(NativeConstants.EIO);
+    }
+
+    /**
+     * Write bytes to the framebuffer [INVALID OPERATION].
+     *
+     * @param fd     Not used.
+     * @param buffer Not used.
+     * @param count  Not used.
+     * @param offset Not used.
+     * @return Nothing.
+     * @throws LastErrorException EIO always.
+     */
+    @Override
+    public int pwrite(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
         throw new LastErrorException(NativeConstants.EIO);
     }
 

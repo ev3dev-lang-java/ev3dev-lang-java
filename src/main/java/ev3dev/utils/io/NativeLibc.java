@@ -51,6 +51,10 @@ public class NativeLibc implements ILibc {
 
     public native int read(int fd, Buffer buffer, int count) throws LastErrorException;
 
+    public native int pread(int fd, Buffer buffer, int count, int offset);
+
+    public native int pwrite(int fd, Buffer buffer, int count, int offset);
+
     // map/unmap
     public native Pointer mmap(Pointer addr, NativeLong len, int prot, int flags, int fd, NativeLong off)
         throws LastErrorException;
