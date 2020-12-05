@@ -21,7 +21,7 @@ public class LatencyBench {
 
         warmUp(gyroSampleProvider, leftMotor, rightMotor);
 
-        long[] timingResults = new long[100];
+        long[] timingResults = new long[10];
         for (int i = 0; i < timingResults.length; i++) {
             long startTime = System.nanoTime();
 
@@ -42,7 +42,7 @@ public class LatencyBench {
         }
         long total = 0;
         for (long r : timingResults) {
-            System.out.println(r);
+            System.out.println(Math.round(r / 1000.0f));
             total = total + r;
         }
         System.out.println("average is " + (total / timingResults.length / 1000.0f) + " ms");
