@@ -78,7 +78,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice implements AutoClo
      * @param device   device
      */
     protected EV3DevSensorDevice(final Port portName, final String mode, final String device) {
-        super(ATTR_INFO, new NativeLibc());
+        super(ATTR_INFO);
 
         final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         final String port = ev3DevPlatforms.getSensorPort(portName);
@@ -108,7 +108,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice implements AutoClo
      * @param mode     Mode
      */
     protected EV3DevSensorDevice(final Port portName, final String mode) {
-        super(ATTR_INFO, new NativeLibc());
+        super(ATTR_INFO);
 
         final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         final String port = ev3DevPlatforms.getSensorPort(portName);

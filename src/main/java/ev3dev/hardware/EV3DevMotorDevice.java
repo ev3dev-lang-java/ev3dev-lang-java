@@ -102,6 +102,6 @@ public abstract class EV3DevMotorDevice extends EV3DevDevice {
     };
 
     protected EV3DevMotorDevice() {
-        super(ATTR_INFO, new NativeLibc());
+        super(ATTR_INFO);
     }
 }

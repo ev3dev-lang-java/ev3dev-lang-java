@@ -3,9 +3,9 @@ package ev3dev.hardware;
 import com.sun.jna.LastErrorException;
 import com.sun.jna.Native;
 import ev3dev.utils.Sysfs;
+import ev3dev.utils.io.DefaultLibc;
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeConstants;
-import ev3dev.utils.io.NativeLibc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,19 +50,18 @@ public abstract class EV3DevDevice implements AutoCloseable {
      * Constructor
      */
     public EV3DevDevice() {
-        this(new EV3DevAttributeSpec[0], new NativeLibc());
+        this(new EV3DevAttributeSpec[0]);
     }
 
-    public EV3DevDevice(EV3DevAttributeSpec[] attrInfo, ILibc libc) {
+    public EV3DevDevice(EV3DevAttributeSpec[] attrInfo) {
         this.fds = new int[attrInfo.length];
         Arrays.fill(this.fds, -1);
         this.attrs = attrInfo;
-        this.libc = libc;
+        this.libc = DefaultLibc.get();
         final EV3DevPropertyLoader ev3DevPropertyLoader = new EV3DevPropertyLoader();
         ev3DevProperties = ev3DevPropertyLoader.getEV3DevProperties();
         final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         CURRENT_PLATFORM = ev3DevPlatforms.getPlatform();
-
     }
 
     //TODO Rename method to detect
@@ -151,13 +150,13 @@ public abstract class EV3DevDevice implements AutoCloseable {
 
     public String readStringAttr(int code) {
         checkAttr(code);
-        Sysfs.IOHelper io = Sysfs.getIO();
+        Sysfs.IoHelper io = Sysfs.getIoHelper();
         return io.decodeString(readRawAttr(code, io));
     }
 
     public void writeStringAttr(int code, String value) {
         checkAttr(code);
-        Sysfs.IOHelper io = Sysfs.getIO();
+        Sysfs.IoHelper io = Sysfs.getIoHelper();
         writeRawAttr(code, io.encodeString(value));
     }
 
@@ -183,11 +182,11 @@ public abstract class EV3DevDevice implements AutoCloseable {
 
     public ByteBuffer readRawAttr(int code) {
         checkAttr(code);
-        Sysfs.IOHelper io = Sysfs.getIO();
+        Sysfs.IoHelper io = Sysfs.getIoHelper();
         return readRawAttr(code, io);
     }
 
-    public synchronized ByteBuffer readRawAttr(int code, Sysfs.IOHelper io) {
+    public synchronized ByteBuffer readRawAttr(int code, Sysfs.IoHelper io) {
         checkAttr(code);
         ByteBuffer buffer = io.getTemporaryByteBuffer(4096);
         int count = libc.pread(openAttr(code), buffer, buffer.remaining(), 0);

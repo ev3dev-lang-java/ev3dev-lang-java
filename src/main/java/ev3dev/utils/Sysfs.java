@@ -2,8 +2,9 @@ package ev3dev.utils;
 
 import com.sun.jna.LastErrorException;
 import com.sun.jna.Native;
+import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeConstants;
-import ev3dev.utils.io.NativeLibc;
+import ev3dev.utils.io.DefaultLibc;
 import org.slf4j.Logger;
 
 import java.io.File;
@@ -29,7 +30,7 @@ public class Sysfs {
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sysfs.class);
     private static final int MAX_ATTRIBUTE_SIZE = 4096; // kernel page size
     private static final ThreadLocal<IoHelper> ioHelper = new ThreadLocal<>();
-    private static final NativeLibc libc = new NativeLibc();
+    private static final ILibc libc = DefaultLibc.get();
 
     /**
      * Write a value in a file.
@@ -184,7 +185,7 @@ public class Sysfs {
     /**
      * Helper class for IO and string coding.
      */
-    private static class IoHelper {
+    public static class IoHelper {
         private final CharsetDecoder stringDecoder;
         private final CharsetEncoder stringEncoder;
         private ByteBuffer byteBuffer;
