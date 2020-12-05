@@ -7,6 +7,7 @@ import com.sun.jna.ptr.IntByReference;
 import lombok.NonNull;
 
 import java.io.Closeable;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
 /**

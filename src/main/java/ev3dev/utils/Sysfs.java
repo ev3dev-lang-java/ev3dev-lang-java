@@ -172,7 +172,7 @@ public class Sysfs {
      * Get IO helper for this thread. Allocates a new one if necessary.
      * @return IO helper instance for this thread.
      */
-    private static IoHelper getIoHelper() {
+    public static IoHelper getIoHelper() {
         IoHelper ref = ioHelper.get();
         if (ref == null) {
             ref = new IoHelper(MAX_ATTRIBUTE_SIZE, MAX_ATTRIBUTE_SIZE, StandardCharsets.ISO_8859_1);
@@ -282,7 +282,7 @@ public class Sysfs {
 
         /**
          * Find a new buffer limit for a sysfs-originated char string.
-         * 
+         *
          * <p>ev3dev sysfs strings end with '\n' and that would interfere
          * with integer parsing. This method tries to find one of the following: </p>
          * <ul>

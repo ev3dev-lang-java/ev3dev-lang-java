@@ -28,29 +28,5 @@ public class EV3DevDeviceTest {
 
     }
 
-    @Test
-    public void badIntegerAttributeTest() throws IOException {
-
-        thrown.expect(RuntimeException.class);
-
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-
-        EV3DevDeviceChild device = new EV3DevDeviceChild();
-
-        device.setIntegerAttribute("BAD_ATTRIBUTE", 10);
-    }
-
-    @Test
-    public void badStringAttributeTest() throws IOException {
-
-        thrown.expect(RuntimeException.class);
-
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-
-        EV3DevDeviceChild device = new EV3DevDeviceChild();
-
-        device.setStringAttribute("BAD_ATTRIBUTE", "value");
-    }
-
 }
 

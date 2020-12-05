@@ -3,6 +3,7 @@ package ev3dev.actuators.lego.motors;
 import ev3dev.hardware.EV3DevMotorDevice;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.hardware.EV3DevPlatforms;
+import ev3dev.utils.Sysfs;
 import lejos.hardware.port.Port;
 import lejos.robotics.DCMotor;
 import lejos.utility.Delay;
@@ -47,7 +48,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
         log.debug("Detecting motor on port: {}", port);
         this.detect(LEGO_PORT, port);
         log.debug("Setting port in mode: {}", DC_MOTOR);
-        this.setStringAttribute(MODE, DC_MOTOR);
+        Sysfs.writeString(PATH_DEVICE + "/" + MODE, DC_MOTOR);
         Delay.msDelay(500);
         this.detect(DC_MOTOR, port);
     }
@@ -60,7 +61,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
     @Override
     public void setPower(final int power) {
         this.power = power;
-        this.setIntegerAttribute(DUTY_CYCLE, power);
+        this.writeIntAttr(ATTR_DUTY_CYCLE_SP, power);
     }
 
     /**
@@ -70,7 +71,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
     @Override
     public int getPower() {
-        return this.getIntegerAttribute(DUTY_CYCLE);
+        return this.readIntAttr(ATTR_DUTY_CYCLE_SP);
     }
 
     /**
@@ -79,7 +80,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      * @param newMode mode
      */
     protected void updateState(final String newMode) {
-        this.setStringAttribute(POLARITY, newMode);
+        this.writeStringAttr(ATTR_POLARITY, newMode);
     }
 
     /**
@@ -89,7 +90,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
     public void forward() {
         this.updateState(POLARITY_NORMAL);
         this.setPower(this.power);
-        this.setStringAttribute(COMMAND, RUN_FOREVER);
+        this.writeStringAttr(ATTR_COMMAND, RUN_FOREVER);
     }
 
     /**
@@ -99,7 +100,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
     public void backward() {
         this.updateState(POLARITY_INVERSED);
         this.setPower(this.power);
-        this.setStringAttribute(COMMAND, RUN_FOREVER);
+        this.writeStringAttr(ATTR_COMMAND, RUN_FOREVER);
     }
 
     /**
@@ -109,7 +110,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
     @Override
     public boolean isMoving() {
-        return this.getStringAttribute(STATE).contains(STATE_RUNNING);
+        return this.readStringAttr(ATTR_STATE).contains(STATE_RUNNING);
     }
 
     /**
@@ -120,7 +121,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      */
     @Override
     public void flt() {
-        this.setStringAttribute(STOP_COMMAND, COAST);
+        this.writeStringAttr(ATTR_STOP_ACTION, COAST);
     }
 
     /**
@@ -131,7 +132,7 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
      * Cancels any rotate() orders in progress
      */
     public void stop() {
-        this.setStringAttribute(COMMAND, STOP);
+        this.writeStringAttr(ATTR_COMMAND, STOP);
     }
 
 }

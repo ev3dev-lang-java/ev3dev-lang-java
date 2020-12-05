@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static ev3dev.hardware.EV3DevSensorDevice.ATTR_ADDRESS;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -41,8 +42,8 @@ public class EV3DevSensorDeviceTest {
         EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
         //assertThat(device.getPlatform(), is(EV3DevPlatform.EV3BRICK));
         //assertThat(device.getSensorPort(SensorPort.S1), is("ev3-ports:in1"));
-        assertThat(device.getStringAttribute("address"), is("ev3-ports:in1"));
-        device.setStringAttribute("address", "ev3-ports:in1");
+        assertThat(device.readStringAttr(ATTR_ADDRESS), is("ev3-ports:in1"));
+        device.writeStringAttr(ATTR_ADDRESS, "ev3-ports:in1");
     }
 
     @Ignore("Review how to reset a Static classic in JUnit")
@@ -55,6 +56,6 @@ public class EV3DevSensorDeviceTest {
         EV3DevSensorDeviceChild device = new EV3DevSensorDeviceChild();
         //assertThat(device.getPlatform(), is(EV3DevPlatform.BRICKPI3));
         //assertThat(device.getSensorPort(SensorPort.S1), is("spi0.1:S1"));
-        assertThat(device.getStringAttribute("address"), is("spi0.1:S1"));
+        assertThat(device.readStringAttr(ATTR_ADDRESS), is("spi0.1:S1"));
     }
 }

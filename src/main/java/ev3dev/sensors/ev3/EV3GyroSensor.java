@@ -41,11 +41,11 @@ public class EV3GyroSensor extends BaseSensor {
         super(portName, LEGO_UART_SENSOR, LEGO_EV3_GYRO);
 
         setModes(new SensorMode[]{
-            new GenericMode(this.PATH_DEVICE, 1, "Rate",
+            new GenericMode(this, 1, "Rate",
                 -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
-            new GenericMode(this.PATH_DEVICE, 1, "Angle",
+            new GenericMode(this, 1, "Angle",
                 -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
-            new GenericMode(this.PATH_DEVICE, 2, "Angle and Rate",
+            new GenericMode(this, 2, "Angle and Rate",
                 -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
         });
     }

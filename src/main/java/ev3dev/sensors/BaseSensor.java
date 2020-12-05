@@ -187,7 +187,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
      * @return Sensor mode identifier.
      */
     protected String getSystemMode() {
-        return this.getStringAttribute(SENSOR_MODE);
+        return this.readStringAttr(ATTR_MODE);
     }
 
     /**
@@ -196,7 +196,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
      * @param mode Sensor mode identifier.
      */
     private void setSystemMode(String mode) {
-        this.setStringAttribute(SENSOR_MODE, mode);
+        this.writeStringAttr(ATTR_MODE, mode);
     }
 
     /**

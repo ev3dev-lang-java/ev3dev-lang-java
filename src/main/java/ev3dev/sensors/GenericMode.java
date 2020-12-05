@@ -1,9 +1,12 @@
 package ev3dev.sensors;
 
+import ev3dev.hardware.EV3DevSensorDevice;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.sensor.SensorMode;
 
 import java.io.File;
+
+import static ev3dev.hardware.EV3DevSensorDevice.ATTR_VALUE0;
 
 /**
  * Generic ev3dev sensor handler.
@@ -14,7 +17,7 @@ import java.io.File;
  */
 public class GenericMode implements SensorMode {
 
-    private final File pathDevice;
+    private final EV3DevSensorDevice device;
     private final int sampleSize;
     private final String modeName;
 
@@ -24,36 +27,37 @@ public class GenericMode implements SensorMode {
 
     /**
      * Create new generic sensor handler.
-     * @param pathDevice Reference to the object responsible for mode setting and value reading.
+     *
+     * @param device     Reference to the object responsible for mode setting and value reading.
      * @param sampleSize Number of returned samples.
-     * @param modeName Human-readable sensor mode name.
+     * @param modeName   Human-readable sensor mode name.
      */
     public GenericMode(
-            final File pathDevice,
-            final int sampleSize,
-            final String modeName) {
-        this(pathDevice, sampleSize, modeName,
-                Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
+        final EV3DevSensorDevice device,
+        final int sampleSize,
+        final String modeName) {
+        this(device, sampleSize, modeName,
+            Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
     }
 
     /**
      * Create new generic sensor handler.
      *
-     * @param pathDevice Reference to the object responsible for mode setting and value reading.
-     * @param sampleSize Number of returned samples.
-     * @param modeName Human-readable sensor mode name.
-     * @param correctMin Minimum value measured by the sensor. If the reading is lower, zero is returned.
-     * @param correctMax Maximum value measured by the sensor. If the reading is higher, positive infinity is returned.
+     * @param device        Reference to the object responsible for mode setting and value reading.
+     * @param sampleSize    Number of returned samples.
+     * @param modeName      Human-readable sensor mode name.
+     * @param correctMin    Minimum value measured by the sensor. If the reading is lower, zero is returned.
+     * @param correctMax    Maximum value measured by the sensor. If the reading is higher, positive infinity is returned.
      * @param correctFactor Scaling factor applied to the sensor reading.
      */
     public GenericMode(
-            final File pathDevice,
-            final int sampleSize,
-            final String modeName,
-            final float correctMin,
-            final float correctMax,
-            final float correctFactor) {
-        this.pathDevice = pathDevice;
+        final EV3DevSensorDevice device,
+        final int sampleSize,
+        final String modeName,
+        final float correctMin,
+        final float correctMax,
+        final float correctFactor) {
+        this.device = device;
         this.sampleSize = sampleSize;
         this.modeName = modeName;
         this.correctMin = correctMin;
@@ -87,8 +91,8 @@ public class GenericMode implements SensorMode {
 
         // for all values
         for (int n = 0; n < sampleSize; n++) {
-            // read
-            float reading = Sysfs.readFloat(this.pathDevice + "/" + "value" + n);
+            // read (kernel only has integers)
+            float reading = (float) this.device.value(n);
 
             // apply correction
             reading *= correctFactor;

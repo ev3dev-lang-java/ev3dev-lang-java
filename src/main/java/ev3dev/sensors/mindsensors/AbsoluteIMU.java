@@ -118,11 +118,11 @@ public class AbsoluteIMU extends BaseSensor {
         super(portName, LEGO_I2C, MINDSENSORS_ABSOLUTEIMU);
 
         setModes(new SensorMode[]{
-            new GenericMode(this.PATH_DEVICE, 3, "Acceleration"),
-            new GenericMode(this.PATH_DEVICE, 3, "Magnetic"),
-            new GenericMode(this.PATH_DEVICE, 3, "Gyro"),
-            new GenericMode(this.PATH_DEVICE, 1, "Compass"),
-            new GenericMode(this.PATH_DEVICE, 3, "Tilt")});
+            new GenericMode(this, 3, "Acceleration"),
+            new GenericMode(this, 3, "Magnetic"),
+            new GenericMode(this, 3, "Gyro"),
+            new GenericMode(this, 1, "Compass"),
+            new GenericMode(this, 3, "Tilt")});
 
         setRange(LOW);
     }
@@ -133,7 +133,7 @@ public class AbsoluteIMU extends BaseSensor {
      * @param cmd the letter that identifies the command
      */
     public void sendCommand(final String cmd) {
-        this.setStringAttribute("command", cmd);
+        this.writeStringAttr(ATTR_COMMAND, cmd);
     }
 
     /**

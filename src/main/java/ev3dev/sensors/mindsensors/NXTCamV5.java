@@ -55,7 +55,7 @@ public class NXTCamV5 extends BaseSensor {
     public static final String TAKE_PHOTO = "PICTURE";
 
     private void initModes() {
-        this.setStringAttribute("mode", "TRACK");
+        this.writeStringAttr(ATTR_MODE, "TRACK");
         setModes(new SensorMode[]{});
     }
 
@@ -81,7 +81,7 @@ public class NXTCamV5 extends BaseSensor {
      * @param cmd the letter that identifies the command
      */
     public void sendCommand(final String cmd) {
-        this.setStringAttribute("command", cmd);
+        this.writeStringAttr(ATTR_COMMAND, cmd);
     }
 
     /**
@@ -104,7 +104,7 @@ public class NXTCamV5 extends BaseSensor {
      * @return number of objects (0 - 8)
      */
     public int getNumberOfObjects() {
-        return this.getIntegerAttribute("value0");
+        return this.value(0);
     }
 
     /**
@@ -114,7 +114,7 @@ public class NXTCamV5 extends BaseSensor {
      * @return the color of the object (starting at zero)
      */
     public int getObjectColor(int id) {
-        return this.getIntegerAttribute("value1");
+        return this.value(1);
     }
 
     /**
@@ -127,11 +127,15 @@ public class NXTCamV5 extends BaseSensor {
 
         //TODO, At the moment, the EV3Dev API only returns the first object.
         //It is necessary to research the I2C register to get more rectangles
+        int x0 = this.value(2);
+        int y0 = this.value(3);
+        int x1 = this.value(4);
+        int y1 = this.value(5);
         return new RectangleInt32(
-                this.getIntegerAttribute("value2"),
-                this.getIntegerAttribute("value3"),
-                this.getIntegerAttribute("value4") - this.getIntegerAttribute("value2"),
-                this.getIntegerAttribute("value5") - this.getIntegerAttribute("value3")
+            x0,
+            y0,
+            x1 - y0,
+            y1 - y0
         );
     }
 
