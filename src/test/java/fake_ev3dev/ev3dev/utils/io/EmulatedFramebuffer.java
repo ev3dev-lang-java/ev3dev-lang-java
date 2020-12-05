@@ -221,6 +221,36 @@ public class EmulatedFramebuffer implements ICounter {
     }
 
     /**
+     * Read bytes from the framebuffer [INVALID OPERATION].
+     *
+     * @param fd     Not used.
+     * @param buffer Not used.
+     * @param count  Not used.
+     * @param offset Not used.
+     * @return Nothing.
+     * @throws LastErrorException EIO always.
+     */
+    @Override
+    public int pread(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        throw new LastErrorException(NativeConstants.EIO);
+    }
+
+    /**
+     * Write bytes to the framebuffer [INVALID OPERATION].
+     *
+     * @param fd     Not used.
+     * @param buffer Not used.
+     * @param count  Not used.
+     * @param offset Not used.
+     * @return Nothing.
+     * @throws LastErrorException EIO always.
+     */
+    @Override
+    public int pwrite(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        throw new LastErrorException(NativeConstants.EIO);
+    }
+
+    /**
      * Give a framebuffer memory pointer to the application.
      *
      * @param addr   Not used.

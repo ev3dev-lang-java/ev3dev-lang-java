@@ -161,6 +161,16 @@ public class EmulatedLibc implements ILibc {
     }
 
     @Override
+    public int pread(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        return impl(path(fd)).pread(fd, buffer, count, offset);
+    }
+
+    @Override
+    public int pwrite(int fd, Buffer buffer, int count, int offset) throws LastErrorException {
+        return impl(path(fd)).pwrite(fd, buffer, count, offset);
+    }
+
+    @Override
     public Pointer mmap(@NonNull Pointer addr, @NonNull NativeLong natLen, int prot, int flags, int fd, @NonNull NativeLong off) throws LastErrorException {
         addr = impl(path(fd)).mmap(addr, natLen, prot, flags, fd, off);
         String path = opened.get(fd);

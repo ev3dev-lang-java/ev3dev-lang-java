@@ -32,6 +32,11 @@ public interface ILibc {
 
     int read(int fd, Buffer buffer, int count) throws LastErrorException;
 
+    // read/write with offset
+    int pread(int fd, Buffer buffer, int count, int offset) throws LastErrorException;
+
+    int pwrite(int fd, Buffer buffer, int count, int offset) throws LastErrorException;
+
     // map/unmap
     Pointer mmap(Pointer addr, NativeLong len, int prot, int flags, int fd, NativeLong off) throws LastErrorException;
 
