@@ -1,5 +1,8 @@
 package fake_ev3dev;
 
+import ev3dev.utils.io.DefaultLibc;
+import fake_ev3dev.ev3dev.utils.io.EmulatedLibc;
+import fake_ev3dev.ev3dev.utils.io.SysfsLibc;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 
@@ -46,6 +49,9 @@ public abstract class BaseElement {
 
         LOGGER.info("Reset EV3Dev testing infrastructure");
 
+        // reset libc + configure emulation
+        DefaultLibc.set(new SysfsLibc());
+
         //Delete
         FileUtils.deleteDirectory(new File(EV3DEV_FAKE_SYSTEM_PATH));
 
@@ -81,6 +87,11 @@ public abstract class BaseElement {
         Files.write(path, value.getBytes());
     }
 
+    protected void createFile(final Path path, final byte[] value) throws IOException {
+        this.createFile(path);
+        Files.write(path, value);
+    }
+
     protected void populateValues(final List<Integer> values) throws IOException {
         for (int i = 0; i < values.size(); i++) {
             setValue(i, String.valueOf(values.get(i)));
@@ -92,4 +103,8 @@ public abstract class BaseElement {
         createFile(path, value);
     }
 
+    public void setAttribute(final String attr, final byte[] value) throws IOException {
+        Path path = Paths.get(SENSOR1_BASE, attr);
+        createFile(path, value);
+    }
 }

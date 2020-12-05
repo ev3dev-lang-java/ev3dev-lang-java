@@ -164,6 +164,7 @@ public class EV3GyroSensorTest {
         final int realAngle = -180;
 
         fakeEV3GyroSensor.setValue(0, String.valueOf(realAngle));
+        fakeEV3GyroSensor.setAttribute("bin_data", new byte[]{ (byte)0x4C, (byte)0xFF });
         sp.fetchSample(sample, 0);
 
         int measuredAngle = Math.round(sample[0]);

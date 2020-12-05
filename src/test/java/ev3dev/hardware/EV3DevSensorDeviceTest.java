@@ -1,5 +1,6 @@
 package ev3dev.hardware;
 
+import ev3dev.utils.Sysfs;
 import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import fake_ev3dev.ev3dev.sensors.FakeLegoSensor;
 import lejos.hardware.port.SensorPort;
@@ -43,7 +44,7 @@ public class EV3DevSensorDeviceTest {
         //assertThat(device.getPlatform(), is(EV3DevPlatform.EV3BRICK));
         //assertThat(device.getSensorPort(SensorPort.S1), is("ev3-ports:in1"));
         assertThat(device.readStringAttr(ATTR_ADDRESS), is("ev3-ports:in1"));
-        device.writeStringAttr(ATTR_ADDRESS, "ev3-ports:in1");
+        Sysfs.writeString(device.PATH_DEVICE + "/address", "ev3-ports:in1");
     }
 
     @Ignore("Review how to reset a Static classic in JUnit")

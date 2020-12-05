@@ -74,6 +74,15 @@ public class EmulatedLibc implements ILibc {
     }
 
     /**
+     * Check if a file is installed at the specified path.
+     * @param path File path.
+     * @return Whether there is a mock implementation installed there.
+     */
+    protected boolean hasInstalled(@NonNull String path) {
+        return mapping.containsKey(path);
+    }
+
+    /**
      * Get path for selected file descriptor.
      *
      * @param fd Queried file descriptor.
