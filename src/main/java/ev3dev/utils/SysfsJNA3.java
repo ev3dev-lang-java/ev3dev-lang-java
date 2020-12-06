@@ -3,7 +3,6 @@ package ev3dev.utils;
 import com.sun.jna.LastErrorException;
 import com.sun.jna.Native;
 import ev3dev.utils.io.ILibc;
-import ev3dev.utils.io.NativeConstants;
 import ev3dev.utils.io.DefaultLibc;
 import org.slf4j.Logger;
 
@@ -12,20 +11,25 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+import static ev3dev.utils.io.NativeConstants.*;
 
 /**
  * The class responsible to interact with Sysfs on EV3Dev
  *
  * @author Juan Antonio Breña Moral
  */
-public class SysfsJNA2 {
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SysfsJNA2.class);
+public class SysfsJNA3 {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SysfsJNA3.class);
     private static final int FAST_ATTRIBUTE_SIZE = 16;
     private static final int MAX_ATTRIBUTE_SIZE = 4096;
     private static final ILibc libc = DefaultLibc.get();
+    // LRU caches for reducing the per-call overhead
+    // second argument: when we have this many files open, trigger the eviction process
+    // first argument: evict files until we have only this many files open
+    private static final FileCache readCache = new FileCache(16, 32, libc, false);
+    private static final FileCache writeCache = new FileCache(16, 32, libc, true);
 
     /**
      * Write a value in a file.
@@ -39,17 +43,11 @@ public class SysfsJNA2 {
         try {
             ByteBuffer data = encodeString(value);
 
-            //noinspection OctalInteger
-            int fd = libc.open(filePath,
-                NativeConstants.O_WRONLY | NativeConstants.O_CREAT | NativeConstants.O_TRUNC, 00644);
-            if (fd < 0) {
-                throw new LastErrorException(Native.getLastError());
-            }
-            int count = libc.write(fd, data, data.remaining());
+            int fd = writeCache.open(filePath);
+            int count = libc.pwrite(fd, data, data.remaining(), 0);
             if (count < 0) {
                 throw new LastErrorException(Native.getLastError());
             }
-            libc.close(fd);
         } catch (LastErrorException e) {
             log.error(e.getLocalizedMessage(), e);
             return false;
@@ -72,10 +70,7 @@ public class SysfsJNA2 {
         try {
             ByteBuffer data = ByteBuffer.allocate(FAST_ATTRIBUTE_SIZE);
 
-            int fd = libc.open(filePath, NativeConstants.O_RDONLY, 0);
-            if (fd < 0) {
-                throw new LastErrorException(Native.getLastError());
-            }
+            int fd = readCache.open(filePath);
             int count = libc.pread(fd, data, data.remaining(), 0);
             if (count < 0) {
                 throw new LastErrorException(Native.getLastError());
@@ -88,7 +83,6 @@ public class SysfsJNA2 {
                     throw new LastErrorException(Native.getLastError());
                 }
             }
-            libc.close(fd);
             data.limit(count);
 
             String value = decodeString(data);
@@ -155,15 +149,11 @@ public class SysfsJNA2 {
     public static boolean writeBytes(final String path, final byte[] value) {
         ByteBuffer buffer = ByteBuffer.wrap(value);
         try {
-            int fd = libc.open(path, NativeConstants.O_WRONLY | NativeConstants.O_CREAT | NativeConstants.O_TRUNC, 0);
-            if (fd < 0) {
-                throw new LastErrorException(Native.getLastError());
-            }
+            int fd = writeCache.open(path);
             int count = libc.write(fd, buffer, buffer.limit());
             if (count < 0) {
                 throw new LastErrorException(Native.getLastError());
             }
-            libc.close(fd);
         } catch (LastErrorException e) {
             throw new RuntimeException("Unable to draw the LCD", e);
         }
@@ -230,5 +220,86 @@ public class SysfsJNA2 {
             }
         }
         return in.limit();
+    }
+
+    /**
+     * LRU cache for caching file descriptors
+     */
+    private static class FileCache {
+        private final LinkedList<String> age;
+        private final HashMap<String, Integer> fdMap;
+        private final int capacity;
+        private final int threshold;
+        private final ILibc libc;
+        private final boolean writable;
+
+        /**
+         * Initialize new LRU cache.
+         * @param capacity How many files to keep open.
+         * @param libc C library implementation to use for opening/closing files.
+         * @param writable Whether to open files as read-only or write-only.
+         */
+        public FileCache(int capacity, int threshold, ILibc libc, boolean writable) {
+            this.age = new LinkedList<>();
+            this.fdMap = new HashMap<>();
+            this.capacity = capacity;
+            this.threshold = threshold;
+            this.libc = libc;
+            this.writable = writable;
+        }
+
+        /**
+         * Get a file descriptor for the given path. If necessary, opens a new descriptor.
+         * @param path Path to open.
+         * @return File descriptor for reading/writing depending on writable mode of this instance.
+         * @throws LastErrorException if the open() call fails
+         */
+        @SuppressWarnings("OctalInteger")
+        public synchronized int open(String path) {
+            // try if we already have the file
+            Integer fd = fdMap.get(path);
+            if (fd != null) {
+                // yes, let's move it up in the expiration queue
+                age.remove(path);
+                age.add(path);
+            } else {
+                // nope, let's open a new one
+                if (writable) {
+                    fd = libc.open(path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                } else {
+                    fd = libc.open(path, O_RDONLY, 0644);
+                }
+                if (fd < 0) {
+                    throw new LastErrorException(Native.getLastError());
+                }
+                // register it
+                fdMap.put(path, fd);
+                // add it to expiration queue
+                age.add(path);
+                // expire/remove too old files once we reach threshold
+                if (fdMap.size() > threshold) {
+                    compact();
+                }
+            }
+            return fd;
+        }
+
+        /**
+         * Remove excess files from the cache.
+         */
+        private void compact() {
+            // while we have too many files
+            while (fdMap.size() > capacity) {
+                // drop it from expiration queue & registry
+                String oldKey = age.remove();
+                int fd = fdMap.remove(oldKey);
+                // and close it (and don't crash unrelated threads)
+                try {
+                    libc.close(fd);
+                } catch (LastErrorException e) {
+                    log.warn("Cannot close FD from Sysfs: ", e);
+                }
+            }
+        }
     }
 }
