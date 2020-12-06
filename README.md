@@ -1,6 +1,6 @@
 # ev3dev-lang-java
 
-*EV3Dev-lang-Java* is project to learn Java and create software for Mindstorms Robots using hardware supported by [EV3Dev](http://www.ev3dev.org/) 
+*EV3Dev-lang-Java* is project to learn Java and create software for Mindstorms Robots using hardware supported by [EV3Dev](http://www.ev3dev.org/)
 & the [LeJOS](http://www.lejos.org/) way.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
@@ -8,30 +8,44 @@
 
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
+# How to test?
+
+For non Linux computers use:
+
+```
+./gradlew dockerTest
+```
+
+For Linux computers use:
+
+```
+./gradlew test
+```
+
 ## Introduction
 
-In Lego Mindstorms ecosystem, the default solution to develop Java software for Lego Mindstorms 
-was [LeJOS](http://www.lejos.org/) but now exists one alternative, `EV3Dev-lang-java` a Java project 
-running on the top of [EV3Dev](http://www.ev3dev.org/).  
+In Lego Mindstorms ecosystem, the default solution to develop Java software for Lego Mindstorms
+was [LeJOS](http://www.lejos.org/) but now exists one alternative, `EV3Dev-lang-java` a Java project
+running on the top of [EV3Dev](http://www.ev3dev.org/).
 
-Lego Mindstorms ecosystem is `a nice educational way to learn Java programming in general and Robotics in particular`. 
-Now, it is possible to install a complete Linux distro in the third generation of the product and others companies like 
+Lego Mindstorms ecosystem is `a nice educational way to learn Java programming in general and Robotics in particular`.
+Now, it is possible to install a complete Linux distro in the third generation of the product and others companies like
 [Mindsensors](http://www.mindsensors.com/) & [Dexter Industries](https://www.dexterindustries.com/) has released products
- which interact with Sensors & Actuators from Lego ecosystem and that boards can use the Power of the popular board 
+ which interact with Sensors & Actuators from Lego ecosystem and that boards can use the Power of the popular board
  [Raspberry Pi 3](https://www.raspberrypi.org/)
- 
-But, with the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards. 
-So... why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`. 
-The project, takes the good things of both worlds: EV3Dev with the complete linux experience 
+
+But, with the help of `EV3Dev`, it is possible to have the same Linux experience for multiple boards.
+So... why not develop a Java library for that Linux Distro? The answer is `EV3Dev-lang-java`.
+The project, takes the good things of both worlds: EV3Dev with the complete linux experience
 and LeJOS with the rich local navigation stack and the remote support in the future.
 
 **What Debian versions are supported with this library?**
 
-The library has support for `Debian Jessie` & `Debian Stretch`. 
+The library has support for `Debian Jessie` & `Debian Stretch`.
 In this release, we have finished the support for `Debian Stretch` for EV3 and you could
- use OpenJDK 11, or OpenJDK 14 and it is amazing! 
+ use OpenJDK 11, or OpenJDK 15 and it is amazing!
 
-If you need to use any Raspberry Pi Boards, I recommend to use the stable `EV3Dev` 
+If you need to use any Raspberry Pi Boards, I recommend to use the stable `EV3Dev`
 [Debian Jessie](http://www.ev3dev.org/downloads/) release.
 
 **What is the hardware platforms supported in this project?**
@@ -57,18 +71,18 @@ The project has been designed with the following solution in mind:
 |---|------------------|--------------------------------------------|-------------------------|
 | 1 | Platforms        | BrickPi BrickPi3 PiStorms              | EV3                     |
 | 2 | OS               | Debian Jessie                              | Debian Jessie/Stretch          |
-| 3 | JVM              | OpenJDK 14                               | OpenJDK JRI 11 / 12 / 13 / 14           |
+| 3 | JVM              | OpenJDK 15                               | OpenJDK JRI 11 / 12 / 13 / 14 / 15          |
 | 4 | EV3Dev Kernel    | 4.4.47-19-ev3dev-rpi2 | 4.14.71-ev3dev-2.3.0-ev3 |
 | 5 | ev3dev-lang-java | 0.7.0                                      | 2.4.12                   |
 
-**Note:** At the moment, we will maintain the whole solution until the next `LEGO Mindstorms` product estimated 
-for next January of 2021. 
+**Note:** At the moment, we will maintain the whole solution until the next `LEGO Mindstorms` product estimated
+for next January of 2021.
 
 ## Features included in the whole project
 
 **Java features**
 
-* OpenJDK Java 11/12/13/14 support for EV3 Brick, Brickpi+/PiStorms + Raspberry Pi 3
+* OpenJDK Java 11/12/13/14/15 support for EV3 Brick, Brickpi+/PiStorms + Raspberry Pi 3
 * Java profiling tools Support ([Oracle mission control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html) & [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html))
 * Logging support based on [SLF4J](https://www.slf4j.org/)
 * Centralized logs with [Kibana](https://www.elastic.co/products/kibana)
@@ -94,10 +108,10 @@ for next January of 2021.
 * [RPLidar A1/A2](https://github.com/ev3dev-lang-java/usb-devices) (2D Lidar) Support
 
 ## Subprojects
-  
+
 Stable projects:
- 
-- [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRI/JDK (9,10,11,12) build for EV3 
+
+- [OpenJDK for EV3](https://github.com/ev3dev-lang-java/openjdk-ev3): A custom OpenJDK JRI/JDK (9,10,11,12) build for EV3
 - [EV3Dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java): Low level integration with EV3Dev
 - [lejos-commons](https://github.com/ev3dev-lang-java/lejos-commons): LeJOS interfaces & utilities
 - [Installer](https://github.com/ev3dev-lang-java/installer): A set of Bash scripts to automate some operations with your brick
@@ -154,7 +168,7 @@ https://github.com/ev3dev-lang-java/examples
 ## References:
 
 * LeJOS: http://www.lejos.org/
-* LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/ 
+* LeJOS Git: http://sourceforge.net/p/lejos/ev3/code/ci/master/tree/
 * LeJOS Forum: https://lejos.sourceforge.io/forum/search.php?keywords=ev3dev&sid=8642d9d1b361bcfdcdeabb26db89e632
 * EV3Dev: http://www.ev3dev.org/
 * EV3Dev // Getting Started: http://www.ev3dev.org/docs/getting-started/
