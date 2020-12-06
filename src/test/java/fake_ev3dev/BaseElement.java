@@ -1,5 +1,7 @@
 package fake_ev3dev;
 
+import ev3dev.utils.io.DefaultLibc;
+import fake_ev3dev.ev3dev.utils.io.SysfsLibc;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 
@@ -45,6 +47,9 @@ public abstract class BaseElement {
     public static  void resetEV3DevInfrastructure() throws IOException {
 
         LOGGER.info("Reset EV3Dev testing infrastructure");
+
+        // reset libc + configure emulation
+        DefaultLibc.set(new SysfsLibc());
 
         //Delete
         FileUtils.deleteDirectory(new File(EV3DEV_FAKE_SYSTEM_PATH));
