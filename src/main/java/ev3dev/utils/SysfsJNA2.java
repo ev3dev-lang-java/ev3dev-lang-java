@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 
 import java.io.File;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -35,9 +36,8 @@ public class SysfsJNA2 {
      */
     public static boolean writeString(final String filePath, final String value) {
         log.trace("echo {} > {}", value, filePath);
-        FastIOUtil io = FastIOUtil.getInstance();
         try {
-            ByteBuffer data = io.encodeString(value);
+            ByteBuffer data = encodeString(value);
 
             //noinspection OctalInteger
             int fd = libc.open(filePath,
@@ -69,7 +69,6 @@ public class SysfsJNA2 {
      */
     public static String readString(final String filePath) {
         log.trace("cat {}", filePath);
-        FastIOUtil io = FastIOUtil.getInstance();
         try {
             ByteBuffer data = ByteBuffer.allocate(FAST_ATTRIBUTE_SIZE);
 
@@ -92,7 +91,7 @@ public class SysfsJNA2 {
             libc.close(fd);
             data.limit(count);
 
-            String value = io.decodeString(data);
+            String value = decodeString(data);
             log.trace("value: {}", value);
             return value;
         } catch (LastErrorException e) {
@@ -169,5 +168,67 @@ public class SysfsJNA2 {
             throw new RuntimeException("Unable to draw the LCD", e);
         }
         return true;
+    }
+
+    /**
+     * Sysfs string encoding routine.
+     *
+     * @param value String for encoding.
+     * @return ByteBuffer ready for reading.
+     */
+    public static ByteBuffer encodeString(String value) {
+        return StandardCharsets.ISO_8859_1.encode(value);
+    }
+
+    /**
+     * Sysfs string decoding routine.
+     *
+     * @param bytes Input buffer with character data from ev3dev sysfs.
+     * @return Decoded string.
+     */
+    public static String decodeString(final ByteBuffer bytes) {
+        // set correct limit (strip '\n')
+        bytes.limit(scanForEnd(bytes));
+
+        // decode
+        return StandardCharsets.ISO_8859_1.decode(bytes).toString();
+    }
+
+    /**
+     * Find a new buffer limit for a sysfs-originated char string.
+     *
+     * <p>ev3dev sysfs strings end with '\n' and that would interfere
+     * with integer parsing. This method tries to find one of the following: </p>
+     * <ul>
+     *     <li>End of buffer, in which case the current limit is returned.</li>
+     *     <li>Null termination/0x00 byte, in which case the index of this byte is returned.</li>
+     *     <li>Newline/0x0A byte, in which case the index of this byte is returned.</li>
+     * </ul>
+     *
+     * @param in ByteBuffer to scan.
+     * @return New limit for the buffer.
+     */
+    private static int scanForEnd(final ByteBuffer in) {
+        int pos = in.position();
+
+        if (in.hasArray()) {
+            // we can access the array directly :)
+            byte[] array = in.array();
+            for (; pos < in.limit(); pos++) {
+                if (array[pos] == 0x0A || array[pos] == 0x00) {
+                    return pos;
+                }
+            }
+
+        } else {
+            // we have to use a function call :(
+            for (; pos < in.limit(); pos++) {
+                byte b = in.get(pos);
+                if (b == 0x0A || b == 0x00) {
+                    return pos;
+                }
+            }
+        }
+        return in.limit();
     }
 }
