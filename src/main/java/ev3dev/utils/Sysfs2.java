@@ -91,8 +91,8 @@ public class Sysfs2 {
         if (log.isTraceEnabled()) {
             log.trace("cat " + filePath);
         }
-        setPathString(filePath);
-        String result = readStringCustomChannel();
+        final Path path = Paths.get(filePath) ;
+        String result = readStringCustomChannel(path);
         if (log.isTraceEnabled()) {
             log.trace("value: {}", result);
         }
@@ -166,6 +166,7 @@ public class Sysfs2 {
     //}
 
     //Static Setter to test the idea from @dwalend
+/*
     public static void setPathString(String pathString) {
         Sysfs2.pathString = pathString;
     }
@@ -174,15 +175,17 @@ public class Sysfs2 {
 
     private static final byte[] buffer = new byte[8];
     static final Path staticPath = Paths.get(pathString);
-    public static String readStringCustomChannel() {
+*/
+    public static String readStringCustomChannel(Path path) {
+        final byte[] buffer = new byte[8];
         try {
-            try (InputStream in = customInputStream(staticPath)) {
+            try (InputStream in = customInputStream(path)) {
                 int n = in.read(buffer);
-                //todo throw IOException for n = -1
+                if(n == -1) throw new IOException("Premature end of file "+path);
                 return new String(buffer, StandardCharsets.US_ASCII);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Problem reading path: " + pathString, e);
+            throw new RuntimeException("Problem reading path: " + path, e);
         }
     }
 
