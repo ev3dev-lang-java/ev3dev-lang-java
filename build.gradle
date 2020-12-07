@@ -39,6 +39,7 @@ dependencies {
     api("com.github.ev3dev-lang-java:lejos-commons:0.7.3")
     api("net.java.dev.jna:jna:4.5.2")
 
+    implementation("org.slf4j:slf4j-simple:1.7.25")
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
 
     testImplementation("commons-io:commons-io:2.5")
@@ -50,8 +51,8 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.18.1")
 
     //TODO: Later this dependencies will be for test only testImplementation
-    api("org.openjdk.jmh:jmh-core:1.19")
-    api("org.openjdk.jmh:jmh-generator-annprocess:1.19")
+    api("org.openjdk.jmh:jmh-core:1.26")
+    annotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.26")
 }
 
 compileJava.options.encoding = 'UTF-8'
