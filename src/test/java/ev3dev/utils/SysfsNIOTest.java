@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @Slf4j
-public class SysfsJNA2Test {
+public class SysfsNIOTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -57,7 +57,7 @@ public class SysfsJNA2Test {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        final boolean result = SysfsJNA2.existPath(fakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+        final boolean result = SysfsNIO.existPath(fakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
 
         assertThat(result, is(true));
     }
@@ -68,7 +68,7 @@ public class SysfsJNA2Test {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/" + BATTERY_EV3 + "/" + VOLTAGE;
-        String result = SysfsJNA2.readString(pathToAssert);
+        String result = SysfsNIO.readString(pathToAssert);
 
         assertThat(result, is(fakeBattery.BATTERY_FIELD_VOLTAGE_VALUE));
     }
@@ -79,7 +79,7 @@ public class SysfsJNA2Test {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/" + BATTERY_EV3 + "/" + VOLTAGE;
-        int result = SysfsJNA2.readInteger(pathToAssert);
+        int result = SysfsNIO.readInteger(pathToAssert);
 
         assertThat(result, is(Integer.parseInt(FakeBattery.BATTERY_FIELD_VOLTAGE_VALUE)));
     }
@@ -90,7 +90,7 @@ public class SysfsJNA2Test {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/" + BATTERY_EV3 + "/" + VOLTAGE;
-        float result = SysfsJNA2.readFloat(pathToAssert);
+        float result = SysfsNIO.readFloat(pathToAssert);
 
         assertThat(result, is(Float.parseFloat(FakeBattery.BATTERY_FIELD_VOLTAGE_VALUE)));
     }
@@ -104,7 +104,7 @@ public class SysfsJNA2Test {
         final List<File> fileList = new ArrayList<>();
         fileList.add(new File(pathToAssert + "/" + BATTERY_EV3));
 
-        assertThat(SysfsJNA2.getElements(pathToAssert), is(fileList));
+        assertThat(SysfsNIO.getElements(pathToAssert), is(fileList));
     }
 
     @Test
@@ -114,7 +114,7 @@ public class SysfsJNA2Test {
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/"+ BATTERY_EV3 + "/" + VOLTAGE;
         final Path path = Paths.get(pathToAssert);
-        boolean result = SysfsJNA2.existFile(path);
+        boolean result = SysfsNIO.existFile(path);
 
         assertThat(result, is(true));
     }
@@ -127,7 +127,7 @@ public class SysfsJNA2Test {
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/"+ BATTERY_EV3 + "/" + CURRENT + "-ERROR";
         final Path path = Paths.get(pathToAssert);
 
-        assertThat(SysfsJNA2.existFile(path), is(false));
+        assertThat(SysfsNIO.existFile(path), is(false));
     }
 
     @Test
@@ -137,9 +137,9 @@ public class SysfsJNA2Test {
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/"+ BATTERY_EV3 + "/" + VOLTAGE;
         final Path path = Paths.get(pathToAssert);
-        SysfsJNA2.writeString(pathToAssert, "10");
+        SysfsNIO.writeString(pathToAssert, "10");
 
-        assertThat(SysfsJNA2.readString(pathToAssert), is("10"));
+        assertThat(SysfsNIO.readString(pathToAssert), is("10"));
     }
 
     @Test
@@ -151,7 +151,7 @@ public class SysfsJNA2Test {
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/"+ BATTERY_EV3 + "/" + VOLTAGE + "-ERROR";
         final Path path = Paths.get(pathToAssert);
-        SysfsJNA2.readString(pathToAssert);
+        SysfsNIO.readString(pathToAssert);
     }
 
     @Test
@@ -161,9 +161,9 @@ public class SysfsJNA2Test {
 
         String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/"+ BATTERY_EV3 + "/" + VOLTAGE;
         final Path path = Paths.get(pathToAssert);
-        SysfsJNA2.writeInteger(pathToAssert, 10);
+        SysfsNIO.writeInteger(pathToAssert, 10);
 
-        assertThat(SysfsJNA2.readInteger(pathToAssert), is(10));
+        assertThat(SysfsNIO.readInteger(pathToAssert), is(10));
     }
 
     @Ignore("Review error in detail for Travis CI")
@@ -175,7 +175,7 @@ public class SysfsJNA2Test {
 
         final String FB_PATH = "/dev/MY_PERSONAL_PATH";
 
-        SysfsJNA2.writeBytes(FB_PATH, buf);
+        SysfsNIO.writeBytes(FB_PATH, buf);
     }
 
 }

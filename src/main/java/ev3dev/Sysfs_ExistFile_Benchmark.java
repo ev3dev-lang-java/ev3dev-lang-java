@@ -3,8 +3,7 @@ package ev3dev;
 import ev3dev.hardware.EV3DevPropertyLoader;
 import ev3dev.utils.Sysfs;
 import ev3dev.utils.Sysfs2;
-import ev3dev.utils.SysfsJNA;
-import ev3dev.utils.SysfsJNA2;
+import ev3dev.utils.SysfsNIO;
 import java.nio.file.Path;
 import java.util.Properties;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -32,17 +31,7 @@ public class Sysfs_ExistFile_Benchmark {
     }
 
     @Benchmark
-    public void SysfsJNA(St state) {
-        SysfsJNA.existFile(Path.of(state.ev3DevProperties.getProperty(state.KEY)));
-    }
-
-    @Benchmark
-    public void SysfsJNA2(St state) {
-        SysfsJNA2.existFile(Path.of(state.ev3DevProperties.getProperty(state.KEY)));
-    }
-
-    @Benchmark
-    public void SysfsJNA3(St state) {
-        SysfsJNA2.existFile(Path.of(state.ev3DevProperties.getProperty(state.KEY)));
+    public void SysfsNIO(St state) {
+        SysfsNIO.existFile(Path.of(state.ev3DevProperties.getProperty(state.KEY)));
     }
 }
