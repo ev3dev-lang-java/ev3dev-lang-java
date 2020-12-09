@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,31 +67,11 @@ public class Sysfs2 {
      * @param filePath path
      * @return value from attribute
      */
-    public static String readStringOld(final String filePath) {
-        if (log.isTraceEnabled()) {
-            log.trace("cat " + filePath);
-        }
-        try {
-            final Path path = Paths.get(filePath);
-            if (existFile(path) && Files.isReadable(path)) {
-                final String result = Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
-                if (log.isTraceEnabled()) {
-                    log.trace("value: {}", result);
-                }
-                return result;
-            }
-            throw new IOException("Problem reading path: " + filePath);
-        } catch (IOException e) {
-            log.error(e.getLocalizedMessage(), e);
-            throw new RuntimeException("Problem reading path: " + filePath, e);
-        }
-    }
-
     public static String readString(final String filePath) {
         if (log.isTraceEnabled()) {
             log.trace("cat " + filePath);
         }
-        final Path path = Paths.get(filePath) ;
+        final Path path = Paths.get(filePath);
         String result = readStringCustomChannel(path);
         if (log.isTraceEnabled()) {
             log.trace("value: {}", result);
@@ -110,9 +89,7 @@ public class Sysfs2 {
         return Integer.parseInt(readString(filePath));
     }
 
-    public static float readFloat(final String filePath) {
-        return (float) readS16CustomChannel(/*filePath*/);
-    }
+    public static float readFloat(final String filePath) { return Float.parseFloat(readString(filePath)); }
 
     /**
      * @param filePath path
@@ -164,12 +141,13 @@ public class Sysfs2 {
     //Skipping much of the boilerplate between InputStream and Channels. 12 ms, but 6 ms with the static path!
 
     static String readStringCustomChannel(Path path) {
-        final byte[] buffer = new byte[8];
+        final byte[] buffer = new byte[16];
         try {
             try (InputStream in = customInputStream(path)) {
                 int n = in.read(buffer);
                 if(n == -1) throw new IOException("Premature end of file "+path);
-                return new String(buffer, StandardCharsets.US_ASCII);
+                if(buffer[n-1] == '\n') return new String(buffer, 0, n-1, StandardCharsets.UTF_8);
+                else return new String(buffer, 0, n, StandardCharsets.UTF_8);
             }
         } catch (IOException e) {
             throw new RuntimeException("Problem reading path: " + path, e);
@@ -180,31 +158,4 @@ public class Sysfs2 {
         ReadableByteChannel rbc = Files.newByteChannel(path);
         return Channels.newInputStream(rbc);
     }
-
-    static int readS16CustomChannel() {
-        final Path usePath = Paths.get("/sys/class/lego-sensor/sensor0/bin_data");
-
-        try {
-            try (DataInputStream in = dataInputStream(usePath)) {
-//                return Short.reverseBytes(in.readShort());  //Nope 1 = 8193
-//                return in.readShort();  //Nope 1 = 288
-                int ch1 = in.read();
-                int ch2 = in.read();
-
-                System.out.println(ch1 + " " + ch2);
-
-                return ch1 <<8 | ch2 &0x00FF;
-
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Problem reading path: " + usePath, e);
-        }
-    }
-
-    static DataInputStream dataInputStream(final Path path) throws IOException {
-        ReadableByteChannel rbc = Files.newByteChannel(path);
-        return new DataInputStream(Channels.newInputStream(rbc));
-    }
-
-
 }
