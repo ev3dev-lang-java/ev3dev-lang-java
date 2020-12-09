@@ -1,5 +1,6 @@
 package ev3dev.utils;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -110,7 +111,7 @@ public class Sysfs2 {
     }
 
     public static float readFloat(final String filePath) {
-        return Float.parseFloat(readString(filePath));
+        return (float) readS16CustomChannel(/*filePath*/);
     }
 
     /**
@@ -161,22 +162,8 @@ public class Sysfs2 {
     }
 
     //Skipping much of the boilerplate between InputStream and Channels. 12 ms, but 6 ms with the static path!
-    //static float fetchSampleCustomChannel() {
-    //    return Float.parseFloat(readStringCustomChannel());
-    //}
 
-    //Static Setter to test the idea from @dwalend
-/*
-    public static void setPathString(String pathString) {
-        Sysfs2.pathString = pathString;
-    }
-
-    public static String pathString = "";
-
-    private static final byte[] buffer = new byte[8];
-    static final Path staticPath = Paths.get(pathString);
-*/
-    public static String readStringCustomChannel(Path path) {
+    static String readStringCustomChannel(Path path) {
         final byte[] buffer = new byte[8];
         try {
             try (InputStream in = customInputStream(path)) {
@@ -193,5 +180,31 @@ public class Sysfs2 {
         ReadableByteChannel rbc = Files.newByteChannel(path);
         return Channels.newInputStream(rbc);
     }
+
+    static int readS16CustomChannel() {
+        final Path usePath = Paths.get("/sys/class/lego-sensor/sensor0/bin_data");
+
+        try {
+            try (DataInputStream in = dataInputStream(usePath)) {
+//                return Short.reverseBytes(in.readShort());  //Nope 1 = 8193
+//                return in.readShort();  //Nope 1 = 288
+                int ch1 = in.read();
+                int ch2 = in.read();
+
+                System.out.println(ch1 + " " + ch2);
+
+                return ch1 <<8 | ch2 &0x00FF;
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Problem reading path: " + usePath, e);
+        }
+    }
+
+    static DataInputStream dataInputStream(final Path path) throws IOException {
+        ReadableByteChannel rbc = Files.newByteChannel(path);
+        return new DataInputStream(Channels.newInputStream(rbc));
+    }
+
 
 }
