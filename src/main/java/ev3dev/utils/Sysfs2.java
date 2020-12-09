@@ -1,6 +1,5 @@
 package ev3dev.utils;
 
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
