@@ -140,7 +140,7 @@ public class Sysfs2 {
     //Skipping much of the boilerplate between InputStream and Channels. 12 ms, but 6 ms with the static path!
 
     static String readStringCustomChannel(Path path) {
-        final byte[] buffer = new byte[16];
+        final byte[] buffer = new byte[32];
         try {
             try (InputStream in = customInputStream(path)) {
                 int n = in.read(buffer);
