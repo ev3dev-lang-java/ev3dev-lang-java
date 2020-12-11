@@ -2,11 +2,7 @@ package ev3dev.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -70,12 +66,18 @@ public class Sysfs2 {
         if (log.isTraceEnabled()) {
             log.trace("cat " + filePath);
         }
-        final Path path = Paths.get(filePath);
-        String result = readStringCustomChannel(path);
-        if (log.isTraceEnabled()) {
-            log.trace("value: {}", result);
+        try {
+            try (DataChannelRereader rereader = new DataChannelRereader(filePath)) {
+                String result = rereader.readString();
+                if (log.isTraceEnabled()) {
+                    log.trace("value: {}", result);
+                }
+                return result;
+            }
+        } catch (IOException e) {
+            log.error(e.getLocalizedMessage(), e);
+            throw new RuntimeException("Problem reading path: " + filePath, e);
         }
-        return result;
     }
 
     /**
@@ -135,26 +137,5 @@ public class Sysfs2 {
             throw new RuntimeException("Unable to draw the LCD", e);
         }
         return true;
-    }
-
-    //Skipping much of the boilerplate between InputStream and Channels. 12 ms, but 6 ms with the static path!
-
-    static String readStringCustomChannel(Path path) {
-        final byte[] buffer = new byte[32];
-        try {
-            try (InputStream in = customInputStream(path)) {
-                int n = in.read(buffer);
-                if(n == -1) throw new IOException("Premature end of file "+path);
-                if(buffer[n-1] == '\n') return new String(buffer, 0, n-1, StandardCharsets.UTF_8);
-                else return new String(buffer, 0, n, StandardCharsets.UTF_8);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Problem reading path: " + path, e);
-        }
-    }
-
-    static InputStream customInputStream(final Path path) throws IOException {
-        ReadableByteChannel rbc = Files.newByteChannel(path);
-        return Channels.newInputStream(rbc);
     }
 }
