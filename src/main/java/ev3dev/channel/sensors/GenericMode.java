@@ -1,4 +1,4 @@
-package ev3dev.reread.sensors;
+package ev3dev.channel.sensors;
 
 import ev3dev.utils.DataChannelRereader;
 import lejos.hardware.sensor.SensorMode;

@@ -4,4 +4,4 @@
  * 31313-mindstorms-ev3
  *
  */
-package ev3dev.reread.sensors.ev3;
+package ev3dev.channel.sensors.ev3;

@@ -1,6 +1,6 @@
-package ev3dev.reread.sensors.ev3;
+package ev3dev.channel.sensors.ev3;
 
-import ev3dev.reread.sensors.GenericMode;
+import ev3dev.channel.sensors.GenericMode;
 import ev3dev.sensors.BaseSensor;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
