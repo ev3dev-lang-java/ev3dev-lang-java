@@ -27,10 +27,14 @@ public class DataChannelRereader implements Closeable {
      * @param bufferLength length of the buffer to hold the structure
      * @throws IOException when things go wrong
      */
-    public DataChannelRereader(Path path, int bufferLength) throws IOException {
+    public DataChannelRereader(Path path, int bufferLength) {
         this.path = path;
         this.byteBuffer = ByteBuffer.allocate(bufferLength);
-        this.channel = FileChannel.open(path);
+        try {
+            this.channel = FileChannel.open(path);
+        } catch (IOException e) {
+            throw new RuntimeException("While opeing "+path,e);
+        }
     }
 
     /**
@@ -39,7 +43,7 @@ public class DataChannelRereader implements Closeable {
      * @param pathString Path to the file to reread
      * @throws IOException when things go wrong
      */
-    public DataChannelRereader(String pathString) throws IOException {
+    public DataChannelRereader(String pathString) {
         this(Paths.get(pathString),32);
     }
 
