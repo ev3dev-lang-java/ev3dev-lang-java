@@ -2,12 +2,7 @@ package ev3dev.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -67,36 +62,22 @@ public class Sysfs2 {
      * @param filePath path
      * @return value from attribute
      */
-    public static String readStringOld(final String filePath) {
+    public static String readString(final String filePath) {
         if (log.isTraceEnabled()) {
             log.trace("cat " + filePath);
         }
         try {
-            final Path path = Paths.get(filePath);
-            if (existFile(path) && Files.isReadable(path)) {
-                final String result = Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
+            try (DataChannelRereader rereader = new DataChannelRereader(filePath)) {
+                String result = rereader.readString();
                 if (log.isTraceEnabled()) {
                     log.trace("value: {}", result);
                 }
                 return result;
             }
-            throw new IOException("Problem reading path: " + filePath);
         } catch (IOException e) {
             log.error(e.getLocalizedMessage(), e);
             throw new RuntimeException("Problem reading path: " + filePath, e);
         }
-    }
-
-    public static String readString(final String filePath) {
-        if (log.isTraceEnabled()) {
-            log.trace("cat " + filePath);
-        }
-        setPathString(filePath);
-        String result = readStringCustomChannel();
-        if (log.isTraceEnabled()) {
-            log.trace("value: {}", result);
-        }
-        return result;
     }
 
     /**
@@ -109,9 +90,7 @@ public class Sysfs2 {
         return Integer.parseInt(readString(filePath));
     }
 
-    public static float readFloat(final String filePath) {
-        return Float.parseFloat(readString(filePath));
-    }
+    public static float readFloat(final String filePath) { return Float.parseFloat(readString(filePath)); }
 
     /**
      * @param filePath path
@@ -159,36 +138,4 @@ public class Sysfs2 {
         }
         return true;
     }
-
-    //Skipping much of the boilerplate between InputStream and Channels. 12 ms, but 6 ms with the static path!
-    //static float fetchSampleCustomChannel() {
-    //    return Float.parseFloat(readStringCustomChannel());
-    //}
-
-    //Static Setter to test the idea from @dwalend
-    public static void setPathString(String pathString) {
-        Sysfs2.pathString = pathString;
-    }
-
-    public static String pathString = "";
-
-    private static final byte[] buffer = new byte[8];
-    static final Path staticPath = Paths.get(pathString);
-    public static String readStringCustomChannel() {
-        try {
-            try (InputStream in = customInputStream(staticPath)) {
-                int n = in.read(buffer);
-                //todo throw IOException for n = -1
-                return new String(buffer, StandardCharsets.US_ASCII);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Problem reading path: " + pathString, e);
-        }
-    }
-
-    static InputStream customInputStream(final Path path) throws IOException {
-        ReadableByteChannel rbc = Files.newByteChannel(path);
-        return Channels.newInputStream(rbc);
-    }
-
 }
