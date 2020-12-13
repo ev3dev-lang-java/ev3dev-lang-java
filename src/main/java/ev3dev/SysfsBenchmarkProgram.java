@@ -21,6 +21,7 @@ public class SysfsBenchmarkProgram {
                 .include(Sysfs_writeString_Benchmark.class.getSimpleName())
                 .include(Sysfs_writeInteger_Benchmark.class.getSimpleName())
                 .include(Sysfs_readString_Benchmark.class.getSimpleName())
+                .include(Sysfs_readInteger_Benchmark.class.getSimpleName())
                 .include(Sysfs_getElements_Benchmark.class.getSimpleName())
                 .include(Sysfs_existPath_Benchmark.class.getSimpleName())
 
