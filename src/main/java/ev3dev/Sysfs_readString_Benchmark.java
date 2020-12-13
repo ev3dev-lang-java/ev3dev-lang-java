@@ -20,16 +20,16 @@ public class Sysfs_readString_Benchmark {
 
     @Benchmark
     public void SysfsOriginal(St state, Blackhole b) {
-        b.consume(Sysfs.readString("/sys/class/power_supply/lego-ev3-battery/voltage_now"));
+        b.consume(Sysfs.readString("/sys/class/leds/led0:green:brick-status/brightness"));
     }
 
     @Benchmark
     public void Sysfs2(St state, Blackhole b) {
-        b.consume(Sysfs2.readString("/sys/class/power_supply/lego-ev3-battery/voltage_now"));
+        b.consume(Sysfs2.readString("/sys/class/leds/led0:green:brick-status/brightness"));
     }
 
     @Benchmark
     public void SysfsNIO(St state, Blackhole b) {
-        b.consume(SysfsNIO.readString("/sys/class/power_supply/lego-ev3-battery/voltage_now"));
+        b.consume(SysfsNIO.readString("/sys/class/leds/led0:green:brick-status/brightness"));
     }
 }
