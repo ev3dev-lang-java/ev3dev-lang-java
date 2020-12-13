@@ -167,16 +167,15 @@ public class SysfsTest {
         assertThat(Sysfs.readInteger(pathToAssert), is(10));
     }
 
-    @Ignore("Review error in detail for Travis CI")
-    @Test(expected = RuntimeException.class)
-    public void writeBytesTest() {
+    @Test
+    public void writeBytesTest() throws Exception {
+        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        int BUFFER_SIZE = 0;
-        byte[] buf = new byte[BUFFER_SIZE];
+        String pathToAssert = FakeBattery.EV3DEV_FAKE_SYSTEM_PATH + "/"+ BATTERY + "/"+ BATTERY_EV3 + "/" + VOLTAGE;
+        final Path path = Paths.get(pathToAssert);
+        Sysfs.writeBytes(pathToAssert, new byte[]{'h','e','l','l','o'});
 
-        final String FB_PATH = "/dev/MY_PERSONAL_PATH";
-
-        Sysfs.writeBytes(FB_PATH, buf);
+        assertThat(Sysfs.readString(pathToAssert), is("hello"));
     }
 
 }

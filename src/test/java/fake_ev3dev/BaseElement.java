@@ -1,5 +1,6 @@
 package fake_ev3dev;
 
+import ev3dev.utils.Sysfs;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 
@@ -46,7 +47,9 @@ public abstract class BaseElement {
 
         LOGGER.info("Reset EV3Dev testing infrastructure");
 
-        //Delete
+        // close all cached files
+        Sysfs.reset();
+        //Delete (this disturbs sysfs cache)
         FileUtils.deleteDirectory(new File(EV3DEV_FAKE_SYSTEM_PATH));
 
         //Create
