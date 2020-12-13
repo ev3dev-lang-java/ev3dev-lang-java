@@ -9,6 +9,7 @@ import java.util.Properties;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.infra.Blackhole;
 
 public class Sysfs_writeString_Benchmark {
 
@@ -21,17 +22,17 @@ public class Sysfs_writeString_Benchmark {
     }
 
     @Benchmark
-    public void SysfsOriginal(St state) {
-        Sysfs.writeString("/sys/class/leds/led0:green:brick-status/brightness", "255");
+    public void SysfsOriginal(St state, Blackhole b) {
+        b.consume(Sysfs.writeString("/sys/class/leds/led0:green:brick-status/brightness", "255"));
     }
 
     @Benchmark
-    public void Sysfs2(St state) {
-        Sysfs2.writeString("/sys/class/leds/led0:green:brick-status/brightness", "255");
+    public void Sysfs2(St state, Blackhole b) {
+        b.consume(Sysfs2.writeString("/sys/class/leds/led0:green:brick-status/brightness", "255"));
     }
 
     @Benchmark
-    public void SysfsNIO(St state) {
-        SysfsNIO.writeString("/sys/class/leds/led0:green:brick-status/brightness", "255");
+    public void SysfsNIO(St state, Blackhole b) {
+        b.consume(SysfsNIO.writeString("/sys/class/leds/led0:green:brick-status/brightness", "255"));
     }
 }

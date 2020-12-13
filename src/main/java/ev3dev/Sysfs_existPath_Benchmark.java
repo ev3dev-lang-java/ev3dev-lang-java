@@ -6,6 +6,7 @@ import ev3dev.utils.SysfsNIO;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.infra.Blackhole;
 
 public class Sysfs_existPath_Benchmark {
 
@@ -15,17 +16,17 @@ public class Sysfs_existPath_Benchmark {
     }
 
     @Benchmark
-    public void SysfsOriginal(St state) {
-        Sysfs.existPath("sys/class/lego-port");
+    public void SysfsOriginal(St state, Blackhole b) {
+        b.consume(Sysfs.existPath("/sys/class/lego-port"));
     }
 
     @Benchmark
-    public void Sysfs2(St state) {
-        Sysfs2.existPath("sys/class/lego-port");
+    public void Sysfs2(St state, Blackhole b) {
+        b.consume(Sysfs2.existPath("/sys/class/lego-port"));
     }
 
     @Benchmark
-    public void SysfsNIO(St state) {
-        SysfsNIO.existPath("sys/class/lego-port");
+    public void SysfsNIO(St state, Blackhole b) {
+        b.consume(SysfsNIO.existPath("/sys/class/lego-port"));
     }
 }

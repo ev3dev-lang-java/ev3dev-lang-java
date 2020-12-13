@@ -6,6 +6,7 @@ import ev3dev.utils.SysfsNIO;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.infra.Blackhole;
 
 public class Sysfs_writeInteger_Benchmark {
 
@@ -18,17 +19,17 @@ public class Sysfs_writeInteger_Benchmark {
     }
 
     @Benchmark
-    public void SysfsOriginal(St state) {
-        Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255);
+    public void SysfsOriginal(St state, Blackhole b) {
+        b.consume(Sysfs.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255));
     }
 
     @Benchmark
-    public void Sysfs2(St state) {
-        Sysfs2.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255);
+    public void Sysfs2(St state, Blackhole b) {
+        b.consume(Sysfs2.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255));
     }
 
     @Benchmark
-    public void SysfsNIO(St state) {
-        SysfsNIO.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255);
+    public void SysfsNIO(St state, Blackhole b) {
+        b.consume(SysfsNIO.writeInteger("/sys/class/leds/led0:green:brick-status/brightness", 255));
     }
 }

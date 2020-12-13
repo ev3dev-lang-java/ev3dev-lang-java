@@ -6,6 +6,7 @@ import ev3dev.utils.SysfsNIO;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.infra.Blackhole;
 
 public class Sysfs_getElements_Benchmark {
 
@@ -15,17 +16,17 @@ public class Sysfs_getElements_Benchmark {
     }
 
     @Benchmark
-    public void SysfsOriginal(St state) {
-        Sysfs.getElements("sys/class/lego-port");
+    public void SysfsOriginal(St state, Blackhole b) {
+        b.consume(Sysfs.getElements("/sys/class/lego-port"));
     }
 
     @Benchmark
-    public void Sysfs2(St state) {
-        Sysfs2.getElements("sys/class/lego-port");
+    public void Sysfs2(St state, Blackhole b) {
+        b.consume(Sysfs2.getElements("/sys/class/lego-port"));
     }
 
     @Benchmark
-    public void SysfsNIO(St state) {
-        SysfsNIO.getElements("sys/class/lego-port");
+    public void SysfsNIO(St state, Blackhole b) {
+        b.consume(SysfsNIO.getElements("/sys/class/lego-port"));
     }
 }
