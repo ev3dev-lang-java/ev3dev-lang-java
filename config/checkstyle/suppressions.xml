@@ -29,6 +29,7 @@
               |.*/EV3ColorSensor.java|
               |.*/EV3IRSensor.java|
               |.*/EV3Key.java|
+              |.*/LRUFileCache.java|
               |.*/Battery.java|
               |.*/BaseRegulatedMotor.java|
               |.*/RGBFramebufferProvider.java" />
