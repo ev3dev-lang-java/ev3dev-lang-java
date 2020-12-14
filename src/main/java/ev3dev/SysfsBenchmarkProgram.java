@@ -29,18 +29,18 @@ public class SysfsBenchmarkProgram {
                 .result("/home/robot/jmh-results.json")
                 .verbosity(VerboseMode.EXTRA)
                 .timeUnit(TimeUnit.MILLISECONDS)
+            /* alternative measuring mode:
                 .mode(Mode.SingleShotTime)
                 .warmupTime(TimeValue.seconds(2))
                 .warmupIterations(10)
                 .measurementTime(TimeValue.seconds(2))
                 .measurementIterations(50)
-            /* alternative measuring mode:
+                */
                 .mode(Mode.AverageTime)
                 .warmupTime(TimeValue.seconds(2))
                 .warmupIterations(2)
                 .measurementTime(TimeValue.seconds(2))
                 .measurementIterations(50)
-             */
                 .threads(1)
                 .shouldFailOnError(false)
                 .shouldDoGC(true)
