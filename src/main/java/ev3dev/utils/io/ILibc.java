@@ -99,32 +99,6 @@ public interface ILibc {
      */
     int read(int fd, Buffer buffer, int count) throws LastErrorException;
 
-    // read/write with offset
-
-    /**
-     * Request a read from the specified absolute position in the file referred by a file descriptor.
-     * @param fd File descriptor of the file to read.
-     * @param buffer Buffer where to put the data.
-     * @param count Size of the buffer.
-     * @param offset File offset where the data should be read from.
-     * @return Number of bytes read or -1 if an error occurred.
-     * @see <a href="https://man7.org/linux/man-pages/man2/pread.2.html">man 2 pread</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
-     */
-    int pread(int fd, Buffer buffer, int count, int offset) throws LastErrorException;
-
-    /**
-     * Request a write to the specified absolute position in the file referred by a file descriptor.
-     * @param fd File descriptor of the file to write.
-     * @param buffer Buffer with bytes to write.
-     * @param count Size of the buffer.
-     * @param offset File offset where the data should be written to.
-     * @return Number of bytes written or -1 if an error occurred.
-     * @see <a href="https://man7.org/linux/man-pages/man2/pwrite.2.html">man 2 pwrite</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
-     */
-    int pwrite(int fd, Buffer buffer, int count, int offset) throws LastErrorException;
-
     // map/unmap
 
     /**
