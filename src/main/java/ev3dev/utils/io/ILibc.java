@@ -1,7 +1,6 @@
 package ev3dev.utils.io;
 
 import com.sun.jna.LastErrorException;
-import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 
@@ -25,7 +24,8 @@ public interface ILibc {
      * @param arg Command argument, command-speciic. See manpages for details.
      * @return Depends on the command. On failure, -1 is returned.
      * @see <a href="https://man7.org/linux/man-pages/man2/fcntl.2.html">man 2 fcntl</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int fcntl(int fd, int cmd, int arg) throws LastErrorException;
 
@@ -38,7 +38,8 @@ public interface ILibc {
      * @param arg IOCTL integer argument, this is device-specific (see manpages and/or kernel sources for details).
      * @return -1 on failure, 0 otherwise (usually).
      * @see <a href="https://man7.org/linux/man-pages/man2/ioctl.2.html">man 2 ioctl</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int ioctl(int fd, int cmd, int arg) throws LastErrorException;
 
@@ -49,7 +50,8 @@ public interface ILibc {
      * @param arg IOCTL integer argument, this is device-specific (see manpages and/or kernel sources for details).
      * @return -1 on failure, 0 otherwise (usually).
      * @see <a href="https://man7.org/linux/man-pages/man2/ioctl.2.html">man 2 ioctl</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int ioctl(int fd, int cmd, Pointer arg) throws LastErrorException;
 
@@ -62,7 +64,8 @@ public interface ILibc {
      * @param mode Permissions to be set on the file if it is going to be created (O_CREAT).
      * @return File descriptor or -1 if the file cannot be opened.
      * @see <a href="https://man7.org/linux/man-pages/man2/open.2.html">man 2 open</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code. If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int open(String path, int flags, int mode) throws LastErrorException;
 
@@ -71,7 +74,8 @@ public interface ILibc {
      * @param fd File descriptor to close.
      * @return -1 on failure, 0 otherwise.
      * @see <a href="https://man7.org/linux/man-pages/man2/close.2.html">man 2 close</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code. If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int close(int fd) throws LastErrorException;
 
@@ -84,7 +88,8 @@ public interface ILibc {
      * @param count Size of the buffer.
      * @return Number of bytes written or -1 if an error occurred.
      * @see <a href="https://man7.org/linux/man-pages/man2/write.2.html">man 2 write</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int write(int fd, Buffer buffer, int count) throws LastErrorException;
 
@@ -95,7 +100,8 @@ public interface ILibc {
      * @param count Size of the buffer.
      * @return Number of bytes read or -1 if an error occurred.
      * @see <a href="https://man7.org/linux/man-pages/man2/read.2.html">man 2 read</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int read(int fd, Buffer buffer, int count) throws LastErrorException;
 
@@ -111,7 +117,8 @@ public interface ILibc {
      * @param off Offset in the file from which to start the mapping.
      * @return On success, address of the mapped memory. On failure, -1 (MAP_FAILED) is returned.
      * @see <a href="https://man7.org/linux/man-pages/man2/mmap.2.html">man 2 mmap</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     Pointer mmap(Pointer addr, NativeLong len, int prot, int flags, int fd, NativeLong off) throws LastErrorException;
 
@@ -121,7 +128,8 @@ public interface ILibc {
      * @param len Length of the mapped area.
      * @return -1 on failure, 0 otherwise.
      * @see <a href="https://man7.org/linux/man-pages/man2/munmap.2.html">man 2 munmap</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int munmap(Pointer addr, NativeLong len) throws LastErrorException;
 
@@ -132,7 +140,8 @@ public interface ILibc {
      * @param flags Synchronization type (MS_SYNC/MS_ASYNC/MS_INVALIDATE). See manpages for details.
      * @return -1 on failure, 0 otherwise.
      * @see <a href="https://man7.org/linux/man-pages/man2/msync.2.html">man 2 msync</a>
-     * @throws LastErrorException If errno is set during the operation. Use {@link Native#getLastError()} to query the error code.
+     * @throws LastErrorException If errno is set during the operation.
+     * Use Native#getLastError() to query the error code.
      */
     int msync(Pointer addr, NativeLong len, int flags) throws LastErrorException;
 }
