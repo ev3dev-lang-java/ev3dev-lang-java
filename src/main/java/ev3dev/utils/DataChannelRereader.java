@@ -59,7 +59,7 @@ public class DataChannelRereader implements Closeable {
             } while (n <= 0);
 
             byte[] bytes = byteBuffer.array();
-            if (bytes[n-1] == '\n') {
+            if (bytes[n - 1] == '\n') {
                 return new String(bytes, 0, n - 1, StandardCharsets.UTF_8);
             } else {
                 return new String(bytes, 0, n, StandardCharsets.UTF_8);
