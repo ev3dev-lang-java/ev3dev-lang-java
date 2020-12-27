@@ -82,8 +82,8 @@ public class EmulatedLibc implements ILibc {
      */
     private String path(int fd) {
         return Optional
-                .ofNullable(opened.get(fd))
-                .orElseThrow(() -> new LastErrorException(NativeConstants.EBADF));
+            .ofNullable(opened.get(fd))
+            .orElseThrow(() -> new LastErrorException(NativeConstants.EBADF));
     }
 
     /**
@@ -95,8 +95,8 @@ public class EmulatedLibc implements ILibc {
      */
     private String path(@NonNull Pointer mem) {
         return Optional
-                .ofNullable(mmaps.get(mem))
-                .orElseThrow(() -> new LastErrorException(NativeConstants.EINVAL));
+            .ofNullable(mmaps.get(mem))
+            .orElseThrow(() -> new LastErrorException(NativeConstants.EINVAL));
     }
 
     /**
@@ -108,8 +108,8 @@ public class EmulatedLibc implements ILibc {
      */
     private IFile impl(@NonNull String path) {
         return Optional
-                .ofNullable(mapping.get(path))
-                .orElseThrow(() -> new LastErrorException(NativeConstants.ENOENT));
+            .ofNullable(mapping.get(path))
+            .orElseThrow(() -> new LastErrorException(NativeConstants.ENOENT));
     }
 
     @Override

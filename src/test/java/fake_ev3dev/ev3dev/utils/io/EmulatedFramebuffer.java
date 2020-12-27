@@ -6,9 +6,9 @@ import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import ev3dev.hardware.display.ImageUtils;
 import ev3dev.utils.io.NativeConstants;
+import java.awt.Graphics2D;
 import lombok.Getter;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.nio.Buffer;
 import java.util.HashMap;
