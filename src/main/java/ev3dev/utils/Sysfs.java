@@ -1,11 +1,8 @@
 package ev3dev.utils;
 
-import org.slf4j.Logger;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,15 +10,17 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The class responsible to interact with Sysfs on EV3Dev
  *
  * @author Juan Antonio Breña Moral
+ * @author David Walend
+ *
  */
+@Slf4j
 public class Sysfs {
-
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Sysfs.class);
 
     /**
      * Write a value in a file.
@@ -31,8 +30,8 @@ public class Sysfs {
      * @return A boolean value if the operation was written or not.
      */
     public static boolean writeString(final String filePath, final String value) {
-        if (log.isTraceEnabled()) {
-            log.trace("echo " + value + " > " + filePath);
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("echo " + value + " > " + filePath);
         }
         try {
             final File file = new File(filePath);
@@ -44,11 +43,11 @@ public class Sysfs {
                 out.close();
                 //TODO Review
             } else {
-                log.error("File: '{}' without write permissions.", filePath);
+                LOGGER.error("File: '{}' without write permissions.", filePath);
                 return false;
             }
         } catch (IOException e) {
-            log.error(e.getLocalizedMessage(), e);
+            LOGGER.error(e.getLocalizedMessage(), e);
             return false;
         }
         return true;
@@ -65,21 +64,19 @@ public class Sysfs {
      * @return value from attribute
      */
     public static String readString(final String filePath) {
-        if (log.isTraceEnabled()) {
-            log.trace("cat " + filePath);
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("cat " + filePath);
         }
         try {
-            final Path path = Paths.get(filePath);
-            if (existFile(path) && Files.isReadable(path)) {
-                final String result = Files.readAllLines(path, Charset.forName("UTF-8")).get(0);
-                if (log.isTraceEnabled()) {
-                    log.trace("value: {}", result);
+            try (DataChannelRereader rereader = new DataChannelRereader(filePath)) {
+                String result = rereader.readString();
+                if (LOGGER.isTraceEnabled()) {
+                    LOGGER.trace("value: {}", result);
                 }
                 return result;
             }
-            throw new IOException("Problem reading path: " + filePath);
         } catch (IOException e) {
-            log.error(e.getLocalizedMessage(), e);
+            LOGGER.error(e.getLocalizedMessage(), e);
             throw new RuntimeException("Problem reading path: " + filePath, e);
         }
     }
@@ -94,11 +91,19 @@ public class Sysfs {
         return Integer.parseInt(readString(filePath));
     }
 
+    /**
+     * Read an Attribute in the Sysfs with containing Float values
+     *
+     * @param filePath path
+     * @return value from attribute
+     */
     public static float readFloat(final String filePath) {
         return Float.parseFloat(readString(filePath));
     }
 
     /**
+     * Retrieve the elements contained in a path
+     *
      * @param filePath path
      * @return an List with options from a path
      */
@@ -118,8 +123,8 @@ public class Sysfs {
      * @return boolean
      */
     public static boolean existPath(final String filePath) {
-        if (log.isTraceEnabled()) {
-            log.trace("ls " + filePath);
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("ls " + filePath);
         }
         final File f = new File(filePath);
         return f.exists() && f.isDirectory();
@@ -144,5 +149,4 @@ public class Sysfs {
         }
         return true;
     }
-
 }
