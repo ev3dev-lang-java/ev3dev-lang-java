@@ -53,7 +53,9 @@ public class DataChannelRereader implements Closeable {
                 byteBuffer.clear();
                 channel.position(0);
                 n = channel.read(byteBuffer);
-                if (n == -1) throw new IOException("Premature end of file ");
+                if (n == -1) {
+                    throw new IOException("Premature end of file ");
+                }
             } while (n <= 0);
 
             byte[] bytes = byteBuffer.array();
