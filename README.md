@@ -4,8 +4,7 @@
 & the [LeJOS](http://www.lejos.org/) way.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
-[![Travis CI](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java.svg?branch=develop)](https://travis-ci.org/ev3dev-lang-java/ev3dev-lang-java)
-
+![Java CI](https://github.com/ev3dev-lang-java/ev3dev-lang-java/workflows/Java%20CI/badge.svg)
 ![ScreenShot](https://raw.githubusercontent.com/jabrena/ev3dev-lang-java/master/docs/images/theThreeAmigos.jpg)
 
 # How to test?
