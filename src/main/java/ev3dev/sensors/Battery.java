@@ -5,8 +5,7 @@ import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Sysfs;
 import lejos.hardware.Power;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The class Battery interacts with EV3Dev to get information about battery used.
@@ -15,9 +14,8 @@ import org.slf4j.LoggerFactory;
  * @see <a href="https://www.kernel.org/doc/Documentation/power/power_supply_class.txt">https://www.kernel.org/doc/Documentation/power/power_supply_class.txt</a>
  * @see <a href="https://github.com/ev3dev/ev3dev-lang/blob/develop/wrapper-specification.md#direct-attribute-mappings-5">https://github.com/ev3dev/ev3dev-lang/blob/develop/wrapper-specification.md#direct-attribute-mappings-5</a>
  */
+@Slf4j
 public class Battery extends EV3DevDevice implements Power {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Battery.class);
 
     private final String BATTERY;
     private final String BATTERY_EV3;
