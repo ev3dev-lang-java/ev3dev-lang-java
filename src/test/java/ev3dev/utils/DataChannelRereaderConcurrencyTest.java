@@ -25,6 +25,15 @@ public class DataChannelRereaderConcurrencyTest {
         new File(fileName2).createNewFile();
     }
 
+    /**
+     * Writer1 -> pairs.txt
+     * Reader1 <- pairs.txt
+     * Reader2 <- pairs.txt
+     *
+     * Writer1 -> odds.txt
+     * Reader1 <- odds.txt
+     * Reader2 <- odds.txt
+     */
     @Test
     public void given_multiple_DataChannelRereader_when_execute_concurrently_then_Ok() {
 
@@ -162,5 +171,42 @@ public class DataChannelRereaderConcurrencyTest {
         });
 
         return cf;
+    }
+
+    /**
+     * Writer1 -> pairs.txt
+     * Reader1 <- pairs.txt
+     *
+     * Writer1 -> odds.txt
+     * Reader1 <- odds.txt
+     */
+    @Test
+    public void given_multiple_DataChannelRereader_when_execute_concurrently_then_Ok2() {
+
+        CompletableFuture<String> request1 = asyncWriteFile(true);
+        CompletableFuture<String> request2 = asyncWriteFile(false);
+        CompletableFuture<String> request3 = asyncReadFile(true);
+        CompletableFuture<String> request4 = asyncReadFile(false);
+
+        CompletableFuture<Void> combinedFuture = CompletableFuture.allOf(
+            request1,
+            request2,
+            request3,
+            request4);
+
+        combinedFuture.join();
+
+        assertTrue(request1.isDone());
+        assertTrue(request2.isDone());
+        assertTrue(request3.isDone());
+        assertTrue(request4.isDone());
+
+        System.out.println(request1.join());
+        System.out.println(request2.join());
+        System.out.println(request3.join());
+        System.out.println(request4.join());
+        //System.out.println(count);
+
+        System.out.println("End");
     }
 }
