@@ -66,7 +66,7 @@ public class EV3LedTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        LED led = new EV3Led(EV3Led.Direction.RIGHT);
+        LED led = new EV3Led(4);
     }
 
     @Test
