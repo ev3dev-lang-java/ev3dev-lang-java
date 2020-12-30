@@ -99,7 +99,7 @@ public class DataChannelRereader3ConcurrencyTest {
      * Reader1 <- odds.txt
      */
     @Test
-    public void given_multiple_SysfsOld_when_execute_concurrently_then_Ok2() {
+    public void given_multiple_SysfsOld_when_execute_concurrently_then_Ok() {
 
         CompletableFuture<String> request1 = asyncWriteFile(true);
         CompletableFuture<String> request2 = asyncWriteFile(false);
@@ -123,6 +123,32 @@ public class DataChannelRereader3ConcurrencyTest {
         then(request2.join()).isEqualTo("Ok asyncWriteFile");
         then(request3.join()).isEqualTo("Ok asyncReadFile");
         then(request4.join()).isEqualTo("Ok asyncReadFile");
+
+        System.out.println("End");
+    }
+
+    /**
+     * Writer1 -> pairs.txt
+     * Reader1 <- pairs.txt
+     *
+     */
+    @Test
+    public void given_multiple_SysfsOld_when_execute_concurrently_then_Ok2() {
+
+        CompletableFuture<String> request1 = asyncWriteFile(true);
+        CompletableFuture<String> request3 = asyncReadFile(true);
+
+        CompletableFuture<Void> combinedFuture = CompletableFuture.allOf(
+            request1,
+            request3);
+
+        combinedFuture.join();
+
+        then(request1.isDone()).isTrue();
+        then(request3.isDone()).isTrue();
+
+        then(request1.join()).isEqualTo("Ok asyncWriteFile");
+        then(request3.join()).isEqualTo("Ok asyncReadFile");
 
         System.out.println("End");
     }
