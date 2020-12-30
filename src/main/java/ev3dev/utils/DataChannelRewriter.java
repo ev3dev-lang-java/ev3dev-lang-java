@@ -33,7 +33,7 @@ public class DataChannelRewriter implements Closeable {
         try {
             this.channel = FileChannel.open(path, StandardOpenOption.WRITE);
         } catch (IOException e) {
-            throw new RuntimeException("While opeing " + path,e);
+            throw new RuntimeException("While opening " + path,e);
         }
     }
 

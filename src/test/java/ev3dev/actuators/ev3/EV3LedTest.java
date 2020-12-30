@@ -35,7 +35,7 @@ public class EV3LedTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        LED led = new EV3Led(EV3Led.LEFT);
+        @SuppressWarnings("deprecation") LED led = new EV3Led(EV3Led.LEFT);
         led = new EV3Led(EV3Led.Direction.LEFT);
     }
 
@@ -44,7 +44,7 @@ public class EV3LedTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        LED led = new EV3Led(EV3Led.RIGHT);
+        @SuppressWarnings("deprecation") LED led = new EV3Led(EV3Led.RIGHT);
         led = new EV3Led(EV3Led.Direction.RIGHT);
     }
 
@@ -56,7 +56,7 @@ public class EV3LedTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.BRICKPI);
 
-        LED led = new EV3Led(EV3Led.LEFT);
+        LED led = new EV3Led(EV3Led.Direction.LEFT);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class EV3LedTest {
 
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
 
-        LED led = new EV3Led(2);
+        LED led = new EV3Led(EV3Led.Direction.RIGHT);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
 
-        LED led = new EV3Led(EV3Led.LEFT);
+        LED led = new EV3Led(EV3Led.Direction.LEFT);
         led.setPattern(1);
         led.setPattern(2);
         led.setPattern(3);
@@ -104,7 +104,7 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
 
-        LED led = new EV3Led(EV3Led.RIGHT);
+        @SuppressWarnings("deprecation") LED led = new EV3Led(EV3Led.RIGHT);
         led.setPattern(1);
         led.setPattern(2);
         led.setPattern(3);
@@ -123,7 +123,7 @@ public class EV3LedTest {
         final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
         final FakeLed fakeLed = new FakeLed(EV3DevPlatform.EV3BRICK);
 
-        EV3Led led = new EV3Led(EV3Led.RIGHT);
+        @SuppressWarnings("deprecation") EV3Led led = new EV3Led(EV3Led.RIGHT);
         Assert.assertEquals(EV3Led.Direction.RIGHT, led.getDirection());
 
         led = new EV3Led(EV3Led.Direction.RIGHT);

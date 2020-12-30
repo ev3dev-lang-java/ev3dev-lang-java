@@ -24,7 +24,15 @@ public class EV3Led extends EV3DevDevice implements LED {
 
     private static final Logger log = LoggerFactory.getLogger(EV3Led.class);
 
+    /**
+     * @deprecated Use EV3LedDirection.LEFT instead.
+     */
+    @Deprecated
     public static final int LEFT = 0;
+    /**
+     * @deprecated Use EV3Led.Direction.RIGHT instead.
+     */
+    @Deprecated
     public static final int RIGHT = 1;
 
     private final Direction direction;
@@ -65,6 +73,7 @@ public class EV3Led extends EV3DevDevice implements LED {
      * @throws RuntimeException if LED feature is not supported on the current platform.
      * @deprecated Use {@link #EV3Led(Direction)} instead.
      */
+    @Deprecated
     public EV3Led(final int button) {
         checkPlatform();
 
