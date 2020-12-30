@@ -50,15 +50,14 @@ public class DataChannelRereader implements Closeable {
      */
     public String readString() {
         try {
-            int n;
-            do {
-                byteBuffer.clear();
-                channel.position(0);
-                n = channel.read(byteBuffer);
-                if (n == -1) {
-                    throw new IOException("Premature end of file ");
-                }
-            } while (n <= 0);
+            byteBuffer.clear();
+            channel.position(0);
+            int n = channel.read(byteBuffer);
+            if (n == -1) {
+                return "";
+            } else if (n < -1) {
+                throw new RuntimeException("Unexpected read byte count of " + n + " while reading " + path);
+            }
 
             byte[] bytes = byteBuffer.array();
             if (bytes[n - 1] == '\n') {
