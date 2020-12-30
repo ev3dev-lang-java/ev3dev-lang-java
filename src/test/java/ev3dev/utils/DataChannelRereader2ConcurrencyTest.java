@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.assertj.core.api.BDDAssertions.then;
 
 @Slf4j
-public class DataChannelRereaderConcurrencyTest {
+public class DataChannelRereader2ConcurrencyTest {
 
     final String fileName = "./pairs.txt";
     final String fileName2 = "./odds.txt";
@@ -71,7 +71,7 @@ public class DataChannelRereaderConcurrencyTest {
     }
 
     private void readFile(String file, Boolean flag) {
-        Integer value = Sysfs.readInteger(file);
+        Integer value = Sysfs2.readInteger(file);
         if (flag) {
             then(value % 2 == 0).isTrue();
         } else {
@@ -80,7 +80,7 @@ public class DataChannelRereaderConcurrencyTest {
     }
 
     private void readFile2(String file, Boolean flag) {
-        DataChannelRereader dataChannelRereader = new DataChannelRereader(file);
+        DataChannelRereader2 dataChannelRereader = new DataChannelRereader2(file);
         Integer value = Integer.parseInt(dataChannelRereader.readString());
         if (flag) {
             then(value % 2 == 0).isTrue();
@@ -136,7 +136,7 @@ public class DataChannelRereaderConcurrencyTest {
     }
 
     private void writeFile(String file, String value) {
-        Sysfs.writeString(file, value);
+        Sysfs2.writeString(file, value);
     }
 
     private CompletableFuture<String> asyncWriteFile(boolean flag) {
