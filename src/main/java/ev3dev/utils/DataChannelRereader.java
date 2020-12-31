@@ -48,11 +48,10 @@ public class DataChannelRereader implements Closeable {
     /**
      * @return a string made from the bytes in the file;
      */
-    public String readString() {
+    public synchronized String readString() {
         try {
             byteBuffer.clear();
-            channel.position(0);
-            int n = channel.read(byteBuffer);
+            int n = channel.read(byteBuffer,0);
             if (n == -1) {
                 return "";
             } else if (n < -1) {
@@ -70,8 +69,12 @@ public class DataChannelRereader implements Closeable {
         }
     }
 
+    public Path getPath() {
+        return path;
+    }
+
     @Override
-    public void close() throws IOException {
+    public synchronized void close() throws IOException {
         channel.close();
     }
 }
