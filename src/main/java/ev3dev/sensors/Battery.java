@@ -71,15 +71,16 @@ public class Battery extends EV3DevDevice implements Power, Closeable {
         return Integer.parseInt(voltageRereader.readString());
     }
 
+    /**
+     * @return voltage of the battery in millivolts.
+     */
     @Override
     public int getVoltageMilliVolt() {
         return getVoltageMicroVolt() / 1000;
     }
 
     /**
-     * Returns voltage of the battery in microvolts.
-     *
-     * @return voltage
+     * @return voltage of the battery in microvolts.
      */
     public float getVoltage() {
         return getVoltageMicroVolt() / 1000000f;
