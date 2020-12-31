@@ -49,7 +49,7 @@ public class DataChannelRewriter implements Closeable {
     /**
      * @param string to write. A new line character
      */
-    public void writeString(String string) {
+    public synchronized void writeString(String string) {
         try {
             byteBuffer.clear();
             byteBuffer.put(string.getBytes(StandardCharsets.UTF_8));
@@ -69,7 +69,7 @@ public class DataChannelRewriter implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public synchronized void close() throws IOException {
         channel.close();
     }
 }
