@@ -48,17 +48,15 @@ public class DataChannelRereader implements Closeable {
     /**
      * @return a string made from the bytes in the file;
      */
-    public String readString() {
+    public synchronized String readString() {
         try {
-            int n;
-            do {
-                byteBuffer.clear();
-                channel.position(0);
-                n = channel.read(byteBuffer);
-                if (n == -1) {
-                    throw new IOException("Premature end of file ");
-                }
-            } while (n <= 0);
+            byteBuffer.clear();
+            int n = channel.read(byteBuffer,0);
+            if ((n == -1)||(n == 0)) {
+                return "";
+            } else if (n < -1) {
+                throw new RuntimeException("Unexpected read byte count of " + n + " while reading " + path);
+            }
 
             byte[] bytes = byteBuffer.array();
             if (bytes[n - 1] == '\n') {
@@ -71,8 +69,12 @@ public class DataChannelRereader implements Closeable {
         }
     }
 
+    public Path getPath() {
+        return path;
+    }
+
     @Override
-    public void close() throws IOException {
+    public synchronized void close() throws IOException {
         channel.close();
     }
 }
