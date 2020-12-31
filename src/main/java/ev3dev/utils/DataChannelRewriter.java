@@ -55,9 +55,8 @@ public class DataChannelRewriter implements Closeable {
             byteBuffer.put(string.getBytes(StandardCharsets.UTF_8));
             byteBuffer.put(((byte)'\n'));
             byteBuffer.flip();
-            channel.position(0);
-            channel.write(byteBuffer);
-            channel.truncate(byteBuffer.position());
+            channel.truncate(0);
+            channel.write(byteBuffer,0);
             channel.force(false);
         } catch (IOException e) {
             throw new RuntimeException("Problem writing path: " + path, e);
