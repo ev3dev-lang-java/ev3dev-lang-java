@@ -79,5 +79,12 @@ public class DataChannelRereaderTest {
         rereader.close();
     }
 
+    @Test(expected = RuntimeException.class)
+    @SneakyThrows
+    public void testOpenNonexistantFile() {
+        Path badPath = Path.of("/does/not/exist");
 
+        DataChannelRereader rereader = new DataChannelRereader(badPath,32);
+        rereader.close();
+    }
 }
