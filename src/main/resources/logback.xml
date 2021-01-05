@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <jmxConfigurator />
+
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ch.qos.logback.core" level="OFF" />
+    <logger name="ev3dev.hardware" level="TRACE" />
+    <logger name="ev3dev.utils" level="TRACE" />
+
+    <root level="TRACE">
+        <appender-ref ref="STDERR"/>
+    </root>
+
+</configuration>

@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -34,6 +35,7 @@ public class DataChannelRereader2ConcurrencyTest {
      * Reader2 <- odds.txt
      */
     @Test
+    @Ignore
     public void given_multiple_DataChannelRereader_when_execute_concurrently_then_Ok() {
 
         CompletableFuture<String> request1 = asyncWriteFile(true);
@@ -178,6 +180,7 @@ public class DataChannelRereader2ConcurrencyTest {
      * Reader1 <- odds.txt
      */
     @Test
+    @Ignore
     public void given_multiple_DataChannelRereader_when_execute_concurrently_then_Ok2() {
 
         CompletableFuture<String> request1 = asyncWriteFile(true);

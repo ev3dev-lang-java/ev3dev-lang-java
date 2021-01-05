@@ -52,7 +52,7 @@ public class DataChannelRereader implements Closeable {
         try {
             byteBuffer.clear();
             int n = channel.read(byteBuffer,0);
-            if ((n == -1)||(n == 0)) {
+            if ((n == -1) || (n == 0)) {
                 return "";
             } else if (n < -1) {
                 throw new RuntimeException("Unexpected read byte count of " + n + " while reading " + path);

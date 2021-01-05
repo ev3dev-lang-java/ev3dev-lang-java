@@ -30,6 +30,7 @@
               |.*/EV3IRSensor.java|
               |.*/EV3Key.java|
               |.*/Battery.java|
+              |.*/BatteryOld.java|
               |.*/BaseRegulatedMotor.java|
               |.*/RGBFramebufferProvider.java" />
     <suppress checks="TypeName"
@@ -47,6 +48,7 @@
               |.*/Sound.java|
               |.*/EV3Led.java|
               |.*/Battery.java|
+              |.*/BatteryOld.java|
               |.*/NativeFramebuffer.java" />
     <suppress checks="VariableDeclarationUsageDistanceCheck"
               files=".*/OwnedDisplay.java
