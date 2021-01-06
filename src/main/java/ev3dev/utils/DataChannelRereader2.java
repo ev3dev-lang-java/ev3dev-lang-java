@@ -90,17 +90,18 @@ public class DataChannelRereader2 implements Closeable {
             // try to do the read
             // only one try, as:
             // - value >0 indicates success
-            // - value =0 does not tell us much, as there's a possibility of reading an empty attribute
-            // - value <0 indicates failure
+            // - value =0 indicates empty attribute (???)
+            // - value <0 indicates empty attribute
             int n = channel.read(buffer, 0);
-            if (n == -1) {
-                throw new IOException("Premature end of file " + path);
+            // minus one reliably occurs on empty file, zero should be similar
+            if (n <= 0) {
+                return "";
             }
 
             // strip trailing newline & return data as a string
             // rationale: ev3dev sysfs often appends \n, but this breaks parseFloat/parseInt/...
             byte[] bytes = buffer.array();
-            if (n > 0 && bytes[n - 1] == '\n') {
+            if (bytes[n - 1] == '\n') {
                 return new String(bytes, 0, n - 1, StandardCharsets.UTF_8);
             } else {
                 return new String(bytes, 0, n, StandardCharsets.UTF_8);
