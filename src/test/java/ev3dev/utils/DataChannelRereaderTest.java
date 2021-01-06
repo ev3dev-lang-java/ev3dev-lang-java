@@ -1,8 +1,9 @@
 package ev3dev.utils;
 
 import lombok.SneakyThrows;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.nio.file.Files;
@@ -22,17 +23,23 @@ public class DataChannelRereaderTest {
     static final String testString = "Written String";
     static final String differentTestString = "Different String";
 
-    @Before
+    @BeforeClass
     @SneakyThrows
-    public void createFiles() {
+    public static void createFiles() {
         tempDirectory = Files.createTempDirectory("DataChannelRereaderTest");
         testPath = Files.createFile(Path.of(tempDirectory.toString(),"testFile"));
         Files.write(testPath, testString.getBytes());
     }
 
-    @After
+    @Before
     @SneakyThrows
-    public void cleanupFiles() {
+    public void writeFile() {
+        Files.write(testPath, testString.getBytes());
+    }
+
+    @AfterClass
+    @SneakyThrows
+    public static void cleanupFiles() {
         Files.delete(testPath);
         Files.delete(tempDirectory);
     }
@@ -81,7 +88,7 @@ public class DataChannelRereaderTest {
 
     @Test(expected = RuntimeException.class)
     @SneakyThrows
-    public void testOpenNonexistantFile() {
+    public void testOpenNonexistentFile() {
         Path badPath = Path.of("/does/not/exist");
 
         DataChannelRereader rereader = new DataChannelRereader(badPath,32);
