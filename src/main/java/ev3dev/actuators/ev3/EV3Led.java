@@ -2,17 +2,20 @@ package ev3dev.actuators.ev3;
 
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevPlatform;
-import ev3dev.utils.Sysfs;
+import ev3dev.utils.DataChannelRewriter;
 import lejos.hardware.LED;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.Closeable;
+import java.io.IOException;
 
 /**
  * This class provides methods for interacting with the LEDs on the EV3Brick.
  *
  * <p><i>Only EV3Bricks are supported.</i>
  */
-public class EV3Led extends EV3DevDevice implements LED {
+public class EV3Led extends EV3DevDevice implements LED, Closeable {
 
     /**
      * Directions of the LED.
@@ -21,16 +24,26 @@ public class EV3Led extends EV3DevDevice implements LED {
         LEFT,
         RIGHT
     }
+    
+    private static final Direction[] directionArray = {Direction.LEFT,Direction.RIGHT};
 
     private static final Logger log = LoggerFactory.getLogger(EV3Led.class);
 
+    /**
+     * @deprecated Use EV3LedDirection.LEFT instead.
+     */
+    @Deprecated
     public static final int LEFT = 0;
+    /**
+     * @deprecated Use EV3Led.Direction.RIGHT instead.
+     */
+    @Deprecated
     public static final int RIGHT = 1;
 
     private final Direction direction;
 
-    private final String LED_RED;
-    private final String LED_GREEN;
+    private final DataChannelRewriter redWriter;
+    private final DataChannelRewriter greenWriter;
 
     /**
      * Create an EV3LED object associated with the LED of the specified direction.
@@ -50,11 +63,11 @@ public class EV3Led extends EV3DevDevice implements LED {
         this.direction = direction;
 
         if (direction == Direction.LEFT) {
-            LED_RED = ev3DevProperties.getProperty("ev3.led.left.red");
-            LED_GREEN = ev3DevProperties.getProperty("ev3.led.left.green");
+            redWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.left.red"));
+            greenWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.left.green"));
         } else {
-            LED_RED = ev3DevProperties.getProperty("ev3.led.right.red");
-            LED_GREEN = ev3DevProperties.getProperty("ev3.led.right.green");
+            redWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.right.red"));
+            greenWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.right.green"));
         }
     }
 
@@ -65,22 +78,9 @@ public class EV3Led extends EV3DevDevice implements LED {
      * @throws RuntimeException if LED feature is not supported on the current platform.
      * @deprecated Use {@link #EV3Led(Direction)} instead.
      */
+    @Deprecated
     public EV3Led(final int button) {
-        checkPlatform();
-
-        if (button == LEFT) {
-            LED_RED = ev3DevProperties.getProperty("ev3.led.left.red");
-            LED_GREEN = ev3DevProperties.getProperty("ev3.led.left.green");
-            direction = Direction.LEFT;
-        } else if (button == RIGHT) {
-            LED_RED = ev3DevProperties.getProperty("ev3.led.right.red");
-            LED_GREEN = ev3DevProperties.getProperty("ev3.led.right.green");
-            direction = Direction.RIGHT;
-        } else {
-            log.error("You are not specifying any button.");
-            throw new IllegalArgumentException("You are not specifying any button.");
-        }
-
+        this(directionArray[button]);
     }
 
     /**
@@ -96,7 +96,6 @@ public class EV3Led extends EV3DevDevice implements LED {
     }
 
     //TODO Add Enums for patterns
-
     /**
      * Sets the pattern of light to be shown with this LED.
      *
@@ -109,19 +108,22 @@ public class EV3Led extends EV3DevDevice implements LED {
      */
     @Override
     public void setPattern(final int pattern) {
-        //Off
+
+        final String off = Integer.toString(0);
+        final String on = Integer.toString(255);
+
         if (pattern == 0) {
-            Sysfs.writeInteger(LED_RED, 0);
-            Sysfs.writeInteger(LED_GREEN, 0);
+            greenWriter.writeString(off);
+            redWriter.writeString(off);
         } else if (pattern == 1) {
-            Sysfs.writeInteger(LED_RED, 0);
-            Sysfs.writeInteger(LED_GREEN, 255);
+            greenWriter.writeString(on);
+            redWriter.writeString(off);
         } else if (pattern == 2) {
-            Sysfs.writeInteger(LED_RED, 255);
-            Sysfs.writeInteger(LED_GREEN, 0);
+            greenWriter.writeString(off);
+            redWriter.writeString(on);
         } else if (pattern == 3) {
-            Sysfs.writeInteger(LED_RED, 255);
-            Sysfs.writeInteger(LED_GREEN, 255);
+            greenWriter.writeString(on);
+            redWriter.writeString(on);
         } else if (pattern > 3) {
             log.debug("This feature is not implemented");
         }
@@ -135,4 +137,12 @@ public class EV3Led extends EV3DevDevice implements LED {
     public Direction getDirection() {
         return direction;
     }
+
+    @Override
+    public void close() throws IOException {
+        greenWriter.close();
+        redWriter.close();
+    }
+
+
 }

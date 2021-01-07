@@ -67,38 +67,37 @@ public class Battery extends EV3DevDevice implements Power, Closeable {
         currentRereader = new DataChannelRereader(batteryPath + "/" + batteryEv3 + "/" + current);
     }
 
-    public int getVoltageMicroVolts() {
+    public int getVoltageMicroVolt() {
         return Integer.parseInt(voltageRereader.readString());
     }
 
+    /**
+     * @return voltage of the battery in millivolts.
+     */
     @Override
     public int getVoltageMilliVolt() {
-        return getVoltageMicroVolts() / 1000;
+        return getVoltageMicroVolt() / 1000;
     }
 
     /**
-     * Returns voltage of the battery in microvolts.
-     *
-     * @return voltage
+     * @return voltage of the battery in microvolts.
      */
     public float getVoltage() {
-        return getVoltageMicroVolts() / 1000000f;
+        return getVoltageMicroVolt() / 1000000f;
     }
 
     //TODO Review output
     //TODO Review units
 
     /**
-     * Returns the current of the battery in amps.
-     *
-     * @return current
+     * @return current from the battery in amps, or Float.NaN if run on something other than EV3BRICK
      */
     public float getBatteryCurrent() {
         if (CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
             return Float.parseFloat(currentRereader.readString());
         } else {
             LOGGER.warn("This method is not available for {} & {}", EV3DevPlatform.PISTORMS, EV3DevPlatform.BRICKPI);
-            return -1f;
+            return Float.NaN;
         }
     }
 
