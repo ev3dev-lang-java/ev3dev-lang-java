@@ -1,6 +1,6 @@
 package ev3dev.utils;
 
-import lombok.SneakyThrows;
+import java.io.IOException;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -24,37 +24,32 @@ public class DataChannelRereaderTest {
     static final String differentTestString = "Different String";
 
     @BeforeClass
-    @SneakyThrows
-    public static void createFiles() {
+    public static void createFiles() throws IOException {
         tempDirectory = Files.createTempDirectory("DataChannelRereaderTest");
         testPath = Files.createFile(Path.of(tempDirectory.toString(),"testFile"));
         Files.write(testPath, testString.getBytes());
     }
 
     @Before
-    @SneakyThrows
-    public void writeFile() {
+    public void writeFile() throws IOException {
         Files.write(testPath, testString.getBytes());
     }
 
     @AfterClass
-    @SneakyThrows
-    public static void cleanupFiles() {
+    public static void cleanupFiles() throws IOException {
         Files.delete(testPath);
         Files.delete(tempDirectory);
     }
 
 
     @Test
-    @SneakyThrows
-    public void testOpenClose() {
+    public void testOpenClose() throws IOException {
         DataChannelRereader rereader = new DataChannelRereader(testPath,32);
         rereader.close();
     }
 
     @Test
-    @SneakyThrows
-    public void testOpenReadClose() {
+    public void testOpenReadClose() throws IOException {
         DataChannelRereader rereader = new DataChannelRereader(testPath,32);
         String readString = rereader.readString();
         rereader.close();
@@ -63,8 +58,7 @@ public class DataChannelRereaderTest {
     }
 
     @Test
-    @SneakyThrows
-    public void testClosable() {
+    public void testClosable() throws IOException {
         try(DataChannelRereader rereader = new DataChannelRereader(testPath,32)){
             String readString = rereader.readString();
             assertEquals(testString,readString);
@@ -72,8 +66,7 @@ public class DataChannelRereaderTest {
     }
 
     @Test
-    @SneakyThrows
-    public void testOpenReadTwoThingsClose() {
+    public void testOpenReadTwoThingsClose() throws IOException {
         DataChannelRereader rereader = new DataChannelRereader(testPath,32);
         String readString = rereader.readString();
         assertEquals(testString,readString);
@@ -87,8 +80,7 @@ public class DataChannelRereaderTest {
     }
 
     @Test(expected = RuntimeException.class)
-    @SneakyThrows
-    public void testOpenNonexistentFile() {
+    public void testOpenNonexistentFile() throws IOException {
         Path badPath = Path.of("/does/not/exist");
 
         DataChannelRereader rereader = new DataChannelRereader(badPath,32);
