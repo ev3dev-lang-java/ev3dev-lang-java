@@ -19,6 +19,11 @@ public class NXTTemperatureSensor extends BaseSensor {
     private static final String MODE_CELSIUS = "NXT-TEMP-C";
     private static final String MODE_FAHRENHEIT = "NXT-TEMP-F";
 
+    /**
+     * Constructor
+     *
+     * @param portName Port name
+     */
     public NXTTemperatureSensor(final Port portName) {
         super(portName, LEGO_I2C, LEGO_NXT_TEMP);
 
