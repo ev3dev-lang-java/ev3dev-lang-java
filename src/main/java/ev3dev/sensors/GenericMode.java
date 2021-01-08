@@ -14,7 +14,7 @@ import java.io.File;
  */
 public class GenericMode implements SensorMode {
 
-    private final File pathDevice;
+    protected final File pathDevice;
     private final int sampleSize;
     private final String modeName;
 

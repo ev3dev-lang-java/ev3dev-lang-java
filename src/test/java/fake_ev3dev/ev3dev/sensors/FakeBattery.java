@@ -1,6 +1,7 @@
 package fake_ev3dev.ev3dev.sensors;
 
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.utils.Shell;
 import fake_ev3dev.BaseElement;
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,6 +60,8 @@ public class FakeBattery extends BaseElement {
                             BATTERY_FIELD_CURRENT);
             this.createFile(current, BATTERY_FIELD_CURRENT_VALUE);
 
+            var result = Shell.execute("tree " + EV3DEV_FAKE_SYSTEM_PATH);
+            LOGGER.info(result);
 
         } else {
             resetEV3DevInfrastructure();

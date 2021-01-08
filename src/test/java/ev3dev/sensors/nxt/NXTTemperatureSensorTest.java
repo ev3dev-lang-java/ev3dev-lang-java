@@ -6,93 +6,149 @@ import fake_ev3dev.ev3dev.sensors.FakeBattery;
 import fake_ev3dev.ev3dev.sensors.nxt.FakeNXTTemperatureSensor;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 import lejos.hardware.port.SensorPort;
 import lejos.robotics.SampleProvider;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
+import static org.assertj.core.api.BDDAssertions.then;
 
 public class NXTTemperatureSensorTest {
 
     @Before
     public void resetTest() throws IOException {
 
-        FakeBattery.resetEV3DevInfrastructure();
-
         System.setProperty(EV3DevFileSystem.EV3DEV_TESTING_KEY, FakeBattery.EV3DEV_FAKE_SYSTEM_PATH);
+
+        FakeBattery.resetEV3DevInfrastructure();
+        new FakeBattery(EV3DevPlatform.EV3BRICK);
     }
 
     @Test
-    public void getSensorNameTest() throws Exception {
+    public void given_sensor_when_call_getName_then_Ok() throws Exception {
 
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-        final FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        //Given
+        FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
 
+        //When
         NXTTemperatureSensor temp1 = new NXTTemperatureSensor(SensorPort.S1);
 
-        assertThat(temp1.getName(), is("C"));
+        //Then
+        then(temp1.getName()).isEqualTo("C");
     }
 
     @Test
-    public void getAvailableModes() throws Exception {
+    public void given_sensor_when_call_getAvailableModes_then_Ok() throws Exception {
 
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-        final FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        //Given
+        FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
 
+        //When
         NXTTemperatureSensor temp1 = new NXTTemperatureSensor(SensorPort.S1);
 
-        final List<String> expectedModes = Arrays.asList("C", "F");
-        final List<String> modes  = temp1.getAvailableModes();
-
-        assertThat(modes, is(expectedModes));
+        //Then
+        var expectedModes = Arrays.asList("C", "F");
+        then(temp1.getAvailableModes()).isEqualTo(expectedModes);
     }
 
     @Test
-    public void getCelsiusTest() throws Exception {
+    public void given_sensor_when_switchToCelsiusMode_and_fetchSample_then_Ok() throws Exception {
 
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-        final FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        //Given
+        float sensorRawValue = 100f;
+        FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        fakeNXTTemperatureSensor.populateSensorData(sensorRawValue);
 
+        //When
         NXTTemperatureSensor temp1 = new NXTTemperatureSensor(SensorPort.S1);
 
-        final SampleProvider sp = temp1.getCelsiusMode();
-        assertThat(sp.sampleSize(), is(1));
+        //Then
+        int expectedSampleSize = 1;
+        SampleProvider sp = temp1.getCelsiusMode();
+        then(sp.sampleSize()).isEqualTo(expectedSampleSize);
 
-        int temperatureValue = 0;
         float [] sample = new float[sp.sampleSize()];
         sp.fetchSample(sample, 0);
-        temperatureValue = (int) sample[0];
+        float temperatureValue = sample[0];
 
-        assertThat(temperatureValue, allOf(
-            greaterThanOrEqualTo(0),
-            lessThanOrEqualTo(255)));
+        float expectedTemperature = sensorRawValue / 10f;
+        then(temperatureValue).isEqualTo(expectedTemperature);
+        then(temperatureValue).isGreaterThanOrEqualTo(-55.0f);
+        then(temperatureValue).isLessThanOrEqualTo(128.0f);
     }
 
     @Test
-    public void getFahrenheitTest() throws Exception {
+    public void given_sensor_when_sensorReturnBadHighValues_then_Ok() throws Exception {
 
-        final FakeBattery fakeBattery = new FakeBattery(EV3DevPlatform.EV3BRICK);
-        final FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        //Given
+        float sensorRawValue = 100000f;
+        FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        fakeNXTTemperatureSensor.populateSensorData(sensorRawValue);
 
+        //When
         NXTTemperatureSensor temp1 = new NXTTemperatureSensor(SensorPort.S1);
 
-        final SampleProvider sp = temp1.getFahrenheitMode();
-        assertThat(sp.sampleSize(), is(1));
+        //Then
+        int expectedSampleSize = 1;
+        SampleProvider sp = temp1.getCelsiusMode();
+        then(sp.sampleSize()).isEqualTo(expectedSampleSize);
 
-        int temperatureValue = 0;
         float [] sample = new float[sp.sampleSize()];
         sp.fetchSample(sample, 0);
-        temperatureValue = (int) sample[0];
+        float temperatureValue = sample[0];
 
-        assertThat(temperatureValue, allOf(
-            greaterThanOrEqualTo(0),
-            lessThanOrEqualTo(255)));
+        float expectedTemperature = sensorRawValue / 10f;
+        then(temperatureValue).isEqualTo(Float.POSITIVE_INFINITY);
+    }
+
+    @Test
+    public void given_sensor_when_sensorReturnBadLowValues_then_Ok() throws Exception {
+
+        //Given
+        float sensorRawValue = -100000f;
+        FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        fakeNXTTemperatureSensor.populateSensorData(sensorRawValue);
+
+        //When
+        NXTTemperatureSensor temp1 = new NXTTemperatureSensor(SensorPort.S1);
+
+        //Then
+        int expectedSampleSize = 1;
+        SampleProvider sp = temp1.getCelsiusMode();
+        then(sp.sampleSize()).isEqualTo(expectedSampleSize);
+
+        float [] sample = new float[sp.sampleSize()];
+        sp.fetchSample(sample, 0);
+        float temperatureValue = sample[0];
+
+        float expectedTemperature = sensorRawValue / 10f;
+        then(temperatureValue).isEqualTo(Float.NEGATIVE_INFINITY);
+    }
+
+    @Test
+    public void given_sensor_when_switchToFahrenheitMode_and_fetchSamp_then_Ok() throws Exception {
+
+        //Given
+        float sensorRawValue = 100f;
+        FakeNXTTemperatureSensor fakeNXTTemperatureSensor = new FakeNXTTemperatureSensor(EV3DevPlatform.EV3BRICK);
+        fakeNXTTemperatureSensor.populateSensorData(sensorRawValue);
+
+        //When
+        NXTTemperatureSensor temp1 = new NXTTemperatureSensor(SensorPort.S1);
+
+        //Then
+        int expectedSampleSize = 1;
+        SampleProvider sp = temp1.getFahrenheitMode();
+        then(sp.sampleSize()).isEqualTo(expectedSampleSize);
+
+        float [] sample = new float[sp.sampleSize()];
+        sp.fetchSample(sample, 0);
+        float temperatureValue = sample[0];
+
+        float expectedTemperature = sensorRawValue / 10f;
+        then(temperatureValue).isEqualTo(expectedTemperature);
+        then(temperatureValue).isGreaterThanOrEqualTo(-55.0f);
+        then(temperatureValue).isLessThanOrEqualTo(128.0f);
     }
 
 }
