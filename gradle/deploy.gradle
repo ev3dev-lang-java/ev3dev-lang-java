@@ -150,8 +150,8 @@ task remoteProfilingRun {
     doLast {
         ssh.run {
             session(remotes.ev3dev) {
-                println "brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
-                execute "brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + "-all.jar "
+                println "brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + ".jar "
+                execute "brickrun -- java -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=7091 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /home/robot/" + "${rootProject.name}" + "-" + version + ".jar "
             }
         }
     }

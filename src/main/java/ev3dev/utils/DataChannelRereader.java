@@ -25,38 +25,38 @@ public class DataChannelRereader implements Closeable {
      *
      * @param path path to the file to reread
      * @param bufferLength length of the buffer to hold the structure
-     * @throws IOException when things go wrong
      */
-    public DataChannelRereader(Path path, int bufferLength) throws IOException {
+    public DataChannelRereader(Path path, int bufferLength) {
         this.path = path;
         this.byteBuffer = ByteBuffer.allocate(bufferLength);
-        this.channel = FileChannel.open(path);
+        try {
+            this.channel = FileChannel.open(path);
+        } catch (IOException e) {
+            throw new RuntimeException("Problem opening path: " + path, e);
+        }
     }
 
     /**
      * Create a DataChannelRereader for pathString with the default 32-byte buffer.
      *
      * @param pathString Path to the file to reread
-     * @throws IOException when things go wrong
      */
-    public DataChannelRereader(String pathString) throws IOException {
+    public DataChannelRereader(String pathString) {
         this(Paths.get(pathString),32);
     }
 
     /**
      * @return a string made from the bytes in the file;
      */
-    public String readString() {
+    public synchronized String readString() {
         try {
-            int n;
-            do {
-                byteBuffer.clear();
-                channel.position(0);
-                n = channel.read(byteBuffer);
-                if (n == -1) {
-                    throw new IOException("Premature end of file ");
-                }
-            } while (n <= 0);
+            byteBuffer.clear();
+            int n = channel.read(byteBuffer,0);
+            if ((n == -1) || (n == 0)) {
+                return "";
+            } else if (n < -1) {
+                throw new RuntimeException("Unexpected read byte count of " + n + " while reading " + path);
+            }
 
             byte[] bytes = byteBuffer.array();
             if (bytes[n - 1] == '\n') {
@@ -69,8 +69,12 @@ public class DataChannelRereader implements Closeable {
         }
     }
 
+    public Path getPath() {
+        return path;
+    }
+
     @Override
-    public void close() throws IOException {
+    public synchronized void close() throws IOException {
         channel.close();
     }
 }

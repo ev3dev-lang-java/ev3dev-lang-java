@@ -48,6 +48,7 @@
               |.*/Sound.java|
               |.*/EV3Led.java|
               |.*/Battery.java|
+              |.*/BatteryOld.java|
               |.*/NativeFramebuffer.java" />
     <suppress checks="VariableDeclarationUsageDistanceCheck"
               files=".*/OwnedDisplay.java
