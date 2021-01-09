@@ -1,18 +1,21 @@
-package fake_ev3dev.ev3dev.actuators;
+package fake_ev3dev.ev3dev.actuators.ev3;
 
 import ev3dev.hardware.EV3DevPlatform;
+import ev3dev.utils.Shell;
 import fake_ev3dev.BaseElement;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class FakeLed extends BaseElement{
 
-    public static final String LEFT_LED = "leds/ev3:left";
-    public static final String RIGHT_LED = "leds/ev3:right";
-    public static final String RED_LED = ":red:ev3dev";
-    public static final String GREEN_LED = ":green:ev3dev";
+    public static final String LEFT_LED = "leds/led0";
+    public static final String RIGHT_LED = "leds/led1";
+    public static final String RED_LED = ":red:brick-status";
+    public static final String GREEN_LED = ":green:brick-status";
     public static final String BRIGHTNESS = "brightness";
 
     public FakeLed(final EV3DevPlatform ev3DevPlatform) throws IOException {
@@ -71,6 +74,8 @@ public class FakeLed extends BaseElement{
                         BRIGHTNESS);
         createFile(ledLeftRedBrightness);
 
+        var result = Shell.execute("tree " + EV3DEV_FAKE_SYSTEM_PATH);
+        LOGGER.info(result);
     }
 
 }

@@ -1,11 +1,11 @@
 package ev3dev.actuators.ev3;
 
 import ev3dev.hardware.EV3DevDevice;
+import ev3dev.hardware.EV3DevFileSystem;
 import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.DataChannelRewriter;
 import lejos.hardware.LED;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import java.io.IOException;
  *
  * <p><i>Only EV3Bricks are supported.</i>
  */
+@Slf4j
 public class EV3Led extends EV3DevDevice implements LED, Closeable {
 
     /**
@@ -24,10 +25,8 @@ public class EV3Led extends EV3DevDevice implements LED, Closeable {
         LEFT,
         RIGHT
     }
-    
-    private static final Direction[] directionArray = {Direction.LEFT,Direction.RIGHT};
 
-    private static final Logger log = LoggerFactory.getLogger(EV3Led.class);
+    private static final Direction[] directionArray = {Direction.LEFT,Direction.RIGHT};
 
     /**
      * @deprecated Use EV3LedDirection.LEFT instead.
@@ -56,18 +55,19 @@ public class EV3Led extends EV3DevDevice implements LED, Closeable {
 
         //TODO Refactor
         if (direction == null) {
-            log.error("You are not specifying any button.");
+            LOGGER.error("You are not specifying any button.");
             throw new IllegalArgumentException("You are not specifying any button.");
         }
 
         this.direction = direction;
 
+        String ledPath = EV3DevFileSystem.getRootPath();
         if (direction == Direction.LEFT) {
-            redWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.left.red"));
-            greenWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.left.green"));
+            redWriter = new DataChannelRewriter(ledPath + ev3DevProperties.getProperty("ev3.led.left.red"));
+            greenWriter = new DataChannelRewriter(ledPath + ev3DevProperties.getProperty("ev3.led.left.green"));
         } else {
-            redWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.right.red"));
-            greenWriter = new DataChannelRewriter(ev3DevProperties.getProperty("ev3.led.right.green"));
+            redWriter = new DataChannelRewriter(ledPath + ev3DevProperties.getProperty("ev3.led.right.red"));
+            greenWriter = new DataChannelRewriter(ledPath + ev3DevProperties.getProperty("ev3.led.right.green"));
         }
     }
 
@@ -90,7 +90,7 @@ public class EV3Led extends EV3DevDevice implements LED, Closeable {
      */
     private void checkPlatform() {
         if (!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
-            log.error("This actuator is specific of: {}", EV3DevPlatform.EV3BRICK);
+            LOGGER.error("This actuator is specific of: {}", EV3DevPlatform.EV3BRICK);
             throw new RuntimeException("This actuator is specific of: " + EV3DevPlatform.EV3BRICK);
         }
     }
@@ -125,7 +125,7 @@ public class EV3Led extends EV3DevDevice implements LED, Closeable {
             greenWriter.writeString(on);
             redWriter.writeString(on);
         } else if (pattern > 3) {
-            log.debug("This feature is not implemented");
+            LOGGER.debug("This feature is not implemented");
         }
     }
 
