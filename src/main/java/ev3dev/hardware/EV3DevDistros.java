@@ -1,14 +1,12 @@
 package ev3dev.hardware;
 
 import ev3dev.utils.Shell;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
 
+@Slf4j
 public class EV3DevDistros {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevDistros.class);
 
     private static EV3DevDistros instance;
 
@@ -28,6 +26,8 @@ public class EV3DevDistros {
      */
     public static EV3DevDistros getInstance() {
 
+        LOGGER.debug("Providing an EV3DevDistros instance");
+
         if (Objects.isNull(instance)) {
             instance = new EV3DevDistros();
         }
@@ -36,7 +36,7 @@ public class EV3DevDistros {
 
     private EV3DevDistros() {
 
-        LOGGER.debug("Providing an EV3DevDistros instance");
+        LOGGER.debug("Detecting EV3Dev Distro");
 
         final String osResult = Shell.execute(DEBIAN_DISTRO_DETECTION_QUERY);
         if (osResult.contains(DEBIAN_DISTRO_DETECTION_JESSIE)) {

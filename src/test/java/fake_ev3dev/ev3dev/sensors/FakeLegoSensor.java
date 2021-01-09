@@ -7,9 +7,10 @@ import fake_ev3dev.BaseElement;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class FakeLegoSensor extends BaseElement {
-
 
     public FakeLegoSensor(final EV3DevPlatform ev3DevPlatform) throws IOException {
 
@@ -17,12 +18,15 @@ public class FakeLegoSensor extends BaseElement {
         this.createDirectories(batteryPath);
 
         if(ev3DevPlatform.equals(EV3DevPlatform.EV3BRICK)) {
-            createStructureSensor1("ev3-ports:in1");
-
+            String ev3Ports = "ev3-ports:in1";
+            LOGGER.trace("Creating ports: {}", ev3Ports);
+            createStructureSensor1(ev3Ports);
         } else {
             //BrickPi3
-            createStructurePort1("spi0.1:S1");
-            createStructureSensor1("spi0.1:S1");
+            String brickPiPorts = "spi0.1:S1";
+            LOGGER.trace("Creating ports: {}", brickPiPorts);
+            createStructurePort1(brickPiPorts);
+            createStructureSensor1(brickPiPorts);
         }
     }
 
@@ -33,6 +37,7 @@ public class FakeLegoSensor extends BaseElement {
         // set sensor1 address
         this.writeFileDirect(inputPort, SENSOR1_BASE, SENSOR_ADDRESS);
 
+        //TODO: Remove in the future. Every Fake sensor need to complete the contract.
         // set sensor1 mode
         this.writeFileDirect("BOGUS-MODE", SENSOR1_BASE, SENSOR_MODE);
 

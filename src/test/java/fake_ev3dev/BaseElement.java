@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static org.assertj.core.api.BDDAssertions.then;
+
 @Slf4j
 public abstract class BaseElement {
 
@@ -44,20 +46,24 @@ public abstract class BaseElement {
      */
     public static  void resetEV3DevInfrastructure() throws IOException {
 
-        LOGGER.info("Reset EV3Dev testing infrastructure");
+        LOGGER.info("Switching to EV3Dev testing infrastructure");
 
         //Delete
+        LOGGER.trace("Removing previous fileSystem infrastructure");
         FileUtils.deleteDirectory(new File(EV3DEV_FAKE_SYSTEM_PATH));
 
         //Create
+        LOGGER.debug("Created Fake file system to implement devices for testing");
         final Path ev3devFakeSystemPath = Paths.get(EV3DEV_FAKE_SYSTEM_PATH);
         Files.createDirectories(ev3devFakeSystemPath);
-        LOGGER.debug("Path created: {}", ev3devFakeSystemPath);
+        LOGGER.trace("Path created: {}", ev3devFakeSystemPath);
+        LOGGER.info("");
     }
 
     protected void createDirectories(final Path path) throws IOException {
+        LOGGER.trace("Creating path: {}", path);
         Files.createDirectories(path);
-        System.out.println(Files.exists(path));
+        then(Files.exists(path)).isTrue();
     }
 
     protected void createDirectoriesDirect(final String first, final String... more) throws IOException {

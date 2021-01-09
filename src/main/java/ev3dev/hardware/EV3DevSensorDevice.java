@@ -2,17 +2,15 @@ package ev3dev.hardware;
 
 import lejos.hardware.port.Port;
 import lejos.utility.Delay;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Base class to interact with EV3Dev Sensors
  *
  * @author Juan Antonio Breña Moral
  */
+@Slf4j
 public abstract class EV3DevSensorDevice extends EV3DevDevice {
-
-    private static final Logger log = LoggerFactory.getLogger(EV3DevSensorDevice.class);
 
     protected static final String LEGO_UART_SENSOR = "ev3-uart";
     protected static final String LEGO_ANALOG_SENSOR = "ev3-analog";
@@ -30,6 +28,8 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      */
     protected EV3DevSensorDevice(final Port portName, final String mode, final String device) {
 
+        LOGGER.info("Connecting with device: {}", device);
+
         final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         final String port = ev3DevPlatforms.getSensorPort(portName);
 
@@ -41,14 +41,14 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 
             //With Pi Boards, it is necessary to detect in 2 paths the sensors
             this.detect(LEGO_PORT, port);
-            log.info("detected lego port: {}", this.PATH_DEVICE);
+            LOGGER.info("Detected lego port: {}", this.PATH_DEVICE);
             this.setStringAttribute(MODE, mode);
             this.setStringAttribute(DEVICE, device);
             Delay.msDelay(1000);
             this.detect(LEGO_SENSOR, port);
-            log.info("detected lego sensor: {}", this.PATH_DEVICE);
+            LOGGER.info("Detected lego sensor: {}", this.PATH_DEVICE);
         }
-
+        LOGGER.trace("Connected");
     }
 
     /**
@@ -59,6 +59,8 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      */
     protected EV3DevSensorDevice(final Port portName, final String mode) {
 
+        LOGGER.info("Connecting with port: {}", portName);
+
         final EV3DevPlatforms ev3DevPlatforms = EV3DevPlatforms.getInstance();
         final String port = ev3DevPlatforms.getSensorPort(portName);
 
@@ -69,13 +71,13 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
 
             //With Pi Boards, it is necessary to detect in 2 paths the sensors
             this.detect(LEGO_PORT, port);
-            log.debug("detected lego port: {}", this.PATH_DEVICE);
+            LOGGER.debug("Detected lego port: {}", this.PATH_DEVICE);
             this.setStringAttribute(MODE, mode);
             Delay.msDelay(1000);
             this.detect(LEGO_SENSOR, port);
-            log.debug("detected lego sensor: {}", this.PATH_DEVICE);
+            LOGGER.debug("Detected lego sensor: {}", this.PATH_DEVICE);
         }
-
+        LOGGER.trace("Connected");
     }
 
 }

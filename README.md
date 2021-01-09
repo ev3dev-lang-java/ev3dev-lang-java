@@ -75,7 +75,7 @@ The project has been designed with the following solution in mind:
 | 5 | ev3dev-lang-java | 0.7.0                                      | 2.4.12                   |
 
 **Note:** At the moment, we will maintain the whole solution until the next `LEGO Mindstorms` product estimated
-for next January of 2021.
+for next January of 2022.
 
 ## Features included in the whole project
 
