@@ -2,9 +2,13 @@ package ev3dev.sensors.ev3;
 
 import ev3dev.sensors.BaseSensor;
 import ev3dev.sensors.GenericMode;
+import ev3dev.utils.DataChannelRereader;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.SampleProvider;
+
+import java.io.File;
+import java.nio.file.Path;
 
 /**
  * <b>EV3 Gyro sensors</b><br>
@@ -43,8 +47,7 @@ public class EV3GyroSensor extends BaseSensor {
         setModes(new SensorMode[]{
             new GenericMode(this.PATH_DEVICE, 1, "Rate",
                 -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
-            new GenericMode(this.PATH_DEVICE, 1, "Angle",
-                -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
+            new EV3GyroAngleMode(this.PATH_DEVICE),
             new GenericMode(this.PATH_DEVICE, 2, "Angle and Rate",
                 -Float.MAX_VALUE, +Float.MAX_VALUE, 1.0f),
         });
@@ -82,9 +85,9 @@ public class EV3GyroSensor extends BaseSensor {
      * @return A sampleProvider
      *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
-    public SampleProvider getAngleMode() {
+    public EV3GyroAngleMode getAngleMode() {
         switchMode(MODE_ANGLE, SWITCH_DELAY);
-        return getMode(1);
+        return (EV3GyroAngleMode)getMode(1);
     }
 
     /**
@@ -118,4 +121,53 @@ public class EV3GyroSensor extends BaseSensor {
         switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);
     }
 
+    public static class EV3GyroAngleMode implements SensorMode {
+
+        protected final File pathDevice;
+        private final int sampleSize = 1;
+        private final String modeName = "Angle";
+        private final DataChannelRereader rereader;
+
+        /**
+         * Create new generic sensor handler.
+         *
+         * @param pathDevice Reference to the object responsible for mode setting and value reading.
+         */
+        public EV3GyroAngleMode(final File pathDevice) {
+            this.pathDevice = pathDevice;
+
+            this.rereader = new DataChannelRereader(Path.of(pathDevice.toString(),"value0"),32);
+        }
+
+        @Override
+        public String getName() {
+            return modeName;
+        }
+
+        @Override
+        public int sampleSize() {
+            return sampleSize;
+        }
+
+
+        /**
+         * Fetches a sample from the sensor.
+         *
+         * <p>Note: this function works properly only when
+         * the sensor is already in the appropriate mode. Otherwise,
+         * returned data will be invalid.</p>
+         *
+         * @param sample The array to store the sample in.
+         * @param offset The elements of the sample are stored in the array starting at the offset position.
+         */
+        @Override
+        public void fetchSample(float[] sample, int offset) {
+            float reading = (float)readAngle();
+            sample[offset] = reading;
+        }
+
+        public int readAngle() {
+            return rereader.readIntFromAscii();
+        }
+    }
 }
