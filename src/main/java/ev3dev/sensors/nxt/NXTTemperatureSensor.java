@@ -51,6 +51,7 @@ public class NXTTemperatureSensor extends BaseSensor {
         private final float correctMin;
         private final float correctMax;
         private final float correctFactor;
+        private final File pathDevice;
 
         public InternalMode(File pathDevice, int sampleSize, String modeName,
                             float correctMin, float correctMax, float correctFactor) {
@@ -59,6 +60,7 @@ public class NXTTemperatureSensor extends BaseSensor {
             this.correctMin = correctMin;
             this.correctMax = correctMax;
             this.correctFactor = correctFactor;
+            this.pathDevice = pathDevice;
         }
 
         @Override
