@@ -101,7 +101,7 @@ public class GenericMode implements SensorMode, Closeable {
             // apply correction
             reading *= correctFactor;
             if (reading < correctMin) {
-                reading = Float.NEGATIVE_INFINITY;
+                reading = 0;
             } else if (reading >= correctMax) {
                 reading = Float.POSITIVE_INFINITY;
             }
