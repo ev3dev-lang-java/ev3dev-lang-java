@@ -78,7 +78,7 @@ public class DataChannelRewriter implements Closeable {
             channel.write(byteBuffer,0);
             channel.force(false);
         } catch (IOException e) {
-            throw new RuntimeException("Problem reading path: "+path, e);
+            throw new RuntimeException("Problem reading path: " + path, e);
         }
     }
 

@@ -28,7 +28,7 @@ import java.util.List;
  * The maximum velocity of the motors is limited by the battery voltage and load.
  * With no load, the maximum degrees per second is about 100 times the voltage
  * (for the large EV3 motors).  <br>
- * The velocity is regulated by comparing the <s>tacho</s>odometer count with velocity times elapsed
+ * The velocity is regulated by comparing the tachometer count with velocity times elapsed
  * time, and adjusting motors power to keep these closely matched. Changes in velocity
  * will be made at the rate specified via the
  * <code> setAcceleration(int acceleration)</code> method.
@@ -89,7 +89,6 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
      * @param offset    offset
      * @param maxSpeed  maxSpeed
      */
-    //todo can we drop all these unused variables?
     public BaseRegulatedMotor(final Port motorPort, float moveP, float moveI, float moveD,
                               float holdP, float holdI, float holdD, int offset, int maxSpeed) {
 
@@ -162,7 +161,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     }
 
     /**
-     * @return the current <s>tacho</s>odometer count.
+     * @return the current tachometer count.
      * @see RegulatedMotor#getTachoCount()
      */
     public int getTachoCount() {
@@ -230,10 +229,6 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         doStop(COAST, false);
     }
 
-    public void coast(boolean immediateReturn) {
-        doStop(COAST, immediateReturn);
-    }
-
     /**
      * Removes power from the motor and creates a passive electrical load.
      * This is usually done by shorting the motor terminals together.
@@ -244,10 +239,6 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         doStop(BRAKE, false);
     }
 
-    public void brake(boolean immediateReturn) {
-        doStop(BRAKE, immediateReturn);
-    }
-
     /**
      * Causes the motor to actively try to hold the current position.
      * If an external force tries to turn the motor, the motor will “push back” to maintain its position.
@@ -255,10 +246,6 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     @Override
     public void hold() {
         doStop(HOLD, false);
-    }
-
-    public void hold(boolean immediateReturn) {
-        doStop(HOLD, immediateReturn);
     }
 
     /**
