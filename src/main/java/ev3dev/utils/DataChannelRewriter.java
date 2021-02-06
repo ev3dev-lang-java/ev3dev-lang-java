@@ -1,10 +1,14 @@
 package ev3dev.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -21,6 +25,8 @@ public class DataChannelRewriter implements Closeable {
     private final ByteBuffer byteBuffer;
     private final FileChannel channel;
 
+    private static final Logger log = LoggerFactory.getLogger(DataChannelRewriter.class);
+
     /**
      * Create a DataChannelRewriter for path with a bufferLength byte buffer
      *
@@ -28,12 +34,25 @@ public class DataChannelRewriter implements Closeable {
      * @param bufferLength length of the buffer to hold the structure
      */
     public DataChannelRewriter(Path path, int bufferLength) {
+
         this.path = path;
         this.byteBuffer = ByteBuffer.allocate(bufferLength);
         try {
-            this.channel = FileChannel.open(path, StandardOpenOption.WRITE);
-        } catch (IOException e) {
+            this.channel = keepTryingFileChannel(path);
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException("While opening " + path,e);
+        } //todo could also try Files.exists(pathToFind);
+    }
+
+    @SuppressWarnings("BusyWait")
+    private static FileChannel keepTryingFileChannel(Path path) throws IOException, InterruptedException {
+        for (;;) {
+            try {
+                return FileChannel.open(path, StandardOpenOption.WRITE);
+            } catch (AccessDeniedException adx) {
+                log.debug("Retrying after 10 ms due to access exception",adx);
+                Thread.sleep(10);
+            }
         }
     }
 
@@ -59,8 +78,12 @@ public class DataChannelRewriter implements Closeable {
             channel.write(byteBuffer,0);
             channel.force(false);
         } catch (IOException e) {
-            throw new RuntimeException("Problem writing path: " + path, e);
+            throw new RuntimeException("Problem reading path: " + path, e);
         }
+    }
+
+    public void writeAsciiInt(int i) {
+        writeString(Integer.toString(i));
     }
 
     public Path getPath() {
@@ -72,4 +95,3 @@ public class DataChannelRewriter implements Closeable {
         channel.close();
     }
 }
-

@@ -69,6 +69,10 @@ public class DataChannelRereader implements Closeable {
         }
     }
 
+    public int readAsciiInt() {
+        return Integer.parseInt(readString());
+    }
+
     public Path getPath() {
         return path;
     }
