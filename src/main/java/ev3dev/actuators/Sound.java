@@ -25,9 +25,18 @@ import java.net.MalformedURLException;
 /**
  * Class that provides access methods for the local audio device
  *
- * <p>The class is implemented as Singleton.
+ * <p>The class is implemented as Singleton.</p>
  *
- * <p>Note: Only tested with EV3Brick
+ * <p>Note: Only tested with EV3Brick</p>
+ *
+ * <p><b>Sample format notes</b>: the <code>playSample()</code>
+ * methods accept sound formats that are playable by the AudioSystem
+ * class.  See the platform JavaDocs for details.  However, the
+ * current recommendation is to stay with simple formats that are
+ * easily decoded (the EV3 does not have a fast CPU).  Mono
+ * (single-channel) 16-bit WAV files have been tested at 11, 22, and
+ * 44kHz for short clips without issue.  Other formats may work, but
+ * note that sound quality can also be affected by CPU load.</p>
  *
  * @author Juan Antonio Breña Moral
  */
@@ -79,7 +88,7 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Beeps once.
+     * Beeps once.  Thread execution waits until the beep is complete.
      */
     public void beep() {
         if (CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
@@ -92,7 +101,7 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Beeps twice.
+     * Beeps twice.  Thread execution waits until the beeps are complete.
      */
     public void twoBeeps() {
         if (CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
@@ -104,11 +113,13 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Plays a tone, given its frequency and duration.
+     * Convenience method to set the volume, then play a tone.
      *
      * @param frequency The frequency of the tone in Hertz (Hz).
      * @param duration  The duration of the tone, in milliseconds.
-     * @param volume    The volume of the playback 100 corresponds to 100%
+     * @param volume    The volume of the playback
+     *
+     * @see playTone(int, int)
      */
     public void playTone(final int frequency, final int duration, final int volume) {
         if (CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
@@ -120,7 +131,8 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Plays a tone, given its frequency and duration.
+     * Plays a tone, given its frequency and duration.  Thread execution
+     * waits until the tone is complete.
      *
      * @param frequency The frequency of the tone in Hertz (Hz).
      * @param duration  The duration of the tone, in milliseconds.
@@ -135,10 +147,13 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * Convenience method to set the sound volume, then play a sample.
      *
-     * @param url   URL to the 8-bit or 16-bit PWM (WAV) sample file
-     * @param volume the volume percentage 0 - 100
+     * @param url    URL to the sample
+     * @param volume the volume level
+     *
+     * @see playSample(URL)
+     * @see setVolume(int)
      */
     public void playSample(final URL url, final int volume) {
         this.setVolume(volume);
@@ -146,10 +161,13 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * Convenience method to set the sound volume, then play a sample.
      *
-     * @param file   the 8-bit or 16-bit PWM (WAV) sample file
-     * @param volume the volume percentage 0 - 100
+     * @param file   File path to the sample
+     * @param volume the volume level
+     *
+     * @see playSample(File)
+     * @see setVolume(int)
      */
     public void playSample(final File file, final int volume) {
         this.setVolume(volume);
@@ -157,10 +175,13 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * Convenience method to set the sound volume, then play a sample.
      *
-     * @param resource   the 8-bit or 16-bit PWM (WAV) sample file
-     * @param volume the volume percentage 0 - 100
+     * @param resource Resource path to the sample
+     * @param volume   the volume level
+     *
+     * @see playSample(String)
+     * @see setVolume(int)
      */
     public void playSample(final String resource, final int volume) {
         this.setVolume(volume);
@@ -168,9 +189,10 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * Play a sound sample loaded from the provided URL.  See notes in the
+     * class documentation for recommended sample formats.
      *
-     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     * @param url URL of the sound sample to play
      */
     public void playSample(final URL url) {
         try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(url)) {
@@ -188,9 +210,10 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * Play a sound sample loaded from the local filesystem.  See notes in the
+     * class documentation for recommended file formats.
      *
-     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     * @param file path to the sample file
      */
     public void playSample(final File file) {
         try {
@@ -203,9 +226,21 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     * <p>
+     * Play a sound sample loaded as a resource from the program's classpath.
+     * This allows files bundled inside a JAR to be loaded and played
+     * without a dependency on filesystem location.
+     * </p>
      *
-     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     * <p>
+     * To use this method, bundle a sound resource in the application's
+     * classpath.  Then, provide a relative path to the resource as the
+     * parameter to this method.  For example, if the file "sample.wav"
+     * is at the root level of the application JAR file, you would just
+     * pass "sample.wav" as the parameter to this method.
+     * </p>
+     *
+     * @param resource resource name to locate, load, and play
      */
     public void playSample(final String resource) {
         playSample(Sound.class.getClassLoader().getResource(resource));
@@ -223,7 +258,7 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Set the master volume level
+     * Set the master volume level, expressed as a percentage from 0 - 100%.
      *
      * @param volume 0-100
      */
@@ -246,7 +281,8 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
-     * Get the current master volume level
+     * Get the current master volume level, expressed as a percentage
+     * from 0 - 100%.
      *
      * @return the current master volume 0-100
      */
