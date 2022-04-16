@@ -175,8 +175,13 @@ public class Sound extends EV3DevDevice {
             //TODO Review to move to this.setIntegerAttribute();
             Sysfs.writeString(VOLUME_PATH, "" + volume);
         } else {
-            final String cmdVolume = "amixer set PCM,0 " + volume + "%";
-            Shell.execute(cmdVolume);
+            // There are now two output devices, PCM (samples) and
+            // "Beep" (tones), so set the volume for both:
+            final String[] mixers = {"PCM", "Beep"};
+            for (String item : mixers) {
+                Shell.execute(new String[]
+                    {"amixer", "set", item+",0", ""+volume+"%"});
+            }
         }
     }
 
