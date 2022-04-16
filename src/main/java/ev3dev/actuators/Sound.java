@@ -137,21 +137,6 @@ public class Sound extends EV3DevDevice {
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      *
-     * @param file the 8-bit or 16-bit PWM (WAV) sample file
-     */
-    public void playSample(final File file) {
-        try {
-            playSample(file.toURI().toURL());
-        }
-        catch (MalformedURLException e) {
-            LOGGER.error(e.getLocalizedMessage(), e);
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
-     *
      * @param url   URL to the 8-bit or 16-bit PWM (WAV) sample file
      * @param volume the volume percentage 0 - 100
      */
@@ -174,6 +159,17 @@ public class Sound extends EV3DevDevice {
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      *
+     * @param resource   the 8-bit or 16-bit PWM (WAV) sample file
+     * @param volume the volume percentage 0 - 100
+     */
+    public void playSample(final String resource, final int volume) {
+        this.setVolume(volume);
+        this.playSample(resource);
+    }
+
+    /**
+     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     *
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
      */
     public void playSample(final URL url) {
@@ -189,6 +185,41 @@ public class Sound extends EV3DevDevice {
             LOGGER.error(e.getLocalizedMessage(), e);
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     *
+     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     */
+    public void playSample(final File file) {
+        try {
+            playSample(file.toURI().toURL());
+        }
+        catch (MalformedURLException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     *
+     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     */
+    public void playSample(final String resource) {
+        playSample(Sound.class.getClassLoader().getResource(resource));
+    }
+
+    /**
+     * Play a file from the local file system using the Linux "aplay"
+     * utility (rather than native Java).  Any supported file type will
+     * play, subject to the limitations of the EV3 CPU.
+     *
+     * @param file the absolute pathname to the file to play
+     */
+    public void playAlsa(final String file) {
+        Shell.execute(new String[] {"aplay", file});
     }
 
     /**
