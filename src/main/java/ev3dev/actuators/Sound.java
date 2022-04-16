@@ -18,6 +18,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+import java.net.URL;
+import java.net.MalformedURLException;
+
 
 /**
  * Class that provides access methods for the local audio device
@@ -134,6 +137,32 @@ public class Sound extends EV3DevDevice {
     /**
      * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
      *
+     * @param file the 8-bit or 16-bit PWM (WAV) sample file
+     */
+    public void playSample(final File file) {
+        try {
+            playSample(file.toURI().toURL());
+        }
+        catch (MalformedURLException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     *
+     * @param url   URL to the 8-bit or 16-bit PWM (WAV) sample file
+     * @param volume the volume percentage 0 - 100
+     */
+    public void playSample(final URL url, final int volume) {
+        this.setVolume(volume);
+        this.playSample(url);
+    }
+
+    /**
+     * Play a wav file. Must be mono, from 8kHz to 48kHz, and 8-bit or 16-bit.
+     *
      * @param file   the 8-bit or 16-bit PWM (WAV) sample file
      * @param volume the volume percentage 0 - 100
      */
@@ -147,8 +176,8 @@ public class Sound extends EV3DevDevice {
      *
      * @param file the 8-bit or 16-bit PWM (WAV) sample file
      */
-    public void playSample(final File file) {
-        try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(file.toURI().toURL())) {
+    public void playSample(final URL url) {
+        try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(url)) {
 
             Clip clip = AudioSystem.getClip();
             clip.open(audioIn);
