@@ -18,7 +18,6 @@ plugins {
 version = '2.7.0-SNAPSHOT'
 
 repositories {
-    jcenter()
     mavenCentral()
     maven { url "https://jitpack.io" }
 }
@@ -84,7 +83,7 @@ test.testLogging {
 //Coverage
 jacoco {
     toolVersion = "0.8.2"
-    reportsDir = file("$buildDir/customJacocoReportDir")
+    reportsDirectory = file("$buildDir/customJacocoReportDir")
 }
 
 jacocoTestReport {
@@ -118,7 +117,7 @@ test.finalizedBy jacocoTestCoverageVerification
 
 //Jar
 jar {
-    baseName = "${rootProject.name}"
+    archiveBaseName = "${rootProject.name}"
     manifest {
         from file("${projectDir}/src/main/resources/META-INF/MANIFEST.MF")
     }
