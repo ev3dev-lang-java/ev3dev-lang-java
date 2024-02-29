@@ -9,14 +9,12 @@ import java.util.Objects;
  * The class responsible to interact with EV3Dev file system
  *
  * @author Juan Antonio Breña Moral
- *
  */
 public class EV3DevFileSystem {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevFileSystem.class);
-
     public static final String EV3DEV_TESTING_KEY = "EV3DEV_TESTING_KEY";
     public static final String EV3DEV_ROOT_PATH = "/sys/class";
+    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevFileSystem.class);
     private static final String CURRENT_ROOT_PATH = retrieveRootPath();
 
     private static String retrieveRootPath() {

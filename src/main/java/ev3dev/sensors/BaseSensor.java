@@ -14,16 +14,16 @@ import java.util.Objects;
 public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
     public static final int SWITCH_DELAY = 400;
-    private ArrayList<String> modeList;
     protected int currentMode = 0;
     protected SensorMode[] modes;
+    private ArrayList<String> modeList;
 
     /**
      * Constructor
      *
      * @param sensorPort sensorPort
-     * @param mode mode
-     * @param device device
+     * @param mode       mode
+     * @param device     device
      */
     public BaseSensor(final Port sensorPort, final String mode, final String device) {
         super(sensorPort, mode, device);
@@ -33,7 +33,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
      * Constructor
      *
      * @param sensorPort sensorPort
-     * @param mode mode
+     * @param mode       mode
      */
     public BaseSensor(final Port sensorPort, final String mode) {
         super(sensorPort, mode);
@@ -41,6 +41,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
 
     /**
      * Define the set of modes to be made available for this sensors.
+     *
      * @param m An array containing a list of modes
      */
     protected void setModes(SensorMode[] m) {
@@ -137,6 +138,10 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         modes[currentMode].fetchSample(sample, offset);
     }
 
+    public int getCurrentMode() {
+        return currentMode;
+    }
+
     /**
      * Set the current SensorMode index.
      *
@@ -152,11 +157,6 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
         } else {
             currentMode = mode;
         }
-    }
-
-
-    public int getCurrentMode() {
-        return currentMode;
     }
 
     /**
@@ -208,7 +208,7 @@ public class BaseSensor extends EV3DevSensorDevice implements SensorModes {
      * sensor is switching to.
      * See {@link GenericMode#fetchSample(float[], int)}</p>
      *
-     * @param newMode Identifier of the sensor mode (not its name).
+     * @param newMode     Identifier of the sensor mode (not its name).
      * @param switchDelay Delay until the sensor starts sending new data.
      */
     public void switchMode(String newMode, long switchDelay) {

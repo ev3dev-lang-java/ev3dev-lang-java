@@ -9,13 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
-import static ev3dev.utils.io.NativeConstants.KD_GRAPHICS;
-import static ev3dev.utils.io.NativeConstants.KD_TEXT;
-import static ev3dev.utils.io.NativeConstants.K_OFF;
-import static ev3dev.utils.io.NativeConstants.O_RDWR;
-import static ev3dev.utils.io.NativeConstants.SIGUSR2;
-import static ev3dev.utils.io.NativeConstants.VT_AUTO;
-import static ev3dev.utils.io.NativeConstants.VT_PROCESS;
+import static ev3dev.utils.io.NativeConstants.*;
 
 /**
  * <p>System console manager.</p>

@@ -49,13 +49,10 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
 
     // Following should be set to the max SPEED (in deg/sec) of the motor when free running and powered by 9V
     protected final int MAX_SPEED_AT_9V;
-
-    private int speed = 360;
-    protected int acceleration = 6000;
-
-    private boolean regulationFlag = true;
-
     private final List<RegulatedMotorListener> listenerList;
+    protected int acceleration = 6000;
+    private int speed = 360;
+    private boolean regulationFlag = true;
 
     /**
      * Constructor
@@ -255,18 +252,6 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
         return (this.getStringAttribute(STATE).contains(STATE_RUNNING));
     }
 
-    /**
-     * Sets desired motors speed , in degrees per second;
-     * The maximum reliably sustainable velocity is  100 x battery voltage under
-     * moderate load, such as a direct drive robot on the level.
-     *
-     * @param speed value in degrees/sec
-     */
-    public void setSpeed(int speed) {
-        this.speed = speed;
-        setSpeedDirect(speed);
-    }
-
     private void setSpeedDirect(int speed) {
         if (!this.regulationFlag) {
             this.setIntegerAttribute(DUTY_CYCLE, speed);
@@ -320,7 +305,7 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
     /**
      * Rotate to a specific angle
      *
-     * @param limitAngle angle
+     * @param limitAngle      angle
      * @param immediateReturn If the method behave in an asynchronous way
      */
     public void rotateTo(int limitAngle, boolean immediateReturn) {
@@ -361,6 +346,18 @@ public abstract class BaseRegulatedMotor extends EV3DevMotorDevice implements Re
             return this.getIntegerAttribute(SPEED);
         }
 
+    }
+
+    /**
+     * Sets desired motors speed , in degrees per second;
+     * The maximum reliably sustainable velocity is  100 x battery voltage under
+     * moderate load, such as a direct drive robot on the level.
+     *
+     * @param speed value in degrees/sec
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
+        setSpeedDirect(speed);
     }
 
     /**

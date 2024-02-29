@@ -28,8 +28,6 @@ import org.slf4j.Logger;
  */
 public class Button {
 
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Button.class);
-
     /**
      * The Enter button.
      */
@@ -54,7 +52,7 @@ public class Button {
      * The Down button.
      */
     public static final Key DOWN = new EV3Key(EV3Key.BUTTON_DOWN);
-
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Button.class);
     private static final Key ALL = new EV3Key(EV3Key.BUTTON_ALL);
 
     //public static final Keys keys = BrickFinder.getDefault().getKeys();
@@ -91,7 +89,7 @@ public class Button {
      *
      * @param timeout The maximum number of milliseconds to wait
      * @return the ID of the button that has been pressed or in rare cases a
-     *     bitmask of button IDs, 0 if the given timeout is reached
+     * bitmask of button IDs, 0 if the given timeout is reached
      */
     public static int waitForAnyPress(int timeout) {
         ALL.waitForPress();

@@ -42,7 +42,7 @@ public class EV3TouchSensor extends BaseSensor implements Touch {
      * </p>
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getTouchMode() {
         return getMode(0);

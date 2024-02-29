@@ -21,6 +21,7 @@ import lejos.robotics.RegulatedMotor;
  *   int angle = Motor.A.getTachoCount(); // should be -360
  *   LCD.drawInt(angle,0,0);
  * </pre></code>
+ *
  * @author Roger Glassey/Andy Shaw/Juan Antonio Breña Moral
  */
 public class Motor {

@@ -18,21 +18,8 @@ public class EV3DevPlatforms {
     private static EV3DevPlatforms instance;
 
     private final EV3DevPlatform platform;
-    private final String         propPrefix;
+    private final String propPrefix;
     private final Properties props;
-
-    /**
-     * Return a Instance of EV3DevPlatforms.
-     *
-     * @return A EV3DevPlatforms instance
-     */
-    public static EV3DevPlatforms getInstance() {
-
-        if (Objects.isNull(instance)) {
-            instance = new EV3DevPlatforms();
-        }
-        return instance;
-    }
 
     private EV3DevPlatforms() {
 
@@ -47,10 +34,10 @@ public class EV3DevPlatforms {
 
         // iterate over all platforms and check if they're the correct one
         platform = EnumSet.allOf(EV3DevPlatform.class)
-                .stream()
-                .filter(e -> batteryTest(batteryDirectory, e.getPropertyNamespace()))
-                .findFirst()
-                .get();
+            .stream()
+            .filter(e -> batteryTest(batteryDirectory, e.getPropertyNamespace()))
+            .findFirst()
+            .get();
 
         if (platform == EV3DevPlatform.UNKNOWN) {
             throwNoPlatform();
@@ -64,12 +51,25 @@ public class EV3DevPlatforms {
 
     }
 
+    /**
+     * Return a Instance of EV3DevPlatforms.
+     *
+     * @return A EV3DevPlatforms instance
+     */
+    public static EV3DevPlatforms getInstance() {
+
+        if (Objects.isNull(instance)) {
+            instance = new EV3DevPlatforms();
+        }
+        return instance;
+    }
+
     private boolean batteryTest(final String batteryDir, final String propPrefix) {
 
         LOGGER.debug("Detecting platform with the battery approach");
         Path path = Paths.get(EV3DevFileSystem.getRootPath(),
-                batteryDir,
-                props.getProperty(propPrefix + ".battery"));
+            batteryDir,
+            props.getProperty(propPrefix + ".battery"));
         return Sysfs.existPath(path.toString());
     }
 

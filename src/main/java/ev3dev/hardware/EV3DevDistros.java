@@ -8,8 +8,6 @@ import java.util.Objects;
 @Slf4j
 public class EV3DevDistros {
 
-    private static EV3DevDistros instance;
-
     private static final String DEBIAN_DISTRO_DETECTION_QUERY = "cat /etc/os-release";
     private static final String JESSIE_DISTRO_DETECTION_PATTERN = "ev3dev-jessie";
     private static final String STRETCH_DISTRO_DETECTION_PATTERN = "ev3dev-stretch";
@@ -18,23 +16,8 @@ public class EV3DevDistros {
     private static final String DEBIAN_DISTRO_DETECTION_JESSIE = "jessie";
     private static final String DEBIAN_DISTRO_DETECTION_STRETCH = "stretch";
     private static final String DEBIAN_DISTRO_DETECTION_BUSTER = "buster";
-
+    private static EV3DevDistros instance;
     private EV3DevDistro CURRENT_DISTRO;
-
-    /**
-     * Return a Instance of EV3DevDistros.
-     *
-     * @return A EV3DevDistros instance
-     */
-    public static EV3DevDistros getInstance() {
-
-        LOGGER.debug("Providing an EV3DevDistros instance");
-
-        if (Objects.isNull(instance)) {
-            instance = new EV3DevDistros();
-        }
-        return instance;
-    }
 
     private EV3DevDistros() {
 
@@ -52,6 +35,21 @@ public class EV3DevDistros {
             LOGGER.warn("Failed to detect distro, falling back to Stretch.");
             setStretch();
         }
+    }
+
+    /**
+     * Return a Instance of EV3DevDistros.
+     *
+     * @return A EV3DevDistros instance
+     */
+    public static EV3DevDistros getInstance() {
+
+        LOGGER.debug("Providing an EV3DevDistros instance");
+
+        if (Objects.isNull(instance)) {
+            instance = new EV3DevDistros();
+        }
+        return instance;
     }
 
     private void setBuster() {

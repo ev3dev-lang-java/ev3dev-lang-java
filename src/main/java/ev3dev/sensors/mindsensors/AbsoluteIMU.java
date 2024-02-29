@@ -85,15 +85,12 @@ import lejos.hardware.sensor.SensorMode;
  */
 public class AbsoluteIMU extends BaseSensor {
 
-    private static final String MINDSENSORS_ABSOLUTEIMU = "ms-absolute-imu 0x11";
-
     //MODES
     public static final String MODE_TILT = "TILT";
     public static final String MODE_ACCELEROMETER = "ACCEL";
     public static final String MODE_COMPASS = "COMPASS";
     public static final String MODE_MAGNETIC = "MAG";
     public static final String MODE_GYRO = "GYRO";
-
     //COMMANDS
     public static final String START_CALIBRATION = "BEGIN-COMP-CAL";
     public static final String END_CALIBRATION = "END-COMP-CAL";
@@ -105,9 +102,9 @@ public class AbsoluteIMU extends BaseSensor {
     public static final String SET_ACCELERATION_4G = "ACCEL-4G";
     public static final String SET_ACCELERATION_8G = "ACCEL-8G";
     public static final String SET_ACCELERATION_16G = "ACCEL-16G";
-
     //I2C Register
     public static final int GYRO_FILTER = 0x5a;
+    private static final String MINDSENSORS_ABSOLUTEIMU = "ms-absolute-imu 0x11";
 
     /**
      * Constructor

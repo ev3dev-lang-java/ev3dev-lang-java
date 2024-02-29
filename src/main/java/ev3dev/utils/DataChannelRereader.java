@@ -23,7 +23,7 @@ public class DataChannelRereader implements Closeable {
     /**
      * Create a DataChannelRereader for path with a bufferLength byte buffer
      *
-     * @param path path to the file to reread
+     * @param path         path to the file to reread
      * @param bufferLength length of the buffer to hold the structure
      * @throws IOException when things go wrong
      */
@@ -40,7 +40,7 @@ public class DataChannelRereader implements Closeable {
      * @throws IOException when things go wrong
      */
     public DataChannelRereader(String pathString) throws IOException {
-        this(Paths.get(pathString),32);
+        this(Paths.get(pathString), 32);
     }
 
     /**

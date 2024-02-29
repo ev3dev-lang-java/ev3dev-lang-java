@@ -39,6 +39,33 @@ public class NXTSoundSensor extends BaseSensor {
         return getMode(0);
     }
 
+    /**
+     * Helper method. Take a voltage and return it as a normalized value in the
+     * range 0.0-1.0
+     *
+     * @param val input value
+     * @return normalized value
+     */
+    protected float normalize(float val) {
+        return val / EV3SensorConstants.ADC_REF;
+    }
+
+    /**
+     * Switch to the selected type (if not already in that type) and delay for the
+     * specified period to allow the sensor to settle in the new state. <br>
+     * NOTE: This method is intended for use with NXT sensor drivers that use a
+     * sensor type to specify the operating mode.
+     *
+     * @param newType     The type to switch to.
+     * @param switchDelay Time in mS to delay after the switch.
+     */
+    protected void switchType(int newType, long switchDelay) {
+        if (currentType != newType) {
+            currentType = newType;
+            Delay.msDelay(switchDelay);
+        }
+    }
+
     private class DBMode implements SensorMode {
 
         @Override
@@ -76,33 +103,6 @@ public class NXTSoundSensor extends BaseSensor {
         @Override
         public String getName() {
             return "Sound-DBA";
-        }
-    }
-
-    /**
-     * Helper method. Take a voltage and return it as a normalized value in the
-     * range 0.0-1.0
-     *
-     * @param val input value
-     * @return normalized value
-     */
-    protected float normalize(float val) {
-        return val / EV3SensorConstants.ADC_REF;
-    }
-
-    /**
-     * Switch to the selected type (if not already in that type) and delay for the
-     * specified period to allow the sensor to settle in the new state. <br>
-     * NOTE: This method is intended for use with NXT sensor drivers that use a
-     * sensor type to specify the operating mode.
-     *
-     * @param newType     The type to switch to.
-     * @param switchDelay Time in mS to delay after the switch.
-     */
-    protected void switchType(int newType, long switchDelay) {
-        if (currentType != newType) {
-            currentType = newType;
-            Delay.msDelay(switchDelay);
         }
     }
 }

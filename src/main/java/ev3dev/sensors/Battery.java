@@ -18,33 +18,16 @@ import org.slf4j.LoggerFactory;
 public class Battery extends EV3DevDevice implements Power {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Battery.class);
-
+    private static Battery instance;
     private final String BATTERY;
     private final String BATTERY_EV3;
     private final String BATTERY_PISTORMS;
     private final String BATTERY_BRICKPI;
     private final String BATTERY_BRICKPI3;
-
-    private String BATTERY_PATH;
     private final String VOLTAGE = "voltage_now";
     private final String CURRENT = "current_now";
-
+    private final String BATTERY_PATH;
     private String BATTERY_PATH_LOCAL = "";
-
-    private static Battery instance;
-
-    /**
-     * Get a singleton Battery object
-     *
-     * @return Battery
-     */
-    public static Battery getInstance() {
-        //TODO Refactor
-        if (instance == null) {
-            instance = new Battery();
-        }
-        return instance;
-    }
 
     // Prevent duplicate objects
     private Battery() {
@@ -68,6 +51,19 @@ public class Battery extends EV3DevDevice implements Power {
         } else if (CURRENT_PLATFORM.equals(EV3DevPlatform.BRICKPI3)) {
             BATTERY_PATH_LOCAL += BATTERY_PATH + "/" + BATTERY_BRICKPI3;
         }
+    }
+
+    /**
+     * Get a singleton Battery object
+     *
+     * @return Battery
+     */
+    public static Battery getInstance() {
+        //TODO Refactor
+        if (instance == null) {
+            instance = new Battery();
+        }
+        return instance;
     }
 
     @Override

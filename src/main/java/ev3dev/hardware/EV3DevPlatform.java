@@ -7,24 +7,16 @@ public enum EV3DevPlatform {
 
     EV3BRICK("EV3BRICK", "ev3"),
     PISTORMS("PISTORMS", "pistorms"),
-    BRICKPI("BRICKPI",  "brickpi"),
+    BRICKPI("BRICKPI", "brickpi"),
     BRICKPI3("BRICKPI3", "brickpi3"),
-    UNKNOWN("UNKNOWN",  "unknown");
+    UNKNOWN("UNKNOWN", "unknown");
 
     private final String platform;
     private final String propNamespace;
 
-    private EV3DevPlatform(String stringVal, String ns) {
+    EV3DevPlatform(String stringVal, String ns) {
         platform = stringVal;
         propNamespace = ns;
-    }
-
-    public String toString() {
-        return platform;
-    }
-
-    public String getPropertyNamespace() {
-        return propNamespace;
     }
 
     /**
@@ -40,5 +32,13 @@ public enum EV3DevPlatform {
             }
         }
         return UNKNOWN.toString();
+    }
+
+    public String toString() {
+        return platform;
+    }
+
+    public String getPropertyNamespace() {
+        return propNamespace;
     }
 }

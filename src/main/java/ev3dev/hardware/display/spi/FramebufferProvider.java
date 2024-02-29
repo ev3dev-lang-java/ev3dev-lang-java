@@ -48,7 +48,7 @@ public interface FramebufferProvider {
                 try (PrintStream chos = new PrintStream(bos)) {
                     e.printStackTrace(chos);
                 }
-                LOGGER.warn(new String(bos.toByteArray(), StandardCharsets.UTF_8));
+                LOGGER.warn(bos.toString(StandardCharsets.UTF_8));
             }
         }
         LOGGER.error("All framebuffer implementations failed");
@@ -64,6 +64,6 @@ public interface FramebufferProvider {
      * @throws LastErrorException       When there was an error accessing the device.
      */
     JavaFramebuffer createFramebuffer(@NonNull NativeFramebuffer fb, DisplayInterface disp)
-            throws LastErrorException, IllegalArgumentException;
+        throws LastErrorException, IllegalArgumentException;
 
 }

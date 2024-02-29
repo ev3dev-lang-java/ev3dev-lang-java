@@ -52,8 +52,8 @@ compileJava.options.encoding = 'UTF-8'
 
 //Compile
 compileJava {
-    sourceCompatibility = 17
-    targetCompatibility = 17
+    sourceCompatibility = 11
+    targetCompatibility = 11
 }
 
 def checkstyleConfigDir = file("${rootDir}/config/checkstyle")

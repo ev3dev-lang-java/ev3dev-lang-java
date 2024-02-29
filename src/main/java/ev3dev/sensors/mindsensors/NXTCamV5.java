@@ -15,57 +15,51 @@ import java.util.Set;
  */
 public class NXTCamV5 extends BaseSensor {
 
-    private static final String MINDSENSORS_NXTCAMV5 = "ms-nxtcam5 0x01";
-
-    //MODES
-
     /**
      * Used by setTrackingMode() to choose object tracking.
      */
     public static final String OBJECT_TRACKING = "TRACK-OBJ";
 
+    //MODES
     /**
      * Used by setTrackingMode() to choose face tracking.
      */
     public static final String FACE_TRACKING = "TRACK-FACE";
-
     /**
      * Used by setTrackingMode() to choose eye tracking.
      */
     public static final String EYE_TRACKING = "TRACK-EYE";
-
     /**
      * Used by setTrackingMode() to choose line tracking.
      */
     public static final String LINE_TRACKING = "TRACK-LINE";
-
-    private final Set<String> trackingAllowedModeList = new HashSet<>(
-            Arrays.asList(OBJECT_TRACKING, FACE_TRACKING, EYE_TRACKING, LINE_TRACKING));
-
-    //CAPABILITIES
-
     /**
      * Used to record a short video
      */
     public static final String TAKE_VIDEO = "MOVIE";
-
     /**
      * Used to take a snapshot
      */
     public static final String TAKE_PHOTO = "PICTURE";
 
-    private void initModes() {
-        this.setStringAttribute("mode", "TRACK");
-        setModes(new SensorMode[]{});
-    }
+    //CAPABILITIES
+    private static final String MINDSENSORS_NXTCAMV5 = "ms-nxtcam5 0x01";
+    private final Set<String> trackingAllowedModeList = new HashSet<>(
+        Arrays.asList(OBJECT_TRACKING, FACE_TRACKING, EYE_TRACKING, LINE_TRACKING));
 
     public NXTCamV5(final Port portName) {
         super(portName, LEGO_I2C, MINDSENSORS_NXTCAMV5);
         this.initModes();
     }
 
+    private void initModes() {
+        this.setStringAttribute("mode", "TRACK");
+        setModes(new SensorMode[]{});
+    }
+
     /**
      * Choose either object or line tracking mode.
+     *
      * @param mode Use either OBJECT_TRACKING or LINE_TRACKING
      */
     public void setTrackingMode(final String mode) {
@@ -78,6 +72,7 @@ public class NXTCamV5 extends BaseSensor {
 
     /**
      * Send a single byte command represented by a letter
+     *
      * @param cmd the letter that identifies the command
      */
     public void sendCommand(final String cmd) {
@@ -128,10 +123,10 @@ public class NXTCamV5 extends BaseSensor {
         //TODO, At the moment, the EV3Dev API only returns the first object.
         //It is necessary to research the I2C register to get more rectangles
         return new RectangleInt32(
-                this.getIntegerAttribute("value2"),
-                this.getIntegerAttribute("value3"),
-                this.getIntegerAttribute("value4") - this.getIntegerAttribute("value2"),
-                this.getIntegerAttribute("value5") - this.getIntegerAttribute("value3")
+            this.getIntegerAttribute("value2"),
+            this.getIntegerAttribute("value3"),
+            this.getIntegerAttribute("value4") - this.getIntegerAttribute("value2"),
+            this.getIntegerAttribute("value5") - this.getIntegerAttribute("value3")
         );
     }
 

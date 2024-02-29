@@ -4,12 +4,7 @@ import org.slf4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -75,8 +70,8 @@ public class JarResource {
         String jarFolder;
         try {
             jarFolder = new File(JarResource.class.getProtectionDomain()
-                    .getCodeSource().getLocation().toURI().getPath())
-                    .getParentFile().getPath().replace('\\', '/');
+                .getCodeSource().getLocation().toURI().getPath())
+                .getParentFile().getPath().replace('\\', '/');
         } catch (Exception e) {
             throw new RuntimeException("Cannot parse JAR folder", e);
         }

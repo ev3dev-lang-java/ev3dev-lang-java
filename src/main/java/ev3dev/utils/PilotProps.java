@@ -25,6 +25,25 @@ public class PilotProps extends Properties {
     public static final String KEY_REVERSE = "reverse";
 
     /**
+     * Utility method to get Motor instance from string (A, B or C)
+     */
+    public static RegulatedMotor getMotor(String motor) {
+
+        if (motor.equals("A")) {
+            return Motor.A;
+        } else if (motor.equals("B")) {
+            return Motor.B;
+        } else if (motor.equals("C")) {
+            return Motor.C;
+        } else if (motor.equals("D")) {
+            return Motor.D;
+        } else {
+            //TODO Review this case.
+            return null;
+        }
+    }
+
+    /**
      * Method to load values from file
      *
      * @throws IOException Not found
@@ -46,25 +65,6 @@ public class PilotProps extends Properties {
 
         try (FileOutputStream fos = new FileOutputStream(new File(PERSISTENT_FILENAME))) {
             this.store(fos, null);
-        }
-    }
-
-    /**
-     * Utility method to get Motor instance from string (A, B or C)
-     */
-    public static RegulatedMotor getMotor(String motor) {
-
-        if (motor.equals("A")) {
-            return Motor.A;
-        } else if (motor.equals("B")) {
-            return Motor.B;
-        } else if (motor.equals("C")) {
-            return Motor.C;
-        } else if (motor.equals("D")) {
-            return Motor.D;
-        } else {
-            //TODO Review this case.
-            return null;
         }
     }
 

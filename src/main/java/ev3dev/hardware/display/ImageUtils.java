@@ -3,17 +3,9 @@ package ev3dev.hardware.display;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.Transparency;
+import java.awt.*;
 import java.awt.color.ColorSpace;
-import java.awt.image.BufferedImage;
-import java.awt.image.ComponentColorModel;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
-import java.awt.image.IndexColorModel;
-import java.awt.image.MultiPixelPackedSampleModel;
-import java.awt.image.PixelInterleavedSampleModel;
-import java.awt.image.Raster;
-import java.awt.image.WritableRaster;
+import java.awt.image.*;
 
 /**
  * Common image utilities for framebuffer manipulation
@@ -83,13 +75,13 @@ public class ImageUtils {
 
         // initialize buffer <-> samples bridge
         PixelInterleavedSampleModel sm = new PixelInterleavedSampleModel(
-                DataBuffer.TYPE_BYTE, width, height,
-                4, stride, offsets);
+            DataBuffer.TYPE_BYTE, width, height,
+            4, stride, offsets);
 
         // initialize color interpreter
         ColorSpace spc = ColorSpace.getInstance(ColorSpace.CS_sRGB);
         ComponentColorModel cm = new ComponentColorModel(spc, true, false,
-                Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+            Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
 
         // create raster
         WritableRaster wr = Raster.createWritableRaster(sm, db, null);
@@ -173,9 +165,9 @@ public class ImageUtils {
 
         // initialize buffer <-> sample mapping
         MultiPixelPackedSampleModel packing =
-                new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE,
-                        width, height,
-                        1, stride, 0);
+            new MultiPixelPackedSampleModel(DataBuffer.TYPE_BYTE,
+                width, height,
+                1, stride, 0);
 
         // initialize raster
         WritableRaster wr = Raster.createWritableRaster(packing, db, null);

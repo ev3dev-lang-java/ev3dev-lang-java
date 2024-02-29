@@ -14,24 +14,12 @@ import org.slf4j.LoggerFactory;
  */
 public class EV3Led extends EV3DevDevice implements LED {
 
-    /**
-     * Directions of the LED.
-     */
-    public enum Direction {
-        LEFT,
-        RIGHT
-    }
-
-    private static final Logger log = LoggerFactory.getLogger(EV3Led.class);
-
     public static final int LEFT = 0;
     public static final int RIGHT = 1;
-
+    private static final Logger log = LoggerFactory.getLogger(EV3Led.class);
     private final Direction direction;
-
     private final String LED_RED;
     private final String LED_GREEN;
-
     /**
      * Create an EV3LED object associated with the LED of the specified direction.
      *
@@ -65,6 +53,7 @@ public class EV3Led extends EV3DevDevice implements LED {
      * @throws RuntimeException if LED feature is not supported on the current platform.
      * @deprecated Use {@link #EV3Led(Direction)} instead.
      */
+    @Deprecated
     public EV3Led(final int button) {
         checkPlatform();
 
@@ -95,13 +84,11 @@ public class EV3Led extends EV3DevDevice implements LED {
         }
     }
 
-    //TODO Add Enums for patterns
-
     /**
      * Sets the pattern of light to be shown with this LED.
      *
      * @param pattern the pattern to show with this LED.
-     *
+     *                <p>
      *                0: Turns off the LED light;
      *                1/2/3: Static green/red/yellow light;
      *                4/5/6: Normal blinking green/red/yellow light, <i>not implemented</i>;
@@ -127,6 +114,8 @@ public class EV3Led extends EV3DevDevice implements LED {
         }
     }
 
+    //TODO Add Enums for patterns
+
     /**
      * Returns the direction of the LED associated with this object.
      *
@@ -134,5 +123,13 @@ public class EV3Led extends EV3DevDevice implements LED {
      */
     public Direction getDirection() {
         return direction;
+    }
+
+    /**
+     * Directions of the LED.
+     */
+    public enum Direction {
+        LEFT,
+        RIGHT
     }
 }
