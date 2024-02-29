@@ -12,6 +12,7 @@ public class EV3DevPropertyLoader {
 
     private final Properties ev3DevProperties;
 
+    private static final String BUSTER_PROPERTY_FILENAME = "buster.properties";
     private static final String STRETCH_PROPERTY_FILENAME = "stretch.properties";
     private static final String JESSIE_PROPERTY_FILENAME = "jessie.properties";
 
@@ -20,12 +21,11 @@ public class EV3DevPropertyLoader {
      */
     public EV3DevPropertyLoader() {
 
-        String propertyName;
-        if (EV3DevDistros.getInstance().getDistro().equals(EV3DevDistro.STRETCH)) {
-            propertyName = STRETCH_PROPERTY_FILENAME;
-        } else {
-            propertyName = JESSIE_PROPERTY_FILENAME;
-        }
+        String propertyName = switch (EV3DevDistros.getInstance().getDistro()) {
+            case BUSTER -> BUSTER_PROPERTY_FILENAME;
+            case JESSIE -> JESSIE_PROPERTY_FILENAME;
+            default -> STRETCH_PROPERTY_FILENAME;
+        };
 
         try {
             Properties prop = new Properties();

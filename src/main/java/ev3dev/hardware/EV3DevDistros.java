@@ -13,9 +13,11 @@ public class EV3DevDistros {
     private static final String DEBIAN_DISTRO_DETECTION_QUERY = "cat /etc/os-release";
     private static final String JESSIE_DISTRO_DETECTION_PATTERN = "ev3dev-jessie";
     private static final String STRETCH_DISTRO_DETECTION_PATTERN = "ev3dev-stretch";
+    private static final String BUSTER_DISTRO_DETECTION_PATTERN = "ev3dev-buster";
     private static final String DEBIAN_DISTRO_DETECTION_KEY = "EV3DEV_DISTRO";
     private static final String DEBIAN_DISTRO_DETECTION_JESSIE = "jessie";
     private static final String DEBIAN_DISTRO_DETECTION_STRETCH = "stretch";
+    private static final String DEBIAN_DISTRO_DETECTION_BUSTER = "buster";
 
     private EV3DevDistro CURRENT_DISTRO;
 
@@ -43,11 +45,18 @@ public class EV3DevDistros {
             setJessie();
         } else if (osResult.contains(DEBIAN_DISTRO_DETECTION_STRETCH)) {
             setStretch();
+        } else if (osResult.contains(DEBIAN_DISTRO_DETECTION_BUSTER)) {
+            setBuster();
         } else {
             //TODO Improve this flow
             LOGGER.warn("Failed to detect distro, falling back to Stretch.");
             setStretch();
         }
+    }
+
+    private void setBuster() {
+        LOGGER.debug("Debian Buster detected");
+        CURRENT_DISTRO = EV3DevDistro.BUSTER;
     }
 
     private void setStretch() {
