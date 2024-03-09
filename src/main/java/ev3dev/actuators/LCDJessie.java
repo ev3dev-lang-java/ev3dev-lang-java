@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class LCDJessie extends EV3DevDevice implements GraphicsLCD {
+public class LCDJessie extends LCD {
 
     public static final String EV3DEV_EV3_DEVICES_PATH = "/dev";
     public static final String EV3DEV_EV3_LCD_NAME = "fb0";

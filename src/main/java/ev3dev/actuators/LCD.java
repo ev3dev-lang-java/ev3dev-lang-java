@@ -1,9 +1,10 @@
 package ev3dev.actuators;
 
+import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevDistros;
 import lejos.hardware.lcd.GraphicsLCD;
 
-public class LCD {
+public abstract class LCD extends EV3DevDevice implements GraphicsLCD {
 
     /**
      * Factory

@@ -22,7 +22,7 @@ import java.util.TimerTask;
 /**
  * Lejos LCD reimplementation using Java2D API
  */
-public class LCDStretch extends EV3DevDevice implements GraphicsLCD {
+public class LCDStretch extends LCD {
 
     // custom config
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
