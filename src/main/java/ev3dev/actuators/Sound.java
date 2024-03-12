@@ -1,5 +1,20 @@
 package ev3dev.actuators;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Objects;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ev3dev.hardware.EV3DevDevice;
 import ev3dev.hardware.EV3DevDistro;
 import ev3dev.hardware.EV3DevDistros;
@@ -7,19 +22,6 @@ import ev3dev.hardware.EV3DevPlatform;
 import ev3dev.utils.Shell;
 import ev3dev.utils.Sysfs;
 import lejos.utility.Delay;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
-import java.net.URL;
-import java.net.MalformedURLException;
 
 
 /**
@@ -119,7 +121,6 @@ public class Sound extends EV3DevDevice {
      * @param duration  The duration of the tone, in milliseconds.
      * @param volume    The volume of the playback
      *
-     * @see playTone(int, int)
      */
     public void playTone(final int frequency, final int duration, final int volume) {
         if (CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
@@ -152,8 +153,6 @@ public class Sound extends EV3DevDevice {
      * @param url    URL to the sample
      * @param volume the volume level
      *
-     * @see playSample(URL)
-     * @see setVolume(int)
      */
     public void playSample(final URL url, final int volume) {
         this.setVolume(volume);
@@ -166,8 +165,6 @@ public class Sound extends EV3DevDevice {
      * @param file   File path to the sample
      * @param volume the volume level
      *
-     * @see playSample(File)
-     * @see setVolume(int)
      */
     public void playSample(final File file, final int volume) {
         this.setVolume(volume);
@@ -180,8 +177,6 @@ public class Sound extends EV3DevDevice {
      * @param resource Resource path to the sample
      * @param volume   the volume level
      *
-     * @see playSample(String)
-     * @see setVolume(int)
      */
     public void playSample(final String resource, final int volume) {
         this.setVolume(volume);
@@ -218,8 +213,7 @@ public class Sound extends EV3DevDevice {
     public void playSample(final File file) {
         try {
             playSample(file.toURI().toURL());
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             LOGGER.error(e.getLocalizedMessage(), e);
             throw new RuntimeException(e);
         }
@@ -274,8 +268,7 @@ public class Sound extends EV3DevDevice {
             // "Beep" (tones), so set the volume for both:
             final String[] mixers = {"PCM", "Beep"};
             for (String item : mixers) {
-                Shell.execute(new String[]
-                    {"amixer", "set", item+",0", ""+volume+"%"});
+                Shell.execute(new String[] {"amixer", "set", item + ",0", "" + volume + "%"});
             }
         }
     }
