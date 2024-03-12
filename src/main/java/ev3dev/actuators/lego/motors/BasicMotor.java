@@ -53,6 +53,16 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
     }
 
     /**
+     * Get power
+     *
+     * @return power
+     */
+    @Override
+    public int getPower() {
+        return this.getIntegerAttribute(DUTY_CYCLE);
+    }
+
+    /**
      * Set power
      *
      * @param power new motors power 0-100
@@ -61,16 +71,6 @@ public abstract class BasicMotor extends EV3DevMotorDevice implements DCMotor {
     public void setPower(final int power) {
         this.power = power;
         this.setIntegerAttribute(DUTY_CYCLE, power);
-    }
-
-    /**
-     * Get power
-     *
-     * @return power
-     */
-    @Override
-    public int getPower() {
-        return this.getIntegerAttribute(DUTY_CYCLE);
     }
 
     /**

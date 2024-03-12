@@ -9,16 +9,13 @@ import org.slf4j.LoggerFactory;
  */
 public class Espeak {
 
-    private static final Logger log = LoggerFactory.getLogger(Espeak.class);
-
-    private static final String ESPEAK = "espeak";
-    private static final String CMD_APLAY = "aplay";
-
     public static final String VOICE_ENGLISH = "en";
     public static final String VOICE_SPANISH = "es";
     public static final int DEFAULT_SPEED_READING = 105;
     public static final int DEFAULT_PITCH = 60;
-
+    private static final Logger log = LoggerFactory.getLogger(Espeak.class);
+    private static final String ESPEAK = "espeak";
+    private static final String CMD_APLAY = "aplay";
     private String voice = null;
     private int volume = -1;
     private int speedReading = -1;
@@ -68,12 +65,12 @@ public class Espeak {
         if (this.speedReading != -1) {
             sb.append(" -s ").append(this.speedReading);
         } else {
-            sb.append(" -s ").append(this.DEFAULT_SPEED_READING);
+            sb.append(" -s ").append(DEFAULT_SPEED_READING);
         }
         if (this.pitch != -1) {
             sb.append(" -p ").append(this.pitch);
         } else {
-            sb.append(" -p ").append(this.DEFAULT_PITCH);
+            sb.append(" -p ").append(DEFAULT_PITCH);
         }
         //TODO Refactor
         if (message != null) {

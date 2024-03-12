@@ -78,8 +78,9 @@ public abstract class DisplayInterface implements Closeable {
 
     /**
      * Initialize new internal instance of JavaFramebuffer.
+     *
      * @param backend Device behind JavaFramebuffer.
-     * @param enable Whether to enable framebuffer flushing from the beginning.
+     * @param enable  Whether to enable framebuffer flushing from the beginning.
      */
     protected void initializeFramebuffer(@NonNull NativeFramebuffer backend, boolean enable) {
         try {

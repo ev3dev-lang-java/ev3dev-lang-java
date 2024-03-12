@@ -7,59 +7,32 @@ import lejos.hardware.lcd.GraphicsLCD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
-import java.awt.image.IndexColorModel;
-import java.awt.image.Raster;
-import java.awt.image.WritableRaster;
+import java.awt.*;
+import java.awt.image.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class LCDJessie extends EV3DevDevice implements GraphicsLCD {
-
-    private static final Logger log = LoggerFactory.getLogger(LCDJessie.class);
+public class LCDJessie extends LCD {
 
     public static final String EV3DEV_EV3_DEVICES_PATH = "/dev";
     public static final String EV3DEV_EV3_LCD_NAME = "fb0";
     public static final String EV3DEV_EV3_LCD_PATH = EV3DEV_EV3_DEVICES_PATH + "/" + EV3DEV_EV3_LCD_NAME;
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
-    public static final String FB_PATH =
-        Objects.nonNull(System.getProperty(EV3DEV_LCD_KEY)) ? System.getProperty(EV3DEV_LCD_KEY) : EV3DEV_EV3_LCD_PATH;
-
-    private int SCREEN_WIDTH = 0;
-    private int SCREEN_HEIGHT = 0;
-    private int LINE_LEN = 0;
-    private int BUFFER_SIZE = 0;
-
+    public static final String FB_PATH = Objects.nonNull(System.getProperty(EV3DEV_LCD_KEY)) ? System.getProperty(EV3DEV_LCD_KEY) : EV3DEV_EV3_LCD_PATH;
     public static final int EV3_SCREEN_WIDTH = 178;
     public static final int EV3_SCREEN_HEIGHT = 128;
     public static final int EV3_LINE_LEN = 24;
     public static final int EV3_ROWS = 128;
     public static final int EV3_BUFFER_SIZE = EV3_LINE_LEN * EV3_ROWS;
-
+    private static final Logger log = LoggerFactory.getLogger(LCDJessie.class);
+    private static GraphicsLCD instance;
+    private int SCREEN_WIDTH = 0;
+    private int SCREEN_HEIGHT = 0;
+    private int LINE_LEN = 0;
+    private int BUFFER_SIZE = 0;
     private BufferedImage image;
     private Graphics2D g2d;
-
-    private static GraphicsLCD instance;
-
-    /**
-     * Singleton constructor
-     *
-     * @return A Sound instance
-     */
-    public static GraphicsLCD getInstance() {
-        //TODO Refactor
-        if (instance == null) {
-            instance = new LCDJessie();
-        }
-        return instance;
-    }
 
     // Prevent duplicate objects
     private LCDJessie() {
@@ -72,6 +45,19 @@ public class LCDJessie extends EV3DevDevice implements GraphicsLCD {
             log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
             throw new RuntimeException("This actuator was only tested for: " + EV3DevPlatform.EV3BRICK);
         }
+    }
+
+    /**
+     * Singleton constructor
+     *
+     * @return A Sound instance
+     */
+    public static GraphicsLCD getInstance() {
+        //TODO Refactor
+        if (instance == null) {
+            instance = new LCDJessie();
+        }
+        return instance;
     }
 
     private void init(

@@ -9,7 +9,7 @@ EV3Dev-lang-java contributors (sorted alphabetically)
 * **[Aswin Bouwmeester](https://nxttime.wordpress.com/)**
 
   * LeJOS sensor framework
-  * LeJOS navigation stack 
+  * LeJOS navigation stack
 
 * **[Andy Shaw](http://www.gloomy-place.com/legoindex.htm)**
 
@@ -18,6 +18,11 @@ EV3Dev-lang-java contributors (sorted alphabetically)
 * **[Brian Bagnall](https://www.amazon.es/Maximum-LEGO-EV3-Mindstorms-2014-09-22/dp/B01FIXF13O/ref=sr_1_6?s=books&ie=UTF8&qid=1496587630&sr=1-6)**
 
   * LeJOS navigation stack
+
+* **[Cameron Whyte](https://cameronwhyte.me)**
+
+  * Debian Buster Support
+  * OpenJDK 17 for EV3Dev
 
 * **[David Lechner](https://github.com/dlech)**
 
@@ -43,11 +48,11 @@ EV3Dev-lang-java contributors (sorted alphabetically)
 
 * **[Lawrie Griffiths](https://github.com/lawrie)**
 
-  * LeJOS navigation stack 
-  
+  * LeJOS navigation stack
+
 * **[Peter Abeles](https://github.com/lessthanoptimal)**
 
-  * Initial RPLidar support  
+  * Initial RPLidar support
 
 * **[Roger Glassey](http://ieor.berkeley.edu/people/faculty/glassey)**
 

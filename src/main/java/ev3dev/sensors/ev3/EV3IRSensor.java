@@ -24,16 +24,13 @@ import lejos.hardware.sensor.SensorMode;
  */
 public class EV3IRSensor extends BaseSensor {
 
+    public static final int IR_CHANNELS = 4;
     private static final String LEGO_EV3_IR = "lego-ev3-ir";
-
-    public static float MIN_RANGE = 5f; //cm
-    public static float MAX_RANGE = 100f; //cm
-
     private static final String MODE_DISTANCE = "IR-PROX";
     private static final String MODE_SEEK = "IR-SEEK";
     private static final String MODE_REMOTE = "IR-REMOTE";
-
-    public static final int IR_CHANNELS = 4;
+    public static float MIN_RANGE = 5f; //cm
+    public static float MAX_RANGE = 100f; //cm
 
     /**
      * Constructor
@@ -62,8 +59,8 @@ public class EV3IRSensor extends BaseSensor {
      * Outside this range a zero is returned for low values and positive infinity for high values.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
-     *     See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */
     public SensorMode getDistanceMode() {
         switchMode(MODE_DISTANCE, SWITCH_DELAY);
@@ -86,8 +83,8 @@ public class EV3IRSensor extends BaseSensor {
      * If no beacon is detected both bearing is set to zero, and distance to positive infinity.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
-     *     See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See <a href="http://www.ev-3.net/en/archives/848"> Sensor Product page </a>
      */
     public SensorMode getSeekMode() {
         switchMode(MODE_SEEK, SWITCH_DELAY);
@@ -115,7 +112,7 @@ public class EV3IRSensor extends BaseSensor {
      * 11 TOP-RIGHT + BOTTOM-RIGHT<br>
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getRemoteMode() {
         switchMode(MODE_REMOTE, SWITCH_DELAY);

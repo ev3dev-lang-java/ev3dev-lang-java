@@ -10,11 +10,7 @@ import lejos.utility.Delay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -30,23 +26,29 @@ import java.util.Objects;
  */
 public class Sound extends EV3DevDevice {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Sound.class);
-
-    private static final String EV3_PHYSICAL_SOUND_PATH = "/sys/devices/platform/snd-legoev3";
     public static final String EV3DEV_SOUND_KEY = "EV3DEV_SOUND_KEY";
-    private static String EV3_SOUND_PATH;
-
-    private static final String CMD_BEEP = "beep";
     public static final String VOLUME = "volume";
-
-    private static String VOLUME_PATH;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Sound.class);
+    private static final String EV3_PHYSICAL_SOUND_PATH = "/sys/devices/platform/snd-legoev3";
+    private static final String CMD_BEEP = "beep";
     private static final String DISABLED_FEATURE_MESSAGE = "This feature is disabled for this platform.";
-
-    private final EV3DevDistro CURRENT_DISTRO;
-
+    private static String EV3_SOUND_PATH;
+    private static String VOLUME_PATH;
     private static Sound instance;
-
+    private final EV3DevDistro CURRENT_DISTRO;
     private int volume = 0;
+
+    // Prevent duplicate objects
+    private Sound() {
+
+        LOGGER.info("Creating a instance of Sound");
+
+        EV3_SOUND_PATH = Objects.nonNull(System.getProperty(EV3DEV_SOUND_KEY))
+            ? System.getProperty(EV3DEV_SOUND_KEY) : EV3_PHYSICAL_SOUND_PATH;
+        VOLUME_PATH = EV3_SOUND_PATH + "/" + VOLUME;
+
+        CURRENT_DISTRO = EV3DevDistros.getInstance().getDistro();
+    }
 
     /**
      * Return a Instance of Sound.
@@ -61,18 +63,6 @@ public class Sound extends EV3DevDevice {
             instance = new Sound();
         }
         return instance;
-    }
-
-    // Prevent duplicate objects
-    private Sound() {
-
-        LOGGER.info("Creating a instance of Sound");
-
-        EV3_SOUND_PATH = Objects.nonNull(System.getProperty(EV3DEV_SOUND_KEY))
-            ? System.getProperty(EV3DEV_SOUND_KEY) : EV3_PHYSICAL_SOUND_PATH;
-        VOLUME_PATH = EV3_SOUND_PATH + "/" + VOLUME;
-
-        CURRENT_DISTRO = EV3DevDistros.getInstance().getDistro();
     }
 
     /**
@@ -163,6 +153,21 @@ public class Sound extends EV3DevDevice {
     }
 
     /**
+     * Get the current master volume level
+     *
+     * @return the current master volume 0-100
+     */
+    public int getVolume() {
+
+        if (CURRENT_DISTRO.equals(EV3DevDistro.JESSIE)) {
+            //TODO Review to move to this.getIntegerAttribute()
+            return Sysfs.readInteger(VOLUME_PATH);
+        } else {
+            return this.volume;
+        }
+    }
+
+    /**
      * Set the master volume level
      *
      * @param volume 0-100
@@ -177,21 +182,6 @@ public class Sound extends EV3DevDevice {
         } else {
             final String cmdVolume = "amixer set PCM,0 " + volume + "%";
             Shell.execute(cmdVolume);
-        }
-    }
-
-    /**
-     * Get the current master volume level
-     *
-     * @return the current master volume 0-100
-     */
-    public int getVolume() {
-
-        if (CURRENT_DISTRO.equals(EV3DevDistro.JESSIE)) {
-            //TODO Review to move to this.getIntegerAttribute()
-            return Sysfs.readInteger(VOLUME_PATH);
-        } else {
-            return this.volume;
         }
     }
 

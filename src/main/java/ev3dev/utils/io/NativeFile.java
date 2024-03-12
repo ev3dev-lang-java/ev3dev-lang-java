@@ -21,9 +21,9 @@ import java.nio.ByteBuffer;
  * @author andy, Jakub Vaněk
  */
 public class NativeFile implements Closeable, AutoCloseable {
-    private static int DEFAULT_PRIVS = 0777;
+    private static final int DEFAULT_PRIVS = 0777;
     protected int fd = -1;
-    private ILibc libc;
+    private final ILibc libc;
 
     /**
      * Basic constructor.

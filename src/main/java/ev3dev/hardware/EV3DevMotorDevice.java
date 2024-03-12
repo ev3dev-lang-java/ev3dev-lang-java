@@ -2,9 +2,8 @@ package ev3dev.hardware;
 
 /**
  * Base class to interact with EV3Dev sysfs
- * 
- * @author Juan Antonio Breña Moral
  *
+ * @author Juan Antonio Breña Moral
  */
 public abstract class EV3DevMotorDevice extends EV3DevDevice {
 

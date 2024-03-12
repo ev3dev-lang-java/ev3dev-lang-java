@@ -1,5 +1,7 @@
 package ev3dev.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,14 +12,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The class responsible to interact with Sysfs on EV3Dev
  *
  * @author Juan Antonio Breña Moral
  * @author David Walend
- *
  */
 @Slf4j
 public class Sysfs {
@@ -54,7 +54,7 @@ public class Sysfs {
     }
 
     public static boolean writeInteger(final String filePath, final int value) {
-        return writeString(filePath, new StringBuilder().append(value).toString());
+        return writeString(filePath, String.valueOf(value));
     }
 
     /**
@@ -137,7 +137,7 @@ public class Sysfs {
     /**
      * Method to write bytes in a path
      *
-     * @param path path
+     * @param path  path
      * @param value value to write
      * @return Result
      */

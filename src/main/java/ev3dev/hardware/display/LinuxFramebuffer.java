@@ -7,8 +7,7 @@ import ev3dev.utils.io.NativeFramebuffer;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -226,7 +225,7 @@ public abstract class LinuxFramebuffer implements JavaFramebuffer {
      * @see LinuxFramebuffer#getMemory() for memory pointer.
      */
     public long getBufferSize() {
-        return getHeight() * getStride();
+        return (long) getHeight() * getStride();
     }
 
     /**

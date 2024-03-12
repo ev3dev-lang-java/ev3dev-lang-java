@@ -24,35 +24,36 @@ public class GenericMode implements SensorMode {
 
     /**
      * Create new generic sensor handler.
+     *
      * @param pathDevice Reference to the object responsible for mode setting and value reading.
      * @param sampleSize Number of returned samples.
-     * @param modeName Human-readable sensor mode name.
+     * @param modeName   Human-readable sensor mode name.
      */
     public GenericMode(
-            final File pathDevice,
-            final int sampleSize,
-            final String modeName) {
+        final File pathDevice,
+        final int sampleSize,
+        final String modeName) {
         this(pathDevice, sampleSize, modeName,
-                Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
+            Float.MIN_VALUE, Float.MAX_VALUE, 1.0f);
     }
 
     /**
      * Create new generic sensor handler.
      *
-     * @param pathDevice Reference to the object responsible for mode setting and value reading.
-     * @param sampleSize Number of returned samples.
-     * @param modeName Human-readable sensor mode name.
-     * @param correctMin Minimum value measured by the sensor. If the reading is lower, zero is returned.
-     * @param correctMax Maximum value measured by the sensor. If the reading is higher, positive infinity is returned.
+     * @param pathDevice    Reference to the object responsible for mode setting and value reading.
+     * @param sampleSize    Number of returned samples.
+     * @param modeName      Human-readable sensor mode name.
+     * @param correctMin    Minimum value measured by the sensor. If the reading is lower, zero is returned.
+     * @param correctMax    Maximum value measured by the sensor. If the reading is higher, positive infinity is returned.
      * @param correctFactor Scaling factor applied to the sensor reading.
      */
     public GenericMode(
-            final File pathDevice,
-            final int sampleSize,
-            final String modeName,
-            final float correctMin,
-            final float correctMax,
-            final float correctFactor) {
+        final File pathDevice,
+        final int sampleSize,
+        final String modeName,
+        final float correctMin,
+        final float correctMax,
+        final float correctFactor) {
         this.pathDevice = pathDevice;
         this.sampleSize = sampleSize;
         this.modeName = modeName;

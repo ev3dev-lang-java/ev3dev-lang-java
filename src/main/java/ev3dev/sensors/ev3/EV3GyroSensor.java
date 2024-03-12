@@ -61,7 +61,7 @@ public class EV3GyroSensor extends BaseSensor {
      * The sensor can be recalibrated using the reset method of the sensor.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SampleProvider getRateMode() {
         switchMode(MODE_RATE, SWITCH_DELAY);
@@ -80,7 +80,7 @@ public class EV3GyroSensor extends BaseSensor {
      * The start position can be set to the current position using the reset method of the sensors.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SampleProvider getAngleMode() {
         switchMode(MODE_ANGLE, SWITCH_DELAY);
@@ -99,7 +99,7 @@ public class EV3GyroSensor extends BaseSensor {
      * The sensor can be recalibrated using the reset method of the sensor.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SampleProvider getAngleAndRateMode() {
         switchMode(MODE_RATE_ANGLE, SWITCH_DELAY);

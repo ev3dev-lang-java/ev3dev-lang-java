@@ -55,7 +55,7 @@ public abstract class EV3DevSensorDevice extends EV3DevDevice {
      * Constructor used for some Analog Sensors like EV3 Touch Sensors
      *
      * @param portName Port
-     * @param mode Mode
+     * @param mode     Mode
      */
     protected EV3DevSensorDevice(final Port portName, final String mode) {
 

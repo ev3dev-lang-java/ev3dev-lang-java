@@ -9,13 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -51,19 +45,17 @@ public class EV3Key implements Key {
     private static final int EVENT_BUFFER_LEN = 16;
     private static final int KEY_ID_INDEX = 10;   // one of the BUTTON_* values
     private static final int KEY_STATE_INDEX = 12;   // 1 for down, 0 for up
-
+    // a single ever-running (or waiting) thread keeping track of the currently pressed/released buttons
+    private static final Thread keyEventReader;
     // a bit-wise OR of the MASK_* bits above (except for MASK_ALL) depending on which keys are currently pressed
     private static byte keyBits = 0;
-    private static Map<KeyType, Set<KeyListener>> keyListeners = new HashMap<>(KeyType.values().length);
+    private static final Map<KeyType, Set<KeyListener>> keyListeners = new HashMap<>(KeyType.values().length);
 
     static {
         Arrays.stream(KeyType.values()).forEach((type) -> keyListeners.put(
             type, new CopyOnWriteArraySet<>()));
         // the CopyOfWriteArraySet will spare us a lot of hussle with thread safety
     }
-
-    // a single ever-running (or waiting) thread keeping track of the currently pressed/released buttons
-    private static final Thread keyEventReader;
 
     static {
         keyEventReader = new Thread(() -> {
@@ -97,54 +89,7 @@ public class EV3Key implements Key {
         keyEventReader.start();     // non-blocking call to start the thread
     }
 
-    // package-private such that it's visible from test
-    enum KeyType {
-        UP("UP", BUTTON_UP, Keys.ID_UP),   // notice that the Keys.ID_* are single bit masks (verified in unit test)
-        DOWN("DOWN", BUTTON_DOWN, Keys.ID_DOWN),
-        LEFT("LEFT", BUTTON_LEFT, Keys.ID_LEFT),
-        RIGHT("RIGHT", BUTTON_RIGHT, Keys.ID_RIGHT),
-        ENTER("ENTER", BUTTON_ENTER, Keys.ID_ENTER),
-        ESCAPE("ESCAPE", BUTTON_ESCAPE, Keys.ID_ESCAPE),
-        ALL("ALL", BUTTON_ALL, 0xff);
-        // the 0xff must cover all bits of individual keys above (verified in unit tests)
-
-        private static final Map<Byte, KeyType> LOOKUP = Arrays.stream(KeyType.values())
-            .collect(Collectors.toMap(KeyType::getId, (keyType) -> keyType));
-
-        private final String name;
-        private final byte id;
-        private final byte bitMask;
-
-        KeyType(final String name, final int id, final int bitMask) {
-            this.name = name;
-            this.id = (byte) id;
-            this.bitMask = (byte) bitMask;
-        }
-
-        public static KeyType of(final int id) {
-            return Optional.ofNullable(LOOKUP.get((byte) id))
-                .orElseThrow(() -> new IllegalArgumentException(
-                    String.format("No such keyType (%d), please use one of the EV3Key.BUTTON_* constants", id)));
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public byte getId() {
-            return id;
-        }
-
-        public byte getBitMask() {
-            return this.bitMask;
-        }
-
-        public boolean isPressed() {
-            return (KeyType.ALL == this ? (keyBits > 0) : ((keyBits & this.bitMask) > 0));
-        }
-    }
-
-    private KeyType keyType;
+    private final KeyType keyType;
 
     /**
      * Create an Instance of EV3Key.
@@ -162,6 +107,39 @@ public class EV3Key implements Key {
      */
     public EV3Key(final int id) {
         this(KeyType.of(id));
+    }
+
+    // package-private such that it's VisibleForTesting
+    static void processKeyEvent(final byte keyId, final byte keyState) {
+        final KeyType keyType = KeyType.of(keyId);
+        if (LOGGER.isTraceEnabled()) {
+            LOGGER.trace("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
+        }
+
+        if (keyState == STATE_KEY_UP) {
+            keyBits ^= keyType.bitMask;   // clearing the key bit
+            broadcastToListeners(keyType, KeyListener::keyReleased);
+        } else if (keyState == STATE_KEY_DOWN) {
+            keyBits |= keyType.bitMask;   // setting the key bit
+            broadcastToListeners(keyType, KeyListener::keyPressed);
+        } else {
+            LOGGER.warn("Unexpected key state: " + keyState);
+        }
+    }
+
+    // TODO: parhaps notify listeners in a separate Thread to avoid blocking the key event reader thread
+    // TODO: ... or not - Threads consume resources and notifying in a separate Thread
+    // also means the events may no longer come in correct order
+    private static void broadcastToListeners(
+        final KeyType keyType, final BiConsumer<KeyListener, Key> notificationMethod) {
+
+        // key-specific listeners
+        keyListeners.get(keyType).forEach((listener) -> notificationMethod.accept(listener, new EV3Key(keyType)));
+        // all-key listeners
+        keyListeners.get(KeyType.ALL).forEach((listener) -> notificationMethod.accept(listener, new EV3Key(keyType)));
+        synchronized (keyEventReader) {
+            keyEventReader.notifyAll();
+        }
     }
 
     /**
@@ -302,36 +280,50 @@ public class EV3Key implements Key {
         return String.format("%s:%s", this.getClass().getSimpleName(), this.keyType.getName());
     }
 
-    // package-private such that it's VisibleForTesting
-    static void processKeyEvent(final byte keyId, final byte keyState) {
-        final KeyType keyType = KeyType.of(keyId);
-        if (LOGGER.isTraceEnabled()) {
-            LOGGER.trace("KeyType {} {}", keyType.name, (keyState == 0 ? "released" : "pressed"));
+    // package-private such that it's visible from test
+    enum KeyType {
+        UP("UP", BUTTON_UP, Keys.ID_UP),   // notice that the Keys.ID_* are single bit masks (verified in unit test)
+        DOWN("DOWN", BUTTON_DOWN, Keys.ID_DOWN),
+        LEFT("LEFT", BUTTON_LEFT, Keys.ID_LEFT),
+        RIGHT("RIGHT", BUTTON_RIGHT, Keys.ID_RIGHT),
+        ENTER("ENTER", BUTTON_ENTER, Keys.ID_ENTER),
+        ESCAPE("ESCAPE", BUTTON_ESCAPE, Keys.ID_ESCAPE),
+        ALL("ALL", BUTTON_ALL, 0xff);
+        // the 0xff must cover all bits of individual keys above (verified in unit tests)
+
+        private static final Map<Byte, KeyType> LOOKUP = Arrays.stream(KeyType.values())
+            .collect(Collectors.toMap(KeyType::getId, (keyType) -> keyType));
+
+        private final String name;
+        private final byte id;
+        private final byte bitMask;
+
+        KeyType(final String name, final int id, final int bitMask) {
+            this.name = name;
+            this.id = (byte) id;
+            this.bitMask = (byte) bitMask;
         }
 
-        if (keyState == STATE_KEY_UP) {
-            keyBits ^= keyType.bitMask;   // clearing the key bit
-            broadcastToListeners(keyType, KeyListener::keyReleased);
-        } else if (keyState == STATE_KEY_DOWN) {
-            keyBits |= keyType.bitMask;   // setting the key bit
-            broadcastToListeners(keyType, KeyListener::keyPressed);
-        } else {
-            LOGGER.warn("Unexpected key state: " + keyState);
+        public static KeyType of(final int id) {
+            return Optional.ofNullable(LOOKUP.get((byte) id))
+                .orElseThrow(() -> new IllegalArgumentException(
+                    String.format("No such keyType (%d), please use one of the EV3Key.BUTTON_* constants", id)));
         }
-    }
 
-    // TODO: parhaps notify listeners in a separate Thread to avoid blocking the key event reader thread
-    // TODO: ... or not - Threads consume resources and notifying in a separate Thread
-    // also means the events may no longer come in correct order
-    private static void broadcastToListeners(
-        final KeyType keyType, final BiConsumer<KeyListener, Key> notificationMethod) {
+        public String getName() {
+            return name;
+        }
 
-        // key-specific listeners
-        keyListeners.get(keyType).forEach((listener) -> notificationMethod.accept(listener, new EV3Key(keyType)));
-        // all-key listeners
-        keyListeners.get(KeyType.ALL).forEach((listener) -> notificationMethod.accept(listener, new EV3Key(keyType)));
-        synchronized (keyEventReader) {
-            keyEventReader.notifyAll();
+        public byte getId() {
+            return id;
+        }
+
+        public byte getBitMask() {
+            return this.bitMask;
+        }
+
+        public boolean isPressed() {
+            return (KeyType.ALL == this ? (keyBits > 0) : ((keyBits & this.bitMask) > 0));
         }
     }
 }

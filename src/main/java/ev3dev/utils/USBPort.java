@@ -13,8 +13,8 @@ import static ev3dev.hardware.EV3DevFileSystem.EV3DEV_TESTING_KEY;
 @Slf4j
 public class USBPort {
 
-    private String USBPath;
     private final String defaultUSBPath = "/sys/bus/usb/drivers/usb/";
+    private final String USBPath;
 
     /**
      * Constructor

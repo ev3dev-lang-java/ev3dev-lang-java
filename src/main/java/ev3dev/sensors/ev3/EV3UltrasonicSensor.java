@@ -33,13 +33,11 @@ import java.util.Objects;
 public class EV3UltrasonicSensor extends BaseSensor {
 
     private static final String LEGO_EV3_US = "lego-ev3-us";
-
-    public static float MIN_RANGE = 5f; //cm
-    public static float MAX_RANGE = 255f; //cm
-
     private static final String MODE_DISTANCE = "US-DIST-CM";
     private static final String MODE_LISTEN = "US-LISTEN";
     private static final String MODE_SINGLE_MEASURE = "US-SI-CM";
+    public static float MIN_RANGE = 5f; //cm
+    public static float MAX_RANGE = 255f; //cm
 
 
     /**
@@ -114,7 +112,7 @@ public class EV3UltrasonicSensor extends BaseSensor {
      * Indicate that the sensors is enabled.
      *
      * @return True, when the sensors is enabled. <br>
-     *     False, when the sensors is disabled.
+     * False, when the sensors is disabled.
      */
     public boolean isEnabled() {
         return !Objects.equals(this.getSystemMode(), MODE_SINGLE_MEASURE);

@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Implementation-Title: EV3Dev-lang-java
-Implementation-Version: 2.7.0-SNAPSHOT
+Implementation-Version: 2.8.0-SNAPSHOT
 Implementation-Vendor: Juan Antonio Breña Moral

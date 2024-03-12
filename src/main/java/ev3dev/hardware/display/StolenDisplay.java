@@ -1,8 +1,8 @@
 package ev3dev.hardware.display;
 
+import ev3dev.utils.Brickman;
 import ev3dev.utils.io.ILibc;
 import ev3dev.utils.io.NativeFramebuffer;
-import ev3dev.utils.Brickman;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 

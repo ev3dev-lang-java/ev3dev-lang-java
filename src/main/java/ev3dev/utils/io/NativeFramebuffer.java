@@ -9,10 +9,7 @@ import lombok.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
-import static ev3dev.utils.io.NativeConstants.FBIOGET_CON2FBMAP;
-import static ev3dev.utils.io.NativeConstants.FBIOGET_FSCREENINFO;
-import static ev3dev.utils.io.NativeConstants.FBIOGET_VSCREENINFO;
-import static ev3dev.utils.io.NativeConstants.FBIOPUT_VSCREENINFO;
+import static ev3dev.utils.io.NativeConstants.*;
 
 /**
  * Linux framebuffer wrapper class
@@ -196,9 +193,9 @@ public class NativeFramebuffer extends NativeDevice {
         @Override
         protected List<String> getFieldOrder() {
             return Arrays.asList("id", "smem_start", "smem_len",
-                    "type", "type_aux", "visual",
-                    "xpanstep", "ypanstep", "ywrapstep", "line_length",
-                    "mmio_start", "mmio_len", "accel", "capabilities", "reserved");
+                "type", "type_aux", "visual",
+                "xpanstep", "ypanstep", "ywrapstep", "line_length",
+                "mmio_start", "mmio_len", "accel", "capabilities", "reserved");
         }
 
         /**
@@ -411,11 +408,11 @@ public class NativeFramebuffer extends NativeDevice {
         @Override
         protected List<String> getFieldOrder() {
             return Arrays.asList("xres", "yres", "xres_virtual", "yres_virtual",
-                    "xoffset", "yoffset", "bits_per_pixel", "grayscale",
-                    "red", "green", "blue", "transp", "nonstd", "activate",
-                    "height", "width", "accel_flags", "pixclock",
-                    "left_margin", "right_margin", "upper_margin", "lower_margin",
-                    "hsync_len", "vsync_len", "sync", "vmode", "rotate", "colorspace", "reserved");
+                "xoffset", "yoffset", "bits_per_pixel", "grayscale",
+                "red", "green", "blue", "transp", "nonstd", "activate",
+                "height", "width", "accel_flags", "pixclock",
+                "left_margin", "right_margin", "upper_margin", "lower_margin",
+                "hsync_len", "vsync_len", "sync", "vmode", "rotate", "colorspace", "reserved");
         }
 
         /**

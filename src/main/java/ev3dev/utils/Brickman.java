@@ -2,8 +2,7 @@ package ev3dev.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -35,6 +34,7 @@ public class Brickman {
 
     /**
      * Draw Duke.
+     *
      * @param gfx Required context to draw an image.
      */
     public static void drawJavaLogo(Graphics2D gfx) {

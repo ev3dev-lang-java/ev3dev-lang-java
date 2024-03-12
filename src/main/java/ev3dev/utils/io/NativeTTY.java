@@ -9,13 +9,7 @@ import lombok.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
-import static ev3dev.utils.io.NativeConstants.KDGKBMODE;
-import static ev3dev.utils.io.NativeConstants.KDSETMODE;
-import static ev3dev.utils.io.NativeConstants.KDSKBMODE;
-import static ev3dev.utils.io.NativeConstants.VT_GETMODE;
-import static ev3dev.utils.io.NativeConstants.VT_GETSTATE;
-import static ev3dev.utils.io.NativeConstants.VT_RELDISP;
-import static ev3dev.utils.io.NativeConstants.VT_SETMODE;
+import static ev3dev.utils.io.NativeConstants.*;
 
 /**
  * Wrapper for basic actions on Linux VT/TTY

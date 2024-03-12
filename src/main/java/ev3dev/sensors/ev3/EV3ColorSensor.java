@@ -131,8 +131,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * The sample contains one element containing the ID (0-7) of the detected color.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
-     *
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getColorIDMode() {
         switchMode(COL_COLOR, SWITCH_DELAY);
@@ -147,7 +146,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * The sample contains one element containing the intensity level (Normalized between 0 and 1) of reflected light.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getRedMode() {
         switchMode(COL_REFLECT, SWITCH_DELAY);
@@ -162,7 +161,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * The sample contains one element containing the intensity level (Normalized between 0 and 1) of ambient light.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getAmbientMode() {
         switchMode(COL_AMBIENT, SWITCH_DELAY);
@@ -181,7 +180,7 @@ public class EV3ColorSensor extends BaseSensor implements LampController, ColorI
      * (Normalized between 0 and 1) of red, green and blue light respectivily.
      *
      * @return A sampleProvider
-     *     See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
+     * See {@link lejos.robotics.SampleProvider leJOS conventions for SampleProviders}
      */
     public SensorMode getRGBMode() {
         switchMode(COL_RGBRAW, SWITCH_DELAY);

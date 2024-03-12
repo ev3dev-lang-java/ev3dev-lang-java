@@ -22,7 +22,7 @@ import java.util.TimerTask;
 /**
  * Lejos LCD reimplementation using Java2D API
  */
-public class LCDStretch extends LCD {
+public class LCDBuster extends LCD {
 
     // custom config
     public static final String EV3DEV_LCD_KEY = "EV3DEV_LCD_KEY";
@@ -30,8 +30,8 @@ public class LCDStretch extends LCD {
     public static final String EV3DEV_LCD_MODE_KEY = "EV3DEV_LCD_MODE_KEY";
 
     // logger
-    private static final Logger log = LoggerFactory.getLogger(LCDStretch.class);
-    private static LCDStretch instance;
+    private static final Logger log = LoggerFactory.getLogger(LCDBuster.class);
+    private static LCDBuster instance;
     // drawable
     private final JavaFramebuffer fb;
     private final BufferedImage image;
@@ -44,9 +44,9 @@ public class LCDStretch extends LCD {
     private int stroke;
 
     // Prevent duplicate objects
-    private LCDStretch() {
+    private LCDBuster() {
 
-        log.info("Instancing LCD for Stretch");
+        log.info("Instancing LCD for Buster");
 
         if (!CURRENT_PLATFORM.equals(EV3DevPlatform.EV3BRICK)) {
             log.error("This actuator was only tested for: {}", EV3DevPlatform.EV3BRICK);
@@ -68,7 +68,7 @@ public class LCDStretch extends LCD {
     public static GraphicsLCD getInstance() {
         //TODO Refactor
         if (instance == null) {
-            instance = new LCDStretch();
+            instance = new LCDBuster();
         }
         return instance;
     }

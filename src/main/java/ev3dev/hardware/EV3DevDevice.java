@@ -10,31 +10,26 @@ import java.util.Properties;
 
 /**
  * This class been designed to discover if the library is used in:
- *
+ * <p>
  * - EV3 Brick
  * - Raspberry Pi 1 + PiStorms
  * - Raspberry Pi 1 + BrickPi
- *
- *  At the moment, the class extends from Device,
- *  but close method doesn´t close any real resource.
+ * <p>
+ * At the moment, the class extends from Device,
+ * but close method doesn´t close any real resource.
  *
  * @author Juan Antonio Breña Moral
- *
- *
  */
 public abstract class EV3DevDevice {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevDevice.class);
-
-    protected final Properties ev3DevProperties;
-    protected final EV3DevPlatform CURRENT_PLATFORM;
 
     protected static final String LEGO_PORT = "lego-port";
     protected static final String ADDRESS = "address";
     protected static final String LEGO_SENSOR = "lego-sensor";
     protected static final String MODE = "mode";
     protected static final String DEVICE = "set_device";
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(EV3DevDevice.class);
+    protected final Properties ev3DevProperties;
+    protected final EV3DevPlatform CURRENT_PLATFORM;
     protected File PATH_DEVICE = null;
 
     /**
