@@ -65,6 +65,7 @@ public class EV3Led extends EV3DevDevice implements LED {
      * @throws RuntimeException if LED feature is not supported on the current platform.
      * @deprecated Use {@link #EV3Led(Direction)} instead.
      */
+    @Deprecated
     public EV3Led(final int button) {
         checkPlatform();
 
