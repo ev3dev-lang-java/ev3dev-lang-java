@@ -1,8 +1,6 @@
 package ev3dev.hardware.display;
 
 import com.sun.jna.LastErrorException;
-import ev3dev.hardware.display.spi.AllImplFailedException;
-import ev3dev.hardware.display.spi.FramebufferProvider;
 import ev3dev.utils.io.NativeFramebuffer;
 import lombok.NonNull;
 
@@ -82,11 +80,7 @@ public abstract class DisplayInterface implements Closeable {
      * @param enable Whether to enable framebuffer flushing from the beginning.
      */
     protected void initializeFramebuffer(@NonNull NativeFramebuffer backend, boolean enable) {
-        try {
-            fbInstance = FramebufferProvider.load(backend, this);
-        } catch (AllImplFailedException e) {
-            throw new RuntimeException("System framebuffer opening failed", e);
-        }
+        fbInstance = new RGBFramebuffer(backend, this);
         fbInstance.setFlushEnabled(enable);
         fbInstance.clear();
         fbInstance.storeData();
